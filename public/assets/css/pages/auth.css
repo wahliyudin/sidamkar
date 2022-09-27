@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;200;300;400;500;700&display=swap');
+
+body {
+    background-color: #fff;
+    overflow: hidden;
+}
+
+#auth {
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+#auth .login-title {
+    padding: 2rem 2rem 0 4rem;
+    font-family: 'Lexend Deca';
+    font-weight: 700;
+    font-size: 3rem;
+}
+
+#auth #auth-right {
+    background: url(../../images/template/illustration-login.png), rgba(234, 58, 61, 0.8);
+    background-repeat: no-repeat;
+    background-size: 42rem 23rem;
+    background-position: center;
+    background-position-x: right;
+    height: 100%;
+}
+
+#auth #auth-left {
+    padding: 3rem 8rem;
+    position: relative;
+}
+
+#auth #auth-left .auth-title {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+#auth #auth-left .auth-subtitle {
+    color: #a8aebb;
+    font-size: 1.7rem;
+    line-height: 2.5rem;
+}
+
+#auth #auth-left .auth-logo {
+    text-align: center;
+    padding-bottom: 2rem;
+}
+
+#auth #auth-left form {
+    z-index: 99;
+    position: absolute;
+}
+
+#auth #auth-left .auth-logo a img {
+    width: 7rem;
+    height: 9rem;
+}
+
+.form-group input.form-control {
+    background-color: #224957 !important;
+    color: white !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #224957 inset !important;
+    -webkit-text-fill-color: white !important;
+}
+
+.form-check-input:checked {
+    background-color: #224957 !important;
+    border-color: #224957 !important;
+}
+
+.btn-primary {
+    background: rgba(30, 205, 148, 0.88) !important;
+    border: none !important;
+}
+
+.btn-primary:hover {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+@media screen and (max-width:767px) {
+    #auth #auth-left {
+        padding: 5rem;
+    }
+
+    #auth #auth-left form {
+        z-index: 0;
+        position: relative;
+    }
+}
+
+@media screen and (max-width:576px) {
+    #auth #auth-left {
+        padding: 5rem 3rem;
+    }
+}
+
+body.theme-dark #auth-right {
+    background: url(../../../assets/images/4853433.png?45649b87e0b3f50bfa1372c6cdb4595f), linear-gradient(90deg, #2d499d, #3f5491)
+}
