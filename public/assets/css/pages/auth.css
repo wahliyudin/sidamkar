@@ -14,13 +14,13 @@ body {
     padding: 2rem 2rem 0 4rem;
     font-family: 'Lexend Deca';
     font-weight: 700;
-    font-size: 3rem;
+    font-size: 2.5rem;
 }
 
 #auth #auth-right {
     background: url(../../images/template/illustration-login.png), rgba(234, 58, 61, 0.8);
     background-repeat: no-repeat;
-    background-size: 42rem 23rem;
+    background-size: 40rem 21rem;
     background-position: center;
     background-position-x: right;
     height: 100%;
@@ -47,9 +47,20 @@ body {
     padding-bottom: 2rem;
 }
 
-#auth #auth-left form {
+#auth #auth-left .form {
     z-index: 99;
     position: absolute;
+    top: auto;
+    left: 0;
+    right: 0;
+}
+
+#auth #auth-left .form form {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    width: 100%;
+    padding: 0 10rem;
 }
 
 #auth #auth-left .auth-logo a img {
@@ -93,11 +104,19 @@ input:-webkit-autofill:active {
         z-index: 0;
         position: relative;
     }
+
+    #auth #auth-left .form form {
+        padding: 0 4rem;
+    }
 }
 
 @media screen and (max-width:576px) {
     #auth #auth-left {
         padding: 5rem 3rem;
+    }
+
+    #auth #auth-left .form form {
+        padding: 0 4rem;
     }
 }
 
