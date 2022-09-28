@@ -23,6 +23,38 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
+                <li class="sidebar-item">
+                    <a href="index.html" class='sidebar-link'>
+                        <i class="bi bi-grid-fill"></i>
+                        <span>My Data</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="index.html" class='sidebar-link'>
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Tabel Kegiatan</span>
+                        <span style="padding: 2px 6px; background-color: #EBFF02; color: black; border-radius: 4px;">
+                            50</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="index.html" class='sidebar-link'>
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Laporan Kegiatan</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="index.html" class='sidebar-link'>
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Riwayat Tugas</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="index.html" class='sidebar-link'>
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Revisi Laporan</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
