@@ -30,28 +30,44 @@
                         </a>
                     </div>
                     <div class="form">
-                        <form action="index.html">
+                        <form method="POST" action="{{ route('login') }}">
+                            @csrf
                             <div class="form-group position-relative has-icon-left mb-4">
-                                <input type="text" class="form-control form-control-xl" placeholder="Username"
+                                <input type="email"
+                                    class="form-control form-control-xl @error('email') is-invalid @enderror"
+                                    placeholder="Email" value="{{ old('email') }}" name="email" required
                                     autocomplete="none">
                                 <div class="form-control-icon">
                                     <i class="bi bi-person"></i>
                                 </div>
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="form-group position-relative has-icon-left mb-4">
-                                <input type="password" class="form-control form-control-xl" placeholder="Password">
+                                <input type="password"
+                                    class="form-control form-control-xl @error('password') is-invalid @enderror"
+                                    placeholder="Password" name="password" required>
                                 <div class="form-control-icon">
                                     <i class="bi bi-shield-lock"></i>
                                 </div>
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="form-check form-check-lg d-flex align-items-end">
-                                <input class="form-check-input me-2" type="checkbox" value=""
+                                <input class="form-check-input me-2" type="checkbox"
+                                    {{ old('remember') ? 'checked' : '' }} name="remember" value=""
                                     id="flexCheckDefault">
                                 <label class="form-check-label text-gray-600" for="flexCheckDefault">
                                     Remamber Me
                                 </label>
                             </div>
-                            <button class="btn btn-primary btn-block btn-lg mt-3">Log in</button>
+                            <button type="submit" class="btn btn-primary btn-block btn-lg mt-3">Log in</button>
                             <div class="d-flex flex-column mt-2">
                                 <a style="font-size: 14px;" href="">Register Admin Provinsi, Kab/Kota</a>
                                 <a style="font-size: 14px;" href="">Register Aparatur</a>

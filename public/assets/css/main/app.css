@@ -21387,21 +21387,21 @@ body .bi:before {
 }
 
 .sidebar-wrapper {
-    background-color: #fff;
+    background-color: rgba(234, 58, 61, 0.9);
     bottom: 0;
     height: 100vh;
     overflow-y: auto;
     position: fixed;
     top: 0;
     transition: left .5s ease-out;
-    width: 300px;
+    width: 250px;
     z-index: 10
 }
 
 .sidebar-wrapper .sidebar-header {
     font-size: 2rem;
     font-weight: 700;
-    padding: 2rem 2rem 1rem
+    padding: 2rem 2rem 0 2rem;
 }
 
 .sidebar-wrapper .sidebar-header img {
@@ -21418,11 +21418,11 @@ body .bi:before {
 .sidebar-wrapper .menu {
     font-weight: 600;
     margin-top: 2rem;
-    padding: 0 2rem
+    padding: 0 1rem;
 }
 
 .sidebar-wrapper .menu .sidebar-title {
-    color: #25396f;
+    color: #FFFFFF;
     font-size: 1rem;
     font-weight: 600;
     list-style: none;
@@ -21433,7 +21433,7 @@ body .bi:before {
 .sidebar-wrapper .menu .sidebar-link {
     align-items: center;
     border-radius: .5rem;
-    color: #25396f;
+    color: #FFFFFF;
     display: block;
     display: flex;
     font-size: 1rem;
@@ -21444,7 +21444,7 @@ body .bi:before {
 
 .sidebar-wrapper .menu .sidebar-link i,
 .sidebar-wrapper .menu .sidebar-link svg {
-    color: #7c8db5
+    color: #FFFFFF;
 }
 
 .sidebar-wrapper .menu .sidebar-link i:before {
@@ -21459,6 +21459,12 @@ body .bi:before {
     background-color: #f0f1f5
 }
 
+.sidebar-wrapper .menu .sidebar-link:hover i,
+.sidebar-wrapper .menu .sidebar-link:hover svg,
+.sidebar-wrapper .menu .sidebar-link:hover span {
+    color: #25396f;
+}
+
 .sidebar-wrapper .menu .sidebar-item {
     list-style: none;
     margin-top: .5rem;
@@ -21467,11 +21473,15 @@ body .bi:before {
 
 .sidebar-wrapper .menu .sidebar-item.has-sub .sidebar-link:after {
     color: #ccc;
-    content: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><path style="fill:none;stroke:gray;stroke-width:1" d="m6 9 6 6 6-6"/></svg>');
+    content: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><path style="fill:none;stroke:white;stroke-width:1" d="m6 9 6 6 6-6"/></svg>');
     display: block;
     position: absolute;
     right: 15px;
     top: 12px
+}
+
+.sidebar-wrapper .menu .sidebar-item.has-sub .sidebar-link:hover:after {
+    color: #25396f !important;
 }
 
 .sidebar-wrapper .menu .sidebar-item.active.has-sub .sidebar-link:after {
@@ -21479,7 +21489,7 @@ body .bi:before {
 }
 
 .sidebar-wrapper .menu .sidebar-item.active>.sidebar-link {
-    background-color: #435ebe
+    background-color: #EBFF02;
 }
 
 .sidebar-wrapper .menu .sidebar-item.active>.sidebar-link span {
@@ -21518,7 +21528,7 @@ body .bi:before {
 }
 
 .sidebar-wrapper .menu .submenu .submenu-item a {
-    color: #25396f;
+    color: #FFFFFF;
     display: block;
     font-size: .85rem;
     font-weight: 600;
@@ -22156,7 +22166,7 @@ body .bi:before {
 }
 
 #main {
-    margin-left: 300px;
+    margin-left: 250px;
     padding: 2rem
 }
 
