@@ -27,7 +27,7 @@
                                                 neque,
                                                 blanditiis ea reprehenderit cupiditate pariatur temporibus.</p>
                                         </label>
-                                        <button class="btn btn-green ms-3">upload file</button>
+                                        <button class="btn btn-yellow-light ms-3">view</button>
                                     </div>
                                     <div class="area-wrapper">
                                         <label style="max-width: 85%; cursor: pointer;">
@@ -36,7 +36,7 @@
                                                 sit
                                                 amet, consectetur adipisicing elit.sfasfasf</p>
                                         </label>
-                                        <button class="btn btn-green ms-3">upload file</button>
+                                        <button class="btn btn-yellow-light ms-3">view</button>
                                     </div>
                                     <div class="area-wrapper">
                                         <label style="max-width: 85%; cursor: pointer;">
@@ -45,7 +45,7 @@
                                                 sit
                                                 amet, consectetur adipisicing elit.sfasfasf</p>
                                         </label>
-                                        <button class="btn btn-green ms-3">upload file</button>
+                                        <button class="btn btn-yellow-light ms-3">view</button>
                                     </div>
                                     <div class="area-wrapper">
                                         <label style="max-width: 85%; cursor: pointer;">
@@ -54,7 +54,7 @@
                                                 sit
                                                 amet, consectetur adipisicing elit.sfasfasf</p>
                                         </label>
-                                        <button class="btn btn-green ms-3">upload file</button>
+                                        <button class="btn btn-yellow-light ms-3">view</button>
                                     </div>
                                     <div class="area-wrapper">
                                         <label style="max-width: 85%; cursor: pointer;">
@@ -63,7 +63,7 @@
                                                 sit
                                                 amet, consectetur adipisicing elit.sfasfasf</p>
                                         </label>
-                                        <button class="btn btn-green ms-3">upload file</button>
+                                        <button class="btn btn-yellow-light ms-3">view</button>
                                     </div>
                                 </div>
 
@@ -86,7 +86,7 @@
                                                 neque,
                                                 blanditiis ea reprehenderit cupiditate pariatur temporibus.</p>
                                         </label>
-                                        <button class="btn btn-green ms-3">upload file</button>
+                                        <button class="btn btn-yellow-light ms-3">view</button>
                                     </div>
                                     <div class="area-wrapper">
                                         <label style="max-width: 85%; cursor: pointer;">
@@ -95,7 +95,7 @@
                                                 sit
                                                 amet, consectetur adipisicing elit.sfasfasf</p>
                                         </label>
-                                        <button class="btn btn-green ms-3">upload file</button>
+                                        <button class="btn btn-yellow-light ms-3">view</button>
                                     </div>
                                     <div class="area-wrapper">
                                         <label style="max-width: 85%; cursor: pointer;">
@@ -104,7 +104,7 @@
                                                 sit
                                                 amet, consectetur adipisicing elit.sfasfasf</p>
                                         </label>
-                                        <button class="btn btn-green ms-3">upload file</button>
+                                        <button class="btn btn-yellow-light ms-3">view</button>
                                     </div>
                                     <div class="area-wrapper">
                                         <label style="max-width: 85%; cursor: pointer;">
@@ -113,7 +113,7 @@
                                                 sit
                                                 amet, consectetur adipisicing elit.sfasfasf</p>
                                         </label>
-                                        <button class="btn btn-green ms-3">upload file</button>
+                                        <button class="btn btn-yellow-light ms-3">view</button>
                                     </div>
                                     <div class="area-wrapper">
                                         <label style="max-width: 85%; cursor: pointer;">
@@ -122,13 +122,9 @@
                                                 sit
                                                 amet, consectetur adipisicing elit.sfasfasf</p>
                                         </label>
-                                        <button class="btn btn-green ms-3">upload file</button>
+                                        <button class="btn btn-yellow-light ms-3">view</button>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="flex text-center mt-4">
-                                <button class="btn btn-blue">Simpan</button>
                             </div>
                         </form>
                     </div>

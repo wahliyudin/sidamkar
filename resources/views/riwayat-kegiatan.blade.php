@@ -16,7 +16,7 @@
                                 </div>
                                 <div class="area-timeline">
                                     <div class="area-wrapper">
-                                        <label style="max-width: 85%; cursor: pointer;">
+                                        <label style="max-width: 70%; cursor: pointer;">
                                             <input type="checkbox" checked id="checkbox1" class="form-check-input">
                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor
                                                 sit
@@ -27,43 +27,58 @@
                                                 neque,
                                                 blanditiis ea reprehenderit cupiditate pariatur temporibus.</p>
                                         </label>
-                                        <button class="btn btn-green ms-3">upload file</button>
+                                        <div class="d-flex align-items-center">
+                                            <button class="btn btn-green-light ms-3">diterima</button>
+                                            <button class="btn btn-yellow-light ms-3">view</button>
+                                        </div>
                                     </div>
                                     <div class="area-wrapper">
-                                        <label style="max-width: 85%; cursor: pointer;">
+                                        <label style="max-width: 70%; cursor: pointer;">
                                             <input type="checkbox" id="checkbox1" class="form-check-input">
                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor
                                                 sit
                                                 amet, consectetur adipisicing elit.sfasfasf</p>
                                         </label>
-                                        <button class="btn btn-green ms-3">upload file</button>
+                                        <div class="d-flex align-items-center">
+                                            <button class="btn btn-green-light ms-3">diterima</button>
+                                            <button class="btn btn-yellow-light ms-3">view</button>
+                                        </div>
                                     </div>
                                     <div class="area-wrapper">
-                                        <label style="max-width: 85%; cursor: pointer;">
+                                        <label style="max-width: 70%; cursor: pointer;">
                                             <input type="checkbox" id="checkbox1" class="form-check-input">
                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor
                                                 sit
                                                 amet, consectetur adipisicing elit.sfasfasf</p>
                                         </label>
-                                        <button class="btn btn-green ms-3">upload file</button>
+                                        <div class="d-flex align-items-center">
+                                            <button class="btn btn-green-light ms-3">diterima</button>
+                                            <button class="btn btn-yellow-light ms-3">view</button>
+                                        </div>
                                     </div>
                                     <div class="area-wrapper">
-                                        <label style="max-width: 85%; cursor: pointer;">
+                                        <label style="max-width: 70%; cursor: pointer;">
                                             <input type="checkbox" id="checkbox1" class="form-check-input">
                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor
                                                 sit
                                                 amet, consectetur adipisicing elit.sfasfasf</p>
                                         </label>
-                                        <button class="btn btn-green ms-3">upload file</button>
+                                        <div class="d-flex align-items-center">
+                                            <button class="btn btn-green-light ms-3">diterima</button>
+                                            <button class="btn btn-yellow-light ms-3">view</button>
+                                        </div>
                                     </div>
                                     <div class="area-wrapper">
-                                        <label style="max-width: 85%; cursor: pointer;">
+                                        <label style="max-width: 70%; cursor: pointer;">
                                             <input type="checkbox" id="checkbox1" class="form-check-input">
                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor
                                                 sit
                                                 amet, consectetur adipisicing elit.sfasfasf</p>
                                         </label>
-                                        <button class="btn btn-green ms-3">upload file</button>
+                                        <div class="d-flex align-items-center">
+                                            <button class="btn btn-green-light ms-3">diterima</button>
+                                            <button class="btn btn-yellow-light ms-3">view</button>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -75,7 +90,7 @@
                                 </div>
                                 <div class="area-timeline">
                                     <div class="area-wrapper">
-                                        <label style="max-width: 85%; cursor: pointer;">
+                                        <label style="max-width: 70%; cursor: pointer;">
                                             <input type="checkbox" id="checkbox1" class="form-check-input">
                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor
                                                 sit
@@ -86,49 +101,60 @@
                                                 neque,
                                                 blanditiis ea reprehenderit cupiditate pariatur temporibus.</p>
                                         </label>
-                                        <button class="btn btn-green ms-3">upload file</button>
+                                        <div class="d-flex align-items-center">
+                                            <button class="btn btn-green-light ms-3">diterima</button>
+                                            <button class="btn btn-yellow-light ms-3">view</button>
+                                        </div>
                                     </div>
                                     <div class="area-wrapper">
-                                        <label style="max-width: 85%; cursor: pointer;">
+                                        <label style="max-width: 70%; cursor: pointer;">
                                             <input type="checkbox" id="checkbox1" class="form-check-input">
                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor
                                                 sit
                                                 amet, consectetur adipisicing elit.sfasfasf</p>
                                         </label>
-                                        <button class="btn btn-green ms-3">upload file</button>
+                                        <div class="d-flex align-items-center">
+                                            <button class="btn btn-green-light ms-3">diterima</button>
+                                            <button class="btn btn-yellow-light ms-3">view</button>
+                                        </div>
                                     </div>
                                     <div class="area-wrapper">
-                                        <label style="max-width: 85%; cursor: pointer;">
+                                        <label style="max-width: 70%; cursor: pointer;">
                                             <input type="checkbox" id="checkbox1" class="form-check-input">
                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor
                                                 sit
                                                 amet, consectetur adipisicing elit.sfasfasf</p>
                                         </label>
-                                        <button class="btn btn-green ms-3">upload file</button>
+                                        <div class="d-flex align-items-center">
+                                            <button class="btn btn-green-light ms-3">diterima</button>
+                                            <button class="btn btn-yellow-light ms-3">view</button>
+                                        </div>
                                     </div>
                                     <div class="area-wrapper">
-                                        <label style="max-width: 85%; cursor: pointer;">
+                                        <label style="max-width: 70%; cursor: pointer;">
                                             <input type="checkbox" id="checkbox1" class="form-check-input">
                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor
                                                 sit
                                                 amet, consectetur adipisicing elit.sfasfasf</p>
                                         </label>
-                                        <button class="btn btn-green ms-3">upload file</button>
+                                        <div class="d-flex align-items-center">
+                                            <button class="btn btn-green-light ms-3">diterima</button>
+                                            <button class="btn btn-yellow-light ms-3">view</button>
+                                        </div>
                                     </div>
                                     <div class="area-wrapper">
-                                        <label style="max-width: 85%; cursor: pointer;">
+                                        <label style="max-width: 70%; cursor: pointer;">
                                             <input type="checkbox" id="checkbox1" class="form-check-input">
                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor
                                                 sit
                                                 amet, consectetur adipisicing elit.sfasfasf</p>
                                         </label>
-                                        <button class="btn btn-green ms-3">upload file</button>
+                                        <div class="d-flex align-items-center">
+                                            <button class="btn btn-green-light ms-3">diterima</button>
+                                            <button class="btn btn-yellow-light ms-3">view</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="flex text-center mt-4">
-                                <button class="btn btn-blue">Simpan</button>
                             </div>
                         </form>
                     </div>
