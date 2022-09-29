@@ -1,0 +1,10 @@
+.btn-ubah {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 21px;
+    background: #F2F2F2;
+    border-radius: 4px;
+    color: #1AD598;
+}

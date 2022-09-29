@@ -22210,7 +22210,7 @@ body .bi:before {
 }
 
 #main #main-content {
-    padding: 2rem
+    padding: 0 2rem 2rem 2rem;
 }
 
 .page-heading {
@@ -22370,4 +22370,70 @@ a {
 
 .z-1 {
     z-index: 1
+}
+
+.btn {
+    padding: .3rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 8%) !important;
+}
+
+.btn-green {
+    color: #fff;
+    background-color: #1AD598;
+}
+
+.btn-green:hover {
+    color: #fff;
+    background-color: #18b882;
+}
+
+.btn-blue {
+    color: #fff;
+    background-color: #0087C8;
+}
+
+.btn-blue:hover {
+    color: #fff;
+    background-color: #0372aa;
+}
+
+.btn-green-light {
+    color: #1AD598;
+    background-color: rgba(26, 213, 152, 0.298039);
+}
+
+.btn-green-light:hover {
+    color: #19bd86;
+    background-color: rgba(21, 190, 134, 0.298);
+}
+
+.btn-yellow-light {
+    color: #F9B959;
+    background-color: rgba(249, 185, 89, 0.47);
+}
+
+.btn-yellow-light:hover {
+    color: #e7a745;
+    background-color: rgba(226, 163, 68, 0.47);
+}
+
+.btn-purple-light {
+    color: #809FB8;
+    background-color: rgba(128, 159, 184, 0.45);
+}
+
+.btn-purple-light:hover {
+    color: #698fad;
+    background-color: rgba(102, 141, 173, 0.45);
+}
+
+.btn-red-light {
+    color: #EA3A3D;
+    background-color: rgba(234, 58, 61, 0.2);
+}
+
+.btn-red-light:hover {
+    color: #d33234;
+    background-color: rgba(212, 48, 51, 0.2);
 }
