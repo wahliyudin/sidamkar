@@ -3,14 +3,31 @@
 }
 
 .area-timeline .area-wrapper {
-    border-left: solid 3px #809FB8;
+    border-left: solid 2px #809FB8;
     display: flex;
     align-content: center;
     align-items: flex-start;
-    flex-wrap: wrap;
     margin-left: 36px;
     position: relative;
     justify-content: space-between;
+}
+
+@media screen and (max-width:780px) {
+    .area-timeline .area-wrapper>button {
+        margin-left: 0 !important;
+        flex-wrap: nowrap;
+        padding: 0.3rem 1rem;
+    }
+
+    .area-timeline .area-wrapper label {
+        max-width: 60% !important;
+    }
+}
+
+@media screen and (min-width:800px) {
+    .area-timeline .area-wrapper label {
+        max-width: 70% !important;
+    }
 }
 
 .title-timeline:not(:first-child) {
@@ -54,5 +71,5 @@ input.form-check-input {
 }
 
 .area-timeline .area-wrapper input.form-check-input {
-    transform: translateX(-12px);
+    transform: translateX(-11px);
 }

@@ -90,115 +90,69 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header">
-                        <h3>Dokumen Kepegawaian</h3>
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h4 style="color:#000000; margin: 0 !important;">Dokumen Kepegawaian</h4>
+                        <span class="custom-badge custom-badge-purple-light">
+                            <img src="{{ asset('assets/images/template/Vector.png') }}" alt="" srcset="">
+                        </span>
                     </div>
                     <div class="card-body">
-
+                        <ul class="doc-wrapper">
+                            <li class="doc-item">
+                                <a href="" class="d-flex align-items-center">
+                                    <img src="{{ asset('assets/images/template/icon-dokumen-png-0 1.png') }}"
+                                        alt="">
+                                    <p>File dokumen ABCD.pdf</p>
+                                </a>
+                            </li>
+                            <li class="doc-item">
+                                <a href="" class="d-flex align-items-center">
+                                    <img src="{{ asset('assets/images/template/icon-dokumen-png-0 1.png') }}"
+                                        alt="">
+                                    <p>File dokumen ABCD.pdf</p>
+                                </a>
+                            </li>
+                            <li class="doc-item">
+                                <a href="" class="d-flex align-items-center">
+                                    <img src="{{ asset('assets/images/template/icon-dokumen-png-0 1.png') }}"
+                                        alt="">
+                                    <p>File dokumen ABCD.pdf</p>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header">
-                        <h3>Dokumen Kepegawaian</h3>
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h4 style="color: #000000; margin: 0 !important;">Kompetensi</h4>
+                        <span class="custom-badge custom-badge-green">
+                            <img src="{{ asset('assets/images/template/kompetensi.png') }}" alt=""
+                                srcset="">
+                        </span>
                     </div>
                     <div class="card-body">
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Simple Collapse</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="d-flex flex-column">
-                            <div class="">
-                                <div role="button" data-bs-toggle="collapse" data-bs-target="#one"
-                                    aria-expanded="false" aria-controls="one"
-                                    style="display: flex; align-content: center;">
-                                    <p
-                                        style="padding: 2px 8px; border-radius: 5px; background-color: rgba(26, 213, 152, 0.298039);">
-                                        <i class="fa-solid fa-chevron-down text-sm"></i>
-                                    </p>
-                                    <h5 class="ms-4">
-                                        Kesiapsiagaan petugas pemadam kebakaran dan penyelamatan;
-                                    </h5>
+                        <ul class="doc-wrapper">
+                            <li class="doc-item">
+                                <div class="d-flex align-items-center">
+                                    <span class="custom-badge-sm custom-badge-blue-light">01</span>
+                                    <p>Pelatihan pembinaan dan pengawasan</p>
                                 </div>
-                                <div class="collapse" id="one">
-                                    <ul class="py-1 ms-5">
-                                        <li class="py-1">
-                                            <h6>Apel pagi sebagai peserta dan serah terima tugas jaga;</h6>
-                                        </li>
-                                        <li class="py-1">
-                                            <h6>Tugas piket jaga;</h6>
-                                        </li>
-                                        <li class="py-1">
-                                            <h6>Apel malam sebagai peserta;</h6>
-                                        </li>
-                                        <li class="py-1">
-                                            <h6>kegiatan rutin latihan ketrampilan;</h6>
-                                        </li>
-                                    </ul>
+                            </li>
+                            <li class="doc-item">
+                                <div class="d-flex align-items-center">
+                                    <span class="custom-badge-sm custom-badge-yellow-light">02</span>
+                                    <p>Pelatihan pembinaan dan pengawasan</p>
                                 </div>
-                            </div>
-                            <div class="">
-                                <div role="button" data-bs-toggle="collapse" data-bs-target="#two"
-                                    aria-expanded="false" aria-controls="two"
-                                    style="display: flex; align-content: center;">
-                                    <p
-                                        style="padding: 2px 8px; border-radius: 5px; background-color: rgba(26, 213, 152, 0.298039);">
-                                        <i class="fa-solid fa-chevron-down text-sm"></i>
-                                    </p>
-                                    <h5 class="ms-4">
-                                        Pelaksanaan prosedur pelaporan informasi kejadian kebakaran;
-                                    </h5>
+                            </li>
+                            <li class="doc-item">
+                                <div class="d-flex align-items-center">
+                                    <span class="custom-badge-sm custom-badge-purple-light">03</span>
+                                    <p>Pelatihan pembinaan dan pengawasan</p>
                                 </div>
-                                <div class="collapse" id="two">
-                                    <ul class="py-1 ms-5">
-                                        <li class="py-1">
-                                            <h6>Informasi kejadian kebakaran; dan</h6>
-                                        </li>
-                                        <li class="py-1">
-                                            <h6>koordinasi dengan Kepala Regu terkait informasi kejadian kebakaran;</h6>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="">
-                                <div role="button" data-bs-toggle="collapse" data-bs-target="#three"
-                                    aria-expanded="false" aria-controls="three"
-                                    style="display: flex; align-content: center;">
-                                    <p
-                                        style="padding: 2px 8px; border-radius: 5px; background-color: rgba(26, 213, 152, 0.298039);">
-                                        <i class="fa-solid fa-chevron-down text-sm"></i>
-                                    </p>
-                                    <h5 class="ms-4">
-                                        Pelaksanaan operasional pemadaman kebakaran;
-                                    </h5>
-                                </div>
-                                <div class="collapse" id="three">
-                                    <ul class="py-1 ms-5">
-                                        <li class="py-1">
-                                            <h6>Keberangkatan menuju tempat kejadian kebakaran;</h6>
-                                        </li>
-                                        <li class="py-1">
-                                            <h6>Pemadaman kebakaran;</h6>
-                                        </li>
-                                        <li class="py-1">
-                                            <h6>Proses pendinginan;</h6>
-                                        </li>
-                                        <li class="py-1">
-                                            <h6>persiapan kembali ke pos pemadam kebakaran dan penyelamatan;</h6>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -208,6 +162,56 @@
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/css/pages/my-data.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+    <style>
+        .custom-badge {
+            border-radius: 5px;
+            padding: .5rem .8rem;
+        }
+
+        .custom-badge-sm {
+            border-radius: 5px;
+            padding: .3rem .6rem;
+        }
+
+        .custom-badge>img {
+            width: 1.3rem;
+        }
+
+        .custom-badge.custom-badge-purple-light,
+        .custom-badge-sm.custom-badge-purple-light {
+            background-color: rgba(219, 90, 238, 0.4);
+            color: #DB5AEE;
+        }
+
+        .custom-badge.custom-badge-green {
+            background-color: #1AD598;
+        }
+
+        .custom-badge.custom-badge-yellow-light,
+        .custom-badge-sm.custom-badge-yellow-light {
+            background-color: rgba(255, 181, 54, 0.298039);
+            color: #FFB536;
+        }
+
+        .custom-badge.custom-badge-blue-light,
+        .custom-badge-sm.custom-badge-blue-light {
+            background-color: rgba(33, 126, 253, 0.298039);
+            color: #217EFD;
+        }
+
+        .doc-wrapper {
+            list-style: none;
+            padding: 0 !important;
+        }
+
+        .doc-wrapper .doc-item:not(:first-child) {
+            margin-top: .8rem;
+        }
+
+        .doc-wrapper .doc-item p {
+            margin: 0 0 0 1rem;
+        }
+    </style>
 @endsection
 @section('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>

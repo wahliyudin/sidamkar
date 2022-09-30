@@ -16,7 +16,7 @@
                                 </div>
                                 <div class="area-timeline">
                                     <div class="area-wrapper">
-                                        <label style="max-width: 85%; cursor: pointer;">
+                                        <label style=" cursor: pointer;">
                                             <input type="checkbox" checked id="checkbox1" class="form-check-input">
                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor
                                                 sit
@@ -30,7 +30,7 @@
                                         <button class="btn btn-green ms-3">upload file</button>
                                     </div>
                                     <div class="area-wrapper">
-                                        <label style="max-width: 85%; cursor: pointer;">
+                                        <label style=" cursor: pointer;">
                                             <input type="checkbox" id="checkbox1" class="form-check-input">
                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor
                                                 sit
@@ -39,7 +39,7 @@
                                         <button class="btn btn-green ms-3">upload file</button>
                                     </div>
                                     <div class="area-wrapper">
-                                        <label style="max-width: 85%; cursor: pointer;">
+                                        <label style=" cursor: pointer;">
                                             <input type="checkbox" id="checkbox1" class="form-check-input">
                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor
                                                 sit
@@ -48,7 +48,7 @@
                                         <button class="btn btn-green ms-3">upload file</button>
                                     </div>
                                     <div class="area-wrapper">
-                                        <label style="max-width: 85%; cursor: pointer;">
+                                        <label style=" cursor: pointer;">
                                             <input type="checkbox" id="checkbox1" class="form-check-input">
                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor
                                                 sit
@@ -57,7 +57,7 @@
                                         <button class="btn btn-green ms-3">upload file</button>
                                     </div>
                                     <div class="area-wrapper">
-                                        <label style="max-width: 85%; cursor: pointer;">
+                                        <label style=" cursor: pointer;">
                                             <input type="checkbox" id="checkbox1" class="form-check-input">
                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor
                                                 sit
@@ -75,21 +75,15 @@
                                 </div>
                                 <div class="area-timeline">
                                     <div class="area-wrapper">
-                                        <label style="max-width: 85%; cursor: pointer;">
+                                        <label style=" cursor: pointer;">
                                             <input type="checkbox" id="checkbox1" class="form-check-input">
                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor
-                                                sit
-                                                amet, consectetur adipisicing elit.sfasfasf Lorem ipsum dolor, sit amet
-                                                consectetur adipisicing elit. Iste quo omnis nesciunt ex perspiciatis?
-                                                Dolorum
-                                                at fugiat veritatis dignissimos voluptas! Explicabo molestias quibusdam
-                                                neque,
-                                                blanditiis ea reprehenderit cupiditate pariatur temporibus.</p>
+                                            </p>
                                         </label>
                                         <button class="btn btn-green ms-3">upload file</button>
                                     </div>
                                     <div class="area-wrapper">
-                                        <label style="max-width: 85%; cursor: pointer;">
+                                        <label style=" cursor: pointer;">
                                             <input type="checkbox" id="checkbox1" class="form-check-input">
                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor
                                                 sit
@@ -98,7 +92,7 @@
                                         <button class="btn btn-green ms-3">upload file</button>
                                     </div>
                                     <div class="area-wrapper">
-                                        <label style="max-width: 85%; cursor: pointer;">
+                                        <label style=" cursor: pointer;">
                                             <input type="checkbox" id="checkbox1" class="form-check-input">
                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor
                                                 sit
@@ -107,7 +101,7 @@
                                         <button class="btn btn-green ms-3">upload file</button>
                                     </div>
                                     <div class="area-wrapper">
-                                        <label style="max-width: 85%; cursor: pointer;">
+                                        <label style=" cursor: pointer;">
                                             <input type="checkbox" id="checkbox1" class="form-check-input">
                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor
                                                 sit
@@ -116,7 +110,7 @@
                                         <button class="btn btn-green ms-3">upload file</button>
                                     </div>
                                     <div class="area-wrapper">
-                                        <label style="max-width: 85%; cursor: pointer;">
+                                        <label style=" cursor: pointer;">
                                             <input type="checkbox" id="checkbox1" class="form-check-input">
                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor
                                                 sit

@@ -27,7 +27,7 @@
                                                 neque,
                                                 blanditiis ea reprehenderit cupiditate pariatur temporibus.</p>
                                         </label>
-                                        <div class="d-flex align-items-center">
+                                        <div class="d-flex align-items-center btn-wrapper">
                                             <button class="btn btn-green-light ms-3">diterima</button>
                                             <button class="btn btn-yellow-light ms-3">view</button>
                                         </div>
@@ -39,7 +39,7 @@
                                                 sit
                                                 amet, consectetur adipisicing elit.sfasfasf</p>
                                         </label>
-                                        <div class="d-flex align-items-center">
+                                        <div class="d-flex align-items-center btn-wrapper">
                                             <button class="btn btn-green-light ms-3">diterima</button>
                                             <button class="btn btn-yellow-light ms-3">view</button>
                                         </div>
@@ -51,7 +51,7 @@
                                                 sit
                                                 amet, consectetur adipisicing elit.sfasfasf</p>
                                         </label>
-                                        <div class="d-flex align-items-center">
+                                        <div class="d-flex align-items-center btn-wrapper">
                                             <button class="btn btn-green-light ms-3">diterima</button>
                                             <button class="btn btn-yellow-light ms-3">view</button>
                                         </div>
@@ -63,7 +63,7 @@
                                                 sit
                                                 amet, consectetur adipisicing elit.sfasfasf</p>
                                         </label>
-                                        <div class="d-flex align-items-center">
+                                        <div class="d-flex align-items-center btn-wrapper">
                                             <button class="btn btn-green-light ms-3">diterima</button>
                                             <button class="btn btn-yellow-light ms-3">view</button>
                                         </div>
@@ -75,7 +75,7 @@
                                                 sit
                                                 amet, consectetur adipisicing elit.sfasfasf</p>
                                         </label>
-                                        <div class="d-flex align-items-center">
+                                        <div class="d-flex align-items-center btn-wrapper">
                                             <button class="btn btn-green-light ms-3">diterima</button>
                                             <button class="btn btn-yellow-light ms-3">view</button>
                                         </div>
@@ -101,7 +101,7 @@
                                                 neque,
                                                 blanditiis ea reprehenderit cupiditate pariatur temporibus.</p>
                                         </label>
-                                        <div class="d-flex align-items-center">
+                                        <div class="d-flex align-items-center btn-wrapper">
                                             <button class="btn btn-green-light ms-3">diterima</button>
                                             <button class="btn btn-yellow-light ms-3">view</button>
                                         </div>
@@ -113,7 +113,7 @@
                                                 sit
                                                 amet, consectetur adipisicing elit.sfasfasf</p>
                                         </label>
-                                        <div class="d-flex align-items-center">
+                                        <div class="d-flex align-items-center btn-wrapper">
                                             <button class="btn btn-green-light ms-3">diterima</button>
                                             <button class="btn btn-yellow-light ms-3">view</button>
                                         </div>
@@ -125,7 +125,7 @@
                                                 sit
                                                 amet, consectetur adipisicing elit.sfasfasf</p>
                                         </label>
-                                        <div class="d-flex align-items-center">
+                                        <div class="d-flex align-items-center btn-wrapper">
                                             <button class="btn btn-green-light ms-3">diterima</button>
                                             <button class="btn btn-yellow-light ms-3">view</button>
                                         </div>
@@ -137,7 +137,7 @@
                                                 sit
                                                 amet, consectetur adipisicing elit.sfasfasf</p>
                                         </label>
-                                        <div class="d-flex align-items-center">
+                                        <div class="d-flex align-items-center btn-wrapper">
                                             <button class="btn btn-green-light ms-3">diterima</button>
                                             <button class="btn btn-yellow-light ms-3">view</button>
                                         </div>
@@ -149,7 +149,7 @@
                                                 sit
                                                 amet, consectetur adipisicing elit.sfasfasf</p>
                                         </label>
-                                        <div class="d-flex align-items-center">
+                                        <div class="d-flex align-items-center btn-wrapper">
                                             <button class="btn btn-green-light ms-3">diterima</button>
                                             <button class="btn btn-yellow-light ms-3">view</button>
                                         </div>
@@ -166,6 +166,14 @@
 @section('css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
     <link rel="stylesheet" href="{{ asset('assets/css/pages/timeline.css') }}">
+    <style>
+        @media screen and (max-width:780px) {
+            .btn-wrapper {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
 @endsection
 @section('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
