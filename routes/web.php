@@ -15,8 +15,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('riwayat-kegiatan');
+    return view('butir-kegiatan');
 });
+Route::get('/my-data', function () {
+    return view('my-data');
+})->name('my-data');
+Route::get('/tabel-kegiatan', function () {
+    return view('tabel-kegiatan');
+})->name('tabel-kegiatan');
+Route::get('/laporan-kegiatan', function () {
+    return view('laporan-kegiatan');
+})->name('laporan-kegiatan');
+Route::get('/riwayat-kegiatan', function () {
+    return view('riwayat-kegiatan');
+})->name('riwayat-kegiatan');
 
 Auth::routes();
 

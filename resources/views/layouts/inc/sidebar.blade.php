@@ -17,34 +17,34 @@
             <ul class="menu">
                 {{-- <li class="sidebar-title">Menu</li> --}}
 
-                <li class="sidebar-item active ">
+                <li class="sidebar-item {{ request()->routeIs('home') ? 'active' : '' }}">
                     <a href="index.html" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
-                    <a href="index.html" class='sidebar-link'>
+                <li class="sidebar-item {{ request()->routeIs('my-data') ? 'active' : '' }}">
+                    <a href="{{ route('my-data') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>My Data</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
-                    <a href="index.html" class='sidebar-link'>
+                <li class="sidebar-item {{ request()->routeIs('tabel-kegiatan') ? 'active' : '' }}">
+                    <a href="{{ route('tabel-kegiatan') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Tabel Kegiatan</span>
                         <span style="padding: 2px 6px; background-color: #EBFF02; color: black; border-radius: 4px;">
                             50</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
-                    <a href="index.html" class='sidebar-link'>
+                <li class="sidebar-item {{ request()->routeIs('laporan-kegiatan') ? 'active' : '' }}">
+                    <a href="{{ route('laporan-kegiatan') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Laporan Kegiatan</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
-                    <a href="index.html" class='sidebar-link'>
+                <li class="sidebar-item {{ request()->routeIs('riwayat-kegiatan') ? 'active' : '' }}">
+                    <a href="{{ route('riwayat-kegiatan') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Riwayat Tugas</span>
                     </a>
