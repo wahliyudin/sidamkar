@@ -27,8 +27,11 @@ Route::get('/laporan-kegiatan', function () {
     return view('laporan-kegiatan');
 })->name('laporan-kegiatan');
 Route::get('/riwayat-kegiatan', function () {
-    return view('riwayat-kegiatan');
+    return view('butir-kegiatan');
 })->name('riwayat-kegiatan');
+Route::get('/revisi-laporan-kegiatan', function () {
+    return view('revisi-laporan-kegiatan');
+})->name('revisi-laporan-kegiatan');
 
 Auth::routes();
 

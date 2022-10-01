@@ -49,8 +49,8 @@
                         <span>Riwayat Tugas</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
-                    <a href="index.html" class='sidebar-link'>
+                <li class="sidebar-item {{ request()->routeIs('revisi-laporan-kegiatan') ? 'active' : '' }}">
+                    <a href="{{ route('revisi-laporan-kegiatan') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Revisi Laporan</span>
                     </a>
