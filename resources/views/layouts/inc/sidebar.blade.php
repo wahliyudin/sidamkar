@@ -15,8 +15,6 @@
         </div>
         <div class="sidebar-menu">
             <ul class="menu">
-                {{-- <li class="sidebar-title">Menu</li> --}}
-
                 <li class="sidebar-item {{ request()->routeIs('home') ? 'active' : '' }}">
                     <a href="index.html" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
@@ -53,6 +51,18 @@
                     <a href="{{ route('revisi-laporan-kegiatan') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Revisi Laporan</span>
+                    </a>
+                </li>
+                <li class="sidebar-item {{ request()->routeIs('verifikasi-data') ? 'active' : '' }}">
+                    <a href="{{ route('verifikasi-data') }}" class='sidebar-link'>
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Verifikasi Data</span>
+                    </a>
+                </li>
+                <li class="sidebar-item {{ request()->routeIs('data-aparatur') ? 'active' : '' }}">
+                    <a href="{{ route('data-aparatur') }}" class='sidebar-link'>
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Data Aparatur</span>
                     </a>
                 </li>
             </ul>

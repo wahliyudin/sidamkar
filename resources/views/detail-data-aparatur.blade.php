@@ -19,7 +19,6 @@
 @endsection
 @section('content')
     <section class="section">
-
         <div class="card">
             <div class="card-body" style="padding-top: 3rem;">
                 <div class="row">
@@ -31,67 +30,92 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="basicInput">Basic Input</label>
+                            <label for="basicInput">Tingkat Admin</label>
                             <select class="choices form-select">
                                 <option value="square">Square</option>
                                 <option value="rectangle">Rectangle</option>
                                 <option value="rombo">Rombo</option>
-                                <option value="romboid">Romboid</option>
-                                <option value="trapeze">Trapeze</option>
-                                <option value="traible">Triangle</option>
-                                <option value="polygon">Polygon</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="basicInput">Basic Input</label>
-                            <input type="text" class="form-control" id="basicInput" placeholder="Enter email">
+                            <label for="basicInput">Provinsi</label>
+                            <select class="choices form-select">
+                                <option value="square">Square</option>
+                                <option value="rectangle">Rectangle</option>
+                                <option value="rombo">Rombo</option>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="basicInput">Basic Input</label>
-                            <input type="text" class="form-control" id="basicInput" placeholder="Enter email">
+                            <label for="basicInput">Kabupaten / Kota</label>
+                            <select class="choices form-select">
+                                <option value="square">Square</option>
+                                <option value="rectangle">Rectangle</option>
+                                <option value="rombo">Rombo</option>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="basicInput">Basic Input</label>
-                            <input type="text" class="form-control" id="basicInput" placeholder="Enter email">
+                            <label for="basicInput">Nomenklatur Perangkat Daerah</label>
+                            <select class="choices form-select">
+                                <option value="square">Square</option>
+                                <option value="rectangle">Rectangle</option>
+                                <option value="rombo">Rombo</option>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="basicInput">Basic Input</label>
-                            <input type="text" class="form-control" id="basicInput" placeholder="Enter email">
+                            <label for="basicInput">Nama</label>
+                            <input type="text" class="form-control" id="basicInput" placeholder="Nama">
                         </div>
                         <div class="form-group">
-                            <label for="basicInput">Basic Input</label>
-                            <input type="text" class="form-control" id="basicInput" placeholder="Enter email">
+                            <label for="basicInput">NIP / Nomor Registrasi</label>
+                            <input type="number" class="form-control" id="basicInput" placeholder="15080912345677001">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="basicInput">Basic Input</label>
-                            <input type="text" class="form-control" id="basicInput" placeholder="Enter email">
+                            <label for="basicInput">Tempat Tanggal Lahir</label>
+                            <input type="text" class="form-control" id="basicInput" placeholder="">
                         </div>
                         <div class="form-group">
-                            <label for="basicInput">Basic Input</label>
-                            <input type="text" class="form-control" id="basicInput" placeholder="Enter email">
+                            <label for="basicInput">Pangkat / Golongan / TMT</label>
+                            <select class="choices form-select">
+                                <option value="square">Square</option>
+                                <option value="rectangle">Rectangle</option>
+                                <option value="rombo">Rombo</option>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="basicInput">Basic Input</label>
-                            <input type="text" class="form-control" id="basicInput" placeholder="Enter email">
+                            <label for="basicInput">Jenis Kelamin</label>
+                            <select class="choices form-select">
+                                <option value="square">Square</option>
+                                <option value="rectangle">Rectangle</option>
+                                <option value="rombo">Rombo</option>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="basicInput">Basic Input</label>
-                            <input type="text" class="form-control" id="basicInput" placeholder="Enter email">
+                            <label for="basicInput">Pendidikan Terakhir</label>
+                            <select class="choices form-select">
+                                <option value="square">Square</option>
+                                <option value="rectangle">Rectangle</option>
+                                <option value="rombo">Rombo</option>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="basicInput">Basic Input</label>
-                            <input type="text" class="form-control" id="basicInput" placeholder="Enter email">
+                            <label for="basicInput">Pendidikan Terakhir</label>
+                            <select class="choices form-select">
+                                <option value="square">Square</option>
+                                <option value="rectangle">Rectangle</option>
+                                <option value="rombo">Rombo</option>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="basicInput">Basic Input</label>
-                            <input type="text" class="form-control" id="basicInput" placeholder="Enter email">
+                            <label for="basicInput">Jabatan</label>
+                            <select class="choices form-select">
+                                <option value="square">Square</option>
+                                <option value="rectangle">Rectangle</option>
+                                <option value="rombo">Rombo</option>
+                            </select>
                         </div>
                     </div>
-                </div>
-                <div class="d-flex justify-content-end mt-2">
-                    <a href="" class="btn-ubah shadow-sm">Ubah</a>
                 </div>
             </div>
         </div>
@@ -163,6 +187,12 @@
                         </ul>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-red">TOLAK</button>
+                <button class="btn btn-blue">VERIFIKASI</button>
             </div>
         </div>
     </section>

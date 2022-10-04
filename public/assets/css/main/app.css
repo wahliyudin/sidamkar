@@ -2417,7 +2417,7 @@ progress {
 
 .table-striped-columns>:not(caption)>tr>:nth-child(2n),
 .table-striped>tbody>tr:nth-of-type(odd)>* {
-    --bs-table-accent-bg: var(--bs-table-striped-bg);
+    /* --bs-table-accent-bg: var(--bs-table-striped-bg); */
     color: var(--bs-table-striped-color)
 }
 
@@ -22017,7 +22017,7 @@ body .bi:before {
 
 .dataTable-table:not(.table-borderless) thead th,
 .table:not(.table-borderless) thead th {
-    border-bottom: 1px solid #dedede !important
+    /* border-bottom: 1px solid #dedede !important */
 }
 
 .table-md.dataTable-table tr td,
@@ -22381,6 +22381,7 @@ a {
     border-radius: 8px;
     box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 8%) !important;
     font-weight: 700;
+    white-space: nowrap !important;
 }
 
 .btn-green {
@@ -22441,4 +22442,19 @@ a {
 .btn-red-light:hover {
     color: #d33234;
     background-color: rgba(212, 48, 51, 0.2);
+}
+
+
+.text-status {
+    text-transform: uppercase;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.text-green {
+    color: #1AD598;
+}
+
+.text-red {
+    color: rgba(234, 58, 61, 0.8);
 }

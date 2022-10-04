@@ -32,6 +32,15 @@ Route::get('/riwayat-kegiatan', function () {
 Route::get('/revisi-laporan-kegiatan', function () {
     return view('revisi-laporan-kegiatan');
 })->name('revisi-laporan-kegiatan');
+Route::get('/verifikasi-data', function () {
+    return view('verifikasi-data');
+})->name('verifikasi-data');
+Route::get('/detail-data-aparatur', function () {
+    return view('detail-data-aparatur');
+})->name('detail-data-aparatur');
+Route::get('/data-aparatur', function () {
+    return view('data-aparatur');
+})->name('data-aparatur');
 
 Auth::routes();
 
