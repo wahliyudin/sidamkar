@@ -6,16 +6,24 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
+                        <div class="d-flex justify-content-end pb-4">
+                            <div class="dropdown">
+                                <span id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false" style="cursor: pointer;">
+                                    <i class="fa-solid fa-ellipsis"></i>
+                                </span>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="{{ route('riwayat-kegiatan') }}">Riwayat Kegiatan</a>
+                                    <a class="dropdown-item" href="#">Option 2</a>
+                                    <a class="dropdown-item" href="#">Option 3</a>
+                                </div>
+                            </div>
+                        </div>
                         <div class="border-bottom d-flex justify-content-end pb-4">
-                            {{-- <button class="px-4 py-2 btn-laporan">
-                                <svg width="23" height="18" viewBox="0 0 23 18" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M20.5 0.0100098H2.5C1.4 0.0100098 0.5 0.91001 0.5 2.01001V6.00001H2.5V1.99001H20.5V16.02H2.5V12H0.5V16.01C0.5 17.11 1.4 17.99 2.5 17.99H20.5C21.6 17.99 22.5 17.11 22.5 16.01V2.01001C22.5 0.90001 21.6 0.0100098 20.5 0.0100098ZM10.5 13L14.5 9.00001L10.5 5.00001V8.00001H0.5V10H10.5V13ZM20.5 0.0100098H2.5C1.4 0.0100098 0.5 0.91001 0.5 2.01001V6.00001H2.5V1.99001H20.5V16.02H2.5V12H0.5V16.01C0.5 17.11 1.4 17.99 2.5 17.99H20.5C21.6 17.99 22.5 17.11 22.5 16.01V2.01001C22.5 0.90001 21.6 0.0100098 20.5 0.0100098ZM10.5 13L14.5 9.00001L10.5 5.00001V8.00001H0.5V10H10.5V13Z"
-                                        fill="white" />
-                                </svg>
-                                <p>Buat laporan</p>
-                            </button> --}}
+                            <a href="{{ route('laporan-kegiatan') }}" class="btn-ubah shadow-sm">
+                                <i class="fa-regular fa-pen-to-square"></i>
+                                <span>Ubah</span>
+                            </a>
                         </div>
                     </div>
                     <div class="card-body">
@@ -149,6 +157,29 @@
 @section('css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
     <link rel="stylesheet" href="{{ asset('assets/css/pages/timeline.css') }}">
+    <style>
+        .btn-ubah {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 18px 10px 20px;
+            background: #F2F2F2;
+            border-radius: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #1AD598;
+        }
+
+        .btn-ubah span {
+            text-transform: uppercase;
+            font-weight: 600;
+            font-family: 'Roboto';
+            font-size: 16px;
+            margin-left: 10px;
+        }
+    </style>
 @endsection
 @section('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>

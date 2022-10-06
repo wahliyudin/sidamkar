@@ -15,7 +15,8 @@
                             <th>Jabatan</th>
                             <th>Golongan</th>
                             <th>Status</th>
-                            <th>Detail</th>
+                            <th>Profil</th>
+                            <th>Mente</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -29,7 +30,15 @@
                                 <span class="text-status text-green text-sm">Aktif</span>
                             </td>
                             <td>
-                                <a href="{{ route('detail-data-aparatur') }}" class="btn btn-yellow-light text-sm">View</a>
+                                <a href="{{ route('detail-data-pejabat-struktural') }}"
+                                    class="btn btn-yellow-light text-sm">View</a>
+                            </td>
+                            <td>
+                                <button data-bs-toggle="modal" data-bs-target="#tambahMente"
+                                    class="btn btn-green-light text-sm px-2">
+                                    <img src="{{ asset('assets/images/template/t-mente.png') }}" alt="">
+                                    Tambah
+                                </button>
                             </td>
                             <td>
                                 <a href="{{ route('detail-data-aparatur') }}" class="btn btn-red-light text-sm px-2">Non
@@ -42,10 +51,18 @@
                             <td>076 4820 8838</td>
                             <td>Offenburg</td>
                             <td>
-                                <span class="text-status text-red text-sm">Tidak Aktif</span>
+                                <span class="text-status text-green text-sm">Aktif</span>
                             </td>
                             <td>
-                                <a href="{{ route('detail-data-aparatur') }}" class="btn btn-yellow-light text-sm">View</a>
+                                <a href="{{ route('detail-data-pejabat-struktural') }}"
+                                    class="btn btn-yellow-light text-sm">View</a>
+                            </td>
+                            <td>
+                                <button data-bs-toggle="modal" data-bs-target="#tambahMente"
+                                    class="btn btn-green-light text-sm px-2">
+                                    <img src="{{ asset('assets/images/template/t-mente.png') }}" alt="">
+                                    Tambah
+                                </button>
                             </td>
                             <td>
                                 <a href="{{ route('detail-data-aparatur') }}" class="btn btn-red-light text-sm px-2">Non
@@ -58,6 +75,52 @@
         </div>
 
     </section>
+    <div class="modal fade" id="tambahMente" tabindex="-1" role="dialog" aria-labelledby="tambahMenteTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="d-flex flex-column">
+                        <table class="table table-striped" id="table2">
+                            <thead>
+                                <tr>
+                                    <th>Nama</th>
+                                    <th>Bidang</th>
+                                    <th>Jabatan</th>
+                                    <th>Golongan</th>
+                                    <th>Pilih</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Graiden</td>
+                                    <td>vehicula.aliquet@semconsequat.co.uk</td>
+                                    <td>076 4820 8838</td>
+                                    <td>Offenburg</td>
+                                    <td>
+                                        <input type="checkbox" id="checkbox1" class="form-check-input">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Graiden</td>
+                                    <td>vehicula.aliquet@semconsequat.co.uk</td>
+                                    <td>076 4820 8838</td>
+                                    <td>Offenburg</td>
+                                    <td>
+                                        <input type="checkbox" id="checkbox1" class="form-check-input">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="text-center">
+                            <button class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                            <button class="btn btn-green" data-bs-dismiss="modal">Simpan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('css')
@@ -92,5 +155,5 @@
 
 @section('js')
     <script src="{{ asset('assets/extensions/simple-datatables/umd/simple-datatables.js') }}"></script>
-    <script src="{{ asset('assets/js/pages/simple-datatables.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/data-pejabat-struktural.js') }}"></script>
 @endsection

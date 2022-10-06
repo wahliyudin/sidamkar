@@ -20,14 +20,23 @@ Route::get('/', function () {
 Route::get('/my-data', function () {
     return view('my-data');
 })->name('my-data');
+Route::get('/daftar-kegiatan', function () {
+    return view('daftar-kegiatan');
+})->name('daftar-kegiatan');
 Route::get('/tabel-kegiatan', function () {
     return view('tabel-kegiatan');
 })->name('tabel-kegiatan');
+Route::get('/daftar-laporan-kegiatan', function () {
+    return view('daftar-laporan-kegiatan');
+})->name('daftar-laporan-kegiatan');
 Route::get('/laporan-kegiatan', function () {
     return view('laporan-kegiatan');
 })->name('laporan-kegiatan');
-Route::get('/riwayat-kegiatan', function () {
+Route::get('/butir-kegiatan', function () {
     return view('butir-kegiatan');
+})->name('butir-kegiatan');
+Route::get('/riwayat-kegiatan', function () {
+    return view('riwayat-kegiatan');
 })->name('riwayat-kegiatan');
 Route::get('/revisi-laporan-kegiatan', function () {
     return view('revisi-laporan-kegiatan');
@@ -41,6 +50,18 @@ Route::get('/detail-data-aparatur', function () {
 Route::get('/data-aparatur', function () {
     return view('data-aparatur');
 })->name('data-aparatur');
+Route::get('/data-pejabat-struktural', function () {
+    return view('data-pejabat-struktural');
+})->name('data-pejabat-struktural');
+Route::get('/detail-data-pejabat-struktural', function () {
+    return view('detail-data-pejabat-struktural');
+})->name('detail-data-pejabat-struktural');
+Route::get('/lampiran-kegiatan', function () {
+    return view('lampiran-kegiatan');
+})->name('lampiran-kegiatan');
+Route::get('/data-pengajuan-laporan-kegiatan', function () {
+    return view('data-pengajuan-laporan-kegiatan');
+})->name('data-pengajuan-laporan-kegiatan');
 
 Auth::routes();
 

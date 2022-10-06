@@ -2962,13 +2962,13 @@ textarea.form-control-lg {
 
 .form-check-input:focus {
     border-color: #a1afdf;
-    box-shadow: 0 0 0 .25rem rgba(67, 94, 190, .25);
+    box-shadow: 0 0 0 .25rem #5bd8ae96;
     outline: 0
 }
 
 .form-check-input:checked {
-    background-color: #435ebe;
-    border-color: #435ebe
+    background-color: #1AD598;
+    border-color: #1AD598;
 }
 
 .form-check-input:checked[type=checkbox] {
@@ -21458,7 +21458,9 @@ body .bi:before {
 
 .sidebar-wrapper .menu .sidebar-link span {
     margin-left: 1rem;
-    font-size: 18px;
+    font-size: 16px;
+    font-family: 'Roboto';
+    font-weight: 600;
 }
 
 /* .sidebar-wrapper .menu .sidebar-link:hover {
@@ -22382,6 +22384,17 @@ a {
     box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 8%) !important;
     font-weight: 700;
     white-space: nowrap !important;
+}
+
+.btn-green-reverse {
+    border: 1px solid #139A6E;
+    color: #139A6E !important;
+}
+
+.btn-green-reverse:hover {
+    background-color: #139A6E;
+    color: white !important;
+    border: 1px solid #139A6E !important;
 }
 
 .btn-green {

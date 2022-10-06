@@ -24,15 +24,8 @@
                                 <div role="button" data-bs-toggle="collapse" data-bs-target="#one" aria-expanded="true"
                                     aria-controls="one" style="display: flex; align-content: center; align-items: start;"
                                     class="">
-                                    <p
-                                        style="padding: 2px 8px; border-radius: 5px; background-color: rgba(26, 213, 152, 0.298039);">
-                                        <svg class="svg-inline--fa fa-chevron-down text-sm" aria-hidden="true"
-                                            focusable="false" data-prefix="fas" data-icon="chevron-down" role="img"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                                            <path fill="currentColor"
-                                                d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z">
-                                            </path>
-                                        </svg>
+                                    <p class="badge-collapse">
+                                        <i class="fa-solid fa-chevron-down text-sm"></i>
                                         <!-- <i class="fa-solid fa-chevron-down text-sm"></i> Font Awesome fontawesome.com -->
                                     </p>
                                     <h5 class="ms-4">
@@ -60,15 +53,8 @@
                                 <div role="button" data-bs-toggle="collapse" data-bs-target="#two" aria-expanded="true"
                                     aria-controls="two" style="display: flex; align-content: center; align-items: start;"
                                     class="">
-                                    <p
-                                        style="padding: 2px 8px; border-radius: 5px; background-color: rgba(26, 213, 152, 0.298039);">
-                                        <svg class="svg-inline--fa fa-chevron-down text-sm" aria-hidden="true"
-                                            focusable="false" data-prefix="fas" data-icon="chevron-down" role="img"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                                            <path fill="currentColor"
-                                                d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z">
-                                            </path>
-                                        </svg>
+                                    <p class="badge-collapse">
+                                        <i class="fa-solid fa-chevron-down text-sm"></i>
                                         <!-- <i class="fa-solid fa-chevron-down text-sm"></i> Font Awesome fontawesome.com -->
                                     </p>
                                     <h5 class="ms-4">
@@ -90,16 +76,8 @@
                                 <div role="button" data-bs-toggle="collapse" data-bs-target="#three" aria-expanded="true"
                                     aria-controls="three" style="display: flex; align-content: center; align-items: start;"
                                     class="">
-                                    <p
-                                        style="padding: 2px 8px; border-radius: 5px; background-color: rgba(26, 213, 152, 0.298039);">
-                                        <svg class="svg-inline--fa fa-chevron-down text-sm" aria-hidden="true"
-                                            focusable="false" data-prefix="fas" data-icon="chevron-down" role="img"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                                            <path fill="currentColor"
-                                                d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z">
-                                            </path>
-                                        </svg>
-                                        <!-- <i class="fa-solid fa-chevron-down text-sm"></i> Font Awesome fontawesome.com -->
+                                    <p class="badge-collapse">
+                                        <i class="fa-solid fa-chevron-down text-sm"></i>
                                     </p>
                                     <h5 class="ms-4">
                                         Pelaksanaan operasional pemadaman kebakaran;
@@ -137,11 +115,21 @@
             color: black;
         }
 
+        h5 {
+            font-family: 'Roboto';
+            font-weight: 600;
+        }
+
+        h6 {
+            font-family: 'Roboto';
+            color: #809FB8;
+        }
+
         button.btn-laporan {
             background-color: #219653;
             border: none;
             border-radius: 50px;
-            padding: .5rem 1.5rem;
+            padding: .5rem 1.7rem;
             color: white;
             display: flex;
             justify-content: center;
@@ -149,7 +137,16 @@
         }
 
         button.btn-laporan p {
-            margin: 0 0 0 .5rem;
+            margin: 0 0 0 .6rem;
+            font-family: 'Roboto';
+            font-weight: 600;
+        }
+
+        .badge-collapse {
+            background-color: #1AD598;
+            padding: 3px 8px;
+            border-radius: 10px;
+            color: #F2F2F2;
         }
     </style>
 @endsection
