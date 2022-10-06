@@ -27,6 +27,8 @@ return new class extends Migration
             $table->integer('pendidikan_terakhir'); // Enum
             $table->string('foto_pegawai');
             $table->timestamps();
+
+            $table->foreign('user_id')->on('users')->references('id')->cascadeOnDelete();
         });
     }
 

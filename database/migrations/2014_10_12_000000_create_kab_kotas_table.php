@@ -15,9 +15,11 @@ return new class extends Migration
     {
         Schema::create('kab_kotas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('provinsi_id');
+            $table->unsignedBigInteger('provinsi_id');
             $table->string('nama');
             $table->timestamps();
+
+            $table->foreign('provinsi_id')->on('provinsis')->references('id')->cascadeOnDelete();
         });
     }
 

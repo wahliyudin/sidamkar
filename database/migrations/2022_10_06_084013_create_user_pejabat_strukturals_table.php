@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('file_sk_penilai_ak');
             $table->string('file_ttd');
             $table->timestamps();
+
+            $table->foreign('user_id')->on('users')->references('id')->cascadeOnDelete();
         });
     }
 

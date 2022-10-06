@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('nomenklatur_perangkat_daerah');
             $table->string('file_permohonan');
             $table->timestamps();
+
+            $table->foreign('user_id')->on('users')->references('id')->cascadeOnDelete();
         });
     }
 

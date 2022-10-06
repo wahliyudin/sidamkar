@@ -18,6 +18,8 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->string('file');
             $table->timestamps();
+
+            $table->foreign('user_id')->on('users')->references('id')->cascadeOnDelete();
         });
     }
 
