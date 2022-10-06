@@ -5331,7 +5331,7 @@ fieldset:disabled .btn {
     --bs-accordion-active-bg: #eceff9
 }
 
-.accordion-button {
+/* .accordion-button {
     align-items: center;
     background-color: var(--bs-accordion-btn-bg);
     border: 0;
@@ -5391,7 +5391,7 @@ fieldset:disabled .btn {
     box-shadow: var(--bs-accordion-btn-focus-box-shadow);
     outline: 0;
     z-index: 3
-}
+} */
 
 .accordion-header {
     margin-bottom: 0
