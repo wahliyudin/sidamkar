@@ -21,7 +21,8 @@
                                             <p>Apel pagi sebagai peserta dan serah terima tugas jaga;</p>
                                         </label>
                                         <div class="d-flex align-items-center btn-wrapper">
-                                            <button class="btn btn-green-light ms-3">diterima</button>
+                                            <span class="text-status status-green"><i class="fa-solid fa-circle-check"></i>
+                                                diterima</span>
                                             <button class="btn btn-yellow-light ms-3">view</button>
                                         </div>
                                     </div>
@@ -31,7 +32,8 @@
                                             <p>Tugas piket jaga;</p>
                                         </label>
                                         <div class="d-flex align-items-center btn-wrapper">
-                                            <button class="btn btn-green-light ms-3">diterima</button>
+                                            <span class="text-status status-green"><i class="fa-solid fa-circle-check"></i>
+                                                diterima</span>
                                             <button class="btn btn-yellow-light ms-3">view</button>
                                         </div>
                                     </div>
@@ -41,7 +43,10 @@
                                             <p>Apel malam sebagai peserta;</p>
                                         </label>
                                         <div class="d-flex align-items-center btn-wrapper">
-                                            <button class="btn btn-green-light ms-3">diterima</button>
+                                            <span class="text-status status-purple">
+                                                <i class="fa-solid fa-spinner"></i>
+                                                diproses
+                                            </span>
                                             <button class="btn btn-yellow-light ms-3">view</button>
                                         </div>
                                     </div>
@@ -51,7 +56,8 @@
                                             <p>kegiatan rutin latihan ketrampilan;</p>
                                         </label>
                                         <div class="d-flex align-items-center btn-wrapper">
-                                            <button class="btn btn-green-light ms-3">diterima</button>
+                                            <span class="text-status status-green"><i class="fa-solid fa-circle-check"></i>
+                                                diterima</span>
                                             <button class="btn btn-yellow-light ms-3">view</button>
                                         </div>
                                     </div>
@@ -70,7 +76,8 @@
                                             <p>Informasi kejadian kebakaran; dan</p>
                                         </label>
                                         <div class="d-flex align-items-center btn-wrapper">
-                                            <button class="btn btn-green-light ms-3">diterima</button>
+                                            <span class="text-status status-green"><i class="fa-solid fa-circle-check"></i>
+                                                diterima</span>
                                             <button class="btn btn-yellow-light ms-3">view</button>
                                         </div>
                                     </div>
@@ -80,7 +87,7 @@
                                             <p>koordinasi dengan Kepala Regu terkait informasi kejadian kebakaran;</p>
                                         </label>
                                         <div class="d-flex align-items-center btn-wrapper">
-                                            <button class="btn btn-green-light ms-3">diterima</button>
+                                            <button class="btn btn-red-light">revisi</button>
                                             <button class="btn btn-yellow-light ms-3">view</button>
                                         </div>
                                     </div>
@@ -137,6 +144,21 @@
         }
 
         .area-wrapper label p {
+            color: #809FB8;
+        }
+
+        .text-status {
+            text-transform: uppercase;
+            font-family: 'Roboto';
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .status-green {
+            color: #1AD598;
+        }
+
+        .status-purple {
             color: #809FB8;
         }
     </style>

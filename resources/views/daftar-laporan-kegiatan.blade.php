@@ -32,57 +32,35 @@
                                 <div class="title-timeline">
                                     <label class="title-wrapper">
                                         <input type="checkbox" id="checkbox1" class="form-check-input">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                        <p>Kesiapsiagaan petugas pemadam kebakaran dan penyelamatan;</p>
                                     </label>
                                 </div>
                                 <div class="area-timeline">
                                     <div class="area-wrapper">
                                         <label style="max-width: 85%; cursor: pointer;">
                                             <input type="checkbox" checked id="checkbox1" class="form-check-input">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor
-                                                sit
-                                                amet, consectetur adipisicing elit.sfasfasf Lorem ipsum dolor, sit amet
-                                                consectetur adipisicing elit. Iste quo omnis nesciunt ex perspiciatis?
-                                                Dolorum
-                                                at fugiat veritatis dignissimos voluptas! Explicabo molestias quibusdam
-                                                neque,
-                                                blanditiis ea reprehenderit cupiditate pariatur temporibus.</p>
+                                            <p>Apel pagi sebagai peserta dan serah terima tugas jaga;</p>
                                         </label>
                                         <button class="btn btn-yellow-light ms-3">view</button>
                                     </div>
                                     <div class="area-wrapper">
                                         <label style="max-width: 85%; cursor: pointer;">
                                             <input type="checkbox" id="checkbox1" class="form-check-input">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor
-                                                sit
-                                                amet, consectetur adipisicing elit.sfasfasf</p>
+                                            <p>Tugas piket jaga;</p>
                                         </label>
                                         <button class="btn btn-yellow-light ms-3">view</button>
                                     </div>
                                     <div class="area-wrapper">
                                         <label style="max-width: 85%; cursor: pointer;">
                                             <input type="checkbox" id="checkbox1" class="form-check-input">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor
-                                                sit
-                                                amet, consectetur adipisicing elit.sfasfasf</p>
+                                            <p>Apel malam sebagai peserta;</p>
                                         </label>
                                         <button class="btn btn-yellow-light ms-3">view</button>
                                     </div>
                                     <div class="area-wrapper">
                                         <label style="max-width: 85%; cursor: pointer;">
                                             <input type="checkbox" id="checkbox1" class="form-check-input">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor
-                                                sit
-                                                amet, consectetur adipisicing elit.sfasfasf</p>
-                                        </label>
-                                        <button class="btn btn-yellow-light ms-3">view</button>
-                                    </div>
-                                    <div class="area-wrapper">
-                                        <label style="max-width: 85%; cursor: pointer;">
-                                            <input type="checkbox" id="checkbox1" class="form-check-input">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor
-                                                sit
-                                                amet, consectetur adipisicing elit.sfasfasf</p>
+                                            <p>kegiatan rutin latihan ketrampilan;</p>
                                         </label>
                                         <button class="btn btn-yellow-light ms-3">view</button>
                                     </div>
@@ -91,57 +69,21 @@
                                 <div class="title-timeline">
                                     <label class="title-wrapper">
                                         <input type="checkbox" id="checkbox1" class="form-check-input">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                        <p>Pelaksanaan prosedur pelaporan informasi kejadian kebakaran;</p>
                                     </label>
                                 </div>
                                 <div class="area-timeline">
                                     <div class="area-wrapper">
                                         <label style="max-width: 85%; cursor: pointer;">
                                             <input type="checkbox" id="checkbox1" class="form-check-input">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor
-                                                sit
-                                                amet, consectetur adipisicing elit.sfasfasf Lorem ipsum dolor, sit amet
-                                                consectetur adipisicing elit. Iste quo omnis nesciunt ex perspiciatis?
-                                                Dolorum
-                                                at fugiat veritatis dignissimos voluptas! Explicabo molestias quibusdam
-                                                neque,
-                                                blanditiis ea reprehenderit cupiditate pariatur temporibus.</p>
+                                            <p>Informasi kejadian kebakaran; dan</p>
                                         </label>
                                         <button class="btn btn-yellow-light ms-3">view</button>
                                     </div>
                                     <div class="area-wrapper">
                                         <label style="max-width: 85%; cursor: pointer;">
                                             <input type="checkbox" id="checkbox1" class="form-check-input">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor
-                                                sit
-                                                amet, consectetur adipisicing elit.sfasfasf</p>
-                                        </label>
-                                        <button class="btn btn-yellow-light ms-3">view</button>
-                                    </div>
-                                    <div class="area-wrapper">
-                                        <label style="max-width: 85%; cursor: pointer;">
-                                            <input type="checkbox" id="checkbox1" class="form-check-input">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor
-                                                sit
-                                                amet, consectetur adipisicing elit.sfasfasf</p>
-                                        </label>
-                                        <button class="btn btn-yellow-light ms-3">view</button>
-                                    </div>
-                                    <div class="area-wrapper">
-                                        <label style="max-width: 85%; cursor: pointer;">
-                                            <input type="checkbox" id="checkbox1" class="form-check-input">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor
-                                                sit
-                                                amet, consectetur adipisicing elit.sfasfasf</p>
-                                        </label>
-                                        <button class="btn btn-yellow-light ms-3">view</button>
-                                    </div>
-                                    <div class="area-wrapper">
-                                        <label style="max-width: 85%; cursor: pointer;">
-                                            <input type="checkbox" id="checkbox1" class="form-check-input">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor
-                                                sit
-                                                amet, consectetur adipisicing elit.sfasfasf</p>
+                                            <p>koordinasi dengan Kepala Regu terkait informasi kejadian kebakaran;</p>
                                         </label>
                                         <button class="btn btn-yellow-light ms-3">view</button>
                                     </div>
@@ -178,6 +120,20 @@
             font-family: 'Roboto';
             font-size: 16px;
             margin-left: 10px;
+        }
+
+        .title-timeline p,
+        .area-wrapper label p {
+            font-family: 'Roboto';
+            font-weight: 600;
+        }
+
+        .title-timeline p {
+            color: #000000;
+        }
+
+        .area-wrapper label p {
+            color: #809FB8;
         }
     </style>
 @endsection

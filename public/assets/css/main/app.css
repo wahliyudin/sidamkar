@@ -22428,8 +22428,12 @@ a {
 }
 
 .btn-yellow-light {
-    color: #F9B959;
+    color: #E7961C;
     background-color: rgba(249, 185, 89, 0.47);
+    text-transform: uppercase;
+    font-family: 'Roboto';
+    font-size: 14px;
+    font-weight: 700;
 }
 
 .btn-yellow-light:hover {
@@ -22450,6 +22454,10 @@ a {
 .btn-red-light {
     color: #EA3A3D;
     background-color: rgba(234, 58, 61, 0.2);
+    text-transform: uppercase;
+    font-family: 'Roboto';
+    font-size: 14px;
+    font-weight: 700;
 }
 
 .btn-red-light:hover {
