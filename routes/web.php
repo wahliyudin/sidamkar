@@ -35,9 +35,6 @@ Route::get('/laporan-kegiatan', function () {
 Route::get('/butir-kegiatan', function () {
     return view('butir-kegiatan');
 })->name('butir-kegiatan');
-Route::get('/riwayat-kegiatan', function () {
-    return view('riwayat-kegiatan');
-})->name('riwayat-kegiatan');
 Route::get('/revisi-laporan-kegiatan', function () {
     return view('revisi-laporan-kegiatan');
 })->name('revisi-laporan-kegiatan');

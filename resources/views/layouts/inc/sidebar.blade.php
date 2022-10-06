@@ -41,8 +41,9 @@
                             50</span>
                     </a>
                 </li>
-                <li class="sidebar-item {{ request()->routeIs('daftar-laporan-kegiatan') ? 'active' : '' }}">
-                    <a href="{{ route('daftar-laporan-kegiatan') }}" class='sidebar-link'>
+                <li
+                    class="sidebar-item {{ request()->routeIs('laporan-kegiatan') || request()->routeIs('daftar-laporan-kegiatan') ? 'active' : '' }}">
+                    <a href="{{ route('laporan-kegiatan') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Laporan Kegiatan</span>
                     </a>

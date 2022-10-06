@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">
+                    {{-- <div class="card-header">
                         <div class="d-flex justify-content-end pb-4">
                             <div class="dropdown">
                                 <span id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true"
@@ -25,67 +25,99 @@
                                 <span>Ubah</span>
                             </a>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="card-body">
                         <form action="">
                             <div class="timeline">
                                 <div class="title-timeline">
                                     <label class="title-wrapper">
-                                        <input type="checkbox" id="checkbox1" class="form-check-input">
+                                        <input type="checkbox" checked id="checkbox1" class="form-check-input">
                                         <p>Kesiapsiagaan petugas pemadam kebakaran dan penyelamatan;</p>
                                     </label>
                                 </div>
                                 <div class="area-timeline">
                                     <div class="area-wrapper">
-                                        <label style="max-width: 85%; cursor: pointer;">
+                                        <label style="max-width: 70%; cursor: pointer;">
                                             <input type="checkbox" checked id="checkbox1" class="form-check-input">
                                             <p>Apel pagi sebagai peserta dan serah terima tugas jaga;</p>
                                         </label>
-                                        <button class="btn btn-yellow-light ms-3">view</button>
+                                        <div class="d-flex align-items-center btn-wrapper">
+                                            <span class="text-status status-green"><i class="fa-solid fa-circle-check"></i>
+                                                diterima</span>
+                                            <button class="btn btn-yellow-light ms-3" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModalCenter" type="button">detail</button>
+                                        </div>
                                     </div>
                                     <div class="area-wrapper">
-                                        <label style="max-width: 85%; cursor: pointer;">
-                                            <input type="checkbox" id="checkbox1" class="form-check-input">
+                                        <label style="max-width: 70%; cursor: pointer;">
+                                            <input type="checkbox" checked id="checkbox1" class="form-check-input">
                                             <p>Tugas piket jaga;</p>
                                         </label>
-                                        <button class="btn btn-yellow-light ms-3">view</button>
+                                        <div class="d-flex align-items-center btn-wrapper">
+                                            <span class="text-status status-green"><i class="fa-solid fa-circle-check"></i>
+                                                diterima</span>
+                                            <button class="btn btn-yellow-light ms-3" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModalCenter" type="button">detail</button>
+                                        </div>
                                     </div>
                                     <div class="area-wrapper">
-                                        <label style="max-width: 85%; cursor: pointer;">
-                                            <input type="checkbox" id="checkbox1" class="form-check-input">
+                                        <label style="max-width: 70%; cursor: pointer;">
+                                            <input type="checkbox" checked id="checkbox1" class="form-check-input">
                                             <p>Apel malam sebagai peserta;</p>
                                         </label>
-                                        <button class="btn btn-yellow-light ms-3">view</button>
+                                        <div class="d-flex align-items-center btn-wrapper">
+                                            <span class="text-status status-purple">
+                                                <i class="fa-solid fa-spinner"></i>
+                                                diproses
+                                            </span>
+                                            <button class="btn btn-yellow-light ms-3" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModalCenter" type="button">detail</button>
+                                        </div>
                                     </div>
                                     <div class="area-wrapper">
-                                        <label style="max-width: 85%; cursor: pointer;">
-                                            <input type="checkbox" id="checkbox1" class="form-check-input">
+                                        <label style="max-width: 70%; cursor: pointer;">
+                                            <input type="checkbox" checked id="checkbox1" class="form-check-input">
                                             <p>kegiatan rutin latihan ketrampilan;</p>
                                         </label>
-                                        <button class="btn btn-yellow-light ms-3">view</button>
+                                        <div class="d-flex align-items-center btn-wrapper">
+                                            <span class="text-status status-green"><i class="fa-solid fa-circle-check"></i>
+                                                diterima</span>
+                                            <button class="btn btn-yellow-light ms-3" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModalCenter" type="button">detail</button>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="title-timeline">
                                     <label class="title-wrapper">
-                                        <input type="checkbox" id="checkbox1" class="form-check-input">
+                                        <input type="checkbox" checked id="checkbox1" class="form-check-input">
                                         <p>Pelaksanaan prosedur pelaporan informasi kejadian kebakaran;</p>
                                     </label>
                                 </div>
                                 <div class="area-timeline">
                                     <div class="area-wrapper">
-                                        <label style="max-width: 85%; cursor: pointer;">
-                                            <input type="checkbox" id="checkbox1" class="form-check-input">
+                                        <label style="max-width: 70%; cursor: pointer;">
+                                            <input type="checkbox" checked id="checkbox1" class="form-check-input">
                                             <p>Informasi kejadian kebakaran; dan</p>
                                         </label>
-                                        <button class="btn btn-yellow-light ms-3">view</button>
+                                        <div class="d-flex align-items-center btn-wrapper">
+                                            <span class="text-status status-green"><i class="fa-solid fa-circle-check"></i>
+                                                diterima</span>
+                                            <button class="btn btn-yellow-light ms-3" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModalCenter" type="button">detail</button>
+                                        </div>
                                     </div>
                                     <div class="area-wrapper">
-                                        <label style="max-width: 85%; cursor: pointer;">
-                                            <input type="checkbox" id="checkbox1" class="form-check-input">
+                                        <label style="max-width: 70%; cursor: pointer;">
+                                            <input type="checkbox" checked id="checkbox1" class="form-check-input">
                                             <p>koordinasi dengan Kepala Regu terkait informasi kejadian kebakaran;</p>
                                         </label>
-                                        <button class="btn btn-yellow-light ms-3">view</button>
+                                        <div class="d-flex align-items-center btn-wrapper">
+                                            <button class="btn btn-red-light"data-bs-toggle="modal" data-bs-target="#revisi"
+                                                type="button">revisi</button>
+                                            <button class="btn btn-yellow-light ms-3" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModalCenter" type="button">detail</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -95,6 +127,49 @@
             </div>
         </div>
     </section>
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-md modal-dialog-centered modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="d-flex flex-column">
+                        <div class="d-flex flex-column mt-1">
+                            <div class="form-group">
+                                <label for="">File</label>
+                                <input type="file" name="" class="form-control" id="">
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <button class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="revisi" tabindex="-1" role="dialog" aria-labelledby="revisiTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-md modal-dialog-centered modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="d-flex flex-column">
+                        <div class="d-flex flex-column mt-1">
+                            <div class="form-group">
+                                <label for="">Detail Kegiatan</label>
+                                <textarea name="" id="" class="form-control"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <button class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                            <button class="btn btn-blue" data-bs-dismiss="modal">Simpan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 @section('css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
@@ -133,6 +208,21 @@
         }
 
         .area-wrapper label p {
+            color: #809FB8;
+        }
+
+        .text-status {
+            text-transform: uppercase;
+            font-family: 'Roboto';
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .status-green {
+            color: #1AD598;
+        }
+
+        .status-purple {
             color: #809FB8;
         }
     </style>
