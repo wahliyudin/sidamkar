@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class KabKota extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'provinsi_id',
+        'nama'
+    ];
 }

@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class UserAparatur extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'nama',
+        'jenjang',
+        'nip',
+        'pangkat_golongan_tmt',
+        'tempat_lahir',
+        'tanggal_lahir',
+        'jenis_kelamin',
+        'pendidikan_terakhir',
+        'foto_pegawai'
+    ];
 }

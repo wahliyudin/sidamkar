@@ -15,13 +15,15 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('username');
+            $table->string('username')->unique();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->foreignId('kab_kota_id');
             $table->rememberToken();
             $table->timestamps();
+
+            $table->foreign('kab_kota_id')->on('kab_kotas')->references('id')->cascadeOnDelete();
         });
     }
 
