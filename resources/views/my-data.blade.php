@@ -25,29 +25,29 @@
                         </div>
                         <div class="form-group">
                             <label for="basicInput">Provinsi</label>
-                            <input type="text" class="form-control" id="basicInput" placeholder="Enter email">
+                            <input type="text" class="form-control" id="basicInput" placeholder="">
                         </div>
                         <div class="form-group">
                             <label for="basicInput">Kabupaten / Kota</label>
-                            <input type="text" class="form-control" id="basicInput" placeholder="Enter email">
+                            <input type="text" class="form-control" id="basicInput" placeholder="">
                         </div>
                         <div class="form-group">
                             <label for="basicInput">Nomenklatur Prangkat Daerah</label>
-                            <input type="text" class="form-control" id="basicInput" placeholder="Enter email">
+                            <input type="text" class="form-control" id="basicInput" placeholder="">
                         </div>
                         <div class="form-group">
                             <label for="basicInput">Nama</label>
-                            <input type="text" class="form-control" id="basicInput" placeholder="Enter email">
+                            <input type="text" class="form-control" id="basicInput" placeholder="">
                         </div>
                         <div class="form-group">
                             <label for="basicInput">NIP/Nomor Register</label>
-                            <input type="text" class="form-control" id="basicInput" placeholder="Enter email">
+                            <input type="text" class="form-control" id="basicInput" placeholder="">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="basicInput">Tempat Tanggal Lahir</label>
-                            <input type="text" class="form-control" id="basicInput" placeholder="Enter email">
+                            <input type="text" class="form-control" id="basicInput" placeholder="">
                         </div>
                         <div class="form-group">
                             <label for="basicInput">Pangkat / Golongan / TMT</label>

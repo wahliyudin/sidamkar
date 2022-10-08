@@ -37,7 +37,7 @@
                     <a href="{{ route('tabel-kegiatan') }}" class='sidebar-link'>
                         <i class="fa-solid fa-person-walking"></i>
                         <span>Tabel Kegiatan</span>
-                        <span style="padding: 2px 6px; background-color: #EBFF02; color: black; border-radius: 4px;">
+                        <span style="padding: 2px 6px; background-color: #EBFF02; color: white; border-radius: 4px;">
                             50</span>
                     </a>
                 </li>
@@ -49,12 +49,12 @@
                     </a>
                 </li>
                 <li class="sidebar-item {{ request()->routeIs('butir-kegiatan') ? 'active' : '' }}">
-                    <a href="{{ route('butir-kegiatan') }}" class='sidebar-link'>
+                    <a data-bs-toggle="modal" data-bs-target="#riwayat" class='sidebar-link'>
                         <i class="fa-regular fa-file"></i>
                         <span>Riwayat Tugas</span>
                     </a>
                 </li>
-                <li class="sidebar-item {{ request()->routeIs('revisi-laporan-kegiatan') ? 'active' : '' }}">
+                {{-- <li class="sidebar-item {{ request()->routeIs('revisi-laporan-kegiatan') ? 'active' : '' }}">
                     <a href="{{ route('revisi-laporan-kegiatan') }}" class='sidebar-link'>
                         <i class="fa-solid fa-screwdriver-wrench"></i>
                         <span>Revisi Laporan</span>
@@ -89,7 +89,7 @@
                         <i class="bi bi-grid-fill"></i>
                         <span>Data Pengajuan Laporan Kegiatan</span>
                     </a>
-                </li>
+                </li> --}}
             </ul>
         </div>
     </div>

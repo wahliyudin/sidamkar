@@ -1,87 +1,607 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Register') }}</div>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Register</title>
 
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('register') }}">
-                            @csrf
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/auth/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/auth/all.min.css') }}" rel="stylesheet" type="text/css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Viga&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet"
+        type="text/css">
+    <link href="{{ asset('assets/css/auth/fontawesome/styles.min.css') }}" rel="stylesheet" type="text/css">
+    <style>
+        .card-header {
+            border-bottom: 0;
 
-                            <div class="row mb-3">
-                                <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+        }
 
-                                <div class="col-md-6">
-                                    <input id="name" type="text"
-                                        class="form-control @error('name') is-invalid @enderror" name="name"
-                                        value="{{ old('name') }}" required autocomplete="name" autofocus>
+        .nav-tabs .nav-item.show .nav-link,
+        .nav-tabs .nav-link.active {
+            color: #fff;
+            background-color: rgba(234, 58, 61, 0.9);
 
-                                    @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+            border-color: #ddd #ddd #fff;
+        }
+
+        .form-wrapper {
+            padding: 0 10px !important;
+        }
+
+        @media screen and (max-width: 750px) {
+            .nav-item a h6 {
+                font-size: 14px !important;
+            }
+
+            .header-regist {
+                font-size: 30px !important;
+            }
+
+            .nav-item .nav-link {
+                padding: 7px 7px !important;
+            }
+
+            .form-wrapper {
+                padding: 0 !important;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="page-content">
+        <div class="content-wrapper">
+            <div class="content-inner">
+                <div class="content pt-0">
+                    <div class="w-100 content-header d-flex flex-column align-items-center mt-4">
+                        <h1 class="header-regist text-center mt-1"
+                            style="font-size: 40px; font-family: sans-serif; font-weight: 700; ">DAFTAR
+                        </h1>
+                    </div>
+                    <div class="page-content login-cover" style="z-index: 99;">
+
+                        <!-- Content area -->
+                        <div class="form-wrapper d-flex justify-content-center align-items-center">
+
+                            <!-- Login form -->
+
+                            <div class="card mb-0 overflow-hidden" style="border-radius: 10px">
+                                <ul class="nav nav-tabs nav-justified bg-light rounded-top mb-0">
+                                    <li class="nav-item"><a href="#login-tab1"
+                                            class="h-100 nav-link border-y-0 border-left-0 active d-flex justify-content-center align-items-center"
+                                            data-toggle="tab">
+                                            <h6 class="my-1">Register Aparatur</h6>
+                                        </a></li>
+                                    <li class="nav-item"><a href="#login-tab2"
+                                            class="h-100 nav-link border-y-0 border-right-0 d-flex justify-content-center align-items-center"
+                                            data-toggle="tab">
+                                            <h6 class="my-1">Register Pejabat Struktural</h6>
+                                        </a></li>
+                                    <li class="nav-item"><a href="#login-tab3"
+                                            class="h-100 nav-link border-y-0 border-right-0 d-flex justify-content-center align-items-center"
+                                            data-toggle="tab">
+                                            <h6 class="my-1">Register Admin Prov & Kab/kota</h6>
+                                        </a></li>
+
+                                </ul>
+
+                                <div class="tab-content">
+                                    <div class="tab-pane fade show active" id="login-tab1">
+                                        <!-- Wizard with validation -->
+                                        <div class="header-wizard-form">
+
+                                            <form class="wizard-form steps-validation" action="#" data-fouc>
+                                                <h6>Admin Level</h6>
+                                                <fieldset>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Tingkat Admin<span
+                                                                        class="text-danger">*</span></label>
+                                                                <select name="birth-month" class="custom-select">
+                                                                    <option value="1" selected>1</option>
+                                                                    <option value="2">2</option>
+                                                                    <option value="3">3</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Kabupaten / Kota<span
+                                                                        class="text-danger">*</span></label>
+                                                                <select name="KabKot" class="custom-select">
+                                                                    <option value="1" selected>1</option>
+                                                                    <option value="2">2</option>
+                                                                    <option value="3">3</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Nomenklatur Perangkat Daerah<span
+                                                                        class="text-danger">*</span></label>
+                                                                <select name="nopeda" class="custom-select">
+                                                                    <option value="1" selected>1</option>
+                                                                    <option value="2">2</option>
+                                                                    <option value="3">3</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Provinsi<span
+                                                                        class="text-danger">*</span></label>
+                                                                <select name="provinsi" class="custom-select">
+                                                                    <option value="1" selected>1</option>
+                                                                    <option value="2">2</option>
+                                                                    <option value="3">3</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </fieldset>
+
+                                                <h6>Personal data</h6>
+                                                <fieldset>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Nama Lengkap <span
+                                                                        class="text-danger">*</span></label>
+                                                                <input type="text" name="name"
+                                                                    class="form-control required"
+                                                                    placeholder="Nama Lengkap">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Tempat Lahir<span
+                                                                        class="text-danger">*</span></label>
+                                                                <input type="text" name="tempat_lahir"
+                                                                    class="form-control required"
+                                                                    placeholder="Tempat Lahir">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Tanggal Lahir<span
+                                                                        class="text-danger">*</span></label>
+                                                                <input type="date" name="Tempat_lahir"
+                                                                    class="form-control required"
+                                                                    placeholder="Tanggal Lahir">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Pendidikan Terakhir<span
+                                                                        class="text-danger">*</span></label>
+                                                                <select name="birth-month" class="custom-select">
+                                                                    <option value="1" selected>SMA</option>
+                                                                    <option value="2">D3</option>
+                                                                    <option value="3">S1/D4</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>NIP / Nomor Register<span
+                                                                        class="text-danger">*</span></label>
+                                                                <input type="text" name="NIP"
+                                                                    class="form-control required"
+                                                                    placeholder="NIP / Nomor Register">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Pangkat / Golongan / TMT<span
+                                                                        class="text-danger">*</span></label>
+                                                                <select name="birth-month" class="custom-select">
+                                                                    <option value="1" selected>SMA</option>
+                                                                    <option value="2">D3</option>
+                                                                    <option value="3">S1/D4</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Jabatan<span
+                                                                        class="text-danger">*</span></label>
+                                                                <select name="birth-month" class="custom-select">
+                                                                    <option value="1" selected>SMA</option>
+                                                                    <option value="2">D3</option>
+                                                                    <option value="3">S1/D4</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                </fieldset>
+
+                                                <h6>Akses Login</h6>
+                                                <fieldset>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Email<span class="text-danger">*</span></label>
+                                                                <input type="email" name="experience-company"
+                                                                    placeholder="example@gmail.com"
+                                                                    class="form-control required">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Password<span
+                                                                        class="text-danger">*</span></label>
+                                                                <input type="password" name="password_apaaratur"
+                                                                    placeholder="password"
+                                                                    class="form-control required">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Konfirmasi Password<span
+                                                                        class="text-danger">*</span></label>
+                                                                <input type="password"
+                                                                    name="konfirm_password_aparatur"
+                                                                    placeholder="password"
+                                                                    class="form-control required">
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                </fieldset>
+
+
+                                            </form>
+                                        </div>
+                                        <!-- /wizard with validation -->
+                                    </div>
+
+                                    <div class="tab-pane fade" id="login-tab2">
+                                        <div class="header-wizard-form">
+                                            <form class="wizard-form steps-validation" action="#" data-fouc>
+                                                <h6>Admin Level</h6>
+                                                <fieldset>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Jenis Jabatan Struktural<span
+                                                                        class="text-danger">*</span></label>
+                                                                <select name="jjs" class="custom-select">
+                                                                    <option value="1" selected>Atasan Langsung
+                                                                    </option>
+                                                                    <option value="2">Ketua Tim Penilai AK
+                                                                    </option>
+                                                                    <option value="3">Pejabat Penetap AK</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Tingkat Admin<span
+                                                                        class="text-danger">*</span></label>
+                                                                <select name="birth-month" class="custom-select">
+                                                                    <option value="1" selected>1</option>
+                                                                    <option value="2">2</option>
+                                                                    <option value="3">3</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Kabupaten / Kota<span
+                                                                        class="text-danger">*</span></label>
+                                                                <select name="KabKot" class="custom-select">
+                                                                    <option value="1" selected>1</option>
+                                                                    <option value="2">2</option>
+                                                                    <option value="3">3</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Provinsi<span
+                                                                        class="text-danger">*</span></label>
+                                                                <select name="provinsi" class="custom-select">
+                                                                    <option value="1" selected>1</option>
+                                                                    <option value="2">2</option>
+                                                                    <option value="3">3</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Nomenklatur Perangkat Daerah<span
+                                                                        class="text-danger">*</span></label>
+                                                                <select name="nopeda" class="custom-select">
+                                                                    <option value="1" selected>1</option>
+                                                                    <option value="2">2</option>
+                                                                    <option value="3">3</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label style="visibility: hidden;">file</label>
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input"
+                                                                        id="inputGroupFile01"
+                                                                        aria-describedby="inputGroupFileAddon01">
+                                                                    <label class="custom-file-label"
+                                                                        for="inputGroupFile01">Choose
+                                                                        file</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+
+
+                                                <h6>Personal data</h6>
+                                                <fieldset>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Nama Lengkap <span
+                                                                        class="text-danger">*</span></label>
+                                                                <input type="text" name="name"
+                                                                    class="form-control required"
+                                                                    placeholder="Nama Lengkap">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Tempat Lahir<span
+                                                                        class="text-danger">*</span></label>
+                                                                <input type="text" name="tempat_lahir"
+                                                                    class="form-control required"
+                                                                    placeholder="Tempat Lahir">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Tanggal Lahir<span
+                                                                        class="text-danger">*</span></label>
+                                                                <input type="date" name="Tempat_lahir"
+                                                                    class="form-control required"
+                                                                    placeholder="Tanggal Lahir">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Pendidikan Terakhir<span
+                                                                        class="text-danger">*</span></label>
+                                                                <select name="birth-month" class="custom-select">
+                                                                    <option value="1" selected>SMA</option>
+                                                                    <option value="2">D3</option>
+                                                                    <option value="3">S1/D4</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>NIP / Nomor Register<span
+                                                                        class="text-danger">*</span></label>
+                                                                <input type="text" name="NIP"
+                                                                    class="form-control required"
+                                                                    placeholder="NIP / Nomor Register">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Pangkat / Golongan / TMT<span
+                                                                        class="text-danger">*</span></label>
+                                                                <select name="birth-month" class="custom-select">
+                                                                    <option value="1" selected>SMA</option>
+                                                                    <option value="2">D3</option>
+                                                                    <option value="3">S1/D4</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Jabatan<span
+                                                                        class="text-danger">*</span></label>
+                                                                <select name="birth-month" class="custom-select">
+                                                                    <option value="1" selected>SMA</option>
+                                                                    <option value="2">D3</option>
+                                                                    <option value="3">S1/D4</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                </fieldset>
+
+                                                <h6>Akses Login</h6>
+                                                <fieldset>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Email<span class="text-danger">*</span></label>
+                                                                <input type="email" name="email"
+                                                                    placeholder="example@gmail.com"
+                                                                    class="form-control required">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Password<span
+                                                                        class="text-danger">*</span></label>
+                                                                <input type="password" name="password"
+                                                                    placeholder="password"
+                                                                    class="form-control required">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Konfirmasi Password<span
+                                                                        class="text-danger">*</span></label>
+                                                                <input type="password" name="konfirm_password"
+                                                                    placeholder="password"
+                                                                    class="form-control required">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                        <!-- /remote content source -->
+                                    </div>
+                                    <div class="tab-pane fade" id="login-tab3">
+                                        <!-- Wizard with validation -->
+                                        <div class="header-wizard-form">
+
+                                            <form class="wizard-form steps-validation" action="#" data-fouc>
+                                                <h6>Admin Level</h6>
+                                                <fieldset>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Tingkat Admin<span
+                                                                        class="text-danger">*</span></label>
+                                                                <select name="birth-month"
+                                                                    class="custom-select required">
+                                                                    <option value="1" selected>1</option>
+                                                                    <option value="2">2</option>
+                                                                    <option value="3">3</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Kabupaten / Kota<span
+                                                                        class="text-danger">*</span></label>
+                                                                <select name="KabKot" class="custom-select">
+                                                                    <option value="1" selected>1</option>
+                                                                    <option value="2">2</option>
+                                                                    <option value="3">3</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Nomenklatur Perangkat Daerah<span
+                                                                        class="text-danger">*</span></label>
+                                                                <select name="nopeda" class="custom-select">
+                                                                    <option value="1" selected>1</option>
+                                                                    <option value="2">2</option>
+                                                                    <option value="3">3</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Provinsi<span
+                                                                        class="text-danger">*</span></label>
+                                                                <select name="provinsi" class="custom-select">
+                                                                    <option value="1" selected>1</option>
+                                                                    <option value="2">2</option>
+                                                                    <option value="3">3</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </fieldset>
+
+                                                <h6>Akses Login</h6>
+                                                <fieldset>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Email<span class="text-danger">*</span></label>
+                                                                <input type="email" name="email_akses_login"
+                                                                    placeholder="example@gmail.com"
+                                                                    class="form-control required">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Password<span
+                                                                        class="text-danger">*</span></label>
+                                                                <input type="password" name="password_akses_login"
+                                                                    placeholder="password"
+                                                                    class="form-control required">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Konfirmasi Password<span
+                                                                        class="text-danger">*</span></label>
+                                                                <input type="password" name="konfirm_akses_login"
+                                                                    placeholder="password"
+                                                                    class="form-control required">
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                </fieldset>
+
+
+                                            </form>
+                                        </div>
+                                        <!-- /wizard with validation -->
+                                    </div>
                                 </div>
                             </div>
-
-                            <div class="row mb-3">
-                                <label for="email"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="email" type="email"
-                                        class="form-control @error('email') is-invalid @enderror" name="email"
-                                        value="{{ old('email') }}" required autocomplete="email">
-
-                                    @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="password"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="password" type="password"
-                                        class="form-control @error('password') is-invalid @enderror" name="password"
-                                        required autocomplete="new-password">
-
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="password-confirm"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control"
-                                        name="password_confirmation" required autocomplete="new-password">
-                                </div>
-                            </div>
-
-                            <div class="row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Register') }}
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-@endsection
+
+    <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/js/auth/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/js/auth/app.js') }}"></script>
+    <script src="{{ asset('assets/js/auth/plugins/forms/wizards/steps.min.js') }}"></script>
+    <script src="{{ asset('assets/js/auth/plugins/forms/inputs/inputmask.js') }}"></script>
+    <script src="{{ asset('assets/js/auth/plugins/forms/validation/validate.min.js') }}"></script>
+    <script src="{{ asset('assets/js/auth/plugins/extensions/cookie.js') }}"></script>
+    <script src="{{ asset('assets/js/auth/form_wizard.js') }}"></script>
+</body>
+
+</html>

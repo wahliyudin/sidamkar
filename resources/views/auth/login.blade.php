@@ -68,10 +68,10 @@
                                 </label>
                             </div>
                             <button type="submit" class="btn btn-primary btn-block btn-lg mt-3">Log in</button>
-                            <div class="d-flex flex-column mt-2">
+                            {{-- <div class="d-flex flex-column mt-2">
                                 <a style="font-size: 14px;" href="">Register Admin Provinsi, Kab/Kota</a>
                                 <a style="font-size: 14px;" href="">Register Aparatur</a>
-                            </div>
+                            </div> --}}
                         </form>
                     </div>
                     {{-- <div class="text-center mt-5 text-lg fs-4">

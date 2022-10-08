@@ -43,7 +43,7 @@
                                         </label>
                                         <div class="d-flex align-items-center btn-wrapper">
                                             <span class="text-status status-green"><i class="fa-solid fa-circle-check"></i>
-                                                diterima</span>
+                                                Sukses</span>
                                             <button class="btn btn-yellow-light ms-3" data-bs-toggle="modal"
                                                 data-bs-target="#exampleModalCenter" type="button">detail</button>
                                         </div>
@@ -55,7 +55,7 @@
                                         </label>
                                         <div class="d-flex align-items-center btn-wrapper">
                                             <span class="text-status status-green"><i class="fa-solid fa-circle-check"></i>
-                                                diterima</span>
+                                                Sukses</span>
                                             <button class="btn btn-yellow-light ms-3" data-bs-toggle="modal"
                                                 data-bs-target="#exampleModalCenter" type="button">detail</button>
                                         </div>
@@ -81,7 +81,7 @@
                                         </label>
                                         <div class="d-flex align-items-center btn-wrapper">
                                             <span class="text-status status-green"><i class="fa-solid fa-circle-check"></i>
-                                                diterima</span>
+                                                Sukses</span>
                                             <button class="btn btn-yellow-light ms-3" data-bs-toggle="modal"
                                                 data-bs-target="#exampleModalCenter" type="button">detail</button>
                                         </div>
@@ -102,7 +102,7 @@
                                         </label>
                                         <div class="d-flex align-items-center btn-wrapper">
                                             <span class="text-status status-green"><i class="fa-solid fa-circle-check"></i>
-                                                diterima</span>
+                                                Sukses</span>
                                             <button class="btn btn-yellow-light ms-3" data-bs-toggle="modal"
                                                 data-bs-target="#exampleModalCenter" type="button">detail</button>
                                         </div>
