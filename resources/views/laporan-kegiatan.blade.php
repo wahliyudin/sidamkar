@@ -5,39 +5,7 @@
         <div class="row">
             <div class="card">
                 <div class="card-header">
-                    <div class="row py-2">
-                        <div class="col-md-3">
-                            <div class="d-flex align-items-center">
-                                <button class="btn btn-purple-reverse ms-3 px-3 text-sm" type="button">tindak lanjut</button>
-                                <span class="text-xl mx-2">:</span>
-                                <span class="text-xl">1</span>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="d-flex align-items-center">
-                                <button class="btn btn-yellow-reverse btn-status ms-3 px-3 text-sm"
-                                    type="button">diproses</button>
-                                <span class="text-xl mx-2">:</span>
-                                <span class="text-xl">1</span>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="d-flex align-items-center">
-                                <button class="btn btn-red-reverse btn-status ms-3 px-3 text-sm"
-                                    type="button">revisi</button>
-                                <span class="text-xl mx-2">:</span>
-                                <span class="text-xl">1</span>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="d-flex align-items-center">
-                                <button class="btn btn-green-reverse btn-status ms-3 px-3 text-sm"
-                                    type="button">selesai</button>
-                                <span class="text-xl mx-2">:</span>
-                                <span class="text-xl">1</span>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
                 <div class="card-body">
                     <form action="">
@@ -205,6 +173,33 @@
                                     class="btn btn-blue btn-custom px-5">Simpan</a>
                             </div> --}}
                     </form>
+
+                    <div class="row flex-column mt-5">
+                        <div class="d-flex align-items-center">
+                            <button class="btn btn-purple-reverse ms-3 px-3 text-sm" type="button">tindak
+                                lanjut</button>
+                            <span class="text-xl mx-2">:</span>
+                            <span class="text-xl">1</span>
+                        </div>
+                        <div class="d-flex align-items-center mt-2">
+                            <button class="btn btn-yellow-reverse btn-status ms-3 px-3 text-sm"
+                                type="button">diproses</button>
+                            <span class="text-xl mx-2">:</span>
+                            <span class="text-xl">1</span>
+                        </div>
+                        <div class="d-flex align-items-center mt-2">
+                            <button class="btn btn-red-reverse btn-status ms-3 px-3 text-sm"
+                                type="button">revisi</button>
+                            <span class="text-xl mx-2">:</span>
+                            <span class="text-xl">1</span>
+                        </div>
+                        <div class="d-flex align-items-center mt-2">
+                            <button class="btn btn-green-reverse btn-status ms-3 px-3 text-sm"
+                                type="button">selesai</button>
+                            <span class="text-xl mx-2">:</span>
+                            <span class="text-xl">1</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
