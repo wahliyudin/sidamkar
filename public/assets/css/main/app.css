@@ -22518,3 +22518,43 @@ a {
 .text-red {
     color: rgba(234, 58, 61, 0.8);
 }
+
+.circle {
+    border-radius: 100%;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3rem;
+    height: 3rem;
+}
+
+.circle.circle-green-light {
+    color: #1AD598;
+    background-color: rgba(26, 213, 152, 0.298039);
+}
+
+.circle.circle-purple-light {
+    color: #3A36DB;
+    background-color: rgba(58, 54, 219, 0.2);
+}
+
+.circle.circle-red-light {
+    color: rgba(216, 0, 39, 0.7);
+    background-color: rgba(234, 58, 61, 0.5);
+}
+
+.circle.circle-yellow-light {
+    color: rgba(166, 106, 15, 0.83);
+    background-color: rgba(255, 181, 54, 0.56);
+}
+
+.circle.circle-green {
+    color: white;
+    background-color: #1AD598;
+}
+
+.circle.circle-purple {
+    color: white;
+    background-color: #597CF9;
+}

@@ -104,10 +104,37 @@
                                     <p>Pelaksanaan operasional pemadaman kebakaran;</p>
                                 </div>
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#contentDua" aria-expanded="false" aria-controls="contentDua">
+                                </button>
+                            </div>
+                            <div id="contentDua" class="accordion-collapse collapse" aria-labelledby="headDua"
+                                style="">
+                                <div class="accordion-body">
+                                    <ul class="ms-4">
+                                        <li class="py-1">
+                                            <h6>Informasi kejadian kebakaran; dan</h6>
+                                        </li>
+                                        <li class="py-1">
+                                            <h6>koordinasi dengan Kepala Regu terkait informasi kejadian kebakaran;</h6>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <div class="d-flex justify-content-between accordion-header py-3 px-4" id="headTiga">
+                                <div class="d-flex align-items-center" style="color: #000000;">
+                                    <div style="width: 20px; height: 20px;">
+                                        <input type="checkbox" name="kegiatan" id="checkbox1" value="50"
+                                            class="form-check-input">
+                                    </div>
+                                    <p>Pelaksanaan operasional pemadaman kebakaran;</p>
+                                </div>
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#contentTiga" aria-expanded="false" aria-controls="contentTiga">
                                 </button>
                             </div>
-                            <div id="contentTiga" class="accordion-collapse collapse" aria-labelledby="headDua"
+                            <div id="contentTiga" class="accordion-collapse collapse" aria-labelledby="headTiga"
                                 style="">
                                 <div class="accordion-body">
                                     <ul class="ms-4">
@@ -222,32 +249,6 @@
                 padding-right: 0 !important;
             }
         }
-
-
-        .circle {
-            border-radius: 100%;
-            font-size: 25px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 3rem;
-            height: 3rem;
-        }
-
-        .circle.circle-green-light {
-            color: #1AD598;
-            background-color: rgba(26, 213, 152, 0.298039);
-        }
-
-        .circle.circle-green {
-            color: white;
-            background-color: #1AD598;
-        }
-
-        .circle.circle-purple {
-            color: white;
-            background-color: #597CF9;
-        }
     </style>
 @endsection
 @section('js')
@@ -267,7 +268,7 @@
                             close: true,
                             gravity: "top",
                             position: "right",
-                            backgroundColor: "#e7a745",
+                            backgroundColor: "#EDE40C",
                         }).showToast();
                         $(element).prop("checked", false);
                     } else {

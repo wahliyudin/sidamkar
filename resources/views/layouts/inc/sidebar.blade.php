@@ -15,8 +15,8 @@
         </div>
         <div class="sidebar-menu">
             <ul class="menu">
-                <li class="sidebar-item {{ request()->routeIs('home') ? 'active' : '' }}">
-                    <a href="index.html" class='sidebar-link'>
+                <li class="sidebar-item {{ request()->routeIs('overview') ? 'active' : '' }}">
+                    <a href="{{ route('overview') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Overview</span>
                     </a>

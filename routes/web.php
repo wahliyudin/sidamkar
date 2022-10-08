@@ -15,8 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('butir-kegiatan');
+    return view('coba');
 });
+Route::get('/overview', function () {
+    return view('overview');
+})->name('overview');
 Route::get('/data-saya', function () {
     return view('data-saya');
 })->name('data-saya');
