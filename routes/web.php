@@ -17,9 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('butir-kegiatan');
 });
-Route::get('/my-data', function () {
-    return view('my-data');
-})->name('my-data');
+Route::get('/data-saya', function () {
+    return view('data-saya');
+})->name('data-saya');
 Route::get('/daftar-kegiatan', function () {
     return view('daftar-kegiatan');
 })->name('daftar-kegiatan');

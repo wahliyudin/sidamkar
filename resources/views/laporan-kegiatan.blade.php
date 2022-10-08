@@ -20,32 +20,32 @@
                                             <input type="checkbox" checked id="checkbox1" class="form-check-input">
                                             <p>Apel pagi sebagai peserta dan serah terima tugas jaga;</p>
                                         </label>
-                                        <button class="btn btn-green ms-3 px-3" data-bs-toggle="modal"
-                                            data-bs-target="#detailKegiatan" type="button">upload data</button>
+                                        <button class="btn btn-purple-reverse ms-3 px-3" data-bs-toggle="modal"
+                                            data-bs-target="#detailKegiatan" type="button">tindak lanjut</button>
                                     </div>
                                     <div class="area-wrapper">
                                         <label style=" cursor: pointer;">
                                             <input type="checkbox" id="checkbox1" checked class="form-check-input">
                                             <p>Tugas piket jaga;</p>
                                         </label>
-                                        <button class="btn btn-green ms-3 px-3" data-bs-toggle="modal"
-                                            data-bs-target="#detailKegiatan" type="button">upload data</button>
+                                        <button class="btn btn-yellow-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
+                                            data-bs-target="#detailKegiatan" type="button">diproses</button>
                                     </div>
                                     <div class="area-wrapper">
                                         <label style=" cursor: pointer;">
                                             <input type="checkbox" id="checkbox1" checked class="form-check-input">
                                             <p>Apel malam sebagai peserta;</p>
                                         </label>
-                                        <button class="btn btn-green ms-3 px-3" data-bs-toggle="modal"
-                                            data-bs-target="#detailKegiatan" type="button">upload data</button>
+                                        <button class="btn btn-red-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
+                                            data-bs-target="#detailKegiatan" type="button">revisi</button>
                                     </div>
                                     <div class="area-wrapper">
                                         <label style=" cursor: pointer;">
                                             <input type="checkbox" id="checkbox1" checked class="form-check-input">
                                             <p>kegiatan rutin latihan ketrampilan;</p>
                                         </label>
-                                        <button class="btn btn-green ms-3 px-3" data-bs-toggle="modal"
-                                            data-bs-target="#detailKegiatan" type="button">upload data</button>
+                                        <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
+                                            data-bs-target="#detailKegiatan" type="button">selesai</button>
                                     </div>
                                 </div>
 
@@ -61,16 +61,16 @@
                                             <input type="checkbox" id="checkbox1" checked class="form-check-input">
                                             <p>Informasi kejadian kebakaran; dan</p>
                                         </label>
-                                        <button class="btn btn-green ms-3 px-3" data-bs-toggle="modal"
-                                            data-bs-target="#detailKegiatan" type="button">upload data</button>
+                                        <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
+                                            data-bs-target="#detailKegiatan" type="button">selesai</button>
                                     </div>
                                     <div class="area-wrapper">
                                         <label style=" cursor: pointer;">
                                             <input type="checkbox" id="checkbox1" checked class="form-check-input">
                                             <p>koordinasi dengan Kepala Regu terkait informasi kejadian kebakaran;</p>
                                         </label>
-                                        <button class="btn btn-green ms-3 px-3" data-bs-toggle="modal"
-                                            data-bs-target="#detailKegiatan" type="button">upload data</button>
+                                        <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
+                                            data-bs-target="#detailKegiatan" type="button">selesai</button>
                                     </div>
                                 </div>
 
@@ -86,40 +86,40 @@
                                             <input type="checkbox" id="checkbox1" class="form-check-input">
                                             <p>Informasi kejadian kebakaran; dan</p>
                                         </label>
-                                        <button class="btn btn-green ms-3 px-3" data-bs-toggle="modal"
-                                            data-bs-target="#detailKegiatan" type="button">upload data</button>
+                                        <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
+                                            data-bs-target="#detailKegiatan" type="button">selesai</button>
                                     </div>
                                     <div class="area-wrapper">
                                         <label style=" cursor: pointer;">
                                             <input type="checkbox" id="checkbox1" class="form-check-input">
                                             <p>Keberangkatan menuju tempat kejadian kebakaran;</p>
                                         </label>
-                                        <button class="btn btn-green ms-3 px-3" data-bs-toggle="modal"
-                                            data-bs-target="#detailKegiatan" type="button">upload data</button>
+                                        <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
+                                            data-bs-target="#detailKegiatan" type="button">selesai</button>
                                     </div>
                                     <div class="area-wrapper">
                                         <label style=" cursor: pointer;">
                                             <input type="checkbox" id="checkbox1" class="form-check-input">
                                             <p>Pemadaman kebakaran;</p>
                                         </label>
-                                        <button class="btn btn-green ms-3 px-3" data-bs-toggle="modal"
-                                            data-bs-target="#detailKegiatan" type="button">upload data</button>
+                                        <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
+                                            data-bs-target="#detailKegiatan" type="button">selesai</button>
                                     </div>
                                     <div class="area-wrapper">
                                         <label style=" cursor: pointer;">
                                             <input type="checkbox" id="checkbox1" class="form-check-input">
                                             <p>Proses pendinginan;</p>
                                         </label>
-                                        <button class="btn btn-green ms-3 px-3" data-bs-toggle="modal"
-                                            data-bs-target="#detailKegiatan" type="button">upload data</button>
+                                        <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
+                                            data-bs-target="#detailKegiatan" type="button">selesai</button>
                                     </div>
                                     <div class="area-wrapper">
                                         <label style=" cursor: pointer;">
                                             <input type="checkbox" id="checkbox1" class="form-check-input">
                                             <p>persiapan kembali ke pos pemadam kebakaran dan penyelamatan;</p>
                                         </label>
-                                        <button class="btn btn-green ms-3 px-3" data-bs-toggle="modal"
-                                            data-bs-target="#detailKegiatan" type="button">upload data</button>
+                                        <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
+                                            data-bs-target="#detailKegiatan" type="button">selesai</button>
                                     </div>
                                 </div>
 
@@ -135,8 +135,8 @@
                                             <input type="checkbox" id="checkbox1" class="form-check-input">
                                             <p>Informasi kejadian evakuasi dan penyelamatan;</p>
                                         </label>
-                                        <button class="btn btn-green ms-3 px-3" data-bs-toggle="modal"
-                                            data-bs-target="#detailKegiatan" type="button">upload data</button>
+                                        <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
+                                            data-bs-target="#detailKegiatan" type="button">selesai</button>
                                     </div>
                                     <div class="area-wrapper">
                                         <label style=" cursor: pointer;">
@@ -144,32 +144,32 @@
                                             <p>Koordinasi dengan Kepala Regu terkait informasi kejadian evakuasi dan
                                                 penyelamatan;</p>
                                         </label>
-                                        <button class="btn btn-green ms-3 px-3" data-bs-toggle="modal"
-                                            data-bs-target="#detailKegiatan" type="button">upload data</button>
+                                        <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
+                                            data-bs-target="#detailKegiatan" type="button">selesai</button>
                                     </div>
                                     <div class="area-wrapper">
                                         <label style=" cursor: pointer;">
                                             <input type="checkbox" id="checkbox1" class="form-check-input">
                                             <p>evakuasi dan penyelamatan; dan</p>
                                         </label>
-                                        <button class="btn btn-green ms-3 px-3" data-bs-toggle="modal"
-                                            data-bs-target="#detailKegiatan" type="button">upload data</button>
+                                        <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
+                                            data-bs-target="#detailKegiatan" type="button">selesai</button>
                                     </div>
                                     <div class="area-wrapper">
                                         <label style=" cursor: pointer;">
                                             <input type="checkbox" id="checkbox1" class="form-check-input">
                                             <p>melaporkan kejadian evakuasi dan penyelamatan;</p>
                                         </label>
-                                        <button class="btn btn-green ms-3 px-3" data-bs-toggle="modal"
-                                            data-bs-target="#detailKegiatan" type="button">upload data</button>
+                                        <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
+                                            data-bs-target="#detailKegiatan" type="button">selesai</button>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="flex text-center mt-4">
+                            {{-- <div class="flex text-center mt-4">
                                 <a href="{{ route('daftar-laporan-kegiatan') }}"
                                     class="btn btn-blue btn-custom px-5">Simpan</a>
-                            </div>
+                            </div> --}}
                         </form>
                     </div>
                 </div>

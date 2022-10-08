@@ -12,7 +12,7 @@
                             <div class="d-flex flex-column ms-2">
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto';">Target Angka Kredit
                                 </p>
-                                <h2 style="font-family: 'Roboto';color: #06152B;">100</h2>
+                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target">100</h2>
                             </div>
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto';">
                                     Kredit Yang Sudah Dipilih
                                 </p>
-                                <h2 style="font-family: 'Roboto';color: #06152B;">20</h2>
+                                <h2 style="font-family: 'Roboto';color: #06152B;" class="kredit">0</h2>
                             </div>
                         </div>
                     </div>
@@ -65,7 +65,8 @@
                             <div class="d-flex justify-content-between accordion-header py-3 px-4" id="headSatu">
                                 <div class="d-flex align-items-center" style="color: #000000;">
                                     <div style="width: 20px; height: 20px;">
-                                        <input type="checkbox" checked id="checkbox1" class="form-check-input">
+                                        <input type="checkbox" name="kegiatan" id="checkbox1" value="50"
+                                            class="form-check-input">
                                     </div>
                                     <p>Kesiapsiagaan petugas pemadam kebakaran dan penyelamatan;</p>
                                 </div>
@@ -97,7 +98,8 @@
                             <div class="d-flex justify-content-between accordion-header py-3 px-4" id="headDua">
                                 <div class="d-flex align-items-center" style="color: #000000;">
                                     <div style="width: 20px; height: 20px;">
-                                        <input type="checkbox" checked id="checkbox1" class="form-check-input">
+                                        <input type="checkbox" name="kegiatan" id="checkbox1" value="50"
+                                            class="form-check-input">
                                     </div>
                                     <p>Pelaksanaan operasional pemadaman kebakaran;</p>
                                 </div>
@@ -126,6 +128,7 @@
     </section>
 @endsection
 @section('css')
+    <link rel="stylesheet" href="{{ asset('assets/extensions/toastify-js/src/toastify.css') }}">
     <style>
         li::marker {
             font-size: 25px !important;
@@ -246,4 +249,34 @@
             background-color: #597CF9;
         }
     </style>
+@endsection
+@section('js')
+    <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/extensions/toastify-js/src/toastify.js') }}"></script>
+    <script>
+        $('input[name="kegiatan"]').each(function(index, element) {
+            $(element).change(function(e) {
+                e.preventDefault();
+                target = parseInt($('.target').text());
+                kredit = parseInt($('.kredit').text());
+                if ($(element).is(':checked')) {
+                    if (target < parseInt($(this).val()) + kredit) {
+                        Toastify({
+                            text: "Kredit yang dipilih tidak boleh lebih dari Target",
+                            duration: 3000,
+                            close: true,
+                            gravity: "top",
+                            position: "right",
+                            backgroundColor: "#e7a745",
+                        }).showToast();
+                        $(element).prop("checked", false);
+                    } else {
+                        $('.kredit').text(parseInt($(this).val()) + kredit)
+                    }
+                } else {
+                    $('.kredit').text(kredit - parseInt($(this).val()))
+                }
+            });
+        });
+    </script>
 @endsection

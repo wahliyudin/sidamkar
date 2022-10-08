@@ -30,7 +30,7 @@
                 <li class="sidebar-item {{ request()->routeIs('tabel-kegiatan') ? 'active' : '' }}">
                     <a href="{{ route('tabel-kegiatan') }}" class='sidebar-link'>
                         <i class="fa-solid fa-person-walking"></i>
-                        <span>Tabel Kegiatan</span>
+                        <span class="ms-4">Tabel Kegiatan</span>
                         <span style="padding: 2px 6px; background-color: #EBFF02; color: white; border-radius: 4px;">
                             50</span>
                     </a>
@@ -38,16 +38,16 @@
                 <li
                     class="sidebar-item {{ request()->routeIs('laporan-kegiatan') || request()->routeIs('daftar-laporan-kegiatan') ? 'active' : '' }}">
                     <a href="{{ route('laporan-kegiatan') }}" class='sidebar-link'>
-                        <i class="bi bi-grid-fill"></i>
+                        <i class="fa-regular fa-rectangle-list"></i>
                         <span>Laporan Kegiatan</span>
                     </a>
                 </li>
-                <li class="sidebar-item {{ request()->routeIs('butir-kegiatan') ? 'active' : '' }}">
+                {{-- <li class="sidebar-item {{ request()->routeIs('butir-kegiatan') ? 'active' : '' }}">
                     <a data-bs-toggle="modal" data-bs-target="#riwayat" class='sidebar-link'>
                         <i class="fa-regular fa-file"></i>
                         <span>Riwayat Tugas</span>
                     </a>
-                </li>
+                </li> --}}
                 {{-- <li class="sidebar-item {{ request()->routeIs('revisi-laporan-kegiatan') ? 'active' : '' }}">
                     <a href="{{ route('revisi-laporan-kegiatan') }}" class='sidebar-link'>
                         <i class="fa-solid fa-screwdriver-wrench"></i>
