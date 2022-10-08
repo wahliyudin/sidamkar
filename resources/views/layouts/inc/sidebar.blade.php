@@ -21,12 +21,6 @@
                         <span>Overview</span>
                     </a>
                 </li>
-                <li class="sidebar-item {{ request()->routeIs('my-data') ? 'active' : '' }}">
-                    <a href="{{ route('my-data') }}" class='sidebar-link'>
-                        <i class="fa-solid fa-chart-column"></i>
-                        <span>My Data</span>
-                    </a>
-                </li>
                 <li class="sidebar-item {{ request()->routeIs('daftar-kegiatan') ? 'active' : '' }}">
                     <a href="{{ route('daftar-kegiatan') }}" class='sidebar-link'>
                         <i class="fa-solid fa-list"></i>

@@ -1,79 +1,121 @@
 @extends('layouts.master')
 @section('content')
     <section class="section">
+        <div class="row badge-container">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body py-3" style="height: 100px;">
+                        <div class="d-flex align-items-center h-100">
+                            <div class="circle circle-green-light">
+                                <i class="fa-solid fa-bullseye"></i>
+                            </div>
+                            <div class="d-flex flex-column ms-2">
+                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto';">Target Angka Kredit
+                                </p>
+                                <h2 style="font-family: 'Roboto';color: #06152B;">100</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body py-3" style="height: 100px;">
+                        <div class="d-flex align-items-center h-100">
+                            <div class="circle circle-purple">
+                                <i class="fa-solid fa-clipboard-check"></i>
+                            </div>
+                            <div class="d-flex flex-column ms-2">
+                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto';">
+                                    Kredit Yang Sudah Dipilih
+                                </p>
+                                <h2 style="font-family: 'Roboto';color: #06152B;">20</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body py-3" style="height: 100px;">
+                        <div class="d-flex align-items-center h-100">
+                            <div class="circle circle-green">
+                                <i class="fa-regular fa-clock"></i>
+                            </div>
+                            <div class="d-flex flex-column ms-2">
+                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto';">
+                                    Periode Kegiatan (Hari)
+                                </p>
+                                <p
+                                    style="margin: 0 !important;font-family: 'Roboto';color:  #06152B ;font-weight: 700; font-size: 20px;">
+                                    Januari 2023 - Juni
+                                    2023</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="card">
-                <div class="card-body">
-                    <div class="accordion" id="accordionPanelsStayOpenExample">
+                <div class="card-body accordion-container">
+                    <h4 class="text-center" style="font-family: 'Roboto'; color: #17181A;">Kegiatan</h4>
+                    <div class="accordion mt-4" id="accordionPanelsStayOpenExample">
                         <div class="accordion-item">
-                            <div class="d-flex justify-content-between accordion-header py-3 px-3"
-                                id="panelsStayOpen-headingOne">
+                            <div class="d-flex justify-content-between accordion-header py-3 px-4" id="headSatu">
                                 <div class="d-flex align-items-center" style="color: #000000;">
-                                    <input type="checkbox" checked id="checkbox1" class="form-check-input">
-                                    Lorem ipsum dolor sit amet.
+                                    <div style="width: 20px; height: 20px;">
+                                        <input type="checkbox" checked id="checkbox1" class="form-check-input">
+                                    </div>
+                                    <p>Kesiapsiagaan petugas pemadam kebakaran dan penyelamatan;</p>
                                 </div>
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false"
-                                    aria-controls="panelsStayOpen-collapseOne">
+                                    data-bs-target="#contentSatu" aria-expanded="false" aria-controls="contentSatu">
                                 </button>
                             </div>
-                            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse"
-                                aria-labelledby="panelsStayOpen-headingOne" style="">
+                            <div id="contentSatu" class="accordion-collapse collapse" aria-labelledby="headSatu"
+                                style="">
                                 <div class="accordion-body">
-                                    <strong>This is the first item's accordion body.</strong> It is shown by default, until
-                                    the collapse plugin adds the appropriate classes that we use to style each element.
-                                    These classes control the overall appearance, as well as the showing and hiding via CSS
-                                    transitions. You can modify any of this with custom CSS or overriding our default
-                                    variables. It's also worth noting that just about any HTML can go within the
-                                    <code>.accordion-body</code>, though the transition does limit overflow.
+                                    <ul class="ms-4">
+                                        <li class="py-1">
+                                            <h6>Apel pagi sebagai peserta dan serah terima tugas jaga;</h6>
+                                        </li>
+                                        <li class="py-1">
+                                            <h6>Tugas piket jaga;</h6>
+                                        </li>
+                                        <li class="py-1">
+                                            <h6>Apel malam sebagai peserta;</h6>
+                                        </li>
+                                        <li class="py-1">
+                                            <h6>kegiatan rutin latihan ketrampilan;</h6>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
                         <div class="accordion-item">
-                            <div class="d-flex justify-content-between accordion-header py-3 px-3"
-                                id="panelsStayOpen-headingTwo">
-                                <div class="d-flex align-items-center">
-                                    <input type="checkbox" checked id="checkbox1" class="form-check-input">
-                                    Lorem ipsum dolor sit amet.
+                            <div class="d-flex justify-content-between accordion-header py-3 px-4" id="headDua">
+                                <div class="d-flex align-items-center" style="color: #000000;">
+                                    <div style="width: 20px; height: 20px;">
+                                        <input type="checkbox" checked id="checkbox1" class="form-check-input">
+                                    </div>
+                                    <p>Pelaksanaan operasional pemadaman kebakaran;</p>
                                 </div>
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
-                                    aria-controls="panelsStayOpen-collapseTwo">
+                                    data-bs-target="#contentTiga" aria-expanded="false" aria-controls="contentTiga">
                                 </button>
                             </div>
-                            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
-                                aria-labelledby="panelsStayOpen-headingTwo" style="">
+                            <div id="contentTiga" class="accordion-collapse collapse" aria-labelledby="headDua"
+                                style="">
                                 <div class="accordion-body">
-                                    <strong>This is the first item's accordion body.</strong> It is shown by default, until
-                                    the collapse plugin adds the appropriate classes that we use to style each element.
-                                    These classes control the overall appearance, as well as the showing and hiding via CSS
-                                    transitions. You can modify any of this with custom CSS or overriding our default
-                                    variables. It's also worth noting that just about any HTML can go within the
-                                    <code>.accordion-body</code>, though the transition does limit overflow.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <div class="d-flex justify-content-between accordion-header py-3 px-3"
-                                id="panelsStayOpen-headingThree">
-                                <div class="d-flex align-items-center">
-                                    <input type="checkbox" checked id="checkbox1" class="form-check-input">
-                                    Lorem ipsum dolor sit amet.
-                                </div>
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
-                                    aria-controls="panelsStayOpen-collapseThree">
-                                </button>
-                            </div>
-                            <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse"
-                                aria-labelledby="panelsStayOpen-headingThree" style="">
-                                <div class="accordion-body">
-                                    <strong>This is the first item's accordion body.</strong> It is shown by default, until
-                                    the collapse plugin adds the appropriate classes that we use to style each element.
-                                    These classes control the overall appearance, as well as the showing and hiding via CSS
-                                    transitions. You can modify any of this with custom CSS or overriding our default
-                                    variables. It's also worth noting that just about any HTML can go within the
-                                    <code>.accordion-body</code>, though the transition does limit overflow.
+                                    <ul class="ms-4">
+                                        <li class="py-1">
+                                            <h6>Informasi kejadian kebakaran; dan</h6>
+                                        </li>
+                                        <li class="py-1">
+                                            <h6>koordinasi dengan Kepala Regu terkait informasi kejadian kebakaran;</h6>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -85,6 +127,11 @@
 @endsection
 @section('css')
     <style>
+        li::marker {
+            font-size: 25px !important;
+            color: black;
+        }
+
         .accordion .accordion-item:not(:last-child) {
             margin-bottom: 1rem;
         }
@@ -92,6 +139,13 @@
         .accordion .accordion-item {
             border-radius: 10px;
             overflow: hidden;
+        }
+
+        .accordion .accordion-header div>p {
+            font-family: 'Roboto';
+            font-weight: 600;
+            margin: 0 0 0 1rem !important;
+            padding: 0 !important;
         }
 
         .accordion-button {
@@ -146,6 +200,50 @@
 
         .accordion-button:hover {
             z-index: 2
+        }
+    </style>
+
+    <style>
+        @media screen and (max-width:750px) {
+            .accordion-container {
+                padding: 1rem 0 !important;
+            }
+        }
+
+        @media screen and (min-width:992px) {
+            .badge-container .col-md-4:first-child {
+                padding-left: 0 !important;
+            }
+
+            .badge-container .col-md-4:last-child {
+                padding-right: 0 !important;
+            }
+        }
+
+
+        .circle {
+            border-radius: 100%;
+            font-size: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 3rem;
+            height: 3rem;
+        }
+
+        .circle.circle-green-light {
+            color: #1AD598;
+            background-color: rgba(26, 213, 152, 0.298039);
+        }
+
+        .circle.circle-green {
+            color: white;
+            background-color: #1AD598;
+        }
+
+        .circle.circle-purple {
+            color: white;
+            background-color: #597CF9;
         }
     </style>
 @endsection
