@@ -144,8 +144,8 @@
 
         .badge-collapse {
             background-color: #1AD598;
-            padding: 3px 8px;
-            border-radius: 10px;
+            padding: 0 6px;
+            border-radius: 8px;
             color: #F2F2F2;
         }
     </style>

@@ -7,9 +7,11 @@
     <title>Login</title>
     <link rel="stylesheet" href="{{ asset('assets/css/pages/auth.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/main/app.css') }}">
-    <link rel="shortcut icon" href="{{ asset('assets/images/logo/favicon.svg') }}" type="image/x-icon">
-    <link rel="shortcut icon" href="{{ asset('assets/images/logo/favicon.png') }}" type="image/png">
+    <link rel="shortcut icon" href="{{ asset('assets/images/template/logo.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('assets/images/template/logo.png') }}" type="image/png">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>

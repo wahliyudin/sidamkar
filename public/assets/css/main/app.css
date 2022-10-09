@@ -5413,9 +5413,9 @@ fieldset:disabled .btn {
     border-top-right-radius: var(--bs-accordion-inner-border-radius)
 }
 
-.accordion-item:not(:first-of-type) {
+/* .accordion-item:not(:first-of-type) {
     border-top: 0
-}
+} */
 
 .accordion-item:last-of-type {
     border-bottom-left-radius: var(--bs-accordion-border-radius);

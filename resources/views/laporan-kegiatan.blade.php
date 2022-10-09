@@ -22,32 +22,40 @@
                                         <input type="checkbox" checked id="checkbox1" class="form-check-input">
                                         <p>Apel pagi sebagai peserta dan serah terima tugas jaga;</p>
                                     </label>
-                                    <button class="btn btn-purple-reverse ms-3 px-3" data-bs-toggle="modal"
-                                        data-bs-target="#tindakLanjut" type="button">tindak lanjut</button>
+                                    <div class="d-flex align-items-center btn-wrapper">
+                                        <button class="btn btn-purple-reverse ms-3 px-3" data-bs-toggle="modal"
+                                            data-bs-target="#tindakLanjut" type="button">tindak lanjut</button>
+                                    </div>
                                 </div>
                                 <div class="area-wrapper">
                                     <label style=" cursor: pointer;">
                                         <input type="checkbox" id="checkbox1" checked class="form-check-input">
                                         <p>Tugas piket jaga;</p>
                                     </label>
-                                    <button class="btn btn-yellow-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
-                                        data-bs-target="#riwayat" type="button">diproses</button>
+                                    <div class="d-flex align-items-center btn-wrapper">
+                                        <button class="btn btn-yellow-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
+                                            data-bs-target="#riwayat" type="button">diproses</button>
+                                    </div>
                                 </div>
                                 <div class="area-wrapper">
                                     <label style=" cursor: pointer;">
                                         <input type="checkbox" id="checkbox1" checked class="form-check-input">
                                         <p>Apel malam sebagai peserta;</p>
                                     </label>
-                                    <button class="btn btn-red-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
-                                        data-bs-target="#revisi" type="button">revisi</button>
+                                    <div class="d-flex align-items-center btn-wrapper">
+                                        <button class="btn btn-red-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
+                                            data-bs-target="#revisi" type="button">revisi</button>
+                                    </div>
                                 </div>
                                 <div class="area-wrapper">
                                     <label style=" cursor: pointer;">
                                         <input type="checkbox" id="checkbox1" checked class="form-check-input">
                                         <p>kegiatan rutin latihan ketrampilan;</p>
                                     </label>
-                                    <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
-                                        data-bs-target="#riwayat" type="button">selesai</button>
+                                    <div class="d-flex align-items-center btn-wrapper">
+                                        <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
+                                            data-bs-target="#riwayat" type="button">selesai</button>
+                                    </div>
                                 </div>
                             </div>
 
@@ -63,16 +71,21 @@
                                         <input type="checkbox" id="checkbox1" checked class="form-check-input">
                                         <p>Informasi kejadian kebakaran; dan</p>
                                     </label>
-                                    <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
-                                        data-bs-target="#riwayat" type="button">selesai</button>
+                                    <div class="d-flex align-items-center btn-wrapper">
+                                        <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
+                                            data-bs-target="#riwayat" type="button">selesai</button>
+                                    </div>
                                 </div>
                                 <div class="area-wrapper">
                                     <label style=" cursor: pointer;">
                                         <input type="checkbox" id="checkbox1" checked class="form-check-input">
-                                        <p>koordinasi dengan Kepala Regu terkait informasi kejadian kebakaran;</p>
+                                        <p>koordinasi dengan Kepala Regu terkait informasi kejadian kebakaran;
+                                        </p>
                                     </label>
-                                    <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
-                                        data-bs-target="#riwayat" type="button">selesai</button>
+                                    <div class="d-flex align-items-center btn-wrapper">
+                                        <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
+                                            data-bs-target="#riwayat" type="button">selesai</button>
+                                    </div>
                                 </div>
                             </div>
 
@@ -88,82 +101,105 @@
                                         <input type="checkbox" id="checkbox1" class="form-check-input">
                                         <p>Informasi kejadian kebakaran; dan</p>
                                     </label>
-                                    <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
-                                        data-bs-target="#riwayat" type="button">selesai</button>
+                                    <div class="d-flex align-items-center btn-wrapper">
+                                        <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
+                                            data-bs-target="#riwayat" type="button">selesai</button>
+                                    </div>
                                 </div>
                                 <div class="area-wrapper">
                                     <label style=" cursor: pointer;">
                                         <input type="checkbox" id="checkbox1" class="form-check-input">
                                         <p>Keberangkatan menuju tempat kejadian kebakaran;</p>
                                     </label>
-                                    <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
-                                        data-bs-target="#riwayat" type="button">selesai</button>
+                                    <div class="d-flex align-items-center btn-wrapper">
+                                        <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
+                                            data-bs-target="#riwayat" type="button">selesai</button>
+                                    </div>
                                 </div>
                                 <div class="area-wrapper">
                                     <label style=" cursor: pointer;">
                                         <input type="checkbox" id="checkbox1" class="form-check-input">
                                         <p>Pemadaman kebakaran;</p>
                                     </label>
-                                    <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
-                                        data-bs-target="#riwayat" type="button">selesai</button>
+                                    <div class="d-flex align-items-center btn-wrapper">
+                                        <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
+                                            data-bs-target="#riwayat" type="button">selesai</button>
+                                    </div>
                                 </div>
                                 <div class="area-wrapper">
                                     <label style=" cursor: pointer;">
                                         <input type="checkbox" id="checkbox1" class="form-check-input">
                                         <p>Proses pendinginan;</p>
                                     </label>
-                                    <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
-                                        data-bs-target="#riwayat" type="button">selesai</button>
+                                    <div class="d-flex align-items-center btn-wrapper">
+                                        <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
+                                            data-bs-target="#riwayat" type="button">selesai</button>
+                                    </div>
                                 </div>
                                 <div class="area-wrapper">
                                     <label style=" cursor: pointer;">
                                         <input type="checkbox" id="checkbox1" class="form-check-input">
-                                        <p>persiapan kembali ke pos pemadam kebakaran dan penyelamatan;</p>
+                                        <p>persiapan kembali ke pos pemadam kebakaran dan
+                                            penyelamatan;</p>
                                     </label>
-                                    <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
-                                        data-bs-target="#riwayat" type="button">selesai</button>
+                                    <div class="d-flex align-items-center btn-wrapper">
+                                        <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
+                                            data-bs-target="#riwayat" type="button">selesai</button>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="title-timeline">
                                 <label class="title-wrapper">
                                     <input type="checkbox" id="checkbox1" class="form-check-input">
-                                    <p>Pelaksanaan prosedur pelaporan informasi kejadian evakuasi dan penyelamatan;</p>
+                                    <p>Pelaksanaan prosedur pelaporan informasi kejadian
+                                        evakuasi dan penyelamatan;</p>
                                 </label>
                             </div>
                             <div class="area-timeline">
                                 <div class="area-wrapper">
                                     <label style=" cursor: pointer;">
                                         <input type="checkbox" id="checkbox1" class="form-check-input">
-                                        <p>Informasi kejadian evakuasi dan penyelamatan;</p>
+                                        <p>Informasi kejadian evakuasi dan penyelamatan;
+                                        </p>
                                     </label>
-                                    <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
-                                        data-bs-target="#riwayat" type="button">selesai</button>
+                                    <div class="d-flex align-items-center btn-wrapper">
+                                        <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
+                                            data-bs-target="#riwayat" type="button">selesai</button>
+                                    </div>
                                 </div>
                                 <div class="area-wrapper">
                                     <label style=" cursor: pointer;">
                                         <input type="checkbox" id="checkbox1" class="form-check-input">
-                                        <p>Koordinasi dengan Kepala Regu terkait informasi kejadian evakuasi dan
+                                        <p>Koordinasi dengan Kepala Regu terkait
+                                            informasi kejadian evakuasi dan
                                             penyelamatan;</p>
                                     </label>
-                                    <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
-                                        data-bs-target="#riwayat" type="button">selesai</button>
+                                    <div class="d-flex align-items-center btn-wrapper">
+                                        <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
+                                            data-bs-target="#riwayat" type="button">selesai</button>
+                                    </div>
                                 </div>
                                 <div class="area-wrapper">
                                     <label style=" cursor: pointer;">
                                         <input type="checkbox" id="checkbox1" class="form-check-input">
                                         <p>evakuasi dan penyelamatan; dan</p>
                                     </label>
-                                    <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
-                                        data-bs-target="#riwayat" type="button">selesai</button>
+                                    <div class="d-flex align-items-center btn-wrapper">
+                                        <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
+                                            data-bs-target="#riwayat" type="button">selesai</button>
+                                    </div>
                                 </div>
                                 <div class="area-wrapper">
                                     <label style=" cursor: pointer;">
                                         <input type="checkbox" id="checkbox1" class="form-check-input">
-                                        <p>melaporkan kejadian evakuasi dan penyelamatan;</p>
+                                        <p>melaporkan kejadian evakuasi dan
+                                            penyelamatan;</p>
                                     </label>
-                                    <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
-                                        data-bs-target="#riwayat" type="button">selesai</button>
+                                    <div class="d-flex align-items-center btn-wrapper">
+                                        <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
+                                            data-bs-target="#riwayat" type="button">selesai</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -436,6 +472,28 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
     <link rel="stylesheet" href="{{ asset('assets/css/pages/timeline.css') }}">
     <style>
+        @media screen and (max-width:780px) {
+            .btn-wrapper {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .area-wrapper {
+                flex-direction: column;
+            }
+
+            .area-wrapper label {
+                min-width: 100% !important;
+            }
+
+            .area-wrapper .btn-wrapper {
+                flex-direction: row;
+                justify-content: space-evenly;
+                margin-top: 1rem;
+                width: 100%;
+            }
+        }
+
         .title-timeline p,
         .area-wrapper label p {
             font-family: 'Roboto';

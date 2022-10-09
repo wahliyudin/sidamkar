@@ -17,20 +17,26 @@
             <ul class="menu">
                 <li class="sidebar-item {{ request()->routeIs('overview') ? 'active' : '' }}">
                     <a href="{{ route('overview') }}" class='sidebar-link'>
-                        <i class="bi bi-grid-fill"></i>
+                        <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                            <i class="bi bi-grid-fill"></i>
+                        </div>
                         <span>Overview</span>
                     </a>
                 </li>
                 <li class="sidebar-item {{ request()->routeIs('daftar-kegiatan') ? 'active' : '' }}">
                     <a href="{{ route('daftar-kegiatan') }}" class='sidebar-link'>
-                        <i class="fa-solid fa-list"></i>
+                        <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                            <i class="fa-solid fa-list"></i>
+                        </div>
                         <span>Daftar Kegiatan</span>
                     </a>
                 </li>
                 <li class="sidebar-item {{ request()->routeIs('tabel-kegiatan') ? 'active' : '' }}">
                     <a href="{{ route('tabel-kegiatan') }}" class='sidebar-link'>
-                        <i class="fa-solid fa-person-walking"></i>
-                        <span class="ms-4">Tabel Kegiatan</span>
+                        <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                            <i class="fa-solid fa-person-walking"></i>
+                        </div>
+                        <span>Tabel Kegiatan</span>
                         <span style="padding: 2px 6px; background-color: #EBFF02; color: white; border-radius: 4px;">
                             50</span>
                     </a>
@@ -38,7 +44,9 @@
                 <li
                     class="sidebar-item {{ request()->routeIs('laporan-kegiatan') || request()->routeIs('daftar-laporan-kegiatan') ? 'active' : '' }}">
                     <a href="{{ route('laporan-kegiatan') }}" class='sidebar-link'>
-                        <i class="fa-regular fa-rectangle-list"></i>
+                        <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                            <i class="fa-regular fa-rectangle-list"></i>
+                        </div>
                         <span>Laporan Kegiatan</span>
                     </a>
                 </li>

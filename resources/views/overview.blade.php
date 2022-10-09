@@ -131,7 +131,7 @@
                     pointBorderColor: 'transparent',
                     pointRadius: 3,
                     pointBackgroundColor: 'transparent',
-                    pointHoverBackgroundColor: 'rgba(63,82,227,1)',
+                    pointHoverBackgroundColor: 'rgba(234, 58, 61, 0.5)',
                 }]
             },
             options: {
@@ -143,7 +143,7 @@
                 },
                 tooltips: {
                     intersect: false,
-                    titleFontFamily: 'Helvetica',
+                    titleFontFamily: 'Roboto',
                     titleMarginBottom: 10,
                     xPadding: 10,
                     yPadding: 10,

@@ -6,8 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Register</title>
-
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="{{ asset('assets/images/template/logo.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('assets/images/template/logo.png') }}" type="image/png">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet"
+        type="text/css">
     <link href="{{ asset('assets/css/auth/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/css/auth/all.min.css') }}" rel="stylesheet" type="text/css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,6 +52,15 @@
             .form-wrapper {
                 padding: 0 !important;
             }
+        }
+
+        .nav-tabs .nav-link {
+            background-color: rgba(234, 58, 61, 0.5);
+            color: white;
+        }
+
+        .nav-tabs .nav-link:hover {
+            color: white;
         }
     </style>
 
@@ -592,6 +603,10 @@
                 </div>
             </div>
         </div>
+        <img style="position: absolute; bottom: 0; z-index: -1; max-width: 100vw;"
+            src="{{ asset('assets/images/template/glombang-2.png') }}"alt="">
+        <img style="position: absolute; bottom: 0; z-index: -1; max-width: 100vw;"
+            src="{{ asset('assets/images/template/glombang-1.png') }}" alt="">
     </div>
 
     <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
