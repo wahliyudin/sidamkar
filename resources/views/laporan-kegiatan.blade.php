@@ -620,8 +620,8 @@
     <link rel="stylesheet" href="{{ asset('assets/extensions/filepond/filepond.css') }}">
     <link rel="stylesheet"
         href="{{ asset('assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/extensions/toastify-js/src/toastify.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/pages/filepond.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/extensions/toastify-js/src/toastify.css') }}">
 @endsection
 @section('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>

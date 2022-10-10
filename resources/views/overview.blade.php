@@ -82,6 +82,51 @@
                         <canvas id="line"></canvas>
                     </div>
                 </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" style="color: #17181A; font-family: 'Roboto';">Butir Kegiatan</h4>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped" id="table1">
+                            <thead>
+                                <tr>
+                                    <th>Tugas/Kegiatan</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <a href="" style="color: #06152B;">Kesiapsiagaan petugas pemadam kebakaran
+                                            dan penyelamatan</a>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-yellow-reverse btn-status ms-3 px-3 text-sm"
+                                            type="button">diproses</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="" style="color: #06152B;">Pelaksanaan prosedur pelaporan informasi kejadian kebakaran</a>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-red-reverse btn-status ms-3 px-3 text-sm"
+                                            type="button">revisi</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="" style="color: #06152B;">Pelaksanaan operasional pemadaman kebakaran</a>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-green-reverse btn-status ms-3 px-3 text-sm"
+                                            type="button">selesai</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
             <div class="col-md-3">
                 <div class="card">
@@ -107,6 +152,33 @@
         li::marker {
             font-size: 25px !important;
             color: black;
+        }
+    </style>
+    <link rel="stylesheet" href="{{ asset('assets/extensions/simple-datatables/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/pages/simple-datatables.css') }}">
+    <style>
+        .dataTable-table>thead>tr>th {
+            border: 0;
+        }
+
+        .dataTable-table th a {
+            color: #809FB8;
+        }
+
+        .table-striped-columns>:not(caption)>tr>:nth-child(2n),
+        .table-striped>tbody>tr:nth-of-type(odd)>* {
+            border-color: #F1F4F9;
+        }
+
+        .table-striped>tbody>tr,
+        .table-striped>tbody>tr:nth-of-type(odd)>* {
+            color: #06152B;
+        }
+
+        @media screen and (max-width:780px) {
+            .card {
+                padding: 0 !important;
+            }
         }
     </style>
 @endsection
@@ -175,4 +247,6 @@
             }
         });
     </script>
+    <script src="{{ asset('assets/extensions/simple-datatables/umd/simple-datatables.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/data-pejabat-struktural.js') }}"></script>
 @endsection
