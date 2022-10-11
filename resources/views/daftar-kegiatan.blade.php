@@ -59,11 +59,14 @@
         <div class="row">
             <div class="card">
                 <div class="card-header">
-                    <div class="d-flex justify-content-between">
+                    <div class="d-flex justify-content-between align-items-center">
                         <h4 class="text-center" style="font-family: 'Roboto'; color: #17181A;">Kegiatan</h4>
-                        <form action="" method="get">
-                            <input type="text" class="form-control" placeholder="Search...">
-                        </form>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Search</label>
+                                <input type="text" placeholder="Search..." class="form-control">
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="card-body accordion-container">
@@ -180,7 +183,7 @@
         }
 
         .accordion .accordion-item {
-            border-radius: 10px;
+            border-radius: 10px !important;
             overflow: hidden;
         }
 
