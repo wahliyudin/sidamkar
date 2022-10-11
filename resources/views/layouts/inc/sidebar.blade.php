@@ -54,6 +54,17 @@
                     </li>
                 @endrole
 
+                @role('kab_kota')
+                    <li class="sidebar-item {{ request()->routeIs('overview') ? 'active' : '' }}">
+                        <a href="{{ route('overview') }}" class='sidebar-link'>
+                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                                <i class="bi bi-grid-fill"></i>
+                            </div>
+                            <span>Overview</span>
+                        </a>
+                    </li>
+                @endrole
+
                 {{-- <li class="sidebar-item {{ request()->routeIs('butir-kegiatan') ? 'active' : '' }}">
                     <a data-bs-toggle="modal" data-bs-target="#riwayat" class='sidebar-link'>
                         <i class="fa-regular fa-file"></i>
