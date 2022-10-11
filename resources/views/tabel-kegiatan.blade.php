@@ -6,7 +6,13 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="border-bottom d-flex justify-content-end pb-4">
+                        <div class="border-bottom d-flex justify-content-between align-items-center pb-4">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Search</label>
+                                    <input type="text" placeholder="Search..." class="form-control">
+                                </div>
+                            </div>
                             <button class="px-4 py-2 btn-laporan">
                                 <svg width="23" height="18" viewBox="0 0 23 18" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -122,7 +128,7 @@
 
         h6 {
             font-family: 'Roboto';
-            color: #809FB8;
+            color: #809FB8 !important;
         }
 
         button.btn-laporan {

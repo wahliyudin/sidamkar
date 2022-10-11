@@ -82,20 +82,6 @@ label {
     margin: 0 0 0 1rem;
 }
 
-.choices__inner {
-    border: 1px solid #2F80ED !important;
-    padding: .248rem .75rem !important;
-    min-height: 0 !important;
-    background-color: #fff;
-    border-radius: .25rem !important;
-}
-
 .form-control {
     border: 1px solid #2F80ED !important;
-}
-
-.is-open .choices__list--dropdown {
-    border: 1px solid #2F80ED !important;
-    border-radius: .25rem !important;
-    box-shadow: 0 0 30px rgba(0, 0, 0, .03) !important;
 }

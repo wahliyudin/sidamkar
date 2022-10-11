@@ -132,6 +132,11 @@
                                                                             {{ $provinsi->nama }}</option>
                                                                     @endforeach
                                                                 </select>
+                                                                @error('provinsi_id')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-md-4">
@@ -143,17 +148,27 @@
                                                                     <option value="">- Pilih Provinsi Terlebih
                                                                         Dahulu -</option>
                                                                 </select>
+                                                                @error('kab_kota_id')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <label>Tingkat Admin<span
                                                                         class="text-danger">*</span></label>
-                                                                <select name="birth-month" class="custom-select">
+                                                                <select name="tingkat_admin" class="custom-select">
                                                                     <option value="1" selected>1</option>
                                                                     <option value="2">2</option>
                                                                     <option value="3">3</option>
                                                                 </select>
+                                                                @error('tingkat_admin')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -180,9 +195,8 @@
                                                             <div class="form-group">
                                                                 <label>Nama Lengkap <span
                                                                         class="text-danger">*</span></label>
-                                                                <input type="text" name="username"
-                                                                    class="form-control required"
-                                                                    placeholder="Nama Lengkap">
+                                                                <input type="text" name="nama"
+                                                                    class="form-control" placeholder="Nama Lengkap">
                                                             </div>
                                                         </div>
 
@@ -191,8 +205,7 @@
                                                                 <label>Tempat Lahir<span
                                                                         class="text-danger">*</span></label>
                                                                 <input type="text" name="tempat_lahir"
-                                                                    class="form-control required"
-                                                                    placeholder="Tempat Lahir">
+                                                                    class="form-control" placeholder="Tempat Lahir">
                                                             </div>
                                                         </div>
 
@@ -201,8 +214,7 @@
                                                                 <label>Tanggal Lahir<span
                                                                         class="text-danger">*</span></label>
                                                                 <input type="date" name="Tempat_lahir"
-                                                                    class="form-control required"
-                                                                    placeholder="Tanggal Lahir">
+                                                                    class="form-control" placeholder="Tanggal Lahir">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -225,7 +237,7 @@
                                                                 <label>NIP / Nomor Register<span
                                                                         class="text-danger">*</span></label>
                                                                 <input type="text" name="NIP"
-                                                                    class="form-control required"
+                                                                    class="form-control"
                                                                     placeholder="NIP / Nomor Register">
                                                             </div>
                                                         </div>
@@ -261,30 +273,58 @@
                                                 <h6>Akses Login</h6>
                                                 <fieldset>
                                                     <div class="row">
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label>Email<span class="text-danger">*</span></label>
                                                                 <input type="email" name="email"
                                                                     placeholder="example@gmail.com"
-                                                                    class="form-control required">
+                                                                    class="form-control">
+                                                                @error('email')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Username<span
+                                                                        class="text-danger">*</span></label>
+                                                                <input type="text" name="username"
+                                                                    class="form-control">
+                                                            </div>
+                                                            @error('username')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label>Password<span
                                                                         class="text-danger">*</span></label>
                                                                 <input type="password" name="password"
-                                                                    placeholder="password"
-                                                                    class="form-control required">
+                                                                    placeholder="password" class="form-control">
+                                                                @error('password')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label>Konfirmasi Password<span
                                                                         class="text-danger">*</span></label>
                                                                 <input type="password" name="password_confirmation"
-                                                                    placeholder="password"
-                                                                    class="form-control required">
+                                                                    placeholder="password" class="form-control">
+                                                                @error('password_confirmation')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -365,8 +405,7 @@
                                                             <div class="form-group">
                                                                 <label for="">Tanda Tangan</label>
                                                                 <input type="file" class="with-validation-images"
-                                                                    required data-max-file-size="1MB"
-                                                                    data-max-files="3">
+                                                                    data-max-file-size="1MB" data-max-files="3">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -381,8 +420,7 @@
                                                                 <label>Nama Lengkap <span
                                                                         class="text-danger">*</span></label>
                                                                 <input type="text" name="name"
-                                                                    class="form-control required"
-                                                                    placeholder="Nama Lengkap">
+                                                                    class="form-control" placeholder="Nama Lengkap">
                                                             </div>
                                                         </div>
 
@@ -391,8 +429,7 @@
                                                                 <label>Tempat Lahir<span
                                                                         class="text-danger">*</span></label>
                                                                 <input type="text" name="tempat_lahir"
-                                                                    class="form-control required"
-                                                                    placeholder="Tempat Lahir">
+                                                                    class="form-control" placeholder="Tempat Lahir">
                                                             </div>
                                                         </div>
 
@@ -401,8 +438,7 @@
                                                                 <label>Tanggal Lahir<span
                                                                         class="text-danger">*</span></label>
                                                                 <input type="date" name="Tempat_lahir"
-                                                                    class="form-control required"
-                                                                    placeholder="Tanggal Lahir">
+                                                                    class="form-control" placeholder="Tanggal Lahir">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -425,7 +461,7 @@
                                                                 <label>NIP / Nomor Register<span
                                                                         class="text-danger">*</span></label>
                                                                 <input type="text" name="NIP"
-                                                                    class="form-control required"
+                                                                    class="form-control"
                                                                     placeholder="NIP / Nomor Register">
                                                             </div>
                                                         </div>
@@ -463,30 +499,58 @@
                                                 <h6>Akses Login</h6>
                                                 <fieldset>
                                                     <div class="row">
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label>Email<span class="text-danger">*</span></label>
                                                                 <input type="email" name="email"
                                                                     placeholder="example@gmail.com"
-                                                                    class="form-control required">
+                                                                    class="form-control">
+                                                                @error('email')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Username<span
+                                                                        class="text-danger">*</span></label>
+                                                                <input type="text" name="username"
+                                                                    class="form-control">
+                                                            </div>
+                                                            @error('username')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label>Password<span
                                                                         class="text-danger">*</span></label>
                                                                 <input type="password" name="password"
-                                                                    placeholder="password"
-                                                                    class="form-control required">
+                                                                    placeholder="password" class="form-control">
+                                                                @error('password')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label>Konfirmasi Password<span
                                                                         class="text-danger">*</span></label>
-                                                                <input type="password" name="konfirm_password"
-                                                                    placeholder="password"
-                                                                    class="form-control required">
+                                                                <input type="password" name="password_confirmation"
+                                                                    placeholder="password" class="form-control">
+                                                                @error('password_confirmation')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -506,8 +570,7 @@
                                                             <div class="form-group">
                                                                 <label>Tingkat Admin<span
                                                                         class="text-danger">*</span></label>
-                                                                <select name="birth-month"
-                                                                    class="custom-select required">
+                                                                <select name="birth-month" class="custom-select">
                                                                     <option value="1" selected>1</option>
                                                                     <option value="2">2</option>
                                                                     <option value="3">3</option>
@@ -557,34 +620,60 @@
                                                 <h6>Akses Login</h6>
                                                 <fieldset>
                                                     <div class="row">
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label>Email<span class="text-danger">*</span></label>
-                                                                <input type="email" name="email_akses_login"
+                                                                <input type="email" name="email"
                                                                     placeholder="example@gmail.com"
-                                                                    class="form-control required">
+                                                                    class="form-control">
+                                                                @error('email')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Username<span
+                                                                        class="text-danger">*</span></label>
+                                                                <input type="text" name="username"
+                                                                    class="form-control">
+                                                            </div>
+                                                            @error('username')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label>Password<span
                                                                         class="text-danger">*</span></label>
-                                                                <input type="password" name="password_akses_login"
-                                                                    placeholder="password"
-                                                                    class="form-control required">
+                                                                <input type="password" name="password"
+                                                                    placeholder="password" class="form-control">
+                                                                @error('password')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label>Konfirmasi Password<span
                                                                         class="text-danger">*</span></label>
-                                                                <input type="password" name="konfirm_akses_login"
-                                                                    placeholder="password"
-                                                                    class="form-control required">
+                                                                <input type="password" name="password_confirmation"
+                                                                    placeholder="password" class="form-control">
+                                                                @error('password_confirmation')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
                                                             </div>
                                                         </div>
-
-
                                                     </div>
                                                 </fieldset>
 
