@@ -22479,6 +22479,16 @@ a {
     border: 1px solid #809FB8 !important;
 }
 
+.btn-red {
+    color: #fff;
+    background-color: #EA3A3D;
+}
+
+.btn-red:hover {
+    color: #fff;
+    background-color: #EA3A3D;
+}
+
 .btn-red-light {
     color: #EA3A3D;
     background-color: rgba(234, 58, 61, 0.2);
