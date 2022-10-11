@@ -2,6 +2,7 @@
 
 namespace App\Traits\AuthBackend;
 
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,7 +33,10 @@ trait AuthenticatesUsers
     public function login(Request $request)
     {
         $this->validateLogin($request);
-
+        $user = User::query()->where('username', $request->username)->where('verified', '!=', null)->first();
+        if (!isset($user)) {
+            return to_route('login')->with('message', 'Anda belum diverifikasi oleh Admin');
+        }
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
         // the IP address of the client making these requests into this application.
@@ -73,6 +77,7 @@ trait AuthenticatesUsers
             $this->username() => 'required|string',
             'password' => 'required|string',
         ]);
+
     }
 
     /**

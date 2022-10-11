@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Aparatur\OverviewController;
 use App\Http\Controllers\Api\KabKotaController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Auth;
@@ -23,9 +24,7 @@ Auth::routes(['verify' => true]);
 
 Route::middleware(['auth'])->group(function () {
     Route::middleware(['role:aparatur'])->group(function () {
-        Route::get('/overview', function () {
-            return view('overview');
-        })->name('overview');
+        Route::get('/overview',[OverviewController::class, 'index'])->name('overview');
         Route::get('/data-saya', function () {
             return view('data-saya');
         })->name('data-saya');
