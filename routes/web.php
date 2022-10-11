@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\Aparatur\DaftarKegiatanController;
+use App\Http\Controllers\Aparatur\DataSayaController;
+use App\Http\Controllers\Aparatur\LaporanKegiatanController;
 use App\Http\Controllers\Aparatur\OverviewController;
+use App\Http\Controllers\Aparatur\TabelKegiatanController;
 use App\Http\Controllers\Api\KabKotaController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Auth;
@@ -24,22 +28,15 @@ Auth::routes(['verify' => true]);
 
 Route::middleware(['auth'])->group(function () {
     Route::middleware(['role:aparatur'])->group(function () {
-        Route::get('/overview',[OverviewController::class, 'index'])->name('overview');
-        Route::get('/data-saya', function () {
-            return view('data-saya');
-        })->name('data-saya');
-        Route::get('/daftar-kegiatan', function () {
-            return view('daftar-kegiatan');
-        })->name('daftar-kegiatan');
-        Route::get('/tabel-kegiatan', function () {
-            return view('tabel-kegiatan');
-        })->name('tabel-kegiatan');
+        Route::get('/overview', [OverviewController::class, 'index'])->name('overview');
+        Route::get('/data-saya', [DataSayaController::class, 'index'])->name('data-saya');
+        Route::get('/daftar-kegiatan', [DaftarKegiatanController::class, 'index'])->name('daftar-kegiatan');
+        Route::get('/tabel-kegiatan', [TabelKegiatanController::class, 'index'])->name('tabel-kegiatan');
+        Route::get('/laporan-kegiatan', [LaporanKegiatanController::class, 'index'])->name('laporan-kegiatan');
+
         Route::get('/daftar-laporan-kegiatan', function () {
             return view('daftar-laporan-kegiatan');
         })->name('daftar-laporan-kegiatan');
-        Route::get('/laporan-kegiatan', function () {
-            return view('laporan-kegiatan');
-        })->name('laporan-kegiatan');
         Route::get('/butir-kegiatan', function () {
             return view('butir-kegiatan');
         })->name('butir-kegiatan');
