@@ -25,5 +25,6 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call(ProvinsiSeeder::class);
         $this->call(KabKotaSeeder::class);
+        $this->call(RoleSeeder::class);
     }
 }
