@@ -125,6 +125,8 @@
                                                                         class="text-danger">*</span></label>
                                                                 <select name="provinsi_id" id="provinsi_id"
                                                                     class="custom-select">
+                                                                    <option selected disabled>- Pilih Provinsi -
+                                                                    </option>
                                                                     @foreach ($provinsis as $provinsi)
                                                                         <option value="{{ $provinsi->id }}">
                                                                             {{ $provinsi->nama }}</option>
@@ -132,7 +134,6 @@
                                                                 </select>
                                                             </div>
                                                         </div>
-
                                                         <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <label>Kabupaten / Kota<span
@@ -254,8 +255,6 @@
                                                                 </select>
                                                             </div>
                                                         </div>
-
-
                                                     </div>
                                                 </fieldset>
 
@@ -499,7 +498,6 @@
                                     <div class="tab-pane fade" id="login-tab3">
                                         <!-- Wizard with validation -->
                                         <div class="header-wizard-form">
-
                                             <form class="wizard-form steps-validation" action="#" data-fouc>
                                                 <h6>Admin Level</h6>
                                                 <fieldset>
@@ -654,7 +652,8 @@
                     fetch('/api/kab-kota/' + val)
                         .then(res => res.json())
                         .then(res => {
-                            $(kabupaten).html('<option value="">- Pilih Kabupaten / Kota -</option>');
+                            $(kabupaten).html(
+                                '<option selected disabled>- Pilih Kabupaten / Kota -</option>');
                             res.forEach(model => {
                                 var selected = kabupaten_id == model.id ? 'selected=""' : ''
                                 $(kabupaten).append('<option value="' + model.id + '" ' +

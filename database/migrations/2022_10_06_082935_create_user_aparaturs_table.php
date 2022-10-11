@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->string('nama');
-            $table->string('jenjang');
+            $table->string('jenjang')->nullable();
             $table->bigInteger('nip');
             $table->string('nomor_karpeg');
             $table->integer('pangkat_golongan_tmt');
@@ -25,7 +25,7 @@ return new class extends Migration
             $table->date('tanggal_lahir');
             $table->enum('jenis_kelamin', ['P', 'L']);
             $table->integer('pendidikan_terakhir'); // Enum
-            $table->string('foto_pegawai');
+            $table->string('foto_pegawai')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->on('users')->references('id')->cascadeOnDelete();

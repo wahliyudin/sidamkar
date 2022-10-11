@@ -58,96 +58,109 @@
         </div>
         <div class="row">
             <div class="card">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between">
+                        <h4 class="text-center" style="font-family: 'Roboto'; color: #17181A;">Kegiatan</h4>
+                        <form action="" method="get">
+                            <input type="text" class="form-control" placeholder="Search...">
+                        </form>
+                    </div>
+                </div>
                 <div class="card-body accordion-container">
-                    <h4 class="text-center" style="font-family: 'Roboto'; color: #17181A;">Kegiatan</h4>
-                    <div class="accordion mt-4" id="accordionPanelsStayOpenExample">
-                        <div class="accordion-item">
-                            <div class="d-flex justify-content-between accordion-header py-3 px-4" id="headSatu">
-                                <div class="d-flex align-items-center" style="color: #000000;">
-                                    <div style="width: 20px; height: 20px;">
-                                        <input type="checkbox" name="kegiatan" id="checkbox1" value="50"
-                                            class="form-check-input">
+                    <div style="max-height: calc(70vh); overflow-y: auto;">
+                        <div class="accordion mt-4" id="accordionPanelsStayOpenExample">
+                            <div class="accordion-item">
+                                <div class="d-flex justify-content-between accordion-header py-3 px-4" id="headSatu">
+                                    <div class="d-flex align-items-center" style="color: #000000;">
+                                        <div style="width: 20px; height: 20px;">
+                                            <input type="checkbox" name="kegiatan" id="checkbox1" value="50"
+                                                class="form-check-input">
+                                        </div>
+                                        <p>Kesiapsiagaan petugas pemadam kebakaran dan penyelamatan;</p>
                                     </div>
-                                    <p>Kesiapsiagaan petugas pemadam kebakaran dan penyelamatan;</p>
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#contentSatu" aria-expanded="false" aria-controls="contentSatu">
+                                    </button>
                                 </div>
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#contentSatu" aria-expanded="false" aria-controls="contentSatu">
-                                </button>
+                                <div id="contentSatu" class="accordion-collapse collapse" aria-labelledby="headSatu"
+                                    style="">
+                                    <div class="accordion-body">
+                                        <ul class="ms-4">
+                                            <li class="py-1">
+                                                <h6>Apel pagi sebagai peserta dan serah terima tugas jaga;</h6>
+                                            </li>
+                                            <li class="py-1">
+                                                <h6>Tugas piket jaga;</h6>
+                                            </li>
+                                            <li class="py-1">
+                                                <h6>Apel malam sebagai peserta;</h6>
+                                            </li>
+                                            <li class="py-1">
+                                                <h6>kegiatan rutin latihan ketrampilan;</h6>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
-                            <div id="contentSatu" class="accordion-collapse collapse" aria-labelledby="headSatu"
-                                style="">
-                                <div class="accordion-body">
-                                    <ul class="ms-4">
-                                        <li class="py-1">
-                                            <h6>Apel pagi sebagai peserta dan serah terima tugas jaga;</h6>
-                                        </li>
-                                        <li class="py-1">
-                                            <h6>Tugas piket jaga;</h6>
-                                        </li>
-                                        <li class="py-1">
-                                            <h6>Apel malam sebagai peserta;</h6>
-                                        </li>
-                                        <li class="py-1">
-                                            <h6>kegiatan rutin latihan ketrampilan;</h6>
-                                        </li>
-                                    </ul>
+                            <div class="accordion-item">
+                                <div class="d-flex justify-content-between accordion-header py-3 px-4" id="headDua">
+                                    <div class="d-flex align-items-center" style="color: #000000;">
+                                        <div style="width: 20px; height: 20px;">
+                                            <input type="checkbox" name="kegiatan" id="checkbox1" value="50"
+                                                class="form-check-input">
+                                        </div>
+                                        <p>Pelaksanaan operasional pemadaman kebakaran;</p>
+                                    </div>
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#contentDua" aria-expanded="false" aria-controls="contentDua">
+                                    </button>
+                                </div>
+                                <div id="contentDua" class="accordion-collapse collapse" aria-labelledby="headDua"
+                                    style="">
+                                    <div class="accordion-body">
+                                        <ul class="ms-4">
+                                            <li class="py-1">
+                                                <h6>Informasi kejadian kebakaran; dan</h6>
+                                            </li>
+                                            <li class="py-1">
+                                                <h6>koordinasi dengan Kepala Regu terkait informasi kejadian kebakaran;</h6>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="d-flex justify-content-between accordion-header py-3 px-4" id="headTiga">
+                                    <div class="d-flex align-items-center" style="color: #000000;">
+                                        <div style="width: 20px; height: 20px;">
+                                            <input type="checkbox" name="kegiatan" id="checkbox1" value="50"
+                                                class="form-check-input">
+                                        </div>
+                                        <p>Pelaksanaan operasional pemadaman kebakaran;</p>
+                                    </div>
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#contentTiga" aria-expanded="false" aria-controls="contentTiga">
+                                    </button>
+                                </div>
+                                <div id="contentTiga" class="accordion-collapse collapse" aria-labelledby="headTiga"
+                                    style="">
+                                    <div class="accordion-body">
+                                        <ul class="ms-4">
+                                            <li class="py-1">
+                                                <h6>Informasi kejadian kebakaran; dan</h6>
+                                            </li>
+                                            <li class="py-1">
+                                                <h6>koordinasi dengan Kepala Regu terkait informasi kejadian kebakaran;</h6>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="accordion-item">
-                            <div class="d-flex justify-content-between accordion-header py-3 px-4" id="headDua">
-                                <div class="d-flex align-items-center" style="color: #000000;">
-                                    <div style="width: 20px; height: 20px;">
-                                        <input type="checkbox" name="kegiatan" id="checkbox1" value="50"
-                                            class="form-check-input">
-                                    </div>
-                                    <p>Pelaksanaan operasional pemadaman kebakaran;</p>
-                                </div>
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#contentDua" aria-expanded="false" aria-controls="contentDua">
-                                </button>
-                            </div>
-                            <div id="contentDua" class="accordion-collapse collapse" aria-labelledby="headDua"
-                                style="">
-                                <div class="accordion-body">
-                                    <ul class="ms-4">
-                                        <li class="py-1">
-                                            <h6>Informasi kejadian kebakaran; dan</h6>
-                                        </li>
-                                        <li class="py-1">
-                                            <h6>koordinasi dengan Kepala Regu terkait informasi kejadian kebakaran;</h6>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <div class="d-flex justify-content-between accordion-header py-3 px-4" id="headTiga">
-                                <div class="d-flex align-items-center" style="color: #000000;">
-                                    <div style="width: 20px; height: 20px;">
-                                        <input type="checkbox" name="kegiatan" id="checkbox1" value="50"
-                                            class="form-check-input">
-                                    </div>
-                                    <p>Pelaksanaan operasional pemadaman kebakaran;</p>
-                                </div>
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#contentTiga" aria-expanded="false" aria-controls="contentTiga">
-                                </button>
-                            </div>
-                            <div id="contentTiga" class="accordion-collapse collapse" aria-labelledby="headTiga"
-                                style="">
-                                <div class="accordion-body">
-                                    <ul class="ms-4">
-                                        <li class="py-1">
-                                            <h6>Informasi kejadian kebakaran; dan</h6>
-                                        </li>
-                                        <li class="py-1">
-                                            <h6>koordinasi dengan Kepala Regu terkait informasi kejadian kebakaran;</h6>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end pt-4">
+                        <button class="btn btn-red px-5 me-2">Batal</button>
+                        <button class="btn btn-blue px-5">Simpan</button>
                     </div>
                 </div>
             </div>
