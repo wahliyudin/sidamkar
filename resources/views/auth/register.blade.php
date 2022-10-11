@@ -112,10 +112,38 @@
                                         <!-- Wizard with validation -->
                                         <div class="header-wizard-form">
 
-                                            <form class="wizard-form steps-validation" action="#" data-fouc>
+                                            <form class="wizard-form steps-validation" method="POST"
+                                                action="{{ route('register') }}" data-fouc>
+                                                @csrf
+                                                <input type="hidden" name="_register" value="aparatur">
                                                 <h6>Admin Level</h6>
                                                 <fieldset>
                                                     <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Provinsi<span
+                                                                        class="text-danger">*</span></label>
+                                                                <select name="provinsi_id" id="provinsi_id"
+                                                                    class="custom-select">
+                                                                    @foreach ($provinsis as $provinsi)
+                                                                        <option value="{{ $provinsi->id }}">
+                                                                            {{ $provinsi->nama }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Kabupaten / Kota<span
+                                                                        class="text-danger">*</span></label>
+                                                                <select name="kab_kota_id" id="kab_kota_id"
+                                                                    class="custom-select">
+                                                                    <option value="">- Pilih Provinsi Terlebih
+                                                                        Dahulu -</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
                                                         <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <label>Tingkat Admin<span
@@ -127,17 +155,9 @@
                                                                 </select>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label>Kabupaten / Kota<span
-                                                                        class="text-danger">*</span></label>
-                                                                <select name="KabKot" class="custom-select">
-                                                                    <option value="1" selected>1</option>
-                                                                    <option value="2">2</option>
-                                                                    <option value="3">3</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
+                                                    </div>
+
+                                                    <div class="row justify-content-center">
                                                         <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <label>Nomenklatur Perangkat Daerah<span
@@ -150,21 +170,6 @@
                                                             </div>
                                                         </div>
                                                     </div>
-
-                                                    <div class="row justify-content-center">
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label>Provinsi<span
-                                                                        class="text-danger">*</span></label>
-                                                                <select name="provinsi" class="custom-select">
-                                                                    <option value="1" selected>1</option>
-                                                                    <option value="2">2</option>
-                                                                    <option value="3">3</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
                                                 </fieldset>
 
                                                 <h6>Personal data</h6>
@@ -174,7 +179,7 @@
                                                             <div class="form-group">
                                                                 <label>Nama Lengkap <span
                                                                         class="text-danger">*</span></label>
-                                                                <input type="text" name="name"
+                                                                <input type="text" name="username"
                                                                     class="form-control required"
                                                                     placeholder="Nama Lengkap">
                                                             </div>
@@ -260,7 +265,7 @@
                                                         <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <label>Email<span class="text-danger">*</span></label>
-                                                                <input type="email" name="experience-company"
+                                                                <input type="email" name="email"
                                                                     placeholder="example@gmail.com"
                                                                     class="form-control required">
                                                             </div>
@@ -269,7 +274,7 @@
                                                             <div class="form-group">
                                                                 <label>Password<span
                                                                         class="text-danger">*</span></label>
-                                                                <input type="password" name="password_apaaratur"
+                                                                <input type="password" name="password"
                                                                     placeholder="password"
                                                                     class="form-control required">
                                                             </div>
@@ -278,18 +283,13 @@
                                                             <div class="form-group">
                                                                 <label>Konfirmasi Password<span
                                                                         class="text-danger">*</span></label>
-                                                                <input type="password"
-                                                                    name="konfirm_password_aparatur"
+                                                                <input type="password" name="password_confirmation"
                                                                     placeholder="password"
                                                                     class="form-control required">
                                                             </div>
                                                         </div>
-
-
                                                     </div>
                                                 </fieldset>
-
-
                                             </form>
                                         </div>
                                         <!-- /wizard with validation -->
@@ -639,6 +639,33 @@
             // $('.my-pond').first().filepond('addFile', 'index.html').then(function(file) {
             //     console.log('file added', file);
             // });
+            $('select[name="provinsi_id"]').each(function(index, element) {
+                $(element).change(function(e) {
+                    e.preventDefault();
+                    loadKabKota(this.value, $(element.parentElement.parentElement.parentElement)
+                        .find(
+                            '#kab_kota_id'))
+                });
+            });
+
+            function loadKabKota(val, kabupaten, kabupaten_id = null) {
+                return new Promise(resolve => {
+                    $(kabupaten).html('<option value="">Memuat...</option>');
+                    fetch('/api/kab-kota/' + val)
+                        .then(res => res.json())
+                        .then(res => {
+                            $(kabupaten).html('<option value="">- Pilih Kabupaten / Kota -</option>');
+                            res.forEach(model => {
+                                var selected = kabupaten_id == model.id ? 'selected=""' : ''
+                                $(kabupaten).append('<option value="' + model.id + '" ' +
+                                    selected +
+                                    '>' +
+                                    model.nama + '</option>');
+                            })
+                            resolve()
+                        })
+                })
+            }
         });
     </script>
 </body>

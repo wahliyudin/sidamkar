@@ -35,14 +35,14 @@
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
                             <div class="form-group position-relative has-icon-left mb-4">
-                                <input type="email"
-                                    class="form-control form-control-xl @error('email') is-invalid @enderror"
-                                    placeholder="Email" value="{{ old('email') }}" name="email" required
+                                <input type="text"
+                                    class="form-control form-control-xl @error('username') is-invalid @enderror"
+                                    placeholder="Username" value="{{ old('username') }}" name="username" required
                                     autocomplete="none">
                                 <div class="form-control-icon">
                                     <i class="bi bi-person"></i>
                                 </div>
-                                @error('email')
+                                @error('username')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
