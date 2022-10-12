@@ -730,8 +730,7 @@
                 $(element).change(function(e) {
                     e.preventDefault();
                     loadKabKota(this.value, $(element.parentElement.parentElement.parentElement)
-                        .find(
-                            '#kab_kota_id'))
+                        .find('#kab_kota_id'))
                 });
             });
 
@@ -744,11 +743,9 @@
                             $(kabupaten).html(
                                 '<option selected disabled>- Pilih Kabupaten / Kota -</option>');
                             res.forEach(model => {
-                                var selected = kabupaten_id == model.id ? 'selected=""' : ''
+                                var selected = kabupaten_id == model.id ? 'selected=""' : '';
                                 $(kabupaten).append('<option value="' + model.id + '" ' +
-                                    selected +
-                                    '>' +
-                                    model.nama + '</option>');
+                                    selected + '>' + model.nama + '</option>');
                             })
                             resolve()
                         })

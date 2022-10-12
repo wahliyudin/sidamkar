@@ -7,6 +7,7 @@ use App\Http\Controllers\Aparatur\OverviewController;
 use App\Http\Controllers\Aparatur\TabelKegiatanController;
 use App\Http\Controllers\Api\KabKotaController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\KabKota\OverviewController as KabKotaOverviewController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -65,10 +66,8 @@ Route::middleware(['auth'])->group(function () {
             return view('data-pengajuan-laporan-kegiatan');
         })->name('data-pengajuan-laporan-kegiatan');
     });
-    Route::prefix('kab-kota')->middleware(['role:kab_kota'])->group(function () {
-        Route::get('/overview', function () {
-            return view('overview');
-        })->name('kab-kota.overview');
+    Route::middleware(['role:kab_kota'])->group(function () {
+        Route::get('kab-kota/overview', [KabKotaOverviewController::class, 'index'])->name('kab-kota.overview');
     });
 });
 

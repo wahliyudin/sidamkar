@@ -19,7 +19,7 @@ trait RegistersUsers
      */
     public function showRegistrationForm()
     {
-        $provinsis = Provinsi::query()->get();
+        $provinsis = Provinsi::query()->get(['id', 'nama']);
         return view('auth.register', compact('provinsis'));
     }
 

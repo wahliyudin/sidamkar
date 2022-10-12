@@ -10,6 +10,6 @@ class KabKotaController extends Controller
 {
     public function byProvinsiId($provinsi_id)
     {
-        return json_encode(KabKota::query()->where('provinsi_id', $provinsi_id)->get());
+        return json_encode(KabKota::query()->where('provinsi_id', $provinsi_id)->get(['id', 'nama']));
     }
 }
