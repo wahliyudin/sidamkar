@@ -66,6 +66,6 @@ trait RegistersUsers
      */
     protected function registered(Request $request, $user)
     {
-        return to_route('login');
+        return to_route('login')->with('message', 'Silahkan cek email kamu');
     }
 }

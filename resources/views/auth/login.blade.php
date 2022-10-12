@@ -111,6 +111,18 @@
             }).showToast();
         </script>
     @endif
+    @if (session('success'))
+        <script>
+            Toastify({
+                text: "{{ session('success') }}",
+                duration: 5000,
+                close: true,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "#1AD598",
+            }).showToast();
+        </script>
+    @endif
 </body>
 
 </html>
