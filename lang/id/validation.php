@@ -42,7 +42,7 @@ return [
     'digits_between'       => ':Attribute harus terdiri dari :min sampai :max angka.',
     'dimensions'           => ':Attribute tidak memiliki dimensi gambar yang valid.',
     'distinct'             => ':Attribute memiliki nilai yang duplikat.',
-    'email'                => ':Attribute harus berupa alamat surel yang valid.',
+    'email'                => ':Attribute harus berupa alamat email yang valid.',
     'ends_with'            => ':Attribute harus diakhiri salah satu dari berikut: :values',
     'enum'                 => ':Attribute yang dipilih tidak valid.',
     'exists'               => ':Attribute yang dipilih tidak valid.',

@@ -5,14 +5,33 @@
         <div class="row">
             <div class="card">
                 <div class="card-header">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="basicInput">Periode</label>
+                                <select class="choices form-select">
+                                    <option value="square">Januari 2023 - Juni 2023</option>
+                                    <option value="rectangle">Juli 2023 - Desember 2023</option>
+                                </select>
+                            </div>
+                        </div>
 
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Search</label>
+                                <input type="text" placeholder="Search..." class="form-control">
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
                     <form action="">
                         <div class="timeline">
                             <div class="title-timeline">
                                 <label class="title-wrapper">
-                                    <input type="checkbox" id="checkbox1" checked class="form-check-input">
+                                    <span class="check check-success">
+                                        <i class="fa-solid fa-check"></i>
+                                    </span>
                                     <p>Kesiapsiagaan petugas pemadam kebakaran dan penyelamatan;</p>
                                 </label>
                             </div>
@@ -29,7 +48,9 @@
                                 </div>
                                 <div class="area-wrapper">
                                     <label style=" cursor: pointer;">
-                                        <input type="checkbox" id="checkbox1" checked class="form-check-input">
+                                        <span class="check check-warning">
+                                            <i class="fa-solid fa-spinner"></i>
+                                        </span>
                                         <p>Tugas piket jaga;</p>
                                     </label>
                                     <div class="d-flex align-items-center btn-wrapper">
@@ -39,7 +60,9 @@
                                 </div>
                                 <div class="area-wrapper">
                                     <label style=" cursor: pointer;">
-                                        <input type="checkbox" id="checkbox1" checked class="form-check-input">
+                                        <span class="check check-danger">
+                                            <i class="fa-solid fa-xmark"></i>
+                                        </span>
                                         <p>Apel malam sebagai peserta;</p>
                                     </label>
                                     <div class="d-flex align-items-center btn-wrapper">
@@ -49,7 +72,9 @@
                                 </div>
                                 <div class="area-wrapper">
                                     <label style=" cursor: pointer;">
-                                        <input type="checkbox" id="checkbox1" checked class="form-check-input">
+                                        <span class="check check-success">
+                                            <i class="fa-solid fa-check"></i>
+                                        </span>
                                         <p>kegiatan rutin latihan ketrampilan;</p>
                                     </label>
                                     <div class="d-flex align-items-center btn-wrapper">
@@ -61,14 +86,18 @@
 
                             <div class="title-timeline">
                                 <label class="title-wrapper">
-                                    <input type="checkbox" id="checkbox1" checked class="form-check-input">
+                                    <span class="check check-success">
+                                        <i class="fa-solid fa-check"></i>
+                                    </span>
                                     <p>Pelaksanaan prosedur pelaporan informasi kejadian kebakaran;</p>
                                 </label>
                             </div>
                             <div class="area-timeline">
                                 <div class="area-wrapper">
                                     <label style=" cursor: pointer;">
-                                        <input type="checkbox" id="checkbox1" checked class="form-check-input">
+                                        <span class="check check-success">
+                                            <i class="fa-solid fa-check"></i>
+                                        </span>
                                         <p>Informasi kejadian kebakaran; dan</p>
                                     </label>
                                     <div class="d-flex align-items-center btn-wrapper">
@@ -78,7 +107,9 @@
                                 </div>
                                 <div class="area-wrapper">
                                     <label style=" cursor: pointer;">
-                                        <input type="checkbox" id="checkbox1" checked class="form-check-input">
+                                        <span class="check check-success">
+                                            <i class="fa-solid fa-check"></i>
+                                        </span>
                                         <p>koordinasi dengan Kepala Regu terkait informasi kejadian kebakaran;
                                         </p>
                                     </label>
@@ -91,14 +122,18 @@
 
                             <div class="title-timeline">
                                 <label class="title-wrapper">
-                                    <input type="checkbox" id="checkbox1" class="form-check-input">
+                                    <span class="check check-success">
+                                        <i class="fa-solid fa-check"></i>
+                                    </span>
                                     <p>Pelaksanaan operasional pemadaman kebakaran;</p>
                                 </label>
                             </div>
                             <div class="area-timeline">
                                 <div class="area-wrapper">
                                     <label style=" cursor: pointer;">
-                                        <input type="checkbox" id="checkbox1" class="form-check-input">
+                                        <span class="check check-success">
+                                            <i class="fa-solid fa-check"></i>
+                                        </span>
                                         <p>Informasi kejadian kebakaran; dan</p>
                                     </label>
                                     <div class="d-flex align-items-center btn-wrapper">
@@ -108,7 +143,9 @@
                                 </div>
                                 <div class="area-wrapper">
                                     <label style=" cursor: pointer;">
-                                        <input type="checkbox" id="checkbox1" class="form-check-input">
+                                        <span class="check check-success">
+                                            <i class="fa-solid fa-check"></i>
+                                        </span>
                                         <p>Keberangkatan menuju tempat kejadian kebakaran;</p>
                                     </label>
                                     <div class="d-flex align-items-center btn-wrapper">
@@ -118,7 +155,9 @@
                                 </div>
                                 <div class="area-wrapper">
                                     <label style=" cursor: pointer;">
-                                        <input type="checkbox" id="checkbox1" class="form-check-input">
+                                        <span class="check check-success">
+                                            <i class="fa-solid fa-check"></i>
+                                        </span>
                                         <p>Pemadaman kebakaran;</p>
                                     </label>
                                     <div class="d-flex align-items-center btn-wrapper">
@@ -128,7 +167,9 @@
                                 </div>
                                 <div class="area-wrapper">
                                     <label style=" cursor: pointer;">
-                                        <input type="checkbox" id="checkbox1" class="form-check-input">
+                                        <span class="check check-success">
+                                            <i class="fa-solid fa-check"></i>
+                                        </span>
                                         <p>Proses pendinginan;</p>
                                     </label>
                                     <div class="d-flex align-items-center btn-wrapper">
@@ -138,7 +179,9 @@
                                 </div>
                                 <div class="area-wrapper">
                                     <label style=" cursor: pointer;">
-                                        <input type="checkbox" id="checkbox1" class="form-check-input">
+                                        <span class="check check-success">
+                                            <i class="fa-solid fa-check"></i>
+                                        </span>
                                         <p>persiapan kembali ke pos pemadam kebakaran dan
                                             penyelamatan;</p>
                                     </label>
@@ -151,7 +194,9 @@
 
                             <div class="title-timeline">
                                 <label class="title-wrapper">
-                                    <input type="checkbox" id="checkbox1" class="form-check-input">
+                                    <span class="check check-success">
+                                        <i class="fa-solid fa-check"></i>
+                                    </span>
                                     <p>Pelaksanaan prosedur pelaporan informasi kejadian
                                         evakuasi dan penyelamatan;</p>
                                 </label>
@@ -159,7 +204,9 @@
                             <div class="area-timeline">
                                 <div class="area-wrapper">
                                     <label style=" cursor: pointer;">
-                                        <input type="checkbox" id="checkbox1" class="form-check-input">
+                                        <span class="check check-success">
+                                            <i class="fa-solid fa-check"></i>
+                                        </span>
                                         <p>Informasi kejadian evakuasi dan penyelamatan;
                                         </p>
                                     </label>
@@ -170,7 +217,9 @@
                                 </div>
                                 <div class="area-wrapper">
                                     <label style=" cursor: pointer;">
-                                        <input type="checkbox" id="checkbox1" class="form-check-input">
+                                        <span class="check check-success">
+                                            <i class="fa-solid fa-check"></i>
+                                        </span>
                                         <p>Koordinasi dengan Kepala Regu terkait
                                             informasi kejadian evakuasi dan
                                             penyelamatan;</p>
@@ -182,7 +231,9 @@
                                 </div>
                                 <div class="area-wrapper">
                                     <label style=" cursor: pointer;">
-                                        <input type="checkbox" id="checkbox1" class="form-check-input">
+                                        <span class="check check-success">
+                                            <i class="fa-solid fa-check"></i>
+                                        </span>
                                         <p>evakuasi dan penyelamatan; dan</p>
                                     </label>
                                     <div class="d-flex align-items-center btn-wrapper">
@@ -192,7 +243,7 @@
                                 </div>
                                 <div class="area-wrapper">
                                     <label style=" cursor: pointer;">
-                                        <input type="checkbox" id="checkbox1" class="form-check-input">
+                                        <span class="check check-border"></span>
                                         <p>melaporkan kejadian evakuasi dan
                                             penyelamatan;</p>
                                     </label>
@@ -203,40 +254,31 @@
                                 </div>
                             </div>
                         </div>
-
-                        {{-- <div class="flex text-center mt-4">
-                                <a href="{{ route('daftar-laporan-kegiatan') }}"
-                                    class="btn btn-blue btn-custom px-5">Simpan</a>
-                            </div> --}}
                     </form>
-
-                    <div class="row flex-column mt-5">
-                        <div class="d-flex align-items-center">
-                            <button class="btn btn-purple-reverse ms-3 px-3 text-sm" type="button">tindak
-                                lanjut</button>
-                            <span class="text-xl mx-2">:</span>
-                            <span class="text-xl">1</span>
-                        </div>
-                        <div class="d-flex align-items-center mt-2">
-                            <button class="btn btn-yellow-reverse btn-status ms-3 px-3 text-sm"
-                                type="button">diproses</button>
-                            <span class="text-xl mx-2">:</span>
-                            <span class="text-xl">1</span>
-                        </div>
-                        <div class="d-flex align-items-center mt-2">
-                            <button class="btn btn-red-reverse btn-status ms-3 px-3 text-sm"
-                                type="button">revisi</button>
-                            <span class="text-xl mx-2">:</span>
-                            <span class="text-xl">1</span>
-                        </div>
-                        <div class="d-flex align-items-center mt-2">
-                            <button class="btn btn-green-reverse btn-status ms-3 px-3 text-sm"
-                                type="button">selesai</button>
-                            <span class="text-xl mx-2">:</span>
-                            <span class="text-xl">1</span>
-                        </div>
-                    </div>
                 </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-evenly mt-5">
+            <div class="d-flex align-items-center">
+                <button class="btn btn-purple-reverse ms-3 px-3 text-sm" type="button">tindak
+                    lanjut</button>
+                <span class="text-xl mx-2">:</span>
+                <span class="text-xl">1</span>
+            </div>
+            <div class="d-flex align-items-center">
+                <button class="btn btn-yellow-reverse btn-status ms-3 px-3 text-sm" type="button">diproses</button>
+                <span class="text-xl mx-2">:</span>
+                <span class="text-xl">1</span>
+            </div>
+            <div class="d-flex align-items-center">
+                <button class="btn btn-red-reverse btn-status ms-3 px-3 text-sm" type="button">revisi</button>
+                <span class="text-xl mx-2">:</span>
+                <span class="text-xl">1</span>
+            </div>
+            <div class="d-flex align-items-center">
+                <button class="btn btn-green-reverse btn-status ms-3 px-3 text-sm" type="button">selesai</button>
+                <span class="text-xl mx-2">:</span>
+                <span class="text-xl">1</span>
             </div>
         </div>
     </section>
@@ -471,157 +513,13 @@
 @section('css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
     <link rel="stylesheet" href="{{ asset('assets/css/pages/timeline.css') }}">
-    <style>
-        @media screen and (max-width:780px) {
-            .btn-wrapper {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .area-wrapper {
-                flex-direction: column;
-            }
-
-            .area-wrapper label {
-                min-width: 100% !important;
-            }
-
-            .area-wrapper .btn-wrapper {
-                flex-direction: row;
-                justify-content: space-evenly;
-                margin-top: 1rem;
-                width: 100%;
-            }
-        }
-
-        .title-timeline p,
-        .area-wrapper label p {
-            font-family: 'Roboto';
-            font-weight: 600;
-        }
-
-        .title-timeline p {
-            color: #000000;
-        }
-
-        .area-wrapper label p {
-            color: #809FB8;
-        }
-
-        .btn-green {
-            text-transform: uppercase;
-            font-family: 'Roboto';
-            font-weight: 700;
-            font-size: 14px;
-        }
-
-        .btn-custom {
-            text-transform: uppercase;
-            font-family: 'Roboto';
-            font-weight: 600;
-            font-size: 16px;
-            border-radius: 4px !important;
-        }
-    </style>
-    <link rel="stylesheet" href="{{ asset('assets/css/pages/timeline.css') }}">
-    <style>
-        @media screen and (max-width:780px) {
-            .btn-wrapper {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .area-wrapper {
-                flex-direction: column;
-            }
-
-            .area-wrapper label {
-                min-width: 100% !important;
-            }
-
-            .area-wrapper .btn-wrapper {
-                flex-direction: row;
-                justify-content: space-evenly;
-                margin-top: 1rem;
-                width: 100%;
-            }
-        }
-
-        li::marker {
-            color: black;
-        }
-
-        .modal-body {
-            padding: 3rem 2rem !important;
-        }
-
-        @media (min-width:992px) {
-            .modal-body {
-                padding: 3rem 5rem !important;
-            }
-        }
-
-        .history {
-            padding: 1rem 0;
-        }
-
-        .history p {
-            margin: 0;
-        }
-
-        .history .history-item {
-            display: flex;
-            align-items: flex-start;
-        }
-
-        .history .history-item .history-item-date {
-            white-space: nowrap;
-            font-style: italic;
-            color: rgba(0, 144, 255, 0.7);
-            font-size: 16px;
-        }
-
-        .history .history-item .history-item-wrapper {
-            border-left: 2px solid black;
-            margin-left: 2rem;
-            display: flex;
-            position: relative;
-        }
-
-        .history-item .history-item-wrapper .point-wrapper {
-            width: 1.5rem;
-            height: 1.4rem;
-            background-color: rgba(249, 185, 89, 0.47);
-            position: absolute;
-            left: -.83rem;
-            border-radius: 5px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .history-item-wrapper .point-wrapper .point {
-            width: .6rem;
-            height: .6rem;
-            background-color: black;
-            border-radius: 50%;
-        }
-
-        .history-item .history-item-wrapper p {
-            margin-left: 1.5rem;
-            color: black;
-        }
-
-        .history-item:not(:last-child) .history-item-wrapper p {
-            padding-bottom: .8rem;
-        }
-    </style>
-
+    <link rel="stylesheet" href="{{ asset('assets/css/pages/laporan-kegiatan.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/extensions/filepond/filepond.css') }}">
     <link rel="stylesheet"
         href="{{ asset('assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/pages/filepond.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/extensions/toastify-js/src/toastify.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/extensions/choices.js/public/assets/styles/choices.css') }}">
 @endsection
 @section('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
@@ -665,4 +563,6 @@
             });
         });
     </script>
+    <script src="{{ asset('assets/extensions/choices.js/public/assets/scripts/choices.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/form-element-select.js') }}"></script>
 @endsection
