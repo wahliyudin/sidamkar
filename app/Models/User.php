@@ -109,8 +109,8 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(UserProvKabKota::class);
     }
 
-    public function roles()
-    {
-        return $this->belongsToMany(Role::class);
-    }
+    // public function roles()
+    // {
+    //     return $this->belongsToMany(Role::class);
+    // }
 }

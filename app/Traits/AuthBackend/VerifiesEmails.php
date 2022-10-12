@@ -42,6 +42,7 @@ trait VerifiesEmails
             throw new AuthorizationException;
         }
 
+
         if ($request->user()->hasVerifiedEmail()) {
             return $request->wantsJson()
                         ? new JsonResponse([], 204)

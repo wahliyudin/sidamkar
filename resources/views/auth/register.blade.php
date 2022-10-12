@@ -157,32 +157,18 @@
                                                         </div>
                                                         <div class="col-md-4">
                                                             <div class="form-group">
-                                                                <label>Tingkat Admin<span
-                                                                        class="text-danger">*</span></label>
-                                                                <select name="tingkat_admin" class="custom-select">
-                                                                    <option value="1" selected>1</option>
-                                                                    <option value="2">2</option>
-                                                                    <option value="3">3</option>
+                                                                <label>Jabatan<span class="text-danger">*</span></label>
+                                                                <select name="jabatan" class="custom-select">
+                                                                    <option selected disabled>- Pilih Jabatan -</option>
+                                                                    <option value="damkar">Damkar</option>
+                                                                    <option value="analis_kebakaran">Analis Kebakaran
+                                                                    </option>
                                                                 </select>
-                                                                @error('tingkat_admin')
+                                                                @error('jabatan')
                                                                     <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $message }}</strong>
                                                                     </span>
                                                                 @enderror
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row justify-content-center">
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label>Nomenklatur Perangkat Daerah<span
-                                                                        class="text-danger">*</span></label>
-                                                                <select name="nopeda" class="custom-select">
-                                                                    <option value="1" selected>1</option>
-                                                                    <option value="2">2</option>
-                                                                    <option value="3">3</option>
-                                                                </select>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -213,7 +199,7 @@
                                                             <div class="form-group">
                                                                 <label>Tanggal Lahir<span
                                                                         class="text-danger">*</span></label>
-                                                                <input type="date" name="Tempat_lahir"
+                                                                <input type="date" name="tanggal_lahir"
                                                                     class="form-control" placeholder="Tanggal Lahir">
                                                             </div>
                                                         </div>
@@ -222,21 +208,23 @@
                                                     <div class="row">
                                                         <div class="col-md-4">
                                                             <div class="form-group">
-                                                                <label>Pendidikan Terakhir<span
+                                                                <label>Jenis Kelamin<span
                                                                         class="text-danger">*</span></label>
-                                                                <select name="birth-month" class="custom-select">
-                                                                    <option value="1" selected>SMA</option>
-                                                                    <option value="2">D3</option>
-                                                                    <option value="3">S1/D4</option>
+                                                                <select name="jenis_kelamin" class="custom-select">
+                                                                    <option selected disabled>- Pilih Jenis Kelamin -
+                                                                    </option>
+                                                                    <option value="L">Laki - Laki</option>
+                                                                    <option value="P">Perempuan</option>
                                                                 </select>
                                                             </div>
+
                                                         </div>
 
                                                         <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <label>NIP / Nomor Register<span
                                                                         class="text-danger">*</span></label>
-                                                                <input type="text" name="NIP"
+                                                                <input type="number" name="nip"
                                                                     class="form-control"
                                                                     placeholder="NIP / Nomor Register">
                                                             </div>
@@ -246,24 +234,54 @@
                                                             <div class="form-group">
                                                                 <label>Pangkat / Golongan / TMT<span
                                                                         class="text-danger">*</span></label>
-                                                                <select name="birth-month" class="custom-select">
-                                                                    <option value="1" selected>SMA</option>
-                                                                    <option value="2">D3</option>
-                                                                    <option value="3">S1/D4</option>
+                                                                <select name="pangkat_golongan_tmt"
+                                                                    class="custom-select">
+                                                                    <option selected disabled>- Pilih Jabatan -</option>
+                                                                    <option value="IIIA">IIIA</option>
+                                                                    <option value="IIIB">IIIB</option>
+                                                                    <option value="IIIC">IIIC</option>
+                                                                    <option value="IIID">IIID</option>
+                                                                    <option value="IVA">IVA</option>
+                                                                    <option value="IVB">IVB</option>
+                                                                    <option value="IVC">IVC</option>
+                                                                    <option value="IVD">IVD</option>
                                                                 </select>
                                                             </div>
                                                         </div>
                                                     </div>
 
-                                                    <div class="row justify-content-center">
+                                                    <div class="row">
                                                         <div class="col-md-4">
                                                             <div class="form-group">
-                                                                <label>Jabatan<span
+                                                                <label>No KarPeg<span
                                                                         class="text-danger">*</span></label>
-                                                                <select name="birth-month" class="custom-select">
-                                                                    <option value="1" selected>SMA</option>
+                                                                <input type="number" name="nomor_karpeg"
+                                                                    class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Pendidikan Terakhir<span
+                                                                        class="text-danger">*</span></label>
+                                                                <select name="pendidikan_terakhir"
+                                                                    class="custom-select">
+                                                                    <option selected disabled>- Pilih Pendidikan
+                                                                        Terakhir -</option>
+                                                                    <option value="1">SMA/Sederajat</option>
                                                                     <option value="2">D3</option>
                                                                     <option value="3">S1/D4</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Jenjang<span
+                                                                        class="text-danger">*</span></label>
+                                                                <select name="jenjang" class="custom-select">
+                                                                    <option selected disabled>- Pilih Jenjang -
+                                                                    </option>
+                                                                    <option value="senior">Senior</option>
+                                                                    <option value="junior">Junior</option>
                                                                 </select>
                                                             </div>
                                                         </div>

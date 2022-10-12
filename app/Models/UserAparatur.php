@@ -15,6 +15,7 @@ class UserAparatur extends Model
         'nama',
         'jenjang',
         'nip',
+        'nomor_karpeg',
         'pangkat_golongan_tmt',
         'tempat_lahir',
         'tanggal_lahir',

@@ -17,8 +17,13 @@ class RoleSeeder extends Seeder
     {
         $roles = [
             [
-                'name' => 'aparatur',
-                'display_name' => 'Aparatur',
+                'name' => 'damkar',
+                'display_name' => 'Damkar',
+                'description' => ''
+            ],
+            [
+                'name' => 'analis_kebakaran',
+                'display_name' => 'Analis Kebakaran',
                 'description' => ''
             ],
             [

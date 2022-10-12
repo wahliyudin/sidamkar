@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->string('nama');
-            $table->string('jenjang')->nullable();
+            $table->enum('jenjang', ['junior', 'senior']);
             $table->bigInteger('nip');
             $table->string('nomor_karpeg');
-            $table->integer('pangkat_golongan_tmt');
+            $table->string('pangkat_golongan_tmt');
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
             $table->enum('jenis_kelamin', ['P', 'L']);
