@@ -2,10 +2,12 @@
 
 namespace App\Traits\AuthBackend;
 
+use App\Models\User;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 trait VerifiesEmails
 {
@@ -34,6 +36,9 @@ trait VerifiesEmails
      */
     public function verify(Request $request)
     {
+        if (Auth::user() == null) {
+            Auth::login(User::query()->find($request->route('id')));
+        }
         if (! hash_equals((string) $request->route('id'), (string) $request->user()->getKey())) {
             throw new AuthorizationException;
         }
@@ -42,13 +47,11 @@ trait VerifiesEmails
             throw new AuthorizationException;
         }
 
-
         if ($request->user()->hasVerifiedEmail()) {
             return $request->wantsJson()
                         ? new JsonResponse([], 204)
                         : redirect($this->redirectPath());
         }
-
         if ($request->user()->markEmailAsVerified()) {
             event(new Verified($request->user()));
         }
@@ -70,7 +73,7 @@ trait VerifiesEmails
      */
     protected function verified(Request $request)
     {
-        //
+
     }
 
     /**
