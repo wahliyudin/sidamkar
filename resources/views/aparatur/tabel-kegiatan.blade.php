@@ -13,7 +13,7 @@
                                     <input type="text" placeholder="Search..." class="form-control">
                                 </div>
                             </div>
-                            <button class="px-4 py-2 btn-laporan">
+                            <a class="px-4 py-2 btn-laporan" href="{{ route('laporan-kegiatan') }}">
                                 <svg width="23" height="18" viewBox="0 0 23 18" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -21,89 +21,119 @@
                                         fill="white" />
                                 </svg>
                                 <p>Buat laporan</p>
-                            </button>
+                            </a>
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="d-flex flex-column">
-                            <div class="">
-                                <div role="button" data-bs-toggle="collapse" data-bs-target="#one" aria-expanded="true"
-                                    aria-controls="one" style="display: flex; align-content: center; align-items: start;"
-                                    class="">
-                                    <p class="badge-collapse">
-                                        <i class="fa-solid fa-chevron-down text-sm"></i>
-                                        <!-- <i class="fa-solid fa-chevron-down text-sm"></i> Font Awesome fontawesome.com -->
-                                    </p>
-                                    <h5 class="ms-4">
-                                        Kesiapsiagaan petugas pemadam kebakaran dan penyelamatan;
-                                    </h5>
+                        <div class="max-height: calc(30vh); overflow-y: auto;">
+                            <div class="d-flex flex-column">
+                                <div class="">
+                                    <div role="button" data-bs-toggle="collapse" data-bs-target="#one" aria-expanded="true"
+                                        aria-controls="one"
+                                        style="display: flex; align-content: center; align-items: start;" class="">
+                                        <p class="badge-collapse">
+                                            <i class="fa-solid fa-chevron-down text-sm"></i>
+                                            <!-- <i class="fa-solid fa-chevron-down text-sm"></i> Font Awesome fontawesome.com -->
+                                        </p>
+                                        <h5 class="ms-4">
+                                            Kesiapsiagaan petugas pemadam kebakaran dan penyelamatan;
+                                        </h5>
+                                    </div>
+                                    <div class="collapse show" id="one" style="">
+                                        <ul class="py-1 ms-5">
+                                            <li class="py-1">
+                                                <h6>Apel pagi sebagai peserta dan serah terima tugas jaga;</h6>
+                                            </li>
+                                            <li class="py-1">
+                                                <h6>Tugas piket jaga;</h6>
+                                            </li>
+                                            <li class="py-1">
+                                                <h6>Apel malam sebagai peserta;</h6>
+                                            </li>
+                                            <li class="py-1">
+                                                <h6>kegiatan rutin latihan ketrampilan;</h6>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div class="collapse show" id="one" style="">
-                                    <ul class="py-1 ms-5">
-                                        <li class="py-1">
-                                            <h6>Apel pagi sebagai peserta dan serah terima tugas jaga;</h6>
-                                        </li>
-                                        <li class="py-1">
-                                            <h6>Tugas piket jaga;</h6>
-                                        </li>
-                                        <li class="py-1">
-                                            <h6>Apel malam sebagai peserta;</h6>
-                                        </li>
-                                        <li class="py-1">
-                                            <h6>kegiatan rutin latihan ketrampilan;</h6>
-                                        </li>
-                                    </ul>
+                                <div class="">
+                                    <div role="button" data-bs-toggle="collapse" data-bs-target="#two" aria-expanded="true"
+                                        aria-controls="two"
+                                        style="display: flex; align-content: center; align-items: start;" class="">
+                                        <p class="badge-collapse">
+                                            <i class="fa-solid fa-chevron-down text-sm"></i>
+                                            <!-- <i class="fa-solid fa-chevron-down text-sm"></i> Font Awesome fontawesome.com -->
+                                        </p>
+                                        <h5 class="ms-4">
+                                            Pelaksanaan prosedur pelaporan informasi kejadian kebakaran;
+                                        </h5>
+                                    </div>
+                                    <div class="collapse show" id="two" style="">
+                                        <ul class="py-1 ms-5">
+                                            <li class="py-1">
+                                                <h6>Informasi kejadian kebakaran; dan</h6>
+                                            </li>
+                                            <li class="py-1">
+                                                <h6>koordinasi dengan Kepala Regu terkait informasi kejadian kebakaran;</h6>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="">
-                                <div role="button" data-bs-toggle="collapse" data-bs-target="#two" aria-expanded="true"
-                                    aria-controls="two" style="display: flex; align-content: center; align-items: start;"
-                                    class="">
-                                    <p class="badge-collapse">
-                                        <i class="fa-solid fa-chevron-down text-sm"></i>
-                                        <!-- <i class="fa-solid fa-chevron-down text-sm"></i> Font Awesome fontawesome.com -->
-                                    </p>
-                                    <h5 class="ms-4">
-                                        Pelaksanaan prosedur pelaporan informasi kejadian kebakaran;
-                                    </h5>
+                                <div class="">
+                                    <div role="button" data-bs-toggle="collapse" data-bs-target="#three"
+                                        aria-expanded="true" aria-controls="three"
+                                        style="display: flex; align-content: center; align-items: start;" class="">
+                                        <p class="badge-collapse">
+                                            <i class="fa-solid fa-chevron-down text-sm"></i>
+                                        </p>
+                                        <h5 class="ms-4">
+                                            Pelaksanaan operasional pemadaman kebakaran;
+                                        </h5>
+                                    </div>
+                                    <div class="collapse show" id="three" style="">
+                                        <ul class="py-1 ms-5">
+                                            <li class="py-1">
+                                                <h6>Keberangkatan menuju tempat kejadian kebakaran;</h6>
+                                            </li>
+                                            <li class="py-1">
+                                                <h6>Pemadaman kebakaran;</h6>
+                                            </li>
+                                            <li class="py-1">
+                                                <h6>Proses pendinginan;</h6>
+                                            </li>
+                                            <li class="py-1">
+                                                <h6>persiapan kembali ke pos pemadam kebakaran dan penyelamatan;</h6>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div class="collapse show" id="two" style="">
-                                    <ul class="py-1 ms-5">
-                                        <li class="py-1">
-                                            <h6>Informasi kejadian kebakaran; dan</h6>
-                                        </li>
-                                        <li class="py-1">
-                                            <h6>koordinasi dengan Kepala Regu terkait informasi kejadian kebakaran;</h6>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="">
-                                <div role="button" data-bs-toggle="collapse" data-bs-target="#three" aria-expanded="true"
-                                    aria-controls="three" style="display: flex; align-content: center; align-items: start;"
-                                    class="">
-                                    <p class="badge-collapse">
-                                        <i class="fa-solid fa-chevron-down text-sm"></i>
-                                    </p>
-                                    <h5 class="ms-4">
-                                        Pelaksanaan operasional pemadaman kebakaran;
-                                    </h5>
-                                </div>
-                                <div class="collapse show" id="three" style="">
-                                    <ul class="py-1 ms-5">
-                                        <li class="py-1">
-                                            <h6>Keberangkatan menuju tempat kejadian kebakaran;</h6>
-                                        </li>
-                                        <li class="py-1">
-                                            <h6>Pemadaman kebakaran;</h6>
-                                        </li>
-                                        <li class="py-1">
-                                            <h6>Proses pendinginan;</h6>
-                                        </li>
-                                        <li class="py-1">
-                                            <h6>persiapan kembali ke pos pemadam kebakaran dan penyelamatan;</h6>
-                                        </li>
-                                    </ul>
+                                <div class="">
+                                    <div role="button" data-bs-toggle="collapse" data-bs-target="#four"
+                                        aria-expanded="true" aria-controls="four"
+                                        style="display: flex; align-content: center; align-items: start;" class="">
+                                        <p class="badge-collapse">
+                                            <i class="fa-solid fa-chevron-down text-sm"></i>
+                                        </p>
+                                        <h5 class="ms-4">
+                                            Pelaksanaan operasional pemadaman kebakaran;
+                                        </h5>
+                                    </div>
+                                    <div class="collapse show" id="four" style="">
+                                        <ul class="py-1 ms-5">
+                                            <li class="py-1">
+                                                <h6>Keberangkatan menuju tempat kejadian kebakaran;</h6>
+                                            </li>
+                                            <li class="py-1">
+                                                <h6>Pemadaman kebakaran;</h6>
+                                            </li>
+                                            <li class="py-1">
+                                                <h6>Proses pendinginan;</h6>
+                                            </li>
+                                            <li class="py-1">
+                                                <h6>persiapan kembali ke pos pemadam kebakaran dan penyelamatan;</h6>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -131,7 +161,7 @@
             color: #809FB8 !important;
         }
 
-        button.btn-laporan {
+        a.btn-laporan {
             background-color: #219653;
             border: none;
             border-radius: 50px;
@@ -142,7 +172,7 @@
             align-items: center;
         }
 
-        button.btn-laporan p {
+        a.btn-laporan p {
             margin: 0 0 0 .6rem;
             font-family: 'Roboto';
             font-weight: 600;

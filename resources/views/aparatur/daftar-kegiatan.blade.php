@@ -2,7 +2,7 @@
 @section('content')
     <section class="section">
         <div class="row badge-container">
-            <div class="col-md-4">
+            {{--  <div class="col-md-4">
                 <div class="card">
                     <div class="card-body py-3" style="height: 100px;">
                         <div class="d-flex align-items-center h-100">
@@ -17,7 +17,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>  --}}
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body py-3" style="height: 100px;">

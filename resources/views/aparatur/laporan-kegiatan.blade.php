@@ -243,7 +243,9 @@
                                 </div>
                                 <div class="area-wrapper">
                                     <label style=" cursor: pointer;">
-                                        <span class="check check-border"></span>
+                                        <span class="check check-success">
+                                            <i class="fa-solid fa-check"></i>
+                                        </span>
                                         <p>melaporkan kejadian evakuasi dan
                                             penyelamatan;</p>
                                     </label>
@@ -278,7 +280,7 @@
             <div class="d-flex align-items-center">
                 <button class="btn btn-green-reverse btn-status ms-3 px-3 text-sm" type="button">selesai</button>
                 <span class="text-xl mx-2">:</span>
-                <span class="text-xl">1</span>
+                <span class="text-xl">12</span>
             </div>
         </div>
     </section>

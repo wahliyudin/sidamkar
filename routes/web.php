@@ -35,6 +35,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/tabel-kegiatan', [TabelKegiatanController::class, 'index'])->name('tabel-kegiatan');
         Route::get('/laporan-kegiatan', [LaporanKegiatanController::class, 'index'])->name('laporan-kegiatan');
 
+
+        Route::get('/login-revisi', function () {
+            return view('login-revisi');
+        })->name('login-revisi');
         Route::get('/daftar-laporan-kegiatan', function () {
             return view('daftar-laporan-kegiatan');
         })->name('daftar-laporan-kegiatan');
