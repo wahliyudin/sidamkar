@@ -44,7 +44,7 @@
                                         Damkar</span>
                                 </div>
 
-                                <div class="form-group form-group-feedback form-group-feedback-left">
+                                <div class="form-group mt-4 form-group-feedback form-group-feedback-left">
                                     <input type="text" class="form-control @error('username') is-invalid @enderror"
                                         placeholder="Username" name="username" value="{{ old('username') }}" required
                                         autocomplete="none" style="padding-bottom: 1.5rem; padding-top: 1.5rem;">
@@ -64,6 +64,9 @@
                                         style="padding-bottom: 1.5rem; padding-top: 1.5rem;">
                                     <div class="form-control-feedback">
                                         <i class="icon-lock2 text-muted"></i>
+                                    </div>
+                                    <div class="show-hide">
+                                        <i class="fa-solid fa-eye"></i>
                                     </div>
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -121,6 +124,7 @@
     <script src="{{ asset('assets/extensions/filepond/filepond.jquery.js') }}"></script>
     <style>
         .header-login {
+            font-size: 25px;
             font-family: 'Viga', sans-serif;
         }
 
