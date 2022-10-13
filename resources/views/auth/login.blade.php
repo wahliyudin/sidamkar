@@ -190,6 +190,31 @@
             }
         }
     </style>
+    <script src="{{ asset('assets/extensions/toastify-js/src/toastify.js') }}"></script>
+    @if (session('message'))
+        <script>
+            Toastify({
+                text: "{{ session('message') }}",
+                duration: 5000,
+                close: true,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "#EDE40C",
+            }).showToast();
+        </script>
+    @endif
+    @if (session('success'))
+        <script>
+            Toastify({
+                text: "{{ session('success') }}",
+                duration: 5000,
+                close: true,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "#1AD598",
+            }).showToast();
+        </script>
+    @endif
 </body>
 
 

@@ -1,6 +1,17 @@
 @extends('layouts.master')
 @section('content')
     <section class="section">
+        @if (is_null(Auth::user()->email_verified_at))
+            <div class="row">
+                <div class="alert alert-warning text-white">
+                    Untuk mendapatkan notifikasi melalui email silahkan klik tombol berikut
+                    <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
+                        @csrf
+                        <button type="submit" class="btn btn-primary" style="font-size: 12px;">Verify</button>
+                    </form>
+                </div>
+            </div>
+        @endif
         <div class="card">
             <div class="card-body" style="padding-top: 3rem;">
                 <div class="row">
@@ -174,8 +185,23 @@
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/css/pages/my-data.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/extensions/choices.js/public/assets/styles/choices.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/extensions/toastify-js/src/toastify.css') }}">
 @endsection
 @section('js')
     <script src="{{ asset('assets/extensions/choices.js/public/assets/scripts/choices.js') }}"></script>
     <script src="{{ asset('assets/js/pages/form-element-select.js') }}"></script>
+    <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/extensions/toastify-js/src/toastify.js') }}"></script>
+    @if (session('resent'))
+        <script>
+            Toastify({
+                text: "Silahkan cek email kamu",
+                duration: 5000,
+                close: true,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "#EDE40C",
+            }).showToast();
+        </script>
+    @endif
 @endsection

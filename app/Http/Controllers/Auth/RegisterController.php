@@ -82,7 +82,7 @@ class RegisterController extends Controller
         if (isset($data['jabatan']) == 'damkar') {
             $user = User::create($user);
             $user->attachRole('damkar');
-            return $user->userAparatur()->create([
+            $user->userAparatur()->create([
                 'nama'                  => $data['nama'],
                 'jenjang'               => $data['jenjang'],
                 'nip'                   => $data['nip'],
@@ -93,11 +93,12 @@ class RegisterController extends Controller
                 'pendidikan_terakhir'   => $data['pendidikan_terakhir'],
                 'nomor_karpeg'   => $data['nomor_karpeg'],
             ]);
+            return $user;
         }
         if (isset($data['jabatan']) == 'analis_kebakaran') {
             $user = User::create($user);
             $user->attachRole('analis_kebakaran');
-            return $user->userAparatur()->create([
+            $user->userAparatur()->create([
                 'nama' => $data['nama'],
                 'jenjang' => $data['jenjang'],
                 'nip' => $data['nip'],
@@ -108,6 +109,7 @@ class RegisterController extends Controller
                 'pendidikan_terakhir' => $data['pendidikan_terakhir'],
                 'nomor_karpeg' => $data['nomor_karpeg'],
             ]);
+            return $user;
         }
     }
 }
