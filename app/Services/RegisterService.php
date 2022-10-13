@@ -4,10 +4,13 @@ namespace App\Services;
 
 use App\Models\User;
 use App\Repositories\RegisterRepository;
+use App\Traits\ImageTrait;
 use Exception;
 
 class RegisterService
 {
+    use ImageTrait;
+
     private RegisterRepository $registerRepository;
 
     /**
@@ -48,6 +51,16 @@ class RegisterService
                 $user->attachRole('atasan_langsung');
                 return $user;
                 break;
+            case 'penilai_ak':
+                $user = $this->storeStruktural($data);
+                $user->attachRole('penilai_ak');
+                return $user;
+                break;
+            case 'penetap_ak':
+                $user = $this->storeStruktural($data);
+                $user->attachRole('penetap_ak');
+                return $user;
+                break;
         }
     }
 
@@ -60,7 +73,8 @@ class RegisterService
     private function storeAparatur(array $data): User
     {
         $user = $this->registerRepository->storeUser($data);
-        return $this->registerRepository->storeAparatur($user, $data);
+        $this->registerRepository->storeAparatur($user, $data);
+        return $user;
     }
 
     /**
@@ -71,7 +85,11 @@ class RegisterService
      */
     public function storeStruktural(array $data): User
     {
+        $data = array_merge($data, [
+            'file_ttd' => $this->storeImage($data['file_ttd'], 'struktural')
+        ]);
         $user = $this->registerRepository->storeUser($data);
-        return $this->registerRepository->storeStruktural($user, $data);
+        $this->registerRepository->storeStruktural($user, $data);
+        return $user;
     }
 }

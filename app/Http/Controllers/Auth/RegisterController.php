@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Models\UserAparatur;
+use App\Rules\PejabatStrukturalRule;
 use App\Services\RegisterService;
 use App\Traits\AuthBackend\RegistersUsers;
 use Carbon\Carbon;
@@ -66,7 +67,9 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'kab_kota_id' => ['required'],
-            'jabatan' => ['required']
+            'jabatan' => ['required'],
+            'file_ttd' => ['image','mimes:jpeg,png,jpg,gif,svg','max:2048'],
+            'file' => [new PejabatStrukturalRule()]
         ]);
     }
 

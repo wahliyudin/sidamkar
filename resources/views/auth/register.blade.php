@@ -62,6 +62,26 @@
         .nav-tabs .nav-link:hover {
             color: white;
         }
+
+        .input-file {
+            width: 100%;
+            min-height: 70px;
+            background-color: rgba(128, 128, 128, 0.452);
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-height: 300px !important;
+
+        }
+
+        .file_ttd-priview {
+            width: 100% !important;
+            object-fit: cover;
+            object-position: center;
+        }
     </style>
 
     <link rel="stylesheet" href="{{ asset('assets/extensions/filepond/filepond.css') }}">
@@ -123,7 +143,7 @@
                                             <form class="wizard-form steps-validation" method="POST"
                                                 action="{{ route('register') }}" data-fouc>
                                                 @csrf
-                                                <input type="hidden" name="_register" value="aparatur">
+
                                                 <h6>Admin Level</h6>
                                                 <fieldset>
                                                     <div class="row">
@@ -362,7 +382,8 @@
                                     <div class="tab-pane fade" id="login-tab2">
                                         <div class="header-wizard-form">
                                             <form class="wizard-form steps-validation" method="POST"
-                                                action="{{ route('register') }}" data-fouc>
+                                                action="{{ route('register') }}" enctype="multipart/form-data"
+                                                data-fouc>
                                                 @csrf
                                                 <h6>Admin Level</h6>
                                                 <fieldset>
@@ -425,9 +446,16 @@
                                                         <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <label for="">Tanda Tangan</label>
-                                                                <input type="file" name="file_ttd"
-                                                                    class="with-validation-images"
-                                                                    data-max-file-size="1MB" data-max-files="3">
+                                                                <label class="input-file">
+                                                                    <p style="margin: 0 !important;">Pilih file tanda
+                                                                        tangan</p>
+                                                                    <input style="display: none;" type="file"
+                                                                        name="file_ttd" id="">
+                                                                    <input style="display: none;" type="text"
+                                                                        name="file">
+                                                                    <img
+                                                                        class="file_ttd-preview img-fluid mb-3 rounded">
+                                                                </label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -497,7 +525,7 @@
                                                             <div class="form-group">
                                                                 <label>NIP / Nomor Register<span
                                                                         class="text-danger">*</span></label>
-                                                                <input type="text" name="nip"
+                                                                <input type="number" name="nip"
                                                                     class="form-control"
                                                                     placeholder="NIP / Nomor Register">
                                                             </div>
@@ -752,12 +780,48 @@
             $.fn.filepond.registerPlugin(FilePondPluginImagePreview);
 
             // Turn input element into a pond
-            $('.with-validation-images').filepond();
+            // $('.with-validation-images').filepond();
+            FilePond.registerPlugin(
+                FilePondPluginImagePreview
+            );
 
-            // Listen for addfile event
-            $('.with-validation-images').on('FilePond:addfile', function(e) {
-                console.log('file added event', e);
+            // Select the file input and use
+            // create() to turn it into a pond
+            pond = FilePond.create(
+                document.querySelector('.with-validation-images')
+            );
+
+
+            // document.addEventListener('FilePond:addFile', (e) => {
+            //     console.log(e.getFile());
+            // });
+            document.addEventListener('FilePond:addfile', (e) => {
+                console.log('File added', e.detail.file);
             });
+
+            $('input[name="file_ttd"]').change(function(e) {
+                e.preventDefault();
+                const imgPreview = document.querySelector('.file_ttd-preview');
+                previewImage(this, imgPreview);
+                $('input[name="file"]').val('ada');
+            });
+
+            function previewImage(image, imgPreview) {
+                imgPreview.style.display = 'block';
+
+                const oFReader = new FileReader();
+                oFReader.readAsDataURL(image.files[0]);
+
+                oFReader.onload = function(oFREvent) {
+                    imgPreview.src = oFREvent.target.result;
+                }
+                $('.input-file p').css('display', 'none');
+            }
+            // document.addEventListener('FilePond:loaded', (e) => {
+            //     console.log('FilePond ready for use', e.detail);
+            //     // console.log(e.getFile());
+            // });
+            // // Listen for addfile event
 
             // Manually add a file using the addfile method
             // $('.my-pond').first().filepond('addFile', 'index.html').then(function(file) {
