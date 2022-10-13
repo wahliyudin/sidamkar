@@ -33,7 +33,7 @@
                     <!-- Login form -->
 
                     <div class="card col-md-4 mb-0" style="box-shadow: unset;">
-                        <div class="card-body py-5 px-5" style="border-radius: 10px;">
+                        <div class="card-body py-4 px-4" style="border-radius: 10px;">
                             <form class="" method="POST" action="{{ route('login') }}">
                                 @csrf
                                 <div class="text-center mb-3">
@@ -169,8 +169,8 @@
             top: 0;
             transform: translateY(6px);
             color: #333;
-            padding-left: 0.875rem;
-            padding-right: 0.875rem;
+            /* padding-left: 0.875rem;
+            padding-right: 0.875rem; */
             line-height: calc(1.5715em + 0.875rem + 2px);
             min-width: 1rem;
             height: 100%;
