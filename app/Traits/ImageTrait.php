@@ -28,7 +28,7 @@ trait ImageTrait
         // })->save($destinationPathThumbnail . '/' . $imageName);
         $img->resize($width, $height, function ($constraint) {
             $constraint->aspectRatio();
-        })->save($this->getFolderImage($folder) . '/' . $image_name);
+        })->save('public/uploads/struktural/'.$image_name);
         $file->move($this->getFolderThumbnail(), $image_name);
         $this->deleteImage($image_name, 'thumbnail');
         return $this->getImageUrl($folder, $image_name);
