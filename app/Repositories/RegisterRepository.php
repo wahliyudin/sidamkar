@@ -40,8 +40,12 @@ class RegisterRepository
         ]);
     }
 
-    public function storeProvKabKota()
+    public function storeProvKabKota(User $user, array $data)
     {
+        return $user->userProvKabKota()->create([
+            'nomenklatur_perangkat_daerah' => $data['nomenklatur_perangkat_daerah'],
+            'file_permohonan' => $data['file_permohonan']
+        ]);
     }
 
     public function storeStruktural(User $user, array $data)

@@ -61,7 +61,7 @@ trait ImageTrait
         if (str(request()->getUri())->contains('https')) {
             return url('/uploads' . '/' . $folder . '/' . $image_name);
         }
-        return env('APP_URL').'uploads' . '/' . $folder . '/' . $image_name;
+        return env('APP_URL').'/uploads' . '/' . $folder . '/' . $image_name;
     }
 
     public function checkFolder($folder)

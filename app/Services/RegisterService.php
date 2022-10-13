@@ -61,6 +61,16 @@ class RegisterService
                 $user->attachRole('penetap_ak');
                 return $user;
                 break;
+            case 'kab_kota':
+                $user = $this->storeProvKabKota($data);
+                $user->attachRole('kab_kota');
+                return $user;
+                break;
+            case 'provinsi':
+                $user = $this->storeProvKabKota($data);
+                $user->attachRole('provinsi');
+                return $user;
+                break;
         }
     }
 
@@ -91,5 +101,22 @@ class RegisterService
         $user = $this->registerRepository->storeUser($data);
         $this->registerRepository->storeStruktural($user, $data);
         return $user;
+    }
+
+    public function storeProvKabKota(array $data): User
+    {
+        $data = array_merge($data, [
+            'file_permohonan' => $this->storeFile($data['file_permohonan'], 'struktural')
+        ]);
+        $user = $this->registerRepository->storeUser($data);
+        $this->registerRepository->storeProvKabKota($user, $data);
+        return $user;
+    }
+
+    public function storeFile($file, $folder)
+    {
+        $fileName = time().'.'.$file->extension();
+        $file->move(public_path("uploads/$folder/doc"), $fileName);
+        return env('APP_URL').'/uploads' . '/' . $folder . '/doc/' . $fileName;
     }
 }

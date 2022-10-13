@@ -44,5 +44,7 @@
             // });
 
         });
+        // sessionStorage.setItem("nama", "wahli");
+        console.log(sessionStorage.getItem("nama"));
     </script>
 @endsection
