@@ -17,11 +17,15 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->string('nama');
-            $table->integer('pangkat_golongan_tmt');
+            $table->string('pangkat_golongan_tmt');
             $table->string('nomenklatur_jabatan');
             $table->bigInteger('nip');
-            $table->string('foto_pegawai');
-            $table->string('file_sk_penilai_ak');
+            $table->string('tempat_lahir');
+            $table->date('tanggal_lahir');
+            $table->enum('jenis_kelamin', ['P', 'L']);
+            $table->integer('pendidikan_terakhir'); // Enum
+            $table->string('foto_pegawai')->nullable();
+            $table->string('file_sk_penilai_ak')->nullable();
             $table->string('file_ttd');
             $table->timestamps();
 
