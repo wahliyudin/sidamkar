@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Register</title>
+    <title>Daftar</title>
     <link rel="shortcut icon" href="{{ asset('assets/images/template/logo.png') }}" type="image/x-icon">
     <link rel="shortcut icon" href="{{ asset('assets/images/template/logo.png') }}" type="image/png">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet"
@@ -120,27 +120,27 @@
                         <div class="form-wrapper d-flex justify-content-center align-items-center">
 
                             <!-- Login form -->
-                            <div class="card mb-0 overflow-hidden" style="border-radius: 10px">
+                            <div class="card mb-0 overflow-hidden" style="border-radius: 10px; position: relative;">
                                 <ul class="nav nav-tabs nav-justified bg-light rounded-top mb-0">
                                     <li class="nav-item">
                                         <a href="#login-tab1"
                                             class="h-100 nav-link border-y-0 border-left-0 active d-flex justify-content-center align-items-center"
                                             data-toggle="tab">
-                                            <h6 class="my-1">Register Pejabat Fungsional</h6>
+                                            <h6 class="my-1">Daftar Pejabat Fungsional</h6>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="#login-tab2"
                                             class="h-100 nav-link border-y-0 border-right-0 d-flex justify-content-center align-items-center"
                                             data-toggle="tab">
-                                            <h6 class="my-1">Register Pejabat Struktural</h6>
+                                            <h6 class="my-1">Daftar Pejabat Struktural</h6>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="#login-tab3"
                                             class="h-100 nav-link border-y-0 border-right-0 d-flex justify-content-center align-items-center"
                                             data-toggle="tab">
-                                            <h6 class="my-1">Register Admin Prov & Kab/kota</h6>
+                                            <h6 class="my-1">Daftar Admin Prov & Kab/kota</h6>
                                         </a>
                                     </li>
 
@@ -259,11 +259,11 @@
 
                                                         <div class="col-md-4">
                                                             <div class="form-group">
-                                                                <label>NIP / Nomor Register<span
+                                                                <label>NIP / Nomor Daftar<span
                                                                         class="text-danger">*</span></label>
                                                                 <input type="number" name="nip"
                                                                     class="form-control"
-                                                                    placeholder="NIP / Nomor Register">
+                                                                    placeholder="NIP / Nomor Daftar">
                                                             </div>
                                                         </div>
 
@@ -537,11 +537,11 @@
 
                                                         <div class="col-md-3">
                                                             <div class="form-group">
-                                                                <label>NIP / Nomor Register<span
+                                                                <label>NIP / Nomor Daftar<span
                                                                         class="text-danger">*</span></label>
                                                                 <input type="number" name="nip"
                                                                     class="form-control"
-                                                                    placeholder="NIP / Nomor Register">
+                                                                    placeholder="NIP / Nomor Daftar">
                                                             </div>
                                                         </div>
 
@@ -795,6 +795,10 @@
                                         </div>
                                         <!-- /wizard with validation -->
                                     </div>
+                                </div>
+
+                                <div class="px-4" style="position: absolute; bottom: 1rem;">
+                                    <p>Sudah memiliki akun?<a href="{{ route('login') }}"> Masuk </a></p>
                                 </div>
                             </div>
                         </div>

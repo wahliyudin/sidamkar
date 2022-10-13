@@ -4,8 +4,41 @@
     <section class="section">
         <div class="row">
             <div class="card">
+                <div class="row justify-content-evenly mt-4">
+                    <div class="col-md-3 col-6 py-2">
+                        <div class="d-flex align-items-center">
+                            <button class="btn btn-purple-reverse ms-3 px-3 text-sm" type="button">tindak
+                                lanjut</button>
+                            <span class="text-xl mx-2">:</span>
+                            <span class="text-xl">1</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6 py-2">
+                        <div class="d-flex align-items-center">
+                            <button class="btn btn-yellow-reverse btn-status ms-3 px-3 text-sm"
+                                type="button">diproses</button>
+                            <span class="text-xl mx-2">:</span>
+                            <span class="text-xl">1</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6 py-2">
+                        <div class="d-flex align-items-center">
+                            <button class="btn btn-red-reverse btn-status ms-3 px-3 text-sm" type="button">revisi</button>
+                            <span class="text-xl mx-2">:</span>
+                            <span class="text-xl">1</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6 py-2">
+                        <div class="d-flex align-items-center">
+                            <button class="btn btn-green-reverse btn-status ms-3 px-3 text-sm"
+                                type="button">selesai</button>
+                            <span class="text-xl mx-2">:</span>
+                            <span class="text-xl">12</span>
+                        </div>
+                    </div>
+                </div>
                 <div class="card-header">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="row justify-content-between align-items-center">
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="basicInput">Periode</label>
@@ -260,29 +293,7 @@
                 </div>
             </div>
         </div>
-        <div class="d-flex justify-content-evenly mt-5">
-            <div class="d-flex align-items-center">
-                <button class="btn btn-purple-reverse ms-3 px-3 text-sm" type="button">tindak
-                    lanjut</button>
-                <span class="text-xl mx-2">:</span>
-                <span class="text-xl">1</span>
-            </div>
-            <div class="d-flex align-items-center">
-                <button class="btn btn-yellow-reverse btn-status ms-3 px-3 text-sm" type="button">diproses</button>
-                <span class="text-xl mx-2">:</span>
-                <span class="text-xl">1</span>
-            </div>
-            <div class="d-flex align-items-center">
-                <button class="btn btn-red-reverse btn-status ms-3 px-3 text-sm" type="button">revisi</button>
-                <span class="text-xl mx-2">:</span>
-                <span class="text-xl">1</span>
-            </div>
-            <div class="d-flex align-items-center">
-                <button class="btn btn-green-reverse btn-status ms-3 px-3 text-sm" type="button">selesai</button>
-                <span class="text-xl mx-2">:</span>
-                <span class="text-xl">12</span>
-            </div>
-        </div>
+
     </section>
     <div class="modal fade" id="tindakLanjut" tabindex="-1" role="dialog" aria-labelledby="tindakLanjutTitle"
         aria-hidden="true">
@@ -315,7 +326,7 @@
 
                         <div class="text-center mt-4">
                             <button class="btn btn-danger px-5" data-bs-dismiss="modal">Batal</button>
-                            <a class="btn btn-blue px-5" href="{{ route('daftar-laporan-kegiatan') }}">Kirim</a>
+                            <a class="btn btn-blue px-5" href="{{ route('laporan-kegiatan') }}">Kirim</a>
                         </div>
                     </div>
                 </div>
@@ -504,7 +515,7 @@
 
                         <div class="text-center mt-4">
                             <button class="btn btn-danger px-5" data-bs-dismiss="modal">Batal</button>
-                            <a class="btn btn-blue px-5" href="{{ route('daftar-laporan-kegiatan') }}">Kirim</a>
+                            <a class="btn btn-blue px-5" href="{{ route('laporan-kegiatan') }}">Kirim</a>
                         </div>
                     </div>
                 </div>

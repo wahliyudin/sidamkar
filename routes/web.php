@@ -24,13 +24,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('coba');
+    // return view('coba');
     return redirect()->route('login');
 });
 Auth::routes(['verify' => true]);
 
 Route::middleware(['auth'])->group(function () {
-    Route::middleware(['role:damkar,analis_kebakaran'])->group(function () {
+    Route::middleware(['role:damkar|analis_kebakaran'])->group(function () {
         Route::get('/overview', [OverviewController::class, 'index'])->name('overview');
         Route::get('/data-saya', [DataSayaController::class, 'index'])->name('data-saya');
         Route::get('/daftar-kegiatan', [DaftarKegiatanController::class, 'index'])->name('daftar-kegiatan');
