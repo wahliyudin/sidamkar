@@ -44,7 +44,7 @@
                         </a>
                     </li>
                     <li
-                        class="sidebar-item {{ request()->routeIs('laporan-kegiatan') || request()->routeIs('daftar-laporan-kegiatan') ? 'active' : '' }}">
+                        class="sidebar-item {{ request()->routeIs('laporan-kegiatan') || request()->routeIs('laporan-kegiatan') ? 'active' : '' }}">
                         <a href="{{ route('laporan-kegiatan') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="fa-regular fa-rectangle-list"></i>

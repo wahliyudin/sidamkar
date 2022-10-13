@@ -25,6 +25,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        // return User::query()->with('kabKota.provinsi')->find(Auth::user()->id);
+        if (auth()->user()->hasRole('damkar') || auth()->user()->hasRole('analis_kebakaran')) {
+            return to_route('overview');
+        } elseif (auth()->user()->hasRole('kab_kota')) {
+            return to_route('kab-kota.overview');
+        } elseif (auth()->user()->hasRole('provinsi')) {
+            return to_route('home');
+        } else {
+            return view('home');
+        }
     }
 }

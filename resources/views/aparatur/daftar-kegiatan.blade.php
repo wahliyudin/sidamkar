@@ -2,22 +2,6 @@
 @section('content')
     <section class="section">
         <div class="row badge-container">
-            {{--  <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body py-3" style="height: 100px;">
-                        <div class="d-flex align-items-center h-100">
-                            <div class="circle circle-green-light">
-                                <i class="fa-solid fa-bullseye"></i>
-                            </div>
-                            <div class="d-flex flex-column ms-2">
-                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto';">Target Angka Kredit
-                                </p>
-                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target">100</h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>  --}}
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body py-3" style="height: 100px;">
@@ -59,9 +43,11 @@
         <div class="row">
             <div class="card">
                 <div class="card-header">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h4 class="text-center" style="font-family: 'Roboto'; color: #17181A;">Kegiatan</h4>
-                        <div class="col-md-4">
+                    <div class="row justify-content-between align-items-center">
+                        <div class="col-md-4 d-flex justify-content-start">
+                            <h4 class="text-center" style="font-family: 'Roboto'; color: #17181A;">Kegiatan</h4>
+                        </div>
+                        <div class="col-md-4 col-12">
                             <div class="form-group">
                                 <label>Search</label>
                                 <input type="text" placeholder="Search..." class="form-control">
