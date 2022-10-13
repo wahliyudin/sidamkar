@@ -24,9 +24,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    // $str = str('http://127.0.0.1:8000/email/verify/18/8d286541e30e20aa8de7b6a9c354a54c76b1a080?expires=1665566668&signature=96074bc965ebd6546da114cfd65e0694b4797b5f366cca4a537a332371e3ec94')->explode('/')[5];
-    // dd(str('http://127.0.0.1:8000/email/verify/18/8d286541e30e20aa8de7b6a9c354a54c76b1a080?expires=1665566668&signature=96074bc965ebd6546da114cfd65e0694b4797b5f366cca4a537a332371e3ec94')->replace('http://localhost',
-    // env('APP_URL'))->replace('/'.$str,'/'.Crypt::encrypt($str)));
     return redirect()->route('login');
 });
 Auth::routes(['verify' => true]);
