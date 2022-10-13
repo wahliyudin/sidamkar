@@ -3,101 +3,193 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="{{ asset('assets/css/pages/auth.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/main/app.css') }}">
-    <link rel="shortcut icon" href="{{ asset('assets/images/template/logo.png') }}" type="image/x-icon">
-    <link rel="shortcut icon" href="{{ asset('assets/images/template/logo.png') }}" type="image/png">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('assets/extensions/toastify-js/src/toastify.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet"
+        type="text/css">
+    <link href="{{ asset('assets/css/auth/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/auth/all.min.css') }}" rel="stylesheet" type="text/css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Viga&display=swap" rel="stylesheet">
+    <link href="{{ asset('assets/css/auth/fontawesome/styles.min.css') }}" rel="stylesheet" type="text/css">
 </head>
 
 <body>
-    <div id="auth">
-        <div class="row h-100">
-            <div class="col-lg-6 d-none d-lg-block">
-                <div id="auth-right">
-                    <h1 data-aos="fade-right" data-aos-duration="2000" class="text-white login-title">Sistem Informasi
-                        Jabatan Fungsional DAMKAR
-                    </h1>
-                </div>
-            </div>
-            <div class="col-lg-6 col-12">
-                <div id="auth-left">
-                    <div class="auth-logo">
-                        <a href="">
-                            <img src="{{ asset('assets/images/template/logo.png') }}" alt="Logo">
-                        </a>
-                    </div>
-                    <div class="form">
-                        <form method="POST" action="{{ route('login') }}">
-                            @csrf
-                            <div class="form-group position-relative has-icon-left mb-4">
-                                <input type="text"
-                                    class="form-control form-control-xl @error('username') is-invalid @enderror"
-                                    placeholder="Username" value="{{ old('username') }}" name="username" required
-                                    autocomplete="none">
-                                <div class="form-control-icon">
-                                    <i class="bi bi-person"></i>
-                                </div>
-                                @error('username')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="form-group position-relative has-icon-left mb-4">
-                                <input type="password"
-                                    class="form-control form-control-xl @error('password') is-invalid @enderror"
-                                    placeholder="Password" name="password" required>
-                                <div class="form-control-icon">
-                                    <i class="bi bi-shield-lock"></i>
-                                </div>
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="form-check form-check-lg d-flex align-items-end">
-                                <input class="form-check-input me-2" type="checkbox"
-                                    {{ old('remember') ? 'checked' : '' }} name="remember" value=""
-                                    id="flexCheckDefault">
-                                <label class="form-check-label text-gray-600" for="flexCheckDefault">
-                                    Remamber Me
-                                </label>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-block btn-lg mt-3">Log in</button>
-                            {{-- <div class="d-flex flex-column mt-2">
-                                <a style="font-size: 14px;" href="">Register Admin Provinsi, Kab/Kota</a>
-                                <a style="font-size: 14px;" href="">Register Aparatur</a>
-                            </div> --}}
-                        </form>
-                    </div>
-                    {{-- <div class="text-center mt-5 text-lg fs-4">
-                        <p class="text-gray-600">Don't have an account? <a href="auth-register.html"
-                                class="font-bold">Sign
-                                up</a>.</p>
-                        <p><a class="font-bold" href="auth-forgot-password.html">Forgot password?</a>.</p>
-                    </div> --}}
-                </div>
-            </div>
+    <div class="page-content">
 
-            <img style="position: absolute; bottom: 0;"
-                src="{{ asset('assets/images/template/glombang-2.png') }}"alt="">
-            <img style="position: absolute; bottom: 0;" src="{{ asset('assets/images/template/glombang-1.png') }}"
-                alt="">
+        <!-- Main content -->
+        <div class="content-wrapper">
+
+            <!-- Inner content -->
+            <div class="content-inner">
+
+                <!-- Content area -->
+                <div class="content row justify-content-center align-items-center">
+
+                    <!-- Login form -->
+
+                    <div class="card col-md-4 mb-0" style="box-shadow: unset;">
+                        <div class="card-body py-5 px-5" style="border-radius: 10px;">
+                            <form class="" method="POST" action="{{ route('login') }}">
+                                @csrf
+                                <div class="text-center mb-3">
+                                    <img class="logo" src="{{ asset('assets/images/template/logo.png') }}"
+                                        alt="">
+                                    <h5 class="header-login mb-0">SISTEM INFORMASI DAMKAR</h5>
+                                    <span class="bot-login d-block text-muted">Silahkan Masuk, Menggunakan Akun
+                                        Damkar</span>
+                                </div>
+
+                                <div class="form-group mt-4 form-group-feedback form-group-feedback-left">
+                                    <input type="text" class="form-control @error('username') is-invalid @enderror"
+                                        placeholder="Username" name="username" value="{{ old('username') }}" required
+                                        autocomplete="none" style="padding-bottom: 1.5rem; padding-top: 1.5rem;">
+                                    <div class="form-control-feedback">
+                                        <i class="icon-user text-muted"></i>
+                                    </div>
+                                    @error('username')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group form-group-feedback form-group-feedback-left">
+                                    <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                        placeholder="Password" name="password" required
+                                        style="padding-bottom: 1.5rem; padding-top: 1.5rem;">
+                                    <div class="form-control-feedback">
+                                        <i class="icon-lock2 text-muted"></i>
+                                    </div>
+                                    <div class="show-hide">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </div>
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+                                </div>
+
+                                <div class="text-center">
+                                    <p>Belum memiliki akun?<a href="{{ route('register') }}"> Daftar </a></p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /login form -->
+
+                </div>
+                <!-- /content area -->
+
+
+
+            </div>
+            <!-- /inner content -->
+
+
         </div>
-    </div>
+        <!-- /main content -->
+        <img style="position: absolute; bottom: 0; z-index: -1; max-width: 100vw;"
+            src="{{ asset('assets/images/template/glombang-2.png') }}"alt="">
+        <img style="position: absolute; bottom: 0; z-index: -1; max-width: 100vw;"
+            src="{{ asset('assets/images/template/glombang-1.png') }}" alt="">
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init();
-    </script>
+    </div>
+    <!-- /page content -->
+
+
+
+
     <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/js/auth/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/js/auth/app.js') }}"></script>
+    <script src="{{ asset('assets/js/auth/plugins/forms/wizards/steps.min.js') }}"></script>
+    <script src="{{ asset('assets/js/auth/plugins/forms/inputs/inputmask.js') }}"></script>
+    <script src="{{ asset('assets/js/auth/plugins/forms/validation/validate.min.js') }}"></script>
+    <script src="{{ asset('assets/js/auth/plugins/extensions/cookie.js') }}"></script>
+    <script src="{{ asset('assets/js/auth/form_wizard.js') }}"></script>
+
+    <script src="{{ asset('assets/extensions/filepond/filepond.js') }}"></script>
+    <script src="{{ asset('assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js') }}">
+    </script>
+    <script src="{{ asset('assets/extensions/filepond/filepond.jquery.js') }}"></script>
+    <style>
+        .header-login {
+            font-size: 25px;
+            font-family: 'Viga', sans-serif;
+        }
+
+        .logo {
+            height: 150px;
+            margin-bottom: 10px;
+        }
+
+        .form-control {
+            background-color: #224957;
+            color: #fff;
+        }
+
+        .form-control::-webkit-input-placeholder {
+            background-color: #224957;
+            color: #fff;
+        }
+
+        .form-group {
+            color: #fff;
+        }
+
+        .bot-login {
+            font-size: 12px;
+        }
+
+        .card {
+            background-color: transparent !important;
+            border: none !important;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            border-radius: 10px;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .card .card-body {
+            background-color: white;
+        }
+
+        .form-control-feedback {
+            position: absolute;
+            top: 0;
+            transform: translateY(6px);
+            color: #333;
+            padding-left: 0.875rem;
+            padding-right: 0.875rem;
+            line-height: calc(1.5715em + 0.875rem + 2px);
+            min-width: 1rem;
+            height: 100%;
+        }
+
+        .content-inner {
+            overflow-x: hidden !important;
+        }
+
+        @media screen and (max-width:750px) {
+            .card-body {
+                padding: 2rem 1rem !important;
+            }
+
+            h5 {
+                font-size: 20px;
+            }
+        }
+    </style>
     <script src="{{ asset('assets/extensions/toastify-js/src/toastify.js') }}"></script>
     @if (session('message'))
         <script>
@@ -124,5 +216,6 @@
         </script>
     @endif
 </body>
+
 
 </html>
