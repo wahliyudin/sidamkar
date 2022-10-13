@@ -24,7 +24,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    // return view('coba');
     return redirect()->route('login');
 });
 Auth::routes(['verify' => true]);
