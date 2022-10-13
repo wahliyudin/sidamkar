@@ -16,6 +16,10 @@ class UserPejabatStruktural extends Model
         'pangkat_golongan_tmt',
         'nomenklatur_jabatan',
         'nip',
+        'tempat_lahir',
+        'tanggal_lahir',
+        'jenis_kelamin',
+        'pendidikan_terakhir',
         'foto_pegawai',
         'file_sk_penilai_ak',
         'file_ttd'

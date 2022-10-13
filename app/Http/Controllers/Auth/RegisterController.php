@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Models\UserAparatur;
+use App\Services\RegisterService;
 use App\Traits\AuthBackend\RegistersUsers;
 use Carbon\Carbon;
 use Faker\Provider\UserAgent;
@@ -34,13 +35,16 @@ class RegisterController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
+    private RegisterService $registerService;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(RegisterService $registerService)
     {
+        $this->registerService = $registerService;
         $this->middleware('guest');
     }
 
@@ -61,7 +65,8 @@ class RegisterController extends Controller
             'username' => ['required', 'string', 'max:255', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'kab_kota_id' => ['required']
+            'kab_kota_id' => ['required'],
+            'jabatan' => ['required']
         ]);
     }
 
@@ -73,43 +78,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $user = [
-            'email' => $data['email'],
-            'username' => $data['username'],
-            'password' => Hash::make($data['password']),
-            'kab_kota_id' => $data['kab_kota_id']
-        ];
-        if (isset($data['jabatan']) == 'damkar') {
-            $user = User::create($user);
-            $user->attachRole('damkar');
-            $user->userAparatur()->create([
-                'nama'                  => $data['nama'],
-                'jenjang'               => $data['jenjang'],
-                'nip'                   => $data['nip'],
-                'pangkat_golongan_tmt'  => $data['pangkat_golongan_tmt'],
-                'tempat_lahir'          => $data['tempat_lahir'],
-                'tanggal_lahir'         => Carbon::createFromFormat('Y-m-d', $data['tanggal_lahir'])->format('Y-m-d'),
-                'jenis_kelamin'         => $data['jenis_kelamin'],
-                'pendidikan_terakhir'   => $data['pendidikan_terakhir'],
-                'nomor_karpeg'          => $data['nomor_karpeg'],
-            ]);
-            return $user;
-        }
-        if (isset($data['jabatan']) == 'analis_kebakaran') {
-            $user = User::create($user);
-            $user->attachRole('analis_kebakaran');
-            $user->userAparatur()->create([
-                'nama'                  => $data['nama'],
-                'jenjang'               => $data['jenjang'],
-                'nip'                   => $data['nip'],
-                'pangkat_golongan_tmt'  => $data['pangkat_golongan_tmt'],
-                'tempat_lahir'          => $data['tempat_lahir'],
-                'tanggal_lahir'         => Carbon::createFromFormat('Y-m-d', $data['tanggal_lahir'])->format('Y-m-d'),
-                'jenis_kelamin'         => $data['jenis_kelamin'],
-                'pendidikan_terakhir'   => $data['pendidikan_terakhir'],
-                'nomor_karpeg'          => $data['nomor_karpeg'],
-            ]);
-            return $user;
-        }
+        return $this->registerService->store($data);
     }
 }

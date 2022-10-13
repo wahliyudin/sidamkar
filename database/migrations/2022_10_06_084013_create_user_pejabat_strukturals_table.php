@@ -20,6 +20,10 @@ return new class extends Migration
             $table->integer('pangkat_golongan_tmt');
             $table->string('nomenklatur_jabatan');
             $table->bigInteger('nip');
+            $table->string('tempat_lahir');
+            $table->date('tanggal_lahir');
+            $table->enum('jenis_kelamin', ['P', 'L']);
+            $table->integer('pendidikan_terakhir'); // Enum
             $table->string('foto_pegawai');
             $table->string('file_sk_penilai_ak');
             $table->string('file_ttd');
