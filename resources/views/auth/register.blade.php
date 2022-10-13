@@ -120,7 +120,6 @@
                                     <div class="tab-pane fade show active" id="login-tab1">
                                         <!-- Wizard with validation -->
                                         <div class="header-wizard-form">
-
                                             <form class="wizard-form steps-validation" method="POST"
                                                 action="{{ route('register') }}" data-fouc>
                                                 @csrf
@@ -226,7 +225,6 @@
                                                                     <option value="P">Perempuan</option>
                                                                 </select>
                                                             </div>
-
                                                         </div>
 
                                                         <div class="col-md-4">
@@ -369,7 +367,7 @@
                                                 <h6>Admin Level</h6>
                                                 <fieldset>
                                                     <div class="row">
-                                                        <div class="col-md-3">
+                                                        <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <label>Tingkat Admin<span
                                                                         class="text-danger">*</span></label>
@@ -384,7 +382,7 @@
                                                                 </select>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-3">
+                                                        <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <label>Provinsi<span
                                                                         class="text-danger">*</span></label>
@@ -404,7 +402,7 @@
                                                                 @enderror
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-3">
+                                                        <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <label>Kabupaten / Kota<span
                                                                         class="text-danger">*</span></label>
@@ -420,14 +418,7 @@
                                                                 @enderror
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <label>Nomenklatur Perangkat Daerah<span
-                                                                        class="text-danger">*</span></label>
-                                                                <input type="number" class="form-control"
-                                                                    name="nomenklatur_jabatan" id="">
-                                                            </div>
-                                                        </div>
+
                                                     </div>
 
                                                     <div class="row justify-content-center">
@@ -439,14 +430,13 @@
                                                                     data-max-file-size="1MB" data-max-files="3">
                                                             </div>
                                                         </div>
-
                                                     </div>
                                                 </fieldset>
 
                                                 <h6>Personal data</h6>
                                                 <fieldset>
                                                     <div class="row">
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label>Nama Lengkap <span
                                                                         class="text-danger">*</span></label>
@@ -455,7 +445,7 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label>Tempat Lahir<span
                                                                         class="text-danger">*</span></label>
@@ -464,7 +454,7 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label>Tanggal Lahir<span
                                                                         class="text-danger">*</span></label>
@@ -472,10 +462,23 @@
                                                                     class="form-control" placeholder="Tanggal Lahir">
                                                             </div>
                                                         </div>
+
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label>Jenis Kelamin<span
+                                                                        class="text-danger">*</span></label>
+                                                                <select name="jenis_kelamin" class="custom-select">
+                                                                    <option selected disabled>- Pilih Jenis Kelamin -
+                                                                    </option>
+                                                                    <option value="L">Laki - Laki</option>
+                                                                    <option value="P">Perempuan</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
                                                     </div>
 
                                                     <div class="row">
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label>Pendidikan Terakhir<span
                                                                         class="text-danger">*</span></label>
@@ -490,17 +493,17 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label>NIP / Nomor Register<span
                                                                         class="text-danger">*</span></label>
-                                                                <input type="text" name="NIP"
+                                                                <input type="text" name="nip"
                                                                     class="form-control"
                                                                     placeholder="NIP / Nomor Register">
                                                             </div>
                                                         </div>
 
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label>Pangkat / Golongan / TMT<span
                                                                         class="text-danger">*</span></label>
@@ -516,6 +519,14 @@
                                                                     <option value="IVC">IVC</option>
                                                                     <option value="IVD">IVD</option>
                                                                 </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label>Nomenklatur Perangkat Daerah<span
+                                                                        class="text-danger">*</span></label>
+                                                                <input type="number" class="form-control"
+                                                                    name="nomenklatur_jabatan" id="">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -584,6 +595,7 @@
                                         </div>
                                         <!-- /remote content source -->
                                     </div>
+
                                     <div class="tab-pane fade" id="login-tab3">
                                         <!-- Wizard with validation -->
                                         <div class="header-wizard-form">

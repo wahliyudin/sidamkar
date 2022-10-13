@@ -91,7 +91,7 @@ class RegisterController extends Controller
                 'tanggal_lahir'         => Carbon::createFromFormat('Y-m-d', $data['tanggal_lahir'])->format('Y-m-d'),
                 'jenis_kelamin'         => $data['jenis_kelamin'],
                 'pendidikan_terakhir'   => $data['pendidikan_terakhir'],
-                'nomor_karpeg'   => $data['nomor_karpeg'],
+                'nomor_karpeg'          => $data['nomor_karpeg'],
             ]);
             return $user;
         }
@@ -99,15 +99,15 @@ class RegisterController extends Controller
             $user = User::create($user);
             $user->attachRole('analis_kebakaran');
             $user->userAparatur()->create([
-                'nama' => $data['nama'],
-                'jenjang' => $data['jenjang'],
-                'nip' => $data['nip'],
-                'pangkat_golongan_tmt' => $data['pangkat_golongan_tmt'],
-                'tempat_lahir' => $data['tempat_lahir'],
-                'tanggal_lahir' => Carbon::createFromFormat('Y-m-d', $data['tanggal_lahir'])->format('Y-m-d'),
-                'jenis_kelamin' => $data['jenis_kelamin'],
-                'pendidikan_terakhir' => $data['pendidikan_terakhir'],
-                'nomor_karpeg' => $data['nomor_karpeg'],
+                'nama'                  => $data['nama'],
+                'jenjang'               => $data['jenjang'],
+                'nip'                   => $data['nip'],
+                'pangkat_golongan_tmt'  => $data['pangkat_golongan_tmt'],
+                'tempat_lahir'          => $data['tempat_lahir'],
+                'tanggal_lahir'         => Carbon::createFromFormat('Y-m-d', $data['tanggal_lahir'])->format('Y-m-d'),
+                'jenis_kelamin'         => $data['jenis_kelamin'],
+                'pendidikan_terakhir'   => $data['pendidikan_terakhir'],
+                'nomor_karpeg'          => $data['nomor_karpeg'],
             ]);
             return $user;
         }

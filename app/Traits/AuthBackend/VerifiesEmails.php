@@ -37,7 +37,9 @@ trait VerifiesEmails
     public function verify(Request $request)
     {
         if (Auth::user() == null) {
-            Auth::login(User::query()->find($request->route('id')));
+            $user = User::query()->find($request->route('id'));
+            if (is_null($user)) throw new AuthorizationException;
+            Auth::login($user);
         }
         if (! hash_equals((string) $request->route('id'), (string) $request->user()->getKey())) {
             throw new AuthorizationException;
@@ -54,6 +56,8 @@ trait VerifiesEmails
         }
         if ($request->user()->markEmailAsVerified()) {
             event(new Verified($request->user()));
+            Auth::logout();
+            return redirect('login')->with('success', 'Berhasil verifikasi email');
         }
 
         if ($response = $this->verified($request)) {

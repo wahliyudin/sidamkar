@@ -35,37 +35,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/daftar-kegiatan', [DaftarKegiatanController::class, 'index'])->name('daftar-kegiatan');
         Route::get('/tabel-kegiatan', [TabelKegiatanController::class, 'index'])->name('tabel-kegiatan');
         Route::get('/laporan-kegiatan', [LaporanKegiatanController::class, 'index'])->name('laporan-kegiatan');
-
-        Route::get('/daftar-laporan-kegiatan', function () {
-            return view('daftar-laporan-kegiatan');
-        })->name('daftar-laporan-kegiatan');
-        Route::get('/butir-kegiatan', function () {
-            return view('butir-kegiatan');
-        })->name('butir-kegiatan');
-        Route::get('/revisi-laporan-kegiatan', function () {
-            return view('revisi-laporan-kegiatan');
-        })->name('revisi-laporan-kegiatan');
-        Route::get('/verifikasi-data', function () {
-            return view('verifikasi-data');
-        })->name('verifikasi-data');
-        Route::get('/detail-data-aparatur', function () {
-            return view('detail-data-aparatur');
-        })->name('detail-data-aparatur');
-        Route::get('/data-aparatur', function () {
-            return view('data-aparatur');
-        })->name('data-aparatur');
-        Route::get('/data-pejabat-struktural', function () {
-            return view('data-pejabat-struktural');
-        })->name('data-pejabat-struktural');
-        Route::get('/detail-data-pejabat-struktural', function () {
-            return view('detail-data-pejabat-struktural');
-        })->name('detail-data-pejabat-struktural');
-        Route::get('/lampiran-kegiatan', function () {
-            return view('lampiran-kegiatan');
-        })->name('lampiran-kegiatan');
-        Route::get('/data-pengajuan-laporan-kegiatan', function () {
-            return view('data-pengajuan-laporan-kegiatan');
-        })->name('data-pengajuan-laporan-kegiatan');
     });
     Route::middleware(['role:kab_kota'])->group(function () {
         Route::get('kab-kota/overview', [KabKotaOverviewController::class, 'index'])->name('kab-kota.overview');
