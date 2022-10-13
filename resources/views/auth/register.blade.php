@@ -66,7 +66,7 @@
         .input-file {
             width: 100%;
             min-height: 70px;
-            background-color: rgba(128, 128, 128, 0.452);
+            background-color: rgba(128, 128, 128, 0.205);
             border-radius: 10px;
             overflow: hidden;
             cursor: pointer;
@@ -74,7 +74,11 @@
             justify-content: center;
             align-items: center;
             max-height: 300px !important;
+        }
 
+        .input-file .icon {
+            display: flex;
+            flex-direction: column;
         }
 
         .file_ttd-priview {
@@ -88,6 +92,7 @@
     <link rel="stylesheet"
         href="{{ asset('assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/pages/filepond.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/extensions/fontawesome/all.min.css') }}" />
 </head>
 
 <body>
@@ -115,24 +120,29 @@
                         <div class="form-wrapper d-flex justify-content-center align-items-center">
 
                             <!-- Login form -->
-
                             <div class="card mb-0 overflow-hidden" style="border-radius: 10px">
                                 <ul class="nav nav-tabs nav-justified bg-light rounded-top mb-0">
-                                    <li class="nav-item"><a href="#login-tab1"
+                                    <li class="nav-item">
+                                        <a href="#login-tab1"
                                             class="h-100 nav-link border-y-0 border-left-0 active d-flex justify-content-center align-items-center"
                                             data-toggle="tab">
-                                            <h6 class="my-1">Register Aparatur</h6>
-                                        </a></li>
-                                    <li class="nav-item"><a href="#login-tab2"
+                                            <h6 class="my-1">Register Pejabat Fungsional</h6>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#login-tab2"
                                             class="h-100 nav-link border-y-0 border-right-0 d-flex justify-content-center align-items-center"
                                             data-toggle="tab">
                                             <h6 class="my-1">Register Pejabat Struktural</h6>
-                                        </a></li>
-                                    <li class="nav-item"><a href="#login-tab3"
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#login-tab3"
                                             class="h-100 nav-link border-y-0 border-right-0 d-flex justify-content-center align-items-center"
                                             data-toggle="tab">
                                             <h6 class="my-1">Register Admin Prov & Kab/kota</h6>
-                                        </a></li>
+                                        </a>
+                                    </li>
 
                                 </ul>
 
@@ -447,12 +457,16 @@
                                                             <div class="form-group">
                                                                 <label for="">Tanda Tangan</label>
                                                                 <label class="input-file">
-                                                                    <p style="margin: 0 !important;">Pilih file tanda
-                                                                        tangan</p>
+                                                                    <div class="icon">
+                                                                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                                                                        <p style="margin: 0 !important;">Pilih file
+                                                                            tanda
+                                                                            tangan</p>
+                                                                    </div>
                                                                     <input style="display: none;" type="file"
                                                                         name="file_ttd" id="">
                                                                     <input style="display: none;" type="text"
-                                                                        name="file">
+                                                                        name="value_ttd">
                                                                     <img
                                                                         class="file_ttd-preview img-fluid mb-3 rounded">
                                                                 </label>
@@ -627,41 +641,69 @@
                                     <div class="tab-pane fade" id="login-tab3">
                                         <!-- Wizard with validation -->
                                         <div class="header-wizard-form">
-                                            <form class="wizard-form steps-validation" action="#" data-fouc>
+                                            <form class="wizard-form steps-validation" method="POST"
+                                                action="{{ route('register') }}" enctype="multipart/form-data"
+                                                data-fouc>
+                                                @csrf
                                                 <h6>Admin Level</h6>
                                                 <fieldset>
                                                     <div class="row">
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label>Tingkat Admin<span
                                                                         class="text-danger">*</span></label>
-                                                                <select name="birth-month" class="custom-select">
-                                                                    <option value="1" selected>1</option>
-                                                                    <option value="2">2</option>
-                                                                    <option value="3">3</option>
+                                                                <select name="jabatan" class="custom-select">
+                                                                    <option selected disabled>- Pilih Tingkat -</option>
+                                                                    <option value="kab_kota">kab_kota
+                                                                    </option>
+                                                                    <option value="provinsi">provinsi
+                                                                    </option>
                                                                 </select>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label>Provinsi<span
+                                                                        class="text-danger">*</span></label>
+                                                                <select name="provinsi_id" id="provinsi_id"
+                                                                    class="custom-select">
+                                                                    <option selected disabled>- Pilih Provinsi -
+                                                                    </option>
+                                                                    @foreach ($provinsis as $provinsi)
+                                                                        <option value="{{ $provinsi->id }}">
+                                                                            {{ $provinsi->nama }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                                @error('provinsi_id')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label>Kabupaten / Kota<span
                                                                         class="text-danger">*</span></label>
-                                                                <select name="KabKot" class="custom-select">
-                                                                    <option value="1" selected>1</option>
-                                                                    <option value="2">2</option>
-                                                                    <option value="3">3</option>
+                                                                <select name="kab_kota_id" id="kab_kota_id"
+                                                                    class="custom-select">
+                                                                    <option value="">- Pilih Provinsi Terlebih
+                                                                        Dahulu -</option>
                                                                 </select>
+                                                                @error('kab_kota_id')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label>Nomenklatur Perangkat Daerah<span
                                                                         class="text-danger">*</span></label>
-                                                                <select name="nopeda" class="custom-select">
-                                                                    <option value="1" selected>1</option>
-                                                                    <option value="2">2</option>
-                                                                    <option value="3">3</option>
-                                                                </select>
+                                                                <input type="number" class="form-control"
+                                                                    name="nomenklatur_perangkat_daerah"
+                                                                    id="">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -669,16 +711,22 @@
                                                     <div class="row justify-content-center">
                                                         <div class="col-md-4">
                                                             <div class="form-group">
-                                                                <label>Provinsi<span
-                                                                        class="text-danger">*</span></label>
-                                                                <select name="provinsi" class="custom-select">
-                                                                    <option value="1" selected>1</option>
-                                                                    <option value="2">2</option>
-                                                                    <option value="3">3</option>
-                                                                </select>
+                                                                <label for="">Surat Permohonan</label>
+                                                                <label class="input-file">
+                                                                    <div class="icon">
+                                                                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                                                                        <p style="margin: 0 !important;">Pilih file
+                                                                            surat</p>
+                                                                    </div>
+                                                                    <input style="display: none;" type="file"
+                                                                        name="file_permohonan" id="">
+                                                                    <input style="display: none;" type="text"
+                                                                        name="value_permohonan">
+                                                                    <img
+                                                                        class="file_permohonan-preview img-fluid mb-3 rounded">
+                                                                </label>
                                                             </div>
                                                         </div>
-
                                                     </div>
                                                 </fieldset>
 
@@ -773,6 +821,7 @@
     <script src="{{ asset('assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js') }}">
     </script>
     <script src="{{ asset('assets/extensions/filepond/filepond.jquery.js') }}"></script>
+    <script src="{{ asset('assets/extensions/fontawesome/all.min.js') }}"></script>
     <script>
         $(function() {
 
@@ -803,7 +852,13 @@
                 e.preventDefault();
                 const imgPreview = document.querySelector('.file_ttd-preview');
                 previewImage(this, imgPreview);
-                $('input[name="file"]').val('ada');
+                $('input[name="value_ttd"]').val('ada');
+            });
+            $('input[name="file_permohonan"]').change(function(e) {
+                e.preventDefault();
+                const imgPreview = document.querySelector('.file_permohonan-preview');
+                previewImage(this, imgPreview);
+                $('input[name="value_permohonan"]').val('ada');
             });
 
             function previewImage(image, imgPreview) {
@@ -815,7 +870,7 @@
                 oFReader.onload = function(oFREvent) {
                     imgPreview.src = oFREvent.target.result;
                 }
-                $('.input-file p').css('display', 'none');
+                $('.input-file .icon').css('display', 'none');
             }
             // document.addEventListener('FilePond:loaded', (e) => {
             //     console.log('FilePond ready for use', e.detail);

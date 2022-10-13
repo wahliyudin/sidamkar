@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Models\UserAparatur;
 use App\Rules\PejabatStrukturalRule;
+use App\Rules\ProvKabKotaRule;
 use App\Services\RegisterService;
 use App\Traits\AuthBackend\RegistersUsers;
 use Carbon\Carbon;
@@ -69,7 +70,9 @@ class RegisterController extends Controller
             'kab_kota_id' => ['required'],
             'jabatan' => ['required'],
             'file_ttd' => ['image','mimes:jpeg,png,jpg,gif,svg','max:2048'],
-            'file' => [new PejabatStrukturalRule()]
+            'value_ttd' => [new PejabatStrukturalRule()],
+            'file_permohonan' => ['mimes:pdf','max:10000'],
+            'value_permohonan' => [new ProvKabKotaRule()],
         ]);
     }
 
