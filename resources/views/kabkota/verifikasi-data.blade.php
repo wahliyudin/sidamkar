@@ -23,70 +23,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <table class="table table-striped" id="table1">
-                    <thead>
-                        <tr>
-                            <th>Nama</th>
-                            <th>Bidang</th>
-                            <th>Jabatan</th>
-                            <th>Golongan</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Graiden</td>
-                            <td>vehicula.aliquet@semconsequat.co.uk</td>
-                            <td>076 4820 8838</td>
-                            <td>Offenburg</td>
-                            <td>
-                                <a href="{{ route('kab-kota.detail-data-aparatur') }}"
-                                    class="btn btn-blue text-sm">Detail</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Dale</td>
-                            <td>fringilla.euismod.enim@quam.ca</td>
-                            <td>0500 527693</td>
-                            <td>New Quay</td>
-                            <td>
-                                <a href="{{ route('kab-kota.detail-data-aparatur') }}"
-                                    class="btn btn-blue text-sm">Detail</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Nathaniel</td>
-                            <td>mi.Duis@diam.edu</td>
-                            <td>(012165) 76278</td>
-                            <td>Grumo Appula</td>
-                            <td>
-                                <a href="{{ route('kab-kota.detail-data-aparatur') }}"
-                                    class="btn btn-blue text-sm">Detail</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Darius</td>
-                            <td>velit@nec.com</td>
-                            <td>0309 690 7871</td>
-                            <td>Ways</td>
-                            <td>
-                                <a href="{{ route('kab-kota.detail-data-aparatur') }}"
-                                    class="btn btn-blue text-sm">Detail</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Oleg</td>
-                            <td>rhoncus.id@Aliquamauctorvelit.net</td>
-                            <td>0500 441046</td>
-                            <td>Rossignol</td>
-                            <td>
-                                <a href="{{ route('kab-kota.detail-data-aparatur') }}"
-                                    class="btn btn-blue text-sm">Detail</a>
-                            </td>
-                        </tr>
-
-                    </tbody>
-                </table>
+                {{ $dataTable->table() }}
             </div>
         </div>
 
@@ -94,25 +31,25 @@
 @endsection
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('assets/extensions/simple-datatables/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/pages/simple-datatables.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
     <style>
-        .dataTable-table>thead>tr>th {
-            border: 0;
+        .dataTable>thead>tr>th {
+            border: 0 !important;
         }
 
-        .dataTable-table th a {
-            color: #809FB8;
+        .dataTable th a {
+            color: #809FB8 !important;
         }
 
         .table-striped-columns>:not(caption)>tr>:nth-child(2n),
         .table-striped>tbody>tr:nth-of-type(odd)>* {
-            border-color: #F1F4F9;
+            border-color: #F1F4F9 !important;
         }
 
         .table-striped>tbody>tr,
         .table-striped>tbody>tr:nth-of-type(odd)>* {
-            color: #06152B;
+            color: #06152B !important;
         }
 
         @media screen and (max-width:780px) {
@@ -124,6 +61,10 @@
 @endsection
 
 @section('js')
-    <script src="{{ asset('assets/extensions/simple-datatables/umd/simple-datatables.js') }}"></script>
-    <script src="{{ asset('assets/js/pages/simple-datatables.js') }}"></script>
+    <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
+    {{ $dataTable->scripts() }}
+    <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
 @endsection

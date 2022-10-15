@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\KabKota;
 
+use App\DataTables\VerifikasiAparaturDataTable;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class VerifikasiAparaturController extends Controller
 {
-    public function index()
+    public function index(VerifikasiAparaturDataTable $dataTable)
     {
-        return view('kabkota.verifikasi-data');
+        return $dataTable->render('kabkota.verifikasi-data');
     }
 }
