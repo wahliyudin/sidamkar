@@ -14,7 +14,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="basicInput">Tingkat Admin</label>
-                            <select class="choices form-select">
+                            <select class="choices form-select" disabled>
                                 <option value="square">Square</option>
                                 <option value="rectangle">Rectangle</option>
                                 <option value="rombo">Rombo</option>
@@ -22,7 +22,7 @@
                         </div>
                         <div class="form-group">
                             <label for="basicInput">Provinsi</label>
-                            <select class="choices form-select">
+                            <select class="choices form-select" disabled>
                                 <option value="square">Square</option>
                                 <option value="rectangle">Rectangle</option>
                                 <option value="rombo">Rombo</option>
@@ -30,7 +30,7 @@
                         </div>
                         <div class="form-group">
                             <label for="basicInput">Kabupaten / Kota</label>
-                            <select class="choices form-select">
+                            <select class="choices form-select" disabled>
                                 <option value="square">Square</option>
                                 <option value="rectangle">Rectangle</option>
                                 <option value="rombo">Rombo</option>
@@ -38,7 +38,7 @@
                         </div>
                         <div class="form-group">
                             <label for="basicInput">Nomenklatur Perangkat Daerah</label>
-                            <select class="choices form-select">
+                            <select class="choices form-select" disabled>
                                 <option value="square">Square</option>
                                 <option value="rectangle">Rectangle</option>
                                 <option value="rombo">Rombo</option>
@@ -46,21 +46,22 @@
                         </div>
                         <div class="form-group">
                             <label for="basicInput">Nama</label>
-                            <input type="text" class="form-control" id="basicInput" placeholder="Nama">
+                            <input disabled type="text" class="form-control" id="basicInput" placeholder="Nama">
                         </div>
                         <div class="form-group">
                             <label for="basicInput">NIP / Nomor Registrasi</label>
-                            <input type="number" class="form-control" id="basicInput" placeholder="15080912345677001">
+                            <input disabled type="number" class="form-control" id="basicInput"
+                                placeholder="15080912345677001">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="basicInput">Tempat Tanggal Lahir</label>
-                            <input type="text" class="form-control" id="basicInput" placeholder="">
+                            <input disabled type="text" class="form-control" id="basicInput" placeholder="">
                         </div>
                         <div class="form-group">
                             <label for="basicInput">Pangkat / Golongan / TMT</label>
-                            <select class="choices form-select">
+                            <select class="choices form-select" disabled>
                                 <option value="square">Square</option>
                                 <option value="rectangle">Rectangle</option>
                                 <option value="rombo">Rombo</option>
@@ -68,7 +69,7 @@
                         </div>
                         <div class="form-group">
                             <label for="basicInput">Jenis Kelamin</label>
-                            <select class="choices form-select">
+                            <select class="choices form-select" disabled>
                                 <option value="square">Square</option>
                                 <option value="rectangle">Rectangle</option>
                                 <option value="rombo">Rombo</option>
@@ -76,7 +77,7 @@
                         </div>
                         <div class="form-group">
                             <label for="basicInput">Pendidikan Terakhir</label>
-                            <select class="choices form-select">
+                            <select class="choices form-select" disabled>
                                 <option value="square">Square</option>
                                 <option value="rectangle">Rectangle</option>
                                 <option value="rombo">Rombo</option>
@@ -84,7 +85,7 @@
                         </div>
                         <div class="form-group">
                             <label for="basicInput">Pendidikan Terakhir</label>
-                            <select class="choices form-select">
+                            <select class="choices form-select" disabled>
                                 <option value="square">Square</option>
                                 <option value="rectangle">Rectangle</option>
                                 <option value="rombo">Rombo</option>
@@ -92,7 +93,7 @@
                         </div>
                         <div class="form-group">
                             <label for="basicInput">Jabatan</label>
-                            <select class="choices form-select">
+                            <select class="choices form-select" disabled>
                                 <option value="square">Square</option>
                                 <option value="rectangle">Rectangle</option>
                                 <option value="rombo">Rombo</option>
@@ -231,6 +232,19 @@
 
         .doc-wrapper .doc-item p {
             margin: 0 0 0 1rem;
+        }
+
+        .choices__inner {
+            background-color: white !important;
+        }
+
+        .choices.is-disabled .choices__inner,
+        .choices.is-disabled .choices__list.choices__list--single {
+            background-color: #e9ecef !important;
+        }
+
+        .form-control:disabled {
+            cursor: not-allowed;
         }
     </style>
     <link rel="stylesheet" href="{{ asset('assets/extensions/choices.js/public/assets/styles/choices.css') }}">

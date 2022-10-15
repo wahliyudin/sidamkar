@@ -22564,10 +22564,21 @@ a {
     background-color: #1AD598;
 }
 
+.circle.circle-blue {
+    color: white;
+    background-color: #28D5E0;
+}
+
+.circle.circle-yellow {
+    color: white;
+    background-color: #F39C13;
+}
+
 .circle.circle-purple {
     color: white;
     background-color: #597CF9;
 }
+
 .choices__inner {
     border: 1px solid #2F80ED !important;
     padding: .248rem .75rem !important;
@@ -22575,6 +22586,7 @@ a {
     background-color: #fff;
     border-radius: .25rem !important;
 }
+
 .is-open .choices__list--dropdown {
     border: 1px solid #2F80ED !important;
     border-radius: .25rem !important;

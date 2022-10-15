@@ -55,12 +55,28 @@
                 @endrole
 
                 @role('kab_kota')
-                    <li class="sidebar-item {{ request()->routeIs('overview') ? 'active' : '' }}">
-                        <a href="{{ route('overview') }}" class='sidebar-link'>
+                    <li class="sidebar-item {{ request()->routeIs('kab-kota.overview') ? 'active' : '' }}">
+                        <a href="{{ route('kab-kota.overview') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="bi bi-grid-fill"></i>
                             </div>
                             <span>Overview</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item {{ request()->routeIs('kab-kota.verifikasi-aparatur') ? 'active' : '' }}">
+                        <a href="{{ route('kab-kota.verifikasi-aparatur') }}" class='sidebar-link'>
+                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                                <i class="bi bi-grid-fill"></i>
+                            </div>
+                            <span>Verifikasi Aparatur</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item {{ request()->routeIs('kab-kota.data-aparatur') ? 'active' : '' }}">
+                        <a href="{{ route('kab-kota.data-aparatur') }}" class='sidebar-link'>
+                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                                <i class="bi bi-grid-fill"></i>
+                            </div>
+                            <span>Data Aparatur</span>
                         </a>
                     </li>
                 @endrole

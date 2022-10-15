@@ -7,7 +7,10 @@ use App\Http\Controllers\Aparatur\OverviewController;
 use App\Http\Controllers\Aparatur\TabelKegiatanController;
 use App\Http\Controllers\Api\KabKotaController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\CobaController;
+use App\Http\Controllers\KabKota\DataAparaturController;
 use App\Http\Controllers\KabKota\OverviewController as KabKotaOverviewController;
+use App\Http\Controllers\KabKota\VerifikasiAparaturController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Route;
@@ -22,7 +25,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+// Route::get('/', [CobaController::class, 'index']);
+// Route::post('/store', [CobaController::class, 'store'])->name('coba.store');
 Route::get('/', function () {
     return redirect()->route('login');
 });
@@ -38,6 +42,9 @@ Route::middleware(['auth'])->group(function () {
     });
     Route::middleware(['role:kab_kota'])->group(function () {
         Route::get('kab-kota/overview', [KabKotaOverviewController::class, 'index'])->name('kab-kota.overview');
+        Route::get('kab-kota/verikasi-aparatur', [VerifikasiAparaturController::class, 'index'])->name('kab-kota.verifikasi-aparatur');
+        Route::get('kab-kota/data-aparatur', [DataAparaturController::class, 'index'])->name('kab-kota.data-aparatur');
+        Route::get('kab-kota/detail-data-aparatur', [DataAparaturController::class, 'show'])->name('kab-kota.detail-data-aparatur');
     });
 });
 

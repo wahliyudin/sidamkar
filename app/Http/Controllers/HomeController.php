@@ -31,7 +31,7 @@ class HomeController extends Controller
         } elseif (auth()->user()->hasRole('kab_kota')) {
             return to_route('kab-kota.overview');
         } elseif (auth()->user()->hasRole('provinsi')) {
-            return to_route('home');
+            return view('home');
         } else {
             return view('home');
         }
