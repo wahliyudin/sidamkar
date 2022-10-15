@@ -63,16 +63,30 @@
                             <span>Overview</span>
                         </a>
                     </li>
-                    <li class="sidebar-item {{ request()->routeIs('kab-kota.verifikasi-aparatur') ? 'active' : '' }}">
-                        <a href="{{ route('kab-kota.verifikasi-aparatur') }}" class='sidebar-link'>
+                    <li
+                        class="sidebar-item has-sub {{ request()->routeIs('kab-kota.verifikasi-aparatur') ? 'active' : '' }}">
+                        <a href="javascript(0)" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="bi bi-grid-fill"></i>
                             </div>
                             <span>Verifikasi Aparatur</span>
                         </a>
+                        <ul
+                            class="submenu {{ request()->is('kab-kota/verifikasi-aparatur/pejabat-fungsional*') || request()->is('kab-kota/verifikasi-aparatur/pejabat-struktural*') ? 'active' : '' }}">
+                            <li
+                                class="submenu-item {{ request()->is('kab-kota/verifikasi-aparatur/pejabat-fungsional*') ? 'active' : '' }}">
+                                <a href="{{ route('kab-kota.verifikasi-aparatur.pejabat-fungsional.index') }}">Pejabat
+                                    Fungsional</a>
+                            </li>
+                            <li
+                                class="submenu-item {{ request()->is('kab-kota/verifikasi-aparatur/pejabat-struktural*') ? 'active' : '' }}">
+                                <a href="{{ route('kab-kota.verifikasi-aparatur.pejabat-struktural.index') }}">Pejabat
+                                    Struktural</a>
+                            </li>
+                        </ul>
                     </li>
-                    <li class="sidebar-item {{ request()->routeIs('kab-kota.data-aparatur') ? 'active' : '' }}">
-                        <a href="{{ route('kab-kota.data-aparatur') }}" class='sidebar-link'>
+                    <li class="sidebar-item {{ request()->routeIs('kab-kota.data-aparatur.index') ? 'active' : '' }}">
+                        <a href="{{ route('kab-kota.data-aparatur.index') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="bi bi-grid-fill"></i>
                             </div>

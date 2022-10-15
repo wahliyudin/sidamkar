@@ -6,19 +6,7 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-md-8 col-12">
-                        <h5 style="color: #06152B; font-size: 'Roboto';">Table Data Pendaftaran Aparatur</h5>
-                    </div>
-                    <div class="col-md-4 col-12 d-flex justify-content-end">
-                        <form action="" class="d-flex align-items-center">
-                            <div class="form-group w-100" style="margin-bottom: 0 !important;">
-                                <select class="form-select" name="">
-                                    <option>Pejabat Fungsional</option>
-                                    <option>Pejabat Struktural</option>
-                                </select>
-                            </div>
-                            <button class="btn btn-blue ms-2 text-sm ps-2 pe-3 d-flex align-items-center" type="submit"><i
-                                    class="fa-solid fa-magnifying-glass me-2"></i>Cari</button>
-                        </form>
+                        <h5 style="color: #06152B; font-size: 'Roboto';">Data Pejabat Fungsional</h5>
                     </div>
                 </div>
             </div>
@@ -26,7 +14,6 @@
                 {{ $dataTable->table() }}
             </div>
         </div>
-
     </section>
 @endsection
 
@@ -38,7 +25,7 @@
             border: 0 !important;
         }
 
-        .dataTable th a {
+        .dataTable th {
             color: #809FB8 !important;
         }
 

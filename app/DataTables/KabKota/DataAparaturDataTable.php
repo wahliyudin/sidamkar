@@ -1,6 +1,6 @@
 <?php
 
-namespace App\DataTables;
+namespace App\DataTables\KabKota;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
@@ -12,7 +12,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class VerifikasiAparaturDataTable extends DataTable
+class DataAparaturDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -25,7 +25,7 @@ class VerifikasiAparaturDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addIndexColumn()
             ->addColumn('action', function (User $user) {
-                return '<a href="' . route('kab-kota.detail-data-aparatur') . '" class="btn btn-blue text-sm">Detail</a>';
+                return '<a href="' . route('kab-kota.data-aparatur.show', $user->id) . '" class="btn btn-blue text-sm">Detail</a>';
             })
             ->setRowId('id');
     }
@@ -38,7 +38,23 @@ class VerifikasiAparaturDataTable extends DataTable
      */
     public function query(User $model): QueryBuilder
     {
-        return $model->newQuery();
+        $jabatan = request()->get('jabatan');
+        return $model->newQuery()
+            ->where('verified', '!=', null)
+            ->when($jabatan, function (QueryBuilder $query) use ($jabatan) {
+                switch ($jabatan) {
+                    case 'all':
+                        return $query->whereRoleIs(['damkar', 'analis_kebakaran', 'atasan_langsung', 'penilai_ak', 'penetap_ak']);
+                        break;
+                    case 'fungsional':
+                        return $query->whereRoleIs(['damkar', 'analis_kebakaran']);
+                        break;
+                    case 'struktural':
+                        return $query->whereRoleIs(['atasan_langsung', 'penilai_ak', 'penetap_ak']);
+                        break;
+                }
+            })
+            ->whereRoleIs(['damkar', 'analis_kebakaran', 'atasan_langsung', 'penilai_ak', 'penetap_ak']);
     }
 
     /**
@@ -49,7 +65,7 @@ class VerifikasiAparaturDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('verifikasiaparatur-table')
+            ->setTableId('dataaparatur-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->dom('frtip')
@@ -71,7 +87,6 @@ class VerifikasiAparaturDataTable extends DataTable
     protected function getColumns(): array
     {
         return [
-
             Column::computed('no'),
             Column::make('username')
                 ->title('Nama'),
@@ -89,6 +104,6 @@ class VerifikasiAparaturDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Verifikasiaparatur_' . date('YmdHis');
+        return 'DataAparatur_' . date('YmdHis');
     }
 }
