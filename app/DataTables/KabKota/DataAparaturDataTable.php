@@ -65,6 +65,7 @@ class DataAparaturDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
+            ->responsive(true)
             ->setTableId('dataaparatur-table')
             ->columns($this->getColumns())
             ->minifiedAjax()

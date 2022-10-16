@@ -38,8 +38,10 @@ class PejabatStrukturalDataTable extends DataTable
      */
     public function query(User $model): QueryBuilder
     {
-        return $model->newQuery()->where('verified', null)->whereRoleIs(['atasan_langsung', 'penilai_ak',
-        'penetap_ak']);
+        return $model->newQuery()->where('verified', null)->whereRoleIs([
+            'atasan_langsung', 'penilai_ak',
+            'penetap_ak'
+        ]);
     }
 
     /**
@@ -50,6 +52,7 @@ class PejabatStrukturalDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
+            ->responsive(true)
             ->setTableId('pejabatstruktural-table')
             ->columns($this->getColumns())
             ->minifiedAjax()

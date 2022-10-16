@@ -49,6 +49,7 @@ class PejabatFungsionalDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
+            ->responsive(true)
             ->setTableId('pejabatfungsional-table')
             ->columns($this->getColumns())
             ->minifiedAjax()

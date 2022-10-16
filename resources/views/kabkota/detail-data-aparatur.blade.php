@@ -173,12 +173,6 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="d-flex justify-content-end">
-                <button class="btn btn-red">TOLAK</button>
-                <button class="btn btn-blue ms-2">VERIFIKASI</button>
-            </div>
-        </div>
     </section>
 @endsection
 @section('css')

@@ -85,7 +85,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="sidebar-item {{ request()->routeIs('kab-kota.data-aparatur.index') ? 'active' : '' }}">
+                    <li class="sidebar-item {{ request()->is('kab-kota/data-aparatur*') ? 'active' : '' }}">
                         <a href="{{ route('kab-kota.data-aparatur.index') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="bi bi-grid-fill"></i>
