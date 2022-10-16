@@ -27,8 +27,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Route::get('/', [CobaController::class, 'index']);
-// Route::post('/store', [CobaController::class, 'store'])->name('coba.store');
 Route::get('/', function () {
     return redirect()->route('login');
 });
@@ -47,16 +45,15 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('kab-kota/verifikasi-aparatur/pejabat-fungsional', [PejabatFungsionalController::class, 'index'])->name('kab-kota.verifikasi-aparatur.pejabat-fungsional.index');
         Route::get('kab-kota/verifikasi-aparatur/pejabat-fungsional/{id}/show', [PejabatFungsionalController::class, 'show'])->name('kab-kota.verifikasi-aparatur.pejabat-fungsional.show');
-        Route::put('kab-kota/verifikasi-aparatur/pejabat-fungsional/{id}/verified', [PejabatFungsionalController::class, 'verified'])->name('kab-kota.verifikasi-aparatur.pejabat-fungsional.verified');
 
         Route::get('kab-kota/verifikasi-aparatur/pejabat-struktural', [PejabatStrukturalController::class, 'index'])->name('kab-kota.verifikasi-aparatur.pejabat-struktural.index');
         Route::get('kab-kota/verifikasi-aparatur/pejabat-struktural/{id}/show', [PejabatStrukturalController::class, 'show'])->name('kab-kota.verifikasi-aparatur.pejabat-struktural.show');
-        Route::put('kab-kota/verifikasi-aparatur/pejabat-struktural/{id}/verified', [PejabatStrukturalController::class, 'verified'])->name('kab-kota.verifikasi-aparatur.pejabat-struktural.verified');
+
+        Route::put('kab-kota/verifikasi-aparatur/{id}/verified', [VerifikasiAparaturController::class, 'verified'])->name('kab-kota.verifikasi-aparatur.verified');
+        Route::delete('kab-kota/verifikasi-aparatur/{id}/reject', [VerifikasiAparaturController::class, 'reject'])->name('kab-kota.verifikasi-aparatur.reject');
 
         Route::get('kab-kota/data-aparatur', [DataAparaturController::class, 'index'])->name('kab-kota.data-aparatur.index');
         Route::get('kab-kota/data-aparatur/{id}/show', [DataAparaturController::class, 'show'])->name('kab-kota.data-aparatur.show');
-
-        Route::get('kab-kota/detail-data-aparatur', [DataAparaturController::class, 'show'])->name('kab-kota.detail-data-aparatur');
     });
 });
 

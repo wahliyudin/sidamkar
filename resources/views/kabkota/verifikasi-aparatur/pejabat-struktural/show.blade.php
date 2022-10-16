@@ -203,8 +203,7 @@
                         <i class="bx bx-x"></i>
                         <span>Batal</span>
                     </button>
-                    <form action="{{ route('kab-kota.verifikasi-aparatur.pejabat-struktural.verified', $user->id) }}"
-                        method="post">
+                    <form action="{{ route('kab-kota.verifikasi-aparatur.verified', $user->id) }}" method="post">
                         @method('put')
                         @csrf
                         <button type="submit" class="btn btn-green ml-1">
