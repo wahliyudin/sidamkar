@@ -6,6 +6,7 @@ use App\Http\Controllers\Aparatur\LaporanKegiatanController;
 use App\Http\Controllers\Aparatur\OverviewController;
 use App\Http\Controllers\Aparatur\TabelKegiatanController;
 use App\Http\Controllers\Api\KabKotaController;
+use App\Http\Controllers\AtasanLangsung\OverviewController as AtasanLangsungOverviewController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CobaController;
 use App\Http\Controllers\KabKota\DataAparaturController;
@@ -54,6 +55,10 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('kab-kota/data-aparatur', [DataAparaturController::class, 'index'])->name('kab-kota.data-aparatur.index');
         Route::get('kab-kota/data-aparatur/{id}/show', [DataAparaturController::class, 'show'])->name('kab-kota.data-aparatur.show');
+    });
+
+    Route::middleware(['role:atasan_langsung'])->group(function () {
+        Route::get('atasan-langsung/overview', [AtasanLangsungOverviewController::class, 'index'])->name('atasan-langsung.overview.index');
     });
 });
 

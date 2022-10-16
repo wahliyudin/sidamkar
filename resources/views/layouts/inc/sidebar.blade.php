@@ -95,48 +95,16 @@
                     </li>
                 @endrole
 
-                {{-- <li class="sidebar-item {{ request()->routeIs('butir-kegiatan') ? 'active' : '' }}">
-                    <a data-bs-toggle="modal" data-bs-target="#riwayat" class='sidebar-link'>
-                        <i class="fa-regular fa-file"></i>
-                        <span>Riwayat Tugas</span>
-                    </a>
-                </li> --}}
-                {{-- <li class="sidebar-item {{ request()->routeIs('revisi-laporan-kegiatan') ? 'active' : '' }}">
-                    <a href="{{ route('revisi-laporan-kegiatan') }}" class='sidebar-link'>
-                        <i class="fa-solid fa-screwdriver-wrench"></i>
-                        <span>Revisi Laporan</span>
-                    </a>
-                </li>
-                <li class="sidebar-item {{ request()->routeIs('verifikasi-data') ? 'active' : '' }}">
-                    <a href="{{ route('verifikasi-data') }}" class='sidebar-link'>
-                        <i class="bi bi-grid-fill"></i>
-                        <span>Verifikasi Data</span>
-                    </a>
-                </li>
-                <li class="sidebar-item {{ request()->routeIs('data-aparatur') ? 'active' : '' }}">
-                    <a href="{{ route('data-aparatur') }}" class='sidebar-link'>
-                        <i class="bi bi-grid-fill"></i>
-                        <span>Data Aparatur</span>
-                    </a>
-                </li>
-                <li class="sidebar-item {{ request()->routeIs('data-pejabat-struktural') ? 'active' : '' }}">
-                    <a href="{{ route('data-pejabat-struktural') }}" class='sidebar-link'>
-                        <i class="bi bi-grid-fill"></i>
-                        <span>Data Pejabat Struktural</span>
-                    </a>
-                </li>
-                <li class="sidebar-item {{ request()->routeIs('lampiran-kegiatan') ? 'active' : '' }}">
-                    <a href="{{ route('lampiran-kegiatan') }}" class='sidebar-link'>
-                        <i class="bi bi-grid-fill"></i>
-                        <span>Lampiran Kegiatan</span>
-                    </a>
-                </li>
-                <li class="sidebar-item {{ request()->routeIs('data-pengajuan-laporan-kegiatan') ? 'active' : '' }}">
-                    <a href="{{ route('data-pengajuan-laporan-kegiatan') }}" class='sidebar-link'>
-                        <i class="bi bi-grid-fill"></i>
-                        <span>Data Pengajuan Laporan Kegiatan</span>
-                    </a>
-                </li> --}}
+                @role('atasan_langsung')
+                    <li class="sidebar-item {{ request()->routeIs('atasan-langsung.overview.index') ? 'active' : '' }}">
+                        <a href="{{ route('atasan-langsung.overview.index') }}" class='sidebar-link'>
+                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                                <i class="bi bi-grid-fill"></i>
+                            </div>
+                            <span>Overview</span>
+                        </a>
+                    </li>
+                @endrole
             </ul>
         </div>
     </div>

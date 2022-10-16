@@ -32,6 +32,8 @@ class HomeController extends Controller
             return to_route('kab-kota.overview');
         } elseif (auth()->user()->hasRole('provinsi')) {
             return view('home');
+        } elseif (auth()->user()->hasRole('atasan_langsung')) {
+            return to_route('atasan-langsung.overview.index');
         } else {
             return view('home');
         }
