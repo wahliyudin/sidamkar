@@ -31,10 +31,10 @@ class HomeController extends Controller
         } elseif (auth()->user()->hasRole('kab_kota')) {
             return to_route('kab-kota.overview');
         } elseif (auth()->user()->hasRole('provinsi')) {
-            return view('home');
+            return to_route('provinsi.overview.index');
         } elseif (auth()->user()->hasRole('atasan_langsung')) {
             return to_route('atasan-langsung.overview.index');
-        } else {
+        }  else {
             return view('home');
         }
     }

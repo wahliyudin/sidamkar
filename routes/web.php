@@ -14,6 +14,7 @@ use App\Http\Controllers\KabKota\OverviewController as KabKotaOverviewController
 use App\Http\Controllers\KabKota\VerifikasiAparatur\PejabatFungsionalController;
 use App\Http\Controllers\KabKota\VerifikasiAparatur\PejabatStrukturalController;
 use App\Http\Controllers\KabKota\VerifikasiAparaturController;
+use App\Http\Controllers\Provinsi\OverviewController as ProvinsiOverviewController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Route;
@@ -41,6 +42,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/tabel-kegiatan', [TabelKegiatanController::class, 'index'])->name('tabel-kegiatan');
         Route::get('/laporan-kegiatan', [LaporanKegiatanController::class, 'index'])->name('laporan-kegiatan');
     });
+
     Route::middleware(['role:kab_kota'])->group(function () {
         Route::get('kab-kota/overview', [KabKotaOverviewController::class, 'index'])->name('kab-kota.overview');
 
@@ -59,6 +61,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['role:atasan_langsung'])->group(function () {
         Route::get('atasan-langsung/overview', [AtasanLangsungOverviewController::class, 'index'])->name('atasan-langsung.overview.index');
+    });
+
+    Route::middleware(['role:provinsi'])->group(function () {
+        Route::get('provinsi/overview', [ProvinsiOverviewController::class, 'index'])->name('provinsi.overview.index');
     });
 });
 
