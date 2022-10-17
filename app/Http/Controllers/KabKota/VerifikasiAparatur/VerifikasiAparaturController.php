@@ -21,6 +21,12 @@ class VerifikasiAparaturController extends Controller
     public function reject($id)
     {
         $user = User::query()->with('userAparatur', 'userPejabatStruktural')->findOrFail($id);
+        $isFungsional = is_null($user->userPejabatStruktural);
+        if ($isFungsional) {
+            deleteImage($user->userAparatur->foto_pegawai);
+        } else {
+            deleteImage($user->userPejabatStruktural->file_ttd);
+        }
         $user->delete();
         $user->notify(new UserReject());
         return $this->redirectTo(is_null($user->userPejabatStruktural), 'Berhasil ditolak');
