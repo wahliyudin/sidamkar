@@ -26,9 +26,11 @@ return new class extends Migration
             $table->enum('jenis_kelamin', ['P', 'L']);
             $table->integer('pendidikan_terakhir'); // Enum
             $table->string('foto_pegawai')->nullable();
+            $table->unsignedBigInteger('kab_kota_id');
             $table->timestamps();
 
             $table->foreign('user_id')->on('users')->references('id')->cascadeOnDelete();
+            $table->foreign('kab_kota_id')->on('kab_kotas')->references('id')->cascadeOnDelete();
         });
     }
 

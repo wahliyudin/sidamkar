@@ -37,6 +37,7 @@ class RegisterRepository
             'jenis_kelamin' => $data['jenis_kelamin'],
             'pendidikan_terakhir' => $data['pendidikan_terakhir'],
             'nomor_karpeg' => $data['nomor_karpeg'],
+            'kab_kota_id' => $data['kab_kota_id']
         ]);
     }
 
@@ -44,7 +45,9 @@ class RegisterRepository
     {
         return $user->userProvKabKota()->create([
             'nomenklatur_perangkat_daerah' => $data['nomenklatur_perangkat_daerah'],
-            'file_permohonan' => $data['file_permohonan']
+            'file_permohonan' => $data['file_permohonan'],
+            'kab_kota_id' => $data['kab_kota_id'],
+            'provinsi_id' => $data['provinsi_id']
         ]);
     }
 
@@ -59,7 +62,8 @@ class RegisterRepository
             'tanggal_lahir' => $data['tanggal_lahir'],
             'jenis_kelamin' => $data['jenis_kelamin'],
             'pendidikan_terakhir' => $data['pendidikan_terakhir'],
-            'file_ttd' => $data['file_ttd']
+            'file_ttd' => $data['file_ttd'],
+            'kab_kota_id' => $data['kab_kota_id']
         ]);
     }
 }

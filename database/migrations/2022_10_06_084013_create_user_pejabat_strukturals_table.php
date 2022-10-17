@@ -27,9 +27,11 @@ return new class extends Migration
             $table->string('foto_pegawai')->nullable();
             $table->string('file_sk_penilai_ak')->nullable();
             $table->string('file_ttd');
+            $table->unsignedBigInteger('kab_kota_id');
             $table->timestamps();
 
             $table->foreign('user_id')->on('users')->references('id')->cascadeOnDelete();
+            $table->foreign('kab_kota_id')->on('kab_kotas')->references('id')->cascadeOnDelete();
         });
     }
 
