@@ -11,14 +11,16 @@ class UserReject extends Notification
 {
     use Queueable;
 
+    private string $message;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(string $message = null)
     {
-        //
+        $this->message = $message ?? 'Akun anda ditolak karena data tidak sesuai';
     }
 
     /**
@@ -41,9 +43,9 @@ class UserReject extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+            ->greeting('Ooops!')
+            ->line($this->message)
+            ->action('Silahkan register ulang!', route('register'));
     }
 
     /**

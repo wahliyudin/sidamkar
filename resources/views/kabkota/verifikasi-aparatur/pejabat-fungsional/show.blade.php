@@ -175,18 +175,17 @@
         </div>
         <div class="row">
             <div class="d-flex justify-content-end">
-                <button class="btn btn-red">TOLAK</button>
-                <button class="btn btn-blue ms-2" data-bs-toggle="modal"
-                    data-bs-target="#exampleModalCenter">VERIFIKASI</button>
+                <button class="btn btn-red" data-bs-toggle="modal" data-bs-target="#rejectModal">TOLAK</button>
+                <button class="btn btn-blue ms-2" data-bs-toggle="modal" data-bs-target="#verifModal">VERIFIKASI</button>
             </div>
         </div>
     </section>
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" id="verifModal" tabindex="-1" role="dialog" aria-labelledby="verifModalTitle"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">
+                    <h5 class="modal-title" id="verifModalTitle">
                         Peringatan
                     </h5>
                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
@@ -211,6 +210,40 @@
                         </button>
                     </form>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="rejectModal" tabindex="-1" role="dialog" aria-labelledby="rejectModalTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="rejectModalTitle">
+                        Peringatan
+                    </h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <i data-feather="x"></i>
+                    </button>
+                </div>
+                <form action="{{ route('kab-kota.verifikasi-aparatur.reject', $user->id) }}" method="post">
+                    <div class="modal-body">
+                        <p>
+                            Apakah anda yakin tolak akun ini?
+                        </p>
+                        @csrf
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                            <i class="bx bx-x"></i>
+                            <span>Batal</span>
+                        </button>
+
+                        <button type="submit" class="btn btn-green ml-1">
+                            <i class="bx bx-check"></i>
+                            <span>Ya, yakin</span>
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

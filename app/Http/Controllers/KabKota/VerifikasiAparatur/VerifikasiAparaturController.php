@@ -15,26 +15,23 @@ class VerifikasiAparaturController extends Controller
         $user = User::query()->with('userAparatur', 'userPejabatStruktural')->findOrFail($id);
         $user->update(['verified' => now()]);
         $user->notify(new UserVerified());
-        if (is_null($user->userAparatur)) {
-            return to_route('kab-kota.verifikasi-aparatur.pejabat-struktural.index')
-                ->with('success', 'Berhasil diverifikasi');
-        }
-        return to_route('kab-kota.verifikasi-aparatur.pejabat-fungsional.index')
-            ->with('success', 'Berhasil diverifikasi');
+        return $this->redirectTo(is_null($user->userPejabatStruktural), 'Berhasil diverifikasi');
     }
 
     public function reject($id)
     {
         $user = User::query()->with('userAparatur', 'userPejabatStruktural')->findOrFail($id);
         $user->delete();
-        if (is_null($user->userAparatur)) {
-        }
         $user->notify(new UserReject());
-        if (is_null($user->userAparatur)) {
-            return to_route('kab-kota.verifikasi-aparatur.pejabat-fungsional.index')
-                ->with('success', 'Berhasil ditolak');
+        return $this->redirectTo(is_null($user->userPejabatStruktural), 'Berhasil ditolak');
+    }
+
+    private function redirectTo(bool $isFungsional, string $message)
+    {
+        $route = 'kab-kota.verifikasi-aparatur.pejabat-struktural.index';
+        if ($isFungsional) {
+            $route = 'kab-kota.verifikasi-aparatur.pejabat-fungsional.index';
         }
-        return to_route('kab-kota.verifikasi-aparatur.pejabat-struktural.index')
-            ->with('success', 'Berhasil ditolak');
+        return to_route($route)->with('success', $message);
     }
 }
