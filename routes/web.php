@@ -13,7 +13,7 @@ use App\Http\Controllers\KabKota\DataAparaturController;
 use App\Http\Controllers\KabKota\OverviewController as KabKotaOverviewController;
 use App\Http\Controllers\KabKota\VerifikasiAparatur\PejabatFungsionalController;
 use App\Http\Controllers\KabKota\VerifikasiAparatur\PejabatStrukturalController;
-use App\Http\Controllers\KabKota\VerifikasiAparaturController;
+use App\Http\Controllers\KabKota\VerifikasiAparatur\VerifikasiAparaturController;
 use App\Http\Controllers\Provinsi\OverviewController as ProvinsiOverviewController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -52,7 +52,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('kab-kota/verifikasi-aparatur/pejabat-struktural', [PejabatStrukturalController::class, 'index'])->name('kab-kota.verifikasi-aparatur.pejabat-struktural.index');
         Route::get('kab-kota/verifikasi-aparatur/pejabat-struktural/{id}/show', [PejabatStrukturalController::class, 'show'])->name('kab-kota.verifikasi-aparatur.pejabat-struktural.show');
 
-        Route::put('kab-kota/verifikasi-aparatur/{id}/verified', [VerifikasiAparaturController::class, 'verified'])->name('kab-kota.verifikasi-aparatur.verified');
+        Route::post('kab-kota/verifikasi-aparatur/{id}/verified', [VerifikasiAparaturController::class, 'verified'])->name('kab-kota.verifikasi-aparatur.verified');
         Route::delete('kab-kota/verifikasi-aparatur/{id}/reject', [VerifikasiAparaturController::class, 'reject'])->name('kab-kota.verifikasi-aparatur.reject');
 
         Route::get('kab-kota/data-aparatur', [DataAparaturController::class, 'index'])->name('kab-kota.data-aparatur.index');

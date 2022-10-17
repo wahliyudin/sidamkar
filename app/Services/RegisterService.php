@@ -106,17 +106,10 @@ class RegisterService
     public function storeProvKabKota(array $data): User
     {
         $data = array_merge($data, [
-            'file_permohonan' => $this->storeFile($data['file_permohonan'], 'struktural')
+            'file_permohonan' => $this->storeFile($data['file_permohonan'], 'kabkota')
         ]);
         $user = $this->registerRepository->storeUser($data);
         $this->registerRepository->storeProvKabKota($user, $data);
         return $user;
-    }
-
-    public function storeFile($file, $folder)
-    {
-        $fileName = time().'.'.$file->extension();
-        $file->move(public_path("uploads/$folder/doc"), $fileName);
-        return env('APP_URL').'/uploads' . '/' . $folder . '/doc/' . $fileName;
     }
 }

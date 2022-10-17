@@ -2,73 +2,58 @@
 
 namespace App\Traits;
 
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
 
 trait ImageTrait
 {
+    public function storeImage(UploadedFile $file, string $folder, int $width = 200, int $height = 200)
+    {
+        $imageName = $this->getRandomName($file);
+        $folderStore = $this->getFolderStore($folder);
+        $imgFile = Image::make($file->getRealPath());
+        $imgFile->resize($width, $height, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save($folderStore . '/' . $imageName);
+        return $this->getImageUrl($folder, $imageName);
+    }
 
-    /**
-     * store
-     *
-     * @param  mixed $file
-     * @param  string $folder
-     * @param  int $width
-     * @param  int $height
-     * @return string
-     */
-    public function storeImage($file, $folder, $width = 200, $height = 200): string
+    public function storeFile(UploadedFile $file, string $folder)
+    {
+        $fileName = $this->getRandomName($file);
+        $this->checkFolder($folder);
+        $file->move(public_path("storage/$folder"), $fileName);
+        return env('APP_URL') . "/storage/$folder/$fileName";
+    }
+
+    public function getFolderStore(string $folder)
     {
         $this->checkFolder($folder);
-        $image_name = $this->generateImageName($file);
-        $img = Image::make($file->getRealPath());
-        // $img->resize($width, $height, function ($constraint) {
-        // $constraint->aspectRatio();
-        // })->save($destinationPathThumbnail . '/' . $imageName);
-        $img->resize($width, $height, function ($constraint) {
-            $constraint->aspectRatio();
-        })->save($this->getFolderImage($folder) . '/' . $image_name);
-        $file->move($this->getFolderThumbnail(), $image_name);
-        $this->deleteImage($image_name, 'thumbnail');
-        return $this->getImageUrl($folder, $image_name);
+        return public_path("storage/$folder");
     }
 
-    public function deleteImage($image, $folder)
+    public function checkFolder(string $folder)
     {
-        return File::delete(public_path('uploads/'.$folder.'/' . $image));
-        // return Storage::delete('public/'.$folder.'/' . $image);
-    }
-
-    public function getFolderThumbnail()
-    {
-        $this->checkFolder('thumbnail');
-        return public_path('uploads/thumbnail');
-    }
-
-    public function getFolderImage($folder)
-    {
-        return public_path('uploads/' . $folder);
-    }
-
-    public function generateImageName($image)
-    {
-        return str()->random(10) . time() . '.' . $image->extension();
-    }
-
-    public function getImageUrl($folder, $image_name)
-    {
-        if (str(request()->getUri())->contains('https')) {
-            return url('/uploads' . '/' . $folder . '/' . $image_name);
+        if (!Storage::exists($folder)) {
+            return Storage::makeDirectory($folder);
         }
-        return env('APP_URL').'/uploads' . '/' . $folder . '/' . $image_name;
     }
 
-    public function checkFolder($folder)
+    public function getRandomName(UploadedFile $file)
     {
-        if (!Storage::exists('public/' . $folder)) {
-            return Storage::makeDirectory('public/' . $folder);
-        }
+        return str()->random(10) . time() . '.' . $file->extension();
+    }
+
+    public function imageStorageDelete(string $folder, string $imageName)
+    {
+        return Storage::delete($folder . '/' . $imageName);
+    }
+
+    public function getImageUrl(string $folder, string $imageName)
+    {
+        return url("storage/$folder/$imageName");
     }
 
     public function moveImage($name, $thumb, $folder, $width = 200, $height = 200)

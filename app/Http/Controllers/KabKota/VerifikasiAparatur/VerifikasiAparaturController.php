@@ -16,10 +16,10 @@ class VerifikasiAparaturController extends Controller
         $user->update(['verified' => now()]);
         $user->notify(new UserVerified());
         if (is_null($user->userAparatur)) {
-            return to_route('kab-kota.verifikasi-aparatur.pejabat-fungsional.index')
+            return to_route('kab-kota.verifikasi-aparatur.pejabat-struktural.index')
                 ->with('success', 'Berhasil diverifikasi');
         }
-        return to_route('kab-kota.verifikasi-aparatur.pejabat-struktural.index')
+        return to_route('kab-kota.verifikasi-aparatur.pejabat-fungsional.index')
             ->with('success', 'Berhasil diverifikasi');
     }
 
