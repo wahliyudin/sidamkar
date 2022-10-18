@@ -22,6 +22,8 @@ class UserPejabatStruktural extends Model
         'pendidikan_terakhir',
         'foto_pegawai',
         'file_sk',
+        'is_active',
+        'catatan',
         'file_ttd',
         'kab_kota_id',
         'provinsi_id'
