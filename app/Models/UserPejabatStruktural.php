@@ -21,9 +21,10 @@ class UserPejabatStruktural extends Model
         'jenis_kelamin',
         'pendidikan_terakhir',
         'foto_pegawai',
-        'file_sk_penilai_ak',
+        'file_sk',
         'file_ttd',
-        'kab_kota_id'
+        'kab_kota_id',
+        'provinsi_id'
     ];
 
     /**

@@ -106,10 +106,6 @@
 
     </div>
     <!-- /page content -->
-
-
-
-
     <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/auth/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/auth/app.js') }}"></script>

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('user_prov_kab_kotas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->string('nomenklatur_perangkat_daerah');
+            $table->string('nomenklatur_perangkat_daerah')->nullable();
             $table->string('file_permohonan');
             $table->unsignedBigInteger('kab_kota_id')->nullable();
             $table->unsignedBigInteger('provinsi_id')->nullable();

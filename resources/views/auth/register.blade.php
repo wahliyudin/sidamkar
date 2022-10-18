@@ -93,6 +93,7 @@
         href="{{ asset('assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/pages/filepond.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/extensions/fontawesome/all.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/extensions/toastify-js/src/toastify.css') }}">
 </head>
 
 <body>
@@ -115,10 +116,8 @@
                         @endif
                     </div>
                     <div class="page-content login-cover" style="z-index: 99;">
-
                         <!-- Content area -->
                         <div class="form-wrapper d-flex justify-content-center align-items-center">
-
                             <!-- Login form -->
                             <div class="card mb-0 overflow-hidden" style="border-radius: 10px; position: relative;">
                                 <ul class="nav nav-tabs nav-justified bg-light rounded-top mb-0">
@@ -126,24 +125,16 @@
                                         <a href="#login-tab1"
                                             class="h-100 nav-link border-y-0 border-left-0 active d-flex justify-content-center align-items-center"
                                             data-toggle="tab">
-                                            <h6 class="my-1">Daftar Pejabat Fungsional</h6>
+                                            <h6 class="my-1">Daftar Aparatur</h6>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="#login-tab2"
                                             class="h-100 nav-link border-y-0 border-right-0 d-flex justify-content-center align-items-center"
                                             data-toggle="tab">
-                                            <h6 class="my-1">Daftar Pejabat Struktural</h6>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#login-tab3"
-                                            class="h-100 nav-link border-y-0 border-right-0 d-flex justify-content-center align-items-center"
-                                            data-toggle="tab">
                                             <h6 class="my-1">Daftar Admin Prov & Kab/kota</h6>
                                         </a>
                                     </li>
-
                                 </ul>
 
                                 <div class="tab-content">
@@ -195,131 +186,80 @@
                                                         </div>
                                                         <div class="col-md-4">
                                                             <div class="form-group">
-                                                                <label>Jabatan<span class="text-danger">*</span></label>
-                                                                <select name="jabatan" class="custom-select">
+                                                                <label>Jenis Aparatur<span
+                                                                        class="text-danger">*</span></label>
+                                                                <select name="jenis_aparatur" class="custom-select">
                                                                     <option selected disabled>- Pilih Jabatan -</option>
-                                                                    <option value="damkar">Damkar</option>
-                                                                    <option value="analis_kebakaran">Analis Kebakaran
+                                                                    <option value="fungsional">Pejabat Fungsional
+                                                                    </option>
+                                                                    <option value="struktural">Pejabat Struktural
                                                                     </option>
                                                                 </select>
-                                                                @error('jabatan')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
-                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </fieldset>
 
-                                                <h6>Personal data</h6>
+                                                <h6>Personal Data</h6>
                                                 <fieldset>
-                                                    <div class="row">
+                                                    <div class="row justify-content-center">
                                                         <div class="col-md-4">
                                                             <div class="form-group">
-                                                                <label>Nama Lengkap <span
+                                                                <label>Nama Lengkap<span
                                                                         class="text-danger">*</span></label>
-                                                                <input type="text" name="nama"
-                                                                    class="form-control" placeholder="Nama Lengkap">
+                                                                <input type="text" class="form-control"
+                                                                    name="nama">
                                                             </div>
                                                         </div>
-
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-4 wrapper-select" style="display: none;">
                                                             <div class="form-group">
-                                                                <label>Tempat Lahir<span
+                                                                <label>Jenis Jabatan<span
                                                                         class="text-danger">*</span></label>
-                                                                <input type="text" name="tempat_lahir"
-                                                                    class="form-control" placeholder="Tempat Lahir">
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label>Tanggal Lahir<span
-                                                                        class="text-danger">*</span></label>
-                                                                <input type="date" name="tanggal_lahir"
-                                                                    class="form-control" placeholder="Tanggal Lahir">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label>Jenis Kelamin<span
-                                                                        class="text-danger">*</span></label>
-                                                                <select name="jenis_kelamin" class="custom-select">
-                                                                    <option selected disabled>- Pilih Jenis Kelamin -
-                                                                    </option>
-                                                                    <option value="L">Laki - Laki</option>
-                                                                    <option value="P">Perempuan</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label>NIP / Nomor Daftar<span
-                                                                        class="text-danger">*</span></label>
-                                                                <input type="number" name="nip"
-                                                                    class="form-control"
-                                                                    placeholder="NIP / Nomor Daftar">
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label>Pangkat / Golongan / TMT<span
-                                                                        class="text-danger">*</span></label>
-                                                                <select name="pangkat_golongan_tmt"
-                                                                    class="custom-select">
+                                                                <select name="jenis_jabatan"
+                                                                    class="custom-select select-fungsional"
+                                                                    style="display: none;">
                                                                     <option selected disabled>- Pilih Jabatan -</option>
-                                                                    <option value="IIIA">IIIA</option>
-                                                                    <option value="IIIB">IIIB</option>
-                                                                    <option value="IIIC">IIIC</option>
-                                                                    <option value="IIID">IIID</option>
-                                                                    <option value="IVA">IVA</option>
-                                                                    <option value="IVB">IVB</option>
-                                                                    <option value="IVC">IVC</option>
-                                                                    <option value="IVD">IVD</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label>No KarPeg<span
-                                                                        class="text-danger">*</span></label>
-                                                                <input type="number" name="nomor_karpeg"
-                                                                    class="form-control">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label>Pendidikan Terakhir<span
-                                                                        class="text-danger">*</span></label>
-                                                                <select name="pendidikan_terakhir"
-                                                                    class="custom-select">
-                                                                    <option selected disabled>- Pilih Pendidikan
-                                                                        Terakhir -</option>
-                                                                    <option value="1">SMA/Sederajat</option>
-                                                                    <option value="2">D3</option>
-                                                                    <option value="3">S1/D4</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label>Jenjang<span
-                                                                        class="text-danger">*</span></label>
-                                                                <select name="jenjang" class="custom-select">
-                                                                    <option selected disabled>- Pilih Jenjang -
+                                                                    <option value="damkar_pemula">Damkar Pemula
                                                                     </option>
-                                                                    <option value="senior">Senior</option>
-                                                                    <option value="junior">Junior</option>
+                                                                    <option value="damkar_terampil">Damkar Terampil
+                                                                    </option>
+                                                                    <option value="damkar_mahir">Damkar Mahir
+                                                                    </option>
+                                                                    <option value="damkar_penyelia">Damkar Penyelia
+                                                                    </option>
+                                                                    <option value="analis_kebakaran_ahli_pertama">
+                                                                        Analis Kebakaran Ahli
+                                                                        Pertama
+                                                                    </option>
+                                                                    <option value="analis_kebakaran_ahli_muda">Analis
+                                                                        Kebakaran Ahli
+                                                                        Muda
+                                                                    </option>
+                                                                    <option value="analis_kebakaran_ahli_madya">Analis
+                                                                        Kebakaran Ahli
+                                                                        Madya
+                                                                    </option>
                                                                 </select>
+                                                                <select name="jenis_jabatan"
+                                                                    class="custom-select select-struktural"
+                                                                    style="display: none;">
+                                                                    <option selected disabled>- Pilih Jabatan -</option>
+                                                                    <option value="atasan_langsung">Atasan Langsung
+                                                                    </option>
+                                                                    <option value="penilai_ak">Penilai Angka Kredit
+                                                                    </option>
+                                                                    <option value="penetap_ak">Penetap Angka Kredit
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        {{-- Struktural --}}
+                                                        <div class="col-md-4 struktural" style="display: none;">
+                                                            <div class="form-group">
+                                                                <label>File SK<span
+                                                                        class="text-danger">*</span></label>
+                                                                <input type="file" name="file_sk" required />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -390,255 +330,6 @@
                                     </div>
 
                                     <div class="tab-pane fade" id="login-tab2">
-                                        <div class="header-wizard-form">
-                                            <form class="wizard-form steps-validation" method="POST"
-                                                action="{{ route('register') }}" enctype="multipart/form-data"
-                                                data-fouc>
-                                                @csrf
-                                                <h6>Admin Level</h6>
-                                                <fieldset>
-                                                    <div class="row">
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label>Tingkat Admin<span
-                                                                        class="text-danger">*</span></label>
-                                                                <select name="jabatan" class="custom-select">
-                                                                    <option selected disabled>- Pilih Tingkat -</option>
-                                                                    <option value="atasan_langsung">Atasan Langsung
-                                                                    </option>
-                                                                    <option value="penilai_ak">Pejabat Penilai AK
-                                                                    </option>
-                                                                    <option value="penetap_ak">Pejabat Penetap AK
-                                                                    </option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label>Provinsi<span
-                                                                        class="text-danger">*</span></label>
-                                                                <select name="provinsi_id" id="provinsi_id"
-                                                                    class="custom-select">
-                                                                    <option selected disabled>- Pilih Provinsi -
-                                                                    </option>
-                                                                    @foreach ($provinsis as $provinsi)
-                                                                        <option value="{{ $provinsi->id }}">
-                                                                            {{ $provinsi->nama }}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                                @error('provinsi_id')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label>Kabupaten / Kota<span
-                                                                        class="text-danger">*</span></label>
-                                                                <select name="kab_kota_id" id="kab_kota_id"
-                                                                    class="custom-select">
-                                                                    <option value="">- Pilih Provinsi Terlebih
-                                                                        Dahulu -</option>
-                                                                </select>
-                                                                @error('kab_kota_id')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-
-                                                    <div class="row justify-content-center">
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label for="">Tanda Tangan</label>
-                                                                <label class="input-file">
-                                                                    <div class="icon">
-                                                                        <i class="fa-solid fa-cloud-arrow-up"></i>
-                                                                        <p style="margin: 0 !important;">Pilih file
-                                                                            tanda
-                                                                            tangan</p>
-                                                                    </div>
-                                                                    <input style="display: none;" type="file"
-                                                                        name="file_ttd" id="">
-                                                                    <input style="display: none;" type="text"
-                                                                        name="value_ttd">
-                                                                    <img
-                                                                        class="file_ttd-preview img-fluid mb-3 rounded">
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </fieldset>
-
-                                                <h6>Personal data</h6>
-                                                <fieldset>
-                                                    <div class="row">
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <label>Nama Lengkap <span
-                                                                        class="text-danger">*</span></label>
-                                                                <input type="text" name="nama"
-                                                                    class="form-control" placeholder="Nama Lengkap">
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <label>Tempat Lahir<span
-                                                                        class="text-danger">*</span></label>
-                                                                <input type="text" name="tempat_lahir"
-                                                                    class="form-control" placeholder="Tempat Lahir">
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <label>Tanggal Lahir<span
-                                                                        class="text-danger">*</span></label>
-                                                                <input type="date" name="tanggal_lahir"
-                                                                    class="form-control" placeholder="Tanggal Lahir">
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <label>Jenis Kelamin<span
-                                                                        class="text-danger">*</span></label>
-                                                                <select name="jenis_kelamin" class="custom-select">
-                                                                    <option selected disabled>- Pilih Jenis Kelamin -
-                                                                    </option>
-                                                                    <option value="L">Laki - Laki</option>
-                                                                    <option value="P">Perempuan</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <label>Pendidikan Terakhir<span
-                                                                        class="text-danger">*</span></label>
-                                                                <select name="pendidikan_terakhir"
-                                                                    class="custom-select">
-                                                                    <option selected disabled>- Pilih Pendidikan
-                                                                        Terakhir -</option>
-                                                                    <option value="1">SMA/Sederajat</option>
-                                                                    <option value="2">D3</option>
-                                                                    <option value="3">S1/D4</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <label>NIP / Nomor Daftar<span
-                                                                        class="text-danger">*</span></label>
-                                                                <input type="number" name="nip"
-                                                                    class="form-control"
-                                                                    placeholder="NIP / Nomor Daftar">
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <label>Pangkat / Golongan / TMT<span
-                                                                        class="text-danger">*</span></label>
-                                                                <select name="pangkat_golongan_tmt"
-                                                                    class="custom-select">
-                                                                    <option selected disabled>- Pilih Jabatan -</option>
-                                                                    <option value="IIIA">IIIA</option>
-                                                                    <option value="IIIB">IIIB</option>
-                                                                    <option value="IIIC">IIIC</option>
-                                                                    <option value="IIID">IIID</option>
-                                                                    <option value="IVA">IVA</option>
-                                                                    <option value="IVB">IVB</option>
-                                                                    <option value="IVC">IVC</option>
-                                                                    <option value="IVD">IVD</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <label>Nomenklatur Perangkat Daerah<span
-                                                                        class="text-danger">*</span></label>
-                                                                <input type="number" class="form-control"
-                                                                    name="nomenklatur_jabatan" id="">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </fieldset>
-
-                                                <h6>Akses Login</h6>
-                                                <fieldset>
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Email<span class="text-danger">*</span></label>
-                                                                <input type="email" name="email"
-                                                                    placeholder="example@gmail.com"
-                                                                    class="form-control">
-                                                                @error('email')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Username<span
-                                                                        class="text-danger">*</span></label>
-                                                                <input type="text" name="username"
-                                                                    class="form-control">
-                                                            </div>
-                                                            @error('username')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Password<span
-                                                                        class="text-danger">*</span></label>
-                                                                <input type="password" name="password"
-                                                                    placeholder="password" class="form-control">
-                                                                @error('password')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Konfirmasi Password<span
-                                                                        class="text-danger">*</span></label>
-                                                                <input type="password" name="password_confirmation"
-                                                                    placeholder="password" class="form-control">
-                                                                @error('password_confirmation')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </fieldset>
-                                            </form>
-                                        </div>
-                                        <!-- /remote content source -->
-                                    </div>
-
-                                    <div class="tab-pane fade" id="login-tab3">
                                         <!-- Wizard with validation -->
                                         <div class="header-wizard-form">
                                             <form class="wizard-form steps-validation" method="POST"
@@ -652,7 +343,7 @@
                                                             <div class="form-group">
                                                                 <label>Tingkat Admin<span
                                                                         class="text-danger">*</span></label>
-                                                                <select name="jabatan" class="custom-select">
+                                                                <select name="jenis_jabatan" class="custom-select">
                                                                     <option selected disabled>- Pilih Tingkat -</option>
                                                                     <option value="kab_kota">kab_kota
                                                                     </option>
@@ -711,20 +402,10 @@
                                                     <div class="row justify-content-center">
                                                         <div class="col-md-4">
                                                             <div class="form-group">
-                                                                <label for="">Surat Permohonan</label>
-                                                                <label class="input-file">
-                                                                    <div class="icon">
-                                                                        <i class="fa-solid fa-cloud-arrow-up"></i>
-                                                                        <p style="margin: 0 !important;">Pilih file
-                                                                            surat</p>
-                                                                    </div>
-                                                                    <input style="display: none;" type="file"
-                                                                        name="file_permohonan" id="">
-                                                                    <input style="display: none;" type="text"
-                                                                        name="value_permohonan">
-                                                                    <img
-                                                                        class="file_permohonan-preview img-fluid mb-3 rounded">
-                                                                </label>
+                                                                <label>Surat Permohonan<span
+                                                                        class="text-danger">*</span></label>
+                                                                <input type="file" name="file_permohonan"
+                                                                    required />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -789,8 +470,6 @@
                                                         </div>
                                                     </div>
                                                 </fieldset>
-
-
                                             </form>
                                         </div>
                                         <!-- /wizard with validation -->
@@ -826,44 +505,101 @@
     </script>
     <script src="{{ asset('assets/extensions/filepond/filepond.jquery.js') }}"></script>
     <script src="{{ asset('assets/extensions/fontawesome/all.min.js') }}"></script>
+    <script src="{{ asset('assets/extensions/toastify-js/src/toastify.js') }}"></script>
     <script>
         $(function() {
-
             // First register any plugins
             $.fn.filepond.registerPlugin(FilePondPluginImagePreview);
 
-            // Turn input element into a pond
-            // $('.with-validation-images').filepond();
-            FilePond.registerPlugin(
-                FilePondPluginImagePreview
-            );
+            FilePond.setOptions({
+                server: {
+                    process: (fieldName, file, metadata, load, error, progress, abort, transfer,
+                        options) => {
+                        // fieldName is the name of the input field
+                        // file is the actual file object to send
+                        const formData = new FormData();
+                        formData.append(fieldName, file, file.name);
 
-            // Select the file input and use
-            // create() to turn it into a pond
-            pond = FilePond.create(
-                document.querySelector('.with-validation-images')
-            );
+                        const request = new XMLHttpRequest();
+                        request.open('POST', "{{ route('filepond.store') }}");
+                        request.setRequestHeader('X-CSRF-TOKEN', "{{ @csrf_token() }}");
+                        // Should call the progress method to update the progress to 100% before calling load
+                        // Setting computable to false switches the loading indicator to infinite mode
+                        request.upload.onprogress = (e) => {
+                            progress(e.lengthComputable, e.loaded, e.total);
+                        };
 
+                        // Should call the load method when done and pass the returned server file id
+                        // this server file id is then used later on when reverting or restoring a file
+                        // so your server knows which file to return without exposing that info to the client
+                        request.onload = function() {
+                            if (request.status >= 200 && request.status < 300) {
+                                // the load method accepts either a string (id) or an object
+                                load(request.responseText);
+                            } else {
+                                // Can call the error method if something is wrong, should exit after
+                                erorrs = JSON.parse(request.responseText);
+                                if (erorrs.file_permohonan) {
+                                    message = erorrs.file_permohonan.toString()
+                                } else {
+                                    message = erorrs.file_sk.toString()
+                                }
+                                Toastify({
+                                    text: message,
+                                    duration: 5000,
+                                    close: true,
+                                    gravity: "top",
+                                    position: "right",
+                                    backgroundColor: "rgba(234, 58, 61, 0.9)",
+                                }).showToast();
+                                error('oh no');
+                            }
+                        };
 
-            // document.addEventListener('FilePond:addFile', (e) => {
-            //     console.log(e.getFile());
-            // });
-            document.addEventListener('FilePond:addfile', (e) => {
-                console.log('File added', e.detail.file);
+                        request.send(formData);
+
+                        // Should expose an abort method so the request can be cancelled
+                        return {
+                            abort: () => {
+                                // This function is entered if the user has tapped the cancel button
+                                request.abort();
+
+                                // Let FilePond know the request has been cancelled
+                                abort();
+                            },
+                        };
+                    },
+                    revert: (uniqueFileId, load, error) => {
+                        // Should remove the earlier created temp file here
+                        // ...
+                        console.log(uniqueFileId);
+                        $.ajax({
+                            type: "DELETE",
+                            url: "{{ route('filepond.destroy') }}",
+                            headers: {
+                                'X-CSRF-TOKEN': "{{ @csrf_token() }}"
+                            },
+                            data: {
+                                name: uniqueFileId
+                            },
+                            success: function(response) {
+                                console.log(response);
+                            },
+                            error: function(response) {
+                                error(response);
+                            },
+                        });
+                        // Can call the error method if something is wrong, should exit after
+                        error('oh my goodness');
+
+                        // Should call the load method when done, no parameters required
+                        load();
+                    },
+                },
             });
 
-            $('input[name="file_ttd"]').change(function(e) {
-                e.preventDefault();
-                const imgPreview = document.querySelector('.file_ttd-preview');
-                previewImage(this, imgPreview);
-                $('input[name="value_ttd"]').val('ada');
-            });
-            $('input[name="file_permohonan"]').change(function(e) {
-                e.preventDefault();
-                const imgPreview = document.querySelector('.file_permohonan-preview');
-                previewImage(this, imgPreview);
-                $('input[name="value_permohonan"]').val('ada');
-            });
+            FilePond.create(document.querySelector('input[name="file_sk"]'));
+            FilePond.create(document.querySelector('input[name="file_permohonan"]'));
 
             function previewImage(image, imgPreview) {
                 imgPreview.style.display = 'block';
@@ -876,16 +612,7 @@
                 }
                 $('.input-file .icon').css('display', 'none');
             }
-            // document.addEventListener('FilePond:loaded', (e) => {
-            //     console.log('FilePond ready for use', e.detail);
-            //     // console.log(e.getFile());
-            // });
-            // // Listen for addfile event
 
-            // Manually add a file using the addfile method
-            // $('.my-pond').first().filepond('addFile', 'index.html').then(function(file) {
-            //     console.log('file added', file);
-            // });
             $('select[name="provinsi_id"]').each(function(index, element) {
                 $(element).change(function(e) {
                     e.preventDefault();
@@ -911,6 +638,23 @@
                         })
                 })
             }
+
+            $('select[name="jenis_aparatur"]').change(function(e) {
+                e.preventDefault();
+                if ($('.wrapper-select').css('display') == 'none') {
+                    $('.wrapper-select').show();
+                }
+                if (e.target.value == 'struktural') {
+                    $('.struktural').show();
+                    $('.select-struktural').show();
+                    $('.select-fungsional').hide();
+                }
+                if (e.target.value == 'fungsional') {
+                    $('.struktural').hide();
+                    $('.select-struktural').hide();
+                    $('.select-fungsional').show();
+                }
+            });
         });
     </script>
 

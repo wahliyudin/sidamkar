@@ -5,6 +5,7 @@ use App\Http\Controllers\Aparatur\DataSayaController;
 use App\Http\Controllers\Aparatur\LaporanKegiatanController;
 use App\Http\Controllers\Aparatur\OverviewController;
 use App\Http\Controllers\Aparatur\TabelKegiatanController;
+use App\Http\Controllers\Api\FilePondController;
 use App\Http\Controllers\Api\KabKotaController;
 use App\Http\Controllers\AtasanLangsung\OverviewController as AtasanLangsungOverviewController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -72,3 +73,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::get('api/kab-kota/{provinsi_id}', [KabKotaController::class, 'byProvinsiId']);
+Route::post('filepond', [FilePondController::class, 'store'])->name('filepond.store');
+Route::delete('filepond', [FilePondController::class, 'destroy'])->name('filepond.destroy');
