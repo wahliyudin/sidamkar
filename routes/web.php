@@ -36,7 +36,7 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 
 Route::middleware(['auth'])->group(function () {
-    Route::middleware(['role:damkar|analis_kebakaran'])->group(function () {
+    Route::middleware(['role:damkar_pemula|damkar_terampil|damkar_mahir|damkar_penyelia|analis_kebakaran_ahli_pertama|analis_kebakaran_ahli_muda|analis_kebakaran_ahli_madya'])->group(function () {
         Route::get('/overview', [OverviewController::class, 'index'])->name('overview');
         Route::get('/data-saya', [DataSayaController::class, 'index'])->name('data-saya');
         Route::get('/daftar-kegiatan', [DaftarKegiatanController::class, 'index'])->name('daftar-kegiatan');
