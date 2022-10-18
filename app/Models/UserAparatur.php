@@ -21,7 +21,11 @@ class UserAparatur extends Model
         'tanggal_lahir',
         'jenis_kelamin',
         'pendidikan_terakhir',
-        'foto_pegawai'
+        'foto_pegawai',
+        'no_hp',
+        'alamat',
+        'kab_kota_id',
+        'provinsi_id',
     ];
 
     /**

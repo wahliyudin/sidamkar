@@ -38,7 +38,7 @@ class PejabatFungsionalDataTable extends DataTable
      */
     public function query(User $model): QueryBuilder
     {
-        return $model->newQuery()->where('verified', null)->whereRoleIs(['damkar', 'analis_kebakaran']);
+        return $model->newQuery()->where('verified', null)->whereRoleIs(getAllRoleFungsional());
     }
 
     /**

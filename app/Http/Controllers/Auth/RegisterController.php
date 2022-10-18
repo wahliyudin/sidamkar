@@ -67,12 +67,7 @@ class RegisterController extends Controller
             'username' => ['required', 'string', 'max:255', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'kab_kota_id' => ['required'],
-            'jabatan' => ['required'],
-            'file_ttd' => ['image','mimes:jpeg,png,jpg,gif,svg','max:2048'],
-            'value_ttd' => [new PejabatStrukturalRule()],
-            'file_permohonan' => ['mimes:pdf','max:10000'],
-            'value_permohonan' => [new ProvKabKotaRule()],
+            'jenis_jabatan' => ['required']
         ]);
     }
 

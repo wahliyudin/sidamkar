@@ -8,3 +8,18 @@ if (!function_exists('deleteImage')) {
         return File::delete(public_path(str($image)->replace(url('/').'/', '')));
     }
 }
+
+if (!function_exists('getAllRoleFungsional')) {
+    function getAllRoleFungsional(): array
+    {
+        return [
+            "damkar_pemula",
+            "damkar_terampil",
+            "damkar_mahir",
+            "damkar_penyelia",
+            "analis_kebakaran_ahli_pertama",
+            "analis_kebakaran_ahli_muda",
+            "analis_kebakaran_ahli_madya"
+        ];
+    }
+}

@@ -32,45 +32,23 @@ class RegisterService
      */
     public function store(array $data): User
     {
-        if (!isset($data['jabatan'])) {
+        if (!isset($data['jenis_jabatan'])) {
             throw new Exception("Jabatan tidak ada", 400);
         }
-        switch ($data['jabatan']) {
-            case 'damkar':
-                $user = $this->storeAparatur($data);
-                $user->attachRole('damkar');
-                return $user;
-                break;
-            case 'analis_kebakaran':
-                $user = $this->storeAparatur($data);
-                $user->attachRole('analis_kebakaran');
-                return $user;
-                break;
-            case 'atasan_langsung':
-                $user = $this->storeStruktural($data);
-                $user->attachRole('atasan_langsung');
-                return $user;
-                break;
-            case 'penilai_ak':
-                $user = $this->storeStruktural($data);
-                $user->attachRole('penilai_ak');
-                return $user;
-                break;
-            case 'penetap_ak':
-                $user = $this->storeStruktural($data);
-                $user->attachRole('penetap_ak');
-                return $user;
-                break;
-            case 'kab_kota':
-                $user = $this->storeProvKabKota($data);
-                $user->attachRole('kab_kota');
-                return $user;
-                break;
-            case 'provinsi':
-                $user = $this->storeProvKabKota($data);
-                $user->attachRole('provinsi');
-                return $user;
-                break;
+        if (in_array($data['jenis_jabatan'], getAllRoleFungsional())) {
+            $user = $this->storeAparatur($data);
+            $user->attachRole($data['jenis_jabatan']);
+            return $user;
+        }
+        if (in_array($data['jenis_jabatan'], ['atasan_langsung', 'penilai_ak', 'penetap_ak'])) {
+            $user = $this->storeStruktural($data);
+            $user->attachRole($data['jenis_jabatan']);
+            return $user;
+        }
+        if (in_array($data['jenis_jabatan'], ['kab_kota', 'provinsi'])) {
+            $user = $this->storeProvKabKota($data);
+            $user->attachRole($data['jenis_jabatan']);
+            return $user;
         }
     }
 
@@ -95,19 +73,19 @@ class RegisterService
      */
     public function storeStruktural(array $data): User
     {
-        $data = array_merge($data, [
-            'file_ttd' => $this->storeImage($data['file_ttd'], 'struktural')
-        ]);
         $user = $this->registerRepository->storeUser($data);
         $this->registerRepository->storeStruktural($user, $data);
         return $user;
     }
 
+    /**
+     * storeProvKabKota
+     *
+     * @param  mixed $data
+     * @return User
+     */
     public function storeProvKabKota(array $data): User
     {
-        $data = array_merge($data, [
-            'file_permohonan' => $this->storeFile($data['file_permohonan'], 'kabkota')
-        ]);
         $user = $this->registerRepository->storeUser($data);
         $this->registerRepository->storeProvKabKota($user, $data);
         return $user;

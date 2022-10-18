@@ -26,7 +26,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'username',
         'email',
         'password',
-        'kab_kota_id',
         'verified'
     ];
 

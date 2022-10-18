@@ -20,11 +20,8 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->timestamp('verified')->nullable();
-            $table->foreignId('kab_kota_id');
             $table->rememberToken();
             $table->timestamps();
-
-            $table->foreign('kab_kota_id')->on('kab_kotas')->references('id')->cascadeOnDelete();
         });
     }
 

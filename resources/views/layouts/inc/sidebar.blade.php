@@ -15,7 +15,7 @@
         </div>
         <div class="sidebar-menu">
             <ul class="menu">
-                @role(['damkar', 'analis_kebakaran'])
+                @role(getAllRoleFungsional())
                     <li class="sidebar-item {{ request()->routeIs('overview') ? 'active' : '' }}">
                         <a href="{{ route('overview') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
@@ -32,7 +32,6 @@
                             <span>Daftar Kegiatan</span>
                         </a>
                     </li>
-
                     <li class="sidebar-item {{ request()->routeIs('tabel-kegiatan') ? 'active' : '' }}">
                         <a href="{{ route('tabel-kegiatan') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">

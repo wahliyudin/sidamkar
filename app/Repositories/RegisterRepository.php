@@ -21,7 +21,6 @@ class RegisterRepository
             'email' => $data['email'],
             'username' => $data['username'],
             'password' => Hash::make($data['password']),
-            'kab_kota_id' => $data['kab_kota_id']
         ]);
     }
 
@@ -29,14 +28,8 @@ class RegisterRepository
     {
         return $user->userAparatur()->create([
             'nama' => $data['nama'],
-            'jenjang' => $data['jenjang'],
-            'nip' => $data['nip'],
-            'pangkat_golongan_tmt' => $data['pangkat_golongan_tmt'],
-            'tempat_lahir' => $data['tempat_lahir'],
-            'tanggal_lahir' => Carbon::createFromFormat('Y-m-d', $data['tanggal_lahir'])->format('Y-m-d'),
-            'jenis_kelamin' => $data['jenis_kelamin'],
-            'pendidikan_terakhir' => $data['pendidikan_terakhir'],
-            'nomor_karpeg' => $data['nomor_karpeg'],
+            'provinsi_id' => $data['provinsi_id'],
+            'kab_kota_id' => $data['kab_kota_id']
         ]);
     }
 
@@ -44,7 +37,9 @@ class RegisterRepository
     {
         return $user->userProvKabKota()->create([
             'nomenklatur_perangkat_daerah' => $data['nomenklatur_perangkat_daerah'],
-            'file_permohonan' => $data['file_permohonan']
+            'file_permohonan' => $data['file_permohonan'],
+            'kab_kota_id' => isset($data['kab_kota_id']) ? $data['kab_kota_id'] : null,
+            'provinsi_id' => isset($data['provinsi_id']) ? $data['provinsi_id'] : null
         ]);
     }
 
@@ -52,14 +47,9 @@ class RegisterRepository
     {
         return $user->userPejabatStruktural()->create([
             'nama' => $data['nama'],
-            'pangkat_golongan_tmt' => $data['pangkat_golongan_tmt'],
-            'nomenklatur_jabatan' => $data['nomenklatur_jabatan'],
-            'nip' => $data['nip'],
-            'tempat_lahir' => $data['tempat_lahir'],
-            'tanggal_lahir' => $data['tanggal_lahir'],
-            'jenis_kelamin' => $data['jenis_kelamin'],
-            'pendidikan_terakhir' => $data['pendidikan_terakhir'],
-            'file_ttd' => $data['file_ttd']
+            'file_sk' => $data['file_sk'],
+            'kab_kota_id' => $data['kab_kota_id'],
+            'provinsi_id' => $data['provinsi_id']
         ]);
     }
 }

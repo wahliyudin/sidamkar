@@ -20,6 +20,16 @@ trait ImageTrait
         return $this->getImageUrl($folder, $imageName);
     }
 
+    public function storeImageFilePond(UploadedFile $file, string $folder)
+    {
+        return $file->store($folder);
+    }
+
+    public function deleteImageFilePond($name)
+    {
+        return Storage::delete(str($name)->replace('"', '')->replace("\\", ''));
+    }
+
     public function storeFile(UploadedFile $file, string $folder)
     {
         $fileName = $this->getRandomName($file);
