@@ -47,7 +47,7 @@ class DataAparaturDataTable extends DataTable
                         return $query->whereRoleIs(['damkar', 'analis_kebakaran', 'atasan_langsung', 'penilai_ak', 'penetap_ak']);
                         break;
                     case 'fungsional':
-                        return $query->whereRoleIs(['damkar', 'analis_kebakaran']);
+                        return $query->whereRoleIs(getAllRoleFungsional());
                         break;
                     case 'struktural':
                         return $query->whereRoleIs(['atasan_langsung', 'penilai_ak', 'penetap_ak']);

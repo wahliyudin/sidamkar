@@ -38,8 +38,8 @@ class RegisterRepository
         return $user->userProvKabKota()->create([
             'nomenklatur_perangkat_daerah' => $data['nomenklatur_perangkat_daerah'],
             'file_permohonan' => $data['file_permohonan'],
-            'kab_kota_id' => isset($data['kab_kota_id']) ? $data['kab_kota_id'] : '',
-            'provinsi_id' => isset($data['provinsi_id']) ? $data['provinsi_id'] : ''
+            'kab_kota_id' => isset($data['kab_kota_id']) ? $data['kab_kota_id'] : null,
+            'provinsi_id' => isset($data['provinsi_id']) ? $data['provinsi_id'] : null
         ]);
     }
 

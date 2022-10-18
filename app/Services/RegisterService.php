@@ -35,7 +35,7 @@ class RegisterService
         if (!isset($data['jenis_jabatan'])) {
             throw new Exception("Jabatan tidak ada", 400);
         }
-        if (in_array($data['jenis_jabatan'], getAllRoleAparatur())) {
+        if (in_array($data['jenis_jabatan'], getAllRoleFungsional())) {
             $user = $this->storeAparatur($data);
             $user->attachRole($data['jenis_jabatan']);
             return $user;

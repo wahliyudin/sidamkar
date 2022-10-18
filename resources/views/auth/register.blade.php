@@ -333,21 +333,21 @@
                                         <!-- Wizard with validation -->
                                         <div class="header-wizard-form">
                                             <form class="wizard-form steps-validation" method="POST"
-                                                action="{{ route('register') }}" enctype="multipart/form-data"
-                                                data-fouc>
+                                                action="{{ route('register') }}" data-fouc>
                                                 @csrf
                                                 <h6>Admin Level</h6>
                                                 <fieldset>
-                                                    <div class="row">
+                                                    <div class="row justify-content-center">
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label>Tingkat Admin<span
                                                                         class="text-danger">*</span></label>
-                                                                <select name="jenis_jabatan" class="custom-select">
+                                                                <select name="jenis_jabatan"
+                                                                    class="custom-select jenis-jabatan-kabkota">
                                                                     <option selected disabled>- Pilih Tingkat -</option>
-                                                                    <option value="kab_kota">kab_kota
+                                                                    <option value="kab_kota">Kab Kota
                                                                     </option>
-                                                                    <option value="provinsi">provinsi
+                                                                    <option value="provinsi">Provinsi
                                                                     </option>
                                                                 </select>
                                                             </div>
@@ -372,7 +372,7 @@
                                                                 @enderror
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-3">
+                                                        <div class="col-md-3 kabkota-kabkota" style="display: none;">
                                                             <div class="form-group">
                                                                 <label>Kabupaten / Kota<span
                                                                         class="text-danger">*</span></label>
@@ -653,6 +653,16 @@
                     $('.struktural').hide();
                     $('.select-struktural').hide();
                     $('.select-fungsional').show();
+                }
+            });
+
+            $('.jenis-jabatan-kabkota').change(function(e) {
+                e.preventDefault();
+                if (e.target.value == 'provinsi') {
+                    $('.kabkota-kabkota').hide();
+                }
+                if (e.target.value == 'kab_kota') {
+                    $('.kabkota-kabkota').show();
                 }
             });
         });

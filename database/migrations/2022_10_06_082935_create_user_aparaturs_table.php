@@ -26,6 +26,8 @@ return new class extends Migration
             $table->enum('jenis_kelamin', ['P', 'L'])->nullable();
             $table->integer('pendidikan_terakhir')->nullable(); // Enum
             $table->string('foto_pegawai')->nullable();
+            $table->string('no_hp')->nullable();
+            $table->string('alamat')->nullable();
             $table->unsignedBigInteger('provinsi_id');
             $table->unsignedBigInteger('kab_kota_id');
             $table->timestamps();

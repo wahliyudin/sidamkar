@@ -15,7 +15,7 @@
         </div>
         <div class="sidebar-menu">
             <ul class="menu">
-                @role(getAllRoleAparatur())
+                @role(getAllRoleFungsional())
                     <li class="sidebar-item {{ request()->routeIs('overview') ? 'active' : '' }}">
                         <a href="{{ route('overview') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">

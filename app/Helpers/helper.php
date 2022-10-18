@@ -9,8 +9,8 @@ if (!function_exists('deleteImage')) {
     }
 }
 
-if (!function_exists('getAllRoleAparatur')) {
-    function getAllRoleAparatur(): array
+if (!function_exists('getAllRoleFungsional')) {
+    function getAllRoleFungsional(): array
     {
         return [
             "damkar_pemula",
