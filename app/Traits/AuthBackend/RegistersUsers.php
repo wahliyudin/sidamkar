@@ -38,7 +38,6 @@ trait RegistersUsers
         // dispatch(new SendVerifEmailToUser($user));
 
         // $this->guard()->login($user);
-
         if ($response = $this->registered($request, $user)) {
             return $response;
         }
@@ -67,6 +66,9 @@ trait RegistersUsers
      */
     protected function registered(Request $request, $user)
     {
+        if (!is_null(Auth::user())) {
+            Auth::logout();
+        }
         return to_route('login')->with('message', 'Silahkan cek email kamu');
     }
 }
