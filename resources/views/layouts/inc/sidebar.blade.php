@@ -172,6 +172,52 @@
                             <span>Data Prov/Kab/Kota</span>
                         </a>
                     </li>
+                    <li
+                        class="sidebar-item has-sub {{ request()->is('kemendagri/data-admin-daerah/admin-kabkota*') || request()->is('kemendagri/data-admin-daerah/admin-provinsi*') ? 'active' : '' }}">
+                        <a href="javascript(0)" class='sidebar-link'>
+                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                                <i class="bi bi-grid-fill"></i>
+                            </div>
+                            <span>Data Admin Daerah</span>
+                        </a>
+                        <ul
+                            class="submenu {{ request()->is('kemendagri/data-admin-daerah/admin-kabkota*') || request()->is('kemendagri/data-admin-daerah/admin-provinsi*') ? 'active' : '' }}">
+                            <li
+                                class="submenu-item {{ request()->routeIs('kemendagri.data-admin-daerah.admin-kabkota.index') ? 'active' : '' }}">
+                                <a href="{{ route('kemendagri.data-admin-daerah.admin-kabkota.index') }}">Admin
+                                    KabKota</a>
+                            </li>
+                            <li
+                                class="submenu-item {{ request()->routeIs('kemendagri.data-admin-daerah.admin-provinsi.index') ? 'active' : '' }}">
+                                <a href="{{ route('kemendagri.data-admin-daerah.admin-provinsi.index') }}">Admin
+                                    Provinsi</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="" class='sidebar-link'>
+                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                                <i class="bi bi-grid-fill"></i>
+                            </div>
+                            <span>Chatbox</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item has-sub">
+                        <a href="javascript(0)" class='sidebar-link'>
+                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                                <i class="bi bi-grid-fill"></i>
+                            </div>
+                            <span>CMS</span>
+                        </a>
+                        <ul class="submenu">
+                            <li class="submenu-item">
+                                <a href="">Butir Kegiatan</a>
+                            </li>
+                            <li class="submenu-item">
+                                <a href="">User</a>
+                            </li>
+                        </ul>
+                    </li>
                 @endrole
             </ul>
         </div>

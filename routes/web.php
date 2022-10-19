@@ -16,6 +16,8 @@ use App\Http\Controllers\KabKota\OverviewController as KabKotaOverviewController
 use App\Http\Controllers\KabKota\VerifikasiAparatur\PejabatFungsionalController;
 use App\Http\Controllers\KabKota\VerifikasiAparatur\PejabatStrukturalController;
 use App\Http\Controllers\KabKota\VerifikasiAparatur\VerifikasiAparaturController;
+use App\Http\Controllers\Kemendagri\DataAdminDaerah\AdminKabKotaController as DataAdminDaerahAdminKabKotaController;
+use App\Http\Controllers\Kemendagri\DataAdminDaerah\AdminProvinsiController as DataAdminDaerahAdminProvinsiController;
 use App\Http\Controllers\Kemendagri\DataProvKabKotaController;
 use App\Http\Controllers\Kemendagri\OverviewController as KemendagriOverviewController;
 use App\Http\Controllers\Kemendagri\PejabatStrukturalController as KemendagriPejabatStrukturalController;
@@ -41,13 +43,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $data = KabKota::query()
-        ->whereHas('provinsi', function($query){
-            $query->where('nama', '=', 'ACEH');
-        })
-        ->with('provinsi')
-        ->get();
-    return $data;
     return redirect()->route('login');
 });
 Auth::routes(['verify' => true]);
@@ -98,7 +93,14 @@ Route::middleware(['auth'])->group(function () {
 
         Route::controller(DataProvKabKotaController::class)->group(function () {
             Route::get('kemendagri/data-prov-kab-kota', 'index')->name('kemendagri.data-prov-kab-kota.index');
-            // Route::get('kemendagri/data-prov-kab-kota/{id}/show', 'show')->name('kemendagri.data-prov-kab-kota.show');
+        });
+
+        Route::controller(DataAdminDaerahAdminKabKotaController::class)->group(function () {
+            Route::get('kemendagri/data-admin-daerah/admin-kabkota', 'index')->name('kemendagri.data-admin-daerah.admin-kabkota.index');
+        });
+
+        Route::controller(DataAdminDaerahAdminProvinsiController::class)->group(function () {
+            Route::get('kemendagri/data-admin-daerah/admin-provinsi', 'index')->name('kemendagri.data-admin-daerah.admin-provinsi.index');
         });
     });
 });

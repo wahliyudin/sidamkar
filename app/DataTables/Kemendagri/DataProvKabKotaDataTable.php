@@ -37,28 +37,31 @@ class DataProvKabKotaDataTable extends DataTable
             ->addColumn('perempuan', function (KabKota $kabkota) {
                 return $kabkota->user_aparatur_perempuan_count + $kabkota->user_pejabat_struktural_perempuan_count;
             })
-            ->filterColumn('provinsi', function ($query, $keyword) {
-                $query->whereHas('provinsi', function ($query) use ($keyword) {
+            ->filterColumn('provinsi', function (EloquentBuilder $query, $keyword) {
+                $query->whereHas('provinsi', function (EloquentBuilder $query) use ($keyword) {
                     $query->where('nama', 'like', "%$keyword%");
                 });
             })
-            ->filterColumn('nama', function ($query, $keyword) {
+            ->filterColumn('nama', function (EloquentBuilder $query, $keyword) {
                 $query->where('nama', 'like', "%$keyword%");
             })
-            ->orderColumn('provinsi', function ($query, $order) {
-                $query->whereHas('provinsi', function ($query) use ($order) {
+            ->orderColumn('provinsi', function (EloquentBuilder $query, $order) {
+                $query->whereHas('provinsi', function (EloquentBuilder $query) use ($order) {
                     $query->orderBy('nama', $order);
                 });
             })
-            ->orderColumn('jumlah_aparatur', function ($query, $order) {
+            ->orderColumn('nama', function (EloquentBuilder $query, $order) {
+                $query->orderBy('nama', $order);
+            })
+            ->orderColumn('jumlah_aparatur', function (EloquentBuilder $query, $order) {
                 $query->orderBy('user_aparatur_count', $order)
                     ->orderBy('user_pejabat_struktural_count', $order);
             })
-            ->orderColumn('laki_laki', function ($query, $order) {
+            ->orderColumn('laki_laki', function (EloquentBuilder $query, $order) {
                 $query->orderBy('user_aparatur_laki_laki_count', $order)
                     ->orderBy('user_pejabat_struktural_laki_laki_count', $order);
             })
-            ->orderColumn('perempuan', function ($query, $order) {
+            ->orderColumn('perempuan', function (EloquentBuilder $query, $order) {
                 $query->orderBy('user_aparatur_perempuan_count', $order)
                     ->orderBy('user_pejabat_struktural_perempuan_count', $order);
             })
@@ -90,10 +93,12 @@ class DataProvKabKotaDataTable extends DataTable
             ->withCount(['userPejabatStruktural as user_pejabat_struktural_perempuan_count' => function (EloquentBuilder $query) {
                 $query->where('jenis_kelamin', 'P');
             }])
-            ->when($provinsi, function (QueryBuilder $query) use ($provinsi) {
-                $query->whereHas('provinsi', function ($query) use ($provinsi) {
-                    $query->where('id', $provinsi);
-                });
+            ->when($provinsi, function (EloquentBuilder $query) use ($provinsi) {
+                if ($provinsi != 'all') {
+                    return $query->whereHas('provinsi', function ($query) use ($provinsi) {
+                        $query->where('id', $provinsi);
+                    });
+                }
             });
     }
 
