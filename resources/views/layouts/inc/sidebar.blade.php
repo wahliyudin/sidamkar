@@ -63,7 +63,7 @@
                         </a>
                     </li>
                     <li
-                        class="sidebar-item has-sub {{ request()->routeIs('kab-kota.verifikasi-aparatur') ? 'active' : '' }}">
+                        class="sidebar-item has-sub {{ request()->is('kab-kota/verifikasi-aparatur/pejabat-fungsional*') || request()->is('kab-kota/verifikasi-aparatur/pejabat-struktural*') ? 'active' : '' }}">
                         <a href="javascript(0)" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="bi bi-grid-fill"></i>
@@ -132,6 +132,44 @@
                                 <i class="bi bi-grid-fill"></i>
                             </div>
                             <span>Overview</span>
+                        </a>
+                    </li>
+                    <li
+                        class="sidebar-item has-sub {{ request()->is('kemendagri/verifikasi-data/admin-kabkota*') || request()->is('kemendagri/verifikasi-data/admin-provinsi*') ? 'active' : '' }}">
+                        <a href="javascript(0)" class='sidebar-link'>
+                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                                <i class="bi bi-grid-fill"></i>
+                            </div>
+                            <span>Verifikasi Data</span>
+                        </a>
+                        <ul
+                            class="submenu {{ request()->is('kemendagri/verifikasi-data/admin-kabkota*') || request()->is('kemendagri/verifikasi-data/admin-provinsi*') ? 'active' : '' }}">
+                            <li
+                                class="submenu-item {{ request()->is('kemendagri/verifikasi-data/admin-kabkota*') ? 'active' : '' }}">
+                                <a href="{{ route('kemendagri.verifikasi-data.admin-kabkota.index') }}">Admin KabKota</a>
+                            </li>
+                            <li
+                                class="submenu-item {{ request()->is('kemendagri/verifikasi-data/admin-provinsi*') ? 'active' : '' }}">
+                                <a href="{{ route('kemendagri.verifikasi-data.admin-provinsi.index') }}">Admin Provinsi</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li
+                        class="sidebar-item {{ request()->routeIs('kemendagri.pejabat-struktural.index') ? 'active' : '' }}">
+                        <a href="{{ route('kemendagri.pejabat-struktural.index') }}" class='sidebar-link'>
+                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                                <i class="bi bi-grid-fill"></i>
+                            </div>
+                            <span>Pejabat Struktural</span>
+                        </a>
+                    </li>
+                    <li
+                        class="sidebar-item {{ request()->routeIs('kemendagri.data-prov-kab-kota.index') ? 'active' : '' }}">
+                        <a href="{{ route('kemendagri.data-prov-kab-kota.index') }}" class='sidebar-link'>
+                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                                <i class="bi bi-grid-fill"></i>
+                            </div>
+                            <span>Data Prov/Kab/Kota</span>
                         </a>
                     </li>
                 @endrole

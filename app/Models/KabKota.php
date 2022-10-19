@@ -24,4 +24,14 @@ class KabKota extends Model
     {
         return $this->belongsTo(Provinsi::class);
     }
+
+    public function userAparatur()
+    {
+        return $this->hasMany(UserAparatur::class);
+    }
+
+    public function userPejabatStruktural()
+    {
+        return $this->hasMany(UserPejabatStruktural::class);
+    }
 }

@@ -6,6 +6,8 @@ namespace Database\Seeders;
 
 use App\Models\KabKota;
 use App\Models\Provinsi;
+use App\Models\UserAparatur;
+use App\Models\UserPejabatStruktural;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -27,5 +29,7 @@ class DatabaseSeeder extends Seeder
         $this->call(KabKotaSeeder::class);
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
+        UserAparatur::factory(50)->create();
+        UserPejabatStruktural::factory(50)->create();
     }
 }

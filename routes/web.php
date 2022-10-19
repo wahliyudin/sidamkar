@@ -16,8 +16,15 @@ use App\Http\Controllers\KabKota\OverviewController as KabKotaOverviewController
 use App\Http\Controllers\KabKota\VerifikasiAparatur\PejabatFungsionalController;
 use App\Http\Controllers\KabKota\VerifikasiAparatur\PejabatStrukturalController;
 use App\Http\Controllers\KabKota\VerifikasiAparatur\VerifikasiAparaturController;
+use App\Http\Controllers\Kemendagri\DataProvKabKotaController;
 use App\Http\Controllers\Kemendagri\OverviewController as KemendagriOverviewController;
+use App\Http\Controllers\Kemendagri\PejabatStrukturalController as KemendagriPejabatStrukturalController;
+use App\Http\Controllers\Kemendagri\VerifikasiData\AdminKabKotaController;
+use App\Http\Controllers\Kemendagri\VerifikasiData\AdminProvinsiController;
 use App\Http\Controllers\Provinsi\OverviewController as ProvinsiOverviewController;
+use App\Models\KabKota;
+use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Route;
@@ -32,7 +39,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/', function () {
+    $data = KabKota::query()
+        ->whereHas('provinsi', function($query){
+            $query->where('nama', '=', 'ACEH');
+        })
+        ->with('provinsi')
+        ->get();
+    return $data;
     return redirect()->route('login');
 });
 Auth::routes(['verify' => true]);
@@ -73,6 +88,18 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['role:kemendagri'])->group(function () {
         Route::get('kemendagri/overview', [KemendagriOverviewController::class, 'index'])->name('kemendagri.overview.index');
+        Route::get('kemendagri/verifikasi-data/admin-kabkota', [AdminKabKotaController::class, 'index'])->name('kemendagri.verifikasi-data.admin-kabkota.index');
+        Route::get('kemendagri/verifikasi-data/admin-provinsi', [AdminProvinsiController::class, 'index'])->name('kemendagri.verifikasi-data.admin-provinsi.index');
+
+        Route::controller(KemendagriPejabatStrukturalController::class)->group(function () {
+            Route::get('kemendagri/pejabat-struktural', 'index')->name('kemendagri.pejabat-struktural.index');
+            Route::get('kemendagri/pejabat-struktural/{id}/show', 'show')->name('kemendagri.pejabat-struktural.show');
+        });
+
+        Route::controller(DataProvKabKotaController::class)->group(function () {
+            Route::get('kemendagri/data-prov-kab-kota', 'index')->name('kemendagri.data-prov-kab-kota.index');
+            // Route::get('kemendagri/data-prov-kab-kota/{id}/show', 'show')->name('kemendagri.data-prov-kab-kota.show');
+        });
     });
 });
 
