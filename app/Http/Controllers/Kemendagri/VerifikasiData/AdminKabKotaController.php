@@ -12,4 +12,9 @@ class AdminKabKotaController extends Controller
     {
         return $dataTable->render('kemendagri.verifikasi-data.admin-kabkota.index');
     }
+
+    public function showDoc($id)
+    {
+        return view('kemendagri.verifikasi-data.document');
+    }
 }

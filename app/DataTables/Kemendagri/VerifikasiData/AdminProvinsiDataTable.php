@@ -25,7 +25,12 @@ class AdminProvinsiDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addIndexColumn()
             ->addColumn('action', function (User $user) {
-                return '<a href="" class="btn btn-blue text-sm">Detail</a>';
+                $route = '';
+                return view('kemendagri.extensions.buttons-tolak-verif', compact('user', 'route'))->render();
+            })
+            ->addColumn('document', function (User $user) {
+                $route = route('kemendagri.verifikasi-data.admin-provinsi.showdoc', $user->id);
+                return view('kemendagri.extensions.button-lihat', compact('route'))->render();
             })
             ->setRowId('id');
     }
@@ -75,6 +80,8 @@ class AdminProvinsiDataTable extends DataTable
             Column::computed('no'),
             Column::make('username')
                 ->title('Nama'),
+            Column::computed('document')
+                ->title('Dokumen'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

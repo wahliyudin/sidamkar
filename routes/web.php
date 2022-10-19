@@ -43,6 +43,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    return view('coba');
     return redirect()->route('login');
 });
 Auth::routes(['verify' => true]);
@@ -83,9 +84,15 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['role:kemendagri'])->group(function () {
         Route::get('kemendagri/overview', [KemendagriOverviewController::class, 'index'])->name('kemendagri.overview.index');
-        Route::get('kemendagri/verifikasi-data/admin-kabkota', [AdminKabKotaController::class, 'index'])->name('kemendagri.verifikasi-data.admin-kabkota.index');
-        Route::get('kemendagri/verifikasi-data/admin-provinsi', [AdminProvinsiController::class, 'index'])->name('kemendagri.verifikasi-data.admin-provinsi.index');
+        Route::controller(AdminKabKotaController::class)->group(function () {
+            Route::get('kemendagri/verifikasi-data/admin-kabkota', 'index')->name('kemendagri.verifikasi-data.admin-kabkota.index');
+            Route::get('kemendagri/verifikasi-data/admin-kabkota/{id}/document', 'showDoc')->name('kemendagri.verifikasi-data.admin-kabkota.showdoc');
+        });
 
+        Route::controller(AdminProvinsiController::class)->group(function () {
+            Route::get('kemendagri/verifikasi-data/admin-provinsi', 'index')->name('kemendagri.verifikasi-data.admin-provinsi.index');
+            Route::get('kemendagri/verifikasi-data/admin-provinsi/{id}/document', 'showDoc')->name('kemendagri.verifikasi-data.admin-provinsi.showdoc');
+        });
         Route::controller(KemendagriPejabatStrukturalController::class)->group(function () {
             Route::get('kemendagri/pejabat-struktural', 'index')->name('kemendagri.pejabat-struktural.index');
             Route::get('kemendagri/pejabat-struktural/{id}/show', 'show')->name('kemendagri.pejabat-struktural.show');

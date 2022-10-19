@@ -1,12 +1,13 @@
 @extends('layouts.master')
 @section('content')
-    <input type="file" class="my-pond" name="filepond" />
+    {{-- <input type="file" class="my-pond" name="filepond" />
     <form action="{{ route('coba.store') }}" method="post" enctype="multipart/form-data">
         @csrf
         <input type="file" class="dropify" name="drop" data-height="300" />
         <input type="file" name="coba" id="">
         <button class="btn btn-primary">Submit</button>
-    </form>
+    </form> --}}
+    <iframe src="{{ asset('storage/produk.pdf') }}" width="100%" height="500px"></iframe>
 @endsection
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/extensions/filepond/filepond.css') }}">

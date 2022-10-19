@@ -12,4 +12,9 @@ class AdminProvinsiController extends Controller
     {
         return $dataTable->render('kemendagri.data-admin-daerah.admin-provinsi.index');
     }
+
+    public function showDoc($id)
+    {
+        return view('kemendagri.verifikasi-data.document');
+    }
 }
