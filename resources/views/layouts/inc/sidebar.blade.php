@@ -154,8 +154,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li
-                        class="sidebar-item {{ request()->routeIs('kemendagri.pejabat-struktural.index') ? 'active' : '' }}">
+                    <li class="sidebar-item {{ request()->is('kemendagri/pejabat-struktural*') ? 'active' : '' }}">
                         <a href="{{ route('kemendagri.pejabat-struktural.index') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="bi bi-grid-fill"></i>

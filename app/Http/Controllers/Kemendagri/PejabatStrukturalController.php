@@ -19,7 +19,7 @@ class PejabatStrukturalController extends Controller
         return view('kemendagri.pejabat-struktural.show');
     }
 
-    public function nonActive($id)
+    public function nonActive(Request $request, $id)
     {
         $user = User::query()->find($id);
         if (!$user) {
@@ -28,7 +28,10 @@ class PejabatStrukturalController extends Controller
                 'message' => 'Data tidak ditemukan',
             ]);
         }
-        $user->userPejabatStruktural()->update(['is_active' => true]);
+        $user->userPejabatStruktural()->update([
+            'is_active' => false,
+            'catatan' => $request->catatan
+        ]);
         return response()->json([
             'success' => true,
             'message' => 'Berhasil dinonaktifkan',
@@ -44,7 +47,10 @@ class PejabatStrukturalController extends Controller
                 'message' => 'Data tidak ditemukan',
             ]);
         }
-        $user->userPejabatStruktural()->update(['is_active' => false]);
+        $user->userPejabatStruktural()->update([
+            'is_active' => true,
+            'catatan' => null
+        ]);
         return response()->json([
             'success' => true,
             'message' => 'Berhasil diaktifkan',
