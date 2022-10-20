@@ -45,15 +45,31 @@ class UserFactory extends Factory
             // $user->attachRole('kab_kota');
             // $user->userProvKabKota()->create([
             //     'nomenklatur_perangkat_daerah' => fake()->numberBetween(100000, 999999),
-            //     'is_active' => fake()->boolean(),
+            //     'is_active' => false,
             //     'kab_kota_id' => fake()->randomElement(KabKota::query()->pluck('id')->toArray()),
             // ]);
-            $user->attachRole(fake()->randomElement(['atasan_langsung', 'penilai_ak', 'penetap_ak']));
+            // $user->attachRole(fake()->randomElement(['atasan_langsung', 'penilai_ak', 'penetap_ak']));
+            // $provinsi_id = fake()->randomElement(Provinsi::query()->pluck('id')->toArray());
+            // $kabKotas = Provinsi::query()->with('kabKotas:id,provinsi_id')->find(11)->kabKotas->pluck('id');
+            // $user->userPejabatStruktural()->create([
+            //     'nama' => fake()->name(),
+            //     'is_active' => fake()->boolean(),
+            //     'provinsi_id' => $provinsi_id,
+            //     'kab_kota_id' => fake()->randomElement($kabKotas),
+            // ]);
+            $user->attachRole(fake()->randomElement([
+                "damkar_pemula",
+                "damkar_terampil",
+                "damkar_mahir",
+                "damkar_penyelia",
+                "analis_kebakaran_ahli_pertama",
+                "analis_kebakaran_ahli_muda",
+                "analis_kebakaran_ahli_madya"
+            ]));
             $provinsi_id = fake()->randomElement(Provinsi::query()->pluck('id')->toArray());
             $kabKotas = Provinsi::query()->with('kabKotas:id,provinsi_id')->find(11)->kabKotas->pluck('id');
             $user->userPejabatStruktural()->create([
                 'nama' => fake()->name(),
-                'is_active' => fake()->boolean(),
                 'provinsi_id' => $provinsi_id,
                 'kab_kota_id' => fake()->randomElement($kabKotas),
             ]);

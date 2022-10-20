@@ -12,7 +12,8 @@ class DokKepegawaian extends Model
 
     protected $fillable = [
         'user_id',
-        'file'
+        'file',
+        'nama'
     ];
 
     /**

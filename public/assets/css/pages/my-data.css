@@ -1,8 +1,4 @@
 .btn-ubah {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
     padding: 10px 18px 10px 20px;
     background: #F2F2F2;
     border-radius: 4px;
@@ -10,9 +6,6 @@
     justify-content: center;
     align-items: center;
     color: #1AD598;
-}
-
-.btn-ubah span {
     text-transform: uppercase;
     font-weight: 600;
     font-family: 'Roboto';
