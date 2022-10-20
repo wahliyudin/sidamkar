@@ -45,6 +45,7 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
 @endsection
 
 @section('js')
@@ -54,4 +55,82 @@
     <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
+    <script type="text/javascript">
+        function tolak(id) {
+            swal({
+                title: "Tolak?",
+                text: "Masukan alasan kenapa ditolak!",
+                type: "warning",
+                input: 'text',
+                inputPlaceholder: 'Catatan',
+                showCancelButton: true,
+                confirmButtonText: 'Ya, nonaktifkan!',
+                cancelButtonText: "Batal",
+                showLoaderOnConfirm: true,
+                inputValidator: (value) => {
+                    if (!value) {
+                        return 'Catatan tidak boleh kosong!'
+                    }
+                },
+                preConfirm: async (value) => {
+                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                    return await $.ajax({
+                        type: 'POST',
+                        url: "{{ url('kemendagri/verifikasi-data/admin-kabkota') }}/" + id + "/reject",
+                        data: {
+                            _token: CSRF_TOKEN,
+                            catatan: value
+                        },
+                        dataType: 'JSON'
+                    });
+                },
+            }).then(function(e) {
+                if (e.value.success == true) {
+                    swal("Selesai!", e.value.message, "success").then(() => {
+                        $('#adminkabkota-table').DataTable().ajax
+                            .reload()
+                    });
+                } else {
+                    swal("Error!", e.value.message, "error");
+                }
+            })
+        }
+
+        function verifikasi(id) {
+            swal({
+                title: "Perifikasi?",
+                text: "Please ensure and then confirm!",
+                type: "warning",
+                showCancelButton: !0,
+                confirmButtonText: "Ya, verfikasi!",
+                cancelButtonText: "Batal",
+                reverseButtons: !0,
+                showLoaderOnConfirm: true,
+                preConfirm: async () => {
+                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                    return await $.ajax({
+                        type: 'POST',
+                        url: "{{ url('kemendagri/verifikasi-data/admin-kabkota') }}/" + id +
+                            "/verified",
+                        data: {
+                            _token: CSRF_TOKEN
+                        },
+                        dataType: 'JSON'
+                    });
+                },
+            }).then(function(e) {
+                if (e.value.success == true) {
+                    swal("Selesai!", e.value.message, "success").then(() => {
+                        $('#adminkabkota-table').DataTable().ajax
+                            .reload()
+                    });
+                } else {
+                    swal("Error!", e.value.message, "error");
+                }
+            }, function(dismiss) {
+                return false;
+            })
+        }
+    </script>
 @endsection

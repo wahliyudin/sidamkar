@@ -22,6 +22,7 @@ trait ImageTrait
 
     public function storeImageFilePond(UploadedFile $file, string $folder)
     {
+        $this->checkFolder($folder);
         return $file->store($folder);
     }
 

@@ -30,7 +30,7 @@ class AdminKabKotaDataTable extends DataTable
             })
             ->addColumn('document', function (User $user) {
                 $route = route('kemendagri.verifikasi-data.admin-kabkota.showdoc', $user->id);
-                return view('kemendagri.extensions.button-lihat', compact('route'))->render();
+                return view('kemendagri.extensions.button-lihat', compact('route', 'user'))->render();
             })
             ->setRowId('id');
     }
@@ -43,7 +43,7 @@ class AdminKabKotaDataTable extends DataTable
      */
     public function query(User $model): QueryBuilder
     {
-        return $model->newQuery()->where('verified', null)->whereRoleIs('kab_kota');
+        return $model->newQuery()->with('userProvKabKota')->where('verified', null)->whereRoleIs('kab_kota');
     }
 
     /**

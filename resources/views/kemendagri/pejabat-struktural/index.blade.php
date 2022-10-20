@@ -105,47 +105,6 @@
                     });
                 }
             })
-            // swal({
-            //     title: "Nonaktifkan?",
-            //     text: "Masukan alasan kenapa dinonaktifkan!",
-            //     type: "warning",
-            //     input: 'text',
-            //     showCancelButton: !0,
-            //     confirmButtonText: "Ya, nonaktifkan!",
-            //     cancelButtonText: "Batal",
-            //     reverseButtons: !0
-            // }).then(function(e) {
-            //     if (e.value === true) {
-            //         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-
-            //         $.ajax({
-            //             type: 'POST',
-            //             url: "{{ url('kemendagri/pejabat-struktural') }}/" + id +
-            //                 "/non-active",
-            //             data: {
-            //                 _token: CSRF_TOKEN
-            //             },
-            //             dataType: 'JSON',
-            //             success: function(results) {
-            //                 if (results.success === true) {
-            //                     swal("Selesai!", results.message, "success").then(() => {
-            //                         $('#pejabatstruktural-table').DataTable().ajax.reload()
-            //                     });
-            //                 } else {
-            //                     swal("Error!", results.message, "error");
-            //                 }
-            //             },
-            //             error: function(error) {
-            //                 swal("Error!", "Something went wrong", "error");
-            //             }
-            //         });
-            //     } else {
-            //         e.dismiss;
-            //     }
-
-            // }, function(dismiss) {
-            //     return false;
-            // })
         }
 
         function active(id) {
