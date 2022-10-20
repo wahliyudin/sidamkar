@@ -82,10 +82,18 @@
                         <li>
                             <h6 class="dropdown-header">Hello, {{ Auth::user()->username }}</h6>
                         </li>
+                        @role(getAllRoleFungsional())
+                            <li>
+                                <a class="dropdown-item" href="{{ route('data-saya') }}">
+                                    <i class="icon-mid bi bi-person me-2"></i>
+                                    Data Saya
+                                </a>
+                            </li>
+                        @endrole
                         <li>
-                            <a class="dropdown-item" href="{{ route('data-saya') }}">
-                                <i class="icon-mid bi bi-person me-2"></i>
-                                Data Saya
+                            <a class="dropdown-item" href="">
+                                <i class="fa-solid fa-lock me-2"></i>
+                                Ubah Password
                             </a>
                         </li>
                         <li>

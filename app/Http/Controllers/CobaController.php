@@ -8,11 +8,14 @@ class CobaController extends Controller
 {
     public function index()
     {
-        return view('coba');
+        return view('sweet');
     }
 
-    public function store(Request $request)
+    public function delete($id)
     {
-        dd($request->all());
+        return response()->json([
+            'success' => true,
+            'message' => $id,
+        ]);
     }
 }

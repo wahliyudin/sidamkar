@@ -22403,9 +22403,10 @@ a {
     border: 1px solid #1AD598 !important;
 }
 
-.btn-green {
-    color: #fff;
-    background-color: #1AD598;
+.btn-green,
+.btn-green:active {
+    color: #fff !important;
+    background-color: #1AD598 !important;
 }
 
 .btn-green:hover {
@@ -22413,9 +22414,21 @@ a {
     background-color: #18b882;
 }
 
-.btn-blue {
-    color: #fff;
-    background-color: #0087C8;
+.btn-gray,
+.btn-gray:active {
+    color: #809FB8 !important;
+    background-color: rgba(153, 178, 198, 0.37) !important;
+}
+
+.btn-gray:hover {
+    color: #809FB8;
+    background-color: rgba(153, 178, 198, 0.37);
+}
+
+.btn-blue,
+.btn-blue:active {
+    color: #fff !important;
+    background-color: #0087C8 !important;
 }
 
 .btn-blue:hover {
@@ -22423,9 +22436,10 @@ a {
     background-color: #0372aa;
 }
 
-.btn-green-light {
-    color: #1AD598;
-    background-color: rgba(26, 213, 152, 0.298039);
+.btn-green-light,
+.btn-green-light:active {
+    color: #1AD598 !important;
+    background-color: rgba(26, 213, 152, 0.298039) !important;
 }
 
 .btn-green-light:hover {
@@ -22433,9 +22447,10 @@ a {
     background-color: rgba(21, 190, 134, 0.298);
 }
 
-.btn-yellow-light {
-    color: #E7961C;
-    background-color: rgba(249, 185, 89, 0.47);
+.btn-yellow-light,
+.btn-yellow-light:active {
+    color: #E7961C !important;
+    background-color: rgba(249, 185, 89, 0.47) !important;
     text-transform: uppercase;
     font-family: 'Roboto';
     font-size: 14px;
@@ -22458,9 +22473,10 @@ a {
     border: 1px solid #F9B959 !important;
 }
 
-.btn-purple-light {
-    color: #809FB8;
-    background-color: rgba(128, 159, 184, 0.45);
+.btn-purple-light,
+.btn-purple-light:active {
+    color: #809FB8 !important;
+    background-color: rgba(128, 159, 184, 0.45) !important;
 }
 
 .btn-purple-light:hover {
@@ -22479,9 +22495,10 @@ a {
     border: 1px solid #809FB8 !important;
 }
 
-.btn-red {
-    color: #fff;
-    background-color: #EA3A3D;
+.btn-red,
+.btn-red:active {
+    color: #fff !important;
+    background-color: #EA3A3D !important;
 }
 
 .btn-red:hover {
@@ -22489,9 +22506,10 @@ a {
     background-color: #EA3A3D;
 }
 
-.btn-red-light {
-    color: #EA3A3D;
-    background-color: rgba(234, 58, 61, 0.2);
+.btn-red-light,
+.btn-red-light:active {
+    color: #EA3A3D !important;
+    background-color: rgba(234, 58, 61, 0.2) !important;
     text-transform: uppercase;
     font-family: 'Roboto';
     font-size: 14px;

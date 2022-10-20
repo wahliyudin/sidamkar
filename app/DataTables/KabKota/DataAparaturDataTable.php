@@ -54,7 +54,7 @@ class DataAparaturDataTable extends DataTable
                         break;
                 }
             })
-            ->whereRoleIs(['damkar', 'analis_kebakaran', 'atasan_langsung', 'penilai_ak', 'penetap_ak']);
+            ->whereRoleIs(array_merge(getAllRoleFungsional(), ['atasan_langsung', 'penilai_ak', 'penetap_ak']));
     }
 
     /**

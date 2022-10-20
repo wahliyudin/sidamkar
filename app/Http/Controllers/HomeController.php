@@ -25,8 +25,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // return User::query()->with('kabKota.provinsi')->find(Auth::user()->id);
-        if (auth()->user()->hasRole('damkar') || auth()->user()->hasRole('analis_kebakaran')) {
+        if (auth()->user()->hasRole('damkar_pemula') ||
+            auth()->user()->hasRole('damkar_terampil') ||
+            auth()->user()->hasRole('damkar_mahir') ||
+            auth()->user()->hasRole('damkar_penyelia') ||
+            auth()->user()->hasRole('analis_kebakaran_ahli_pertama') ||
+            auth()->user()->hasRole('analis_kebakaran_ahli_muda') ||
+            auth()->user()->hasRole('analis_kebakaran_ahli_madya')
+            ) {
             return to_route('overview');
         } elseif (auth()->user()->hasRole('kab_kota')) {
             return to_route('kab-kota.overview');
@@ -34,7 +40,9 @@ class HomeController extends Controller
             return to_route('provinsi.overview.index');
         } elseif (auth()->user()->hasRole('atasan_langsung')) {
             return to_route('atasan-langsung.overview.index');
-        }  else {
+        } elseif (auth()->user()->hasRole('kemendagri')) {
+            return to_route('kemendagri.overview.index');
+        } else {
             return view('home');
         }
     }

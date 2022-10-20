@@ -27,6 +27,8 @@ return new class extends Migration
             $table->string('foto_pegawai')->nullable();
             $table->string('file_sk')->nullable();
             $table->string('file_ttd')->nullable();
+            $table->boolean('is_active')->default(true);
+            $table->string('catatan')->nullable();
             $table->unsignedBigInteger('kab_kota_id');
             $table->unsignedBigInteger('provinsi_id');
             $table->timestamps();
