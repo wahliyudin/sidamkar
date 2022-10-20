@@ -16,7 +16,8 @@ class AdminKabKotaController extends Controller
 
     public function showDoc($id)
     {
-        return view('kemendagri.verifikasi-data.document');
+        $user = User::query()->with('userProvKabKota')->findOrFail($id);
+        return view('kemendagri.verifikasi-data.document', compact('user'));
     }
 
 }
