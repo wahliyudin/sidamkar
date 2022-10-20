@@ -183,12 +183,12 @@
                         <ul
                             class="submenu {{ request()->is('kemendagri/data-admin-daerah/admin-kabkota*') || request()->is('kemendagri/data-admin-daerah/admin-provinsi*') ? 'active' : '' }}">
                             <li
-                                class="submenu-item {{ request()->routeIs('kemendagri.data-admin-daerah.admin-kabkota.index') ? 'active' : '' }}">
+                                class="submenu-item {{ request()->is('kemendagri/data-admin-daerah/admin-kabkota*') ? 'active' : '' }}">
                                 <a href="{{ route('kemendagri.data-admin-daerah.admin-kabkota.index') }}">Admin
                                     KabKota</a>
                             </li>
                             <li
-                                class="submenu-item {{ request()->routeIs('kemendagri.data-admin-daerah.admin-provinsi.index') ? 'active' : '' }}">
+                                class="submenu-item {{ request()->is('kemendagri/data-admin-daerah/admin-provinsi*') ? 'active' : '' }}">
                                 <a href="{{ route('kemendagri.data-admin-daerah.admin-provinsi.index') }}">Admin
                                     Provinsi</a>
                             </li>

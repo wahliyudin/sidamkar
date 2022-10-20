@@ -22413,6 +22413,16 @@ a {
     background-color: #18b882;
 }
 
+.btn-gray {
+    color: #809FB8;
+    background-color: rgba(153, 178, 198, 0.37);
+}
+
+.btn-gray:hover {
+    color: #809FB8;
+    background-color: rgba(153, 178, 198, 0.37);
+}
+
 .btn-blue {
     color: #fff;
     background-color: #0087C8;

@@ -7,7 +7,8 @@
         <input type="file" name="coba" id="">
         <button class="btn btn-primary">Submit</button>
     </form> --}}
-    <iframe src="{{ asset('storage/produk.pdf') }}" width="100%" height="500px"></iframe>
+    {{-- <iframe src="{{ asset('storage/produk.pdf') }}" width="100%" height="500px"></iframe> --}}
+    <button class="btn btn-green btn-sweet">Sweet</button>
 @endsection
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/extensions/filepond/filepond.css') }}">

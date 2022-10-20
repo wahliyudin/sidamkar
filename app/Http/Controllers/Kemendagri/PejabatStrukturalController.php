@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Kemendagri;
 
 use App\DataTables\Kemendagri\PejabatStrukturalDataTable;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PejabatStrukturalController extends Controller
@@ -16,5 +17,37 @@ class PejabatStrukturalController extends Controller
     public function show($id)
     {
         return view('kemendagri.pejabat-struktural.show');
+    }
+
+    public function nonActive($id)
+    {
+        $user = User::query()->find($id);
+        if (!$user) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Data tidak ditemukan',
+            ]);
+        }
+        $user->userPejabatStruktural()->update(['is_active' => true]);
+        return response()->json([
+            'success' => true,
+            'message' => 'Berhasil dinonaktifkan',
+        ]);
+    }
+
+    public function active($id)
+    {
+        $user = User::query()->find($id);
+        if (!$user) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Data tidak ditemukan',
+            ]);
+        }
+        $user->userPejabatStruktural()->update(['is_active' => false]);
+        return response()->json([
+            'success' => true,
+            'message' => 'Berhasil diaktifkan',
+        ]);
     }
 }

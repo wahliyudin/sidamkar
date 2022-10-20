@@ -24,8 +24,9 @@ class AdminProvinsiDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addIndexColumn()
-            ->addColumn('action', function (User $user) {
-                return '<a href="" class="btn btn-blue text-sm">Detail</a>';
+            ->addColumn('document', function (User $user) {
+                $route = route('kemendagri.data-admin-daerah.admin-provinsi.showdoc', $user->id);
+                return view('kemendagri.extensions.button-lihat', compact('route'))->render();
             })
             ->setRowId('id');
     }
@@ -38,7 +39,7 @@ class AdminProvinsiDataTable extends DataTable
      */
     public function query(User $model): QueryBuilder
     {
-        return $model->newQuery()->where('verified', '!=',null)->whereRoleIs('provinsi');
+        return $model->newQuery()->with('userProvKabKota')->where('verified', '!=', null)->whereRoleIs('provinsi');
     }
 
     /**
@@ -75,10 +76,8 @@ class AdminProvinsiDataTable extends DataTable
             Column::computed('no'),
             Column::make('username')
                 ->title('Nama'),
-            Column::computed('action')
-                ->exportable(false)
-                ->printable(false)
-                ->width(60),
+            Column::computed('document')
+                ->title('Dokumen'),
         ];
     }
 

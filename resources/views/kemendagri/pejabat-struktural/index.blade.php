@@ -45,6 +45,7 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
 @endsection
 
 @section('js')
@@ -54,4 +55,85 @@
     <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
+    <script type="text/javascript">
+        function nonActive(id) {
+            swal({
+                title: "Nonaktifkan?",
+                text: "Please ensure and then confirm!",
+                type: "warning",
+                showCancelButton: !0,
+                confirmButtonText: "Ya, nonaktifkan!",
+                cancelButtonText: "Batal",
+                reverseButtons: !0
+            }).then(function(e) {
+                if (e.value === true) {
+                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+                    $.ajax({
+                        type: 'POST',
+                        url: "{{ url('kemendagri/pejabat-struktural') }}/" + id +
+                            "/non-active",
+                        data: {
+                            _token: CSRF_TOKEN
+                        },
+                        dataType: 'JSON',
+                        success: function(results) {
+                            if (results.success === true) {
+                                swal("Selesai!", results.message, "success").then(() => {
+                                    $('#pejabatstruktural-table').DataTable().ajax.reload()
+                                });
+                            } else {
+                                swal("Error!", results.message, "error");
+                            }
+                        }
+                    });
+                } else {
+                    e.dismiss;
+                }
+
+            }, function(dismiss) {
+                return false;
+            })
+        }
+
+        function active(id) {
+            swal({
+                title: "Aktifkan?",
+                text: "Please ensure and then confirm!",
+                type: "warning",
+                showCancelButton: !0,
+                confirmButtonText: "Ya, aktifkan!",
+                cancelButtonText: "Batal",
+                reverseButtons: !0
+            }).then(function(e) {
+                if (e.value === true) {
+                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+                    $.ajax({
+                        type: 'POST',
+                        url: "{{ url('kemendagri/pejabat-struktural') }}/" + id + "/active",
+                        data: {
+                            _token: CSRF_TOKEN
+                        },
+                        dataType: 'JSON',
+                        success: function(results) {
+                            if (results.success === true) {
+                                swal("Selesai!", results.message, "success").then(() => {
+                                    $('#pejabatstruktural-table').DataTable().ajax.reload()
+                                });
+                            } else {
+                                swal("Error!", results.message, "error");
+                            }
+                        }
+                    });
+                } else {
+                    e.dismiss;
+                }
+
+            }, function(dismiss) {
+                return false;
+            })
+        }
+    </script>
 @endsection

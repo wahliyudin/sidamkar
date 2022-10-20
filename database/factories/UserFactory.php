@@ -25,6 +25,7 @@ class UserFactory extends Factory
             'username' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
+            'verified' => fake()->randomElement([now(), null]),
             'password' => Hash::make(123456789), // password
             'remember_token' => Str::random(10),
         ];
@@ -35,16 +36,26 @@ class UserFactory extends Factory
         return $this->afterMaking(function (User $user) {
             //
         })->afterCreating(function (User $user) {
-            // $user->attachRole('kab_kota');
-            // $user->userProvKabKota([
+            // $user->attachRole('provinsi');
+            // $user->userProvKabKota()->create([
             //     'nomenklatur_perangkat_daerah' => fake()->numberBetween(100000, 999999),
+            //     'is_active' => fake()->boolean(),
+            //     'provinsi_id' => fake()->randomElement(Provinsi::query()->pluck('id')->toArray()),
+            // ]);
+            // $user->attachRole('kab_kota');
+            // $user->userProvKabKota()->create([
+            //     'nomenklatur_perangkat_daerah' => fake()->numberBetween(100000, 999999),
+            //     'is_active' => fake()->boolean(),
             //     'kab_kota_id' => fake()->randomElement(KabKota::query()->pluck('id')->toArray()),
             // ]);
-
-            $user->attachRole('provinsi');
-            $user->userProvKabKota([
-                'nomenklatur_perangkat_daerah' => fake()->numberBetween(100000, 999999),
-                'provinsi_id' => fake()->randomElement(Provinsi::query()->pluck('id')->toArray()),
+            $user->attachRole(fake()->randomElement(['atasan_langsung', 'penilai_ak', 'penetap_ak']));
+            $provinsi_id = fake()->randomElement(Provinsi::query()->pluck('id')->toArray());
+            $kabKotas = Provinsi::query()->with('kabKotas:id,provinsi_id')->find(11)->kabKotas->pluck('id');
+            $user->userPejabatStruktural()->create([
+                'nama' => fake()->name(),
+                'is_active' => fake()->boolean(),
+                'provinsi_id' => $provinsi_id,
+                'kab_kota_id' => fake()->randomElement($kabKotas),
             ]);
         });
     }

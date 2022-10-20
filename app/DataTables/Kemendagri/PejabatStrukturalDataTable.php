@@ -25,8 +25,10 @@ class PejabatStrukturalDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addIndexColumn()
             ->addColumn('action', function (User $user) {
-                return '<a href="'.route('kemendagri.pejabat-struktural.show', $user->id).'"
-                    class="btn btn-blue text-sm">Detail</a>';
+                // return '<a href="'.route('kemendagri.pejabat-struktural.show', $user->id).'"
+                //     class="btn btn-blue text-sm">Detail</a>';
+                $isAktif = $user->userPejabatStruktural->is_active;
+                return view('kemendagri.extensions.buttons-aktif-nonaktif', compact('user', 'isAktif'))->render();
             })
             ->setRowId('id');
     }

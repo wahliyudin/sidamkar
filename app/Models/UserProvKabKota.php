@@ -14,6 +14,8 @@ class UserProvKabKota extends Model
         'user_id',
         'nomenklatur_perangkat_daerah',
         'file_permohonan',
+        'is_active',
+        'catatan',
         'kab_kota_id',
         'provinsi_id'
     ];

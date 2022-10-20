@@ -17,7 +17,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->string('nomenklatur_perangkat_daerah');
-            $table->string('file_permohonan');
+            $table->string('file_permohonan')->nullable();
+            $table->boolean('is_active')->default(true);
+            $table->string('catatan')->nullable();
             $table->unsignedBigInteger('kab_kota_id')->nullable();
             $table->unsignedBigInteger('provinsi_id')->nullable();
             $table->timestamps();

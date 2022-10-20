@@ -25,6 +25,7 @@ use App\Http\Controllers\Kemendagri\VerifikasiData\AdminKabKotaController;
 use App\Http\Controllers\Kemendagri\VerifikasiData\AdminProvinsiController;
 use App\Http\Controllers\Provinsi\OverviewController as ProvinsiOverviewController;
 use App\Models\KabKota;
+use App\Models\Provinsi;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\Auth;
@@ -43,7 +44,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('coba');
     return redirect()->route('login');
 });
 Auth::routes(['verify' => true]);
@@ -96,6 +96,8 @@ Route::middleware(['auth'])->group(function () {
         Route::controller(KemendagriPejabatStrukturalController::class)->group(function () {
             Route::get('kemendagri/pejabat-struktural', 'index')->name('kemendagri.pejabat-struktural.index');
             Route::get('kemendagri/pejabat-struktural/{id}/show', 'show')->name('kemendagri.pejabat-struktural.show');
+            Route::post('kemendagri/pejabat-struktural/{id}/active', 'active')->name('kemendagri.pejabat-struktural.active');
+            Route::post('kemendagri/pejabat-struktural/{id}/non-active', 'nonActive')->name('kemendagri.pejabat-struktural.non-active');
         });
 
         Route::controller(DataProvKabKotaController::class)->group(function () {
@@ -104,10 +106,12 @@ Route::middleware(['auth'])->group(function () {
 
         Route::controller(DataAdminDaerahAdminKabKotaController::class)->group(function () {
             Route::get('kemendagri/data-admin-daerah/admin-kabkota', 'index')->name('kemendagri.data-admin-daerah.admin-kabkota.index');
+            Route::get('kemendagri/data-admin-daerah/admin-kabkota/{id}/document', 'showDoc')->name('kemendagri.data-admin-daerah.admin-kabkota.showdoc');
         });
 
         Route::controller(DataAdminDaerahAdminProvinsiController::class)->group(function () {
             Route::get('kemendagri/data-admin-daerah/admin-provinsi', 'index')->name('kemendagri.data-admin-daerah.admin-provinsi.index');
+            Route::get('kemendagri/data-admin-daerah/admin-provinsi/{id}/document', 'showDoc')->name('kemendagri.data-admin-daerah.admin-provinsi.showdoc');
         });
     });
 });
