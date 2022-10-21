@@ -52,6 +52,12 @@
             .form-wrapper {
                 padding: 0 !important;
             }
+
+            .link-login {
+                position: relative !important;
+                margin-top: 1rem;
+                align-self: center;
+            }
         }
 
         .nav-tabs .nav-link {
@@ -476,7 +482,7 @@
                                     </div>
                                 </div>
 
-                                <div class="px-4" style="position: absolute; bottom: 1rem;">
+                                <div class="px-4 link-login" style="position: absolute; bottom: 1rem;">
                                     <p>Sudah memiliki akun?<a href="{{ route('login') }}"> Masuk </a></p>
                                 </div>
                             </div>
