@@ -117,7 +117,8 @@
                                         <img src="{{ asset('assets/images/template/icon-dokumen-png-0 1.png') }}"
                                             alt="">
                                         <p>{{ $docKepeg->nama }}</p>
-                                        <i class="fa-regular fa-trash-can text-danger text-xl ms-3"></i>
+                                        <i class="fa-regular fa-trash-can text-danger text-xl ms-3 del-kepeg"
+                                            data-id="{{ $docKepeg->id }}"></i>
                                     </a>
                                 </li>
                             @endforeach
@@ -142,12 +143,13 @@
                         <ul class="doc-wrapper">
                             @foreach ($user->dokKompetensis as $docKom)
                                 <li class="doc-item">
-                                    <div class="d-flex align-items-center">
+                                    <a href="" class="d-flex align-items-center">
                                         <span
                                             class="custom-badge-sm custom-badge-blue-light">{{ $loop->iteration >= 10 ? $loop->iteration : "0$loop->iteration" }}</span>
                                         <p>{{ $docKom->nama }}</p>
-                                        <i class="fa-regular fa-trash-can text-danger text-xl ms-3"></i>
-                                    </div>
+                                        <i class="fa-regular fa-trash-can text-danger text-xl ms-3 del-kom"
+                                            data-id="{{ $docKom->id }}"></i>
+                                    </a>
                                 </li>
                             @endforeach
                         </ul>
@@ -245,6 +247,7 @@
     <link rel="stylesheet"
         href="{{ asset('assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/pages/filepond.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
 @endsection
 @section('js')
     <script src="{{ asset('assets/extensions/choices.js/public/assets/scripts/choices.js') }}"></script>
@@ -255,6 +258,7 @@
     <script src="{{ asset('assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js') }}">
     </script>
     <script src="{{ asset('assets/extensions/filepond/filepond.jquery.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
     <script>
         $(function() {
             $.fn.filepond.registerPlugin(FilePondPluginImagePreview);
@@ -338,65 +342,150 @@
             });
             $('.btn-simpan-doc-kep').click(function(e) {
                 e.preventDefault();
-                var postData = new FormData($("#form-kepeg")[0]);
-                $('.btn-simpan-doc-kep span').hide();
-                $('.btn-simpan-doc-kep .spin').show();
-                $.ajax({
-                    type: 'POST',
-                    url: "{{ route('data-saya.store-doc-kepeg') }}",
-                    processData: false,
-                    contentType: false,
-                    data: postData,
-                    success: function(response) {
-                        $('.btn-simpan-doc-kep span').show();
-                        $('.btn-simpan-doc-kep .spin').hide();
-                        if (response.status == 200) {
-                            Toastify({
-                                text: response.message,
-                                duration: 5000,
-                                close: true,
-                                gravity: "top",
-                                position: "right",
-                                backgroundColor: "#18b882",
-                            }).showToast();
-                            location.reload();
-                        }
-                    },
-                    error: function(err) {
+                if (!$('#form-kepeg input[name="nama"]').val() || !$(
+                        '#form-kepeg input[name="doc_kepegawaian_tmp"]').val()) {
+                    Toastify({
+                        text: "Semua inputan harus diisi!",
+                        duration: 5000,
+                        close: true,
+                        gravity: "top",
+                        position: "right",
+                        backgroundColor: "#EA3A3D",
+                    }).showToast();
+                } else {
+                    var postData = new FormData($("#form-kepeg")[0]);
+                    $('.btn-simpan-doc-kep span').hide();
+                    $('.btn-simpan-doc-kep .spin').show();
+                    $.ajax({
+                        type: 'POST',
+                        url: "{{ route('data-saya.store-doc-kepeg') }}",
+                        processData: false,
+                        contentType: false,
+                        data: postData,
+                        success: function(response) {
+                            $('.btn-simpan-doc-kep span').show();
+                            $('.btn-simpan-doc-kep .spin').hide();
+                            if (response.status == 200) {
+                                Toastify({
+                                    text: response.message,
+                                    duration: 5000,
+                                    close: true,
+                                    gravity: "top",
+                                    position: "right",
+                                    backgroundColor: "#18b882",
+                                }).showToast();
+                                location.reload();
+                            }
+                        },
+                        error: function(err) {
 
-                    }
-                });
+                        }
+                    });
+                }
             });
             $('.btn-simpan-doc-kom').click(function(e) {
                 e.preventDefault();
                 var postData = new FormData($("#form-kom")[0]);
-                $('.btn-simpan-doc-kom span').hide();
-                $('.btn-simpan-doc-kom .spin').show();
-                $.ajax({
-                    type: 'POST',
-                    url: "{{ route('data-saya.store-doc-kom') }}",
-                    processData: false,
-                    contentType: false,
-                    data: postData,
-                    success: function(response) {
-                        $('.btn-simpan-doc-kom span').show();
-                        $('.btn-simpan-doc-kom .spin').hide();
-                        if (response.status == 200) {
-                            Toastify({
-                                text: response.message,
-                                duration: 5000,
-                                close: true,
-                                gravity: "top",
-                                position: "right",
-                                backgroundColor: "#18b882",
-                            }).showToast();
-                            location.reload();
-                        }
-                    },
-                    error: function(err) {
+                if (!$('#form-kom input[name="nama"]').val() || !$(
+                        '#form-kom input[name="doc_kompetensi_tmp"]').val()) {
+                    Toastify({
+                        text: "Semua inputan harus diisi!",
+                        duration: 5000,
+                        close: true,
+                        gravity: "top",
+                        position: "right",
+                        backgroundColor: "#EA3A3D",
+                    }).showToast();
+                } else {
+                    $('.btn-simpan-doc-kom span').hide();
+                    $('.btn-simpan-doc-kom .spin').show();
+                    $.ajax({
+                        type: 'POST',
+                        url: "{{ route('data-saya.store-doc-kom') }}",
+                        processData: false,
+                        contentType: false,
+                        data: postData,
+                        success: function(response) {
+                            $('.btn-simpan-doc-kom span').show();
+                            $('.btn-simpan-doc-kom .spin').hide();
+                            if (response.status == 200) {
+                                Toastify({
+                                    text: response.message,
+                                    duration: 5000,
+                                    close: true,
+                                    gravity: "top",
+                                    position: "right",
+                                    backgroundColor: "#18b882",
+                                }).showToast();
+                                location.reload();
+                            }
+                        },
+                        error: function(err) {
 
+                        }
+                    });
+                }
+            });
+
+            $('.del-kepeg').click(function(e) {
+                e.preventDefault();
+                swal({
+                    title: "Yakin ingin menghapus?",
+                    type: "warning",
+                    showCancelButton: !0,
+                    confirmButtonText: "Ya, yakin!",
+                    cancelButtonText: "Batal",
+                    reverseButtons: !0,
+                    showLoaderOnConfirm: true,
+                    preConfirm: async () => {
+                        return await $.ajax({
+                            type: 'DELETE',
+                            url: "{{ url('data-saya/destroy-dockepeg') }}/" + $(this)
+                                .data('id'),
+                            dataType: 'JSON'
+                        });
+                    },
+                }).then(function(e) {
+                    if (e.value.status == 200) {
+                        swal("Selesai!", e.value.message, "success").then(() => {
+                            location.reload();
+                        });
+                    } else {
+                        swal("Error!", e.value.message, "error");
                     }
-                });
+                }, function(dismiss) {
+                    return false;
+                })
+            });
+            $('.del-kom').click(function(e) {
+                e.preventDefault();
+                swal({
+                    title: "Yakin ingin menghapus?",
+                    type: "warning",
+                    showCancelButton: !0,
+                    confirmButtonText: "Ya, yakin!",
+                    cancelButtonText: "Batal",
+                    reverseButtons: !0,
+                    showLoaderOnConfirm: true,
+                    preConfirm: async () => {
+                        return await $.ajax({
+                            type: 'DELETE',
+                            url: "{{ url('data-saya/destroy-dockom') }}/" + $(this)
+                                .data('id'),
+                            dataType: 'JSON'
+                        });
+                    },
+                }).then(function(e) {
+                    if (e.value.status == 200) {
+                        swal("Selesai!", e.value.message, "success").then(() => {
+                            location.reload();
+                        });
+                    } else {
+                        swal("Error!", e.value.message, "error");
+                    }
+                }, function(dismiss) {
+                    return false;
+                })
             });
         });
     </script>

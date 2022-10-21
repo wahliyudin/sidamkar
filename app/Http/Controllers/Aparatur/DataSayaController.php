@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Aparatur;
 
 use App\Http\Controllers\Controller;
 use App\Models\DokKepegawaian;
+use App\Models\DokKompetensi;
 use App\Models\User;
 use App\Traits\ImageTrait;
 use Illuminate\Http\Request;
@@ -52,6 +53,36 @@ class DataSayaController extends Controller
             return response()->json([
                 'status' => 200,
                 'message' => 'Berhasil disimpan'
+            ]);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    public function destroyDocKepeg($id)
+    {
+        try {
+            $dokKepeg = DokKepegawaian::query()->findOrFail($id);
+            deleteImage($dokKepeg->file);
+            $dokKepeg->delete();
+            return response()->json([
+                'status' => 200,
+                'message' => 'Berhasil dihapus'
+            ]);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    public function destroyDocKom($id)
+    {
+        try {
+            $dokKom = DokKompetensi::query()->findOrFail($id);
+            deleteImage($dokKom->file);
+            $dokKom->delete();
+            return response()->json([
+                'status' => 200,
+                'message' => 'Berhasil dihapus'
             ]);
         } catch (\Throwable $th) {
             throw $th;
