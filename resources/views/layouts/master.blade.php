@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     @include('layouts.inc.css')
-    @vite(['public/assets/css/main/app.css', 'public/assets/extensions/fontawesome/all.min.css', 'public/assets/js/bootstrap.js', 'public/assets/js/app.js', 'public/assets/extensions/fontawesome/all.min.js'])
+    {{-- @vite(['public/assets/css/main/app.css', 'public/assets/extensions/fontawesome/all.min.css', 'public/assets/js/bootstrap.js', 'public/assets/js/app.js', 'public/assets/extensions/fontawesome/all.min.js']) --}}
 </head>
 
 <body>
