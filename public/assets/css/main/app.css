@@ -22610,3 +22610,13 @@ a {
     border-radius: .25rem !important;
     box-shadow: 0 0 30px rgba(0, 0, 0, .03) !important;
 }
+
+.form-control {
+    border: 1px solid #2F80ED !important;
+}
+
+.form-group label,
+.form-group input::placeholder {
+    font-weight: 400;
+    font-size: 14px;
+}

@@ -13,78 +13,59 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="basicInput">Tingkat Admin</label>
-                                <select class="choices form-select">
-                                    <option value="square">Square</option>
-                                    <option value="rectangle">Rectangle</option>
-                                    <option value="rombo">Rombo</option>
-                                    <option value="romboid">Romboid</option>
-                                    <option value="trapeze">Trapeze</option>
-                                    <option value="traible">Triangle</option>
-                                    <option value="polygon">Polygon</option>
-                                </select>
+                                <label for="basicInput">Nama Lengkap</label>
+                                <input type="text" class="form-control" value="{{ $user->userAparatur?->nama }}">
                             </div>
                             <div class="form-group">
-                                <label for="basicInput">Provinsi</label>
-                                <input type="text" class="form-control" id="basicInput" placeholder="">
+                                <label>Tempat Tanggal Lahir</label>
+                                <input type="text" class="form-control"
+                                    value="{{ $user->userAparatur?->tempat_lahir }} {{ $user->userAparatur?->tempat_lahir }}"
+                                    placeholder="">
                             </div>
                             <div class="form-group">
                                 <label for="basicInput">Kabupaten / Kota</label>
-                                <input type="text" class="form-control" id="basicInput" placeholder="">
+                                <select class="choices form-select">
+                                    <option value="square">Square</option>
+                                </select>
                             </div>
                             <div class="form-group">
-                                <label for="basicInput">Nomenklatur Prangkat Daerah</label>
-                                <input type="text" class="form-control" id="basicInput" placeholder="">
+                                <label for="basicInput">NIP</label>
+                                <input type="number" class="form-control" value="{{ $user->userAparatur?->nip }}">
                             </div>
                             <div class="form-group">
-                                <label for="basicInput">Nama</label>
-                                <input type="text" class="form-control" id="basicInput" placeholder="">
-                            </div>
-                            <div class="form-group">
-                                <label for="basicInput">NIP/Nomor Register</label>
-                                <input type="text" class="form-control" id="basicInput" placeholder="">
+                                <label for="basicInput">Jabatan</label>
+                                <input type="text" class="form-control" placeholder="">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="basicInput">Tempat Tanggal Lahir</label>
-                                <input type="text" class="form-control" id="basicInput" placeholder="">
+                                <label for="basicInput">Jenis Kelamin</label>
+                                <select class="choices form-select">
+                                    <option disabled selected>- Pilih Jenis Kelamin -</option>
+                                    <option @selected($user->userAparatur?->jenis_kelamin == 'L') value="L">Laki - Laki</option>
+                                    <option @selected($user->userAparatur?->jenis_kelamin == 'P') value="P">Perempuan</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="basicInput">Privinsi</label>
+                                <select class="choices form-select">
+                                    <option value="square">Square</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="basicInput">Pendidikan Terakhir</label>
+                                <select class="choices form-select">
+                                    <option value="square">Square</option>
+                                    <option value="rectangle">Rectangle</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Nomor KerPeg</label>
+                                <input type="number" class="form-control"
+                                    value="{{ $user->userAparatur?->nomor_kerpeg }} placeholder="">
                             </div>
                             <div class="form-group">
                                 <label for="basicInput">Pangkat / Golongan / TMT</label>
-                                <select class="choices form-select">
-                                    <option value="square">Square</option>
-                                    <option value="rectangle">Rectangle</option>
-                                    <option value="rombo">Rombo</option>
-                                    <option value="romboid">Romboid</option>
-                                    <option value="trapeze">Trapeze</option>
-                                    <option value="traible">Triangle</option>
-                                    <option value="polygon">Polygon</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="basicInput">Jenis Kelamin</label>
-                                <select class="choices form-select">
-                                    <option value="square">Square</option>
-                                    <option value="rectangle">Rectangle</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="basicInput">Pendidikan Terakhir</label>
-                                <select class="choices form-select">
-                                    <option value="square">Square</option>
-                                    <option value="rectangle">Rectangle</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="basicInput">Pendidikan Terakhir</label>
-                                <select class="choices form-select">
-                                    <option value="square">Square</option>
-                                    <option value="rectangle">Rectangle</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="basicInput">Jabatan</label>
                                 <select class="choices form-select">
                                     <option value="square">Square</option>
                                     <option value="rectangle">Rectangle</option>
@@ -93,8 +74,8 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-end mt-2">
-                        <button type="reset" class="btn btn-gray text-sm">Reset</button>
-                        <button type="submit" class="btn btn-blue text-sm ms-3">Simpan</button>
+                        <button type="reset" class="btn btn-gray text-sm px-5">Reset</button>
+                        <button type="submit" class="btn btn-blue text-sm ms-3 px-5">Simpan</button>
                     </div>
                 </form>
             </div>
@@ -135,8 +116,7 @@
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h4 style="color: #000000; margin: 0 !important;">Kompetensi</h4>
                         <span class="custom-badge custom-badge-green">
-                            <img src="{{ asset('assets/images/template/kompetensi.png') }}" alt=""
-                                srcset="">
+                            <img src="{{ asset('assets/images/template/kompetensi.png') }}" alt="" srcset="">
                         </span>
                     </div>
                     <div class="card-body">

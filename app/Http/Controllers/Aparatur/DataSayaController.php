@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 class DataSayaController extends Controller
 {
     use ImageTrait;
+
     public function index()
     {
         $user = User::query()->with(['userAparatur', 'dokKepegawaians', 'dokKompetensis'])->find(Auth::user()->id);
