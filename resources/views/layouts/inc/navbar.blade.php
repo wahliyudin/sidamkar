@@ -90,18 +90,14 @@
                                 </a>
                             </li>
                         @endrole
-                        <li>
-                            <a class="dropdown-item" href="">
-                                <i class="fa-solid fa-lock me-2"></i>
-                                Ubah Password
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#">
-                                <i class="icon-mid bi bi-gear me-2"></i>
-                                Settings
-                            </a>
-                        </li>
+                        @role(getAllRoleFungsional())
+                            <li>
+                                <a class="dropdown-item" href="{{ route('ubah-password') }}">
+                                    <i class="fa-solid fa-lock me-2"></i>
+                                    Ubah Password
+                                </a>
+                            </li>
+                        @endrole
                         <li>
                             <hr class="dropdown-divider">
                         </li>

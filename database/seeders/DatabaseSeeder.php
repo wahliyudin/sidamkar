@@ -30,10 +30,10 @@ class DatabaseSeeder extends Seeder
         $this->call(ProvinsiSeeder::class);
         $this->call(KabKotaSeeder::class);
         $this->call(RoleSeeder::class);
-        User::factory(200)->create();
-        UserAparatur::factory(50)->create();
-        UserPejabatStruktural::factory(50)->create();
-        UserProvKabKota::factory(50)->create();
+        User::factory(50)->create();
+        // UserAparatur::factory(50)->create();
+        UserPejabatStruktural::factory(5)->create();
+        UserProvKabKota::factory(5)->create();
         $this->call(UserSeeder::class);
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Aparatur\ChangePasswordController;
 use App\Http\Controllers\Aparatur\DaftarKegiatanController;
 use App\Http\Controllers\Aparatur\DataSayaController;
 use App\Http\Controllers\Aparatur\LaporanKegiatanController;
@@ -28,6 +29,7 @@ use App\Models\KabKota;
 use App\Models\Provinsi;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Query\Builder;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Route;
@@ -51,7 +53,17 @@ Auth::routes(['verify' => true]);
 Route::middleware(['auth'])->group(function () {
     Route::middleware(['role:damkar_pemula|damkar_terampil|damkar_mahir|damkar_penyelia|analis_kebakaran_ahli_pertama|analis_kebakaran_ahli_muda|analis_kebakaran_ahli_madya'])->group(function () {
         Route::get('/overview', [OverviewController::class, 'index'])->name('overview');
-        Route::get('/data-saya', [DataSayaController::class, 'index'])->name('data-saya');
+
+        Route::controller(DataSayaController::class)->group(function () {
+            Route::get('/data-saya', 'index')->name('data-saya');
+            Route::get('data-saya/show-dockepeg/{id}', 'showDocKepeg')->name('data-saya.show-doc-kepeg');
+            Route::post('data-saya/store-dockepeg', 'storeDocKepeg')->name('data-saya.store-doc-kepeg');
+            Route::post('data-saya/store-dockom', 'storeDocKom')->name('data-saya.store-doc-kom');
+            Route::delete('data-saya/destroy-dockepeg/{id}', 'destroyDocKepeg')->name('data-saya.destroy-doc-kepeg');
+            Route::delete('data-saya/destroy-dockom/{id}', 'destroyDocKom')->name('data-saya.destroy-doc-kom');
+        });
+        Route::get('ubah-password', [ChangePasswordController::class, 'index'])->name('ubah-password');
+        Route::post('ubah-password', [ChangePasswordController::class, 'update'])->name('ubah-password.update');
         Route::get('/daftar-kegiatan', [DaftarKegiatanController::class, 'index'])->name('daftar-kegiatan');
         Route::get('/tabel-kegiatan', [TabelKegiatanController::class, 'index'])->name('tabel-kegiatan');
         Route::get('/laporan-kegiatan', [LaporanKegiatanController::class, 'index'])->name('laporan-kegiatan');

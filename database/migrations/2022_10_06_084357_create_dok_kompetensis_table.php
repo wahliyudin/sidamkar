@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('dok_kompetensis', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
+            $table->string('nama');
             $table->string('file');
             $table->timestamps();
 

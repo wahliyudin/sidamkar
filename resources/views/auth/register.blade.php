@@ -52,6 +52,12 @@
             .form-wrapper {
                 padding: 0 !important;
             }
+
+            .link-login {
+                position: relative !important;
+                margin-top: 1rem;
+                align-self: center;
+            }
         }
 
         .nav-tabs .nav-link {
@@ -476,7 +482,7 @@
                                     </div>
                                 </div>
 
-                                <div class="px-4" style="position: absolute; bottom: 1rem;">
+                                <div class="px-4 link-login" style="position: absolute; bottom: 1rem;">
                                     <p>Sudah memiliki akun?<a href="{{ route('login') }}"> Masuk </a></p>
                                 </div>
                             </div>
@@ -510,64 +516,65 @@
         $(function() {
             // First register any plugins
             $.fn.filepond.registerPlugin(FilePondPluginImagePreview);
-
             FilePond.setOptions({
                 server: {
                     process: (fieldName, file, metadata, load, error, progress, abort, transfer,
                         options) => {
+                        console.log(file);
+                        load(file);
                         // fieldName is the name of the input field
                         // file is the actual file object to send
-                        const formData = new FormData();
-                        formData.append(fieldName, file, file.name);
+                        // const formData = new FormData();
+                        // formData.append(fieldName, file, file.name);
 
-                        const request = new XMLHttpRequest();
-                        request.open('POST', "{{ route('filepond.store') }}");
-                        request.setRequestHeader('X-CSRF-TOKEN', "{{ @csrf_token() }}");
-                        // Should call the progress method to update the progress to 100% before calling load
-                        // Setting computable to false switches the loading indicator to infinite mode
-                        request.upload.onprogress = (e) => {
-                            progress(e.lengthComputable, e.loaded, e.total);
-                        };
+                        // const request = new XMLHttpRequest();
+                        // request.open('POST', "{{ route('filepond.store') }}");
+                        // request.setRequestHeader('X-CSRF-TOKEN', "{{ @csrf_token() }}");
+                        // // Should call the progress method to update the progress to 100% before calling load
+                        // // Setting computable to false switches the loading indicator to infinite mode
+                        // request.upload.onprogress = (e) => {
+                        //     progress(e.lengthComputable, e.loaded, e.total);
+                        // };
 
-                        // Should call the load method when done and pass the returned server file id
-                        // this server file id is then used later on when reverting or restoring a file
-                        // so your server knows which file to return without exposing that info to the client
-                        request.onload = function() {
-                            if (request.status >= 200 && request.status < 300) {
-                                // the load method accepts either a string (id) or an object
-                                load(request.responseText);
-                            } else {
-                                // Can call the error method if something is wrong, should exit after
-                                erorrs = JSON.parse(request.responseText);
-                                if (erorrs.file_permohonan) {
-                                    message = erorrs.file_permohonan.toString()
-                                } else {
-                                    message = erorrs.file_sk.toString()
-                                }
-                                Toastify({
-                                    text: message,
-                                    duration: 5000,
-                                    close: true,
-                                    gravity: "top",
-                                    position: "right",
-                                    backgroundColor: "rgba(234, 58, 61, 0.9)",
-                                }).showToast();
-                                error('oh no');
-                            }
-                        };
+                        // // Should call the load method when done and pass the returned server file id
+                        // // this server file id is then used later on when reverting or restoring a file
+                        // // so your server knows which file to return without exposing that info to the client
+                        // request.onload = function() {
+                        //     if (request.status >= 200 && request.status < 300) {
+                        //         // the load method accepts either a string (id) or an object
+                        //         load(request.responseText);
+                        //     } else {
+                        //         // Can call the error method if something is wrong, should exit after
+                        //         erorrs = JSON.parse(request.responseText);
+                        //         if (erorrs.file_permohonan) {
+                        //             message = erorrs.file_permohonan.toString()
+                        //         } else {
+                        //             message = erorrs.file_sk.toString()
+                        //         }
+                        //         Toastify({
+                        //             text: message,
+                        //             duration: 5000,
+                        //             close: true,
+                        //             gravity: "top",
+                        //             position: "right",
+                        //             backgroundColor: "rgba(234, 58, 61, 0.9)",
+                        //         }).showToast();
+                        //         error('oh no');
+                        //     }
+                        // };
 
-                        request.send(formData);
+                        // request.send(formData);
 
-                        // Should expose an abort method so the request can be cancelled
-                        return {
-                            abort: () => {
-                                // This function is entered if the user has tapped the cancel button
-                                request.abort();
+                        // // Should expose an abort method so the request can be cancelled
+                        // return {
+                        //     abort: () => {
+                        //         // This function is entered if the user has tapped the cancel button
+                        //         request.abort();
 
-                                // Let FilePond know the request has been cancelled
-                                abort();
-                            },
-                        };
+                        //         // Let FilePond know the request has been cancelled
+                        //         abort();
+                        //     },
+                        // };
                     },
                     revert: (uniqueFileId, load, error) => {
                         // Should remove the earlier created temp file here
