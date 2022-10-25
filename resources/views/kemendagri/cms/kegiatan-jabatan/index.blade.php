@@ -137,7 +137,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="form-kepeg" method="post" enctype="multipart/form-data" class="container-unsur">
+                    <form method="post" enctype="multipart/form-data" class="container-unsur">
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
@@ -192,7 +192,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="form-kepeg" method="post" enctype="multipart/form-data">
+                    <form id="form-import" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label>File (.xlsx)</label>
                             <input type="file" name="file_import_tmp" required />
@@ -339,12 +339,26 @@
     <script src="{{ asset('assets/extensions/filepond/filepond.js') }}"></script>
     <script src="{{ asset('assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js') }}">
     </script>
+    <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
     <script src="{{ asset('assets/extensions/filepond/filepond.jquery.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
     <script>
         $(function() {
             $.fn.filepond.registerPlugin(FilePondPluginImagePreview);
-            pond = FilePond.create(document.querySelector('input[name="file_import_tmp"]'));
+            $.fn.filepond.registerPlugin(FilePondPluginFileValidateType);
+            pond = FilePond.create(document.querySelector('input[name="file_import_tmp"]'), {
+                acceptedFileTypes: [
+                    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                    "application/vnd.ms-excel",
+                    "application/vnd.oasis.opendocument.spreadsheet"
+                ],
+                fileValidateTypeDetectType: (source, type) =>
+                    new Promise((resolve, reject) => {
+                        // Do custom type detection here and return with promise
+
+                        resolve(type);
+                    }),
+            });
             pond.setOptions({
                 server: {
                     process: (fieldName, file, metadata, load, error, progress, abort, transfer,
@@ -354,20 +368,15 @@
                             error('file kegedean')
                             message = "File tidak bole lebih dari 2MB";
                         }
-                        if (file.type == 'application/pdf') {
-                            const fileInput = document.querySelector('input[name="file_import"]');
-                            const myFile = new File([file], file.name, {
-                                type: file.type,
-                                lastModified: new Date(),
-                            });
-                            const dataTransfer = new DataTransfer();
-                            dataTransfer.items.add(myFile);
-                            fileInput.files = dataTransfer.files;
-                            load(file.name);
-                        } else {
-                            error('file kegedean')
-                            message = message + ", File tidak sesuai";
-                        }
+                        const fileInput = document.querySelector('input[name="file_import"]');
+                        const myFile = new File([file], file.name, {
+                            type: file.type,
+                            lastModified: new Date(),
+                        });
+                        const dataTransfer = new DataTransfer();
+                        dataTransfer.items.add(myFile);
+                        fileInput.files = dataTransfer.files;
+                        load(file.name);
                         if (message) {
                             Toastify({
                                 text: message,
@@ -388,7 +397,7 @@
             });
             $('.btn-simpan-file-import').click(function(e) {
                 e.preventDefault();
-                if (!$('#form-kepeg input[name="file_import_tmp"]').val()) {
+                if (!$('#form-import input[name="file_import_tmp"]').val()) {
                     Toastify({
                         text: "Semua inputan harus diisi!",
                         duration: 5000,
@@ -398,12 +407,12 @@
                         backgroundColor: "#EA3A3D",
                     }).showToast();
                 } else {
-                    var postData = new FormData($("#form-kepeg")[0]);
+                    var postData = new FormData($("#form-import")[0]);
                     $('.btn-simpan-file-import span').hide();
                     $('.btn-simpan-file-import .spin').show();
                     $.ajax({
                         type: 'POST',
-                        url: "{{ route('data-saya.store-doc-kepeg') }}",
+                        url: "{{ route('kemendagri.cms.kegiatan-jabatan.import') }}",
                         processData: false,
                         contentType: false,
                         data: postData,

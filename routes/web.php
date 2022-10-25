@@ -134,6 +134,7 @@ Route::middleware(['auth'])->group(function () {
         Route::controller(KegiatanJabatanController::class)->group(function () {
             Route::get('kemendagri/cms/kegiatan-jabatan', 'index')->name('kemendagri.cms.kegiatan-jabatan.index');
             Route::post('kemendagri/cms/kegiatan-jabatan', 'store')->name('kemendagri.cms.kegiatan-jabatan.store');
+            Route::post('kemendagri/cms/kegiatan-jabatan/import', 'import')->name('kemendagri.cms.kegiatan-jabatan.import');
         });
 
         Route::controller(KegiatanProfesiController::class)->group(function () {

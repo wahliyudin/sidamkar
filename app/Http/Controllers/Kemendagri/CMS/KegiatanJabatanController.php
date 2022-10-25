@@ -42,4 +42,9 @@ class KegiatanJabatanController extends Controller
             throw $th;
         }
     }
+
+    public function import(Request $request)
+    {
+        dd($request->all());
+    }
 }

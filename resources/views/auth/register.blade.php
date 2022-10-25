@@ -511,11 +511,13 @@
     </script>
     <script src="{{ asset('assets/extensions/filepond/filepond.jquery.js') }}"></script>
     <script src="{{ asset('assets/extensions/fontawesome/all.min.js') }}"></script>
+    <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
     <script src="{{ asset('assets/extensions/toastify-js/src/toastify.js') }}"></script>
     <script>
         $(function() {
             // First register any plugins
             $.fn.filepond.registerPlugin(FilePondPluginImagePreview);
+            $.fn.filepond.registerPlugin(FilePondPluginFileValidateType);
             FilePond.setOptions({
                 server: {
                     process: (fieldName, file, metadata, load, error, progress, abort, transfer,
@@ -605,8 +607,30 @@
                 },
             });
 
-            FilePond.create(document.querySelector('input[name="file_sk"]'));
-            FilePond.create(document.querySelector('input[name="file_permohonan"]'));
+            FilePond.create(document.querySelector('input[name="file_sk"]'), {
+                acceptedFileTypes: [
+                    'application/pdf',
+                    'application/doc'
+                ],
+                fileValidateTypeDetectType: (source, type) =>
+                    new Promise((resolve, reject) => {
+                        // Do custom type detection here and return with promise
+
+                        resolve(type);
+                    }),
+            });
+            FilePond.create(document.querySelector('input[name="file_permohonan"]'), {
+                acceptedFileTypes: [
+                    'application/pdf',
+                    'application/doc'
+                ],
+                fileValidateTypeDetectType: (source, type) =>
+                    new Promise((resolve, reject) => {
+                        // Do custom type detection here and return with promise
+
+                        resolve(type);
+                    }),
+            });
 
             function previewImage(image, imgPreview) {
                 imgPreview.style.display = 'block';
