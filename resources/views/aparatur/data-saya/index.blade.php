@@ -1,15 +1,61 @@
 @extends('layouts.master')
 @section('content')
+    <style>
+        .container {
+            position: relative;
+            width: 50%;
+        }
+
+        .image {
+            opacity: 1;
+            display: block;
+            width: 100%;
+            height: auto;
+            transition: .5s ease;
+            backface-visibility: hidden;
+        }
+
+        .middle {
+            transition: .5s ease;
+            opacity: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .container:hover .image {
+            opacity: 0.3;
+        }
+
+        .container:hover .middle {
+            opacity: 1;
+        }
+    </style>
     <section class="section">
         <div class="card">
             <div class="card-body" style="padding-top: 3rem;">
                 <form action="" method="post">
                     <div class="row">
-                        <div class="col-md-4 d-flex justify-content-center">
-                            <div class="avatar avatar-xl me-3">
-                                <img style="width: 180px; height: 180px;" src="{{ asset('assets/images/faces/3.jpg') }}"
-                                    alt="" srcset="">
+                        <div class="col-md-4">
+                            <div class="container">
+                                <img src="{{ asset('assets/images/faces/3.jpg') }}" alt="Avatar" class="image"
+                                    style="width:100%; border-radius: 50%;">
+                                <span class="middle">
+                                    <div class="text" style="cursor: pointer;"><i
+                                            class="fa-regular fa-pen-to-square fa-xl"></i>
+                                    </div>
+                                </span>
                             </div>
+                            {{--  <div class="container avatar avatar-xl me-3">
+                                <img class="img-profile" style="width: 180px; height: 180px;"
+                                    src="{{ asset('assets/images/faces/3.jpg') }}" alt="" srcset="">
+                                <div class="middle">
+                                    <div class="text">John Doe</div>
+                                </div>
+                            </div>  --}}
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">

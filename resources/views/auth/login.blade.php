@@ -27,15 +27,16 @@
                 </div>
 
                 <div class="form-group form-group-feedback form-group-feedback-left">
-                    <input type="password" class="form-control @error('password') is-invalid @enderror"
+                    <input type="password" class="form-control @error('password ') is-invalid @enderror" id="password"
                         placeholder="Password" name="password" required
                         style="padding-bottom: 1.5rem; padding-top: 1.5rem;">
                     <div class="form-control-feedback">
                         <i class="icon-lock2 text-muted"></i>
                     </div>
-                    <div class="show-hide">
-                        <i class="fa-solid fa-eye"></i>
-                    </div>
+                    <span>
+                        <i class="fa-solid fa-eye" id="eye" aria-hidden="true" onclick="toggle()"
+                            style="right: 0; cursor: pointer; position: absolute; top: 0; transform: translateY(17px); padding-right: 0.875rem;"></i>
+                    </span>
                     @error('password')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -48,14 +49,31 @@
                 </div>
 
                 <div class="d-flex flex-column">
-                    <p style="margin: 0 !important;">Belum memiliki akun?<a href="{{ route('register') }}"> Daftar </a></p>
+                    <p style="margin: 0 !important;">Belum memiliki akun?<a href="{{ route('register') }}"> Daftar </a>
+                    </p>
                     <p style="margin: 0 !important;">Lupa Password?<a href="{{ route('password.request') }}">
                             Reset </a></p>
                 </div>
             </form>
         </div>
     </div>
+    <script>
+        var state = false;
+
+        function toggle() {
+            if (state) {
+                document.getElementById("password").setAttribute("type", "password");
+                document.getElementById("eye").style.color = '#7a797e';
+                state = false;
+            } else {
+                document.getElementById("password").setAttribute("type", "text");
+                document.getElementById("eye").style.color = '#5887ef';
+                state = true;
+            }
+        }
+    </script>
 @endsection
+
 @section('js')
     @if (session('success'))
         <script>
