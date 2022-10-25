@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('sub_unsur_id');
             $table->string('nama');
-            $table->string('satuan_hasil');
+            $table->string('satuan_hasil')->nullable();
             $table->float('score');
             $table->timestamps();
 

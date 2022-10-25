@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('file');
             $table->timestamps();
 
-            $table->foreign('rencana_sub_unsur_butir_kegiatan_id')->on('rencana_sub_unsur_butir_kegiatans')->references('id')->cascadeOnDelete();
+            // $table->foreign('rencana_sub_unsur_butir_kegiatan_id')->on('rencana_sub_unsur_butir_kegiatans')->references('id')->cascadeOnDelete();
         });
     }
 

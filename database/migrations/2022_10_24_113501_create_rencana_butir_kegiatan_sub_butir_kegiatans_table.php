@@ -21,8 +21,8 @@ return new class extends Migration
             $table->integer('percent');
             $table->timestamps();
 
-            $table->foreign('rencana_butir_kegiatan_id')->on('rencana_butir_kegiatans')->references('id')->cascadeOnDelete();
-            $table->foreign('sub_butir_kegiatan_id')->on('sub_butir_kegiatans')->references('id')->cascadeOnDelete();
+            // $table->foreign('rencana_butir_kegiatan_id')->on('rencana_butir_kegiatans')->references('id')->cascadeOnDelete();
+            // $table->foreign('sub_butir_kegiatan_id')->on('sub_butir_kegiatans')->references('id')->cascadeOnDelete();
         });
     }
 

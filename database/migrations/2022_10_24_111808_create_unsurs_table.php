@@ -21,7 +21,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('role_id')->on('roles')->references('id')->nullOnDelete();
-            $table->foreign('jenis_kegiatan_id')->on('jenis_kegiatans')->references('id')->nullOnDelete();
+            $table->foreign('jenis_kegiatan_id')->on('jenis_kegiatans')->references('id')->cascadeOnDelete();
         });
     }
 
