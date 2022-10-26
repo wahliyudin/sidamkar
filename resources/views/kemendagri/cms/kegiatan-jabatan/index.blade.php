@@ -21,10 +21,17 @@
                                 <div class="accordion-item">
                                     <div class="d-flex justify-content-between accordion-header py-3 px-2"
                                         id="unsur{{ $unsur->id }}">
-                                        <div class="d-flex align-items-center" style="color: #000000;">
+                                        <div class="d-flex align-items-center justify-content-between w-100"
+                                            style="color: #000000;">
                                             <p class="accordion-title">
                                                 {{ $unsur->nama }}
                                             </p>
+                                            <div class="d-flex align-items-center">
+                                                <i
+                                                    class="fa-regular fa-pen-to-square me-2 cursor-pointer text-green btn-edit-kegiatan"></i>
+                                                <i class="fa-solid fa-trash-can me-2 cursor-pointer text-red btn-hapus-kegiatan"
+                                                    data-id="{{ $unsur->id }}"></i>
+                                            </div>
                                         </div>
                                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                             data-bs-target="#contentUnsur{{ $unsur->id }}" aria-expanded="false"
@@ -297,7 +304,6 @@
             $("#importExcelModal").on('hide.bs.modal', function() {
                 pond.removeFiles();
             });
-
             $('.tambah-sub-unsur').click(function(e) {
                 e.preventDefault();
                 $('.container-unsur').append(`
@@ -428,18 +434,35 @@
                     }
                 });
             });
+            $('.btn-hapus-kegiatan').click(function(e) {
+                e.preventDefault();
+                swal({
+                    title: "Yakin ingin menghapus?",
+                    type: "warning",
+                    showCancelButton: !0,
+                    confirmButtonText: "Ya, yakin!",
+                    cancelButtonText: "Batal",
+                    reverseButtons: !0,
+                    showLoaderOnConfirm: true,
+                    preConfirm: async () => {
+                        return await $.ajax({
+                            type: 'DELETE',
+                            url: "{{ url('kemendagri/cms/kegiatan-jabatan') }}/" + $(this).data('id')+'/destroy',
+                            dataType: 'JSON'
+                        });
+                    },
+                }).then(function(e) {
+                    if (e.value.status == 200) {
+                        swal("Selesai!", e.value.message, "success").then(() => {
+                            location.reload();
+                        });
+                    } else {
+                        swal("Error!", e.value.message, "error");
+                    }
+                }, function(dismiss) {
+                    return false;
+                })
+            });
         });
     </script>
-    @if (session('resent'))
-        <script>
-            Toastify({
-                text: "Silahkan cek email kamu",
-                duration: 5000,
-                close: true,
-                gravity: "top",
-                position: "right",
-                backgroundColor: "#EDE40C",
-            }).showToast();
-        </script>
-    @endif
 @endsection

@@ -54,4 +54,20 @@ class KegiatanJabatanController extends Controller
     {
         dd($request->all());
     }
+
+    public function destroy($id)
+    {
+        try {
+            Unsur::query()->find($id)->delete();
+            return response()->json([
+                'status' => 200,
+                'message' => 'Berhasil dihapus'
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => $th->getCode(),
+                'message' => 'Ada Kesalahan Pada Sistem'
+            ]);
+        }
+    }
 }
