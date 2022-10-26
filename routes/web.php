@@ -19,6 +19,8 @@ use App\Http\Controllers\KabKota\OverviewController as KabKotaOverviewController
 use App\Http\Controllers\KabKota\VerifikasiAparatur\PejabatFungsionalController;
 use App\Http\Controllers\KabKota\VerifikasiAparatur\PejabatStrukturalController;
 use App\Http\Controllers\KabKota\VerifikasiAparatur\VerifikasiAparaturController;
+use App\Http\Controllers\Kemendagri\CMS\KegiatanJabatanController;
+use App\Http\Controllers\Kemendagri\CMS\KegiatanProfesiController;
 use App\Http\Controllers\Kemendagri\DataAdminDaerah\AdminKabKotaController as DataAdminDaerahAdminKabKotaController;
 use App\Http\Controllers\Kemendagri\DataAdminDaerah\AdminProvinsiController as DataAdminDaerahAdminProvinsiController;
 use App\Http\Controllers\Kemendagri\DataProvKabKotaController;
@@ -111,6 +113,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('kemendagri/verifikasi-data/admin-provinsi', 'index')->name('kemendagri.verifikasi-data.admin-provinsi.index');
             Route::get('kemendagri/verifikasi-data/admin-provinsi/{id}/document', 'showDoc')->name('kemendagri.verifikasi-data.admin-provinsi.showdoc');
         });
+
         Route::controller(KemendagriPejabatStrukturalController::class)->group(function () {
             Route::get('kemendagri/pejabat-struktural', 'index')->name('kemendagri.pejabat-struktural.index');
             Route::get('kemendagri/pejabat-struktural/{id}/show', 'show')->name('kemendagri.pejabat-struktural.show');
@@ -130,6 +133,17 @@ Route::middleware(['auth'])->group(function () {
         Route::controller(DataAdminDaerahAdminProvinsiController::class)->group(function () {
             Route::get('kemendagri/data-admin-daerah/admin-provinsi', 'index')->name('kemendagri.data-admin-daerah.admin-provinsi.index');
             Route::get('kemendagri/data-admin-daerah/admin-provinsi/{id}/document', 'showDoc')->name('kemendagri.data-admin-daerah.admin-provinsi.showdoc');
+        });
+
+        Route::controller(KegiatanJabatanController::class)->group(function () {
+            Route::get('kemendagri/cms/kegiatan-jabatan', 'index')->name('kemendagri.cms.kegiatan-jabatan.index');
+            Route::post('kemendagri/cms/kegiatan-jabatan', 'store')->name('kemendagri.cms.kegiatan-jabatan.store');
+            Route::post('kemendagri/cms/kegiatan-jabatan/import', 'import')->name('kemendagri.cms.kegiatan-jabatan.import');
+            Route::delete('kemendagri/cms/kegiatan-jabatan/{id}/destroy', 'destroy')->name('kemendagri.cms.kegiatan-jabatan.destroy');
+        });
+
+        Route::controller(KegiatanProfesiController::class)->group(function () {
+            Route::get('kemendagri/cms/kegiatan-profesi', 'index')->name('kemendagri.cms.kegiatan-profesi.index');
         });
     });
 });

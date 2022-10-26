@@ -238,16 +238,23 @@
                             <span>Chatbox</span>
                         </a>
                     </li>
-                    <li class="sidebar-item has-sub">
+                    <li
+                        class="sidebar-item has-sub {{ request()->is('kemendagri/cms/kegiatan-profesi*') || request()->is('kemendagri/cms/kegiatan-jabatan*') ? 'active' : '' }}">
                         <a href="javascript(0)" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="bi bi-grid-fill"></i>
                             </div>
                             <span>CMS</span>
                         </a>
-                        <ul class="submenu">
-                            <li class="submenu-item">
-                                <a href="">Butir Kegiatan</a>
+                        <ul
+                            class="submenu {{ request()->is('kemendagri/cms/kegiatan-profesi*') || request()->is('kemendagri/cms/kegiatan-jabatan*') ? 'active' : '' }}">
+                            <li
+                                class="submenu-item {{ request()->is('kemendagri/cms/kegiatan-jabatan*') ? 'active' : '' }}">
+                                <a href="{{ route('kemendagri.cms.kegiatan-jabatan.index') }}">Kegiatan Jabatan</a>
+                            </li>
+                            <li
+                                class="submenu-item {{ request()->is('kemendagri/cms/kegiatan-profesi*') ? 'active' : '' }}">
+                                <a href="{{ route('kemendagri.cms.kegiatan-profesi.index') }}">Kegiatan Profesi</a>
                             </li>
                             <li class="submenu-item">
                                 <a href="">User</a>
