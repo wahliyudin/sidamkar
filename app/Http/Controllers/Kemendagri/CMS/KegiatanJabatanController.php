@@ -46,7 +46,10 @@ class KegiatanJabatanController extends Controller
                 'message' => 'Berhasil ditambahkan'
             ]);
         } catch (\Throwable $th) {
-            throw $th;
+            return response()->json([
+                'status' => $th->getCode(),
+                'message' => $th->getMessage()
+            ]);
         }
     }
 

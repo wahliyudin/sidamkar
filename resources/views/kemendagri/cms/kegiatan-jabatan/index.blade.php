@@ -24,7 +24,7 @@
                                         <div class="d-flex align-items-center justify-content-between w-100"
                                             style="color: #000000;">
                                             <p class="accordion-title">
-                                                {{ $unsur->nama }}
+                                                [ Pelaksana: {{ $unsur->role->display_name }} ] {{ $unsur->nama }}
                                             </p>
                                             <div class="d-flex align-items-center">
                                                 <i
@@ -447,7 +447,8 @@
                     preConfirm: async () => {
                         return await $.ajax({
                             type: 'DELETE',
-                            url: "{{ url('kemendagri/cms/kegiatan-jabatan') }}/" + $(this).data('id')+'/destroy',
+                            url: "{{ url('kemendagri/cms/kegiatan-jabatan') }}/" + $(
+                                this).data('id') + '/destroy',
                             dataType: 'JSON'
                         });
                     },
