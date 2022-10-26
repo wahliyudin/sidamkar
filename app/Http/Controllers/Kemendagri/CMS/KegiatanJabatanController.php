@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Kemendagri\CMS;
 
 use App\Http\Controllers\Controller;
+use App\Imports\UnsursImport;
 use App\Models\JenisKegiatan;
 use App\Models\Role;
 use App\Models\Unsur;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class KegiatanJabatanController extends Controller
 {
@@ -55,7 +57,18 @@ class KegiatanJabatanController extends Controller
 
     public function import(Request $request)
     {
-        dd($request->all());
+        try {
+            Excel::import(new UnsursImport(), $request->file('file_import'));
+            return response()->json([
+                'status' => 200,
+                'message' => 'Berhasil diimport'
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => $th->getCode(),
+                'message' => 'Ada Kesalahan Pada Sistem'
+            ]);
+        }
     }
 
     public function destroy($id)

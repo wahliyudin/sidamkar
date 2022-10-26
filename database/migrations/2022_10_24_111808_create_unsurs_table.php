@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('role_id')->nullable();
             $table->unsignedBigInteger('jenis_kegiatan_id');
-            $table->string('nama');
+            $table->string('nama')->fulltext();
             $table->timestamps();
 
             $table->foreign('role_id')->on('roles')->references('id')->nullOnDelete();

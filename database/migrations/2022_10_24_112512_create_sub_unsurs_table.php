@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('sub_unsurs', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('unsur_id');
-            $table->string('nama');
+            $table->string('nama')->fulltext();
             $table->timestamps();
 
             $table->foreign('unsur_id')->on('unsurs')->references('id')->cascadeOnDelete();

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('sub_butir_kegiatans', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('butir_kegiatan_id');
-            $table->string('nama');
+            $table->string('nama')->fulltext();
             $table->string('satuan_hasil');
             $table->float('score');
             $table->integer('percent');

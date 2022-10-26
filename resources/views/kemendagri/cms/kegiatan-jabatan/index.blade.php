@@ -65,9 +65,16 @@
                                                                 <ul class="ms-0">
                                                                     @foreach ($sub_unsur->butirKegiatans as $butir_kegiatan)
                                                                         <li class="accordian-list">
-                                                                            <h6 class="accordian-title">
-                                                                                {{ $butir_kegiatan->nama }}
-                                                                            </h6>
+                                                                            <div
+                                                                                class="d-flex align-items-center justify-content-between">
+                                                                                <h6 class="accordian-title">
+                                                                                    {{ $butir_kegiatan->nama }}
+                                                                                </h6>
+                                                                                <h6 class="accordian-title"
+                                                                                    style="color: #1AD598;">
+                                                                                    {{ $butir_kegiatan->score }}
+                                                                                </h6>
+                                                                            </div>
                                                                         </li>
                                                                     @endforeach
                                                                 </ul>
@@ -283,15 +290,11 @@
                             $('.btn-simpan-file-import span').show();
                             $('.btn-simpan-file-import .spin').hide();
                             if (response.status == 200) {
-                                Toastify({
-                                    text: response.message,
-                                    duration: 5000,
-                                    close: true,
-                                    gravity: "top",
-                                    position: "right",
-                                    backgroundColor: "#18b882",
-                                }).showToast();
-                                location.reload();
+                                swal("Selesai!", response.message, "success").then(() => {
+                                    location.reload();
+                                });
+                            } else {
+                                swal("Error!", response.message, "error");
                             }
                         },
                         error: function(err) {
