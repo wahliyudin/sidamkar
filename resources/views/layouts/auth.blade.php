@@ -15,37 +15,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Viga&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/extensions/fontawesome/all.min.css') }}" />
     <link href="{{ asset('assets/css/auth/fontawesome/styles.min.css') }}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{{ asset('assets/extensions/toastify-js/src/toastify.css') }}">
-</head>
-
-<body>
-    <div class="page-content">
-        <!-- Main content -->
-        <div class="content-wrapper">
-            <!-- Inner content -->
-            <div class="content-inner">
-                <!-- Content area -->
-                <div class="content row justify-content-center align-items-center">
-                    <!-- Login form -->
-                    @yield('content')
-                    <!-- /login form -->
-                </div>
-                <!-- /content area -->
-            </div>
-            <!-- /inner content -->
-        </div>
-        <!-- /main content -->
-        <img style="position: absolute; bottom: 0; z-index: -1; max-width: 100vw;"
-            src="{{ asset('assets/images/template/glombang-2.png') }}"alt="">
-        <img style="position: absolute; bottom: 0; z-index: -1; max-width: 100vw;"
-            src="{{ asset('assets/images/template/glombang-1.png') }}" alt="">
-
-    </div>
-    <!-- /page content -->
-    <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
-    <script src="{{ asset('assets/js/auth/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/js/auth/app.js') }}"></script>
     <style>
         .header-login {
             font-size: 25px;
@@ -114,6 +86,38 @@
             }
         }
     </style>
+    @yield('css')
+</head>
+
+<body>
+    <div class="page-content">
+        <!-- Main content -->
+        <div class="content-wrapper">
+            <!-- Inner content -->
+            <div class="content-inner">
+                <!-- Content area -->
+                <div class="content row justify-content-center align-items-center">
+                    <!-- Login form -->
+                    @yield('content')
+                    <!-- /login form -->
+                </div>
+                <!-- /content area -->
+            </div>
+            <!-- /inner content -->
+        </div>
+        <!-- /main content -->
+        <img style="position: absolute; bottom: 0; z-index: -1; max-width: 100vw;"
+            src="{{ asset('assets/images/template/glombang-2.png') }}"alt="">
+        <img style="position: absolute; bottom: 0; z-index: -1; max-width: 100vw;"
+            src="{{ asset('assets/images/template/glombang-1.png') }}" alt="">
+
+    </div>
+    <!-- /page content -->
+    <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/js/auth/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/js/auth/app.js') }}"></script>
+    <script src="{{ asset('assets/extensions/fontawesome/all.min.js') }}"></script>
+
     <script src="{{ asset('assets/extensions/toastify-js/src/toastify.js') }}"></script>
     @if (session('message'))
         <script>
@@ -139,6 +143,7 @@
             }).showToast();
         </script>
     @endif
+    @yield('js')
 </body>
 
 

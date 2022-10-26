@@ -3,6 +3,61 @@
 @section('content')
     <section class="section">
         <div class="row">
+            <div class="col-md-4 px-2">
+                <div class="card">
+                    <div class="card-body py-3 px-3" style="height: 100px;">
+                        <div class="d-flex align-items-center h-100">
+                            <div class="circle circle-blue">
+                                <i class="fa-solid fa-copy"></i>
+                            </div>
+                            <div class="d-flex flex-column ms-2">
+                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
+                                    Angka Kredit Minimal
+                                </p>
+                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target">100</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 px-2">
+                <div class="card">
+                    <div class="card-body py-3 px-3" style="height: 100px;">
+                        <div class="d-flex align-items-center h-100">
+                            <div class="circle circle-purple">
+                                <i class="fa-solid fa-copy"></i>
+                            </div>
+                            <div class="d-flex flex-column ms-2">
+                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
+                                    Angka Kredit diterima
+                                </p>
+                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target">100</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 px-2">
+                <div class="card">
+                    <div class="card-body py-3 px-3" style="height: 100px;">
+                        <div class="d-flex align-items-center h-100">
+                            <div class="circle circle-green">
+                                <i class="fa-solid
+                                fa-stopwatch"></i>
+                            </div>
+                            <div class="d-flex flex-column ms-2">
+                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
+                                    Periode
+                                </p>
+                                <h2 style="font-family: 'Roboto'; font-size: 20px; color: #06152B;" class="target">Januari
+                                    2022 - Juli 2022</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
@@ -26,8 +81,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-body">
-                        <div class="max-height: calc(30vh); overflow-y: auto;">
+                    <div class="card-body" style="height: 70vh; overflow:auto">
+                        <div class="card-body-header">
+                            <h4 class="mb-3">Nama Rencana Kinerja</h4>
                             <div class="d-flex flex-column">
                                 <div class="">
                                     <div role="button" data-bs-toggle="collapse" data-bs-target="#one" aria-expanded="true"
@@ -41,7 +97,7 @@
                                             Kesiapsiagaan petugas pemadam kebakaran dan penyelamatan;
                                         </h5>
                                     </div>
-                                    <div class="collapse show" id="one" style="">
+                                    <div class="collapse" id="one" style="">
                                         <ul class="py-1 ms-5">
                                             <li class="py-1">
                                                 <h6>Apel pagi sebagai peserta dan serah terima tugas jaga;</h6>
@@ -70,7 +126,7 @@
                                             Pelaksanaan prosedur pelaporan informasi kejadian kebakaran;
                                         </h5>
                                     </div>
-                                    <div class="collapse show" id="two" style="">
+                                    <div class="collapse" id="two" style="">
                                         <ul class="py-1 ms-5">
                                             <li class="py-1">
                                                 <h6>Informasi kejadian kebakaran; dan</h6>
@@ -81,6 +137,7 @@
                                         </ul>
                                     </div>
                                 </div>
+                                <h4 class="mb-3">Nama Rencana Kinerja</h4>
                                 <div class="">
                                     <div role="button" data-bs-toggle="collapse" data-bs-target="#three"
                                         aria-expanded="true" aria-controls="three"
@@ -92,7 +149,7 @@
                                             Pelaksanaan operasional pemadaman kebakaran;
                                         </h5>
                                     </div>
-                                    <div class="collapse show" id="three" style="">
+                                    <div class="collapse" id="three" style="">
                                         <ul class="py-1 ms-5">
                                             <li class="py-1">
                                                 <h6>Keberangkatan menuju tempat kejadian kebakaran;</h6>
@@ -120,7 +177,7 @@
                                             Pelaksanaan operasional pemadaman kebakaran;
                                         </h5>
                                     </div>
-                                    <div class="collapse show" id="four" style="">
+                                    <div class="collapse" id="four" style="">
                                         <ul class="py-1 ms-5">
                                             <li class="py-1">
                                                 <h6>Keberangkatan menuju tempat kejadian kebakaran;</h6>

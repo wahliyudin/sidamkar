@@ -22436,6 +22436,17 @@ a {
     background-color: #0372aa;
 }
 
+.btn-blue-reverse {
+    border: 1px solid #0087C8;
+    color: #0087C8 !important;
+}
+
+.btn-blue-reverse:hover {
+    background-color: #0087C8;
+    color: white !important;
+    border: 1px solid #0087C8 !important;
+}
+
 .btn-green-light,
 .btn-green-light:active {
     color: #1AD598 !important;
@@ -22619,4 +22630,8 @@ a {
 .form-group input::placeholder {
     font-weight: 400;
     font-size: 14px;
+}
+
+.cursor-pointer {
+    cursor: pointer;
 }
