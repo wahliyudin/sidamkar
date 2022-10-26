@@ -24,13 +24,24 @@
                             <span>Overview</span>
                         </a>
                     </li>
-                    <li class="sidebar-item {{ request()->routeIs('daftar-kegiatan') ? 'active' : '' }}">
-                        <a href="{{ route('daftar-kegiatan') }}" class='sidebar-link'>
+
+                    <li
+                        class="sidebar-item has-sub {{ request()->is('daftar-kegiatan*') || request()->is('daftar-penunjang*') ? 'active' : '' }}">
+                        <a href="javascript(0)" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="fa-solid fa-list"></i>
                             </div>
-                            <span>Daftar Kegiatan</span>
+                            <span>Rencana Kinerja</span>
                         </a>
+                        <ul
+                            class="submenu {{ request()->is('daftar-kegiatan*') || request()->is('daftar-penunjang*') ? 'active' : '' }}">
+                            <li class="submenu-item {{ request()->is('daftar-kegiatan*') ? 'active' : '' }}">
+                                <a href="{{ route('daftar-kegiatan') }}">Jabatan</a>
+                            </li>
+                            <li class="submenu-item {{ request()->is('daftar-penunjang*') ? 'active' : '' }}">
+                                <a href="{{ route('daftar-penunjang') }}">Profesi dan Penunjang</a>
+                            </li>
+                        </ul>
                     </li>
                     <li
                         class="sidebar-item has-sub {{ request()->is('tabel-kegiatan*') || request()->is('tabel-penunjang*') ? 'active' : '' }}">
@@ -60,7 +71,26 @@
                                 50</span>
                         </a>
                     </li>  --}}
+
                     <li
+                        class="sidebar-item has-sub {{ request()->is('laporan-jabatan*') || request()->is('laporan-kegiatan*') ? 'active' : '' }}">
+                        <a href="javascript(0)" class='sidebar-link'>
+                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                                <i class="fa-regular fa-rectangle-list"></i>
+                            </div>
+                            <span>Laporan Kegiatan</span>
+                        </a>
+                        <ul
+                            class="submenu {{ request()->is('laporan-jabatan*') || request()->is('laporan-kegiatan*') ? 'active' : '' }}">
+                            <li class="submenu-item {{ request()->is('laporan-jabatan*') ? 'active' : '' }}">
+                                <a href="{{ route('laporan-jabatan') }}">Jabatan</a>
+                            </li>
+                            <li class="submenu-item {{ request()->is('laporan-kegiatan*') ? 'active' : '' }}">
+                                <a href="{{ route('laporan-kegiatan') }}">Profesi dan Penunjang</a>
+                            </li>
+                        </ul>
+                    </li>
+                    {{--  <li
                         class="sidebar-item {{ request()->routeIs('laporan-kegiatan') || request()->routeIs('laporan-kegiatan') ? 'active' : '' }}">
                         <a href="{{ route('laporan-kegiatan') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
@@ -68,7 +98,7 @@
                             </div>
                             <span>Laporan Kegiatan</span>
                         </a>
-                    </li>
+                    </li>  --}}
                 @endrole
 
                 @role('kab_kota')
@@ -168,7 +198,8 @@
                             </li>
                             <li
                                 class="submenu-item {{ request()->is('kemendagri/verifikasi-data/admin-provinsi*') ? 'active' : '' }}">
-                                <a href="{{ route('kemendagri.verifikasi-data.admin-provinsi.index') }}">Admin Provinsi</a>
+                                <a href="{{ route('kemendagri.verifikasi-data.admin-provinsi.index') }}">Admin
+                                    Provinsi</a>
                             </li>
                         </ul>
                     </li>

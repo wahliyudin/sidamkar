@@ -18,11 +18,12 @@
                 @endif
                 <div class="row mb-3">
                     <div class="form-group">
-                        <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                        <label for="email" style="color: #000000"
+                            class=" col-form-label ">{{ __('Email Address') }}</label>
 
                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                            name="email" value="{{ old('email') }}" required autocomplete="email" autofocus
-                            style="padding-bottom: 1.5rem; padding-top: 1.5rem;">
+                            name="email" value="{{ old('email') }}" required autocomplete="email"
+                            placeholder="Masukan Email" autofocus style="padding-bottom: 1.5rem; padding-top: 1.5rem;">
 
                         @error('email')
                             <span class="invalid-feedback" role="alert">
