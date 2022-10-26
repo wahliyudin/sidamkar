@@ -15,6 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Viga&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/extensions/fontawesome/all.min.css') }}" />
     <link href="{{ asset('assets/css/auth/fontawesome/styles.min.css') }}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{{ asset('assets/extensions/toastify-js/src/toastify.css') }}">
 </head>
@@ -46,6 +47,7 @@
     <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/auth/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/auth/app.js') }}"></script>
+    <script src="{{ asset('assets/extensions/fontawesome/all.min.js') }}"></script>
     <style>
         .header-login {
             font-size: 25px;
