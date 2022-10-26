@@ -33,9 +33,8 @@
                     <div class="form-control-feedback">
                         <i class="icon-lock2 text-muted"></i>
                     </div>
-                    <span>
-                        <i class="fa-solid fa-eye" id="eye" aria-hidden="true" onclick="toggle()"
-                            style="right: 0; cursor: pointer; position: absolute; top: 0; transform: translateY(17px); padding-right: 0.875rem;"></i>
+                    <span class="head-eye">
+                        <i class="fa-solid fa-eye-slash icon-input"></i>
                     </span>
                     @error('password')
                         <span class="invalid-feedback" role="alert">
@@ -58,24 +57,31 @@
         </div>
     </div>
 @endsection
-
+@section('css')
+    <style>
+        .icon-input {
+            right: 0;
+            cursor: pointer;
+            position: absolute;
+            top: 0;
+            transform: translateY(17px);
+            padding-right: 0.875rem;
+        }
+    </style>
+@endsection
 @section('js')
     <script>
-        var state = false;
-
-        function toggle() {
-            if (state) {
-                document.getElementById("password").setAttribute("type", "password");
-                document.getElementById("head-eye").style.color = '#7a797e';
-                state = false;
+        $('.head-eye').click(function(e) {
+            e.preventDefault();
+            if ($('#password').attr('type') == 'password') {
+                $('#password').attr("type", "text");
+                $(this).html('<i class="fa-solid fa-eye icon-input"></i>');
             } else {
-                document.getElementById("password").setAttribute("type", "text");
-                document.getElementById("eye").style.color = '#5887ef';
-                state = true;
+                $(this).html('<i class="fa-solid fa-eye-slash icon-input"></i>');
+                $('#password').attr("type", "password");
             }
-        }
+        });
     </script>
-
     @if (session('success'))
         <script>
             Toastify({

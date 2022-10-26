@@ -1,52 +1,71 @@
 @extends('layouts.master')
 
 @section('content')
-    <section class="section">
+    <div class="section">
         <div class="row">
-            <div class="card">
-                <div class="row justify-content-evenly mt-4">
-                    <div class="col-md-3 col-6 py-2">
-                        <div class="d-flex align-items-center">
-                            <button class="btn btn-purple-reverse ms-3 px-3 text-sm" type="button">tindak
-                                lanjut</button>
-                            <span class="text-xl mx-2">:</span>
-                            <span class="text-xl">1</span>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-6 py-2">
-                        <div class="d-flex align-items-center">
-                            <button class="btn btn-yellow-reverse btn-status ms-3 px-3 text-sm"
-                                type="button">diproses</button>
-                            <span class="text-xl mx-2">:</span>
-                            <span class="text-xl">1</span>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-6 py-2">
-                        <div class="d-flex align-items-center">
-                            <button class="btn btn-red-reverse btn-status ms-3 px-3 text-sm" type="button">revisi</button>
-                            <span class="text-xl mx-2">:</span>
-                            <span class="text-xl">1</span>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-6 py-2">
-                        <div class="d-flex align-items-center">
-                            <button class="btn btn-green-reverse btn-status ms-3 px-3 text-sm"
-                                type="button">selesai</button>
-                            <span class="text-xl mx-2">:</span>
-                            <span class="text-xl">12</span>
+            <div class="col-md-4 px-2">
+                <div class="card">
+                    <div class="card-body py-3 px-3" style="height: 100px;">
+                        <div class="d-flex align-items-center h-100">
+                            <div class="circle circle-blue">
+                                <i class="fa-solid fa-copy"></i>
+                            </div>
+                            <div class="d-flex flex-column ms-2">
+                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
+                                    Angka Kredit Minimal
+                                </p>
+                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target">100</h2>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="card-header">
-                    <div class="row justify-content-between align-items-center">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Tanggal Kegiatan</label>
-                                <input type="date" placeholder="Search..." class="form-control"
-                                    style="width: 50% !important;">
+            </div>
+            <div class="col-md-4 px-2">
+                <div class="card">
+                    <div class="card-body py-3 px-3" style="height: 100px;">
+                        <div class="d-flex align-items-center h-100">
+                            <div class="circle circle-purple">
+                                <i class="fa-solid fa-copy"></i>
+                            </div>
+                            <div class="d-flex flex-column ms-2">
+                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
+                                    Angka Kredit diterima
+                                </p>
+                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target">100</h2>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 px-2">
+                <div class="card">
+                    <div class="card-body py-3 px-3" style="height: 100px;">
+                        <div class="d-flex align-items-center h-100">
+                            <div class="circle circle-green">
+                                <i class="fa-solid
+                                fa-stopwatch"></i>
+                            </div>
+                            <div class="d-flex flex-column ms-2">
+                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
+                                    Periode
+                                </p>
+                                <h2 style="font-family: 'Roboto'; font-size: 20px; color: #06152B;" class="target">Januari
+                                    2022 - Juli 2022</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3 class="mt-4">Kegiatan Jabatan</h3>
+                            <input type="date">
+                        </div>
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label>Search</label>
                                 <input type="text" placeholder="Search..." class="form-control">
@@ -54,263 +73,112 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-body">
-                    <form action="">
-                        <div class="timeline">
-                            <div class="title-timeline">
-                                <label class="title-wrapper">
-                                    <span class="check check-success">
-                                        <i class="fa-solid fa-check"></i>
-                                    </span>
-                                    <p>Kesiapsiagaan petugas pemadam kebakaran dan penyelamatan;</p>
-                                </label>
-                            </div>
-                            <div class="area-timeline">
-                                <div class="area-wrapper">
-                                    <label style=" cursor: pointer;">
-                                        <input type="checkbox" checked id="checkbox1" class="form-check-input">
-                                        <p>Apel pagi sebagai peserta dan serah terima tugas jaga;</p>
-                                    </label>
-                                    <div class="d-flex align-items-center btn-wrapper">
-                                        <button class="btn btn-purple-reverse ms-3 px-3" data-bs-toggle="modal"
-                                            data-bs-target="#tindakLanjut" type="button">tindak lanjut</button>
-                                    </div>
-                                </div>
-                                <div class="area-wrapper">
-                                    <label style=" cursor: pointer;">
-                                        <span class="check check-warning">
-                                            <i class="fa-solid fa-spinner"></i>
-                                        </span>
-                                        <p>Tugas piket jaga;</p>
-                                    </label>
-                                    <div class="d-flex align-items-center btn-wrapper">
-                                        <button class="btn btn-yellow-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
-                                            data-bs-target="#riwayat" type="button">diproses</button>
-                                    </div>
-                                </div>
-                                <div class="area-wrapper">
-                                    <label style=" cursor: pointer;">
-                                        <span class="check check-danger">
-                                            <i class="fa-solid fa-xmark"></i>
-                                        </span>
-                                        <p>Apel malam sebagai peserta;</p>
-                                    </label>
-                                    <div class="d-flex align-items-center btn-wrapper">
-                                        <button class="btn btn-red-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
-                                            data-bs-target="#revisi" type="button">revisi</button>
-                                    </div>
-                                </div>
-                                <div class="area-wrapper">
-                                    <label style=" cursor: pointer;">
-                                        <span class="check check-success">
-                                            <i class="fa-solid fa-check"></i>
-                                        </span>
-                                        <p>kegiatan rutin latihan ketrampilan;</p>
-                                    </label>
-                                    <div class="d-flex align-items-center btn-wrapper">
-                                        <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
-                                            data-bs-target="#riwayat" type="button">selesai</button>
-                                    </div>
-                                </div>
-                            </div>
+                <div class="card-body px-0">
+                    <div class="card-body accordion-container">
+                        <div class="accordion" id="accordion-parent">
+                            @foreach ($kegiatan->unsurs as $unsur)
+                                <div class="accordion-item">
+                                    <div class="d-flex justify-content-between accordion-header py-3 px-2"
+                                        id="unsur{{ $unsur->id }}">
+                                        <div class="d-flex align-items-center justify-content-between w-100"
+                                            style="color: #000000;">
+                                            <p class="accordion-title">
+                                                [ Pelaksana: {{ $unsur->role->display_name }} ] {{ $unsur->nama }}
+                                            </p>
 
-                            <div class="title-timeline">
-                                <label class="title-wrapper">
-                                    <span class="check check-success">
-                                        <i class="fa-solid fa-check"></i>
-                                    </span>
-                                    <p>Pelaksanaan prosedur pelaporan informasi kejadian kebakaran;</p>
-                                </label>
-                            </div>
-                            <div class="area-timeline">
-                                <div class="area-wrapper">
-                                    <label style=" cursor: pointer;">
-                                        <span class="check check-success">
-                                            <i class="fa-solid fa-check"></i>
-                                        </span>
-                                        <p>Informasi kejadian kebakaran; dan</p>
-                                    </label>
-                                    <div class="d-flex align-items-center btn-wrapper">
-                                        <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
-                                            data-bs-target="#riwayat" type="button">selesai</button>
+                                        </div>
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#contentUnsur{{ $unsur->id }}" aria-expanded="false"
+                                            aria-controls="contentUnsur{{ $unsur->id }}">
+                                        </button>
+                                    </div>
+                                    <div id="contentUnsur{{ $unsur->id }}" class="accordion-collapse collapse"
+                                        aria-labelledby="unsur{{ $unsur->id }}" style="">
+                                        <div class="accordion-body">
+                                            <div class="accordion" id="accordion-child">
+                                                @foreach ($unsur->subUnsurs as $sub_unsur)
+                                                    <div class="accordion-item">
+                                                        <div class="d-flex justify-content-between accordion-header py-1 px-2"
+                                                            id="subUnsur{{ $sub_unsur->id }}">
+                                                            <div class="d-flex align-items-center" style="color: #000000;">
+                                                                <h6 class="accordian-title">
+                                                                    {{ $sub_unsur->nama }}
+                                                                </h6>
+                                                            </div>
+                                                            <button class="accordion-button collapsed" type="button"
+                                                                data-bs-toggle="collapse"
+                                                                data-bs-target="#contentchildSubUnsur{{ $sub_unsur->id }}"
+                                                                aria-expanded="false"
+                                                                aria-controls="contentchildSubUnsur{{ $sub_unsur->id }}">
+                                                            </button>
+                                                        </div>
+                                                        <div id="contentchildSubUnsur{{ $sub_unsur->id }}"
+                                                            class="accordion-collapse collapse"
+                                                            aria-labelledby="subUnsur{{ $sub_unsur->id }}" style="">
+                                                            <div class="accordion-body">
+                                                                <ul class="ms-0">
+                                                                    @foreach ($sub_unsur->butirKegiatans as $butir_kegiatan)
+                                                                        <li class="accordian-list">
+                                                                            <div
+                                                                                class="d-flex align-items-center justify-content-between">
+                                                                                <h6 class="accordian-title">
+                                                                                    {{ $butir_kegiatan->nama }}
+                                                                                </h6>
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <button
+                                                                                        class="btn btn-purple-reverse ms-3 px-3"
+                                                                                        data-bs-toggle="modal"
+                                                                                        data-bs-target="#tindakLanjut"
+                                                                                        type="button">tindak
+                                                                                        lanjut</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </li>
+                                                                    @endforeach
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="area-wrapper">
-                                    <label style=" cursor: pointer;">
-                                        <span class="check check-success">
-                                            <i class="fa-solid fa-check"></i>
-                                        </span>
-                                        <p>koordinasi dengan Kepala Regu terkait informasi kejadian kebakaran;
-                                        </p>
-                                    </label>
-                                    <div class="d-flex align-items-center btn-wrapper">
-                                        <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
-                                            data-bs-target="#riwayat" type="button">selesai</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="title-timeline">
-                                <label class="title-wrapper">
-                                    <span class="check check-success">
-                                        <i class="fa-solid fa-check"></i>
-                                    </span>
-                                    <p>Pelaksanaan operasional pemadaman kebakaran;</p>
-                                </label>
-                            </div>
-                            <div class="area-timeline">
-                                <div class="area-wrapper">
-                                    <label style=" cursor: pointer;">
-                                        <span class="check check-success">
-                                            <i class="fa-solid fa-check"></i>
-                                        </span>
-                                        <p>Informasi kejadian kebakaran; dan</p>
-                                    </label>
-                                    <div class="d-flex align-items-center btn-wrapper">
-                                        <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
-                                            data-bs-target="#riwayat" type="button">selesai</button>
-                                    </div>
-                                </div>
-                                <div class="area-wrapper">
-                                    <label style=" cursor: pointer;">
-                                        <span class="check check-success">
-                                            <i class="fa-solid fa-check"></i>
-                                        </span>
-                                        <p>Keberangkatan menuju tempat kejadian kebakaran;</p>
-                                    </label>
-                                    <div class="d-flex align-items-center btn-wrapper">
-                                        <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
-                                            data-bs-target="#riwayat" type="button">selesai</button>
-                                    </div>
-                                </div>
-                                <div class="area-wrapper">
-                                    <label style=" cursor: pointer;">
-                                        <span class="check check-success">
-                                            <i class="fa-solid fa-check"></i>
-                                        </span>
-                                        <p>Pemadaman kebakaran;</p>
-                                    </label>
-                                    <div class="d-flex align-items-center btn-wrapper">
-                                        <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
-                                            data-bs-target="#riwayat" type="button">selesai</button>
-                                    </div>
-                                </div>
-                                <div class="area-wrapper">
-                                    <label style=" cursor: pointer;">
-                                        <span class="check check-success">
-                                            <i class="fa-solid fa-check"></i>
-                                        </span>
-                                        <p>Proses pendinginan;</p>
-                                    </label>
-                                    <div class="d-flex align-items-center btn-wrapper">
-                                        <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
-                                            data-bs-target="#riwayat" type="button">selesai</button>
-                                    </div>
-                                </div>
-                                <div class="area-wrapper">
-                                    <label style=" cursor: pointer;">
-                                        <span class="check check-success">
-                                            <i class="fa-solid fa-check"></i>
-                                        </span>
-                                        <p>persiapan kembali ke pos pemadam kebakaran dan
-                                            penyelamatan;</p>
-                                    </label>
-                                    <div class="d-flex align-items-center btn-wrapper">
-                                        <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
-                                            data-bs-target="#riwayat" type="button">selesai</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="title-timeline">
-                                <label class="title-wrapper">
-                                    <span class="check check-success">
-                                        <i class="fa-solid fa-check"></i>
-                                    </span>
-                                    <p>Pelaksanaan prosedur pelaporan informasi kejadian
-                                        evakuasi dan penyelamatan;</p>
-                                </label>
-                            </div>
-                            <div class="area-timeline">
-                                <div class="area-wrapper">
-                                    <label style=" cursor: pointer;">
-                                        <span class="check check-success">
-                                            <i class="fa-solid fa-check"></i>
-                                        </span>
-                                        <p>Informasi kejadian evakuasi dan penyelamatan;
-                                        </p>
-                                    </label>
-                                    <div class="d-flex align-items-center btn-wrapper">
-                                        <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
-                                            data-bs-target="#riwayat" type="button">selesai</button>
-                                    </div>
-                                </div>
-                                <div class="area-wrapper">
-                                    <label style=" cursor: pointer;">
-                                        <span class="check check-success">
-                                            <i class="fa-solid fa-check"></i>
-                                        </span>
-                                        <p>Koordinasi dengan Kepala Regu terkait
-                                            informasi kejadian evakuasi dan
-                                            penyelamatan;</p>
-                                    </label>
-                                    <div class="d-flex align-items-center btn-wrapper">
-                                        <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
-                                            data-bs-target="#riwayat" type="button">selesai</button>
-                                    </div>
-                                </div>
-                                <div class="area-wrapper">
-                                    <label style=" cursor: pointer;">
-                                        <span class="check check-success">
-                                            <i class="fa-solid fa-check"></i>
-                                        </span>
-                                        <p>evakuasi dan penyelamatan; dan</p>
-                                    </label>
-                                    <div class="d-flex align-items-center btn-wrapper">
-                                        <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
-                                            data-bs-target="#riwayat" type="button">selesai</button>
-                                    </div>
-                                </div>
-                                <div class="area-wrapper">
-                                    <label style=" cursor: pointer;">
-                                        <span class="check check-success">
-                                            <i class="fa-solid fa-check"></i>
-                                        </span>
-                                        <p>melaporkan kejadian evakuasi dan
-                                            penyelamatan;</p>
-                                    </label>
-                                    <div class="d-flex align-items-center btn-wrapper">
-                                        <button class="btn btn-green-reverse btn-status ms-3 px-3" data-bs-toggle="modal"
-                                            data-bs-target="#riwayat" type="button">selesai</button>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
 
-    </section>
     <div class="modal fade" id="tindakLanjut" tabindex="-1" role="dialog" aria-labelledby="tindakLanjutTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-centered" role="document">
             <div class="modal-content">
+                <div class="modal-header">
+                    <h5>Laporan Kegiatan Jabatan</h5>
+                </div>
                 <div class="modal-body">
                     <div class="d-flex flex-column">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="">Files</label>
-                                    <input type="file" class="with-validation-files" required multiple
-                                        data-max-file-size="1MB" data-max-files="3">
+                                    <label>File Dokumen</label>
+                                    <input type="file" name="doc_kepegawaian_tmp" data-max-file-size="1MB"
+                                        data-max-files="3" required />
+                                    <input type="file" name="doc_kepegawaian" style="display: none;"
+                                        data-max-file-size="1MB" data-max-files="3" required />
                                 </div>
+
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="">Gambar Kegiatan</label>
-                                    <input type="file" class="with-validation-images" required multiple
-                                        data-max-file-size="1MB" data-max-files="3">
+                                    <label>File Gambar</label>
+                                    <input type="file" name="doc_kepegawaian_tmp" data-max-file-size="1MB"
+                                        data-max-files="3" required />
+                                    <input type="file" name="doc_kepegawaian" style="display: none;"
+                                        data-max-file-size="1MB" data-max-files="3" required />
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -330,269 +198,382 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="riwayat" tabindex="-1" role="dialog" aria-labelledby="riwayatTitle"
+
+
+    <div class="modal fade" id="tambahDataModal" tabindex="-1" role="dialog" aria-labelledby="tambahDataModalTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-centered" role="document">
             <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tambahDataModalTitle">
+                        Tambah Unsur Kegiatan
+                    </h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <i data-feather="x"></i>
+                    </button>
+                </div>
                 <div class="modal-body">
-                    <div class="d-flex flex-column">
+                    <form method="post" enctype="multipart/form-data" class="container-unsur">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="">Files</label>
-                                    <input type="file" class="with-validation-files" required multiple
-                                        data-max-file-size="1MB" data-max-files="3">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Gambar Kegiatan</label>
-                                    <input type="file" class="with-validation-images" required multiple
-                                        data-max-file-size="1MB" data-max-files="3">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Detail Kegiatan</label>
-                                    <textarea name="" id="" class="form-control"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h5 style="font-size: 16px !important; color: black;">Riwayat Laporan kegiatan Agus
-                                    Syamsudin</h5>
-
-                                <div class="history">
-                                    <div class="history-item">
-                                        <span class="history-item-date">07-08-2022</span>
-                                        <div class="history-item-wrapper">
-                                            <div class="point-wrapper">
-                                                <span class="point"></span>
-                                            </div>
-                                            <p>Input Laporan Kegiatan</p>
-                                        </div>
-                                    </div>
-                                    <div class="history-item">
-                                        <span class="history-item-date">07-08-2022</span>
-                                        <div class="history-item-wrapper">
-                                            <div class="point-wrapper">
-                                                <span class="point"></span>
-                                            </div>
-                                            <p>Laporan kegiatan di terima Pejabat Struktural</p>
-                                        </div>
-                                    </div>
-                                    <div class="history-item">
-                                        <span class="history-item-date">07-08-2022</span>
-                                        <div class="history-item-wrapper">
-                                            <div class="point-wrapper">
-                                                <span class="point"></span>
-                                            </div>
-                                            <p>Laporan di verifikasi Pejabat Struktural</p>
-                                        </div>
-                                    </div>
-                                    <div class="history-item">
-                                        <span class="history-item-date">07-08-2022</span>
-                                        <div class="history-item-wrapper">
-                                            <div class="point-wrapper">
-                                                <span class="point"></span>
-                                            </div>
-                                            <p>Laporan kegiatan diterima Oleh Kasi</p>
-                                        </div>
-                                    </div>
-                                    <div class="history-item">
-                                        <span class="history-item-date">07-08-2022</span>
-                                        <div class="history-item-wrapper">
-                                            <div class="point-wrapper">
-                                                <span class="point"></span>
-                                            </div>
-                                            <p>Laporan diverifikasi Oleh Kasi</p>
-                                        </div>
-                                    </div>
-                                    <div class="history-item">
-                                        <span class="history-item-date">07-08-2022</span>
-                                        <div class="history-item-wrapper">
-                                            <div class="point-wrapper">
-                                                <span class="point"></span>
-                                            </div>
-                                            <p>Selesai ditanda tangan</p>
-                                        </div>
-                                    </div>
+                                    <label>Pelaksana Jabatan</label>
+                                    <select class="choices form-select" name="role_id">
+                                        <option disabled selected>Pilih Jabatan</option>
+                                        @foreach ($roles as $role)
+                                            <option value="{{ $role->id }}">{{ $role->display_name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="text-center">
-                            <button class="btn btn-danger px-5 mt-4" data-bs-dismiss="modal">Tutup</button>
+                        <div class="row align-items-center">
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <label>Unsur Kegiatan</label>
+                                    <input class="form-control" type="text" name="unsur">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-blue btn-sm ps-3 py-2 tambah-sub-unsur"
+                                    style="transform: translateY(7px)"><i class="fa-solid fa-plus me-2"></i> Sub
+                                    Unsur</button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                        <span>Batal</span>
+                    </button>
+                    <button class="btn btn-green ml-1 simpan-kegiatan">
+                        <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
+                            style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
+                        <span>Simpan</span>
+                    </button>
                 </div>
             </div>
         </div>
     </div>
-    <div class="modal fade" id="revisi" tabindex="-1" role="dialog" aria-labelledby="revisiTitle"
+    <div class="modal fade" id="importExcelModal" tabindex="-1" role="dialog" aria-labelledby="importExcelModalTitle"
         aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
             <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="importExcelModalTitle">
+                        Import Kegiatan
+                    </h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <i data-feather="x"></i>
+                    </button>
+                </div>
                 <div class="modal-body">
-                    <div class="d-flex flex-column">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="">Files</label>
-                                    <input type="file" class="with-validation-files" required multiple
-                                        data-max-file-size="1MB" data-max-files="3">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Gambar Kegiatan</label>
-                                    <input type="file" class="with-validation-images" required multiple
-                                        data-max-file-size="1MB" data-max-files="3">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Detail Kegiatan</label>
-                                    <textarea name="" id="" class="form-control"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h5 style="font-size: 16px !important; color: black;">Riwayat Laporan kegiatan Agus
-                                    Syamsudin</h5>
-
-                                <div class="history">
-                                    <div class="history-item">
-                                        <span class="history-item-date">07-08-2022</span>
-                                        <div class="history-item-wrapper">
-                                            <div class="point-wrapper">
-                                                <span class="point"></span>
-                                            </div>
-                                            <p>Input Laporan Kegiatan</p>
-                                        </div>
-                                    </div>
-                                    <div class="history-item">
-                                        <span class="history-item-date">07-08-2022</span>
-                                        <div class="history-item-wrapper">
-                                            <div class="point-wrapper">
-                                                <span class="point"></span>
-                                            </div>
-                                            <p>Laporan kegiatan di terima Pejabat Struktural</p>
-                                        </div>
-                                    </div>
-                                    <div class="history-item">
-                                        <span class="history-item-date">07-08-2022</span>
-                                        <div class="history-item-wrapper">
-                                            <div class="point-wrapper">
-                                                <span class="point"></span>
-                                            </div>
-                                            <p>Laporan di verifikasi Pejabat Struktural</p>
-                                        </div>
-                                    </div>
-                                    <div class="history-item">
-                                        <span class="history-item-date">07-08-2022</span>
-                                        <div class="history-item-wrapper">
-                                            <div class="point-wrapper">
-                                                <span class="point"></span>
-                                            </div>
-                                            <p>Laporan kegiatan diterima Oleh Kasi</p>
-                                        </div>
-                                    </div>
-                                    <div class="history-item">
-                                        <span class="history-item-date">07-08-2022</span>
-                                        <div class="history-item-wrapper">
-                                            <div class="point-wrapper">
-                                                <span class="point"></span>
-                                            </div>
-                                            <p>Laporan diverifikasi Oleh Kasi</p>
-                                        </div>
-                                    </div>
-                                    <div class="history-item">
-                                        <span class="history-item-date">07-08-2022</span>
-                                        <div class="history-item-wrapper">
-                                            <div class="point-wrapper">
-                                                <span class="point"></span>
-                                            </div>
-                                            <p>Selesai ditanda tangan</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <form id="form-import" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label>File (.xlsx)</label>
+                            <input type="file" name="file_import_tmp" required />
+                            <input type="file" name="file_import" style="display: none;" required />
                         </div>
-
-                        <div class="text-center mt-4">
-                            <button class="btn btn-danger px-5" data-bs-dismiss="modal">Batal</button>
-                            <a class="btn btn-blue px-5" href="{{ route('laporan-kegiatan') }}">Kirim</a>
+                        <div class="form-group d-flex flex-column align-items-start">
+                            <label>Download Template</label>
+                            <button class="btn btn-blue btn-sm px-3"><i
+                                    class="fa-solid fa-download me-2"></i>Download</button>
                         </div>
-                    </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                        <span>Batal</span>
+                    </button>
+                    <button class="btn btn-green ml-1 btn-simpan-file-import">
+                        <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
+                            style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
+                        <span>Simpan</span>
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 @endsection
+
 @section('css')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
-    <link rel="stylesheet" href="{{ asset('assets/css/pages/timeline.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/pages/laporan-kegiatan.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/extensions/toastify-js/src/toastify.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/extensions/filepond/filepond.css') }}">
     <link rel="stylesheet"
         href="{{ asset('assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/pages/filepond.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/extensions/toastify-js/src/toastify.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/extensions/choices.js/public/assets/styles/choices.css') }}">
-    <link rel="stylesheet" href="{{ asset('assetsglobal_assets/css/icons/icomoon/styles.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/shared/sweetalert2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/pages/kemendagri.css') }}">
 @endsection
 @section('js')
-    <!-- Core JS files -->
-    <script src="../../../../global_assets/js/main/jquery.min.js"></script>
-    <script src="../../../../global_assets/js/main/bootstrap.bundle.min.js"></script>
-    <!-- /core JS files -->
-
-    <!-- Theme JS files -->
-    <script src="{{ asset('assets/global_assets/js/plugins/ui/moment/moment.min.js') }}"></script>
-    <script src="{{ asset('assets/global_assets/js/plugins/pickers/daterangepicker.js') }}"></script>
-    <script src="{{ asset('assets/global_assets/js/plugins/pickers/pickadate/picker.js') }}"></script>
-    <script src="{{ asset('assets/global_assets/js/plugins/pickers/pickadate/picker.date.js') }}"></script>
-    <script src="{{ asset('assets/global_assets/js/plugins/pickers/pickadate/picker.time.js') }}"></script>
-    <script src="{{ asset('assets/obal_assets/js/plugins/pickers/pickadate/legacy.js') }}gl"></script>
-    <script src="{{ asset('assets/global_assets/js/plugins/notifications/jgrowl.min.js') }}"></script>
-
-    {{--  <script src="assets/js/app.js"></script>  --}}
-    <script src="{{ asset('assets/global_assets/js/demo_pages/picker_date.js') }}"></script>
-    <!-- /theme JS files -->
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
-
+    <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/extensions/choices.js/public/assets/scripts/choices.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/form-element-select.js') }}"></script>
+    <script src="{{ asset('assets/extensions/toastify-js/src/toastify.js') }}"></script>
     <script src="{{ asset('assets/extensions/filepond/filepond.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery.js') }}"></script>
     <script src="{{ asset('assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js') }}">
     </script>
+    <script
+        src="{{ asset('assets/extensions/filepond-plugin-file-validate-type/filepond-plugin-file-validate-type.js') }}">
+    </script>
     <script src="{{ asset('assets/extensions/filepond/filepond.jquery.js') }}"></script>
+    <script src="{{ asset('assets/js/extensions/sweetalert2.all.min.js') }}"></script>
     <script>
         $(function() {
-
-            // First register any plugins
             $.fn.filepond.registerPlugin(FilePondPluginImagePreview);
+            $.fn.filepond.registerPlugin(FilePondPluginFileValidateType);
+            pond = FilePond.create(document.querySelector('input[name="file_import_tmp"]'), {
+                acceptedFileTypes: [
+                    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                    "application/vnd.ms-excel",
+                    "application/vnd.oasis.opendocument.spreadsheet"
+                ],
+                fileValidateTypeDetectType: (source, type) =>
+                    new Promise((resolve, reject) => {
+                        // Do custom type detection here and return with promise
 
-            // Turn input element into a pond
-            $('.with-validation-images').filepond();
-
-            // Set allowMultiple property to true
-            $('.with-validation-images').filepond('allowMultiple', true);
-
-            // Listen for addfile event
-            $('.with-validation-images').on('FilePond:addfile', function(e) {
-                console.log('file added event', e);
+                        resolve(type);
+                    }),
             });
+            pond.setOptions({
+                server: {
+                    process: (fieldName, file, metadata, load, error, progress, abort, transfer,
+                        options) => {
+                        message = '';
+                        if (file.size / 1000 >= 2000) {
+                            error('file kegedean')
+                            message = "File tidak bole lebih dari 2MB";
+                        }
+                        const fileInput = document.querySelector('input[name="file_import"]');
+                        const myFile = new File([file], file.name, {
+                            type: file.type,
+                            lastModified: new Date(),
+                        });
+                        const dataTransfer = new DataTransfer();
+                        dataTransfer.items.add(myFile);
+                        fileInput.files = dataTransfer.files;
+                        load(file.name);
+                        if (message) {
+                            Toastify({
+                                text: message,
+                                duration: 5000,
+                                close: true,
+                                gravity: "top",
+                                position: "right",
+                                backgroundColor: "rgba(234, 58, 61, 0.9)",
+                            }).showToast();
+                        }
+                    }
+                },
+            });
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $('.btn-simpan-file-import').click(function(e) {
+                e.preventDefault();
+                if (!$('#form-import input[name="file_import_tmp"]').val()) {
+                    Toastify({
+                        text: "File harus diisi!",
+                        duration: 5000,
+                        close: true,
+                        gravity: "top",
+                        position: "right",
+                        backgroundColor: "#EA3A3D",
+                    }).showToast();
+                } else {
+                    var postData = new FormData($("#form-import")[0]);
+                    $('.btn-simpan-file-import span').hide();
+                    $('.btn-simpan-file-import .spin').show();
+                    $.ajax({
+                        type: 'POST',
+                        url: "{{ route('kemendagri.cms.kegiatan-jabatan.import') }}",
+                        processData: false,
+                        contentType: false,
+                        data: postData,
+                        success: function(response) {
+                            $('.btn-simpan-file-import span').show();
+                            $('.btn-simpan-file-import .spin').hide();
+                            if (response.status == 200) {
+                                swal("Selesai!", response.message, "success").then(() => {
+                                    location.reload();
+                                });
+                            } else {
+                                swal("Error!", response.message, "error");
+                            }
+                        },
+                        error: function(err) {
+                            $('.btn-simpan-file-import span').show();
+                            $('.btn-simpan-file-import .spin').hide();
+                        }
+                    });
+                }
+            });
+            $("#importExcelModal").on('hide.bs.modal', function() {
+                pond.removeFiles();
+            });
+            $('.tambah-sub-unsur').click(function(e) {
+                e.preventDefault();
+                $('.container-unsur').append(`
+                    <div class="d-flex flex-column container-sub-unsur">
+                        <div class="row align-items-center justify-content-end">
+                            <div class="col-md-9">
+                                <div class="form-group">
+                                    <label>Sub Unsur</label>
+                                    <input class="form-control w-100" type="text" name="sub_unsur[]">
+                                </div>
+                            </div>
+                            <div class="col-md-2 d-flex align-items-center">
+                                <button type="button" class="hapus-sub-unsur" style="transform: translateY(8px); color: #EA3A3D; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #EA3A3D; background-color: transparent !important;"><i
+                                        class="fa-solid fa-minus"></i></button>
+                                <button type="button" class="btn btn-blue btn-sm ps-3 py-2 ms-2 tambah-butir"
+                                    style="transform: translateY(7px)"><i class="fa-solid fa-plus me-2"></i>
+                                    Butir</button>
+                            </div>
+                        </div>
 
-            // Manually add a file using the addfile method
-            // $('.my-pond').first().filepond('addFile', 'index.html').then(function(file) {
-            //     console.log('file added', file);
-            // });
+                        <div class="d-flex flex-column container-butir">
 
-            // Turn input element into a pond
-            $('.with-validation-files').filepond();
-
-            // Set allowMultiple property to true
-            $('.with-validation-files').filepond('allowMultiple', true);
-
-            // Listen for addfile event
-            $('.with-validation-files').on('FilePond:addfile', function(e) {
-                console.log('file added event', e);
+                        </div>
+                    </div>
+                `);
+            });
+            $('.container-unsur').on('click', '.tambah-butir', function() {
+                $(this.parentElement.parentElement.parentElement.querySelector('.container-butir')).append(`
+                    <div class="row align-items-center justify-content-end">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Butir Kegiatan</label>
+                                <input class="form-control w-100" type="text" name="butir_kegiatan[]">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Nilai Kredit</label>
+                                <input class="form-control w-100" step="0.01" type="number" name="angka_kredit[]">
+                            </div>
+                        </div>
+                        <div class="col-md-2 d-flex">
+                            {{-- <button
+                                    style="transform: translateY(8px); color: #139A6E; background-color: transparent; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #139A6E;"><i
+                                        class="fa-solid fa-plus"></i></button> --}}
+                            <button class="hapus-butir"
+                                style="transform: translateY(8px); color: #EA3A3D; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #EA3A3D; background-color: transparent !important;"><i
+                                    class="fa-solid fa-minus"></i></button>
+                        </div>
+                    </div>
+                `);
+            });
+            $('.container-unsur').on('click', '.hapus-butir', function() {
+                $(this.parentElement.parentElement).remove();
+            });
+            $('.container-unsur').on('click', '.hapus-sub-unsur', async function(parent) {
+                isDelete = false;
+                await swal({
+                    title: "Yakin ingin menghapus unsur?",
+                    type: "warning",
+                    showCancelButton: !0,
+                    confirmButtonText: "Ya, yakin!",
+                    cancelButtonText: "Batal",
+                    reverseButtons: !0,
+                    showLoaderOnConfirm: true,
+                }).then(function(e) {
+                    if (e.value == true) {
+                        isDelete = true;
+                    }
+                }, function(dismiss) {
+                    return false;
+                })
+                if (isDelete == true) {
+                    $(this.parentElement.parentElement.parentElement).remove();
+                }
+            });
+            $('.simpan-kegiatan').click(function(e) {
+                e.preventDefault();
+                var role_id = $('select[name="role_id"]').val();
+                var unsur = $('input[name="unsur"]').val();
+                result = [];
+                $.each($('input[name="sub_unsur[]"]'), function(indexInArray, valueOfElement) {
+                    result.push({
+                        name: $(valueOfElement).val(),
+                        butir_kegiatans: $($(this.parentElement.parentElement.parentElement
+                            .parentElement).find(
+                            'input[name="butir_kegiatan[]"]')).map(
+                            function(idx2, elem2) {
+                                return $(elem2).val();
+                            }).get(),
+                        angka_kredits: $($(this.parentElement.parentElement.parentElement
+                            .parentElement).find(
+                            'input[name="angka_kredit[]"]')).map(
+                            function(idx2, elem2) {
+                                return $(elem2).val();
+                            }).get()
+                    })
+                });
+                $('.simpan-kegiatan span').hide();
+                $('.simpan-kegiatan .spin').show();
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('kemendagri.cms.kegiatan-jabatan.store') }}",
+                    data: {
+                        role_id: role_id,
+                        unsur: unsur,
+                        sub_unsurs: result
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        $('.simpan-kegiatan span').show();
+                        $('.simpan-kegiatan .spin').hide();
+                        if (response.status == 200) {
+                            Toastify({
+                                text: response.message,
+                                duration: 5000,
+                                close: true,
+                                gravity: "top",
+                                position: "right",
+                                backgroundColor: "#18b882",
+                            }).showToast()
+                            location.reload();
+                        }
+                    },
+                    error: function(err) {
+                        $('.simpan-kegiatan span').show();
+                        $('.simpan-kegiatan .spin').hide();
+                    }
+                });
+            });
+            $('.btn-hapus-kegiatan').click(function(e) {
+                e.preventDefault();
+                swal({
+                    title: "Yakin ingin menghapus?",
+                    type: "warning",
+                    showCancelButton: !0,
+                    confirmButtonText: "Ya, yakin!",
+                    cancelButtonText: "Batal",
+                    reverseButtons: !0,
+                    showLoaderOnConfirm: true,
+                    preConfirm: async () => {
+                        return await $.ajax({
+                            type: 'DELETE',
+                            url: "{{ url('kemendagri/cms/kegiatan-jabatan') }}/" + $(
+                                this).data('id') + '/destroy',
+                            dataType: 'JSON'
+                        });
+                    },
+                }).then(function(e) {
+                    if (e.value.status == 200) {
+                        swal("Selesai!", e.value.message, "success").then(() => {
+                            location.reload();
+                        });
+                    } else {
+                        swal("Error!", e.value.message, "error");
+                    }
+                }, function(dismiss) {
+                    return false;
+                })
             });
         });
     </script>
-    <script src="{{ asset('assets/extensions/choices.js/public/assets/scripts/choices.js') }}"></script>
-    <script src="{{ asset('assets/js/pages/form-element-select.js') }}"></script>
 @endsection
