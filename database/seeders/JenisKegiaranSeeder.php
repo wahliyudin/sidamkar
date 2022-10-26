@@ -15,7 +15,10 @@ class JenisKegiaranSeeder extends Seeder
      */
     public function run()
     {
-        $jenis_kegiatan = ['nama' => 'Kegiatan Pokok', 'nama' => 'Kegiatan Penunjang'];
+        $jenis_kegiatan = [
+            ['nama' => 'Kegiatan Pokok'],
+            ['nama' => 'Kegiatan Penunjang']
+        ];
         JenisKegiatan::query()->upsert($jenis_kegiatan, 'id');
     }
 }

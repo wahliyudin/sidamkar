@@ -19,7 +19,7 @@ class SubUnsur extends Model
         return $this->belongsTo(Unsur::class);
     }
 
-    public function butirKegiatan()
+    public function butirKegiatans()
     {
         return $this->hasMany(ButirKegiatan::class);
     }

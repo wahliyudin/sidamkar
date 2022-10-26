@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Kemendagri\CMS;
 
 use App\Http\Controllers\Controller;
+use App\Models\JenisKegiatan;
 use App\Models\Role;
 use App\Models\Unsur;
 use Illuminate\Http\Request;
@@ -12,7 +13,13 @@ class KegiatanJabatanController extends Controller
     public function index()
     {
         $roles = Role::query()->get(['id', 'display_name']);
-        return view('kemendagri.cms.kegiatan-jabatan.index', compact('roles'));
+        $kegiatan = JenisKegiatan::query()
+            ->with([
+                'unsurs.role',
+                'unsurs.subUnsurs.butirKegiatans',
+            ])
+            ->findOrFail(1);
+        return view('kemendagri.cms.kegiatan-jabatan.index', compact('roles', 'kegiatan'));
     }
 
     public function store(Request $request)
@@ -23,12 +30,12 @@ class KegiatanJabatanController extends Controller
                 'jenis_kegiatan_id' => 1,
                 'nama' => $request->unsur
             ]);
-            for ($i=0; $i < count($request->sub_unsurs); $i++) {
+            for ($i = 0; $i < count($request->sub_unsurs); $i++) {
                 $sub_unsur = $unsur->subUnsurs()->create([
                     'nama' => $request->sub_unsurs[$i]['name']
                 ]);
-                for ($j=0; $j < count($request->sub_unsurs[$i]['butir_kegiatans']); $j++) {
-                    $sub_unsur->butirKegiatan()->create([
+                for ($j = 0; $j < count($request->sub_unsurs[$i]['butir_kegiatans']); $j++) {
+                    $sub_unsur->butirKegiatans()->create([
                         'nama' => $request->sub_unsurs[$i]['butir_kegiatans'][$j],
                         'score' => $request->sub_unsurs[$i]['angka_kredits'][$j]
                     ]);

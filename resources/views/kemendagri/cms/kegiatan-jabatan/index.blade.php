@@ -16,108 +16,63 @@
                 </div>
                 <div class="card-body px-0">
                     <div class="card-body accordion-container">
-                        <div class="accordion" id="accordionPanelsStayOpenExample">
-                            <div class="accordion-item">
-                                <div class="d-flex justify-content-between accordion-header py-3 px-2" id="headSatu">
-                                    <div class="d-flex align-items-center" style="color: #000000;">
-                                        <p class="accordion-title">Kesiapsiagaan petugas pemadam kebakaran dan penyelamatan;
-                                        </p>
+                        <div class="accordion" id="accordion-parent">
+                            @foreach ($kegiatan->unsurs as $unsur)
+                                <div class="accordion-item">
+                                    <div class="d-flex justify-content-between accordion-header py-3 px-2"
+                                        id="unsur{{ $unsur->id }}">
+                                        <div class="d-flex align-items-center" style="color: #000000;">
+                                            <p class="accordion-title">
+                                                {{ $unsur->nama }}
+                                            </p>
+                                        </div>
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#contentUnsur{{ $unsur->id }}" aria-expanded="false"
+                                            aria-controls="contentUnsur{{ $unsur->id }}">
+                                        </button>
                                     </div>
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#contentSatu" aria-expanded="false" aria-controls="contentSatu">
-                                    </button>
-                                </div>
-                                <div id="contentSatu" class="accordion-collapse collapse" aria-labelledby="headSatu"
-                                    style="">
-                                    <div class="accordion-body">
-                                        <ul class="ms-0">
-                                            <li class="py-1">
-                                                <h6 class="accordian-title">Apel pagi sebagai peserta dan serah terima tugas
-                                                    jaga;</h6>
-
-                                                <ul class="sub-list">
-                                                    <li class="py-1">
-                                                        <h6 class="accordian-title">Informasi kejadian kebakaran; dan</h6>
-                                                    </li>
-                                                    <li class="py-1">
-                                                        <h6 class="accordian-title">koordinasi dengan Kepala Regu terkait
-                                                            informasi
-                                                            kejadian kebakaran;</h6>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="py-1">
-                                                <h6 class="accordian-title">Tugas piket jaga;</h6>
-
-                                                <ul class="sub-list">
-                                                    <li class="py-1">
-                                                        <h6 class="accordian-title">Informasi kejadian kebakaran; dan</h6>
-                                                    </li>
-                                                    <li class="py-1">
-                                                        <h6 class="accordian-title">koordinasi dengan Kepala Regu terkait
-                                                            informasi
-                                                            kejadian kebakaran;</h6>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="py-1">
-                                                <h6 class="accordian-title">Apel malam sebagai peserta;</h6>
-                                            </li>
-                                            <li class="py-1">
-                                                <h6 class="accordian-title">kegiatan rutin latihan ketrampilan;</h6>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <div class="d-flex justify-content-between accordion-header py-3 px-2" id="headDua">
-                                    <div class="d-flex align-items-center" style="color: #000000;">
-                                        <p class="accordion-title">Pelaksanaan operasional pemadaman kebakaran;</p>
-                                    </div>
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#contentDua" aria-expanded="false" aria-controls="contentDua">
-                                    </button>
-                                </div>
-                                <div id="contentDua" class="accordion-collapse collapse" aria-labelledby="headDua"
-                                    style="">
-                                    <div class="accordion-body">
-                                        <ul class="ms-0">
-                                            <li class="py-1">
-                                                <h6 class="accordian-title">Informasi kejadian kebakaran; dan</h6>
-                                            </li>
-                                            <li class="py-1">
-                                                <h6 class="accordian-title">koordinasi dengan Kepala Regu terkait informasi
-                                                    kejadian kebakaran;</h6>
-                                            </li>
-                                        </ul>
+                                    <div id="contentUnsur{{ $unsur->id }}" class="accordion-collapse collapse"
+                                        aria-labelledby="unsur{{ $unsur->id }}" style="">
+                                        <div class="accordion-body">
+                                            <div class="accordion" id="accordion-child">
+                                                @foreach ($unsur->subUnsurs as $sub_unsur)
+                                                    <div class="accordion-item">
+                                                        <div class="d-flex justify-content-between accordion-header py-1 px-2"
+                                                            id="subUnsur{{ $sub_unsur->id }}">
+                                                            <div class="d-flex align-items-center" style="color: #000000;">
+                                                                <h6 class="accordian-title">
+                                                                    {{ $sub_unsur->nama }}
+                                                                </h6>
+                                                            </div>
+                                                            <button class="accordion-button collapsed" type="button"
+                                                                data-bs-toggle="collapse"
+                                                                data-bs-target="#contentchildSubUnsur{{ $sub_unsur->id }}"
+                                                                aria-expanded="false"
+                                                                aria-controls="contentchildSubUnsur{{ $sub_unsur->id }}">
+                                                            </button>
+                                                        </div>
+                                                        <div id="contentchildSubUnsur{{ $sub_unsur->id }}"
+                                                            class="accordion-collapse collapse"
+                                                            aria-labelledby="subUnsur{{ $sub_unsur->id }}" style="">
+                                                            <div class="accordion-body">
+                                                                <ul class="ms-0">
+                                                                    @foreach ($sub_unsur->butirKegiatans as $butir_kegiatan)
+                                                                        <li class="accordian-list">
+                                                                            <h6 class="accordian-title">
+                                                                                {{ $butir_kegiatan->nama }}
+                                                                            </h6>
+                                                                        </li>
+                                                                    @endforeach
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="accordion-item">
-                                <div class="d-flex justify-content-between accordion-header py-3 px-2" id="headTiga">
-                                    <div class="d-flex align-items-center" style="color: #000000;">
-                                        <p class="accordion-title">Pelaksanaan operasional pemadaman kebakaran;</p>
-                                    </div>
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#contentTiga" aria-expanded="false" aria-controls="contentTiga">
-                                    </button>
-                                </div>
-                                <div id="contentTiga" class="accordion-collapse collapse" aria-labelledby="headTiga"
-                                    style="">
-                                    <div class="accordion-body">
-                                        <ul class="ms-0">
-                                            <li class="py-1">
-                                                <h6 class="accordian-title">Informasi kejadian kebakaran; dan</h6>
-                                            </li>
-                                            <li class="py-1">
-                                                <h6 class="accordian-title">koordinasi dengan Kepala Regu terkait informasi
-                                                    kejadian kebakaran;</h6>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -227,109 +182,8 @@
         href="{{ asset('assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/pages/filepond.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/extensions/choices.js/public/assets/styles/choices.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
-    <style>
-        @media screen and (max-width:750px) {
-            .accordion-container {
-                padding: 1rem 0 !important;
-            }
-
-            .accordion .accordion-item .accordion-title {
-                font-size: 14px !important;
-            }
-
-            .accordion .accordion-item .accordion-body .accordian-title {
-                font-size: 13px !important;
-            }
-
-            .accordion .accordion-item .accordion-body .sub-list {
-                margin-left: -0.5rem;
-            }
-
-            .btn.btn-green-reverse,
-            .btn.btn-blue-reverse {
-                font-size: 14px !important;
-                padding-left: 1rem;
-                padding-right: 1rem;
-            }
-        }
-
-        li::marker {
-            font-size: 25px !important;
-            color: black;
-        }
-
-        .accordion .accordion-item:not(:last-child) {
-            margin-bottom: 1rem;
-        }
-
-        .accordion .accordion-item {
-            border-radius: 10px !important;
-            overflow: hidden;
-        }
-
-
-        .accordion .accordion-header div>p {
-            font-family: 'Roboto';
-            font-weight: 600;
-            margin: 0 0 0 1rem !important;
-            padding: 0 !important;
-        }
-
-        .accordion-button {
-            align-items: center;
-            background-color: transparent !important;
-            border: none;
-            border-radius: 0;
-            color: var(--bs-accordion-btn-color);
-            display: flex;
-            font-size: 1rem;
-            overflow-anchor: none;
-            /* padding: var(--bs-accordion-btn-padding-y) var(--bs-accordion-btn-padding-x); */
-            position: relative;
-            text-align: left;
-            transition: var(--bs-accordion-transition);
-        }
-
-        @media (prefers-reduced-motion:reduce) {
-            .accordion-button {
-                transition: none
-            }
-        }
-
-        .accordion-button:not(.collapsed) {
-            background-color: var(--bs-accordion-active-bg);
-            box-shadow: inset 0 calc(var(--bs-accordion-border-width)*-1) 0 var(--bs-accordion-border-color);
-            color: var(--bs-accordion-active-color)
-        }
-
-        .accordion-button:not(.collapsed):after {
-            background-image: var(--bs-accordion-btn-active-icon);
-            transform: var(--bs-accordion-btn-icon-transform)
-        }
-
-        .accordion-button:after {
-            background-image: var(--bs-accordion-btn-icon);
-            background-repeat: no-repeat;
-            background-size: var(--bs-accordion-btn-icon-width);
-            content: "";
-            flex-shrink: 0;
-            height: var(--bs-accordion-btn-icon-width);
-            margin-left: auto;
-            transition: var(--bs-accordion-btn-icon-transition);
-            width: var(--bs-accordion-btn-icon-width)
-        }
-
-        @media (prefers-reduced-motion:reduce) {
-            .accordion-button:after {
-                transition: none
-            }
-        }
-
-        .accordion-button:hover {
-            z-index: 2
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('assets/css/shared/sweetalert2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/pages/kemendagri.css') }}">
 @endsection
 @section('js')
     <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
@@ -339,9 +193,11 @@
     <script src="{{ asset('assets/extensions/filepond/filepond.js') }}"></script>
     <script src="{{ asset('assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js') }}">
     </script>
-    <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
+    <script
+        src="{{ asset('assets/extensions/filepond-plugin-file-validate-type/filepond-plugin-file-validate-type.js') }}">
+    </script>
     <script src="{{ asset('assets/extensions/filepond/filepond.jquery.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
+    <script src="{{ asset('assets/js/extensions/sweetalert2.all.min.js') }}"></script>
     <script>
         $(function() {
             $.fn.filepond.registerPlugin(FilePondPluginImagePreview);
@@ -399,7 +255,7 @@
                 e.preventDefault();
                 if (!$('#form-import input[name="file_import_tmp"]').val()) {
                     Toastify({
-                        text: "Semua inputan harus diisi!",
+                        text: "File harus diisi!",
                         duration: 5000,
                         close: true,
                         gravity: "top",
@@ -571,34 +427,6 @@
                         $('.simpan-kegiatan .spin').hide();
                     }
                 });
-                // $.ajax({
-                //     type: 'POST',
-                //     url: "{{ route('kemendagri.cms.kegiatan-jabatan.store') }}",
-                //     contentType: "application/json",
-                //     dataType: "json",
-                //     data: {
-                //         unsur: unsur
-                //     },
-                //     success: function(response) {
-                //         $('.simpan-kegiatan span').show();
-                //         $('.simpan-kegiatan .spin').hide();
-                //         if (response.status == 200) {
-                //             Toastify({
-                //                 text: response.message,
-                //                 duration: 5000,
-                //                 close: true,
-                //                 gravity: "top",
-                //                 position: "right",
-                //                 backgroundColor: "#18b882",
-                //             }).showToast();
-                //             // location.reload();
-                //         }
-                //     },
-                //     error: function(err) {
-                //         $('.simpan-kegiatan span').show();
-                //         $('.simpan-kegiatan .spin').hide();
-                //     }
-                // });
             });
         });
     </script>
