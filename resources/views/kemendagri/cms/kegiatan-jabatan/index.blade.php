@@ -169,8 +169,8 @@
                         </div>
                         <div class="form-group d-flex flex-column align-items-start">
                             <label>Download Template</label>
-                            <button class="btn btn-blue btn-sm px-3"><i
-                                    class="fa-solid fa-download me-2"></i>Download</button>
+                            <a href="{{ route('kemendagri.cms.kegiatan-jabatan.download') }}"
+                                class="btn btn-blue btn-sm px-3"><i class="fa-solid fa-download me-2"></i>Download</a>
                         </div>
                     </form>
                 </div>
