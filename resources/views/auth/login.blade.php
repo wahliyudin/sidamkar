@@ -57,6 +57,9 @@
             </form>
         </div>
     </div>
+@endsection
+
+@section('js')
     <script>
         var state = false;
 
@@ -72,9 +75,7 @@
             }
         }
     </script>
-@endsection
 
-@section('js')
     @if (session('success'))
         <script>
             Toastify({
