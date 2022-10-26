@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('sub_unsur_id');
             $table->string('nama')->fulltext();
             $table->string('satuan_hasil')->nullable();
-            $table->float('score', places: 3);
+            $table->float('score', places: 3)->nullable();
             $table->timestamps();
 
             $table->foreign('sub_unsur_id')->on('sub_unsurs')->references('id')->cascadeOnDelete();
