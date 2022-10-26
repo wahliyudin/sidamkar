@@ -14,9 +14,8 @@
 
                 <div class="form-group">
                     <label for="email" style="color: black !important;" class="">{{ __('Email Address') }}</label>
-
                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                        name="email" value="{{ $email ?? old('email') }}"
+                        name="email" value="{{ $email ?? old('email') }}" placeholder="Masukan Email"
                         style="padding-bottom: 1.5rem; padding-top: 1.5rem;" required autocomplete="email" autofocus>
 
                     @error('email')

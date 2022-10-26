@@ -60,7 +60,26 @@
                                 50</span>
                         </a>
                     </li>  --}}
+
                     <li
+                        class="sidebar-item has-sub {{ request()->is('laporan-jabatan*') || request()->is('laporan-kegiatan*') ? 'active' : '' }}">
+                        <a href="javascript(0)" class='sidebar-link'>
+                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                                <i class="fa-regular fa-rectangle-list"></i>
+                            </div>
+                            <span>Laporan Kegiatan</span>
+                        </a>
+                        <ul
+                            class="submenu {{ request()->is('laporan-jabatan*') || request()->is('laporan-kegiatan*') ? 'active' : '' }}">
+                            <li class="submenu-item {{ request()->is('laporan-jabatan*') ? 'active' : '' }}">
+                                <a href="{{ route('laporan-jabatan') }}">Jabatan</a>
+                            </li>
+                            <li class="submenu-item {{ request()->is('laporan-kegiatan*') ? 'active' : '' }}">
+                                <a href="{{ route('laporan-kegiatan') }}">Profesi dan Penunjang</a>
+                            </li>
+                        </ul>
+                    </li>
+                    {{--  <li
                         class="sidebar-item {{ request()->routeIs('laporan-kegiatan') || request()->routeIs('laporan-kegiatan') ? 'active' : '' }}">
                         <a href="{{ route('laporan-kegiatan') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
@@ -68,7 +87,7 @@
                             </div>
                             <span>Laporan Kegiatan</span>
                         </a>
-                    </li>
+                    </li>  --}}
                 @endrole
 
                 @role('kab_kota')

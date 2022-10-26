@@ -2,6 +2,9 @@
 
 @section('content')
     <section class="section">
+        <div class="alert alert-danger w-50"><i class="fa-solid fa-circle-exclamation"></i> Harap Lengkapi
+            Profile
+        </div>
         <div class="row">
             <div class="col-md-3 px-2">
                 <div class="card">

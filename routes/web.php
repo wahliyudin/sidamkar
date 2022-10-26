@@ -3,6 +3,7 @@
 use App\Http\Controllers\Aparatur\ChangePasswordController;
 use App\Http\Controllers\Aparatur\DaftarKegiatanController;
 use App\Http\Controllers\Aparatur\DataSayaController;
+use App\Http\Controllers\Aparatur\LaporanJabatan;
 use App\Http\Controllers\Aparatur\LaporanKegiatanController;
 use App\Http\Controllers\Aparatur\OverviewController;
 use App\Http\Controllers\Aparatur\TabelKegiatanController;
@@ -69,6 +70,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/tabel-kegiatan', [TabelKegiatanController::class, 'index'])->name('tabel-kegiatan');
         Route::get('/tabel-penunjang', [tabelPenunjangController::class, 'index'])->name('tabel-penunjang');
         Route::get('/laporan-kegiatan', [LaporanKegiatanController::class, 'index'])->name('laporan-kegiatan');
+        Route::get('/laporan-jabatan', [LaporanJabatan::class, 'index'])->name('laporan-jabatan');
     });
 
     Route::middleware(['role:kab_kota'])->group(function () {
