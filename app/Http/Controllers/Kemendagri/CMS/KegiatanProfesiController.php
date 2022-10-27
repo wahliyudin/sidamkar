@@ -29,8 +29,8 @@ class KegiatanProfesiController extends Controller
     {
         try {
             $unsur = Unsur::query()->create([
-                'role_id' => $request->role_id,
-                'jenis_kegiatan_id' => 1,
+                'role_id' => $request->role_id ?? null,
+                'jenis_kegiatan_id' => 2,
                 'nama' => $request->unsur
             ]);
             for ($i = 0; $i < count($request->sub_unsurs); $i++) {
@@ -38,10 +38,23 @@ class KegiatanProfesiController extends Controller
                     'nama' => $request->sub_unsurs[$i]['name']
                 ]);
                 for ($j = 0; $j < count($request->sub_unsurs[$i]['butir_kegiatans']); $j++) {
-                    $sub_unsur->butirKegiatans()->create([
-                        'nama' => $request->sub_unsurs[$i]['butir_kegiatans'][$j],
-                        'score' => $request->sub_unsurs[$i]['angka_kredits'][$j]
-                    ]);
+                    if (isset($request->sub_unsurs[$i]['butir_kegiatans'][$j]['angka_kredit'])) {
+                        $sub_unsur->butirKegiatans()->create([
+                            'nama' => $request->sub_unsurs[$i]['butir_kegiatans'][$j]['name'],
+                            'score' => $request->sub_unsurs[$i]['butir_kegiatans'][$j]['angka_kredit']
+                        ]);
+                    } else {
+                        $butir_kegiatan = $sub_unsur->butirKegiatans()->create([
+                            'nama' => $request->sub_unsurs[$i]['butir_kegiatans'][$j]['name']
+                        ]);
+                        for ($k=0; $k < count($request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans']); $k++) {
+                            $butir_kegiatan->subButirKegiatans()->create([
+                                'nama' => $request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'][$k]['name'],
+                                'score' => $request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'][$k]['angka_kredit']
+                            ]);
+                        }
+                    }
+
                 }
             }
             return response()->json([
@@ -49,10 +62,7 @@ class KegiatanProfesiController extends Controller
                 'message' => 'Berhasil ditambahkan'
             ]);
         } catch (\Throwable $th) {
-            return response()->json([
-                'status' => $th->getCode(),
-                'message' => $th->getMessage()
-            ]);
+            throw $th;
         }
     }
 
@@ -65,16 +75,13 @@ class KegiatanProfesiController extends Controller
                 'message' => 'Berhasil diimport'
             ]);
         } catch (\Throwable $th) {
-            return response()->json([
-                'status' => $th->getCode(),
-                'message' => 'Format Excel anda salah'
-            ]);
+            throw $th;
         }
     }
 
     public function downloadTemplate()
     {
-        return response()->download(public_path('assets/import.xlsx'), 'template.xlsx');
+        return response()->download(public_path('assets/import-penunjang.xlsx'), 'template.xlsx');
     }
 
     public function destroy($id)
@@ -86,10 +93,7 @@ class KegiatanProfesiController extends Controller
                 'message' => 'Berhasil dihapus'
             ]);
         } catch (\Throwable $th) {
-            return response()->json([
-                'status' => $th->getCode(),
-                'message' => 'Ada Kesalahan Pada Sistem'
-            ]);
+            throw $th;
         }
     }
 }

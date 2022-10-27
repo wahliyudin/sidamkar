@@ -24,7 +24,8 @@
                                         <div class="d-flex align-items-center justify-content-between w-100"
                                             style="color: #000000;">
                                             <p class="accordion-title">
-                                                [ Pelaksana: Semua Jenjang ] {{ $unsur->nama }}
+                                                [ Pelaksana: {{ $unsur->role->display_name ?? 'Semua Jenjang' }} ]
+                                                {{ $unsur->nama }}
                                             </p>
                                             <div class="d-flex align-items-center">
                                                 <i
@@ -380,10 +381,48 @@
             $('.container-unsur').on('click', '.tambah-butir', function() {
                 $(this.parentElement.parentElement.parentElement.querySelector('.container-butir')).append(`
                     <div class="row align-items-center justify-content-end">
-                        <div class="col-md-6">
+                        <div class="col-md-6 input-butir-kegiatan">
                             <div class="form-group">
                                 <label>Butir Kegiatan</label>
                                 <input class="form-control w-100" type="text" name="butir_kegiatan[]">
+                            </div>
+                        </div>
+                        <div class="col-md-2 angka-kredit-butir">
+                            <div class="form-group">
+                                <label>Nilai Kredit</label>
+                                <input class="form-control w-100" step="0.01" type="number" name="angka_kredit[]">
+                            </div>
+                        </div>
+                        <div class="col-md-2 d-flex align-items-center">
+                            <button type="button" class="hapus-butir"
+                            style="transform: translateY(8px); color: #EA3A3D; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #EA3A3D; background-color: transparent !important;"><i
+                                class="fa-solid fa-minus"></i></button>
+                            <button type="button" class="btn btn-blue btn-sm ps-2 pe-2 py-2 ms-2 tambah-sub-butir"
+                                style="transform: translateY(7px)"><i class="fa-solid fa-plus me-1"></i>
+                                Sub Butir</button>
+                        </div>
+
+                        <div class="d-flex flex-column container-sub-butir">
+
+                        </div>
+                    </div>
+                `);
+            });
+            $('.container-unsur').on('click', '.tambah-sub-butir', function() {
+                if ($(this.parentElement.parentElement).find('.angka-kredit-butir')) {
+                    $($(this.parentElement.parentElement).find('.angka-kredit-butir')).remove();
+                    $($(this.parentElement.parentElement).find('.input-butir-kegiatan')).addClass(
+                        'col-md-8');
+                    $($(this.parentElement.parentElement).find('.input-butir-kegiatan')).removeClass(
+                        'col-md-6');
+                }
+                $($(this.parentElement.parentElement).find('.container-sub-butir'))
+                    .append(`
+                    <div class="row align-items-center justify-content-end sub-butir">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label>Sub Butir Kegiatan</label>
+                                <input class="form-control w-100" type="text" name="sub_butir_kegiatan[]">
                             </div>
                         </div>
                         <div class="col-md-2">
@@ -392,19 +431,55 @@
                                 <input class="form-control w-100" step="0.01" type="number" name="angka_kredit[]">
                             </div>
                         </div>
-                        <div class="col-md-2 d-flex">
-                            {{-- <button
-                                    style="transform: translateY(8px); color: #139A6E; background-color: transparent; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #139A6E;"><i
-                                        class="fa-solid fa-plus"></i></button> --}}
-                            <button class="hapus-butir"
-                                style="transform: translateY(8px); color: #EA3A3D; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #EA3A3D; background-color: transparent !important;"><i
-                                    class="fa-solid fa-minus"></i></button>
+                        <div class="col-md-2 d-flex align-items-center">
+                            <button type="button" class="hapus-sub-butir"
+                            style="transform: translateY(8px); color: #EA3A3D; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #EA3A3D; background-color: transparent !important;"><i
+                                class="fa-solid fa-minus"></i></button>
                         </div>
                     </div>
                 `);
             });
-            $('.container-unsur').on('click', '.hapus-butir', function() {
+            $('.container-unsur').on('click', '.hapus-sub-butir', function(e) {
+                $('.container-unsur .hapus-sub-butir').each(function(index, element) {
+                    if (e.target == element || element == e.target.parentElement) {
+                        if ($(this.parentElement.parentElement.parentElement).children().length ==
+                            1) {
+                            el = $(this.parentElement.parentElement.parentElement.parentElement)
+                                .find(
+                                    '.input-butir-kegiatan');
+                            $(el).addClass('col-md-6');
+                            $(el).removeClass('col-md-8');
+                            el.after(`<div class="col-md-2 angka-kredit-butir">
+                                <div class="form-group">
+                                    <label>Nilai Kredit</label>
+                                    <input class="form-control w-100" step="0.01" type="number" name="angka_kredit[]">
+                                </div>
+                            </div>`)
+                        }
+                    }
+                });
                 $(this.parentElement.parentElement).remove();
+            });
+            $('.container-unsur').on('click', '.hapus-butir', async function() {
+                isDelete = false;
+                await swal({
+                    title: "Yakin ingin menghapus unsur?",
+                    type: "warning",
+                    showCancelButton: !0,
+                    confirmButtonText: "Ya, yakin!",
+                    cancelButtonText: "Batal",
+                    reverseButtons: !0,
+                    showLoaderOnConfirm: true,
+                }).then(function(e) {
+                    if (e.value == true) {
+                        isDelete = true;
+                    }
+                }, function(dismiss) {
+                    return false;
+                })
+                if (isDelete == true) {
+                    $(this.parentElement.parentElement).remove();
+                }
             });
             $('.container-unsur').on('click', '.hapus-sub-unsur', async function(parent) {
                 isDelete = false;
@@ -435,18 +510,52 @@
                 $.each($('input[name="sub_unsur[]"]'), function(indexInArray, valueOfElement) {
                     result.push({
                         name: $(valueOfElement).val(),
-                        butir_kegiatans: $($(this.parentElement.parentElement.parentElement
-                            .parentElement).find(
-                            'input[name="butir_kegiatan[]"]')).map(
-                            function(idx2, elem2) {
-                                return $(elem2).val();
-                            }).get(),
-                        angka_kredits: $($(this.parentElement.parentElement.parentElement
-                            .parentElement).find(
-                            'input[name="angka_kredit[]"]')).map(
-                            function(idx2, elem2) {
-                                return $(elem2).val();
-                            }).get()
+                        butir_kegiatans: $.map($(this.parentElement
+                            .parentElement
+                            .parentElement.parentElement).find(
+                            'input[name="butir_kegiatan[]"]'), function(
+                            elementOrValue, indexOrKey) {
+                            if ($($(elementOrValue.parentElement.parentElement
+                                    .parentElement).find(
+                                    '.angka-kredit-butir input[name="angka_kredit[]"]'
+                                )).val() !==
+                                undefined) {
+                                return {
+                                    name: $(elementOrValue).val(),
+                                    angka_kredit: $($(elementOrValue
+                                        .parentElement
+                                        .parentElement
+                                        .parentElement).find(
+                                        '.angka-kredit-butir input[name="angka_kredit[]"]'
+                                    )).val()
+                                }
+                            } else {
+                                return {
+                                    name: $(elementOrValue).val(),
+                                    sub_butir_kegiatans: $.map($(elementOrValue
+                                            .parentElement.parentElement
+                                            .parentElement.parentElement)
+                                        .find(
+                                            'input[name="sub_butir_kegiatan[]"]'
+                                        ),
+                                        function(elementOrValue1,
+                                            indexOrKey) {
+                                            return {
+                                                name: $(elementOrValue1)
+                                                    .val(),
+                                                angka_kredit: $($(
+                                                        elementOrValue1
+                                                        .parentElement
+                                                        .parentElement
+                                                        .parentElement)
+                                                    .find(
+                                                        'input[name="angka_kredit[]"]'
+                                                    )).val()
+                                            }
+                                        })
+                                }
+                            }
+                        })
                     })
                 });
                 $('.simpan-kegiatan span').hide();
@@ -475,12 +584,10 @@
                             location.reload();
                         }
                     },
-                    error: function(err) {
-                        $('.simpan-kegiatan span').show();
-                        $('.simpan-kegiatan .spin').hide();
-                    }
+                    error: ajaxError
                 });
             });
+
             $('.btn-hapus-kegiatan').click(function(e) {
                 e.preventDefault();
                 swal({
@@ -512,5 +619,41 @@
                 })
             });
         });
+
+        var ajaxError = function(jqXHR, xhr, textStatus, errorThrow, exception) {
+            if (jqXHR.status === 0) {
+                swal("Error!", 'Not connect.\n Verify Network.', "error");
+                $('.simpan-kegiatan span').show();
+                $('.simpan-kegiatan .spin').hide();
+            } else if (jqXHR.status == 400) {
+                swal("Peringatan!", jqXHR['responseJSON'].message, "warning");
+                $('.simpan-kegiatan span').show();
+                $('.simpan-kegiatan .spin').hide();
+            } else if (jqXHR.status == 404) {
+                swal('Error!', 'Requested page not found. [404]', "error");
+                $('.simpan-kegiatan span').show();
+                $('.simpan-kegiatan .spin').hide();
+            } else if (jqXHR.status == 500) {
+                swal('Error!', 'Internal Server Error [500].' + jqXHR['responseJSON'].message, "error");
+                $('.simpan-kegiatan span').show();
+                $('.simpan-kegiatan .spin').hide();
+            } else if (exception === 'parsererror') {
+                swal('Error!', 'Requested JSON parse failed.', "error");
+                $('.simpan-kegiatan span').show();
+                $('.simpan-kegiatan .spin').hide();
+            } else if (exception === 'timeout') {
+                swal('Error!', 'Time out error.', "error");
+                $('.simpan-kegiatan span').show();
+                $('.simpan-kegiatan .spin').hide();
+            } else if (exception === 'abort') {
+                swal('Error!', 'Ajax request aborted.', "error");
+                $('.simpan-kegiatan span').show();
+                $('.simpan-kegiatan .spin').hide();
+            } else {
+                swal('Error!', 'Uncaught Error.\n' + jqXHR.responseText, "error");
+                $('.simpan-kegiatan span').show();
+                $('.simpan-kegiatan .spin').hide();
+            }
+        };
     </script>
 @endsection
