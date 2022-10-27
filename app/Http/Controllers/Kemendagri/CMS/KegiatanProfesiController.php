@@ -74,7 +74,7 @@ class KegiatanProfesiController extends Controller
 
     public function downloadTemplate()
     {
-        return response()->download(public_path('assets/import.xlsx'), 'template.xlsx');
+        return response()->download(public_path('assets/import-penunjang.xlsx'), 'template.xlsx');
     }
 
     public function destroy($id)
