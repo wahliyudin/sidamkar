@@ -14,7 +14,7 @@
                                     <div class="d-flex flex-column ms-3">
                                         <p
                                             style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                            Target Angka Kredit
+                                            Jumlah Aparatur
                                         </p>
                                         <h4 style="font-family: 'Roboto';color: #06152B;" class="target">100</h4>
                                     </div>
@@ -32,7 +32,7 @@
                                     <div class="d-flex flex-column ms-3">
                                         <p
                                             style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                            Target Angka Kredit
+                                            Pejabat Struktural
                                         </p>
                                         <h4 style="font-family: 'Roboto';color: #06152B;" class="target">100</h4>
                                     </div>
@@ -50,7 +50,7 @@
                                     <div class="d-flex flex-column ms-3">
                                         <p
                                             style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                            Target Angka Kredit
+                                            Wanita
                                         </p>
                                         <h4 style="font-family: 'Roboto';color: #06152B;" class="target">100</h4>
                                     </div>
@@ -70,7 +70,7 @@
                                     <div class="d-flex flex-column ms-3">
                                         <p
                                             style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                            Target Angka Kredit
+                                            Laki-Laki
                                         </p>
                                         <h4 style="font-family: 'Roboto';color: #06152B;" class="target">100</h4>
                                     </div>
@@ -83,30 +83,30 @@
                             <div class="card-body py-2 px-3">
                                 <div class="d-flex align-items-center h-100">
                                     <div class="circle circle-blue">
+                                        <i style="font-size: 20px;" class="fa-solid fa-school-circle-check"></i>
+                                    </div>
+                                    <div class="d-flex flex-column ms-3">
+                                        <p
+                                            style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
+                                            SMA s/d D3
+                                        </p>
+                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">100</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 px-2">
+                        <div class="card mb-3">
+                            <div class="card-body py-2 px-3">
+                                <div class="d-flex align-items-center h-100">
+                                    <div class="circle circle-green">
                                         <i style="font-size: 20px;" class="fa-solid fa-book-open"></i>
                                     </div>
                                     <div class="d-flex flex-column ms-3">
                                         <p
                                             style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                            Target Angka Kredit
-                                        </p>
-                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">100</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 px-2">
-                        <div class="card mb-3">
-                            <div class="card-body py-2 px-3">
-                                <div class="d-flex align-items-center h-100">
-                                    <div class="circle circle-green">
-                                        <i style="font-size: 20px;" class="fa-solid fa-user-graduate"></i>
-                                    </div>
-                                    <div class="d-flex flex-column ms-3">
-                                        <p
-                                            style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                            Target Angka Kredit
+                                            S1/D4
                                         </p>
                                         <h4 style="font-family: 'Roboto';color: #06152B;" class="target">100</h4>
                                     </div>
@@ -121,12 +121,12 @@
                             <div class="card-body py-2 px-3">
                                 <div class="d-flex align-items-center h-100">
                                     <div class="circle circle-green">
-                                        <i style="font-size: 20px;" class="fa-solid fa-user-graduate"></i>
+                                        <i style="font-size: 20px;" class="fa-solid fa-graduation-cap"></i>
                                     </div>
                                     <div class="d-flex flex-column ms-3">
                                         <p
                                             style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                            Target Angka Kredit
+                                            S2
                                         </p>
                                         <h4 style="font-family: 'Roboto';color: #06152B;" class="target">100</h4>
                                     </div>
@@ -144,7 +144,7 @@
                                     <div class="d-flex flex-column ms-3">
                                         <p
                                             style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                            Target Angka Kredit
+                                            S3
                                         </p>
                                         <h4 style="font-family: 'Roboto';color: #06152B;" class="target">100</h4>
                                     </div>
@@ -162,7 +162,7 @@
                                     <div class="d-flex flex-column ms-3">
                                         <p
                                             style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                            Target Angka Kredit
+                                            GOL I
                                         </p>
                                         <h4 style="font-family: 'Roboto';color: #06152B;" class="target">100</h4>
                                     </div>
@@ -177,12 +177,12 @@
                             <div class="card-body py-2 px-3">
                                 <div class="d-flex align-items-center h-100">
                                     <div class="circle circle-blue">
-                                        <i style="font-size: 20px;" class="fa-solid fa-star"></i>
+                                        <i style="font-size: 20px;" class="fa-regular fa-user"></i>
                                     </div>
                                     <div class="d-flex flex-column ms-3">
                                         <p
                                             style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                            Target Angka Kredit
+                                            GOL II
                                         </p>
                                         <h4 style="font-family: 'Roboto';color: #06152B;" class="target">100</h4>
                                     </div>
@@ -195,12 +195,12 @@
                             <div class="card-body py-2 px-3">
                                 <div class="d-flex align-items-center h-100">
                                     <div class="circle circle-green">
-                                        <i style="font-size: 20px;" class="fa-solid fa-star"></i>
+                                        <i style="font-size: 20px;" class="fa-solid fa-user-tie"></i>
                                     </div>
                                     <div class="d-flex flex-column ms-3">
                                         <p
                                             style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                            Target Angka Kredit
+                                            GOL III
                                         </p>
                                         <h4 style="font-family: 'Roboto';color: #06152B;" class="target">100</h4>
                                     </div>
@@ -213,12 +213,12 @@
                             <div class="card-body py-2 px-3">
                                 <div class="d-flex align-items-center h-100">
                                     <div class="circle circle-yellow">
-                                        <i style="font-size: 20px;" class="fa-solid fa-star"></i>
+                                        <i style="font-size: 20px;" class="fa-solid fa-ranking-star"></i>
                                     </div>
                                     <div class="d-flex flex-column ms-3">
                                         <p
                                             style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                            Target Angka Kredit
+                                            GOL IV
                                         </p>
                                         <h4 style="font-family: 'Roboto';color: #06152B;" class="target">100</h4>
                                     </div>

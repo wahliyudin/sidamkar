@@ -64,12 +64,14 @@ Route::middleware(['auth'])->group(function () {
 
         Route::controller(DataSayaController::class)->group(function () {
             Route::get('/data-saya', 'index')->name('data-saya');
+            Route::post('/datasaya-store', [DataSayaController::class, 'store'])->name('datasaya-store');
             Route::get('data-saya/show-dockepeg/{id}', 'showDocKepeg')->name('data-saya.show-doc-kepeg');
             Route::post('data-saya/store-dockepeg', 'storeDocKepeg')->name('data-saya.store-doc-kepeg');
             Route::post('data-saya/store-dockom', 'storeDocKom')->name('data-saya.store-doc-kom');
             Route::delete('data-saya/destroy-dockepeg/{id}', 'destroyDocKepeg')->name('data-saya.destroy-doc-kepeg');
             Route::delete('data-saya/destroy-dockom/{id}', 'destroyDocKom')->name('data-saya.destroy-doc-kom');
         });
+
         Route::get('ubah-password', [ChangePasswordController::class, 'index'])->name('ubah-password');
         Route::post('ubah-password', [ChangePasswordController::class, 'update'])->name('ubah-password.update');
         Route::get('/daftar-kegiatan', [DaftarKegiatanController::class, 'index'])->name('daftar-kegiatan');

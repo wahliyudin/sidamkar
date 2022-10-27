@@ -20,7 +20,7 @@ class KabKota extends Model
      *
      * @return BelongsTo
      */
-    public function provinsi(): BelongsTo
+    public function provinsi()
     {
         return $this->belongsTo(Provinsi::class);
     }
