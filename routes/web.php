@@ -12,6 +12,8 @@ use App\Http\Controllers\Aparatur\TabelKegiatanController;
 use App\Http\Controllers\Aparatur\tabelPenunjangController;
 use App\Http\Controllers\Api\FilePondController;
 use App\Http\Controllers\Api\KabKotaController;
+use App\Http\Controllers\AtasanLangsung\KegiatanLangsungController;
+use App\Http\Controllers\AtasanLangsung\KegiatanPengajuanController;
 use App\Http\Controllers\AtasanLangsung\OverviewController as AtasanLangsungOverviewController;
 use App\Http\Controllers\AtasanLangsung\PengajuanKegiatanController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -97,6 +99,8 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['role:atasan_langsung'])->group(function () {
         Route::get('atasan-langsung/overview', [AtasanLangsungOverviewController::class, 'index'])->name('atasan-langsung.overview.index');
         Route::get('atasan-langsung/pengajuan-kegiatan', [PengajuanKegiatanController::class, 'index'])->name('atasan-langsung.pengajuan-kegiatan.index');
+        Route::get('atasan-langsung/show', [KegiatanPengajuanController::class, 'index'])->name('atasan-langsung.show');
+        Route::get('atasan-langsung/kegiatan-selesai',[KegiatanLangsungController::class, 'index'])->name('atasan-langsung.kegiatan-selesai');
     });
 
     Route::middleware(['role:provinsi'])->group(function () {
