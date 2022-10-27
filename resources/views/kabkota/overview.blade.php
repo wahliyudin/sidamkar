@@ -238,40 +238,27 @@
                                 <table class="table table-striped" id="table1">
                                     <thead>
                                         <tr>
-                                            <th>Tugas/Kegiatan</th>
+                                            <th>Atasan Langsung</th>
+                                            <th>Penilai AK</th>
+                                            <th>Penetap AK</th>
                                             <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td>
-                                                <a href="" style="color: #06152B;">Kesiapsiagaan petugas pemadam
-                                                    kebakaran
-                                                    dan penyelamatan</a>
+                                                <a href="" style="color: #06152B;">Iqbal Imran</a>
                                             </td>
                                             <td>
-                                                <button class="btn btn-yellow-reverse btn-status ms-3 px-3 text-sm"
-                                                    type="button">diproses</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <a href="" style="color: #06152B;">Pelaksanaan prosedur pelaporan
-                                                    informasi kejadian kebakaran</a>
+                                                <a href="" style="color: #06152B;">Okan Bihaqi</a>
                                             </td>
                                             <td>
-                                                <button class="btn btn-red-reverse btn-status ms-3 px-3 text-sm"
-                                                    type="button">revisi</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <a href="" style="color: #06152B;">Pelaksanaan operasional
-                                                    pemadaman kebakaran</a>
+                                                <a href="" style="color: #06152B;">Budi S</a>
                                             </td>
                                             <td>
-                                                <button class="btn btn-green-reverse btn-status ms-3 px-3 text-sm"
-                                                    type="button">selesai</button>
+                                                <div class="periode border border-primary " style="text-align: center;">
+                                                    Januari 2020 - Juli 2020
+                                                </div>
                                             </td>
                                         </tr>
                                     </tbody>

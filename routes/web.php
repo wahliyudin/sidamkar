@@ -12,6 +12,8 @@ use App\Http\Controllers\Aparatur\TabelKegiatanController;
 use App\Http\Controllers\Aparatur\tabelPenunjangController;
 use App\Http\Controllers\Api\FilePondController;
 use App\Http\Controllers\Api\KabKotaController;
+use App\Http\Controllers\AtasanLangsung\KegiatanLangsungController;
+use App\Http\Controllers\AtasanLangsung\KegiatanPengajuanController;
 use App\Http\Controllers\AtasanLangsung\OverviewController as AtasanLangsungOverviewController;
 use App\Http\Controllers\AtasanLangsung\PengajuanKegiatanController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -62,12 +64,14 @@ Route::middleware(['auth'])->group(function () {
 
         Route::controller(DataSayaController::class)->group(function () {
             Route::get('/data-saya', 'index')->name('data-saya');
+            Route::post('/datasaya-store', [DataSayaController::class, 'store'])->name('datasaya-store');
             Route::get('data-saya/show-dockepeg/{id}', 'showDocKepeg')->name('data-saya.show-doc-kepeg');
             Route::post('data-saya/store-dockepeg', 'storeDocKepeg')->name('data-saya.store-doc-kepeg');
             Route::post('data-saya/store-dockom', 'storeDocKom')->name('data-saya.store-doc-kom');
             Route::delete('data-saya/destroy-dockepeg/{id}', 'destroyDocKepeg')->name('data-saya.destroy-doc-kepeg');
             Route::delete('data-saya/destroy-dockom/{id}', 'destroyDocKom')->name('data-saya.destroy-doc-kom');
         });
+
         Route::get('ubah-password', [ChangePasswordController::class, 'index'])->name('ubah-password');
         Route::post('ubah-password', [ChangePasswordController::class, 'update'])->name('ubah-password.update');
         Route::get('/daftar-kegiatan', [DaftarKegiatanController::class, 'index'])->name('daftar-kegiatan');
@@ -97,6 +101,8 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['role:atasan_langsung'])->group(function () {
         Route::get('atasan-langsung/overview', [AtasanLangsungOverviewController::class, 'index'])->name('atasan-langsung.overview.index');
         Route::get('atasan-langsung/pengajuan-kegiatan', [PengajuanKegiatanController::class, 'index'])->name('atasan-langsung.pengajuan-kegiatan.index');
+        Route::get('atasan-langsung/show', [KegiatanPengajuanController::class, 'index'])->name('atasan-langsung.show');
+        Route::get('atasan-langsung/kegiatan-selesai',[KegiatanLangsungController::class, 'index'])->name('atasan-langsung.kegiatan-selesai');
     });
 
     Route::middleware(['role:provinsi'])->group(function () {

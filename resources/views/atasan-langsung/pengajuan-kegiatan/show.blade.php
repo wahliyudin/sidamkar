@@ -3,66 +3,11 @@
 @section('content')
     <div class="section">
         <div class="row">
-            <div class="col-md-4 px-2">
-                <div class="card">
-                    <div class="card-body py-3 px-3" style="height: 100px;">
-                        <div class="d-flex align-items-center h-100">
-                            <div class="circle circle-blue">
-                                <i class="fa-solid fa-copy"></i>
-                            </div>
-                            <div class="d-flex flex-column ms-2">
-                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                    Angka Kredit Minimal
-                                </p>
-                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target">100</h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 px-2">
-                <div class="card">
-                    <div class="card-body py-3 px-3" style="height: 100px;">
-                        <div class="d-flex align-items-center h-100">
-                            <div class="circle circle-purple">
-                                <i class="fa-solid fa-copy"></i>
-                            </div>
-                            <div class="d-flex flex-column ms-2">
-                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                    Angka Kredit diterima
-                                </p>
-                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target">100</h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 px-2">
-                <div class="card">
-                    <div class="card-body py-3 px-3" style="height: 100px;">
-                        <div class="d-flex align-items-center h-100">
-                            <div class="circle circle-green">
-                                <i class="fa-solid
-                                fa-stopwatch"></i>
-                            </div>
-                            <div class="d-flex flex-column ms-2">
-                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                    Periode
-                                </p>
-                                <h2 style="font-family: 'Roboto'; font-size: 20px; color: #06152B;" class="target">Januari
-                                    2022 - Juli 2022</h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
             <div class="card">
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-6">
-                            <h3 class="mt-4">Kegiatan Jabatan</h3>
+                            <h3 class="mt-4">Kegiatan Iqbal</h3>
                             <input type="date" name="" id="">
                         </div>
                         <div class="col-md-6">
@@ -130,9 +75,8 @@
                                                                                     <button
                                                                                         class="btn btn-purple-reverse ms-3 px-3"
                                                                                         data-bs-toggle="modal"
-                                                                                        data-bs-target="#tindakLanjut"
-                                                                                        type="button">tindak
-                                                                                        lanjut</button>
+                                                                                        data-bs-target="#lihat"
+                                                                                        type="button">Lihat</button>
                                                                                 </div>
                                                                             </div>
                                                                         </li>
@@ -154,12 +98,12 @@
         </div>
     </div>
 
-    <div class="modal fade" id="tindakLanjut" tabindex="-1" role="dialog" aria-labelledby="tindakLanjutTitle"
+    <div class="modal fade" id="lihat" tabindex="-1" role="dialog" aria-labelledby="tindakLanjutTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5>Laporan Kegiatan Penunjang</h5>
+                    <h5>Kegiatan Jabatan</h5>
                 </div>
                 <div class="modal-body">
                     <div class="d-flex flex-column">
@@ -192,8 +136,10 @@
                         </div>
 
                         <div class="text-center mt-4">
-                            <button class="btn btn-danger px-5" data-bs-dismiss="modal">Batal</button>
-                            <a class="btn btn-blue px-5" href="{{ route('laporan-kegiatan') }}">Kirim</a>
+                            <button class="btn btn-danger px-5" data-bs-dismiss="modal">Tolak</button>
+                            <button class="btn btn-gray px-5 mx-4" data-bs-toggle="modal"
+                                data-bs-target="#revisi">Revisi</button>
+                            <a class="btn btn-blue px-5">Verifikasi</a>
                         </div>
                     </div>
                 </div>
@@ -202,14 +148,15 @@
     </div>
 
 
-    <div class="modal fade" id="tambahDataModal" tabindex="-1" role="dialog" aria-labelledby="tambahDataModalTitle"
+    <div class="modal fade" id="revisi" tabindex="-1" role="dialog" aria-labelledby="revisiTitle"
         aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="tambahDataModalTitle">
-                        Tambah Unsur Kegiatan
-                    </h5>
+
+                    <h3 class="modal-title" style="color: red;" id="revisiTitle">
+                        <i class="fa-solid fa-book fa-2xl"></i>CATATAN REVISI
+                    </h3>
                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <i data-feather="x"></i>
                     </button>
@@ -217,29 +164,11 @@
                 <div class="modal-body">
                     <form method="post" enctype="multipart/form-data" class="container-unsur">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col">
                                 <div class="form-group">
-                                    <label>Pelaksana Jabatan</label>
-                                    <select class="choices form-select" name="role_id">
-                                        <option disabled selected>Pilih Jabatan</option>
-                                        @foreach ($roles as $role)
-                                            <option value="{{ $role->id }}">{{ $role->display_name }}</option>
-                                        @endforeach
-                                    </select>
+                                    <h6>Tuliskan Catatan</h6>
+                                    <textarea name="" id="" class="form-control"></textarea>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row align-items-center">
-                            <div class="col-md-10">
-                                <div class="form-group">
-                                    <label>Unsur Kegiatan</label>
-                                    <input class="form-control" type="text" name="unsur">
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <button type="button" class="btn btn-blue btn-sm ps-3 py-2 tambah-sub-unsur"
-                                    style="transform: translateY(7px)"><i class="fa-solid fa-plus me-2"></i> Sub
-                                    Unsur</button>
                             </div>
                         </div>
                     </form>
@@ -256,46 +185,7 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="modal fade" id="importExcelModal" tabindex="-1" role="dialog" aria-labelledby="importExcelModalTitle"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="importExcelModalTitle">
-                        Import Kegiatan
-                    </h5>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                        <i data-feather="x"></i>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="form-import" method="post" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <label>File (.xlsx)</label>
-                            <input type="file" name="file_import_tmp" required />
-                            <input type="file" name="file_import" style="display: none;" required />
-                        </div>
-                        <div class="form-group d-flex flex-column align-items-start">
-                            <label>Download Template</label>
-                            <button class="btn btn-blue btn-sm px-3"><i
-                                    class="fa-solid fa-download me-2"></i>Download</button>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
-                        <span>Batal</span>
-                    </button>
-                    <button class="btn btn-green ml-1 btn-simpan-file-import">
-                        <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
-                            style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
-                        <span>Simpan</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+    </div>>
 @endsection
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/extensions/toastify-js/src/toastify.css') }}">
