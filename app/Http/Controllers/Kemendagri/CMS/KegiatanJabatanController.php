@@ -52,6 +52,70 @@ class KegiatanJabatanController extends Controller
         }
     }
 
+    public function edit($id)
+    {
+        $unsur = Unsur::query()->with([
+            'jenisKegiatan',
+            'role',
+            'subUnsurs.butirKegiatans'
+        ])->findOrFail($id);
+        return response()->json([
+            'status' => 200,
+            'data' => $unsur
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        Unsur::query()->with('subUnsurs')->findOrFail($id)->delete();
+        $unsur = Unsur::query()->create([
+            'role_id' => $request->role_id,
+            'jenis_kegiatan_id' => 1,
+            'nama' => $request->unsur
+        ]);
+        for ($i = 0; $i < count($request->sub_unsurs); $i++) {
+            $sub_unsur = $unsur->subUnsurs()->create([
+                'nama' => $request->sub_unsurs[$i]['name']
+            ]);
+            for ($j = 0; $j < count($request->sub_unsurs[$i]['butir_kegiatans']); $j++) {
+                $sub_unsur->butirKegiatans()->create([
+                    'nama' => $request->sub_unsurs[$i]['butir_kegiatans'][$j],
+                    'score' => $request->sub_unsurs[$i]['angka_kredits'][$j]
+                ]);
+            }
+        }
+        return response()->json([
+            'status' => 200,
+            'message' => 'Berhasil diubah'
+        ]);
+    }
+
+    public function sync(array $subUnsurs, $childSubUnsurs)
+    {
+        $subUnsurs = collect($subUnsurs);
+        $deleted_ids = $childSubUnsurs->filter(
+            function ($child) use ($subUnsurs) {
+                return empty($subUnsurs->where('id', $child->id)->first());
+            }
+        )->map(
+            function ($child) {
+                $id = $child->id;
+                // $child->delete();
+                return $id;
+            }
+        );
+        dd($deleted_ids);
+        // $attachments = $subUnsurs->filter(
+        //     function ($subUnsur) {
+        //         return empty($subUnsur['id']);
+        //     }
+        // )->map(function ($subUnsur) use ($deleted_ids) {
+        //         $subUnsur['id'] = $deleted_ids->pop();
+        //         return new InvoiceItem($subUnsur);
+        // });
+        // $this->subUnsurs()->saveMany($attachments);
+    }
+
     public function import(Request $request)
     {
         try {

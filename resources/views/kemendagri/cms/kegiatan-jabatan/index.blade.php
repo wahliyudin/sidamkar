@@ -9,8 +9,8 @@
                         <button class="btn btn-green-reverse" data-bs-toggle="modal" data-bs-target="#importExcelModal"><i
                                 class="fa-solid fa-cloud-arrow-up me-2"></i>Import
                             Excel</button>
-                        <button class="btn btn-blue-reverse ms-3" data-bs-toggle="modal" data-bs-target="#tambahDataModal"><i
-                                class="fa-solid fa-file-circle-plus me-2"></i>Tambah
+                        <button class="btn btn-blue-reverse ms-3 btn-tambah" data-bs-toggle="modal"
+                            data-bs-target="#tambahDataModal"><i class="fa-solid fa-file-circle-plus me-2"></i>Tambah
                             Data</button>
                     </div>
                 </div>
@@ -27,8 +27,8 @@
                                                 [ Pelaksana: {{ $unsur->role->display_name }} ] {{ $unsur->nama }}
                                             </p>
                                             <div class="d-flex align-items-center">
-                                                <i
-                                                    class="fa-regular fa-pen-to-square me-2 cursor-pointer text-green btn-edit-kegiatan"></i>
+                                                <i class="fa-regular fa-pen-to-square me-2 cursor-pointer text-green btn-edit-kegiatan"
+                                                    data-id="{{ $unsur->id }}"></i>
                                                 <i class="fa-solid fa-trash-can me-2 cursor-pointer text-red btn-hapus-kegiatan"
                                                     data-id="{{ $unsur->id }}"></i>
                                             </div>
@@ -96,7 +96,11 @@
     <div class="modal fade" id="tambahDataModal" tabindex="-1" role="dialog" aria-labelledby="tambahDataModalTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-centered" role="document">
-            <div class="modal-content">
+            <div class="modal-content relative">
+                <div class="bg-spin" style="display: none;">
+                    <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
+                        style="height: 3rem; object-fit: cover;" alt="" srcset="">
+                </div>
                 <div class="modal-header">
                     <h5 class="modal-title" id="tambahDataModalTitle">
                         Tambah Unsur Kegiatan
@@ -111,7 +115,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Pelaksana Jabatan</label>
-                                    <select class="choices form-select" name="role_id">
+                                    <select class="form-select" name="role_id">
                                         <option disabled selected>Pilih Jabatan</option>
                                         @foreach ($roles as $role)
                                             <option value="{{ $role->id }}">{{ $role->display_name }}</option>
@@ -139,7 +143,7 @@
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
                         <span>Batal</span>
                     </button>
-                    <button class="btn btn-green ml-1 simpan-kegiatan">
+                    <button class="btn btn-green ml-1 simpan-kegiatan simpan">
                         <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
                             style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
                         <span>Simpan</span>
@@ -198,6 +202,18 @@
     <link rel="stylesheet" href="{{ asset('assets/extensions/choices.js/public/assets/styles/choices.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/shared/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/pages/kemendagri.css') }}">
+    <style>
+        #tambahDataModal .modal-content .bg-spin {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 99;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #00000075;
+        }
+    </style>
 @endsection
 @section('js')
     <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
@@ -349,9 +365,6 @@
                             </div>
                         </div>
                         <div class="col-md-2 d-flex">
-                            {{-- <button
-                                    style="transform: translateY(8px); color: #139A6E; background-color: transparent; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #139A6E;"><i
-                                        class="fa-solid fa-plus"></i></button> --}}
                             <button class="hapus-butir"
                                 style="transform: translateY(8px); color: #EA3A3D; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #EA3A3D; background-color: transparent !important;"><i
                                     class="fa-solid fa-minus"></i></button>
@@ -383,8 +396,7 @@
                     $(this.parentElement.parentElement.parentElement).remove();
                 }
             });
-            $('.simpan-kegiatan').click(function(e) {
-                e.preventDefault();
+            $('#tambahDataModal').on('click', '.simpan-kegiatan.simpan', function() {
                 var role_id = $('select[name="role_id"]').val();
                 var unsur = $('input[name="unsur"]').val();
                 result = [];
@@ -463,6 +475,137 @@
                 }, function(dismiss) {
                     return false;
                 })
+            });
+
+            $(".btn-tambah").on('click', function() {
+                $('.container-sub-unsur').remove();
+            });
+
+
+            $('.btn-edit-kegiatan').click(function(e) {
+                e.preventDefault();
+                $('.simpan-kegiatan').removeClass('simpan');
+                $('.simpan-kegiatan').addClass('update');
+                $('.simpan-kegiatan').data('id', $(this).data('id'));
+                $('#tambahDataModal .bg-spin').show();
+                $('#tambahDataModal').modal('show');
+
+                $.ajax({
+                    type: "GET",
+                    url: "{{ url('kemendagri/cms/kegiatan-jabatan') }}/" + $(this).data('id') +
+                        "/edit",
+                    success: function(response) {
+                        $('#tambahDataModal .bg-spin').hide();
+                        $('select[name="role_id"]')
+                            .val(response.data.role.id)
+                            .trigger('change');
+                        $('input[name="unsur"]').val(response.data.nama);
+                        response.data.sub_unsurs.forEach(subUnsur => {
+                            $('.container-unsur').append(`
+                                <div class="d-flex flex-column container-sub-unsur">
+                                    <div class="row align-items-center justify-content-end">
+                                        <div class="col-md-9">
+                                            <div class="form-group">
+                                                <label>Sub Unsur</label>
+                                                <input class="form-control w-100" type="text" value="${subUnsur.nama}" name="sub_unsur[]">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 d-flex align-items-center">
+                                            <button type="button" class="hapus-sub-unsur" style="transform: translateY(8px); color: #EA3A3D; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #EA3A3D; background-color: transparent !important;"><i
+                                                    class="fa-solid fa-minus"></i></button>
+                                            <button type="button" class="btn btn-blue btn-sm ps-3 py-2 ms-2 tambah-butir"
+                                                style="transform: translateY(7px)"><i class="fa-solid fa-plus me-2"></i>
+                                                Butir</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-column container-butir">
+                                        ${$.map(subUnsur.butir_kegiatans, function (elementOrValue, indexOrKey) {
+                                        return `<div class="row align-items-center justify-content-end">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Butir Kegiatan</label>
+                                                            <input class="form-control w-100" type="text" value="${elementOrValue.nama}" name="butir_kegiatan[]">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label>Nilai Kredit</label>
+                                                            <input class="form-control w-100" step="0.01" value="${elementOrValue.score}" type="number" name="angka_kredit[]">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2 d-flex">
+                                                        <button class="hapus-butir"
+                                                            style="transform: translateY(8px); color: #EA3A3D; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #EA3A3D; background-color: transparent !important;"><i
+                                                                class="fa-solid fa-minus"></i></button>
+                                                    </div>
+                                                </div>`
+                                    })
+                                    }
+                                    </div>
+                                </div>
+                            `);
+                        });
+                    },
+                    error: ajaxError
+                });
+            });
+
+            $('#tambahDataModal').on('click', '.simpan-kegiatan.update', function() {
+                var role_id = $('select[name="role_id"]').val();
+                var unsur = $('input[name="unsur"]').val();
+                result = [];
+                $.each($('input[name="sub_unsur[]"]'), function(indexInArray, valueOfElement) {
+                    result.push({
+                        name: $(valueOfElement).val(),
+                        butir_kegiatans: $($(this.parentElement.parentElement.parentElement
+                            .parentElement).find(
+                            'input[name="butir_kegiatan[]"]')).map(
+                            function(idx2, elem2) {
+                                return $(elem2).val();
+                            }).get(),
+                        angka_kredits: $($(this.parentElement.parentElement.parentElement
+                            .parentElement).find(
+                            'input[name="angka_kredit[]"]')).map(
+                            function(idx2, elem2) {
+                                return $(elem2).val();
+                            }).get()
+                    })
+                });
+                $('.simpan-kegiatan span').hide();
+                $('.simpan-kegiatan .spin').show();
+                $.ajax({
+                    type: "PUT",
+                    url: "{{ url('kemendagri/cms/kegiatan-jabatan') }}/" + $(this).data('id') +
+                        "/update",
+                    data: {
+                        role_id: role_id,
+                        unsur: unsur,
+                        sub_unsurs: result
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        $('.simpan-kegiatan span').show();
+                        $('.simpan-kegiatan .spin').hide();
+                        if (response.status == 200) {
+                            Toastify({
+                                text: response.message,
+                                duration: 5000,
+                                close: true,
+                                gravity: "top",
+                                position: "right",
+                                backgroundColor: "#18b882",
+                            }).showToast()
+                            location.reload();
+                        }
+                    },
+                    error: ajaxError
+                });
+            });
+
+            $("#tambahDataModal").on('hide.bs.modal', function() {
+                $('input[name="unsur"]').val('');
+                $('.container-sub-unsur').remove();
             });
         });
 
