@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Aparatur\ChangePasswordController;
 use App\Http\Controllers\Aparatur\DaftarKegiatanController;
-use App\Http\Controllers\aparatur\DaftarPenunjangController;
+use App\Http\Controllers\Aparatur\DaftarPenunjangController;
 use App\Http\Controllers\Aparatur\DataSayaController;
 use App\Http\Controllers\Aparatur\LaporanJabatan;
 use App\Http\Controllers\Aparatur\LaporanJabatanController;
