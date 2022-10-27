@@ -152,12 +152,21 @@
                         </a>
                     </li>
                     <li
-                        class="sidebar-item {{ request()->routeIs('atasan-langsung.pengajuan-kegiatan.index') ? 'active' : '' }}">
+                        class="sidebar-item {{ request()->routeIs('atasan-langsung.pengajuan-kegiatan.index') || request()->routeIs('atasan-langsung.show') ? 'active' : '' }}">
                         <a href="{{ route('atasan-langsung.pengajuan-kegiatan.index') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
-                                <i class="bi bi-grid-fill"></i>
+                                <i class="fa-solid fa-clipboard"></i>
                             </div>
                             <span>Pengajuan Kegiatan</span>
+                        </a>
+                    </li>
+                    <li
+                        class="sidebar-item {{ request()->routeIs('atasan-langsung.kegiatan-selesai') || request()->routeIs('atasan-langsung.show') ? 'active' : '' }}">
+                        <a href="{{ route('atasan-langsung.kegiatan-selesai') }}" class='sidebar-link'>
+                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <span>Kegiatan Selesai</span>
                         </a>
                     </li>
                 @endrole
