@@ -4,7 +4,7 @@
             <div class="d-flex justify-content-center align-items-center">
                 <div class="logo">
                     <a href="{{ route('home') }}">
-                        <img style="width: 7rem; height: 8rem;" src="{{ asset('assets/images/template/LogoDamkar.png') }}"
+                        <img style="width: 6rem; height: 7rem;" src="{{ asset('assets/images/template/logo.png') }}"
                             alt="Logo" srcset="">
                     </a>
                 </div>
@@ -24,15 +24,44 @@
                             <span>Overview</span>
                         </a>
                     </li>
-                    <li class="sidebar-item {{ request()->routeIs('daftar-kegiatan') ? 'active' : '' }}">
-                        <a href="{{ route('daftar-kegiatan') }}" class='sidebar-link'>
+
+                    <li
+                        class="sidebar-item has-sub {{ request()->is('daftar-kegiatan*') || request()->is('daftar-penunjang*') ? 'active' : '' }}">
+                        <a href="javascript(0)" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="fa-solid fa-list"></i>
                             </div>
-                            <span>Daftar Kegiatan</span>
+                            <span>Rencana Kinerja</span>
                         </a>
+                        <ul
+                            class="submenu {{ request()->is('daftar-kegiatan*') || request()->is('daftar-penunjang*') ? 'active' : '' }}">
+                            <li class="submenu-item {{ request()->is('daftar-kegiatan*') ? 'active' : '' }}">
+                                <a href="{{ route('daftar-kegiatan') }}">Jabatan</a>
+                            </li>
+                            <li class="submenu-item {{ request()->is('daftar-penunjang*') ? 'active' : '' }}">
+                                <a href="{{ route('daftar-penunjang') }}">Profesi dan Penunjang</a>
+                            </li>
+                        </ul>
                     </li>
-                    <li class="sidebar-item {{ request()->routeIs('tabel-kegiatan') ? 'active' : '' }}">
+                    <li
+                        class="sidebar-item has-sub {{ request()->is('tabel-kegiatan*') || request()->is('tabel-penunjang*') ? 'active' : '' }}">
+                        <a href="javascript(0)" class='sidebar-link'>
+                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                                <i class="bi bi-grid-fill"></i>
+                            </div>
+                            <span>Tabel Kegiatan</span>
+                        </a>
+                        <ul
+                            class="submenu {{ request()->is('tabel-kegiatan*') || request()->is('tabel-penunjang*') ? 'active' : '' }}">
+                            <li class="submenu-item {{ request()->is('tabel-kegiatan*') ? 'active' : '' }}">
+                                <a href="{{ route('tabel-kegiatan') }}">Jabatan</a>
+                            </li>
+                            <li class="submenu-item {{ request()->is('tabel-penunjang*') ? 'active' : '' }}">
+                                <a href="{{ route('tabel-penunjang') }}">Profesi dan Penunjang</a>
+                            </li>
+                        </ul>
+                    </li>
+                    {{--  <li class="sidebar-item {{ request()->routeIs('tabel-kegiatan') ? 'active' : '' }}">
                         <a href="{{ route('tabel-kegiatan') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="fa-solid fa-person-walking"></i>
@@ -41,8 +70,27 @@
                             <span style="padding: 2px 6px; background-color: #EBFF02; color: white; border-radius: 4px;">
                                 50</span>
                         </a>
-                    </li>
+                    </li>  --}}
+
                     <li
+                        class="sidebar-item has-sub {{ request()->is('laporan-jabatan*') || request()->is('laporan-kegiatan*') ? 'active' : '' }}">
+                        <a href="javascript(0)" class='sidebar-link'>
+                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                                <i class="fa-regular fa-rectangle-list"></i>
+                            </div>
+                            <span>Laporan Kegiatan</span>
+                        </a>
+                        <ul
+                            class="submenu {{ request()->is('laporan-jabatan*') || request()->is('laporan-kegiatan*') ? 'active' : '' }}">
+                            <li class="submenu-item {{ request()->is('laporan-jabatan*') ? 'active' : '' }}">
+                                <a href="{{ route('laporan-jabatan') }}">Jabatan</a>
+                            </li>
+                            <li class="submenu-item {{ request()->is('laporan-kegiatan*') ? 'active' : '' }}">
+                                <a href="{{ route('laporan-kegiatan') }}">Profesi dan Penunjang</a>
+                            </li>
+                        </ul>
+                    </li>
+                    {{--  <li
                         class="sidebar-item {{ request()->routeIs('laporan-kegiatan') || request()->routeIs('laporan-kegiatan') ? 'active' : '' }}">
                         <a href="{{ route('laporan-kegiatan') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
@@ -50,7 +98,7 @@
                             </div>
                             <span>Laporan Kegiatan</span>
                         </a>
-                    </li>
+                    </li>  --}}
                 @endrole
 
                 @role('kab_kota')
@@ -104,12 +152,21 @@
                         </a>
                     </li>
                     <li
-                        class="sidebar-item {{ request()->routeIs('atasan-langsung.pengajuan-kegiatan.index') ? 'active' : '' }}">
+                        class="sidebar-item {{ request()->routeIs('atasan-langsung.pengajuan-kegiatan.index') || request()->routeIs('atasan-langsung.show') ? 'active' : '' }}">
                         <a href="{{ route('atasan-langsung.pengajuan-kegiatan.index') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
-                                <i class="bi bi-grid-fill"></i>
+                                <i class="fa-solid fa-clipboard"></i>
                             </div>
                             <span>Pengajuan Kegiatan</span>
+                        </a>
+                    </li>
+                    <li
+                        class="sidebar-item {{ request()->routeIs('atasan-langsung.kegiatan-selesai') || request()->routeIs('atasan-langsung.show') ? 'active' : '' }}">
+                        <a href="{{ route('atasan-langsung.kegiatan-selesai') }}" class='sidebar-link'>
+                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <span>Kegiatan Selesai</span>
                         </a>
                     </li>
                 @endrole
@@ -150,7 +207,8 @@
                             </li>
                             <li
                                 class="submenu-item {{ request()->is('kemendagri/verifikasi-data/admin-provinsi*') ? 'active' : '' }}">
-                                <a href="{{ route('kemendagri.verifikasi-data.admin-provinsi.index') }}">Admin Provinsi</a>
+                                <a href="{{ route('kemendagri.verifikasi-data.admin-provinsi.index') }}">Admin
+                                    Provinsi</a>
                             </li>
                         </ul>
                     </li>
@@ -201,16 +259,23 @@
                             <span>Chatbox</span>
                         </a>
                     </li>
-                    <li class="sidebar-item has-sub">
+                    <li
+                        class="sidebar-item has-sub {{ request()->is('kemendagri/cms/kegiatan-profesi*') || request()->is('kemendagri/cms/kegiatan-jabatan*') ? 'active' : '' }}">
                         <a href="javascript(0)" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="fa-solid fa-laptop"></i>
                             </div>
                             <span>CMS</span>
                         </a>
-                        <ul class="submenu">
-                            <li class="submenu-item">
-                                <a href="">Butir Kegiatan</a>
+                        <ul
+                            class="submenu {{ request()->is('kemendagri/cms/kegiatan-profesi*') || request()->is('kemendagri/cms/kegiatan-jabatan*') ? 'active' : '' }}">
+                            <li
+                                class="submenu-item {{ request()->is('kemendagri/cms/kegiatan-jabatan*') ? 'active' : '' }}">
+                                <a href="{{ route('kemendagri.cms.kegiatan-jabatan.index') }}">Kegiatan Jabatan</a>
+                            </li>
+                            <li
+                                class="submenu-item {{ request()->is('kemendagri/cms/kegiatan-profesi*') ? 'active' : '' }}">
+                                <a href="{{ route('kemendagri.cms.kegiatan-profesi.index') }}">Kegiatan Profesi</a>
                             </li>
                             <li class="submenu-item">
                                 <a href="">User</a>

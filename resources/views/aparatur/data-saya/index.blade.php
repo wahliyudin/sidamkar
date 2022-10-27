@@ -1,9 +1,6 @@
 @extends('layouts.master')
 @section('content')
-{{-- @php
-    dd($user->userPejabatStruktural);
-@endphp --}}
-<style>
+    <style>
         .container {
             position: relative;
             width: 50%;
@@ -48,11 +45,18 @@
                                 <img src="{{ asset('assets/images/faces/3.jpg') }}" alt="Avatar" class="image"
                                     style="width:100%; border-radius: 50%;">
                                 <span class="middle">
-                                    <div class="text" style="cursor: pointer;">
-                                        <button class="fa-solid fa-circle-plus fa-2xl"></button>
+                                    <div class="text" style="cursor: pointer;"><i
+                                            class="fa-regular fa-pen-to-square fa-xl"></i>
                                     </div>
                                 </span>
                             </div>
+                            {{--  <div class="container avatar avatar-xl me-3">
+                                <img class="img-profile" style="width: 180px; height: 180px;"
+                                    src="{{ asset('assets/images/faces/3.jpg') }}" alt="" srcset="">
+                                <div class="middle">
+                                    <div class="text">John Doe</div>
+                                </div>
+                            </div>  --}}
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
@@ -297,7 +301,7 @@
     <link rel="stylesheet"
         href="{{ asset('assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/pages/filepond.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/shared/sweetalert2.min.css') }}">
 @endsection
 @section('js')
     <script src="{{ asset('assets/extensions/choices.js/public/assets/scripts/choices.js') }}"></script>
@@ -308,7 +312,7 @@
     <script src="{{ asset('assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js') }}">
     </script>
     <script src="{{ asset('assets/extensions/filepond/filepond.jquery.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
+    <script src="{{ asset('assets/js/extensions/sweetalert2.all.min.js') }}"></script>
     <script>
         $(function() {
             $.fn.filepond.registerPlugin(FilePondPluginImagePreview);

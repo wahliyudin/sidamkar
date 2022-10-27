@@ -2,7 +2,27 @@
 
 @section('content')
     <section class="section">
+        <div class="alert alert-danger "><i class="fa-solid fa-circle-exclamation"></i> Harap Lengkapi Data
+            Profile
+        </div>
         <div class="row">
+            <div class="col-md-3 px-2">
+                <div class="card">
+                    <div class="card-body py-3 px-3" style="height: 100px;">
+                        <div class="d-flex align-items-center h-100">
+                            <div class="circle circle-red-light">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                            </div>
+                            <div class="d-flex flex-column ms-2">
+                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
+                                    Angka Kredit Sebelumnya
+                                </p>
+                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target">44</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-3 px-2">
                 <div class="card">
                     <div class="card-body py-3 px-3" style="height: 100px;">
@@ -41,31 +61,16 @@
                 <div class="card">
                     <div class="card-body py-3 px-3" style="height: 100px;">
                         <div class="d-flex align-items-center h-100">
-                            <div class="circle circle-red-light">
-                                <i class="fa-solid fa-circle-exclamation"></i>
-                            </div>
-                            <div class="d-flex flex-column ms-2">
-                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                    Kekurangan Angka Kredit
-                                </p>
-                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target">44</h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 px-2">
-                <div class="card">
-                    <div class="card-body py-3 px-3" style="height: 100px;">
-                        <div class="d-flex align-items-center h-100">
                             <div class="circle circle-yellow-light">
                                 <i class="fa-solid fa-calendar-days"></i>
                             </div>
                             <div class="d-flex flex-column ms-2">
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                    Sisa Hari
+                                    Periode Aktif
                                 </p>
-                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target">64</h2>
+                                <h2 style="font-family: 'Roboto';color: #06152B; font-size: 18px;" class="target">Januari
+                                    2022 - Juli 2022
+                                </h2>
                             </div>
                         </div>
                     </div>
@@ -107,7 +112,8 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <a href="" style="color: #06152B;">Pelaksanaan prosedur pelaporan informasi kejadian kebakaran</a>
+                                        <a href="" style="color: #06152B;">Pelaksanaan prosedur pelaporan informasi
+                                            kejadian kebakaran</a>
                                     </td>
                                     <td>
                                         <button class="btn btn-red-reverse btn-status ms-3 px-3 text-sm"
@@ -116,7 +122,8 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <a href="" style="color: #06152B;">Pelaksanaan operasional pemadaman kebakaran</a>
+                                        <a href="" style="color: #06152B;">Pelaksanaan operasional pemadaman
+                                            kebakaran</a>
                                     </td>
                                     <td>
                                         <button class="btn btn-green-reverse btn-status ms-3 px-3 text-sm"
