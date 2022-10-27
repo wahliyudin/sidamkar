@@ -64,12 +64,12 @@
                                                             <div class="accordion-body">
                                                                 <div class="accordion" id="accordion-child">
                                                                     @foreach ($sub_unsur->butirKegiatans as $butir_kegiatan)
-                                                                        @if (isset($butir_kegiatan->subButirKegiatans))
+                                                                        @if (count($butir_kegiatan->subButirKegiatans) > 0)
                                                                             <div class="accordion-item">
                                                                                 <div class="d-flex justify-content-between accordion-header py-1 px-2"
                                                                                     id="ButirKegiatan{{ $butir_kegiatan->id }}">
                                                                                     <div class="d-flex align-items-center"
-                                                                                        style="color: #000000;">
+                                                                                        style="color: #000000;width: calc(100% - 4rem);">
                                                                                         <h6 class="accordian-title">
                                                                                             {{ $butir_kegiatan->nama }}
                                                                                         </h6>
@@ -99,7 +99,7 @@
                                                                                                         </h6>
                                                                                                         <h6 class="accordian-title"
                                                                                                             style="color: #1AD598;">
-                                                                                                            {{ $sub_butir_kegiatan->score }}
+                                                                                                            {{ !isset($sub_butir_kegiatan->score) ? $sub_butir_kegiatan->percent . '%' : $sub_butir_kegiatan->score }}
                                                                                                         </h6>
                                                                                                     </div>
                                                                                                 </li>
@@ -109,13 +109,13 @@
                                                                                 </div>
                                                                             </div>
                                                                         @else
-                                                                            <div
-                                                                                class="d-flex align-items-center justify-content-between">
+                                                                            <div class="d-flex ms-2 align-items-center justify-content-between"
+                                                                                style="width: calc(100% - 4rem);">
                                                                                 <h6 class="accordian-title">
                                                                                     {{ $butir_kegiatan->nama }}
                                                                                 </h6>
-                                                                                <h6 class="accordian-title"
-                                                                                    style="color: #1AD598;">
+                                                                                <h6 class="accordian-title d-flex align-items-center justify-content-center"
+                                                                                    style="color: #1AD598; width: 2rem; height: 1rem;">
                                                                                     {{ $butir_kegiatan->score }}
                                                                                 </h6>
                                                                             </div>
@@ -338,7 +338,7 @@
                                     location.reload();
                                 });
                             } else {
-                                swal("Error!", response.message, "error");
+                                swal("Warning!", response.message, "warning");
                             }
                         },
                         error: function(err) {

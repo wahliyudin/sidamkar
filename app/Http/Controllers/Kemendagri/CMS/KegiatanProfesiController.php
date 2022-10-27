@@ -65,7 +65,10 @@ class KegiatanProfesiController extends Controller
                 'message' => 'Berhasil diimport'
             ]);
         } catch (\Throwable $th) {
-            throw $th;
+            return response()->json([
+                'status' => $th->getCode(),
+                'message' => 'Format Excel anda salah'
+            ]);
         }
     }
 
