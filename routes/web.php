@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\Aparatur\ChangePasswordController;
 use App\Http\Controllers\Aparatur\DaftarKegiatanController;
+use App\Http\Controllers\aparatur\DaftarPenunjangController;
 use App\Http\Controllers\Aparatur\DataSayaController;
+use App\Http\Controllers\Aparatur\LaporanJabatan;
+use App\Http\Controllers\Aparatur\LaporanJabatanController;
 use App\Http\Controllers\Aparatur\LaporanKegiatanController;
 use App\Http\Controllers\Aparatur\OverviewController;
 use App\Http\Controllers\Aparatur\TabelKegiatanController;
@@ -68,9 +71,11 @@ Route::middleware(['auth'])->group(function () {
         Route::get('ubah-password', [ChangePasswordController::class, 'index'])->name('ubah-password');
         Route::post('ubah-password', [ChangePasswordController::class, 'update'])->name('ubah-password.update');
         Route::get('/daftar-kegiatan', [DaftarKegiatanController::class, 'index'])->name('daftar-kegiatan');
+        Route::get('/daftar-penunjang', [DaftarPenunjangController::class, 'index'])->name('daftar-penunjang');
         Route::get('/tabel-kegiatan', [TabelKegiatanController::class, 'index'])->name('tabel-kegiatan');
         Route::get('/tabel-penunjang', [tabelPenunjangController::class, 'index'])->name('tabel-penunjang');
         Route::get('/laporan-kegiatan', [LaporanKegiatanController::class, 'index'])->name('laporan-kegiatan');
+        Route::get('/laporan-jabatan', [LaporanJabatanController::class, 'index'])->name('laporan-jabatan');
     });
 
     Route::middleware(['role:kab_kota'])->group(function () {
@@ -143,6 +148,10 @@ Route::middleware(['auth'])->group(function () {
 
         Route::controller(KegiatanProfesiController::class)->group(function () {
             Route::get('kemendagri/cms/kegiatan-profesi', 'index')->name('kemendagri.cms.kegiatan-profesi.index');
+            Route::post('kemendagri/cms/kegiatan-profesi', 'store')->name('kemendagri.cms.kegiatan-profesi.store');
+            Route::post('kemendagri/cms/kegiatan-profesi/import', 'import')->name('kemendagri.cms.kegiatan-profesi.import');
+            Route::get('kemendagri/cms/kegiatan-profesi/download', 'downloadTemplate')->name('kemendagri.cms.kegiatan-profesi.download');
+            Route::delete('kemendagri/cms/kegiatan-profesi/{id}/destroy', 'destroy')->name('kemendagri.cms.kegiatan-profesi.destroy');
         });
     });
 });

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Aparatur;
+namespace App\Http\Controllers\aparatur;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -10,7 +10,7 @@ use App\Models\Role;
 use App\Models\Unsur;
 use Maatwebsite\Excel\Facades\Excel;
 
-class TabelKegiatanController extends Controller
+class DaftarPenunjangController extends Controller
 {
     public function index()
     {
@@ -21,7 +21,7 @@ class TabelKegiatanController extends Controller
                 'unsurs.subUnsurs.butirKegiatans',
             ])
             ->findOrFail(1);
-        return view('aparatur.tabel-kegiatan', compact('roles', 'kegiatan'));
+        return view('aparatur.daftar-penunjang', compact('roles', 'kegiatan'));
     }
 
     public function store(Request $request)

@@ -18,8 +18,8 @@ return new class extends Migration
             $table->unsignedBigInteger('butir_kegiatan_id');
             $table->string('nama')->fulltext();
             $table->string('satuan_hasil');
-            $table->float('score');
-            $table->integer('percent');
+            $table->float('score')->nullable();
+            $table->integer('percent')->nullable();
             $table->timestamps();
 
             $table->foreign('butir_kegiatan_id')->on('butir_kegiatans')->references('id')->cascadeOnDelete();

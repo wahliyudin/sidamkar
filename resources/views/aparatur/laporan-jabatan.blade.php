@@ -1,8 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <section class="section">
-
+    <div class="section">
         <div class="row">
             <div class="col-md-4 px-2">
                 <div class="card">
@@ -59,152 +58,245 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="border-bottom row justify-content-between align-items-center pb-4 wrapper-head">
-                            <div class="col-md-4 col-12">
-                                <div class="form-group">
-                                    <label>Search</label>
-                                    <input type="text" placeholder="Search..." class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-12 d-flex justify-content-end">
-                                <a class="px-4 py-2 btn-laporan" href="{{ route('laporan-jabatan') }}">
-                                    <svg width="23" height="18" viewBox="0 0 23 18" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M20.5 0.0100098H2.5C1.4 0.0100098 0.5 0.91001 0.5 2.01001V6.00001H2.5V1.99001H20.5V16.02H2.5V12H0.5V16.01C0.5 17.11 1.4 17.99 2.5 17.99H20.5C21.6 17.99 22.5 17.11 22.5 16.01V2.01001C22.5 0.90001 21.6 0.0100098 20.5 0.0100098ZM10.5 13L14.5 9.00001L10.5 5.00001V8.00001H0.5V10H10.5V13ZM20.5 0.0100098H2.5C1.4 0.0100098 0.5 0.91001 0.5 2.01001V6.00001H2.5V1.99001H20.5V16.02H2.5V12H0.5V16.01C0.5 17.11 1.4 17.99 2.5 17.99H20.5C21.6 17.99 22.5 17.11 22.5 16.01V2.01001C22.5 0.90001 21.6 0.0100098 20.5 0.0100098ZM10.5 13L14.5 9.00001L10.5 5.00001V8.00001H0.5V10H10.5V13Z"
-                                            fill="white" />
-                                    </svg>
-                                    <p>Buat laporan</p>
-                                </a>
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3 class="mt-4">Kegiatan Jabatan</h3>
+                            <input type="date">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Search</label>
+                                <input type="text" placeholder="Search..." class="form-control">
                             </div>
                         </div>
                     </div>
-                    <div class="card-body px-0">
-                        <div class="card-body accordion-container">
-                            <div class="accordion" id="accordion-parent">
-                                @foreach ($kegiatan->unsurs as $unsur)
-                                    <div class="accordion-item">
-                                        <div class="d-flex justify-content-between accordion-header py-3 px-2"
-                                            id="unsur{{ $unsur->id }}">
-                                            <div class="d-flex align-items-center justify-content-between w-100"
-                                                style="color: #000000;">
-                                                <p class="accordion-title">
-                                                    [ Pelaksana: {{ $unsur->role->display_name }} ] {{ $unsur->nama }}
-                                                </p>
+                </div>
+                <div class="card-body px-0">
+                    <div class="card-body accordion-container">
+                        <div class="accordion" id="accordion-parent">
+                            @foreach ($kegiatan->unsurs as $unsur)
+                                <div class="accordion-item">
+                                    <div class="d-flex justify-content-between accordion-header py-3 px-2"
+                                        id="unsur{{ $unsur->id }}">
+                                        <div class="d-flex align-items-center justify-content-between w-100"
+                                            style="color: #000000;">
+                                            <p class="accordion-title">
+                                                [ Pelaksana: {{ $unsur->role->display_name }} ] {{ $unsur->nama }}
+                                            </p>
 
-                                            </div>
-                                            <button class="accordion-button collapsed" type="button"
-                                                data-bs-toggle="collapse" data-bs-target="#contentUnsur{{ $unsur->id }}"
-                                                aria-expanded="false" aria-controls="contentUnsur{{ $unsur->id }}">
-                                            </button>
                                         </div>
-                                        <div id="contentUnsur{{ $unsur->id }}" class="accordion-collapse collapse"
-                                            aria-labelledby="unsur{{ $unsur->id }}" style="">
-                                            <div class="accordion-body">
-                                                <div class="accordion" id="accordion-child">
-                                                    @foreach ($unsur->subUnsurs as $sub_unsur)
-                                                        <div class="accordion-item">
-                                                            <div class="d-flex justify-content-between accordion-header py-1 px-2"
-                                                                id="subUnsur{{ $sub_unsur->id }}">
-                                                                <div class="d-flex align-items-center"
-                                                                    style="color: #000000;">
-                                                                    <h6 class="accordian-title">
-                                                                        {{ $sub_unsur->nama }}
-                                                                    </h6>
-                                                                </div>
-                                                                <button class="accordion-button collapsed" type="button"
-                                                                    data-bs-toggle="collapse"
-                                                                    data-bs-target="#contentchildSubUnsur{{ $sub_unsur->id }}"
-                                                                    aria-expanded="false"
-                                                                    aria-controls="contentchildSubUnsur{{ $sub_unsur->id }}">
-                                                                </button>
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#contentUnsur{{ $unsur->id }}" aria-expanded="false"
+                                            aria-controls="contentUnsur{{ $unsur->id }}">
+                                        </button>
+                                    </div>
+                                    <div id="contentUnsur{{ $unsur->id }}" class="accordion-collapse collapse"
+                                        aria-labelledby="unsur{{ $unsur->id }}" style="">
+                                        <div class="accordion-body">
+                                            <div class="accordion" id="accordion-child">
+                                                @foreach ($unsur->subUnsurs as $sub_unsur)
+                                                    <div class="accordion-item">
+                                                        <div class="d-flex justify-content-between accordion-header py-1 px-2"
+                                                            id="subUnsur{{ $sub_unsur->id }}">
+                                                            <div class="d-flex align-items-center" style="color: #000000;">
+                                                                <h6 class="accordian-title">
+                                                                    {{ $sub_unsur->nama }}
+                                                                </h6>
                                                             </div>
-                                                            <div id="contentchildSubUnsur{{ $sub_unsur->id }}"
-                                                                class="accordion-collapse collapse"
-                                                                aria-labelledby="subUnsur{{ $sub_unsur->id }}"
-                                                                style="">
-                                                                <div class="accordion-body">
-                                                                    <ul class="ms-0">
-                                                                        @foreach ($sub_unsur->butirKegiatans as $butir_kegiatan)
-                                                                            <li class="accordian-list">
-                                                                                <div
-                                                                                    class="d-flex align-items-center justify-content-between">
-                                                                                    <h6 class="accordian-title">
-                                                                                        {{ $butir_kegiatan->nama }}
-                                                                                    </h6>
-
+                                                            <button class="accordion-button collapsed" type="button"
+                                                                data-bs-toggle="collapse"
+                                                                data-bs-target="#contentchildSubUnsur{{ $sub_unsur->id }}"
+                                                                aria-expanded="false"
+                                                                aria-controls="contentchildSubUnsur{{ $sub_unsur->id }}">
+                                                            </button>
+                                                        </div>
+                                                        <div id="contentchildSubUnsur{{ $sub_unsur->id }}"
+                                                            class="accordion-collapse collapse"
+                                                            aria-labelledby="subUnsur{{ $sub_unsur->id }}" style="">
+                                                            <div class="accordion-body">
+                                                                <ul class="ms-0">
+                                                                    @foreach ($sub_unsur->butirKegiatans as $butir_kegiatan)
+                                                                        <li class="accordian-list">
+                                                                            <div
+                                                                                class="d-flex align-items-center justify-content-between">
+                                                                                <h6 class="accordian-title">
+                                                                                    {{ $butir_kegiatan->nama }}
+                                                                                </h6>
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <button
+                                                                                        class="btn btn-purple-reverse ms-3 px-3"
+                                                                                        data-bs-toggle="modal"
+                                                                                        data-bs-target="#tindakLanjut"
+                                                                                        type="button">tindak
+                                                                                        lanjut</button>
                                                                                 </div>
-                                                                            </li>
-                                                                        @endforeach
-                                                                    </ul>
-                                                                </div>
+                                                                            </div>
+                                                                        </li>
+                                                                    @endforeach
+                                                                </ul>
                                                             </div>
                                                         </div>
-                                                    @endforeach
-                                                </div>
+                                                    </div>
+                                                @endforeach
                                             </div>
                                         </div>
                                     </div>
-                                @endforeach
-                            </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+
+    <div class="modal fade" id="tindakLanjut" tabindex="-1" role="dialog" aria-labelledby="tindakLanjutTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>Laporan Kegiatan Jabatan</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex flex-column">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>File Dokumen</label>
+                                    <input type="file" name="doc_kepegawaian_tmp" data-max-file-size="1MB"
+                                        data-max-files="3" required />
+                                    <input type="file" name="doc_kepegawaian" style="display: none;"
+                                        data-max-file-size="1MB" data-max-files="3" required />
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>File Gambar</label>
+                                    <input type="file" name="doc_kepegawaian_tmp" data-max-file-size="1MB"
+                                        data-max-files="3" required />
+                                    <input type="file" name="doc_kepegawaian" style="display: none;"
+                                        data-max-file-size="1MB" data-max-files="3" required />
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="">Detail Kegiatan</label>
+                                    <textarea name="" id="" class="form-control"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <button class="btn btn-danger px-5" data-bs-dismiss="modal">Batal</button>
+                            <a class="btn btn-blue px-5" href="{{ route('laporan-kegiatan') }}">Kirim</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="tambahDataModal" tabindex="-1" role="dialog" aria-labelledby="tambahDataModalTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tambahDataModalTitle">
+                        Tambah Unsur Kegiatan
+                    </h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <i data-feather="x"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" enctype="multipart/form-data" class="container-unsur">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Pelaksana Jabatan</label>
+                                    <select class="choices form-select" name="role_id">
+                                        <option disabled selected>Pilih Jabatan</option>
+                                        @foreach ($roles as $role)
+                                            <option value="{{ $role->id }}">{{ $role->display_name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <label>Unsur Kegiatan</label>
+                                    <input class="form-control" type="text" name="unsur">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-blue btn-sm ps-3 py-2 tambah-sub-unsur"
+                                    style="transform: translateY(7px)"><i class="fa-solid fa-plus me-2"></i> Sub
+                                    Unsur</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                        <span>Batal</span>
+                    </button>
+                    <button class="btn btn-green ml-1 simpan-kegiatan">
+                        <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
+                            style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
+                        <span>Simpan</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="importExcelModal" tabindex="-1" role="dialog" aria-labelledby="importExcelModalTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="importExcelModalTitle">
+                        Import Kegiatan
+                    </h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <i data-feather="x"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="form-import" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label>File (.xlsx)</label>
+                            <input type="file" name="file_import_tmp" required />
+                            <input type="file" name="file_import" style="display: none;" required />
+                        </div>
+                        <div class="form-group d-flex flex-column align-items-start">
+                            <label>Download Template</label>
+                            <button class="btn btn-blue btn-sm px-3"><i
+                                    class="fa-solid fa-download me-2"></i>Download</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                        <span>Batal</span>
+                    </button>
+                    <button class="btn btn-green ml-1 btn-simpan-file-import">
+                        <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
+                            style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
+                        <span>Simpan</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
+
 @section('css')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
-    <style>
-        li::marker {
-            font-size: 25px !important;
-            color: black;
-        }
-
-        h5 {
-            font-family: 'Roboto';
-            font-weight: 600;
-        }
-
-        h6 {
-            font-family: 'Roboto';
-            color: #809FB8 !important;
-        }
-
-        a.btn-laporan {
-            background-color: #219653;
-            border: none;
-            border-radius: 50px;
-            padding: .5rem 1.7rem;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        a.btn-laporan p {
-            margin: 0 0 0 .6rem;
-            font-family: 'Roboto';
-            font-weight: 600;
-        }
-
-        .badge-collapse {
-            background-color: #1AD598;
-            padding: 0 6px;
-            border-radius: 8px;
-            color: #F2F2F2;
-        }
-
-        @media screen and (max-width: 750px) {
-            .wrapper-head {
-                flex-direction: column-reverse;
-            }
-        }
-    </style>
     <link rel="stylesheet" href="{{ asset('assets/extensions/toastify-js/src/toastify.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/extensions/filepond/filepond.css') }}">
     <link rel="stylesheet"
@@ -215,7 +307,6 @@
     <link rel="stylesheet" href="{{ asset('assets/css/pages/kemendagri.css') }}">
 @endsection
 @section('js')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
     <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/extensions/choices.js/public/assets/scripts/choices.js') }}"></script>
     <script src="{{ asset('assets/js/pages/form-element-select.js') }}"></script>

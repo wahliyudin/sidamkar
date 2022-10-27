@@ -10,9 +10,9 @@ use App\Models\Role;
 use App\Models\Unsur;
 use Maatwebsite\Excel\Facades\Excel;
 
-class TabelKegiatanController extends Controller
+class LaporanJabatanController extends Controller
 {
-    public function index()
+   public function index()
     {
         $roles = Role::query()->get(['id', 'display_name']);
         $kegiatan = JenisKegiatan::query()
@@ -21,7 +21,7 @@ class TabelKegiatanController extends Controller
                 'unsurs.subUnsurs.butirKegiatans',
             ])
             ->findOrFail(1);
-        return view('aparatur.tabel-kegiatan', compact('roles', 'kegiatan'));
+        return view('aparatur.laporan-jabatan', compact('roles', 'kegiatan'));
     }
 
     public function store(Request $request)

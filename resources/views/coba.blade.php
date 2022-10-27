@@ -8,7 +8,7 @@
         <button class="btn btn-primary">Submit</button>
     </form> --}}
     {{-- <iframe src="{{ asset('storage/produk.pdf') }}" width="100%" height="500px"></iframe> --}}
-    <form action="{{ route('kemendagri.cms.kegiatan-jabatan.import') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('kemendagri.cms.kegiatan-profesi.import') }}" method="post" enctype="multipart/form-data">
         @csrf
         <input type="file" name="file_import" id="">
         <button type="submit" class="btn btn-green">Sweet</button>
