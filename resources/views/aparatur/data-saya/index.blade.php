@@ -48,8 +48,8 @@
                                 <img src="{{ asset('assets/images/faces/3.jpg') }}" alt="Avatar" class="image"
                                     style="width:100%; border-radius: 50%;">
                                 <span class="middle">
-                                    <div class="text" style="cursor: pointer;"><i
-                                            class="fa-solid fa-circle-plus fa-2xl"></i>
+                                    <div class="text" style="cursor: pointer;">
+                                        <button class="fa-solid fa-circle-plus fa-2xl"></button>
                                     </div>
                                 </span>
                             </div>
@@ -107,7 +107,7 @@
                             <div class="form-group">
                                 <label for="basicInput">Pendidikan Terakhir</label>
                                 <select class="choices form-select" name="Pen_terakhir">
-                                    <option disabled selected>- Pilih Pendidikan Terakhir -</option>
+                                    {{-- <option disabled selected>- Pilih Pendidikan Terakhir -</option> --}}
                                     <option @selected($user->userAparatur?->pendidikan_terakhir == '1') value="1">SMA/SMK/Sederajat</option>
                                     <option @selected($user->userAparatur?->pendidikan_terakhir == '2') value="2">D3</option>
                                     <option @selected($user->userAparatur?->pendidikan_terakhir == '3') value="3">S1/D4</option>
