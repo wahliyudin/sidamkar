@@ -73,7 +73,7 @@ class KegiatanJabatanController extends Controller
 
     public function downloadTemplate()
     {
-        return response()->download(public_path('assets/import.xlsx'), 'template.xlsx');
+        return response()->download(public_path('assets/import-pokok.xlsx'), 'template.xlsx');
     }
 
     public function destroy($id)

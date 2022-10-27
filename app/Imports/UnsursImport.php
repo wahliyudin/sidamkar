@@ -39,7 +39,7 @@ class UnsursImport implements ToModel, WithHeadingRow
 
     public function createUnsur(array $row)
     {
-        $role = Role::query()->where('name', 'damkar_'.str($row['pelaksana'])->lower())->first();
+        $role = Role::query()->where('name', 'like', '%'.str($row['pelaksana'])->lower()->snake())->first();
         return Unsur::query()->create([
             'role_id' => $role->id,
             'jenis_kegiatan_id' => 1,
