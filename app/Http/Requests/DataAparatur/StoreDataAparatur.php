@@ -33,25 +33,16 @@ class StoreDataAparatur extends FormRequest
             'nama' => [
                 'required', 'string', 'max:255',
             ],
-            'pangkat_golongan_tmt' => [
-                'required', 'string', 'max:255',
-            ],
             'nip' => [
                 'required', 'integer', 'max:255',
             ],
-            'provinsi_id' => [
-                'required', 'string', 'max:255',
-            ],
-            'kab_kota_id' => [
-                'required', 'string', 'max:255',
-            ],
-            'jenis_kelamin' => [
-                'required', 'string', 'max:255',
-            ],
-            'pendidikan_terakhir' => [
+            'pangkat_golongan_tmt' => [
                 'required', 'string', 'max:255',
             ],
             'nomor_karpeg' => [
+                'required', 'string', 'max:255',
+            ],
+            'pendidikan_terakhir' => [
                 'required', 'string', 'max:255',
             ],
             'tempat_lahir' => [
@@ -59,6 +50,15 @@ class StoreDataAparatur extends FormRequest
             ],
             'tanggal_lahir' => [
                 'required', 'dateTime', 'max:255',
+            ],
+            'jenis_kelamin' => [
+                'required', 'string', 'max:255',
+            ],
+            'kab_kota_id' => [
+                'required', 'string', 'max:255',
+            ],
+            'provinsi_id' => [
+                'required', 'string', 'max:255',
             ],
         ];
     }

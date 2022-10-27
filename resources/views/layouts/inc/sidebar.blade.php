@@ -4,7 +4,7 @@
             <div class="d-flex justify-content-center align-items-center">
                 <div class="logo">
                     <a href="{{ route('home') }}">
-                        <img style="width: 5rem; height: 6rem;" src="{{ asset('assets/images/template/logo.png') }}"
+                        <img style="width: 7rem; height: 8rem;" src="{{ asset('assets/images/template/LogoDamkar.png') }}"
                             alt="Logo" srcset="">
                     </a>
                 </div>
@@ -129,7 +129,7 @@
                     <li class="sidebar-item {{ request()->routeIs('kemendagri.overview.index') ? 'active' : '' }}">
                         <a href="{{ route('kemendagri.overview.index') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
-                                <i class="bi bi-grid-fill"></i>
+                                <i class="fa-solid fa-table-columns"></i>
                             </div>
                             <span>Overview</span>
                         </a>
@@ -138,7 +138,7 @@
                         class="sidebar-item has-sub {{ request()->is('kemendagri/verifikasi-data/admin-kabkota*') || request()->is('kemendagri/verifikasi-data/admin-provinsi*') ? 'active' : '' }}">
                         <a href="javascript(0)" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
-                                <i class="bi bi-grid-fill"></i>
+                                <i class="fa-solid fa-square-poll-vertical"></i>
                             </div>
                             <span>Verifikasi Data</span>
                         </a>
@@ -157,7 +157,7 @@
                     <li class="sidebar-item {{ request()->is('kemendagri/pejabat-struktural*') ? 'active' : '' }}">
                         <a href="{{ route('kemendagri.pejabat-struktural.index') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
-                                <i class="bi bi-grid-fill"></i>
+                                <i class="fa-solid fa-user-tie"></i>
                             </div>
                             <span>Pejabat Struktural</span>
                         </a>
@@ -166,7 +166,7 @@
                         class="sidebar-item {{ request()->routeIs('kemendagri.data-prov-kab-kota.index') ? 'active' : '' }}">
                         <a href="{{ route('kemendagri.data-prov-kab-kota.index') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
-                                <i class="bi bi-grid-fill"></i>
+                                <i class="fa-solid fa-table"></i>
                             </div>
                             <span>Data Prov/Kab/Kota</span>
                         </a>
@@ -175,7 +175,7 @@
                         class="sidebar-item has-sub {{ request()->is('kemendagri/data-admin-daerah/admin-kabkota*') || request()->is('kemendagri/data-admin-daerah/admin-provinsi*') ? 'active' : '' }}">
                         <a href="javascript(0)" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
-                                <i class="bi bi-grid-fill"></i>
+                                <i class="fa-solid fa-user-group"></i>
                             </div>
                             <span>Data Admin Daerah</span>
                         </a>
@@ -196,7 +196,7 @@
                     <li class="sidebar-item">
                         <a href="" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
-                                <i class="bi bi-grid-fill"></i>
+                                <i class="fa-regular fa-comments"></i>
                             </div>
                             <span>Chatbox</span>
                         </a>
@@ -204,7 +204,7 @@
                     <li class="sidebar-item has-sub">
                         <a href="javascript(0)" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
-                                <i class="bi bi-grid-fill"></i>
+                                <i class="fa-solid fa-laptop"></i>
                             </div>
                             <span>CMS</span>
                         </a>

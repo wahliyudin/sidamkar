@@ -60,35 +60,9 @@
                                 <input type="text" class="form-control" name="nama" value="{{ $user->userAparatur?->nama }}">
                             </div>
                             <div class="form-group">
-                                
-                                <label>Tempat Tanggal Lahir</label>
-                              <div class="d-flex flex-row justify-content-between">
-                                  <input type="text" class="form-control me-1" name="tempat_lahir"
-                                    value="{{ $user->userAparatur?->tempat_lahir }}"
-                                    placeholder="" style="width: 50%">
-                                  <input type="date" class="form-control" name="tanggal_lahir"
-                                    value="{{ $user->userAparatur?->tanggal_lahir }}"
-                                    placeholder="" style="width: 50%">
-                              </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="basicInput">Kabupaten / Kota</label>
-                                <select class="choices form-select" name="kab_kota_id">
-                                     @foreach ($kab_kota as $kabkota)
-                                    <option value="{{ $kabkota->id }}" {{ $user->userAparatur->kab_kota_id == $kabkota->id ? "selected" : ""  }} >{{ $kabkota->nama }}</option>
-                                     @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="basicInput">NIP</label>
-                                <input type="number" class="form-control" name="nip" value="{{ $user->userAparatur?->nip }}">
-                            </div>
-                            <div class="form-group">
                                 <label for="basicInput">Jabatan</label>
                                 <input type="text" name="jabatan" class="form-control" placeholder="" value="{{ Auth::user()->roles()->first()->display_name }}">
                             </div>
-                        </div>
-                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="basicInput">Jenis Kelamin</label>
                                 <select class="choices form-select" name="jenis_kelamin">
@@ -98,10 +72,35 @@
                                 </select>
                             </div>
                             <div class="form-group">
+                                <label for="basicInput">NIP</label>
+                                <input type="number" class="form-control" name="nip" value="{{ $user->userAparatur?->nip }}">
+                            </div>
+                            <div class="form-group">
+                              <label>Tempat Tanggal Lahir</label>
+                              <div class="d-flex flex-row justify-content-between">
+                                  <input type="text" class="form-control me-1" name="tempat_lahir"
+                                    value="{{ $user->userAparatur?->tempat_lahir }}"
+                                    placeholder="" style="width: 50%">
+                                  <input type="date" class="form-control" name="tanggal_lahir"
+                                    value="{{ $user->userAparatur?->tanggal_lahir }}"
+                                    placeholder="" style="width: 50%">
+                              </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
                                 <label for="basicInput">Privinsi</label>
                                 <select class="choices form-select" name="provinsi_id">
                                      @foreach ($provinsis as $prov)
                                     <option value="{{ $prov->id }}" {{ $user->userAparatur->provinsi_id == $prov->id ? "selected" : ""  }}>{{ $prov->nama }}</option>
+                                     @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="basicInput">Kabupaten / Kota</label>
+                                <select class="choices form-select" name="kab_kota_id">
+                                     @foreach ($kab_kota as $kabkota)
+                                    <option value="{{ $kabkota->id }}" {{ $user->userAparatur->kab_kota_id == $kabkota->id ? "selected" : ""  }} >{{ $kabkota->nama }}</option>
                                      @endforeach
                                 </select>
                             </div>
@@ -119,7 +118,6 @@
                                 <label for="basicInput">Nomor Karpeg</label>
                                 <input type="number" name="nomor_karpeg" class="form-control" value="{{ $user->userAparatur?->nomor_karpeg }}">
                             </div>
-                            
                             <div class="form-group">
                                 <label for="basicInput">Pangkat / Golongan / TMT</label>
                                 <select class="choices form-select" name="pangkat_golongan" name="pangkat">
