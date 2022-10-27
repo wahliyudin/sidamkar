@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('unsurs', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('role_id')->nullable();
+            $table->unsignedBigInteger('role_id')->nullable()->default(null);
             $table->unsignedBigInteger('jenis_kegiatan_id');
             $table->string('nama')->fulltext();
             $table->timestamps();

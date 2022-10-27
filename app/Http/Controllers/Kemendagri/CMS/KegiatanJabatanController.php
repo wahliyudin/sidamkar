@@ -48,10 +48,7 @@ class KegiatanJabatanController extends Controller
                 'message' => 'Berhasil ditambahkan'
             ]);
         } catch (\Throwable $th) {
-            return response()->json([
-                'status' => $th->getCode(),
-                'message' => $th->getMessage()
-            ]);
+            throw $th;
         }
     }
 
@@ -64,10 +61,7 @@ class KegiatanJabatanController extends Controller
                 'message' => 'Berhasil diimport'
             ]);
         } catch (\Throwable $th) {
-            return response()->json([
-                'status' => $th->getCode(),
-                'message' => 'Ada Kesalahan Pada Sistem'
-            ]);
+            throw $th;
         }
     }
 
@@ -85,10 +79,7 @@ class KegiatanJabatanController extends Controller
                 'message' => 'Berhasil dihapus'
             ]);
         } catch (\Throwable $th) {
-            return response()->json([
-                'status' => $th->getCode(),
-                'message' => 'Ada Kesalahan Pada Sistem'
-            ]);
+            throw $th;
         }
     }
 }
