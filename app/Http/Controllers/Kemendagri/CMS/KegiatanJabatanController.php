@@ -54,7 +54,7 @@ class KegiatanJabatanController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(KegiatanJabatanRequest $request, $id)
     {
         Unsur::query()->with('subUnsurs')->findOrFail($id)->delete();
         $this->storeKegiatan($request);
