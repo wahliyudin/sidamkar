@@ -210,6 +210,8 @@ $(function () {
                         backgroundColor: "#18b882",
                     }).showToast()
                     location.reload();
+                } else {
+                    swal('Error!', response.message, "error");
                 }
             },
             error: ajaxError
@@ -414,7 +416,7 @@ var ajaxError = function (jqXHR, xhr, textStatus, errorThrow, exception) {
         $('.simpan-kegiatan span').show();
         $('.simpan-kegiatan .spin').hide();
     } else {
-        swal('Error!', 'Uncaught Error.\n' + jqXHR.responseText, "error");
+        swal('Warning!', JSON.parse(jqXHR.responseText).message, "warning");
         $('.simpan-kegiatan span').show();
         $('.simpan-kegiatan .spin').hide();
     }
