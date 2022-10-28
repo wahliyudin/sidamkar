@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Kemendagri\CMS;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\KegiatanJabatanRequest;
 use App\Imports\UnsursImport;
 use App\Models\JenisKegiatan;
 use App\Models\Role;
@@ -24,7 +25,7 @@ class KegiatanJabatanController extends Controller
         return view('kemendagri.cms.kegiatan-jabatan.index', compact('roles', 'kegiatan'));
     }
 
-    public function store(Request $request)
+    public function store(KegiatanJabatanRequest $request)
     {
         try {
             $this->storeKegiatan($request);
@@ -33,7 +34,10 @@ class KegiatanJabatanController extends Controller
                 'message' => 'Berhasil ditambahkan'
             ]);
         } catch (\Throwable $th) {
-            throw $th;
+            return response()->json([
+                'status' => $th->getCode(),
+                'message' => $th->getMessage()
+            ]);
         }
     }
 
