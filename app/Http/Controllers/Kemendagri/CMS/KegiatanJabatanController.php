@@ -15,7 +15,7 @@ class KegiatanJabatanController extends Controller
 {
     public function index()
     {
-        $roles = Role::query()->get(['id', 'display_name']);
+        $roles = Role::query()->whereIn('name', getAllRoleFungsional())->get(['id', 'display_name']);
         $kegiatan = JenisKegiatan::query()
             ->with([
                 'unsurs.role',
