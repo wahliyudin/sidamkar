@@ -512,6 +512,7 @@ $(function () {
     $("#tambahDataModal").on('hide.bs.modal', function () {
         $('input[name="unsur"]').val('');
         $('.container-sub-unsur').remove();
+        $('select[name="role_id"]').prop('selectedIndex', 0);
     });
 });
 
