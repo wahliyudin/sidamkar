@@ -545,8 +545,12 @@ var ajaxError = function (jqXHR, xhr, textStatus, errorThrow, exception) {
         swal('Error!', 'Ajax request aborted.', "error");
         $('.simpan-kegiatan span').show();
         $('.simpan-kegiatan .spin').hide();
+    } else if (jqXHR.status == 422) {
+        swal('Warning!', JSON.parse(jqXHR.responseText).message, "warning");
+        $('.simpan-kegiatan span').show();
+        $('.simpan-kegiatan .spin').hide();
     } else {
-        swal('Error!', 'Uncaught Error.\n' + jqXHR.responseText, "error");
+        swal('Error!', jqXHR.responseText, "error");
         $('.simpan-kegiatan span').show();
         $('.simpan-kegiatan .spin').hide();
     }

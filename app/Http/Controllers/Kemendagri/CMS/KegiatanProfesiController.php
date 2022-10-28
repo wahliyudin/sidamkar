@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Kemendagri\CMS;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\KegiatanProfesiRequest;
 use App\Imports\UnsurPenunjangImport;
 use App\Imports\UnsursImport;
 use App\Models\JenisKegiatan;
@@ -25,7 +26,7 @@ class KegiatanProfesiController extends Controller
         return view('kemendagri.cms.kegiatan-profesi.index', compact('roles', 'kegiatan'));
     }
 
-    public function store(Request $request)
+    public function store(KegiatanProfesiRequest $request)
     {
         try {
             $this->storeKegiatan($request);
@@ -51,7 +52,7 @@ class KegiatanProfesiController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(KegiatanProfesiRequest $request, $id)
     {
         Unsur::query()->with('subUnsurs')->findOrFail($id)->delete();
         $this->storeKegiatan($request);
