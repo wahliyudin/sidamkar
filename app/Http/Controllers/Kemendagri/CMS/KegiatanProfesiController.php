@@ -28,41 +28,69 @@ class KegiatanProfesiController extends Controller
     public function store(Request $request)
     {
         try {
-            $unsur = Unsur::query()->create([
-                'role_id' => $request->role_id ?? null,
-                'jenis_kegiatan_id' => 2,
-                'nama' => $request->unsur
-            ]);
-            for ($i = 0; $i < count($request->sub_unsurs); $i++) {
-                $sub_unsur = $unsur->subUnsurs()->create([
-                    'nama' => $request->sub_unsurs[$i]['name']
-                ]);
-                for ($j = 0; $j < count($request->sub_unsurs[$i]['butir_kegiatans']); $j++) {
-                    if (isset($request->sub_unsurs[$i]['butir_kegiatans'][$j]['angka_kredit'])) {
-                        $sub_unsur->butirKegiatans()->create([
-                            'nama' => $request->sub_unsurs[$i]['butir_kegiatans'][$j]['name'],
-                            'score' => $request->sub_unsurs[$i]['butir_kegiatans'][$j]['angka_kredit']
-                        ]);
-                    } else {
-                        $butir_kegiatan = $sub_unsur->butirKegiatans()->create([
-                            'nama' => $request->sub_unsurs[$i]['butir_kegiatans'][$j]['name']
-                        ]);
-                        for ($k=0; $k < count($request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans']); $k++) {
-                            $butir_kegiatan->subButirKegiatans()->create([
-                                'nama' => $request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'][$k]['name'],
-                                'score' => $request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'][$k]['angka_kredit']
-                            ]);
-                        }
-                    }
-
-                }
-            }
+            $this->storeKegiatan($request);
             return response()->json([
                 'status' => 200,
                 'message' => 'Berhasil ditambahkan'
             ]);
         } catch (\Throwable $th) {
             throw $th;
+        }
+    }
+
+    public function edit($id)
+    {
+        $unsur = Unsur::query()->with([
+            'jenisKegiatan',
+            'role',
+            'subUnsurs.butirKegiatans.subButirKegiatans'
+        ])->findOrFail($id);
+        return response()->json([
+            'status' => 200,
+            'data' => $unsur
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        Unsur::query()->with('subUnsurs')->findOrFail($id)->delete();
+        $this->storeKegiatan($request);
+        return response()->json([
+            'status' => 200,
+            'message' => 'Berhasil diubah'
+        ]);
+    }
+
+    public function storeKegiatan($request)
+    {
+        $unsur = Unsur::query()->create([
+            'role_id' => $request->role_id ?? null,
+            'jenis_kegiatan_id' => 2,
+            'nama' => $request->unsur
+        ]);
+        for ($i = 0; $i < count($request->sub_unsurs); $i++) {
+            $sub_unsur = $unsur->subUnsurs()->create([
+                'nama' => $request->sub_unsurs[$i]['name']
+            ]);
+            for ($j = 0; $j < count($request->sub_unsurs[$i]['butir_kegiatans']); $j++) {
+                if (!isset($request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'])) {
+                    $sub_unsur->butirKegiatans()->create([
+                        'nama' => $request->sub_unsurs[$i]['butir_kegiatans'][$j]['name'],
+                        'score' => $request->sub_unsurs[$i]['butir_kegiatans'][$j]['angka_kredit']
+                    ]);
+                } else {
+                    $butir_kegiatan = $sub_unsur->butirKegiatans()->create([
+                        'nama' => $request->sub_unsurs[$i]['butir_kegiatans'][$j]['name']
+                    ]);
+                    for ($k = 0; $k < count($request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans']); $k++) {
+                        $butir_kegiatan->subButirKegiatans()->create([
+                            'nama' => $request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'][$k]['name'],
+                            'score' =>
+                            $request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'][$k]['angka_kredit']
+                        ]);
+                    }
+                }
+            }
         }
     }
 

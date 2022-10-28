@@ -27,28 +27,56 @@ class KegiatanJabatanController extends Controller
     public function store(Request $request)
     {
         try {
-            $unsur = Unsur::query()->create([
-                'role_id' => $request->role_id,
-                'jenis_kegiatan_id' => 1,
-                'nama' => $request->unsur
-            ]);
-            for ($i = 0; $i < count($request->sub_unsurs); $i++) {
-                $sub_unsur = $unsur->subUnsurs()->create([
-                    'nama' => $request->sub_unsurs[$i]['name']
-                ]);
-                for ($j = 0; $j < count($request->sub_unsurs[$i]['butir_kegiatans']); $j++) {
-                    $sub_unsur->butirKegiatans()->create([
-                        'nama' => $request->sub_unsurs[$i]['butir_kegiatans'][$j],
-                        'score' => $request->sub_unsurs[$i]['angka_kredits'][$j]
-                    ]);
-                }
-            }
+            $this->storeKegiatan($request);
             return response()->json([
                 'status' => 200,
                 'message' => 'Berhasil ditambahkan'
             ]);
         } catch (\Throwable $th) {
             throw $th;
+        }
+    }
+
+    public function edit($id)
+    {
+        $unsur = Unsur::query()->with([
+            'jenisKegiatan',
+            'role',
+            'subUnsurs.butirKegiatans'
+        ])->findOrFail($id);
+        return response()->json([
+            'status' => 200,
+            'data' => $unsur
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        Unsur::query()->with('subUnsurs')->findOrFail($id)->delete();
+        $this->storeKegiatan($request);
+        return response()->json([
+            'status' => 200,
+            'message' => 'Berhasil diubah'
+        ]);
+    }
+
+    public function storeKegiatan($request)
+    {
+        $unsur = Unsur::query()->create([
+            'role_id' => $request->role_id,
+            'jenis_kegiatan_id' => 1,
+            'nama' => $request->unsur
+        ]);
+        for ($i = 0; $i < count($request->sub_unsurs); $i++) {
+            $sub_unsur = $unsur->subUnsurs()->create([
+                'nama' => $request->sub_unsurs[$i]['name']
+            ]);
+            for ($j = 0; $j < count($request->sub_unsurs[$i]['butir_kegiatans']); $j++) {
+                $sub_unsur->butirKegiatans()->create([
+                    'nama' => $request->sub_unsurs[$i]['butir_kegiatans'][$j],
+                    'score' => $request->sub_unsurs[$i]['angka_kredits'][$j]
+                ]);
+            }
         }
     }
 
