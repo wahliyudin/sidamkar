@@ -35,6 +35,8 @@ use App\Http\Controllers\Kemendagri\VerifikasiData\AdminProvinsiController;
 use App\Http\Controllers\Provinsi\OverviewController as ProvinsiOverviewController;
 use App\Models\KabKota;
 use App\Models\Provinsi;
+use App\Models\Unsur;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
@@ -102,7 +104,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('atasan-langsung/overview', [AtasanLangsungOverviewController::class, 'index'])->name('atasan-langsung.overview.index');
         Route::get('atasan-langsung/pengajuan-kegiatan', [PengajuanKegiatanController::class, 'index'])->name('atasan-langsung.pengajuan-kegiatan.index');
         Route::get('atasan-langsung/show', [KegiatanPengajuanController::class, 'index'])->name('atasan-langsung.show');
-        Route::get('atasan-langsung/kegiatan-selesai',[KegiatanLangsungController::class, 'index'])->name('atasan-langsung.kegiatan-selesai');
+        Route::get('atasan-langsung/kegiatan-selesai', [KegiatanLangsungController::class, 'index'])->name('atasan-langsung.kegiatan-selesai');
     });
 
     Route::middleware(['role:provinsi'])->group(function () {

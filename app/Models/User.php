@@ -108,6 +108,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(UserProvKabKota::class);
     }
 
+    public function rencanas()
+    {
+        return $this->hasMany(Rencana::class);
+    }
+
     // public function roles()
     // {
     //     return $this->belongsToMany(Role::class);
