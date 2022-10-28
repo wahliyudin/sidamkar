@@ -298,9 +298,11 @@ $(function () {
             url: url('/kemendagri/cms/kegiatan-profesi/' + $(this).data('id') + '/edit'),
             success: function (response) {
                 $('#tambahDataModal .bg-spin').hide();
-                $('select[name="role_id"]')
-                    .val(response.data.role.id)
-                    .trigger('change');
+                if (response.data.role != null) {
+                    $('select[name="role_id"]')
+                        .val(response.data.role.id)
+                        .trigger('change');
+                }
                 $('input[name="unsur"]').val(response.data.nama);
                 response.data.sub_unsurs.forEach(subUnsur => {
                     $('.container-unsur').append(htmlSubUnsur(subUnsur));

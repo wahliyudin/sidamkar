@@ -9,8 +9,8 @@
                         <button class="btn btn-green-reverse" data-bs-toggle="modal" data-bs-target="#importExcelModal"><i
                                 class="fa-solid fa-cloud-arrow-up me-2"></i>Import
                             Excel</button>
-                        <button class="btn btn-blue-reverse ms-3 btn-tambah" data-bs-toggle="modal" data-bs-target="#tambahDataModal"><i
-                                class="fa-solid fa-file-circle-plus me-2"></i>Tambah
+                        <button class="btn btn-blue-reverse ms-3 btn-tambah" data-bs-toggle="modal"
+                            data-bs-target="#tambahDataModal"><i class="fa-solid fa-file-circle-plus me-2"></i>Tambah
                             Data</button>
                     </div>
                 </div>
@@ -161,7 +161,7 @@
                                 <div class="form-group">
                                     <label>Pelaksana Jabatan</label>
                                     <select class="form-select" name="role_id">
-                                        <option disabled selected>Pilih Jabatan</option>
+                                        <option disabled selected>Semua Jenjang</option>
                                         @foreach ($roles as $role)
                                             <option value="{{ $role->id }}">{{ $role->display_name }}</option>
                                         @endforeach

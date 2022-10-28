@@ -116,7 +116,7 @@
                                 <div class="form-group">
                                     <label>Pelaksana Jabatan</label>
                                     <select class="form-select" name="role_id">
-                                        <option disabled selected>Pilih Jabatan</option>
+                                        <option disabled selected>Semua Jenjang</option>
                                         @foreach ($roles as $role)
                                             <option value="{{ $role->id }}">{{ $role->display_name }}</option>
                                         @endforeach
