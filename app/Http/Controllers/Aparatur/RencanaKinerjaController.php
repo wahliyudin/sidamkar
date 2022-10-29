@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Aparatur;
 
 use App\Http\Controllers\Controller;
 use App\Models\JenisKegiatan;
+use App\Models\SubUnsur;
 use App\Models\Unsur;
 use App\Models\User;
 use Illuminate\Contracts\Database\Eloquent\Builder;
@@ -13,35 +14,36 @@ class RencanaKinerjaController extends Controller
 {
     public function index()
     {
-        $unsurs = JenisKegiatan::query()
-            ->with([
-                'unsurs.role',
-                'unsurs.subUnsurs' => function (Builder $subUnsur) {
-                    User::query()->with(['rencanas.rencanaSubUnsurs' => function (Builder $rencanaSubUnsur) use (&$subUnsur) {
-                        $subUnsur->with('butirKegiatans')->whereNotIn('id', $rencanaSubUnsur->pluck('sub_unsur_id')->toArray());
-                    }])->find(auth()->user()->id);
-                },
-            ])
-            ->findOrFail(1)->unsurs->map(function (Unsur $unsur) {
-                $unsur->isSubUnsur = count($unsur->subUnsurs) != 0;
-                return $unsur;
-            });
-        return view('aparatur.rencana-kinerja.index', compact('unsurs'));
+        $rencanas = User::query()
+            ->with(['rencanas.rencanaUnsurs'=>function($query){
+                $query->with(['unsur', 'rencanaSubUnsurs' => function($query){
+                    $query->with(['subUnsur', 'rencanaButirKegiatans.butirKegiatan']);
+                }]);
+            }])
+            ->find(auth()->user()->id);
+        // return $rencanas;
+        return view('aparatur.rencana-kinerja.index', compact('rencanas'));
     }
 
     public function store(Request $request)
     {
-        $rencana_sub_unsurs = [];
-        foreach ($request->sub_unsurs as $key => $value) {
-            array_push($rencana_sub_unsurs, [
-                'sub_unsur_id' => $value
-            ]);
-        }
         $user = User::query()->findOrFail(auth()->user()->id);
         $rencana = $user->rencanas()->create([
-            'nama' => $request->rencana_kinerja
+            'nama' => $request->rencana
         ]);
-        $rencana->rencanaSubUnsurs()->createMany($rencana_sub_unsurs);
-        return back();
+        for ($i = 0; $i < count($request->sub_unsurs); $i++) {
+            $rencanaUnsur = $rencana->rencanaUnsurs()->create([
+                'unsur_id' => $request->sub_unsurs[$i]['unsur_id']
+            ]);
+            $rencanaSubUnsur = $rencanaUnsur->rencanaSubUnsurs()->create([
+                'sub_unsur_id' => $request->sub_unsurs[$i]['sub_unsur_id']
+            ]);
+            $butirKegiatans = SubUnsur::query()->with('butirKegiatans')->find($request->sub_unsurs[$i]['sub_unsur_id'])->butirKegiatans->pluck('id')->toArray();
+            $rencanaSubUnsur->rencanaButirKegiatans()->createMany($butirKegiatans);
+        }
+        return response()->json([
+            'status' => 200,
+            'message' => "Berhasil"
+        ]);
     }
 }

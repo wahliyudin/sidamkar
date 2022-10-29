@@ -13,4 +13,14 @@ class RencanaUnsur extends Model
         'rencana_id',
         'unsur_id'
     ];
+
+    public function unsur()
+    {
+        return $this->belongsTo(Unsur::class);
+    }
+
+    public function rencanaSubUnsurs()
+    {
+        return $this->hasMany(RencanaSubUnsur::class);
+    }
 }

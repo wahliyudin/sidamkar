@@ -73,12 +73,11 @@
                     </div>
                 </div>
                 <div class="card-body px-2">
-                    <form action="{{ route('rencana-kinerja.store') }}" method="post">
-                        @csrf
+                    <form method="post">
                         <div class="row">
                             <div class="form-group col-md-4">
                                 <label>Rencana Kinerja</label>
-                                <input class="form-control" type="text" name="rencana_kinerja">
+                                <input class="form-control" type="text" name="rencana">
                             </div>
                         </div>
                         <div class="card-body accordion-container">
@@ -113,8 +112,9 @@
                                                                         <input type="checkbox"
                                                                             style="margin-top: 0 !important;"
                                                                             class="form-check-input"
-                                                                            value="{{ $unsur->id . '.' . $sub_unsur->id }}"
-                                                                            name="sub_unsurs[]" id="">
+                                                                            data-unsurid="{{ $unsur->id }}"
+                                                                            value="{{ $sub_unsur->id }}" name="sub_unsurs[]"
+                                                                            id="">
                                                                         <h6 class="accordian-title ms-1"
                                                                             style="margin-bottom: 0 !important; user-select: none;">
                                                                             {{ $sub_unsur->nama }}
@@ -161,7 +161,7 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <button type="submit" class="btn btn-green">Simpan</button>
+                            <button type="button" class="btn btn-green simpan-rencana">Simpan</button>
                         </div>
                     </form>
                 </div>
@@ -192,4 +192,36 @@
     </script>
     <script src="{{ asset('assets/extensions/filepond/filepond.jquery.js') }}"></script>
     <script src="{{ asset('assets/js/extensions/sweetalert2.all.min.js') }}"></script>
+    <script>
+        $('.simpan-rencana').click(function(e) {
+            e.preventDefault();
+
+            rencana = $('input[name="rencana"]').val();
+            subUnsurs = $.map($('input[name="sub_unsurs[]"]'), function(elementOrValue, indexOrKey) {
+                if ($(elementOrValue).is(':checked')) {
+                    return {
+                        unsur_id: $(elementOrValue).data('unsurid'),
+                        sub_unsur_id: $(elementOrValue).val()
+                    };
+                }
+            });
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                type: "POST",
+                url: "{{ route('rencana-kinerja.store') }}",
+                data: {
+                    rencana: rencana,
+                    sub_unsurs: subUnsurs
+                },
+                dataType: "json",
+                success: function(response) {
+                    location.reload();
+                }
+            });
+        });
+    </script>
 @endsection

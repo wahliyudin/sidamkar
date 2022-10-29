@@ -10,14 +10,14 @@ class RencanaButirKegiatan extends Model
     use HasFactory;
 
     protected $fillable = [
-        'rencana_unsur_id',
+        'rencana_sub_unsur_id',
         'butir_kegiatan_id',
         'score'
     ];
 
-    public function rencanaUnsur()
+    public function rencanaSubUnsur()
     {
-        return $this->belongsTo(RencanaUnsur::class);
+        return $this->belongsTo(RencanaSubUnsur::class);
     }
 
     public function butirKegiatan()

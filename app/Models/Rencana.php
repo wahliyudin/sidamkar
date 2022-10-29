@@ -19,8 +19,8 @@ class Rencana extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function rencanaSubUnsurs()
+    public function rencanaUnsurs()
     {
-        return $this->hasMany(RencanaSubUnsur::class);
+        return $this->hasMany(RencanaUnsur::class);
     }
 }
