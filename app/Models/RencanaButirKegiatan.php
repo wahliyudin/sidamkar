@@ -11,8 +11,7 @@ class RencanaButirKegiatan extends Model
 
     protected $fillable = [
         'rencana_sub_unsur_id',
-        'butir_kegiatan_id',
-        'score'
+        'butir_kegiatan_id'
     ];
 
     public function rencanaSubUnsur()

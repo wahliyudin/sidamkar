@@ -61,92 +61,108 @@
             <div class="card">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-md-6">
-                            <h3 class="mt-4">Kegiatan Jabatan</h3>
-                            <input type="date">
+                        <h3>Kegiatan Jabatan</h3>
+                    </div>
+                    <hr>
+                    <div class="row align-items-center justify-content-between">
+                        <div class="form-group col-md-2">
+                            <label>Tanggal</label>
+                            <input type="date" class="form-control">
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Search</label>
-                                <input type="text" placeholder="Search..." class="form-control">
-                            </div>
+                        <div class="form-group col-md-6">
+                            <label>Search</label>
+                            <input type="text" placeholder="Search..." class="form-control">
                         </div>
                     </div>
                 </div>
-                <div class="card-body px-0">
-                    <div class="card-body accordion-container">
-                        <div class="accordion" id="accordion-parent">
-                            @foreach ($kegiatan->unsurs as $unsur)
-                                <div class="accordion-item">
-                                    <div class="d-flex justify-content-between accordion-header py-3 px-2"
-                                        id="unsur{{ $unsur->id }}">
-                                        <div class="d-flex align-items-center justify-content-between w-100"
-                                            style="color: #000000;">
-                                            <p class="accordion-title">
-                                                [ Pelaksana: {{ $unsur->role->display_name }} ] {{ $unsur->nama }}
-                                            </p>
 
+                <div class="card-body px-0">
+                    @foreach ($rencanas as $rencana)
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <input class="form-control" type="text" value="{{ $rencana->nama }}"
+                                    name="rencana_kinerja">
+                            </div>
+                        </div>
+                        <div class="card-body accordion-container">
+                            <div class="accordion" id="accordion-parent">
+                                @foreach ($rencana->rencanaUnsurs as $rencanaUnsur)
+                                    <div class="accordion-item">
+                                        <div class="d-flex justify-content-between accordion-header py-3 px-2"
+                                            id="unsur{{ $rencanaUnsur->id . $rencanaUnsur->unsur->id }}">
+                                            <div class="d-flex align-items-center justify-content-between w-100"
+                                                style="color: #000000;">
+                                                <p class="accordion-title">
+                                                    {{ $rencanaUnsur->unsur->nama }}
+                                                </p>
+                                            </div>
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse"
+                                                data-bs-target="#contentUnsur{{ $rencanaUnsur->id . $rencanaUnsur->unsur->id }}"
+                                                aria-expanded="false"
+                                                aria-controls="contentUnsur{{ $rencanaUnsur->id . $rencanaUnsur->unsur->id }}">
+                                            </button>
                                         </div>
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#contentUnsur{{ $unsur->id }}" aria-expanded="false"
-                                            aria-controls="contentUnsur{{ $unsur->id }}">
-                                        </button>
-                                    </div>
-                                    <div id="contentUnsur{{ $unsur->id }}" class="accordion-collapse collapse"
-                                        aria-labelledby="unsur{{ $unsur->id }}" style="">
-                                        <div class="accordion-body">
-                                            <div class="accordion" id="accordion-child">
-                                                @foreach ($unsur->subUnsurs as $sub_unsur)
-                                                    <div class="accordion-item">
-                                                        <div class="d-flex justify-content-between accordion-header py-1 px-2"
-                                                            id="subUnsur{{ $sub_unsur->id }}">
-                                                            <div class="d-flex align-items-center" style="color: #000000;">
-                                                                <h6 class="accordian-title">
-                                                                    {{ $sub_unsur->nama }}
-                                                                </h6>
+                                        <div id="contentUnsur{{ $rencanaUnsur->id . $rencanaUnsur->unsur->id }}"
+                                            class="accordion-collapse collapse"
+                                            aria-labelledby="unsur{{ $rencanaUnsur->id . $rencanaUnsur->unsur->id }}"
+                                            style="">
+                                            <div class="accordion-body">
+                                                <div class="accordion" id="accordion-child">
+                                                    @foreach ($rencanaUnsur->rencanaSubUnsurs as $rencanaSubUnsur)
+                                                        <div class="accordion-item">
+                                                            <div class="d-flex justify-content-between accordion-header py-1 px-1"
+                                                                id="subUnsur{{ $rencanaSubUnsur->subUnsur->id }}">
+                                                                <div class="d-flex align-items-center"
+                                                                    style="color: #000000;">
+                                                                    <h6 class="accordian-title">
+                                                                        {{ $rencanaSubUnsur->subUnsur->nama }}
+                                                                    </h6>
+                                                                </div>
+                                                                <button class="accordion-button collapsed" type="button"
+                                                                    data-bs-toggle="collapse"
+                                                                    data-bs-target="#contentchildSubUnsur{{ $rencanaSubUnsur->subUnsur->id }}"
+                                                                    aria-expanded="false"
+                                                                    aria-controls="contentchildSubUnsur{{ $rencanaSubUnsur->subUnsur->id }}">
+                                                                </button>
                                                             </div>
-                                                            <button class="accordion-button collapsed" type="button"
-                                                                data-bs-toggle="collapse"
-                                                                data-bs-target="#contentchildSubUnsur{{ $sub_unsur->id }}"
-                                                                aria-expanded="false"
-                                                                aria-controls="contentchildSubUnsur{{ $sub_unsur->id }}">
-                                                            </button>
-                                                        </div>
-                                                        <div id="contentchildSubUnsur{{ $sub_unsur->id }}"
-                                                            class="accordion-collapse collapse"
-                                                            aria-labelledby="subUnsur{{ $sub_unsur->id }}" style="">
-                                                            <div class="accordion-body">
-                                                                <ul class="ms-0">
-                                                                    @foreach ($sub_unsur->butirKegiatans as $butir_kegiatan)
-                                                                        <li class="accordian-list">
-                                                                            <div
-                                                                                class="d-flex align-items-center justify-content-between">
-                                                                                <h6 class="accordian-title">
-                                                                                    {{ $butir_kegiatan->nama }}
-                                                                                </h6>
-                                                                                <div class="d-flex align-items-center">
-                                                                                    <button
-                                                                                        class="btn btn-purple-reverse ms-3 px-3"
-                                                                                        data-bs-toggle="modal"
-                                                                                        data-bs-target="#tindakLanjut"
-                                                                                        type="button">tindak
-                                                                                        lanjut</button>
+                                                            <div id="contentchildSubUnsur{{ $rencanaSubUnsur->subUnsur->id }}"
+                                                                class="accordion-collapse collapse"
+                                                                aria-labelledby="subUnsur{{ $rencanaSubUnsur->subUnsur->id }}"
+                                                                style="">
+                                                                <div class="accordion-body">
+                                                                    <ul class="ms-0">
+                                                                        @foreach ($rencanaSubUnsur->rencanaButirKegiatans as $rencanaButirKegiatan)
+                                                                            <li class="accordian-list">
+                                                                                <div
+                                                                                    class="d-flex align-items-center justify-content-between">
+                                                                                    <h6 class="accordian-title">
+                                                                                        {{ $rencanaButirKegiatan->butirKegiatan->nama }}
+                                                                                    </h6>
+                                                                                    <div class="d-flex align-items-center">
+                                                                                        <button
+                                                                                            class="btn btn-purple-reverse ms-3 px-3"
+                                                                                            data-bs-toggle="modal"
+                                                                                            data-bs-target="#tindakLanjut"
+                                                                                            type="button">tindak
+                                                                                            lanjut</button>
+                                                                                    </div>
                                                                                 </div>
-                                                                            </div>
-                                                                        </li>
-                                                                    @endforeach
-                                                                </ul>
+                                                                            </li>
+                                                                        @endforeach
+                                                                    </ul>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                @endforeach
+                                                    @endforeach
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+                            </div>
                         </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -154,7 +170,7 @@
 
     <div class="modal fade" id="tindakLanjut" tabindex="-1" role="dialog" aria-labelledby="tindakLanjutTitle"
         aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5>Laporan Kegiatan Jabatan</h5>
@@ -162,7 +178,7 @@
                 <div class="modal-body">
                     <div class="d-flex flex-column">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <label>File Dokumen</label>
                                     <input type="file" name="doc_kepegawaian_tmp" multiple data-max-file-size="2MB"

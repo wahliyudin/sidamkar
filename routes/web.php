@@ -7,6 +7,7 @@ use App\Http\Controllers\Aparatur\DataSayaController;
 use App\Http\Controllers\Aparatur\Kegiatan\KegiatanJabatanController as KegiatanKegiatanJabatanController;
 use App\Http\Controllers\Aparatur\LaporanJabatan;
 use App\Http\Controllers\Aparatur\LaporanJabatanController;
+use App\Http\Controllers\Aparatur\LaporanKegiatan\KegiatanJabatanController as LaporanKegiatanKegiatanJabatanController;
 use App\Http\Controllers\Aparatur\LaporanKegiatanController;
 use App\Http\Controllers\Aparatur\OverviewController;
 use App\Http\Controllers\Aparatur\RencanaKinerjaController;
@@ -84,6 +85,10 @@ Route::middleware(['auth'])->group(function () {
         Route::controller(KegiatanKegiatanJabatanController::class)->group(function () {
             Route::get('kegiatan/jabatan', 'index')->name('kegiatan.jabatan');
             Route::post('kegiatan/jabatan/search', 'search')->name('kegiatan.jabatan.search');
+        });
+
+        Route::controller(LaporanKegiatanKegiatanJabatanController::class)->group(function () {
+            Route::get('laporan-kegiatan/jabatan', 'index')->name('laporan-kegiatan.jabatan');
         });
 
         Route::get('ubah-password', [ChangePasswordController::class, 'index'])->name('ubah-password');

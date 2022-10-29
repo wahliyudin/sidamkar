@@ -44,17 +44,24 @@ class RencanaKinerjaController extends Controller
         $rencanaUnsurTmp = null;
         for ($i = 0; $i < count($request->sub_unsurs); $i++) {
             if ($unsurId == $request->sub_unsurs[$i]['unsur_id']) {
-                $rencanaUnsurTmp?->rencanaSubUnsurs()->create([
+                $rencanaSubUnsur = $rencanaUnsurTmp?->rencanaSubUnsurs()->create([
                     'sub_unsur_id' => $request->sub_unsurs[$i]['sub_unsur_id']
                 ]);
             } else {
                 $rencanaUnsur = $rencana->rencanaUnsurs()->create([
                     'unsur_id' => $request->sub_unsurs[$i]['unsur_id']
                 ]);
-                $rencanaUnsur->rencanaSubUnsurs()->create([
+                $rencanaSubUnsur = $rencanaUnsur->rencanaSubUnsurs()->create([
                     'sub_unsur_id' => $request->sub_unsurs[$i]['sub_unsur_id']
                 ]);
             }
+            $butirKegiatans = [];
+            foreach ($rencanaSubUnsur->subUnsur->butirKegiatans->pluck('id')->toArray() as $key => $value) {
+                array_push($butirKegiatans, [
+                    'butir_kegiatan_id' => $value
+                ]);
+            }
+            $rencanaSubUnsur->rencanaButirKegiatans()->createMany($butirKegiatans);
             $unsurId = $request->sub_unsurs[$i]['unsur_id'];
             $rencanaUnsurTmp = $rencanaUnsur;
         }

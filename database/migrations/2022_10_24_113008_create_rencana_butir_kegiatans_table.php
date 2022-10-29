@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('rencana_sub_unsur_id');
             $table->unsignedBigInteger('butir_kegiatan_id');
-            $table->float('score');
             $table->timestamps();
 
             $table->foreign('rencana_sub_unsur_id')->on('rencana_sub_unsurs')->references('id')->cascadeOnDelete();

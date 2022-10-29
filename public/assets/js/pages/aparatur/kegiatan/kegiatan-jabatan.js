@@ -99,7 +99,7 @@ $(document).ready(function () {
                         style="">
                         <div class="accordion-body">
                             <ul class="ms-0">
-                                ${butirKegiatans(rencanaSubUnsur.sub_unsur.butir_kegiatans)}
+                                ${butirKegiatans(rencanaSubUnsur.rencana_butir_kegiatans)}
                             </ul>
                         </div>
                     </div>
@@ -108,17 +108,17 @@ $(document).ready(function () {
         }).join('')
     }
 
-    function butirKegiatans(butirKegiatans) {
-        return $.map(butirKegiatans, function (butirKegiatan, indexOrKey) {
+    function butirKegiatans(rencanaButirKegiatans) {
+        return $.map(rencanaButirKegiatans, function (rencanaButirKegiatan, indexOrKey) {
             return `
                 <li class="accordian-list">
                     <div class="d-flex align-items-center justify-content-between">
                         <h6 class="accordian-title">
-                            ${butirKegiatan.nama}
+                            ${rencanaButirKegiatan.butir_kegiatan.nama}
                         </h6>
                         <h6 class="accordian-title"
                             style="color: #1AD598;">
-                            ${butirKegiatan.score}
+                            ${rencanaButirKegiatan.butir_kegiatan.score}
                         </h6>
                     </div>
                 </li>
