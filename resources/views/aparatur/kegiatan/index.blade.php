@@ -73,84 +73,90 @@
                     </div>
                 </div>
                 <div class="card-body px-2">
-                    <div class="row">
-                        <div class="form-group col-md-4">
-                            <label>Rencana Kinerja</label>
-                            <input class="form-control" type="text" name="rencana_kinerja">
+                    @forelse ($rencanas as $rencana)
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label>Rencana Kinerja</label>
+                                <input class="form-control" type="text" name="rencana_kinerja">
+                            </div>
                         </div>
-                    </div>
-                    <div class="card-body accordion-container">
-                        <div class="accordion" id="accordion-parent">
-                            @foreach ($unsurs as $unsur)
-                                @if ($unsur->isSubUnsur)
-                                    <div class="accordion-item">
-                                        <div class="d-flex justify-content-between accordion-header py-3 px-2"
-                                            id="unsur{{ $unsur->id }}">
-                                            <div class="d-flex align-items-center justify-content-between w-100"
-                                                style="color: #000000;">
-                                                <p class="accordion-title">
-                                                    {{ $unsur->nama }}
-                                                </p>
+                        <div class="card-body accordion-container">
+                            <div class="accordion" id="accordion-parent">
+                                @if (isset($rencana['unsurs']))
+                                    @foreach ($rencana['unsurs'] as $unsur)
+                                        <div class="accordion-item">
+                                            <div class="d-flex justify-content-between accordion-header py-3 px-2"
+                                                id="unsur{{ $rencana['id'] . $unsur['id'] }}">
+                                                <div class="d-flex align-items-center justify-content-between w-100"
+                                                    style="color: #000000;">
+                                                    <p class="accordion-title">
+                                                        {{ $unsur['nama'] }}
+                                                    </p>
+                                                </div>
+                                                <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#contentUnsur{{ $rencana['id'] . $unsur['id'] }}"
+                                                    aria-expanded="false"
+                                                    aria-controls="contentUnsur{{ $rencana['id'] . $unsur['id'] }}">
+                                                </button>
                                             </div>
-                                            <button class="accordion-button collapsed" type="button"
-                                                data-bs-toggle="collapse" data-bs-target="#contentUnsur{{ $unsur->id }}"
-                                                aria-expanded="false" aria-controls="contentUnsur{{ $unsur->id }}">
-                                            </button>
-                                        </div>
-                                        <div id="contentUnsur{{ $unsur->id }}" class="accordion-collapse collapse"
-                                            aria-labelledby="unsur{{ $unsur->id }}" style="">
-                                            <div class="accordion-body">
-                                                <div class="accordion" id="accordion-child">
-                                                    @foreach ($unsur->subUnsurs as $sub_unsur)
-                                                        <div class="accordion-item">
-                                                            <div class="d-flex justify-content-between accordion-header py-1 px-1"
-                                                                id="subUnsur{{ $sub_unsur->id }}">
-                                                                <div class="d-flex align-items-center"
-                                                                    style="color: #000000;">
-                                                                    <h6 class="accordian-title">
-                                                                        {{ $sub_unsur->nama }}
-                                                                    </h6>
+                                            <div id="contentUnsur{{ $rencana['id'] . $unsur['id'] }}"
+                                                class="accordion-collapse collapse"
+                                                aria-labelledby="unsur{{ $rencana['id'] . $unsur['id'] }}" style="">
+                                                <div class="accordion-body">
+                                                    <div class="accordion" id="accordion-child">
+                                                        @foreach ($unsur['sub_unsurs'] as $sub_unsur)
+                                                            <div class="accordion-item">
+                                                                <div class="d-flex justify-content-between accordion-header py-1 px-1"
+                                                                    id="subUnsur{{ $sub_unsur->id }}">
+                                                                    <div class="d-flex align-items-center"
+                                                                        style="color: #000000;">
+                                                                        <h6 class="accordian-title">
+                                                                            {{ $sub_unsur->nama }}
+                                                                        </h6>
+                                                                    </div>
+                                                                    <button class="accordion-button collapsed"
+                                                                        type="button" data-bs-toggle="collapse"
+                                                                        data-bs-target="#contentchildSubUnsur{{ $sub_unsur->id }}"
+                                                                        aria-expanded="false"
+                                                                        aria-controls="contentchildSubUnsur{{ $sub_unsur->id }}">
+                                                                    </button>
                                                                 </div>
-                                                                <button class="accordion-button collapsed" type="button"
-                                                                    data-bs-toggle="collapse"
-                                                                    data-bs-target="#contentchildSubUnsur{{ $sub_unsur->id }}"
-                                                                    aria-expanded="false"
-                                                                    aria-controls="contentchildSubUnsur{{ $sub_unsur->id }}">
-                                                                </button>
-                                                            </div>
-                                                            <div id="contentchildSubUnsur{{ $sub_unsur->id }}"
-                                                                class="accordion-collapse collapse"
-                                                                aria-labelledby="subUnsur{{ $sub_unsur->id }}"
-                                                                style="">
-                                                                <div class="accordion-body">
-                                                                    <ul class="ms-0">
-                                                                        @foreach ($sub_unsur->butirKegiatans as $butir_kegiatan)
-                                                                            <li class="accordian-list">
-                                                                                <div
-                                                                                    class="d-flex align-items-center justify-content-between">
-                                                                                    <h6 class="accordian-title">
-                                                                                        {{ $butir_kegiatan->nama }}
-                                                                                    </h6>
-                                                                                    <h6 class="accordian-title"
-                                                                                        style="color: #1AD598;">
-                                                                                        {{ $butir_kegiatan->score }}
-                                                                                    </h6>
-                                                                                </div>
-                                                                            </li>
-                                                                        @endforeach
-                                                                    </ul>
+                                                                <div id="contentchildSubUnsur{{ $sub_unsur->id }}"
+                                                                    class="accordion-collapse collapse"
+                                                                    aria-labelledby="subUnsur{{ $sub_unsur->id }}"
+                                                                    style="">
+                                                                    <div class="accordion-body">
+                                                                        <ul class="ms-0">
+                                                                            @foreach ($sub_unsur->butirKegiatans as $butir_kegiatan)
+                                                                                <li class="accordian-list">
+                                                                                    <div
+                                                                                        class="d-flex align-items-center justify-content-between">
+                                                                                        <h6 class="accordian-title">
+                                                                                            {{ $butir_kegiatan->nama }}
+                                                                                        </h6>
+                                                                                        <h6 class="accordian-title"
+                                                                                            style="color: #1AD598;">
+                                                                                            {{ $butir_kegiatan->score }}
+                                                                                        </h6>
+                                                                                    </div>
+                                                                                </li>
+                                                                            @endforeach
+                                                                        </ul>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    @endforeach
+                                                        @endforeach
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    @endforeach
                                 @endif
-                            @endforeach
+                            </div>
                         </div>
-                    </div>
+                    @empty
+                    @endforelse
                 </div>
             </div>
         </div>

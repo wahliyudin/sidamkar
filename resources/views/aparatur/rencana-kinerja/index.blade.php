@@ -113,8 +113,8 @@
                                                                         <input type="checkbox"
                                                                             style="margin-top: 0 !important;"
                                                                             class="form-check-input"
-                                                                            value="{{ $sub_unsur->id }}" name="sub_unsurs[]"
-                                                                            id="">
+                                                                            value="{{ $unsur->id . '.' . $sub_unsur->id }}"
+                                                                            name="sub_unsurs[]" id="">
                                                                         <h6 class="accordian-title ms-1"
                                                                             style="margin-bottom: 0 !important; user-select: none;">
                                                                             {{ $sub_unsur->nama }}

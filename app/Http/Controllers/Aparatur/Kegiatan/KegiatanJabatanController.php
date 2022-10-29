@@ -14,40 +14,38 @@ class KegiatanJabatanController extends Controller
 {
     public function index()
     {
-        $unsurs = JenisKegiatan::query()
-            ->with([
-                'unsurs.role',
-                'unsurs.subUnsurs' => function (Builder $subUnsur) {
-                    User::query()->with(['rencanas.rencanaSubUnsurs' => function (Builder $rencanaSubUnsurs) use (&$subUnsur) {
-                        $subUnsur->with('butirKegiatans')->whereIn('id', $rencanaSubUnsurs->pluck('sub_unsur_id')->toArray());
-                    }])->find(auth()->user()->id);
-                },
-            ])
-            ->findOrFail(1)->unsurs->map(function (Unsur $unsur) {
-                $unsur->isSubUnsur = count($unsur->subUnsurs) != 0;
-                return $unsur;
-            });
-        return $unsurs;
-        // $data = User::query()->with(['rencanas.rencanaSubUnsurs' => function (Builder $query1) {
-        //     $query1->with(['subUnsur.unsur.subUnsurs'=>function($query) use ($query1){
-        //         $query->with('butirKegiatans')->whereIn('id',$query1->pluck('sub_unsur_id')->toArray());
-        //     }]);
-        // }])->findOrFail(auth()->user()->id);
-        // $rencanas = [];
-        // foreach ($data->rencanas as $rencana) {
-        //     $tmp = [];
-        //     $tmpUnsur = null;
-        //     $unsurs = [];
-        //     foreach ($rencana->rencanaSubUnsurs as $rencanaSubUnsur) {
-        //         if ($rencanaSubUnsur->subUnsur->unsur->id != $tmpUnsur) {
-        //             array_push($unsurs, $rencanaSubUnsur->subUnsur->unsur);
-        //         }
-        //     }
-        //     array_push($rencanas, array_merge($tmp, [
-        //         'nama' => $rencana->nama,
-        //         'unsurs' => $unsurs
-        //     ]));
-        // }
-        return view('aparatur.kegiatan.index', compact('unsurs'));
+        $rencanas = User::query()->with([
+            'rencanas.rencanaSubUnsurs.subUnsur.unsur',
+            'rencanas.rencanaSubUnsurs.subUnsur.butirKegiatans',
+        ])->findOrFail(auth()->user()->id)->rencanas->map(function (Rencana $rencana) {
+            $unsurs = [];
+            $subUnsurs = [];
+            foreach ($rencana->rencanaSubUnsurs as $rencanaSubUnsur) {
+                array_push($unsurs, $rencanaSubUnsur->subUnsur->unsur->id);
+                array_push($subUnsurs, $rencanaSubUnsur->subUnsur);
+            }
+            $unsurs = array_unique($unsurs);
+            for ($i = 0; $i < count($unsurs); $i++) {
+                $unsur = Unsur::query()->find($unsurs[$i]);
+                $data = [];
+                foreach ($rencana->rencanaSubUnsurs as $rencanaSubUnsur) {
+                    array_push($data, array_merge([
+                        'id' => $unsur->id,
+                        'role_id' => $unsur->role_id,
+                        'jenis_kegiatan_id' => $unsur->jenis_kegiatan_id,
+                        'nama' => $unsur->nama
+                    ], [
+                        'sub_unsurs' => $subUnsurs
+                    ]));
+                }
+                return array_merge([
+                    'id' => $rencana->id,
+                    'nama' => $rencana->nama
+                ], ['unsurs'=>$data]);
+            }
+            // return $rencana;
+        });
+        // return $rencanas;
+        return view('aparatur.kegiatan.index', compact('rencanas'));
     }
 }
