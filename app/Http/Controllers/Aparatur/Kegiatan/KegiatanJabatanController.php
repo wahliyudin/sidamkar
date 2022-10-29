@@ -17,10 +17,11 @@ class KegiatanJabatanController extends Controller
         $rencanas = User::query()
             ->with(['rencanas.rencanaUnsurs' => function ($query) {
                 $query->with(['unsur', 'rencanaSubUnsurs' => function ($query) {
-                    $query->with(['subUnsur', 'rencanaButirKegiatans.butirKegiatan']);
+                    $query->with(['subUnsur.butirKegiatans', 'rencanaButirKegiatans.butirKegiatan']);
                 }]);
             }])
-            ->find(auth()->user()->id);
+            ->find(auth()->user()->id)->rencanas;
+        // return $rencanas;
         return view('aparatur.kegiatan.index', compact('rencanas'));
     }
 }
