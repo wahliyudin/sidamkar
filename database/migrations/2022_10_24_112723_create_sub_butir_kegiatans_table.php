@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('butir_kegiatan_id');
             $table->string('nama')->fulltext();
-            $table->string('satuan_hasil');
+            $table->string('satuan_hasil')->nullable();
             $table->float('score')->nullable();
             $table->integer('percent')->nullable();
             $table->timestamps();

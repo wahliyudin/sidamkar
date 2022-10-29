@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Aparatur\ChangePasswordController;
 use App\Http\Controllers\Aparatur\DaftarKegiatanController;
-use App\Http\Controllers\aparatur\DaftarPenunjangController;
+use App\Http\Controllers\Aparatur\DaftarPenunjangController;
 use App\Http\Controllers\Aparatur\DataSayaController;
 use App\Http\Controllers\Aparatur\LaporanJabatan;
 use App\Http\Controllers\Aparatur\LaporanJabatanController;
@@ -65,12 +65,14 @@ Route::middleware(['auth'])->group(function () {
 
         Route::controller(DataSayaController::class)->group(function () {
             Route::get('/data-saya', 'index')->name('data-saya');
+            Route::post('/datasaya-store', [DataSayaController::class, 'store'])->name('datasaya-store');
             Route::get('data-saya/show-dockepeg/{id}', 'showDocKepeg')->name('data-saya.show-doc-kepeg');
             Route::post('data-saya/store-dockepeg', 'storeDocKepeg')->name('data-saya.store-doc-kepeg');
             Route::post('data-saya/store-dockom', 'storeDocKom')->name('data-saya.store-doc-kom');
             Route::delete('data-saya/destroy-dockepeg/{id}', 'destroyDocKepeg')->name('data-saya.destroy-doc-kepeg');
             Route::delete('data-saya/destroy-dockom/{id}', 'destroyDocKom')->name('data-saya.destroy-doc-kom');
         });
+
         Route::get('ubah-password', [ChangePasswordController::class, 'index'])->name('ubah-password');
         Route::post('ubah-password', [ChangePasswordController::class, 'update'])->name('ubah-password.update');
         Route::get('/daftar-kegiatan', [DaftarKegiatanController::class, 'index'])->name('daftar-kegiatan');
@@ -147,6 +149,8 @@ Route::middleware(['auth'])->group(function () {
         Route::controller(KegiatanJabatanController::class)->group(function () {
             Route::get('kemendagri/cms/kegiatan-jabatan', 'index')->name('kemendagri.cms.kegiatan-jabatan.index');
             Route::post('kemendagri/cms/kegiatan-jabatan', 'store')->name('kemendagri.cms.kegiatan-jabatan.store');
+            Route::get('kemendagri/cms/kegiatan-jabatan/{id}/edit', 'edit')->name('kemendagri.cms.kegiatan-jabatan.edit');
+            Route::put('kemendagri/cms/kegiatan-jabatan/{id}/update', 'update')->name('kemendagri.cms.kegiatan-jabatan.update');
             Route::post('kemendagri/cms/kegiatan-jabatan/import', 'import')->name('kemendagri.cms.kegiatan-jabatan.import');
             Route::get('kemendagri/cms/kegiatan-jabatan/download', 'downloadTemplate')->name('kemendagri.cms.kegiatan-jabatan.download');
             Route::delete('kemendagri/cms/kegiatan-jabatan/{id}/destroy', 'destroy')->name('kemendagri.cms.kegiatan-jabatan.destroy');
@@ -155,6 +159,8 @@ Route::middleware(['auth'])->group(function () {
         Route::controller(KegiatanProfesiController::class)->group(function () {
             Route::get('kemendagri/cms/kegiatan-profesi', 'index')->name('kemendagri.cms.kegiatan-profesi.index');
             Route::post('kemendagri/cms/kegiatan-profesi', 'store')->name('kemendagri.cms.kegiatan-profesi.store');
+            Route::get('kemendagri/cms/kegiatan-profesi/{id}/edit', 'edit')->name('kemendagri.cms.kegiatan-profesi.edit');
+            Route::put('kemendagri/cms/kegiatan-profesi/{id}/update', 'update')->name('kemendagri.cms.kegiatan-profesi.update');
             Route::post('kemendagri/cms/kegiatan-profesi/import', 'import')->name('kemendagri.cms.kegiatan-profesi.import');
             Route::get('kemendagri/cms/kegiatan-profesi/download', 'downloadTemplate')->name('kemendagri.cms.kegiatan-profesi.download');
             Route::delete('kemendagri/cms/kegiatan-profesi/{id}/destroy', 'destroy')->name('kemendagri.cms.kegiatan-profesi.destroy');

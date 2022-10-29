@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Kemendagri\CMS;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\KegiatanJabatanRequest;
 use App\Imports\UnsursImport;
 use App\Models\JenisKegiatan;
 use App\Models\Role;
@@ -24,25 +25,10 @@ class KegiatanJabatanController extends Controller
         return view('kemendagri.cms.kegiatan-jabatan.index', compact('roles', 'kegiatan'));
     }
 
-    public function store(Request $request)
+    public function store(KegiatanJabatanRequest $request)
     {
         try {
-            $unsur = Unsur::query()->create([
-                'role_id' => $request->role_id,
-                'jenis_kegiatan_id' => 1,
-                'nama' => $request->unsur
-            ]);
-            for ($i = 0; $i < count($request->sub_unsurs); $i++) {
-                $sub_unsur = $unsur->subUnsurs()->create([
-                    'nama' => $request->sub_unsurs[$i]['name']
-                ]);
-                for ($j = 0; $j < count($request->sub_unsurs[$i]['butir_kegiatans']); $j++) {
-                    $sub_unsur->butirKegiatans()->create([
-                        'nama' => $request->sub_unsurs[$i]['butir_kegiatans'][$j],
-                        'score' => $request->sub_unsurs[$i]['angka_kredits'][$j]
-                    ]);
-                }
-            }
+            $this->storeKegiatan($request);
             return response()->json([
                 'status' => 200,
                 'message' => 'Berhasil ditambahkan'
@@ -55,6 +41,49 @@ class KegiatanJabatanController extends Controller
         }
     }
 
+    public function edit($id)
+    {
+        $unsur = Unsur::query()->with([
+            'jenisKegiatan',
+            'role',
+            'subUnsurs.butirKegiatans'
+        ])->findOrFail($id);
+        return response()->json([
+            'status' => 200,
+            'data' => $unsur
+        ]);
+    }
+
+    public function update(KegiatanJabatanRequest $request, $id)
+    {
+        Unsur::query()->with('subUnsurs')->findOrFail($id)->delete();
+        $this->storeKegiatan($request);
+        return response()->json([
+            'status' => 200,
+            'message' => 'Berhasil diubah'
+        ]);
+    }
+
+    public function storeKegiatan($request)
+    {
+        $unsur = Unsur::query()->create([
+            'role_id' => $request->role_id,
+            'jenis_kegiatan_id' => 1,
+            'nama' => $request->unsur
+        ]);
+        for ($i = 0; $i < count($request->sub_unsurs); $i++) {
+            $sub_unsur = $unsur->subUnsurs()->create([
+                'nama' => $request->sub_unsurs[$i]['name']
+            ]);
+            for ($j = 0; $j < count($request->sub_unsurs[$i]['butir_kegiatans']); $j++) {
+                $sub_unsur->butirKegiatans()->create([
+                    'nama' => $request->sub_unsurs[$i]['butir_kegiatans'][$j],
+                    'score' => $request->sub_unsurs[$i]['angka_kredits'][$j]
+                ]);
+            }
+        }
+    }
+
     public function import(Request $request)
     {
         try {
@@ -64,10 +93,7 @@ class KegiatanJabatanController extends Controller
                 'message' => 'Berhasil diimport'
             ]);
         } catch (\Throwable $th) {
-            return response()->json([
-                'status' => $th->getCode(),
-                'message' => 'Ada Kesalahan Pada Sistem'
-            ]);
+            throw $th;
         }
     }
 
@@ -85,10 +111,7 @@ class KegiatanJabatanController extends Controller
                 'message' => 'Berhasil dihapus'
             ]);
         } catch (\Throwable $th) {
-            return response()->json([
-                'status' => $th->getCode(),
-                'message' => 'Ada Kesalahan Pada Sistem'
-            ]);
+            throw $th;
         }
     }
 }

@@ -17,13 +17,14 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->string('nama');
-            $table->string('pangkat_golongan_tmt')->nullable();
-            $table->string('nomenklatur_jabatan')->nullable();
+            $table->enum('pangkat_golongan_tmt', ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17'])->nullable();
+            $table->enum('nomenklatur_jabatan', ['1', '2', '3', '4'])->nullable();
             $table->bigInteger('nip')->nullable();
+            $table->bigInteger('nomor_karpeg')->nullable();
             $table->string('tempat_lahir')->nullable();
             $table->date('tanggal_lahir')->nullable();
             $table->enum('jenis_kelamin', ['P', 'L'])->nullable();
-            $table->integer('pendidikan_terakhir')->nullable(); // Enum
+            $table->enum('pendidikan_terakhir', ['1', '2', '3'])->nullable(); // Enum
             $table->string('foto_pegawai')->nullable();
             $table->string('file_sk')->nullable();
             $table->string('file_ttd')->nullable();

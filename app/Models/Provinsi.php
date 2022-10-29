@@ -17,7 +17,7 @@ class Provinsi extends Model
      *
      * @return HasMany
      */
-    public function kabKotas(): HasMany
+    public function kabKotas()
     {
         return $this->hasMany(KabKota::class);
     }
