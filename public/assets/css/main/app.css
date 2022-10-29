@@ -22635,3 +22635,23 @@ a {
 .cursor-pointer {
     cursor: pointer;
 }
+
+.form-select {
+    border-color: #2F80ED !important;
+}
+
+label {
+    font-weight: 800 !important;
+}
+
+#app .loading-master {
+    position: fixed;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+}

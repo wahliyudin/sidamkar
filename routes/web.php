@@ -83,6 +83,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::controller(KegiatanKegiatanJabatanController::class)->group(function () {
             Route::get('kegiatan/jabatan', 'index')->name('kegiatan.jabatan');
+            Route::post('kegiatan/jabatan/search', 'search')->name('kegiatan.jabatan.search');
         });
 
         Route::get('ubah-password', [ChangePasswordController::class, 'index'])->name('ubah-password');

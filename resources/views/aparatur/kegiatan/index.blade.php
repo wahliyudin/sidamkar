@@ -62,99 +62,18 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-6">
-                            <h3 class="mt-4">Kegiatan Jabatan</h3>
+                            <h3>Kegiatan Jabatan</h3>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Search</label>
-                                <input type="text" placeholder="Search..." class="form-control">
-                            </div>
+                    </div>
+                    <div class="row justify-content-end">
+                        <div class="form-group col-md-4">
+                            <label>Search</label>
+                            <input type="text" placeholder="Search..." name="search" class="form-control">
                         </div>
                     </div>
                 </div>
-                <div class="card-body px-2">
-                    @foreach ($rencanas as $rencana)
-                        <div class="row">
-                            <div class="form-group col-md-4">
-                                <label>Rencana Kinerja</label>
-                                <input class="form-control" type="text" name="rencana_kinerja">
-                            </div>
-                        </div>
-                        <div class="card-body accordion-container">
-                            <div class="accordion" id="accordion-parent">
-                                @foreach ($rencana->rencanaUnsurs as $rencanaUnsur)
-                                    <div class="accordion-item">
-                                        <div class="d-flex justify-content-between accordion-header py-3 px-2"
-                                            id="unsur{{ $rencanaUnsur->id . $rencanaUnsur->unsur->id }}">
-                                            <div class="d-flex align-items-center justify-content-between w-100"
-                                                style="color: #000000;">
-                                                <p class="accordion-title">
-                                                    {{ $rencanaUnsur->unsur->nama }}
-                                                </p>
-                                            </div>
-                                            <button class="accordion-button collapsed" type="button"
-                                                data-bs-toggle="collapse"
-                                                data-bs-target="#contentUnsur{{ $rencanaUnsur->id . $rencanaUnsur->unsur->id }}"
-                                                aria-expanded="false"
-                                                aria-controls="contentUnsur{{ $rencanaUnsur->id . $rencanaUnsur->unsur->id }}">
-                                            </button>
-                                        </div>
-                                        <div id="contentUnsur{{ $rencanaUnsur->id . $rencanaUnsur->unsur->id }}"
-                                            class="accordion-collapse collapse"
-                                            aria-labelledby="unsur{{ $rencanaUnsur->id . $rencanaUnsur->unsur->id }}"
-                                            style="">
-                                            <div class="accordion-body">
-                                                <div class="accordion" id="accordion-child">
-                                                    @foreach ($rencanaUnsur->rencanaSubUnsurs as $rencanaSubUnsur)
-                                                        <div class="accordion-item">
-                                                            <div class="d-flex justify-content-between accordion-header py-1 px-1"
-                                                                id="subUnsur{{ $rencanaSubUnsur->subUnsur->id }}">
-                                                                <div class="d-flex align-items-center"
-                                                                    style="color: #000000;">
-                                                                    <h6 class="accordian-title">
-                                                                        {{ $rencanaSubUnsur->subUnsur->nama }}
-                                                                    </h6>
-                                                                </div>
-                                                                <button class="accordion-button collapsed" type="button"
-                                                                    data-bs-toggle="collapse"
-                                                                    data-bs-target="#contentchildSubUnsur{{ $rencanaSubUnsur->subUnsur->id }}"
-                                                                    aria-expanded="false"
-                                                                    aria-controls="contentchildSubUnsur{{ $rencanaSubUnsur->subUnsur->id }}">
-                                                                </button>
-                                                            </div>
-                                                            <div id="contentchildSubUnsur{{ $rencanaSubUnsur->subUnsur->id }}"
-                                                                class="accordion-collapse collapse"
-                                                                aria-labelledby="subUnsur{{ $rencanaSubUnsur->subUnsur->id }}"
-                                                                style="">
-                                                                <div class="accordion-body">
-                                                                    <ul class="ms-0">
-                                                                        @foreach ($rencanaSubUnsur->subUnsur->butirKegiatans as $butir_kegiatan)
-                                                                            <li class="accordian-list">
-                                                                                <div
-                                                                                    class="d-flex align-items-center justify-content-between">
-                                                                                    <h6 class="accordian-title">
-                                                                                        {{ $butir_kegiatan->nama }}
-                                                                                    </h6>
-                                                                                    <h6 class="accordian-title"
-                                                                                        style="color: #1AD598;">
-                                                                                        {{ $butir_kegiatan->score }}
-                                                                                    </h6>
-                                                                                </div>
-                                                                            </li>
-                                                                        @endforeach
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    @endforeach
+                <div class="card-body px-2 rencana-container">
+
                 </div>
             </div>
         </div>
@@ -183,4 +102,5 @@
     </script>
     <script src="{{ asset('assets/extensions/filepond/filepond.jquery.js') }}"></script>
     <script src="{{ asset('assets/js/extensions/sweetalert2.all.min.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/aparatur/kegiatan/kegiatan-jabatan.js') }}"></script>
 @endsection
