@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="{{ asset('assets/extensions/fontawesome/all.min.css') }}" />
     <link href="{{ asset('assets/css/auth/fontawesome/styles.min.css') }}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{{ asset('assets/extensions/toastify-js/src/toastify.css') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/images/template/logo.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('assets/images/template/logo.png') }}" type="image/png">
     <style>
         .header-login {
             font-size: 25px;

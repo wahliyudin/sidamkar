@@ -32,6 +32,7 @@ use App\Http\Controllers\Kemendagri\OverviewController as KemendagriOverviewCont
 use App\Http\Controllers\Kemendagri\PejabatStrukturalController as KemendagriPejabatStrukturalController;
 use App\Http\Controllers\Kemendagri\VerifikasiData\AdminKabKotaController;
 use App\Http\Controllers\Kemendagri\VerifikasiData\AdminProvinsiController;
+use App\Http\Controllers\Provinsi\DataAparaturController as ProvinsiDataAparaturController;
 use App\Http\Controllers\Provinsi\OverviewController as ProvinsiOverviewController;
 use App\Models\KabKota;
 use App\Models\Provinsi;
@@ -105,6 +106,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['role:provinsi'])->group(function () {
         Route::get('provinsi/overview', [ProvinsiOverviewController::class, 'index'])->name('provinsi.overview.index');
+        Route::get('provinsi/data-aparatur', [ProvinsiDataAparaturController::class, 'index'])->name('provinsi.data-aparatur');
     });
 
     Route::middleware(['role:kemendagri'])->group(function () {
