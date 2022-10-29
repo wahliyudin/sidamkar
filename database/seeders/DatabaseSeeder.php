@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
         // UserProvKabKota::factory(5)->create();
         $this->call(UserSeeder::class);
         $this->call(JenisKegiaranSeeder::class);
-        Rencana::factory(5)->create();
+        // Rencana::factory(5)->create();
         Unsur::factory(5)->create();
         SubUnsur::factory(5)->create();
         ButirKegiatan::factory(5)->create();
