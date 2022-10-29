@@ -24,7 +24,7 @@
                                         <div class="d-flex align-items-center justify-content-between w-100"
                                             style="color: #000000;">
                                             <p class="accordion-title">
-                                                [ Pelaksana: {{ $unsur->role->display_name }} ] {{ $unsur->nama }}
+                                                [ Pelaksana: {{ $unsur->role?->display_name }} ] {{ $unsur->nama }}
                                             </p>
                                             <div class="d-flex align-items-center">
                                                 <i class="fa-regular fa-pen-to-square me-2 cursor-pointer text-green btn-edit-kegiatan"

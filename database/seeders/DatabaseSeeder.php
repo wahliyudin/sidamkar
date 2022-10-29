@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder
         SubUnsur::factory(5)->create();
         ButirKegiatan::factory(5)->create();
         SubButirKegiatan::factory(5)->create();
-        RencanaSubUnsur::factory(5)->create();
-        RencanaSubUnsurButirKegiatan::factory(5)->create();
+        // RencanaSubUnsur::factory(5)->create();
+        // RencanaSubUnsurButirKegiatan::factory(5)->create();
     }
 }

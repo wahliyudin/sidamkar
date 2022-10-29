@@ -24,7 +24,6 @@ class KegiatanJabatanRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'role_id' => 'required',
             'unsur' => 'required',
             'sub_unsurs' => 'required|array'
         ];
@@ -33,17 +32,11 @@ class KegiatanJabatanRequest extends FormRequest
                 $rules['sub_unsurs.' . $a . '.name'] = 'required';
                 if (isset(request()->sub_unsurs[$a]['butir_kegiatans'])) {
                     foreach (request()->sub_unsurs[$a]['butir_kegiatans'] as $b => $value) {
-                        $rules['sub_unsurs.'.$a.'.butir_kegiatans.' . $b] = "required";
+                        $rules['sub_unsurs.' . $a . '.butir_kegiatans.' . $b . '.name'] = "required";
+                        $rules['sub_unsurs.' . $a . '.butir_kegiatans.' . $b . '.angka_kredit'] = "required";
                     }
                 } else {
                     $rules['sub_unsurs.' . $a . '.butir_kegiatans'] = 'required';
-                }
-                if (isset(request()->sub_unsurs[$a]['angka_kredits'])) {
-                    foreach (request()->sub_unsurs[$a]['angka_kredits'] as $c => $value) {
-                        $rules['sub_unsurs.'.$a.'.angka_kredits.' . $c] = "required";
-                    }
-                } else {
-                    $messages['sub_unsurs.' . $a . '.angka_kredits'] = "required";
                 }
             }
         }
@@ -54,7 +47,6 @@ class KegiatanJabatanRequest extends FormRequest
     public function messages()
     {
         $messages = [
-            'role_id.required' => 'Jabatan Harus diisi',
             'sub_unsurs.array' => 'Sub Unsurs Harus diisi'
         ];
         if (isset(request()->sub_unsurs)) {
@@ -64,18 +56,11 @@ class KegiatanJabatanRequest extends FormRequest
                 if (isset(request()->sub_unsurs[$a]['butir_kegiatans'])) {
                     foreach (request()->sub_unsurs[$a]['butir_kegiatans'] as $b => $value) {
                         $urutb = $b + 1;
-                        $messages['sub_unsurs.'.$a.'.butir_kegiatans.' . $b . '.required'] = "Butir Kegiatan ke-$urutb harus diisi";
+                        $messages['sub_unsurs.' . $a . '.butir_kegiatans.' . $b . '.name.required'] = "Butir Kegiatan ke-$urutb harus diisi";
+                        $messages['sub_unsurs.' . $a . '.butir_kegiatans.' . $b . '.angka_kredit.required'] = "Butir Kegiatan Angka Kredit ke-$urutb harus diisi";
                     }
                 } else {
                     $messages['sub_unsurs.' . $a . '.butir_kegiatans.required'] = "Butir Kegiatan ke-$urut harus diisi";
-                }
-                if (isset(request()->sub_unsurs[$a]['angka_kredits'])) {
-                    foreach (request()->sub_unsurs[$a]['angka_kredits'] as $c => $value) {
-                        $urutb = $c + 1;
-                        $messages['sub_unsurs.'.$a.'.angka_kredits.' . $c . '.required'] = "Angka Kredit ke-$urutb harus diisi";
-                    }
-                } else {
-                    $messages['sub_unsurs.' . $a . '.angka_kredits.required'] = "Angka Kredit ke-$urut harus diisi";
                 }
             }
         }

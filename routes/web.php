@@ -4,10 +4,12 @@ use App\Http\Controllers\Aparatur\ChangePasswordController;
 use App\Http\Controllers\Aparatur\DaftarKegiatanController;
 use App\Http\Controllers\Aparatur\DaftarPenunjangController;
 use App\Http\Controllers\Aparatur\DataSayaController;
+use App\Http\Controllers\Aparatur\Kegiatan\KegiatanJabatanController as KegiatanKegiatanJabatanController;
 use App\Http\Controllers\Aparatur\LaporanJabatan;
 use App\Http\Controllers\Aparatur\LaporanJabatanController;
 use App\Http\Controllers\Aparatur\LaporanKegiatanController;
 use App\Http\Controllers\Aparatur\OverviewController;
+use App\Http\Controllers\Aparatur\RencanaKinerjaController;
 use App\Http\Controllers\Aparatur\TabelKegiatanController;
 use App\Http\Controllers\Aparatur\tabelPenunjangController;
 use App\Http\Controllers\Api\FilePondController;
@@ -72,6 +74,15 @@ Route::middleware(['auth'])->group(function () {
             Route::post('data-saya/store-dockom', 'storeDocKom')->name('data-saya.store-doc-kom');
             Route::delete('data-saya/destroy-dockepeg/{id}', 'destroyDocKepeg')->name('data-saya.destroy-doc-kepeg');
             Route::delete('data-saya/destroy-dockom/{id}', 'destroyDocKom')->name('data-saya.destroy-doc-kom');
+        });
+
+        Route::controller(RencanaKinerjaController::class)->group(function () {
+            Route::get('rencana-kinerja', 'index')->name('rencana-kinerja');
+            Route::post('rencana-kinerja/store', 'store')->name('rencana-kinerja.store');
+        });
+
+        Route::controller(KegiatanKegiatanJabatanController::class)->group(function () {
+            Route::get('kegiatan/jabatan', 'index')->name('kegiatan.jabatan');
         });
 
         Route::get('ubah-password', [ChangePasswordController::class, 'index'])->name('ubah-password');
