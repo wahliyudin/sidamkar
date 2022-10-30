@@ -44,6 +44,14 @@
                 padding: 0 !important;
             }
         }
+
+        tbody>tr>td {
+            cursor: pointer;
+        }
+
+        tbody>tr:hover {
+            background-color: rgb(250, 250, 250);
+        }
     </style>
 @endsection
 
@@ -54,4 +62,13 @@
     <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#pejabatfungsional-table').on('click', 'tbody > tr', function() {
+                window.location.replace(url(
+                    `/kab-kota/verifikasi-aparatur/pejabat-fungsional/${$($(this).find('.username')).data('detail')}/show`
+                ));
+            });
+        });
+    </script>
 @endsection

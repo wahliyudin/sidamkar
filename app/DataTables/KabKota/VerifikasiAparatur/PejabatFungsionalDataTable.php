@@ -24,8 +24,8 @@ class PejabatFungsionalDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addIndexColumn()
-            ->addColumn('action', function (User $user) {
-                return '<a href="' . route('kab-kota.verifikasi-aparatur.pejabat-fungsional.show', $user->id) . '" class="btn btn-blue text-sm">Detail</a>';
+            ->addColumn('username', function (User $user) {
+                return '<p class="username" data-detail="'.$user->id.'">'.$user->username.'</p>';
             })
             ->setRowId('id');
     }
@@ -74,11 +74,7 @@ class PejabatFungsionalDataTable extends DataTable
         return [
             Column::computed('no'),
             Column::make('username')
-                ->title('Nama'),
-            Column::computed('action')
-                ->exportable(false)
-                ->printable(false)
-                ->width(60),
+                ->title('Nama')
         ];
     }
 
