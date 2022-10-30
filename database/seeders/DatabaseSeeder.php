@@ -38,16 +38,9 @@ class DatabaseSeeder extends Seeder
         $this->call(KabKotaSeeder::class);
         $this->call(RoleSeeder::class);
         User::factory(50)->create();
-<<<<<<< HEAD
         // UserAparatur::factory(50)->create();
         // UserPejabatStruktural::factory(5)->create();
         // UserProvKabKota::factory(5)->create();
-=======
-        
-        // UserAparatur::factory(50)->create();
-        // UserPejabatStruktural::factory(5)->create();
-        UserProvKabKota::factory(5)->create();
->>>>>>> c2d16bc057516a143015922b68e2ba8a8df6cc19
         $this->call(UserSeeder::class);
         $this->call(JenisKegiaranSeeder::class);
         // Rencana::factory(5)->create();

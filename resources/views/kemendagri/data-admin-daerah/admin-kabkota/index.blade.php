@@ -54,4 +54,27 @@
     <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            var table = $('#adminkabkota-table').DataTable();
+            $('#adminkabkota-table thead tr').clone(true).appendTo('#adminkabkota-table thead');
+            $('#adminkabkota-table thead tr:eq(1) th').each(function(i) {
+                var title = $(this).text();
+                if (title == 'No' || title == '')
+                    $(this).html(' - ');
+                else
+                    $(this).html('<input type="text" class="form-control" placeholder="Cari ' + title +
+                        '" />');
+
+                $('input', this).on('keyup change', function() {
+                    if (table.column(i).search() !== this.value) {
+                        table
+                            .column(i)
+                            .search(this.value)
+                            .draw();
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

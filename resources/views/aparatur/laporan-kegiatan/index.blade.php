@@ -80,8 +80,7 @@
                     @foreach ($rencanas as $rencana)
                         <div class="row">
                             <div class="form-group col-md-4">
-                                <input class="form-control" type="text" value="{{ $rencana->nama }}"
-                                    name="rencana_kinerja">
+                                <h5>{{ $rencana->nama }}</h5>
                             </div>
                         </div>
                         <div class="card-body accordion-container">
