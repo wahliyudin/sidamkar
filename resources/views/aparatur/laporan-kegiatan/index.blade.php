@@ -140,13 +140,42 @@
                                                                                         {{ $rencanaButirKegiatan->butirKegiatan->nama }}
                                                                                     </h6>
                                                                                     <div class="d-flex align-items-center">
-                                                                                        <button
-                                                                                            data-rencana="{{ $rencanaButirKegiatan->id }}"
-                                                                                            class="btn btn-purple-reverse ms-3 px-3 tindak-lanjut"
-                                                                                            data-bs-toggle="modal"
-                                                                                            data-bs-target="#tindakLanjut"
-                                                                                            type="button">tindak
-                                                                                            lanjut</button>
+                                                                                        @if ($rencanaButirKegiatan->status == 1)
+                                                                                            <button
+                                                                                                class="btn btn-yellow ms-3 px-3"
+                                                                                                data-bs-toggle="modal"
+                                                                                                data-bs-target="#riwayatKegiatan{{ $rencanaButirKegiatan->id }}"
+                                                                                                type="button">Prosess</button>
+                                                                                            @include('aparatur.laporan-kegiatan.riwayat',
+                                                                                                [
+                                                                                                    'rencanaButirKegiatan' => $rencanaButirKegiatan,
+                                                                                                ])
+                                                                                        @elseif($rencanaButirKegiatan->status == 2)
+                                                                                            <button
+                                                                                                class="btn btn-red ms-3 px-3"
+                                                                                                data-bs-toggle="modal"
+                                                                                                data-bs-target="#riwayatKegiatan{{ $rencanaButirKegiatan->id }}"
+                                                                                                type="button">Revisi</button>
+                                                                                        @elseif($rencanaButirKegiatan->status == 3)
+                                                                                            <button
+                                                                                                class="btn btn-black ms-3 px-3"
+                                                                                                data-bs-toggle="modal"
+                                                                                                data-bs-target="#riwayatKegiatan{{ $rencanaButirKegiatan->id }}"
+                                                                                                type="button">Ditolak</button>
+                                                                                        @elseif($rencanaButirKegiatan->status == 4)
+                                                                                            <button
+                                                                                                class="btn btn-green-dark ms-3 px-3"
+                                                                                                data-bs-toggle="modal"
+                                                                                                data-bs-target="#riwayatKegiatan{{ $rencanaButirKegiatan->id }}"
+                                                                                                type="button">Selesai</button>
+                                                                                        @else
+                                                                                            <button
+                                                                                                data-rencana="{{ $rencanaButirKegiatan->id }}"
+                                                                                                class="btn btn-gray ms-3 px-3 laporkan"
+                                                                                                data-bs-toggle="modal"
+                                                                                                data-bs-target="#tindakLanjut"
+                                                                                                type="button">Laporkan</button>
+                                                                                        @endif
                                                                                     </div>
                                                                                 </div>
                                                                             </li>
@@ -193,7 +222,7 @@
 
                         <div class="text-center mt-4">
                             <button class="btn btn-danger px-5" data-bs-dismiss="modal">Batal</button>
-                            <button type="button" class="btn btn-blue px-5 kirim-kegiatan">
+                            <button type="button" class="btn btn-blue px-5 simpan-kegiatan">
                                 <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
                                     style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
                                 <span>Kirim</span>
@@ -254,17 +283,17 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-            $('.tindak-lanjut').each(function(index, element) {
+            $('.laporkan').each(function(index, element) {
                 $(element).click(function(e) {
                     e.preventDefault();
                     $('input[name="rencana_butir_kegiatan"]').val($(this).data('rencana'));
                 });
             });
-            $('.kirim-kegiatan').click(function(e) {
+            $('.simpan-kegiatan').click(function(e) {
                 e.preventDefault();
                 var postData = new FormData($(".form-kegiatan")[0]);
-                $('.kirim-kegiatan span').hide();
-                $('.kirim-kegiatan .spin').show();
+                $('.simpan-kegiatan span').hide();
+                $('.simpan-kegiatan .spin').show();
                 $.ajax({
                     type: 'POST',
                     url: "{{ route('laporan-kegiatan.jabatan.store-laporan') }}",
@@ -272,8 +301,8 @@
                     contentType: false,
                     data: postData,
                     success: function(response) {
-                        $('.kirim-kegiatan span').show();
-                        $('.kirim-kegiatan .spin').hide();
+                        $('.simpan-kegiatan span').show();
+                        $('.simpan-kegiatan .spin').hide();
                         if (response.status == 200) {
                             swal("Selesai!", response.message, "success").then(() => {
                                 location.reload();
@@ -282,15 +311,51 @@
                             swal("Error!", response.message, "error");
                         }
                     },
-                    error: function(err) {
-                        $('.kirim-kegiatan span').show();
-                        $('.kirim-kegiatan .spin').hide();
-                    }
+                    error: ajaxError
                 });
             });
             $("#tindakLanjut").on('hide.bs.modal', function() {
                 pond.removeFiles();
             });
+            var ajaxError = function(jqXHR, xhr, textStatus, errorThrow, exception) {
+                if (jqXHR.status === 0) {
+                    swal("Error!", 'Not connect.\n Verify Network.', "error");
+                    $('.simpan-kegiatan span').show();
+                    $('.simpan-kegiatan .spin').hide();
+                } else if (jqXHR.status == 400) {
+                    swal("Peringatan!", jqXHR['responseJSON'].message, "warning");
+                    $('.simpan-kegiatan span').show();
+                    $('.simpan-kegiatan .spin').hide();
+                } else if (jqXHR.status == 404) {
+                    swal('Error!', 'Requested page not found. [404]', "error");
+                    $('.simpan-kegiatan span').show();
+                    $('.simpan-kegiatan .spin').hide();
+                } else if (jqXHR.status == 500) {
+                    swal('Error!', 'Internal Server Error [500].' + jqXHR['responseJSON'].message, "error");
+                    $('.simpan-kegiatan span').show();
+                    $('.simpan-kegiatan .spin').hide();
+                } else if (exception === 'parsererror') {
+                    swal('Error!', 'Requested JSON parse failed.', "error");
+                    $('.simpan-kegiatan span').show();
+                    $('.simpan-kegiatan .spin').hide();
+                } else if (exception === 'timeout') {
+                    swal('Error!', 'Time out error.', "error");
+                    $('.simpan-kegiatan span').show();
+                    $('.simpan-kegiatan .spin').hide();
+                } else if (exception === 'abort') {
+                    swal('Error!', 'Ajax request aborted.', "error");
+                    $('.simpan-kegiatan span').show();
+                    $('.simpan-kegiatan .spin').hide();
+                } else if (jqXHR.status == 422) {
+                    swal('Warning!', JSON.parse(jqXHR.responseText).message, "warning");
+                    $('.simpan-kegiatan span').show();
+                    $('.simpan-kegiatan .spin').hide();
+                } else {
+                    swal('Error!', jqXHR.responseText, "error");
+                    $('.simpan-kegiatan span').show();
+                    $('.simpan-kegiatan .spin').hide();
+                }
+            };
         });
     </script>
 @endsection

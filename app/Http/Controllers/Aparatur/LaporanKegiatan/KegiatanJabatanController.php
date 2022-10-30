@@ -18,7 +18,8 @@ class KegiatanJabatanController extends Controller
                 'rencanas',
                 'rencanas.rencanaUnsurs.unsur',
                 'rencanas.rencanaUnsurs.rencanaSubUnsurs.subUnsur',
-                'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.butirKegiatan'
+                'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.butirKegiatan',
+                'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.dokumenKegiatanPokoks',
             ])
             ->find(auth()->user()->id)->rencanas;
         return view('aparatur.laporan-kegiatan.index', compact('rencanas'));
@@ -29,20 +30,29 @@ class KegiatanJabatanController extends Controller
         $request->validate([
             'keterangan' => 'required',
             'doc_kegiatan_tmp' => 'required|array'
+        ], [
+            'keterangan.required' => 'Detail kegiatan harus diisi',
+            'doc_kegiatan_tmp.required' => 'Dokumen Kegiatan harus diisi'
         ]);
+        $rencanaButirKegiatan = RencanaButirKegiatan::query()->find($request->rencana_butir_kegiatan);
         foreach ($request->doc_kegiatan_tmp as $doc_kegiatan_tmp) {
             $tmp_file = TemporaryFile::query()->where('folder', $doc_kegiatan_tmp)->first();
             if ($tmp_file) {
                 Storage::copy("tmp/$tmp_file->folder/$tmp_file->file", "kegiatan/$tmp_file->file");
-                $rencanaButirKegiatan = RencanaButirKegiatan::query()->find($request->rencana_butir_kegiatan);
-                $rencanaButirKegiatan->dokumenKegiatanPokok()->create([
+                $rencanaButirKegiatan->dokumenKegiatanPokoks()->create([
                     'title' => $request->keterangan,
-                    'file' => "$tmp_file->folder/$tmp_file->file"
+                    'file' => url("storage/kegiatan/$tmp_file->file")
                 ]);
                 $tmp_file->delete();
                 Storage::deleteDirectory("tmp/$tmp_file->folder");
             }
         }
+        $rencanaButirKegiatan->update([
+            'status' => 1
+        ]);
+        $rencanaButirKegiatan->historyButirKegiatans()->create([
+            'keterangan' => 'Menginput Laporan kegiatan'
+        ]);
         return response()->json([
             'status' => 200,
             'message' => 'Berhasil'
