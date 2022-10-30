@@ -79,14 +79,10 @@ Route::middleware(['auth'])->group(function () {
             Route::delete('data-saya/destroy-dockom/{id}', 'destroyDocKom')->name('data-saya.destroy-doc-kom');
         });
 
-        Route::controller(RencanaKinerjaController::class)->group(function () {
-            Route::get('rencana-kinerja', 'index')->name('rencana-kinerja');
-            Route::post('rencana-kinerja/store', 'store')->name('rencana-kinerja.store');
-        });
-
         Route::controller(KegiatanKegiatanJabatanController::class)->group(function () {
             Route::get('kegiatan/jabatan', 'index')->name('kegiatan.jabatan');
             Route::post('kegiatan/jabatan/search', 'search')->name('kegiatan.jabatan.search');
+            Route::post('kegiatan/jabatan/rencana-kinerja/store', 'store')->name('kegiatan.jabatan.rencana-kinerja.store');
         });
 
         Route::controller(LaporanKegiatanKegiatanJabatanController::class)->group(function () {

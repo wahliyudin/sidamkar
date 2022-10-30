@@ -173,7 +173,7 @@
                                                                                                 data-rencana="{{ $rencanaButirKegiatan->id }}"
                                                                                                 class="btn btn-gray ms-3 px-3 laporkan"
                                                                                                 data-bs-toggle="modal"
-                                                                                                data-bs-target="#tindakLanjut"
+                                                                                                data-bs-target="#laporkan"
                                                                                                 type="button">Laporkan</button>
                                                                                         @endif
                                                                                     </div>
@@ -198,7 +198,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="tindakLanjut" tabindex="-1" role="dialog" aria-labelledby="tindakLanjutTitle"
+    <div class="modal fade" id="laporkan" tabindex="-1" role="dialog" aria-labelledby="laporkanTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -314,7 +314,7 @@
                     error: ajaxError
                 });
             });
-            $("#tindakLanjut").on('hide.bs.modal', function() {
+            $("#laporkan").on('hide.bs.modal', function() {
                 pond.removeFiles();
             });
             var ajaxError = function(jqXHR, xhr, textStatus, errorThrow, exception) {

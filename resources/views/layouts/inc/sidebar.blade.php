@@ -25,15 +25,6 @@
                         </a>
                     </li>
 
-                    <li class="sidebar-item {{ request()->routeIs('rencana-kinerja') ? 'active' : '' }}">
-                        <a href="{{ route('rencana-kinerja') }}" class='sidebar-link'>
-                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
-                                <i class="bi bi-grid-fill"></i>
-                            </div>
-                            <span>Rencana Kinerja</span>
-                        </a>
-                    </li>
-
                     <li
                         class="sidebar-item has-sub {{ request()->routeIs('kegiatan.jabatan') || request()->is('tabel-penunjang*') ? 'active' : '' }}">
                         <a href="javascript(0)" class='sidebar-link'>
