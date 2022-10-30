@@ -132,8 +132,7 @@
                             <span>Pengajuan Kegiatan</span>
                         </a>
                     </li>
-                    <li
-                        class="sidebar-item {{ request()->routeIs('atasan-langsung.kegiatan-selesai') || request()->routeIs('atasan-langsung.show') ? 'active' : '' }}">
+                    <li class="sidebar-item {{ request()->routeIs('atasan-langsung.kegiatan-selesai') ? 'active' : '' }}">
                         <a href="{{ route('atasan-langsung.kegiatan-selesai') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="fa-solid fa-check"></i>
@@ -150,6 +149,14 @@
                                 <i class="bi bi-grid-fill"></i>
                             </div>
                             <span>Overview</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item {{ request()->routeIs('provinsi.data-aparatur') ? 'active' : '' }}">
+                        <a href="{{ route('provinsi.data-aparatur') }}" class='sidebar-link'>
+                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                                <i class="fa-solid fa-folder-open"></i>
+                            </div>
+                            <span>Data Aparatur</span>
                         </a>
                     </li>
                 @endrole

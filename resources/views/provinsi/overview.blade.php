@@ -238,40 +238,31 @@
                                 <table class="table table-striped" id="table1">
                                     <thead>
                                         <tr>
-                                            <th>Tugas/Kegiatan</th>
-                                            <th>Status</th>
+                                            <th>Nama</th>
+                                            <th>Jenis Kelamin</th>
+                                            <th>Pangkat</th>
+                                            <th>Golongan</th>
+                                            <th>Kompentensi</th>
+                                            <th>Score Kredit</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td>
-                                                <a href="" style="color: #06152B;">Kesiapsiagaan petugas pemadam
-                                                    kebakaran
-                                                    dan penyelamatan</a>
+                                                <a href="" style="color: #06152B;">Bayu</a>
                                             </td>
                                             <td>
-                                                <button class="btn btn-yellow-reverse btn-status ms-3 px-3 text-sm"
-                                                    type="button">diproses</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <a href="" style="color: #06152B;">Pelaksanaan prosedur pelaporan
-                                                    informasi kejadian kebakaran</a>
+                                                Laki - Laki
                                             </td>
                                             <td>
-                                                <button class="btn btn-red-reverse btn-status ms-3 px-3 text-sm"
-                                                    type="button">revisi</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <a href="" style="color: #06152B;">Pelaksanaan operasional
-                                                    pemadaman kebakaran</a>
+                                                Pangkat I
                                             </td>
                                             <td>
-                                                <button class="btn btn-green-reverse btn-status ms-3 px-3 text-sm"
-                                                    type="button">selesai</button>
+                                                III
+                                            </td>
+                                            <td>Sertifikat Penyelamantan & pengawasan</td>
+                                            <td>
+                                                <p style="color: rgb(54, 228, 38);">+100</p>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -284,6 +275,9 @@
 
             <div class="col-md-3 informasi-wrapper">
                 <div class="card mb-3" style="min-height: 68vh;">
+                    <div class="card-header text-center" style="text-decoration: underline; font-weight: bold">
+                        INFORMASI
+                    </div>
                     <div class="card-body">
 
                     </div>
