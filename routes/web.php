@@ -40,6 +40,7 @@ use App\Models\KabKota;
 use App\Models\Provinsi;
 use App\Models\Unsur;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
@@ -89,6 +90,9 @@ Route::middleware(['auth'])->group(function () {
 
         Route::controller(LaporanKegiatanKegiatanJabatanController::class)->group(function () {
             Route::get('laporan-kegiatan/jabatan', 'index')->name('laporan-kegiatan.jabatan');
+            Route::post('laporan-kegiatan/jabatan', 'storeLaporan')->name('laporan-kegiatan.jabatan.store-laporan');
+            Route::post('laporan-kegiatan/jabatan/tmp-file', 'tmpFile')->name('laporan-kegiatan.jabatan.tmp-file');
+            Route::delete('laporan-kegiatan/jabatan/revert', 'revert')->name('laporan-kegiatan.jabatan.revert');
         });
 
         Route::get('ubah-password', [ChangePasswordController::class, 'index'])->name('ubah-password');

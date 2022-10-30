@@ -23,4 +23,9 @@ class RencanaButirKegiatan extends Model
     {
         return $this->belongsTo(ButirKegiatan::class);
     }
+
+    public function dokumenKegiatanPokok()
+    {
+        return $this->hasMany(DokumenKegiatanPokok::class);
+    }
 }

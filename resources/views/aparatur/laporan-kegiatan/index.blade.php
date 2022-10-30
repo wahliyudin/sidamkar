@@ -141,7 +141,8 @@
                                                                                     </h6>
                                                                                     <div class="d-flex align-items-center">
                                                                                         <button
-                                                                                            class="btn btn-purple-reverse ms-3 px-3"
+                                                                                            data-rencana="{{ $rencanaButirKegiatan->id }}"
+                                                                                            class="btn btn-purple-reverse ms-3 px-3 tindak-lanjut"
                                                                                             data-bs-toggle="modal"
                                                                                             data-bs-target="#tindakLanjut"
                                                                                             type="button">tindak
@@ -176,29 +177,29 @@
                     <h5>Laporan Kegiatan Jabatan</h5>
                 </div>
                 <div class="modal-body">
-                    <div class="d-flex flex-column">
+                    <form class="d-flex flex-column form-kegiatan" enctype="multipart/form-data">
+                        <input type="hidden" name="rencana_butir_kegiatan">
                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>File Dokumen</label>
-                                    <input type="file" name="doc_kepegawaian_tmp" multiple data-max-file-size="2MB"
-                                        data-max-files="3" required />
-                                    <input type="file" name="doc_kepegawaian" style="display: none;" />
-                                </div>
+                            <div class="form-group col-md-12">
+                                <label>File Dokumen</label>
+                                <input type="file" name="doc_kegiatan_tmp[]" multiple data-max-file-size="2MB"
+                                    data-max-files="3" required />
                             </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="">Detail Kegiatan</label>
-                                    <textarea name="" id="" class="form-control"></textarea>
-                                </div>
+                            <div class="form-group col-md-12">
+                                <label for="">Detail Kegiatan</label>
+                                <textarea name="keterangan" id="" class="form-control"></textarea>
                             </div>
                         </div>
 
                         <div class="text-center mt-4">
                             <button class="btn btn-danger px-5" data-bs-dismiss="modal">Batal</button>
-                            <a class="btn btn-blue px-5" href="{{ route('laporan-kegiatan') }}">Kirim</a>
+                            <button type="button" class="btn btn-blue px-5 kirim-kegiatan">
+                                <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
+                                    style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
+                                <span>Kirim</span>
+                            </button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -236,23 +237,15 @@
             $.fn.filepond.registerPlugin(FilePondPluginImagePreview);
             $.fn.filepond.registerPlugin(FilePondPluginFileValidateType);
             $.fn.filepond.registerPlugin(FilePondPluginFileValidateSize);
-            pond = FilePond.create(document.querySelector('input[name="doc_kepegawaian_tmp"]'));
+            pond = FilePond.create(document.querySelector('input[type="file"]'), {
+                chunkUploads: true
+            });
             pond.setOptions({
                 server: {
-                    process: (fieldName, file, metadata, load, error, progress, abort, transfer,
-                        options) => {
-                        const fileInput = document.querySelector('input[name="doc_kepegawaian"]');
-                        const myFile = new File([file], file.name, {
-                            type: file.type,
-                            lastModified: new Date(),
-                        });
-                        const dataTransfer = new DataTransfer();
-                        dataTransfer.items.add(myFile);
-                        fileInput.files = dataTransfer.files;
-                        load(file.name);
-                    },
-                    revert: () => {
-
+                    process: '/laporan-kegiatan/jabatan/tmp-file',
+                    revert: '/laporan-kegiatan/jabatan/revert',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
                 },
             });
@@ -261,46 +254,41 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-            $('.btn-simpan-file-import').click(function(e) {
-                e.preventDefault();
-                if (!$('#form-import input[name="file_import_tmp"]').val()) {
-                    Toastify({
-                        text: "File harus diisi!",
-                        duration: 5000,
-                        close: true,
-                        gravity: "top",
-                        position: "right",
-                        backgroundColor: "#EA3A3D",
-                    }).showToast();
-                } else {
-                    var postData = new FormData($("#form-import")[0]);
-                    $('.btn-simpan-file-import span').hide();
-                    $('.btn-simpan-file-import .spin').show();
-                    $.ajax({
-                        type: 'POST',
-                        url: "{{ route('kemendagri.cms.kegiatan-jabatan.import') }}",
-                        processData: false,
-                        contentType: false,
-                        data: postData,
-                        success: function(response) {
-                            $('.btn-simpan-file-import span').show();
-                            $('.btn-simpan-file-import .spin').hide();
-                            if (response.status == 200) {
-                                swal("Selesai!", response.message, "success").then(() => {
-                                    location.reload();
-                                });
-                            } else {
-                                swal("Error!", response.message, "error");
-                            }
-                        },
-                        error: function(err) {
-                            $('.btn-simpan-file-import span').show();
-                            $('.btn-simpan-file-import .spin').hide();
-                        }
-                    });
-                }
+            $('.tindak-lanjut').each(function(index, element) {
+                $(element).click(function(e) {
+                    e.preventDefault();
+                    $('input[name="rencana_butir_kegiatan"]').val($(this).data('rencana'));
+                });
             });
-            $("#importExcelModal").on('hide.bs.modal', function() {
+            $('.kirim-kegiatan').click(function(e) {
+                e.preventDefault();
+                var postData = new FormData($(".form-kegiatan")[0]);
+                $('.kirim-kegiatan span').hide();
+                $('.kirim-kegiatan .spin').show();
+                $.ajax({
+                    type: 'POST',
+                    url: "{{ route('laporan-kegiatan.jabatan.store-laporan') }}",
+                    processData: false,
+                    contentType: false,
+                    data: postData,
+                    success: function(response) {
+                        $('.kirim-kegiatan span').show();
+                        $('.kirim-kegiatan .spin').hide();
+                        if (response.status == 200) {
+                            swal("Selesai!", response.message, "success").then(() => {
+                                location.reload();
+                            });
+                        } else {
+                            swal("Error!", response.message, "error");
+                        }
+                    },
+                    error: function(err) {
+                        $('.kirim-kegiatan span').show();
+                        $('.kirim-kegiatan .spin').hide();
+                    }
+                });
+            });
+            $("#tindakLanjut").on('hide.bs.modal', function() {
                 pond.removeFiles();
             });
         });

@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('dokumen_kegiatan_pokoks', function (Blueprint $table) {
+        Schema::create('history_butir_kegiatans', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('rencana_butir_kegiatan_id');
-            $table->string('title');
-            $table->string('file');
+            $table->string('keterangan');
             $table->timestamps();
 
             $table->foreign('rencana_butir_kegiatan_id')->on('rencana_butir_kegiatans')->references('id')->cascadeOnDelete();
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dokumen_kegiatan_pokoks');
+        Schema::dropIfExists('history_butir_kegiatans');
     }
 };
