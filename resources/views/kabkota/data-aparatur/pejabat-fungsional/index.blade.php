@@ -20,7 +20,6 @@
                 </div>
             </div>
             <div class="card-body">
-                {{ $dataTable->table() }}
             </div>
         </div>
     </section>
@@ -57,19 +56,6 @@
 @endsection
 
 @section('js')
-    <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
-    {{ $dataTable->scripts() }}
-    <script>
-        $(document).ready(function() {
-            $('#jabatan').change(function(e) {
-                e.preventDefault();
-                $('#dataaparatur-table').on('preXhr.dt', function(e, settings, data) {
-                    data.jabatan = $('#jabatan').val();
-                })
-                $('#dataaparatur-table').DataTable().ajax.reload()
-            });
-        });
-    </script>
     <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
