@@ -107,10 +107,10 @@
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="bi bi-grid-fill"></i>
                             </div>
-                            <span>Overview</span>
+                            <span>Dashboard</span>
                         </a>
                     </li>
-                    <li
+                    {{--  <li
                         class="sidebar-item has-sub {{ request()->is('kab-kota/verifikasi-aparatur/pejabat-fungsional*') || request()->is('kab-kota/verifikasi-aparatur/pejabat-struktural*') ? 'active' : '' }}">
                         <a href="javascript(0)" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
@@ -131,14 +131,14 @@
                                     Struktural</a>
                             </li>
                         </ul>
-                    </li>
+                    </li>  --}}
                     <li
                         class="sidebar-item has-sub {{ request()->is('kab-kota/data-aparatur/pejabat-fungsional*') || request()->is('kab-kota/data-aparatur/pejabat-struktural*') ? 'active' : '' }}">
                         <a href="javascript(0)" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="fa-solid fa-copy"></i>
                             </div>
-                            <span>Data Aparatur</span>
+                            <span>Manajemen User</span>
                         </a>
                         <ul
                             class="submenu {{ request()->is('kab-kota/data-aparatur/pejabat-fungsional*') || request()->is('kab-kota/data-aparatur/pejabat-struktural*') ? 'active' : '' }}">
@@ -178,7 +178,7 @@
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="bi bi-grid-fill"></i>
                             </div>
-                            <span>Overview</span>
+                            <span>Dashboard</span>
                         </a>
                     </li>
                     <li

@@ -7,40 +7,6 @@
                 <div class="card">
                     <div class="card-body py-3 px-3" style="height: 100px;">
                         <div class="d-flex align-items-center h-100">
-                            <div class="circle circle-blue">
-                                <i class="fa-solid fa-copy"></i>
-                            </div>
-                            <div class="d-flex flex-column ms-2">
-                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                    Angka Kredit Minimal
-                                </p>
-                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target">100</h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 px-2">
-                <div class="card">
-                    <div class="card-body py-3 px-3" style="height: 100px;">
-                        <div class="d-flex align-items-center h-100">
-                            <div class="circle circle-purple">
-                                <i class="fa-solid fa-copy"></i>
-                            </div>
-                            <div class="d-flex flex-column ms-2">
-                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                    Angka Kredit diterima
-                                </p>
-                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target">100</h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 px-2">
-                <div class="card">
-                    <div class="card-body py-3 px-3" style="height: 100px;">
-                        <div class="d-flex align-items-center h-100">
                             <div class="circle circle-green">
                                 <i class="fa-solid
                                 fa-stopwatch"></i>
@@ -56,23 +22,68 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-3 px-2">
+                <div class="card">
+                    <div class="card-body py-3 px-3" style="height: 100px;">
+                        <div class="d-flex align-items-center h-100">
+                            <div class="circle circle-blue">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div class="d-flex flex-column ms-2">
+                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
+                                    Penilai AK
+                                </p>
+                                <h2 style="font-family: 'Roboto';color: #06152B; font-size: 22px;" class="target">Rohmat
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 px-2">
+                <div class="card">
+                    <div class="card-body py-3 px-3" style="height: 100px;">
+                        <div class="d-flex align-items-center h-100">
+                            <div class="circle circle-purple">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div class="d-flex flex-column ms-2">
+                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
+                                    Penetap AK
+                                </p>
+                                <h2 style="font-family: 'Roboto';color: #06152B; font-size: 22px;" class="target">Alifta
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-3">
-                <a href="" class="btn btn-primary py-3 mt-3"><i
+                <a href="" class="btn btn-mente py-3 mt-3" data-bs-toggle="modal" data-bs-target="#tambahedit"><i
                         class="fa-solid fa-right-to-bracket me-3"></i>Tambah/Edit</a>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <div class="card">
+                <div class="card mt-3">
                     <div class="card-header">
-                        <h5>Table Data Pendaftaran Aparatur</h5>
+                        <div class="row justify-content-between">
+                            <div class="col-md-3">
+                                <h5>Table Data Pendaftaran Aparatur</h5>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="" class="btn btn-primary" style="right: 0;" data-bs-toggle="modal"
+                                    data-bs-target="#editMentee">Tambah Mentee</a>
+                            </div>
+                        </div>
+
                     </div>
                     <div class="card-body">
                         <table class="table table-striped" id="table1">
                             <thead>
                                 <tr>
                                     <th>Nama</th>
-                                    <th>NomenKlatur Jabatan</th>
+                                    <th>NIP</th>
                                     <th>Jabatan</th>
                                     <th>Golongan</th>
                                     <th>File SK</th>
@@ -82,7 +93,7 @@
                             <tbody>
                                 <tr>
                                     <td>Graiden</td>
-                                    <td></td>
+                                    <td>654546645645</td>
                                     <td>Damkar Pemula</td>
                                     <td>III A</td>
                                     <td>
@@ -95,24 +106,205 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>Graiden</td>
-                                    <td></td>
-                                    <td>Damkar Pemula</td>
-                                    <td>III A</td>
-                                    <td>
-                                        <span><i class="fa-regular fa-file-lines"></i></span>
-                                    </td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-
-
     </section>
+
+    <div class="modal fade" id="editMentee" tabindex="-1" role="dialog" aria-labelledby="editMenteeTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editMenteeTitle">
+                        Tambah Mentee
+                    </h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <i data-feather="x"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" enctype="multipart/form-data" class="container-unsur">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Atasan Langsung</label>
+                                    <select class="choices form-select" name="role_id">
+                                        <option disabled selected>Pilih Jabatan</option>
+                                        <option>Iqbal</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="card mt-3" style="border: 1px solid black;">
+                                    <div class="card-header">
+                                        <div class="row justify-content-between">
+                                            <div class="col-md-3">
+                                                <h5>Nama Fungsional</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body" style="overflow: auto; height: 30vh;">
+                                        <table class="table table-striped" id="table1">
+                                            <thead
+                                                style="position: sticky; top: 0; color: black; background-color: white;">
+                                                <tr>
+                                                    <th></th>
+                                                    <th>Nama</th>
+                                                    <th>Nomor Karpeg</th>
+                                                    <th>Jabatan</th>
+                                                    <th>Golongan</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckDefault"></td>
+                                                    <td>Graiden</td>
+                                                    <td>1551565645</td>
+                                                    <td>Damkar Pemula</td>
+                                                    <td>III A</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td><input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckDefault"></td>
+                                                    <td>Graiden</td>
+                                                    <td>1551565645</td>
+                                                    <td>Damkar Pemula</td>
+                                                    <td>III A</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td><input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckDefault"></td>
+                                                    <td>Graiden</td>
+                                                    <td>1551565645</td>
+                                                    <td>Damkar Pemula</td>
+                                                    <td>III A</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td><input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckDefault"></td>
+                                                    <td>Graiden</td>
+                                                    <td>1551565645</td>
+                                                    <td>Damkar Pemula</td>
+                                                    <td>III A</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td><input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckDefault"></td>
+                                                    <td>Graiden</td>
+                                                    <td>1551565645</td>
+                                                    <td>Damkar Pemula</td>
+                                                    <td>III A</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td><input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckDefault"></td>
+                                                    <td>Graiden</td>
+                                                    <td>1551565645</td>
+                                                    <td>Damkar Pemula</td>
+                                                    <td>III A</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td><input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckDefault"></td>
+                                                    <td>Graiden</td>
+                                                    <td>1551565645</td>
+                                                    <td>Damkar Pemula</td>
+                                                    <td>III A</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td><input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckDefault"></td>
+                                                    <td>Graiden</td>
+                                                    <td>1551565645</td>
+                                                    <td>Damkar Pemula</td>
+                                                    <td>III A</td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                        <span>Batal</span>
+                    </button>
+                    <button class="btn btn-green ml-1 simpan-kegiatan">
+                        <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
+                            style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
+                        <span>Simpan</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="tambahedit" tabindex="-1" role="dialog" aria-labelledby="tambaheditTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tambaheditTitle">
+                        Tambah Mentee
+                    </h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <i data-feather="x"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" enctype="multipart/form-data" class="container-unsur">
+                        <div class="row justify-content-center">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Penilai AK</label>
+                                    <select class="choices form-select" name="role_id">
+                                        <option disabled selected>Pilih Penilai</option>
+                                        <option>Iqbal</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Penetap AK</label>
+                                    <select class="choices form-select" name="role_id">
+                                        <option disabled selected>Pilih Penetap</option>
+                                        <option>Iqbal</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                        <span>Batal</span>
+                    </button>
+                    <button class="btn btn-green ml-1 simpan-kegiatan">
+                        <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
+                            style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
+                        <span>Simpan</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('css')
