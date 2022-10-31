@@ -5,10 +5,12 @@
         <div class="row">
             <div class="card">
                 <div class="card-header">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h3 class="mt-4">Kegiatan Iqbal</h3>
-                            <input type="date" name="" id="">
+                    <div class="row justify-content-between">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <h3 class="mt-4">Kegiatan Iqbal</h3>
+                                <input class="form-control" type="date" name="" id="">
+                            </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">

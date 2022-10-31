@@ -5,14 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DokumenKegiatanPokok extends Model
+class HistoryButirKegiatan extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'rencana_butir_kegiatan_id',
-        'title',
-        'file'
+        'keterangan'
     ];
 
     public function rencanaButirKegiatan()

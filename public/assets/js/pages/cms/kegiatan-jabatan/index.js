@@ -172,18 +172,12 @@ $(function () {
         $.each($('input[name="sub_unsur[]"]'), function (indexInArray, valueOfElement) {
             result.push({
                 name: $(valueOfElement).val(),
-                butir_kegiatans: $($(this.parentElement.parentElement.parentElement
-                    .parentElement).find(
-                    'input[name="butir_kegiatan[]"]')).map(
-                    function (idx2, elem2) {
-                        return $(elem2).val();
-                    }).get(),
-                angka_kredits: $($(this.parentElement.parentElement.parentElement
-                    .parentElement).find(
-                    'input[name="angka_kredit[]"]')).map(
-                    function (idx2, elem2) {
-                        return $(elem2).val();
-                    }).get()
+                butir_kegiatans: $.map($(this.parentElement.parentElement.parentElement.parentElement).find('input[name="butir_kegiatan[]"]'), function (elementOrValue, indexOrKey) {
+                    return {
+                        name: $(elementOrValue).val(),
+                        angka_kredit: $($(elementOrValue.parentElement.parentElement.parentElement).find('input[name="angka_kredit[]"]')).val()
+                    }
+                })
             })
         });
         $('.simpan-kegiatan span').hide();
@@ -286,7 +280,7 @@ $(function () {
                 <div class="col-md-9">
                     <div class="form-group">
                         <label>Sub Unsur</label>
-                        <input class="form-control w-100" type="text" value="${subUnsur.nama}" name="sub_unsur[]">
+                        <input class="form-control w-100" type="text" data-id="${subUnsur.id}" value="${subUnsur.nama}" name="sub_unsur[]">
                     </div>
                 </div>
                 <div class="col-md-2 d-flex align-items-center">
@@ -310,7 +304,7 @@ $(function () {
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Butir Kegiatan</label>
-                        <input class="form-control w-100" type="text" value="${butirKegiatan.nama}" name="butir_kegiatan[]">
+                        <input class="form-control w-100" type="text" data-id="${butirKegiatan.id}" value="${butirKegiatan.nama}" name="butir_kegiatan[]">
                     </div>
                 </div>
                 <div class="col-md-2">
@@ -334,19 +328,15 @@ $(function () {
         result = [];
         $.each($('input[name="sub_unsur[]"]'), function (indexInArray, valueOfElement) {
             result.push({
+                id: $(valueOfElement).data('id'),
                 name: $(valueOfElement).val(),
-                butir_kegiatans: $($(this.parentElement.parentElement.parentElement
-                    .parentElement).find(
-                    'input[name="butir_kegiatan[]"]')).map(
-                    function (idx2, elem2) {
-                        return $(elem2).val();
-                    }).get(),
-                angka_kredits: $($(this.parentElement.parentElement.parentElement
-                    .parentElement).find(
-                    'input[name="angka_kredit[]"]')).map(
-                    function (idx2, elem2) {
-                        return $(elem2).val();
-                    }).get()
+                butir_kegiatans: $.map($(this.parentElement.parentElement.parentElement.parentElement).find('input[name="butir_kegiatan[]"]'), function (elementOrValue, indexOrKey) {
+                    return {
+                        id: $(elementOrValue).data('id'),
+                        name: $(elementOrValue).val(),
+                        angka_kredit: $($(elementOrValue.parentElement.parentElement.parentElement).find('input[name="angka_kredit[]"]')).val()
+                    }
+                })
             })
         });
         $('.simpan-kegiatan span').hide();

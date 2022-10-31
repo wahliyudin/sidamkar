@@ -53,6 +53,7 @@ class AdminKabKotaDataTable extends DataTable
             ->responsive(true)
             ->setTableId('adminkabkota-table')
             ->columns($this->getColumns())
+            ->orderCellsTop(true)
             ->minifiedAjax()
             ->dom('frtip')
             ->orderBy(1)

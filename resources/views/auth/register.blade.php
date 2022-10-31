@@ -696,6 +696,48 @@
                     $('.kabkota-kabkota').show();
                 }
             });
+
+            var all_tabs = document.querySelectorAll('.nav-link')
+            var _target = localStorage.getItem('tab_active')
+
+            @if (auth()->user()->status_kelulusan == 1)
+                if (_target == '#kirim-data') {
+                    window.localStorage.removeItem('tab_active')
+                    _target = false
+                }
+            @endif
+
+            function setTabActive(target) {
+                window.localStorage.setItem('tab_active', target)
+            }
+
+            function loadTabActive(_target) {
+                all_tabs.forEach(tab => {
+                    var target = tab.id.replace('-tab', '')
+                    document.getElementById(target).classList.remove('show', 'active')
+                    tab.classList.remove('active')
+                })
+                document.querySelector(_target).classList.toggle('show')
+                document.querySelector(_target).classList.toggle('active')
+                document.querySelector(_target + '-tab').classList.toggle('active')
+            }
+
+            if (_target) {
+                loadTabActive(_target)
+                // all_tabs.forEach(tab => {
+                //     var target = tab.id.replace('-tab','')
+                //     document.getElementById(target).classList.remove('show','active')
+                //     tab.classList.remove('active')
+                // })
+                // document.querySelector(_target).classList.toggle('show')
+                // document.querySelector(_target).classList.toggle('active')
+                // document.querySelector(_target+'-tab').classList.toggle('active')
+            } else {
+                _target = '#home-b2';
+                loadTabActive(_target)
+                // document.querySelector(_target).classList.toggle('show','active')
+                // document.querySelector(_target+'-tab').classList.toggle('active')
+            }
         });
     </script>
 

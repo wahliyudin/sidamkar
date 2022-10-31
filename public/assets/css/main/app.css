@@ -22473,6 +22473,66 @@ a {
     background-color: rgba(226, 163, 68, 0.47);
 }
 
+.btn-yellow,
+.btn-yellow:active {
+    color: #fff !important;
+    background-color: #FFC107 !important;
+    text-transform: uppercase;
+    font-family: 'Roboto';
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.btn-yellow:hover {
+    color: #fff;
+    background-color: #daaa1b;
+}
+
+.btn-black,
+.btn-black:active {
+    color: #fff !important;
+    background-color: #000000 !important;
+    text-transform: uppercase;
+    font-family: 'Roboto';
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.btn-black:hover {
+    color: #fff;
+    background-color: #111010;
+}
+
+.btn-green-dark,
+.btn-green-dark:active {
+    color: #fff !important;
+    background-color: #3DA33D !important;
+    text-transform: uppercase;
+    font-family: 'Roboto';
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.btn-green-dark:hover {
+    color: #fff;
+    background-color: #408d40;
+}
+
+.btn-gray,
+.btn-gray:active {
+    color: #fff !important;
+    background-color: #6C757D !important;
+    text-transform: uppercase;
+    font-family: 'Roboto';
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.btn-gray:hover {
+    color: #fff;
+    background-color: #5d6368;
+}
+
 .btn-yellow-reverse {
     border: 1px solid #F9B959;
     color: #F9B959 !important;
@@ -22634,4 +22694,24 @@ a {
 
 .cursor-pointer {
     cursor: pointer;
+}
+
+.form-select {
+    border-color: #2F80ED !important;
+}
+
+label {
+    font-weight: 800 !important;
+}
+
+#app .loading-master {
+    position: fixed;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
 }

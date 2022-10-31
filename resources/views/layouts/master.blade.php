@@ -15,6 +15,10 @@
 
 <body>
     <div id="app">
+        <div class="loading-master">
+            <img class="loading" src="{{ asset('assets/images/template/spinner.gif') }}"
+                style="height: 3rem; object-fit: cover;" alt="" srcset="">
+        </div>
         @include('layouts.inc.sidebar')
         <div id="main" class='layout-navbar'>
             @include('layouts.inc.navbar')

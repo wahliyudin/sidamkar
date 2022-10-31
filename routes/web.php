@@ -4,10 +4,13 @@ use App\Http\Controllers\Aparatur\ChangePasswordController;
 use App\Http\Controllers\Aparatur\DaftarKegiatanController;
 use App\Http\Controllers\Aparatur\DaftarPenunjangController;
 use App\Http\Controllers\Aparatur\DataSayaController;
+use App\Http\Controllers\Aparatur\Kegiatan\KegiatanJabatanController as KegiatanKegiatanJabatanController;
 use App\Http\Controllers\Aparatur\LaporanJabatan;
 use App\Http\Controllers\Aparatur\LaporanJabatanController;
+use App\Http\Controllers\Aparatur\LaporanKegiatan\KegiatanJabatanController as LaporanKegiatanKegiatanJabatanController;
 use App\Http\Controllers\Aparatur\LaporanKegiatanController;
 use App\Http\Controllers\Aparatur\OverviewController;
+use App\Http\Controllers\Aparatur\RencanaKinerjaController;
 use App\Http\Controllers\Aparatur\TabelKegiatanController;
 use App\Http\Controllers\Aparatur\tabelPenunjangController;
 use App\Http\Controllers\Api\FilePondController;
@@ -32,9 +35,13 @@ use App\Http\Controllers\Kemendagri\OverviewController as KemendagriOverviewCont
 use App\Http\Controllers\Kemendagri\PejabatStrukturalController as KemendagriPejabatStrukturalController;
 use App\Http\Controllers\Kemendagri\VerifikasiData\AdminKabKotaController;
 use App\Http\Controllers\Kemendagri\VerifikasiData\AdminProvinsiController;
+use App\Http\Controllers\Provinsi\DataAparaturController as ProvinsiDataAparaturController;
 use App\Http\Controllers\Provinsi\OverviewController as ProvinsiOverviewController;
 use App\Models\KabKota;
 use App\Models\Provinsi;
+use App\Models\Unsur;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
@@ -72,6 +79,19 @@ Route::middleware(['auth'])->group(function () {
             Route::delete('data-saya/destroy-dockom/{id}', 'destroyDocKom')->name('data-saya.destroy-doc-kom');
         });
 
+        Route::controller(KegiatanKegiatanJabatanController::class)->group(function () {
+            Route::get('kegiatan/jabatan', 'index')->name('kegiatan.jabatan');
+            Route::post('kegiatan/jabatan/search', 'search')->name('kegiatan.jabatan.search');
+            Route::post('kegiatan/jabatan/rencana-kinerja/store', 'store')->name('kegiatan.jabatan.rencana-kinerja.store');
+        });
+
+        Route::controller(LaporanKegiatanKegiatanJabatanController::class)->group(function () {
+            Route::get('laporan-kegiatan/jabatan', 'index')->name('laporan-kegiatan.jabatan');
+            Route::post('laporan-kegiatan/jabatan', 'storeLaporan')->name('laporan-kegiatan.jabatan.store-laporan');
+            Route::post('laporan-kegiatan/jabatan/tmp-file', 'tmpFile')->name('laporan-kegiatan.jabatan.tmp-file');
+            Route::delete('laporan-kegiatan/jabatan/revert', 'revert')->name('laporan-kegiatan.jabatan.revert');
+        });
+
         Route::get('ubah-password', [ChangePasswordController::class, 'index'])->name('ubah-password');
         Route::post('ubah-password', [ChangePasswordController::class, 'update'])->name('ubah-password.update');
         Route::get('/daftar-kegiatan', [DaftarKegiatanController::class, 'index'])->name('daftar-kegiatan');
@@ -102,11 +122,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('atasan-langsung/overview', [AtasanLangsungOverviewController::class, 'index'])->name('atasan-langsung.overview.index');
         Route::get('atasan-langsung/pengajuan-kegiatan', [PengajuanKegiatanController::class, 'index'])->name('atasan-langsung.pengajuan-kegiatan.index');
         Route::get('atasan-langsung/show', [KegiatanPengajuanController::class, 'index'])->name('atasan-langsung.show');
-        Route::get('atasan-langsung/kegiatan-selesai',[KegiatanLangsungController::class, 'index'])->name('atasan-langsung.kegiatan-selesai');
+        Route::get('atasan-langsung/kegiatan-selesai', [KegiatanLangsungController::class, 'index'])->name('atasan-langsung.kegiatan-selesai');
     });
 
     Route::middleware(['role:provinsi'])->group(function () {
         Route::get('provinsi/overview', [ProvinsiOverviewController::class, 'index'])->name('provinsi.overview.index');
+        Route::get('provinsi/data-aparatur', [ProvinsiDataAparaturController::class, 'index'])->name('provinsi.data-aparatur');
     });
 
     Route::middleware(['role:kemendagri'])->group(function () {
