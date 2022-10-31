@@ -99,112 +99,49 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" enctype="multipart/form-data" class="container-unsur">
+                    <form method="post" class="mente-fungsional">
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Atasan Langsung</label>
-                                    <select class="choices form-select" name="role_id">
-                                        <option disabled selected>Pilih Jabatan</option>
-                                        <option>Iqbal</option>
+                                    <select class="choices form-select" name="atasan_langsung">
+                                        <option disabled selected>Pilih Atasan</option>
+                                        @foreach ($atasanLangsungs as $atasanLangsung)
+                                            <option value="{{ $atasanLangsung->id }}">
+                                                {{ $atasanLangsung->userPejabatStruktural->nama }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
-                                <div class="card mt-3" style="border: 1px solid black;">
-                                    <div class="card-header">
+                                <div class="card mt-3 mb-0" style="border: 1px solid black; overflow: hidden;">
+                                    <div class="card-header py-2">
                                         <div class="row justify-content-between">
                                             <div class="col-md-3">
                                                 <h5>Nama Fungsional</h5>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="card-body" style="overflow: auto; height: 30vh;">
-                                        <table class="table table-striped" id="table1">
+                                    <div class="card-body">
+                                        <table class="table table-striped w-100" id="table-fungsional">
                                             <thead style="position: sticky; top: 0; color: black; background-color: white;">
                                                 <tr>
-                                                    <th></th>
+                                                    <th>Pilih</th>
                                                     <th>Nama</th>
-                                                    <th>Nomor Karpeg</th>
-                                                    <th>Jabatan</th>
-                                                    <th>Golongan</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td><input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckDefault"></td>
-                                                    <td>Graiden</td>
-                                                    <td>1551565645</td>
-                                                    <td>Damkar Pemula</td>
-                                                    <td>III A</td>
-
-                                                </tr>
-                                                <tr>
-                                                    <td><input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckDefault"></td>
-                                                    <td>Graiden</td>
-                                                    <td>1551565645</td>
-                                                    <td>Damkar Pemula</td>
-                                                    <td>III A</td>
-
-                                                </tr>
-                                                <tr>
-                                                    <td><input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckDefault"></td>
-                                                    <td>Graiden</td>
-                                                    <td>1551565645</td>
-                                                    <td>Damkar Pemula</td>
-                                                    <td>III A</td>
-
-                                                </tr>
-                                                <tr>
-                                                    <td><input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckDefault"></td>
-                                                    <td>Graiden</td>
-                                                    <td>1551565645</td>
-                                                    <td>Damkar Pemula</td>
-                                                    <td>III A</td>
-
-                                                </tr>
-                                                <tr>
-                                                    <td><input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckDefault"></td>
-                                                    <td>Graiden</td>
-                                                    <td>1551565645</td>
-                                                    <td>Damkar Pemula</td>
-                                                    <td>III A</td>
-
-                                                </tr>
-                                                <tr>
-                                                    <td><input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckDefault"></td>
-                                                    <td>Graiden</td>
-                                                    <td>1551565645</td>
-                                                    <td>Damkar Pemula</td>
-                                                    <td>III A</td>
-
-                                                </tr>
-                                                <tr>
-                                                    <td><input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckDefault"></td>
-                                                    <td>Graiden</td>
-                                                    <td>1551565645</td>
-                                                    <td>Damkar Pemula</td>
-                                                    <td>III A</td>
-
-                                                </tr>
-                                                <tr>
-                                                    <td><input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckDefault"></td>
-                                                    <td>Graiden</td>
-                                                    <td>1551565645</td>
-                                                    <td>Damkar Pemula</td>
-                                                    <td>III A</td>
-
-                                                </tr>
+                                                @foreach ($fungsionals as $fungsional)
+                                                    <tr>
+                                                        <td>
+                                                            <input class="form-check-input" name="fungsionals[]"
+                                                                type="checkbox" value="{{ $fungsional->id }}">
+                                                        </td>
+                                                        <td>{{ $fungsional->userAparatur?->nama }}</td>
+                                                    </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -217,7 +154,7 @@
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
                         <span>Batal</span>
                     </button>
-                    <button class="btn btn-green ml-1 simpan-kegiatan">
+                    <button type="button" class="btn btn-green ml-1 simpan-mente">
                         <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
                             style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
                         <span>Simpan</span>
@@ -315,6 +252,7 @@
             background-color: rgb(250, 250, 250);
         }
     </style>
+    <link rel="stylesheet" href="{{ asset('assets/css/shared/sweetalert2.min.css') }}">
 @endsection
 
 @section('js')
@@ -324,4 +262,6 @@
     <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/kabkota/mente.js') }}"></script>
+    <script src="{{ asset('assets/js/extensions/sweetalert2.all.min.js') }}"></script>
 @endsection

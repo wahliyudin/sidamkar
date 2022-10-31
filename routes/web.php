@@ -55,7 +55,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', 'login');
 Route::get('coba', function(){
-    return User::query()->with('userPejabatStruktural')->whereRoleIs('atasan_langsung')->get();
     return User::query()->with('mentes.fungsional')->whereRoleIs('atasan_langsung')->get();
 });
 Auth::routes(['verify' => true]);
@@ -116,6 +115,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('kab-kota/data-aparatur/pejabat-struktural', [KabKotaPejabatStrukturalController::class, 'index'])->name('kab-kota.data-aparatur.pejabat-struktural.index');
 
         Route::get('kab-kota/data-mente', [MenteController::class, 'index'])->name('kab-kota.data-mente');
+        Route::post('kab-kota/data-mente/store', [MenteController::class, 'store'])->name('kab-kota.data-mente.store');
 
         Route::get('kab-kota/chatbox', [ChatboxController::class, 'index'])->name('kab-kota.chatbox');
     });

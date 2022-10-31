@@ -53,7 +53,7 @@ class MenteDataTable extends DataTable
     {
         return $model->newQuery()->with(['userPejabatStruktural'=>function($query){
             $query->where('kab_kota_id', Auth::user()->userProvKabKota->kab_kota_id);
-        }])->whereRoleIs('atasan_langsung');
+        }])->withWhereHas('mentes')->whereRoleIs('atasan_langsung');
     }
 
     /**
