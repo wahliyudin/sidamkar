@@ -5,12 +5,10 @@ use App\Http\Controllers\Aparatur\DaftarKegiatanController;
 use App\Http\Controllers\Aparatur\DaftarPenunjangController;
 use App\Http\Controllers\Aparatur\DataSayaController;
 use App\Http\Controllers\Aparatur\Kegiatan\KegiatanJabatanController as KegiatanKegiatanJabatanController;
-use App\Http\Controllers\Aparatur\LaporanJabatan;
 use App\Http\Controllers\Aparatur\LaporanJabatanController;
 use App\Http\Controllers\Aparatur\LaporanKegiatan\KegiatanJabatanController as LaporanKegiatanKegiatanJabatanController;
 use App\Http\Controllers\Aparatur\LaporanKegiatanController;
 use App\Http\Controllers\Aparatur\OverviewController;
-use App\Http\Controllers\Aparatur\RencanaKinerjaController;
 use App\Http\Controllers\Aparatur\TabelKegiatanController;
 use App\Http\Controllers\Aparatur\tabelPenunjangController;
 use App\Http\Controllers\Api\FilePondController;
@@ -20,8 +18,10 @@ use App\Http\Controllers\AtasanLangsung\KegiatanPengajuanController;
 use App\Http\Controllers\AtasanLangsung\OverviewController as AtasanLangsungOverviewController;
 use App\Http\Controllers\AtasanLangsung\PengajuanKegiatanController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\CobaController;
-use App\Http\Controllers\KabKota\DataAparaturController;
+use App\Http\Controllers\KabKota\ChatboxController;
+use App\Http\Controllers\KabKota\DataAparatur\PejabatstrukturalController as KabKotaPejabatStrukturalController;
+use App\Http\Controllers\KabKota\DataAparatur\DataAparaturController as KabKotaPejabatFungsionalController;
+use App\Http\Controllers\KabKota\DataMenteController;
 use App\Http\Controllers\KabKota\OverviewController as KabKotaOverviewController;
 use App\Http\Controllers\KabKota\VerifikasiAparatur\PejabatFungsionalController;
 use App\Http\Controllers\KabKota\VerifikasiAparatur\PejabatStrukturalController;
@@ -37,16 +37,7 @@ use App\Http\Controllers\Kemendagri\VerifikasiData\AdminKabKotaController;
 use App\Http\Controllers\Kemendagri\VerifikasiData\AdminProvinsiController;
 use App\Http\Controllers\Provinsi\DataAparaturController as ProvinsiDataAparaturController;
 use App\Http\Controllers\Provinsi\OverviewController as ProvinsiOverviewController;
-use App\Models\KabKota;
-use App\Models\Provinsi;
-use App\Models\Unsur;
-use App\Models\User;
-use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
-use Illuminate\Database\Query\Builder;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -60,11 +51,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return redirect()->route('login');
-});
-Auth::routes(['verify' => true]);
+Route::redirect('/', 'login');
 
+Auth::routes(['verify' => true]);
+Route::post('register/file', [RegisterController::class, 'storeFile']);
+Route::delete('register/revert', [RegisterController::class, 'revert']);
 Route::middleware(['auth'])->group(function () {
     Route::middleware(['role:damkar_pemula|damkar_terampil|damkar_mahir|damkar_penyelia|analis_kebakaran_ahli_pertama|analis_kebakaran_ahli_muda|analis_kebakaran_ahli_madya'])->group(function () {
         Route::get('/overview', [OverviewController::class, 'index'])->name('overview');
@@ -114,8 +105,14 @@ Route::middleware(['auth'])->group(function () {
         Route::post('kab-kota/verifikasi-aparatur/{id}/verified', [VerifikasiAparaturController::class, 'verified'])->name('kab-kota.verifikasi-aparatur.verified');
         Route::post('kab-kota/verifikasi-aparatur/{id}/reject', [VerifikasiAparaturController::class, 'reject'])->name('kab-kota.verifikasi-aparatur.reject');
 
-        Route::get('kab-kota/data-aparatur', [DataAparaturController::class, 'index'])->name('kab-kota.data-aparatur.index');
-        Route::get('kab-kota/data-aparatur/{id}/show', [DataAparaturController::class, 'show'])->name('kab-kota.data-aparatur.show');
+        Route::get('kab-kota/data-aparatur/pejabat-fungsional', [KabKotaPejabatFungsionalController::class, 'index'])->name('kab-kota.data-aparatur.pejabat-fungsional.index');
+        Route::get('kab-kota/data-aparatur/pejabat-fungsional/{id}/show', [KabKotaPejabatFungsionalController::class, 'show'])->name('kab-kota.data-aparatur.pejabat-fungsional.show');
+
+        Route::get('kab-kota/data-aparatur/pejabat-struktural', [KabKotaPejabatStrukturalController::class, 'index'])->name('kab-kota.data-aparatur.pejabat-struktural.index');
+
+        Route::get('kab-kota/data-mente', [DataMenteController::class, 'index'])->name('kab-kota.data-mente');
+
+        Route::get('kab-kota/chatbox', [ChatboxController::class, 'index'])->name('kab-kota.chatbox');
     });
 
     Route::middleware(['role:atasan_langsung'])->group(function () {
@@ -127,7 +124,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['role:provinsi'])->group(function () {
         Route::get('provinsi/overview', [ProvinsiOverviewController::class, 'index'])->name('provinsi.overview.index');
-        Route::get('provinsi/data-aparatur', [ProvinsiDataAparaturController::class, 'index'])->name('provinsi.data-aparatur');
+        Route::get('provinsi/aparatur/data-aparatur', [ProvinsiDataAparaturController::class, 'index'])->name('provinsi.aparatur.data-aparatur');
+        Route::get('provinsi/pejabat-struktural', [ProvinsiPejabatStrukturalController::class, 'index'])->name('provinsi.pejabat-struktural');
     });
 
     Route::middleware(['role:kemendagri'])->group(function () {

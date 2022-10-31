@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('user_prov_kab_kotas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->string('nomenklatur_perangkat_daerah');
+            $table->unsignedBigInteger('nomenklatur_perangkat_daerah_id');
             $table->string('file_permohonan')->nullable();
             $table->boolean('is_active')->default(true);
             $table->string('catatan')->nullable();
@@ -27,6 +27,7 @@ return new class extends Migration
             $table->foreign('user_id')->on('users')->references('id')->cascadeOnDelete();
             $table->foreign('kab_kota_id')->on('kab_kotas')->references('id')->nullOnDelete();
             $table->foreign('provinsi_id')->on('provinsis')->references('id')->nullOnDelete();
+            // $table->foreign('nomenklatur_perangkat_daerah_id')->on('nomenklatur_perangkat_daerahs')->references('id')->cascadeOnDelete();
         });
     }
 

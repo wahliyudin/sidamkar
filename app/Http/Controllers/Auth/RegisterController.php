@@ -3,16 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\TemporaryFile;
 use App\Providers\RouteServiceProvider;
-use App\Models\User;
-use App\Models\UserAparatur;
-use App\Rules\PejabatStrukturalRule;
-use App\Rules\ProvKabKotaRule;
 use App\Services\RegisterService;
 use App\Traits\AuthBackend\RegistersUsers;
-use Carbon\Carbon;
-use Faker\Provider\UserAgent;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -68,6 +64,8 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'jenis_jabatan' => ['required']
+        ], [
+            'jenis_jabatan.required' => "Jenis Aparatur wajib diisi"
         ]);
     }
 
@@ -80,5 +78,31 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return $this->registerService->store($data);
+    }
+
+    public function storeFile(Request $request)
+    {
+        if ($request->has('file_permohonan')) {
+            $file = $request->file('file_permohonan');
+        } elseif ($request->has('file_sk')) {
+            $file = $request->file('file_sk');
+        }
+        $file_name = $file->getClientOriginalName();
+        $folder = uniqid('register', true);
+        $file->storeAs("tmp/$folder", $file_name);
+        TemporaryFile::query()->create([
+            'folder' => $folder,
+            'file' => $file_name
+        ]);
+        return $folder;
+    }
+
+    public function revert(Request $request)
+    {
+        $tmp_file = TemporaryFile::query()->where('folder', $request->getContent())->first();
+        if ($tmp_file) {
+            $tmp_file->delete();
+            Storage::deleteDirectory("tmp/$tmp_file->folder");
+        }
     }
 }

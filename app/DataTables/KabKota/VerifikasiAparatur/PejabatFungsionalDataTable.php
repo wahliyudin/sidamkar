@@ -25,7 +25,13 @@ class PejabatFungsionalDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addIndexColumn()
             ->addColumn('username', function (User $user) {
-                return '<p class="username" data-detail="'.$user->id.'">'.$user->username.'</p>';
+                return '<p class="username" data-detail="' . $user->id . '">' . $user->username . '</p>';
+            })
+            ->filterColumn('username', function ($query, $keyword) {
+                $query->where('username', 'like', "%$keyword%");
+            })
+            ->orderColumn('username', function ($query, $order) {
+                $query->orderBy('username', $order);
             })
             ->setRowId('id');
     }
