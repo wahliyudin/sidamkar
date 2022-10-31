@@ -33,7 +33,7 @@ class RegisterRequest extends FormRequest
             $rules['file_sk'] = 'required';
         }
         if (request()->jenis_jabatan == 'kab_kota') {
-            $rules['kab_kota'] = 'required';
+            $rules['kab_kota_id'] = 'required';
         }
         if (in_array(request()->jenis_jabatan, ['kab_kota', 'provinsi'])) {
             $rules['file_permohonan'] = 'required';

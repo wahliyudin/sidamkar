@@ -4,6 +4,7 @@ namespace App\Traits\AuthBackend;
 
 use App\Http\Requests\RegisterRequest;
 use App\Jobs\SendVerifEmailToUser;
+use App\Models\NomenKlaturPerangkatDaerah;
 use App\Models\Provinsi;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\JsonResponse;
@@ -22,7 +23,8 @@ trait RegistersUsers
     public function showRegistrationForm()
     {
         $provinsis = Provinsi::query()->get(['id', 'nama']);
-        return view('auth.register', compact('provinsis'));
+        $nomenklaturs = NomenKlaturPerangkatDaerah::query()->get(['id', 'nama']);
+        return view('auth.register', compact('provinsis', 'nomenklaturs'));
     }
 
     /**

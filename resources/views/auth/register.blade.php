@@ -370,12 +370,14 @@
                                                             <div class="form-group">
                                                                 <label>Provinsi<span
                                                                         class="text-danger">*</span></label>
-                                                                <select name="provinsi_id" required id="provinsi_id"
-                                                                    class="custom-select">
+                                                                <select name="provinsi_id" data-id=".provinsi2"
+                                                                    required id="provinsi_id"
+                                                                    class="custom-select provinsi2">
                                                                     <option selected disabled>- Pilih Provinsi -
                                                                     </option>
                                                                     @foreach ($provinsis as $provinsi)
-                                                                        <option value="{{ $provinsi->id }}">
+                                                                        <option @selected(old('provinsi_id') == $provinsi->id)
+                                                                            value="{{ $provinsi->id }}">
                                                                             {{ $provinsi->nama }}</option>
                                                                     @endforeach
                                                                 </select>
@@ -404,9 +406,17 @@
                                                             <div class="form-group">
                                                                 <label>Nomenklatur Perangkat Daerah<span
                                                                         class="text-danger">*</span></label>
-                                                                <input required type="number" class="form-control"
-                                                                    name="nomenklatur_perangkat_daerah"
+                                                                <select class="custom-select"
+                                                                    name="nomenklatur_perangkat_daerah_id"
                                                                     id="">
+                                                                    <option selected disabled>- Pilih Nomenklatur -
+                                                                    </option>
+                                                                    @foreach ($nomenklaturs as $nomenklatur)
+                                                                        <option @selected(old('nomenklatur_perangkat_daerah_id') == $nomenklatur->id)
+                                                                            value="{{ $nomenklatur->id }}">
+                                                                            {{ $nomenklatur->nama }}</option>
+                                                                    @endforeach
+                                                                </select>
                                                                 @error('nomenklatur_perangkat_daerah')
                                                                     <strong
                                                                         style="color: red;">{{ $message }}</strong>
@@ -558,7 +568,11 @@
                 ]
             });
             FilePond.create(document.querySelector('input[name="file_permohonan"]'), {
-                chunkUploads: true
+                chunkUploads: true,
+                acceptedFileTypes: [
+                    'application/doc',
+                    'application/pdf'
+                ]
             });
             FilePond.setOptions({
                 server: {
@@ -569,7 +583,6 @@
                     }
                 },
             });
-
 
             $('select[name="provinsi_id"]').each(function(index, element) {
                 $(element).change(function(e) {
@@ -652,6 +665,16 @@
     @if (old('provinsi_id') === null)
         <script>
             localStorage.removeItem('provinsi');
+        </script>
+    @endif
+    @if (old('jenis_jabatan') !== null)
+        <script>
+            if ("{{ old('jenis_jabatan') }}" == 'provinsi') {
+                $('.kabkota-kabkota').hide();
+            }
+            if ("{{ old('jenis_jabatan') }}" == 'kab_kota') {
+                $('.kabkota-kabkota').show();
+            }
         </script>
     @endif
     @if (old('provinsi_id'))

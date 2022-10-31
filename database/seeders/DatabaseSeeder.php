@@ -5,18 +5,10 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\ButirKegiatan;
-use App\Models\KabKota;
-use App\Models\Provinsi;
-use App\Models\Rencana;
-use App\Models\RencanaSubUnsur;
-use App\Models\RencanaSubUnsurButirKegiatan;
 use App\Models\SubButirKegiatan;
 use App\Models\SubUnsur;
 use App\Models\Unsur;
 use App\Models\User;
-use App\Models\UserAparatur;
-use App\Models\UserPejabatStruktural;
-use App\Models\UserProvKabKota;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -43,6 +35,7 @@ class DatabaseSeeder extends Seeder
         // UserProvKabKota::factory(5)->create();
         $this->call(UserSeeder::class);
         $this->call(JenisKegiaranSeeder::class);
+        $this->call(NomenKlaturPerangkatDaerahSeeder::class);
         // Rencana::factory(5)->create();
         Unsur::factory(5)->create();
         SubUnsur::factory(5)->create();
