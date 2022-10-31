@@ -50,7 +50,7 @@ class UserSeeder extends Seeder
         ])->attachRole('kab_kota');
         User::query()->create([
             'username' => 'Atasan Langsung',
-            'email' => 'admin5@gmail.com',
+            'email' => 'admin51@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'verified' => now()

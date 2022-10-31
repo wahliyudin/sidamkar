@@ -37,6 +37,7 @@ use App\Http\Controllers\Kemendagri\VerifikasiData\AdminKabKotaController;
 use App\Http\Controllers\Kemendagri\VerifikasiData\AdminProvinsiController;
 use App\Http\Controllers\Provinsi\DataAparaturController as ProvinsiDataAparaturController;
 use App\Http\Controllers\Provinsi\OverviewController as ProvinsiOverviewController;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -52,7 +53,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::redirect('/', 'login');
-
+Route::get('coba', function(){
+    return User::query()->with('mentes.fungsional')->whereRoleIs('atasan_langsung')->get();
+});
 Auth::routes(['verify' => true]);
 Route::post('register/file', [RegisterController::class, 'storeFile']);
 Route::delete('register/revert', [RegisterController::class, 'revert']);
