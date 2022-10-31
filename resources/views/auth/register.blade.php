@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Daftar</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="{{ asset('assets/images/template/logo.png') }}" type="image/x-icon">
     <link rel="shortcut icon" href="{{ asset('assets/images/template/logo.png') }}" type="image/png">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet"
@@ -130,14 +131,14 @@
                                     <li class="nav-item">
                                         <a href="#login-tab1"
                                             class="h-100 nav-link border-y-0 border-left-0 active d-flex justify-content-center align-items-center"
-                                            data-toggle="tab">
+                                            data-toggle="tab" data-id="login-tab1">
                                             <h6 class="my-1">Daftar Aparatur</h6>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="#login-tab2"
                                             class="h-100 nav-link border-y-0 border-right-0 d-flex justify-content-center align-items-center"
-                                            data-toggle="tab">
+                                            data-toggle="tab" data-id="login-tab2">
                                             <h6 class="my-1">Daftar Admin Prov & Kab/kota</h6>
                                         </a>
                                     </li>
@@ -158,12 +159,13 @@
                                                             <div class="form-group">
                                                                 <label>Provinsi<span
                                                                         class="text-danger">*</span></label>
-                                                                <select name="provinsi_id" id="provinsi_id"
-                                                                    class="custom-select">
+                                                                <select name="provinsi_id" data-id=".provinsi1" required
+                                                                    id="provinsi_id" class="custom-select provinsi1">
                                                                     <option selected disabled>- Pilih Provinsi -
                                                                     </option>
                                                                     @foreach ($provinsis as $provinsi)
-                                                                        <option value="{{ $provinsi->id }}">
+                                                                        <option @selected(old('provinsi_id') == $provinsi->id)
+                                                                            value="{{ $provinsi->id }}">
                                                                             {{ $provinsi->nama }}</option>
                                                                     @endforeach
                                                                 </select>
@@ -178,7 +180,7 @@
                                                             <div class="form-group">
                                                                 <label>Kabupaten / Kota<span
                                                                         class="text-danger">*</span></label>
-                                                                <select name="kab_kota_id" id="kab_kota_id"
+                                                                <select name="kab_kota_id" required id="kab_kota_id"
                                                                     class="custom-select">
                                                                     <option value="">- Pilih Provinsi Terlebih
                                                                         Dahulu -</option>
@@ -194,8 +196,10 @@
                                                             <div class="form-group">
                                                                 <label>Jenis Aparatur<span
                                                                         class="text-danger">*</span></label>
-                                                                <select name="jenis_aparatur" class="custom-select">
-                                                                    <option selected disabled>- Pilih Jabatan -</option>
+                                                                <select name="jenis_aparatur" required
+                                                                    class="custom-select">
+                                                                    <option selected disabled value="">- Pilih
+                                                                        Jabatan -</option>
                                                                     <option value="fungsional">Pejabat Fungsional
                                                                     </option>
                                                                     <option value="struktural">Pejabat Struktural
@@ -213,8 +217,13 @@
                                                             <div class="form-group">
                                                                 <label>Nama Lengkap<span
                                                                         class="text-danger">*</span></label>
-                                                                <input type="text" class="form-control"
+                                                                <input type="text" required
+                                                                    value="{{ old('nama') }}" class="form-control"
                                                                     name="nama">
+                                                                @error('nama')
+                                                                    <strong
+                                                                        style="color: red;">{{ $message }}</strong>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="col-md-4 wrapper-select" style="display: none;">
@@ -223,7 +232,7 @@
                                                                         class="text-danger">*</span></label>
                                                                 <select name="jenis_jabatan"
                                                                     class="custom-select select-fungsional"
-                                                                    style="display: none;">
+                                                                    style="display: none;" required>
                                                                     <option selected disabled>- Pilih Jabatan -</option>
                                                                     <option value="damkar_pemula">Damkar Pemula
                                                                     </option>
@@ -248,7 +257,7 @@
                                                                 </select>
                                                                 <select name="jenis_jabatan"
                                                                     class="custom-select select-struktural"
-                                                                    style="display: none;">
+                                                                    style="display: none;" required>
                                                                     <option selected disabled>- Pilih Jabatan -</option>
                                                                     <option value="atasan_langsung">Atasan Langsung
                                                                     </option>
@@ -257,6 +266,9 @@
                                                                     <option value="penetap_ak">Penetap Angka Kredit
                                                                     </option>
                                                                 </select>
+                                                                @error('jenis_jabatan')
+                                                                    <strong style="color: red;">adffsdf</strong>
+                                                                @enderror
                                                             </div>
                                                         </div>
 
@@ -279,11 +291,10 @@
                                                                 <label>Email<span class="text-danger">*</span></label>
                                                                 <input type="email" name="email"
                                                                     placeholder="example@gmail.com"
-                                                                    class="form-control">
+                                                                    class="form-control" value="{{ old('email') }}">
                                                                 @error('email')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
+                                                                    <strong
+                                                                        style="color: red;">{{ $message }}</strong>
                                                                 @enderror
                                                             </div>
                                                         </div>
@@ -291,13 +302,11 @@
                                                             <div class="form-group">
                                                                 <label>Username<span
                                                                         class="text-danger">*</span></label>
-                                                                <input type="text" name="username"
-                                                                    class="form-control">
+                                                                <input type="text" value="{{ old('username') }}"
+                                                                    name="username" class="form-control">
                                                             </div>
                                                             @error('username')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
+                                                                <strong style="color: red;">{{ $message }}</strong>
                                                             @enderror
                                                         </div>
                                                     </div>
@@ -309,9 +318,8 @@
                                                                 <input type="password" name="password"
                                                                     placeholder="password" class="form-control">
                                                                 @error('password')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
+                                                                    <strong
+                                                                        style="color: red;">{{ $message }}</strong>
                                                                 @enderror
                                                             </div>
                                                         </div>
@@ -322,9 +330,8 @@
                                                                 <input type="password" name="password_confirmation"
                                                                     placeholder="password" class="form-control">
                                                                 @error('password_confirmation')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
+                                                                    <strong
+                                                                        style="color: red;">{{ $message }}</strong>
                                                                 @enderror
                                                             </div>
                                                         </div>
@@ -372,9 +379,8 @@
                                                                     @endforeach
                                                                 </select>
                                                                 @error('provinsi_id')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
+                                                                    <strong
+                                                                        style="color: red;">{{ $message }}</strong>
                                                                 @enderror
                                                             </div>
                                                         </div>
@@ -388,9 +394,8 @@
                                                                         Dahulu -</option>
                                                                 </select>
                                                                 @error('kab_kota_id')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
+                                                                    <strong
+                                                                        style="color: red;">{{ $message }}</strong>
                                                                 @enderror
                                                             </div>
                                                         </div>
@@ -401,6 +406,10 @@
                                                                 <input type="number" class="form-control"
                                                                     name="nomenklatur_perangkat_daerah"
                                                                     id="">
+                                                                @error('nomenklatur_perangkat_daerah')
+                                                                    <strong
+                                                                        style="color: red;">{{ $message }}</strong>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -412,6 +421,10 @@
                                                                         class="text-danger">*</span></label>
                                                                 <input type="file" name="file_permohonan"
                                                                     required />
+                                                                @error('file_permohonan')
+                                                                    <strong
+                                                                        style="color: red;">{{ $message }}</strong>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -423,13 +436,12 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label>Email<span class="text-danger">*</span></label>
-                                                                <input type="email" name="email"
-                                                                    placeholder="example@gmail.com"
+                                                                <input type="email" value="{{ old('email') }}"
+                                                                    name="email" placeholder="example@gmail.com"
                                                                     class="form-control">
                                                                 @error('email')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
+                                                                    <strong
+                                                                        style="color: red;">{{ $message }}</strong>
                                                                 @enderror
                                                             </div>
                                                         </div>
@@ -437,13 +449,11 @@
                                                             <div class="form-group">
                                                                 <label>Username<span
                                                                         class="text-danger">*</span></label>
-                                                                <input type="text" name="username"
-                                                                    class="form-control">
+                                                                <input type="text" value="{{ old('username') }}"
+                                                                    name="username" class="form-control">
                                                             </div>
                                                             @error('username')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
+                                                                <strong style="color: red;">{{ $message }}</strong>
                                                             @enderror
                                                         </div>
                                                     </div>
@@ -455,9 +465,8 @@
                                                                 <input type="password" name="password"
                                                                     placeholder="password" class="form-control">
                                                                 @error('password')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
+                                                                    <strong
+                                                                        style="color: red;">{{ $message }}</strong>
                                                                 @enderror
                                                             </div>
                                                         </div>
@@ -468,9 +477,8 @@
                                                                 <input type="password" name="password_confirmation"
                                                                     placeholder="password" class="form-control">
                                                                 @error('password_confirmation')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
+                                                                    <strong
+                                                                        style="color: red;">{{ $message }}</strong>
                                                                 @enderror
                                                             </div>
                                                         </div>
@@ -500,153 +508,75 @@
     <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/auth/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/auth/app.js') }}"></script>
+    <script>
+        $('.nav-link').each(function(index, element) {
+            if (localStorage.getItem('tab_active') != undefined) {
+                if (localStorage.getItem('tab_active') == $(element).data('id')) {
+                    $(element).addClass('active');
+                    $($('.tab-content').find('#' + $(element).data('id'))).addClass('show active');
+                } else {
+                    $(element).removeClass('active');
+                    $($('.tab-content').find('#' + $(element).data('id'))).removeClass('show active');
+                }
+            }
+            $(element).click(function(e) {
+                e.preventDefault();
+                window.localStorage.setItem('tab_active', $(this).data('id'))
+            });
+        });
+    </script>
     <script src="{{ asset('assets/js/auth/plugins/forms/wizards/steps.min.js') }}"></script>
     <script src="{{ asset('assets/js/auth/plugins/forms/inputs/inputmask.js') }}"></script>
     <script src="{{ asset('assets/js/auth/plugins/forms/validation/validate.min.js') }}"></script>
     <script src="{{ asset('assets/js/auth/plugins/extensions/cookie.js') }}"></script>
     <script src="{{ asset('assets/js/auth/form_wizard.js') }}"></script>
-
     <script src="{{ asset('assets/extensions/filepond/filepond.js') }}"></script>
-    <script src="{{ asset('assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js') }}">
-    </script>
     <script src="{{ asset('assets/extensions/filepond/filepond.jquery.js') }}"></script>
     <script src="{{ asset('assets/extensions/fontawesome/all.min.js') }}"></script>
-    <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
+    <script src="{{ asset('assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js') }}">
+    </script>
+    <script
+        src="{{ asset('assets/extensions/filepond-plugin-file-validate-type/filepond-plugin-file-validate-type.js') }}">
+    </script>
+    <script
+        src="{{ asset('assets/extensions/filepond-plugin-file-validate-size/filepond-plugin-file-validate-size.js') }}">
+    </script>
     <script src="{{ asset('assets/extensions/toastify-js/src/toastify.js') }}"></script>
+
     <script>
         $(function() {
-            // First register any plugins
             $.fn.filepond.registerPlugin(FilePondPluginImagePreview);
             $.fn.filepond.registerPlugin(FilePondPluginFileValidateType);
-            FilePond.setOptions({
+            $.fn.filepond.registerPlugin(FilePondPluginFileValidateSize);
+            pond = FilePond.create(document.querySelector('input[name="file_sk"]'), {
+                chunkUploads: true
+            });
+            pond.setOptions({
                 server: {
-                    process: (fieldName, file, metadata, load, error, progress, abort, transfer,
-                        options) => {
-                        console.log(file);
-                        load(file);
-                        // fieldName is the name of the input field
-                        // file is the actual file object to send
-                        // const formData = new FormData();
-                        // formData.append(fieldName, file, file.name);
-
-                        // const request = new XMLHttpRequest();
-                        // request.open('POST', "{{ route('filepond.store') }}");
-                        // request.setRequestHeader('X-CSRF-TOKEN', "{{ @csrf_token() }}");
-                        // // Should call the progress method to update the progress to 100% before calling load
-                        // // Setting computable to false switches the loading indicator to infinite mode
-                        // request.upload.onprogress = (e) => {
-                        //     progress(e.lengthComputable, e.loaded, e.total);
-                        // };
-
-                        // // Should call the load method when done and pass the returned server file id
-                        // // this server file id is then used later on when reverting or restoring a file
-                        // // so your server knows which file to return without exposing that info to the client
-                        // request.onload = function() {
-                        //     if (request.status >= 200 && request.status < 300) {
-                        //         // the load method accepts either a string (id) or an object
-                        //         load(request.responseText);
-                        //     } else {
-                        //         // Can call the error method if something is wrong, should exit after
-                        //         erorrs = JSON.parse(request.responseText);
-                        //         if (erorrs.file_permohonan) {
-                        //             message = erorrs.file_permohonan.toString()
-                        //         } else {
-                        //             message = erorrs.file_sk.toString()
-                        //         }
-                        //         Toastify({
-                        //             text: message,
-                        //             duration: 5000,
-                        //             close: true,
-                        //             gravity: "top",
-                        //             position: "right",
-                        //             backgroundColor: "rgba(234, 58, 61, 0.9)",
-                        //         }).showToast();
-                        //         error('oh no');
-                        //     }
-                        // };
-
-                        // request.send(formData);
-
-                        // // Should expose an abort method so the request can be cancelled
-                        // return {
-                        //     abort: () => {
-                        //         // This function is entered if the user has tapped the cancel button
-                        //         request.abort();
-
-                        //         // Let FilePond know the request has been cancelled
-                        //         abort();
-                        //     },
-                        // };
-                    },
-                    revert: (uniqueFileId, load, error) => {
-                        // Should remove the earlier created temp file here
-                        // ...
-                        console.log(uniqueFileId);
-                        $.ajax({
-                            type: "DELETE",
-                            url: "{{ route('filepond.destroy') }}",
-                            headers: {
-                                'X-CSRF-TOKEN': "{{ @csrf_token() }}"
-                            },
-                            data: {
-                                name: uniqueFileId
-                            },
-                            success: function(response) {
-                                console.log(response);
-                            },
-                            error: function(response) {
-                                error(response);
-                            },
-                        });
-                        // Can call the error method if something is wrong, should exit after
-                        error('oh my goodness');
-
-                        // Should call the load method when done, no parameters required
-                        load();
-                    },
+                    process: '/register/file',
+                    revert: '/register/revert',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
                 },
             });
-
-            FilePond.create(document.querySelector('input[name="file_sk"]'), {
-                acceptedFileTypes: [
-                    'application/pdf',
-                    'application/doc'
-                ],
-                fileValidateTypeDetectType: (source, type) =>
-                    new Promise((resolve, reject) => {
-                        // Do custom type detection here and return with promise
-
-                        resolve(type);
-                    }),
+            file_permohonan = FilePond.create(document.querySelector('input[name="file_permohonan"]'), {
+                chunkUploads: true
             });
-            FilePond.create(document.querySelector('input[name="file_permohonan"]'), {
-                acceptedFileTypes: [
-                    'application/pdf',
-                    'application/doc'
-                ],
-                fileValidateTypeDetectType: (source, type) =>
-                    new Promise((resolve, reject) => {
-                        // Do custom type detection here and return with promise
-
-                        resolve(type);
-                    }),
+            file_permohonan.setOptions({
+                server: {
+                    process: '/register/file',
+                    revert: '/register/revert',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                },
             });
-
-            function previewImage(image, imgPreview) {
-                imgPreview.style.display = 'block';
-
-                const oFReader = new FileReader();
-                oFReader.readAsDataURL(image.files[0]);
-
-                oFReader.onload = function(oFREvent) {
-                    imgPreview.src = oFREvent.target.result;
-                }
-                $('.input-file .icon').css('display', 'none');
-            }
 
             $('select[name="provinsi_id"]').each(function(index, element) {
                 $(element).change(function(e) {
                     e.preventDefault();
+                    window.localStorage.setItem('provinsi', $(element).data('id'));
                     loadKabKota(this.value, $(element.parentElement.parentElement.parentElement)
                         .find('#kab_kota_id'))
                 });
@@ -672,6 +602,7 @@
 
             $('select[name="jenis_aparatur"]').change(function(e) {
                 e.preventDefault();
+                window.localStorage.setItem('jenis_aparatur', e.target.value)
                 if ($('.wrapper-select').css('display') == 'none') {
                     $('.wrapper-select').show();
                 }
@@ -685,6 +616,7 @@
                     $('.select-struktural').hide();
                     $('.select-fungsional').show();
                 }
+
             });
 
             $('.jenis-jabatan-kabkota').change(function(e) {
@@ -697,50 +629,61 @@
                 }
             });
 
-            var all_tabs = document.querySelectorAll('.nav-link')
-            var _target = localStorage.getItem('tab_active')
-
-            @if (auth()->user()->status_kelulusan == 1)
-                if (_target == '#kirim-data') {
-                    window.localStorage.removeItem('tab_active')
-                    _target = false
+            if (localStorage.getItem('jenis_aparatur') !== '') {
+                console.log(localStorage.getItem('jenis_aparatur'));
+                $('select[name="jenis_aparatur"]').val(localStorage.getItem('jenis_aparatur'));
+                if ($('.wrapper-select').css('display') == 'none') {
+                    $('.wrapper-select').show();
                 }
-            @endif
-
-            function setTabActive(target) {
-                window.localStorage.setItem('tab_active', target)
-            }
-
-            function loadTabActive(_target) {
-                all_tabs.forEach(tab => {
-                    var target = tab.id.replace('-tab', '')
-                    document.getElementById(target).classList.remove('show', 'active')
-                    tab.classList.remove('active')
-                })
-                document.querySelector(_target).classList.toggle('show')
-                document.querySelector(_target).classList.toggle('active')
-                document.querySelector(_target + '-tab').classList.toggle('active')
-            }
-
-            if (_target) {
-                loadTabActive(_target)
-                // all_tabs.forEach(tab => {
-                //     var target = tab.id.replace('-tab','')
-                //     document.getElementById(target).classList.remove('show','active')
-                //     tab.classList.remove('active')
-                // })
-                // document.querySelector(_target).classList.toggle('show')
-                // document.querySelector(_target).classList.toggle('active')
-                // document.querySelector(_target+'-tab').classList.toggle('active')
-            } else {
-                _target = '#home-b2';
-                loadTabActive(_target)
-                // document.querySelector(_target).classList.toggle('show','active')
-                // document.querySelector(_target+'-tab').classList.toggle('active')
+                if (localStorage.getItem('jenis_aparatur') == 'struktural') {
+                    $('.struktural').show();
+                    $('.select-struktural').show();
+                    $('.select-fungsional').hide();
+                }
+                if (localStorage.getItem('jenis_aparatur') == 'fungsional') {
+                    $('.struktural').hide();
+                    $('.select-struktural').hide();
+                    $('.select-fungsional').show();
+                }
+                $('select[name="jenis_jabatan"]').each(function(index, element) {
+                    element.value = "{{ old('jenis_jabatan') }}"
+                });
             }
         });
     </script>
-
+    @if (old('provinsi_id') === null)
+        <script>
+            localStorage.removeItem('provinsi');
+        </script>
+    @endif
+    @if (old('provinsi_id'))
+        <script>
+            $(document).ready(function() {
+                function loadKabKota(val, kabupaten, kabupaten_id = null) {
+                    return new Promise(resolve => {
+                        $(kabupaten).html('<option value="">Memuat...</option>');
+                        fetch('/api/kab-kota/' + val)
+                            .then(res => res.json())
+                            .then(res => {
+                                $(kabupaten).html(
+                                    '<option selected disabled>- Pilih Kabupaten / Kota -</option>');
+                                res.forEach(model => {
+                                    var selected = kabupaten_id == model.id ? 'selected' : '';
+                                    $(kabupaten).append('<option value="' + model.id + '" ' +
+                                        selected + '>' +
+                                        model.nama + '</option>');
+                                })
+                                resolve()
+                            })
+                    })
+                }
+                loadKabKota("{{ old('provinsi_id') }}", $(localStorage.getItem('provinsi')).parent().parent().parent()
+                    .find(
+                        '#kab_kota_id'),
+                    "{{ old('kab_kota_id') }}")
+            });
+        </script>
+    @endif
 </body>
 
 </html>
