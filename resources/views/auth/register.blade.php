@@ -277,7 +277,8 @@
                                                             <div class="form-group">
                                                                 <label>File SK<span
                                                                         class="text-danger">*</span></label>
-                                                                <input type="file" name="file_sk" required />
+                                                                <input type="file" data-max-file-size="2MB"
+                                                                    name="file_sk" required />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -355,7 +356,7 @@
                                                             <div class="form-group">
                                                                 <label>Tingkat Admin<span
                                                                         class="text-danger">*</span></label>
-                                                                <select name="jenis_jabatan"
+                                                                <select name="jenis_jabatan" required
                                                                     class="custom-select jenis-jabatan-kabkota">
                                                                     <option selected disabled>- Pilih Tingkat -</option>
                                                                     <option value="kab_kota">Kab Kota
@@ -369,7 +370,7 @@
                                                             <div class="form-group">
                                                                 <label>Provinsi<span
                                                                         class="text-danger">*</span></label>
-                                                                <select name="provinsi_id" id="provinsi_id"
+                                                                <select name="provinsi_id" required id="provinsi_id"
                                                                     class="custom-select">
                                                                     <option selected disabled>- Pilih Provinsi -
                                                                     </option>
@@ -388,7 +389,7 @@
                                                             <div class="form-group">
                                                                 <label>Kabupaten / Kota<span
                                                                         class="text-danger">*</span></label>
-                                                                <select name="kab_kota_id" id="kab_kota_id"
+                                                                <select required name="kab_kota_id" id="kab_kota_id"
                                                                     class="custom-select">
                                                                     <option value="">- Pilih Provinsi Terlebih
                                                                         Dahulu -</option>
@@ -403,7 +404,7 @@
                                                             <div class="form-group">
                                                                 <label>Nomenklatur Perangkat Daerah<span
                                                                         class="text-danger">*</span></label>
-                                                                <input type="number" class="form-control"
+                                                                <input required type="number" class="form-control"
                                                                     name="nomenklatur_perangkat_daerah"
                                                                     id="">
                                                                 @error('nomenklatur_perangkat_daerah')
@@ -419,8 +420,8 @@
                                                             <div class="form-group">
                                                                 <label>Surat Permohonan<span
                                                                         class="text-danger">*</span></label>
-                                                                <input type="file" name="file_permohonan"
-                                                                    required />
+                                                                <input type="file" data-max-file-size="2MB"
+                                                                    required name="file_permohonan" required />
                                                                 @error('file_permohonan')
                                                                     <strong
                                                                         style="color: red;">{{ $message }}</strong>
@@ -548,10 +549,18 @@
             $.fn.filepond.registerPlugin(FilePondPluginImagePreview);
             $.fn.filepond.registerPlugin(FilePondPluginFileValidateType);
             $.fn.filepond.registerPlugin(FilePondPluginFileValidateSize);
-            pond = FilePond.create(document.querySelector('input[name="file_sk"]'), {
+            FilePond.create(document.querySelector('input[name="file_sk"]'), {
+                chunkUploads: true,
+                acceptedFileTypes: [
+                    'application/doc',
+                    'application/pdf',
+                    '.docx'
+                ]
+            });
+            FilePond.create(document.querySelector('input[name="file_permohonan"]'), {
                 chunkUploads: true
             });
-            pond.setOptions({
+            FilePond.setOptions({
                 server: {
                     process: '/register/file',
                     revert: '/register/revert',
@@ -560,18 +569,7 @@
                     }
                 },
             });
-            file_permohonan = FilePond.create(document.querySelector('input[name="file_permohonan"]'), {
-                chunkUploads: true
-            });
-            file_permohonan.setOptions({
-                server: {
-                    process: '/register/file',
-                    revert: '/register/revert',
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                },
-            });
+
 
             $('select[name="provinsi_id"]').each(function(index, element) {
                 $(element).change(function(e) {

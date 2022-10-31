@@ -2,6 +2,7 @@
 
 namespace App\Traits\AuthBackend;
 
+use App\Http\Requests\RegisterRequest;
 use App\Jobs\SendVerifEmailToUser;
 use App\Models\Provinsi;
 use Illuminate\Auth\Events\Registered;
@@ -30,9 +31,9 @@ trait RegistersUsers
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
      */
-    public function register(Request $request)
+    public function register(RegisterRequest $request)
     {
-        $this->validator($request->all())->validate();
+        // $this->validator($request->all())->validate();
         $user = $this->create($request->all());
         event(new Registered($user));
         // dispatch(new SendVerifEmailToUser($user));

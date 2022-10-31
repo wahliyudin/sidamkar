@@ -48,9 +48,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return redirect()->route('login');
-});
+Route::redirect('/', 'login');
+
 Auth::routes(['verify' => true]);
 Route::post('register/file', [RegisterController::class, 'storeFile']);
 Route::delete('register/revert', [RegisterController::class, 'revert']);
