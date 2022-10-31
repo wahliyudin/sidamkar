@@ -22,6 +22,7 @@ use App\Http\Controllers\KabKota\ChatboxController;
 use App\Http\Controllers\KabKota\DataAparatur\PejabatstrukturalController as KabKotaPejabatStrukturalController;
 use App\Http\Controllers\KabKota\DataAparatur\DataAparaturController as KabKotaPejabatFungsionalController;
 use App\Http\Controllers\KabKota\DataMenteController;
+use App\Http\Controllers\KabKota\MenteController;
 use App\Http\Controllers\KabKota\OverviewController as KabKotaOverviewController;
 use App\Http\Controllers\KabKota\VerifikasiAparatur\PejabatFungsionalController;
 use App\Http\Controllers\KabKota\VerifikasiAparatur\PejabatStrukturalController;
@@ -54,6 +55,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', 'login');
 Route::get('coba', function(){
+    return User::query()->with('userPejabatStruktural')->whereRoleIs('atasan_langsung')->get();
     return User::query()->with('mentes.fungsional')->whereRoleIs('atasan_langsung')->get();
 });
 Auth::routes(['verify' => true]);
@@ -113,7 +115,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('kab-kota/data-aparatur/pejabat-struktural', [KabKotaPejabatStrukturalController::class, 'index'])->name('kab-kota.data-aparatur.pejabat-struktural.index');
 
-        Route::get('kab-kota/data-mente', [DataMenteController::class, 'index'])->name('kab-kota.data-mente');
+        Route::get('kab-kota/data-mente', [MenteController::class, 'index'])->name('kab-kota.data-mente');
 
         Route::get('kab-kota/chatbox', [ChatboxController::class, 'index'])->name('kab-kota.chatbox');
     });
