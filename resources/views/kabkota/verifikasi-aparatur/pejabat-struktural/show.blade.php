@@ -173,7 +173,7 @@
                 </div>
             </div>
         </div>
-        @if (is_null($user->status_akun))
+        @if (in_array($user->status_akun, [0, 2]))
             <div class="row">
                 <div class="d-flex justify-content-end">
                     <button class="btn btn-red" data-bs-toggle="modal" data-bs-target="#rejectModal">TOLAK</button>

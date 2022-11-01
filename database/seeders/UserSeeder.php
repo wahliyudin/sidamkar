@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => Hash::make('admin123'),
             'email_verified_at' => now(),
-            'verified' => now()
+            'status_akun' => 1
         ])->attachRole('kemendagri');
 
         $damkarPemula = User::query()->create([
@@ -33,7 +33,7 @@ class UserSeeder extends Seeder
             'email' => 'admin2@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'verified' => now()
+            'status_akun' => 1
         ])->attachRole('damkar_pemula');
 
         $analisKebakaran = User::query()->create([
@@ -41,7 +41,7 @@ class UserSeeder extends Seeder
             'email' => 'admin3@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'verified' => now()
+            'status_akun' => 1
         ])->attachRole('analis_kebakaran_ahli_pertama');
 
         $kabKota = User::query()->create([
@@ -49,7 +49,7 @@ class UserSeeder extends Seeder
             'email' => 'admin4@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'verified' => now()
+            'status_akun' => 1
         ])->attachRole('kab_kota');
         $kabKota->userProvKabKota()->create([
             'nomenklatur_perangkat_daerah_id' => 1,
@@ -62,7 +62,7 @@ class UserSeeder extends Seeder
             'email' => 'admin51@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'verified' => now()
+            'status_akun' => 1
         ])->attachRole('atasan_langsung');
         $atasanLangsung->userPejabatStruktural()->create([
             'nama' => 'Atasan Langsung',
@@ -75,7 +75,7 @@ class UserSeeder extends Seeder
             'email' => 'admin6@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'verified' => now()
+            'status_akun' => 1
         ])->attachRole('penilai_ak');
     }
 }

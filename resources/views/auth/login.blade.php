@@ -94,4 +94,28 @@
             }).showToast();
         </script>
     @endif
+    @if (session('warning'))
+        <script>
+            Toastify({
+                text: "{{ session('warning') }}",
+                duration: 5000,
+                close: true,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "#FFC107",
+            }).showToast();
+        </script>
+    @endif
+    @if (session('error'))
+        <script>
+            Toastify({
+                text: "{{ session('error') }}",
+                duration: 5000,
+                close: true,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "#EA3A3D",
+            }).showToast();
+        </script>
+    @endif
 @endsection

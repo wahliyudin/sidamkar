@@ -17,9 +17,15 @@ class IsVerified
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!is_null(Auth::user()) && !isset(Auth::user()->verified)) {
-            Auth::logout();
-            return redirect()->route('login')->with('message', 'Anda belum diverifikasi oleh Admin');
+        if (isset(Auth::user()->status_akun)) {
+            if (Auth::user()->status_akun == 0) {
+                Auth::logout();
+                return redirect()->route('login')->with('warning', 'Anda belum diverifikasi oleh Admin');
+            }
+            if (Auth::user()->status_akun == 2) {
+                Auth::logout();
+                return redirect()->route('login')->with('error', 'Maaf!, anda ditolak oleh Admin');
+            }
         }
         return $next($request);
     }

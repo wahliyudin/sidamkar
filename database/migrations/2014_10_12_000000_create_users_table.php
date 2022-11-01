@@ -20,7 +20,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->timestamp('verified')->nullable();
-            $table->integer('status_akun')->nullable(); // 1 (verified), 2 (tolak)
+            $table->integer('status_akun')->default(0); // 1 (verified), 2 (tolak)
             $table->rememberToken();
             $table->timestamps();
         });
