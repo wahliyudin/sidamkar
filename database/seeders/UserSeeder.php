@@ -57,6 +57,18 @@ class UserSeeder extends Seeder
             'kab_kota_id' => 1101,
         ]);
 
+        $provinsi = User::query()->create([
+            'username' => 'Provinsi',
+            'email' => 'provinsi@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('provinsi');
+        $provinsi->userProvKabKota()->create([
+            'nomenklatur_perangkat_daerah_id' => 1,
+            'provinsi_id' => 11,
+        ]);
+
         $atasanLangsung = User::query()->create([
             'username' => 'Atasan Langsung',
             'email' => 'admin51@gmail.com',

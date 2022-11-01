@@ -149,20 +149,31 @@
                             <span>Overview</span>
                         </a>
                     </li>
-                    <li class="sidebar-item {{ request()->routeIs('provinsi.aparatur.data-aparatur') ? 'active' : '' }}">
-                        <a href="{{ route('provinsi.aparatur.data-aparatur') }}" class='sidebar-link'>
+                    <li
+                        class="sidebar-item has-sub {{ request()->is('provinsi/aparatur/data-aparatur') || request()->is('provinsi/kabkota') ? 'active' : '' }}">
+                        <a href="javascript(0)" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
-                                <i class="fa-solid fa-folder-open"></i>
+                                <i class="fa-solid fa-copy"></i>
                             </div>
-                            <span>Data Pejabat Fungsional</span>
+                            <span>Manajemen User</span>
                         </a>
+                        <ul
+                            class="submenu {{ request()->is('provinsi/aparatur/data-aparatur') || request()->is('provinsi/kabkota') ? 'active' : '' }}">
+                            <li
+                                class="submenu-item {{ request()->is('provinsi/aparatur/data-aparatur') ? 'active' : '' }}">
+                                <a href="{{ route('provinsi.aparatur.data-aparatur') }}">Aparatur</a>
+                            </li>
+                            <li class="submenu-item {{ request()->is('provinsi/kabkota') ? 'active' : '' }}">
+                                <a href="{{ route('provinsi.kabkota') }}">Kab/Kota</a>
+                            </li>
+                        </ul>
                     </li>
-                    <li class="sidebar-item {{ request()->routeIs('provinsi.pejabat-struktural') ? 'active' : '' }}">
-                        <a href="{{ route('provinsi.pejabat-struktural') }}" class='sidebar-link'>
+                    <li class="sidebar-item {{ request()->routeIs('provinsi.chatbox') ? 'active' : '' }}">
+                        <a href="{{ route('provinsi.chatbox') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
-                                <i class="fa-solid fa-folder-open"></i>
+                                <i class="bi bi-grid-fill"></i>
                             </div>
-                            <span>Pejabat Struktural</span>
+                            <span>Chatbox</span>
                         </a>
                     </li>
                 @endrole
