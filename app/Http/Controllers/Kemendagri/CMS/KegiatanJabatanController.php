@@ -7,6 +7,7 @@ use App\Http\Requests\KegiatanJabatanRequest;
 use App\Imports\UnsursImport;
 use App\Models\ButirKegiatan;
 use App\Models\JenisKegiatan;
+use App\Models\RencanaSubUnsur;
 use App\Models\Role;
 use App\Models\SubUnsur;
 use App\Models\Unsur;
@@ -125,10 +126,22 @@ class KegiatanJabatanController extends Controller
 
     public function storeButirKegiatan(SubUnsur $subUnsur, string $name, $angka_kredit)
     {
-        return $subUnsur->butirKegiatans()->create([
+        $butirKegiatan = $subUnsur->butirKegiatans()->create([
             'nama' => $name,
             'score' => $angka_kredit,
         ]);
+        $rencanaSubUnsurs = RencanaSubUnsur::query()->with('rencanaButirKegiatans')->where(
+            'sub_unsur_id',
+            $subUnsur->id
+        )->get();
+        if ($rencanaSubUnsurs) {
+            foreach ($rencanaSubUnsurs as $rencanaSubUnsur) {
+                $rencanaSubUnsur->rencanaButirKegiatans()->create([
+                    'butir_kegiatan_id' => $butirKegiatan->id
+                ]);
+            }
+        }
+        return $butirKegiatan;
     }
 
     public function updateButirKegiatan(SubUnsur $subUnsur, $id, string $name, $angka_kredit)

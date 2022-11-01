@@ -9,7 +9,8 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <h3 class="mt-4">Kegiatan Iqbal</h3>
-                                <input class="form-control" type="date" name="" id="">
+                                <input class="form-control" value="{{ now()->format('Y-m-d') }}" type="date" name=""
+                                    id="">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -21,80 +22,121 @@
                     </div>
                 </div>
                 <div class="card-body px-0">
-                    <div class="card-body accordion-container">
-                        <div class="accordion" id="accordion-parent">
-                            @foreach ($kegiatan->unsurs as $unsur)
-                                <div class="accordion-item">
-                                    <div class="d-flex justify-content-between accordion-header py-3 px-2"
-                                        id="unsur{{ $unsur->id }}">
-                                        <div class="d-flex align-items-center justify-content-between w-100"
-                                            style="color: #000000;">
-                                            <p class="accordion-title">
-                                                [ Pelaksana: {{ $unsur->role->display_name }} ] {{ $unsur->nama }}
-                                            </p>
-
+                    @foreach ($rencanas as $rencana)
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <h5>{{ $rencana->nama }}</h5>
+                            </div>
+                        </div>
+                        <div class="card-body accordion-container">
+                            <div class="accordion" id="accordion-parent">
+                                @foreach ($rencana->rencanaUnsurs as $rencanaUnsur)
+                                    <div class="accordion-item">
+                                        <div class="d-flex justify-content-between accordion-header py-3 px-2"
+                                            id="unsur{{ $rencanaUnsur->id . $rencanaUnsur->unsur->id }}">
+                                            <div class="d-flex align-items-center justify-content-between w-100"
+                                                style="color: #000000;">
+                                                <p class="accordion-title">
+                                                    {{ $rencanaUnsur->unsur->nama }}
+                                                </p>
+                                            </div>
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse"
+                                                data-bs-target="#contentUnsur{{ $rencanaUnsur->id . $rencanaUnsur->unsur->id }}"
+                                                aria-expanded="false"
+                                                aria-controls="contentUnsur{{ $rencanaUnsur->id . $rencanaUnsur->unsur->id }}">
+                                            </button>
                                         </div>
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#contentUnsur{{ $unsur->id }}" aria-expanded="false"
-                                            aria-controls="contentUnsur{{ $unsur->id }}">
-                                        </button>
-                                    </div>
-                                    <div id="contentUnsur{{ $unsur->id }}" class="accordion-collapse collapse"
-                                        aria-labelledby="unsur{{ $unsur->id }}" style="">
-                                        <div class="accordion-body">
-                                            <div class="accordion" id="accordion-child">
-                                                @foreach ($unsur->subUnsurs as $sub_unsur)
-                                                    <div class="accordion-item">
-                                                        <div class="d-flex justify-content-between accordion-header py-1 px-2"
-                                                            id="subUnsur{{ $sub_unsur->id }}">
-                                                            <div class="d-flex align-items-center" style="color: #000000;">
-                                                                <h6 class="accordian-title">
-                                                                    {{ $sub_unsur->nama }}
-                                                                </h6>
+                                        <div id="contentUnsur{{ $rencanaUnsur->id . $rencanaUnsur->unsur->id }}"
+                                            class="accordion-collapse collapse"
+                                            aria-labelledby="unsur{{ $rencanaUnsur->id . $rencanaUnsur->unsur->id }}"
+                                            style="">
+                                            <div class="accordion-body">
+                                                <div class="accordion" id="accordion-child">
+                                                    @foreach ($rencanaUnsur->rencanaSubUnsurs as $rencanaSubUnsur)
+                                                        <div class="accordion-item">
+                                                            <div class="d-flex justify-content-between accordion-header py-1 px-1"
+                                                                id="subUnsur{{ $rencanaSubUnsur->subUnsur->id }}">
+                                                                <div class="d-flex align-items-center"
+                                                                    style="color: #000000;">
+                                                                    <h6 class="accordian-title">
+                                                                        {{ $rencanaSubUnsur->subUnsur->nama }}
+                                                                    </h6>
+                                                                </div>
+                                                                <button class="accordion-button collapsed" type="button"
+                                                                    data-bs-toggle="collapse"
+                                                                    data-bs-target="#contentchildSubUnsur{{ $rencanaSubUnsur->subUnsur->id }}"
+                                                                    aria-expanded="false"
+                                                                    aria-controls="contentchildSubUnsur{{ $rencanaSubUnsur->subUnsur->id }}">
+                                                                </button>
                                                             </div>
-                                                            <button class="accordion-button collapsed" type="button"
-                                                                data-bs-toggle="collapse"
-                                                                data-bs-target="#contentchildSubUnsur{{ $sub_unsur->id }}"
-                                                                aria-expanded="false"
-                                                                aria-controls="contentchildSubUnsur{{ $sub_unsur->id }}">
-                                                            </button>
-                                                        </div>
-                                                        <div id="contentchildSubUnsur{{ $sub_unsur->id }}"
-                                                            class="accordion-collapse collapse"
-                                                            aria-labelledby="subUnsur{{ $sub_unsur->id }}" style="">
-                                                            <div class="accordion-body">
-                                                                <ul class="ms-0">
-                                                                    @foreach ($sub_unsur->butirKegiatans as $butir_kegiatan)
-                                                                        <li class="accordian-list">
-                                                                            <div
-                                                                                class="d-flex align-items-center justify-content-between">
-                                                                                <h6 class="accordian-title">
-                                                                                    {{ $butir_kegiatan->nama }}
-                                                                                </h6>
-                                                                                <div class="d-flex align-items-center">
-
-
-                                                                                    <button
-                                                                                        class="btn btn-purple-reverse ms-3 px-3"
-                                                                                        data-bs-toggle="modal"
-                                                                                        data-bs-target="#lihat"
-                                                                                        type="button">Lihat</button>
+                                                            <div id="contentchildSubUnsur{{ $rencanaSubUnsur->subUnsur->id }}"
+                                                                class="accordion-collapse collapse"
+                                                                aria-labelledby="subUnsur{{ $rencanaSubUnsur->subUnsur->id }}"
+                                                                style="">
+                                                                <div class="accordion-body">
+                                                                    <ul class="ms-0">
+                                                                        @foreach ($rencanaSubUnsur->rencanaButirKegiatans as $rencanaButirKegiatan)
+                                                                            <li class="accordian-list">
+                                                                                <div
+                                                                                    class="d-flex align-items-center justify-content-between">
+                                                                                    <h6 class="accordian-title">
+                                                                                        {{ $rencanaButirKegiatan->butirKegiatan->nama }}
+                                                                                    </h6>
+                                                                                    <div class="d-flex align-items-center">
+                                                                                        @if ($rencanaButirKegiatan->status == 1)
+                                                                                            <button
+                                                                                                class="btn btn-yellow ms-3 px-3"
+                                                                                                data-bs-toggle="modal"
+                                                                                                data-bs-target="#riwayatKegiatan{{ $rencanaButirKegiatan->id }}"
+                                                                                                type="button">Prosess</button>
+                                                                                            @include('aparatur.laporan-kegiatan.riwayat',
+                                                                                                [
+                                                                                                    'rencanaButirKegiatan' => $rencanaButirKegiatan,
+                                                                                                ])
+                                                                                        @elseif($rencanaButirKegiatan->status == 2)
+                                                                                            <button
+                                                                                                class="btn btn-red ms-3 px-3"
+                                                                                                data-bs-toggle="modal"
+                                                                                                data-bs-target="#riwayatKegiatan{{ $rencanaButirKegiatan->id }}"
+                                                                                                type="button">Revisi</button>
+                                                                                        @elseif($rencanaButirKegiatan->status == 3)
+                                                                                            <button
+                                                                                                class="btn btn-black ms-3 px-3"
+                                                                                                data-bs-toggle="modal"
+                                                                                                data-bs-target="#riwayatKegiatan{{ $rencanaButirKegiatan->id }}"
+                                                                                                type="button">Ditolak</button>
+                                                                                        @elseif($rencanaButirKegiatan->status == 4)
+                                                                                            <button
+                                                                                                class="btn btn-green-dark ms-3 px-3"
+                                                                                                data-bs-toggle="modal"
+                                                                                                data-bs-target="#riwayatKegiatan{{ $rencanaButirKegiatan->id }}"
+                                                                                                type="button">Selesai</button>
+                                                                                        @else
+                                                                                            <button
+                                                                                                data-rencana="{{ $rencanaButirKegiatan->id }}"
+                                                                                                class="btn btn-blue ms-3 px-4 btn-sm laporkan"
+                                                                                                data-bs-toggle="modal"
+                                                                                                data-bs-target="#laporkan"
+                                                                                                type="button">Lihat</button>
+                                                                                        @endif
+                                                                                    </div>
                                                                                 </div>
-                                                                            </div>
-                                                                        </li>
-                                                                    @endforeach
-                                                                </ul>
+                                                                            </li>
+                                                                        @endforeach
+                                                                    </ul>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                @endforeach
+                                                    @endforeach
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+                            </div>
                         </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -148,7 +190,6 @@
             </div>
         </div>
     </div>
-
 
     <div class="modal fade" id="revisi" tabindex="-1" role="dialog" aria-labelledby="revisiTitle"
         aria-hidden="true">
