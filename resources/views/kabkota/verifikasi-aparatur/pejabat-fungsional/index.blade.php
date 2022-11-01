@@ -47,6 +47,7 @@
 
         tbody>tr>td {
             cursor: pointer;
+            font-size: 15px !important;
         }
 
         tbody>tr:hover {

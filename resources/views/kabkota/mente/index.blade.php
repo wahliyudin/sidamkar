@@ -3,9 +3,9 @@
 @section('content')
     <section class="section">
         <div class="row">
-            <div class="col-md-3 px-2">
+            <div class="col-md-4 px-2">
                 <div class="card">
-                    <div class="card-body py-3 px-3" style="height: 100px;">
+                    <div class="card-body py-3 px-3" style="height: 80px;">
                         <div class="d-flex align-items-center h-100">
                             <div class="circle circle-green">
                                 <i class="fa-solid
@@ -15,16 +15,16 @@
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                     Periode
                                 </p>
-                                <h2 style="font-family: 'Roboto'; font-size: 20px; color: #06152B;" class="target">Januari
+                                <h2 style="font-family: 'Roboto'; font-size: 16px; color: #06152B;" class="target">Januari
                                     2022 - Juli 2022</h2>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 px-2">
+            <div class="col-md-4 px-2">
                 <div class="card">
-                    <div class="card-body py-3 px-3" style="height: 100px;">
+                    <div class="card-body py-3 px-3" style="height: 80px;">
                         <div class="d-flex align-items-center h-100">
                             <div class="circle circle-blue">
                                 <i class="fa-solid fa-user"></i>
@@ -33,16 +33,16 @@
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                     Penilai AK
                                 </p>
-                                <h2 style="font-family: 'Roboto';color: #06152B; font-size: 22px;" class="target">Rohmat
+                                <h2 style="font-family: 'Roboto';color: #06152B; font-size: 16px;" class="target">Rohmat
                                 </h2>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 px-2">
+            <div class="col-md-4 px-2">
                 <div class="card">
-                    <div class="card-body py-3 px-3" style="height: 100px;">
+                    <div class="card-body py-3 px-3" style="height: 80px;">
                         <div class="d-flex align-items-center h-100">
                             <div class="circle circle-purple">
                                 <i class="fa-solid fa-user"></i>
@@ -51,32 +51,34 @@
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                     Penetap AK
                                 </p>
-                                <h2 style="font-family: 'Roboto';color: #06152B; font-size: 22px;" class="target">Alifta
+                                <h2 style="font-family: 'Roboto';color: #06152B; font-size: 16px" class="target">Alifta
                                 </h2>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <a href="" class="btn btn-mente py-3 mt-3" data-bs-toggle="modal" data-bs-target="#tambahedit"><i
-                        class="fa-solid fa-right-to-bracket me-3"></i>Tambah/Edit</a>
-            </div>
         </div>
         <div class="row">
             <div class="col">
-                <div class="card mt-3">
+                <div class="card">
                     <div class="card-header">
-                        <div class="row justify-content-between">
-                            <div class="col-md-3">
-                                <h5>Table Data Pendaftaran Aparatur</h5>
+                        <div class="row justify-content-between align-items-center">
+                            <div class="col-md-7">
+                                <h5>Tabel Data Mentee</h5>
                             </div>
-                            <div class="col-md-3">
-                                <a href="" class="btn btn-primary" style="right: 0;" data-bs-toggle="modal"
-                                    data-bs-target="#editMentee">Tambah Mentee</a>
+                            <div class="col-md-5 d-flex justify-content-end">
+                                <a href="" class="btn btn-mente py-2 btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#tambahedit"><i class="fa-solid fa-user-tie me-2"></i>Tambah/Edit
+                                    Penilai & Penetap AK</a>
                             </div>
                         </div>
-
+                        <div class="row justify-content-end" style="margin-top: 1rem;">
+                            <div class="col-md-3 d-flex justify-content-end">
+                                <a href="" class="btn-tambah-mente btn-sm" style="right: 0;" data-bs-toggle="modal"
+                                    data-bs-target="#editMentee"><i class="fa-solid fa-user-group"></i> Tambah Mentee</a>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
                         {{ $dataTable->table() }}
@@ -91,7 +93,7 @@
         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editMenteeTitle">
+                    <h5 style="color: #06152B;" class="modal-title" id="editMenteeTitle">
                         Tambah Mentee
                     </h5>
                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
@@ -116,11 +118,12 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <div class="card mt-3 mb-0" style="border: 1px solid black; overflow: hidden;">
-                                    <div class="card-header py-2">
+                                <div class="card mt-3 mb-0"
+                                    style="border: var(--bs-modal-header-border-width) solid var(--bs-modal-header-border-color); overflow: hidden;">
+                                    <div class="card-header py-3">
                                         <div class="row justify-content-between">
                                             <div class="col-md-3">
-                                                <h5>Nama Fungsional</h5>
+                                                <h5 style="color: #06152B;">Data Pejabat Fungsional</h5>
                                             </div>
                                         </div>
                                     </div>
@@ -166,11 +169,11 @@
 
     <div class="modal fade" id="tambahedit" tabindex="-1" role="dialog" aria-labelledby="tambaheditTitle"
         aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-md modal-dialog-centered modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="tambaheditTitle">
-                        Tambah Mentee
+                        Penilai & Penetap AK
                     </h5>
                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <i data-feather="x"></i>
@@ -179,7 +182,7 @@
                 <div class="modal-body">
                     <form method="post" enctype="multipart/form-data" class="container-unsur">
                         <div class="row justify-content-center">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Penilai AK</label>
                                     <select class="choices form-select" name="role_id">
@@ -188,7 +191,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Penetap AK</label>
                                     <select class="choices form-select" name="role_id">
@@ -250,6 +253,17 @@
 
         tbody>tr:hover {
             background-color: rgb(250, 250, 250);
+        }
+
+        .btn-tambah-mente {
+            background-color: #0D6EF8;
+            padding: .5rem 1.5rem;
+            border-radius: 50px;
+            color: white;
+        }
+
+        .btn-tambah-mente:hover {
+            color: white;
         }
     </style>
     <link rel="stylesheet" href="{{ asset('assets/css/shared/sweetalert2.min.css') }}">

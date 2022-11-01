@@ -4,6 +4,7 @@ namespace App\DataTables\KabKota\VerifikasiAparatur;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+use Illuminate\View\View;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
@@ -23,7 +24,6 @@ class PejabatStrukturalDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addIndexColumn()
             ->addColumn('username', function (User $user) {
                 return '<p class="username" data-detail="' . $user->id . '">' . $user->username . '</p>';
             })
@@ -46,10 +46,16 @@ class PejabatStrukturalDataTable extends DataTable
                     $query->orderBy('display_name', $order);
                 });
             })
+            ->addColumn('file-sk', function (User $user) {
+                return '<div data-bs-toggle="modal" data-bs-target="#fileSK'.$user->id.'" style="cursor: pointer;">
+                    <img src="'.asset("assets/images/template/icon-dokumen-png-0 1.png").'" style="width: 1.4rem;" alt="">
+                    '.view('kabkota.verifikasi-aparatur.pejabat-struktural.document', compact('user'))->render().'
+                </div>';
+            })
             ->addColumn('status', function (User $user) {
                 return $this->statusAkun($user->status_akun);
             })
-            ->rawColumns(['status'])
+            ->rawColumns(['status', 'file-sk'])
             ->setRowId('id');
     }
 
@@ -61,7 +67,7 @@ class PejabatStrukturalDataTable extends DataTable
      */
     public function query(User $model): QueryBuilder
     {
-        return $model->newQuery()->whereRoleIs(getAllRoleStruktural());
+        return $model->newQuery()->with('userPejabatStruktural')->whereRoleIs(getAllRoleStruktural());
     }
 
     /**
@@ -73,6 +79,7 @@ class PejabatStrukturalDataTable extends DataTable
     {
         return $this->builder()
             ->responsive(true)
+            ->orderCellsTop(true)
             ->setTableId('pejabatstruktural-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
@@ -95,11 +102,12 @@ class PejabatStrukturalDataTable extends DataTable
     protected function getColumns(): array
     {
         return [
-            Column::computed('no'),
             Column::make('username')
                 ->title('Nama'),
             Column::make('jabatan'),
-            Column::make('status')
+            Column::computed('file-sk')
+                ->title('File SK'),
+            Column::computed('status')
                 ->title('Status Verifikasi'),
         ];
     }

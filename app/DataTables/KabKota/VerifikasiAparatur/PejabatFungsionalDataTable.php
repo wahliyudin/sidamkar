@@ -23,7 +23,6 @@ class PejabatFungsionalDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addIndexColumn()
             ->addColumn('username', function (User $user) {
                 return '<p class="username" data-detail="' . $user->id . '">' . $user->username . '</p>';
             })
@@ -32,6 +31,9 @@ class PejabatFungsionalDataTable extends DataTable
             })
             ->orderColumn('username', function ($query, $order) {
                 $query->orderBy('username', $order);
+            })
+            ->addColumn('nip', function (User $user) {
+                return $user->userAparatur?->nip;
             })
             ->addColumn('jabatan', function (User $user) {
                 return $user->roles()->first()->display_name;
@@ -73,6 +75,7 @@ class PejabatFungsionalDataTable extends DataTable
     {
         return $this->builder()
             ->responsive(true)
+            ->orderCellsTop(true)
             ->setTableId('pejabatfungsional-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
@@ -95,9 +98,9 @@ class PejabatFungsionalDataTable extends DataTable
     protected function getColumns(): array
     {
         return [
-            Column::computed('no'),
             Column::make('username')
                 ->title('Nama'),
+            Column::make('nip'),
             Column::make('jabatan'),
             Column::make('status')
                 ->title('Status Verifikasi'),

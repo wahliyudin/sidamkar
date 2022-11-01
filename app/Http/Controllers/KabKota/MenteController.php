@@ -37,4 +37,9 @@ class MenteController extends Controller
             'message' => 'Berhasil ditambahkan'
         ]);
     }
+
+    public function show($id)
+    {
+        return view('kabkota.mente.show');
+    }
 }

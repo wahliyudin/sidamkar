@@ -120,6 +120,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('kab-kota/data-mente', [MenteController::class, 'index'])->name('kab-kota.data-mente');
         Route::post('kab-kota/data-mente/store', [MenteController::class, 'store'])->name('kab-kota.data-mente.store');
+        Route::get('kab-kota/data-mente/{id}/show', [MenteController::class, 'show'])->name('kab-kota.data-mente.show');
 
         Route::get('kab-kota/chatbox', [ChatboxController::class, 'index'])->name('kab-kota.chatbox');
     });

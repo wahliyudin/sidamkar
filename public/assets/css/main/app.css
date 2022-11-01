@@ -22841,11 +22841,11 @@ label {
 
 .btn-mente,
 .btn-mente:active {
-    color: #000 !important;
-    background-color: #fff !important;
+    color: #fff !important;
+    background-color: #0DCAF0 !important;
 }
 
 .btn-mente:hover {
     color: #fff !important;
-    background-color: #ea3a3d !important;
+    background-color: #0DCAF0 !important;
 }
