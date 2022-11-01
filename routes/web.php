@@ -35,9 +35,11 @@ use App\Http\Controllers\Kemendagri\OverviewController as KemendagriOverviewCont
 use App\Http\Controllers\Kemendagri\PejabatStrukturalController as KemendagriPejabatStrukturalController;
 use App\Http\Controllers\Kemendagri\VerifikasiData\AdminKabKotaController;
 use App\Http\Controllers\Kemendagri\VerifikasiData\AdminProvinsiController;
+use App\Http\Controllers\provinsi\Chatbox;
 use App\Http\Controllers\Provinsi\DataAparaturController as ProvinsiDataAparaturController;
 use App\Http\Controllers\Provinsi\OverviewController as ProvinsiOverviewController;
 use App\Http\Controllers\Provinsi\PejabatStrukturalController as ProvinsiPejabatStrukturalController;
+use App\Http\Controllers\provinsi\ChatboxController as ProvinsiChatboxController;
 use App\Models\KabKota;
 use App\Models\Provinsi;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
@@ -119,7 +121,8 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['role:provinsi'])->group(function () {
         Route::get('provinsi/overview', [ProvinsiOverviewController::class, 'index'])->name('provinsi.overview.index');
         Route::get('provinsi/aparatur/data-aparatur', [ProvinsiDataAparaturController::class, 'index'])->name('provinsi.aparatur.data-aparatur');
-        Route::get('provinsi/pejabat-struktural', [ProvinsiPejabatStrukturalController::class, 'index'])->name('provinsi.pejabat-struktural');
+        Route::get('provinsi/kabkota', [ProvinsiPejabatStrukturalController::class, 'index'])->name('provinsi.kabkota');
+        Route::get('provinsi/chatbox', [ProvinsiChatboxController::class, 'index'])->name('provinsi.chatbox');
     });
 
     Route::middleware(['role:kemendagri'])->group(function () {
