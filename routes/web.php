@@ -56,9 +56,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', 'login');
 Route::get('coba', function(){
-    return Mente::query()->withWhereHas('fungsional', function($query){
-        $query->with('userAparatur')->whereHas('rencanas');
-    })->where('atasan_langsung_id', auth()->user()->id)->get();
+    return User::query()->with('roles')->where('verified', null)->whereRoleIs(getAllRoleFungsional())->get();
 });
 Auth::routes(['verify' => true]);
 Route::post('register/file', [RegisterController::class, 'storeFile']);

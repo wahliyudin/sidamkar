@@ -84,17 +84,7 @@
                                                                                         {{ $rencanaButirKegiatan->butirKegiatan->nama }}
                                                                                     </h6>
                                                                                     <div class="d-flex align-items-center">
-                                                                                        @if ($rencanaButirKegiatan->status == 1)
-                                                                                            <button
-                                                                                                class="btn btn-yellow ms-3 px-3"
-                                                                                                data-bs-toggle="modal"
-                                                                                                data-bs-target="#riwayatKegiatan{{ $rencanaButirKegiatan->id }}"
-                                                                                                type="button">Prosess</button>
-                                                                                            @include('aparatur.laporan-kegiatan.riwayat',
-                                                                                                [
-                                                                                                    'rencanaButirKegiatan' => $rencanaButirKegiatan,
-                                                                                                ])
-                                                                                        @elseif($rencanaButirKegiatan->status == 2)
+                                                                                        @if ($rencanaButirKegiatan->status == 2)
                                                                                             <button
                                                                                                 class="btn btn-red ms-3 px-3"
                                                                                                 data-bs-toggle="modal"

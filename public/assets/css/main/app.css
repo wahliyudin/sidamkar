@@ -22482,6 +22482,22 @@ a {
     z-index: 1;
 }
 
+.rounded-md {
+    border-radius: 8px !important;
+}
+
+.bg-yellow {
+    background-color: #FFC107 !important;
+}
+
+.bg-green {
+    background-color: #1ad598 !important;
+}
+
+.badge {
+    width: 100px;
+}
+
 .btn {
     padding: 0.3rem 1.5rem;
     border-radius: 8px;

@@ -73,13 +73,13 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
-                    {{--  <li
-                        class="sidebar-item has-sub {{ request()->is('kab-kota/verifikasi-aparatur/pejabat-fungsional*') || request()->is('kab-kota/verifikasi-aparatur/pejabat-struktural*') ? 'active' : '' }}">
+                    <li
+                        class="sidebar-item has-sub {{ request()->is('kab-kota/data-aparatur/pejabat-fungsional*') || request()->is('kab-kota/verifikasi-aparatur/pejabat-struktural*') ? 'active' : '' }}">
                         <a href="javascript(0)" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
-                                <i class="fa-solid fa-square-poll-vertical"></i>
+                                <i class="fa-solid fa-copy"></i>
                             </div>
-                            <span>Verifikasi Aparatur</span>
+                            <span>Manajemen User</span>
                         </a>
                         <ul
                             class="submenu {{ request()->is('kab-kota/verifikasi-aparatur/pejabat-fungsional*') || request()->is('kab-kota/verifikasi-aparatur/pejabat-struktural*') ? 'active' : '' }}">
@@ -91,28 +91,6 @@
                             <li
                                 class="submenu-item {{ request()->is('kab-kota/verifikasi-aparatur/pejabat-struktural*') ? 'active' : '' }}">
                                 <a href="{{ route('kab-kota.verifikasi-aparatur.pejabat-struktural.index') }}">Pejabat
-                                    Struktural</a>
-                            </li>
-                        </ul>
-                    </li>  --}}
-                    <li
-                        class="sidebar-item has-sub {{ request()->is('kab-kota/data-aparatur/pejabat-fungsional*') || request()->is('kab-kota/data-aparatur/pejabat-struktural*') ? 'active' : '' }}">
-                        <a href="javascript(0)" class='sidebar-link'>
-                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
-                                <i class="fa-solid fa-copy"></i>
-                            </div>
-                            <span>Manajemen User</span>
-                        </a>
-                        <ul
-                            class="submenu {{ request()->is('kab-kota/data-aparatur/pejabat-fungsional*') || request()->is('kab-kota/data-aparatur/pejabat-struktural*') ? 'active' : '' }}">
-                            <li
-                                class="submenu-item {{ request()->is('kab-kota/data-aparatur/pejabat-fungsional*') ? 'active' : '' }}">
-                                <a href="{{ route('kab-kota.data-aparatur.pejabat-fungsional.index') }}">Pejabat
-                                    Fungsional</a>
-                            </li>
-                            <li
-                                class="submenu-item {{ request()->is('kab-kota/data-aparatur/pejabat-struktural*') ? 'active' : '' }}">
-                                <a href="{{ route('kab-kota.data-aparatur.pejabat-struktural.index') }}">Pejabat
                                     Struktural</a>
                             </li>
                         </ul>
