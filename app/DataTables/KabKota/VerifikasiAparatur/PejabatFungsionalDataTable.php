@@ -100,6 +100,7 @@ class PejabatFungsionalDataTable extends DataTable
                 ->title('Nama'),
             Column::make('jabatan'),
             Column::make('status')
+                ->title('Status Verifikasi'),
         ];
     }
 

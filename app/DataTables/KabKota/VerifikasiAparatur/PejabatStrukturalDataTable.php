@@ -24,9 +24,32 @@ class PejabatStrukturalDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addIndexColumn()
-            ->addColumn('action', function (User $user) {
-                return '<a href="' . route('kab-kota.verifikasi-aparatur.pejabat-struktural.show', $user->id) . '" class="btn btn-blue text-sm">Detail</a>';
+            ->addColumn('username', function (User $user) {
+                return '<p class="username" data-detail="' . $user->id . '">' . $user->username . '</p>';
             })
+            ->filterColumn('username', function ($query, $keyword) {
+                $query->where('username', 'like', "%$keyword%");
+            })
+            ->orderColumn('username', function ($query, $order) {
+                $query->orderBy('username', $order);
+            })
+            ->addColumn('jabatan', function (User $user) {
+                return $user->roles()->first()->display_name;
+            })
+            ->filterColumn('jabatan', function ($query, $keyword) {
+                $query->whereHas('roles', function ($query) use ($keyword) {
+                    $query->where('display_name', 'like', "%$keyword%");
+                });
+            })
+            ->orderColumn('jabatan', function ($query, $order) {
+                $query->whereHas('roles', function ($query) use ($order) {
+                    $query->orderBy('display_name', $order);
+                });
+            })
+            ->addColumn('status', function (User $user) {
+                return $this->statusAkun($user->status_akun);
+            })
+            ->rawColumns(['status'])
             ->setRowId('id');
     }
 
@@ -38,10 +61,7 @@ class PejabatStrukturalDataTable extends DataTable
      */
     public function query(User $model): QueryBuilder
     {
-        return $model->newQuery()->where('verified', null)->whereRoleIs([
-            'atasan_langsung', 'penilai_ak',
-            'penetap_ak'
-        ]);
+        return $model->newQuery()->whereRoleIs(getAllRoleStruktural());
     }
 
     /**
@@ -78,10 +98,9 @@ class PejabatStrukturalDataTable extends DataTable
             Column::computed('no'),
             Column::make('username')
                 ->title('Nama'),
-            Column::computed('action')
-                ->exportable(false)
-                ->printable(false)
-                ->width(60),
+            Column::make('jabatan'),
+            Column::make('status')
+                ->title('Status Verifikasi'),
         ];
     }
 
@@ -93,5 +112,20 @@ class PejabatStrukturalDataTable extends DataTable
     protected function filename(): string
     {
         return 'PejabatStruktural_' . date('YmdHis');
+    }
+
+    public function statusAkun($status)
+    {
+        switch ($status) {
+            case 1:
+                return '<span class="badge bg-green text-white text-sm py-2 px-3 rounded-md">Verified</span>';
+                break;
+            case 2:
+                return '<span class="badge bg-red text-white text-sm py-2 px-3 rounded-md">Ditolak</span>';
+                break;
+            default:
+                return '<span class="badge bg-yellow text-white text-sm py-2 px-3 rounded-md">Menunggu</span>';
+                break;
+        }
     }
 }
