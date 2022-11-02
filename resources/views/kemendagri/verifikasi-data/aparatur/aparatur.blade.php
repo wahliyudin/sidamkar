@@ -50,8 +50,7 @@
                                     </td>
                                     <td style="color: #1cd926">Aktif</td>
                                     <td>
-                                        <a class="btn btn-primary btn-status px-3 text-sm"
-                                            href="{{ route('atasan-langsung.show') }}">Detail</a>
+                                        <a class="btn btn-primary btn-status px-3 text-sm">Detail</a>
                                     </td>
                                 </tr>
                             </tbody>
