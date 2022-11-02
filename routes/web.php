@@ -141,7 +141,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('atasan-langsung/kegiatan-selesai', [KegiatanLangsungController::class, 'index'])->name('atasan-langsung.kegiatan-selesai');
     });
 
-    Route::middleware(['role:penilai_ak)'])->group(function () {
+    Route::middleware(['role:penilai_ak'])->group(function () {
         Route::get('penilai-ak/overview', [PenilaiAkOverviewController::class, 'index'])->name('penilai-ak.overview');
     });
 
