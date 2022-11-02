@@ -31,7 +31,7 @@ class AdminKabKotaController extends Controller
                 'message' => "Data tidak ditemukan",
             ]);
         }
-        $user->update(['verified' => now()]);
+        $user->update(['status_akun' => 1]);
         $user->notify(new UserVerified());
         return response()->json([
             'success' => true,
@@ -48,8 +48,7 @@ class AdminKabKotaController extends Controller
                 'message' => "Data tidak ditemukan",
             ]);
         }
-        deleteImage($user->userProvKabKota->file_permohonan);
-        $user->delete();
+        $user->update(['status_akun' => 2]);
         $user->notify(new UserReject($request->catatan));
         return response()->json([
             'success' => true,
