@@ -49,7 +49,7 @@ class MenteDataTable extends DataTable
                 });
             })
             ->addColumn('action', function (User $user) {
-                return '<button class="btn btn-blue btn-sm">edit</button>';
+                return '<button class="btn btn-blue btn-sm edit-mente" data-id="' . $user->id . '">edit</button>';
             })
             ->rawColumns(['nama', 'action'])
             ->setRowId('id');
@@ -63,9 +63,9 @@ class MenteDataTable extends DataTable
      */
     public function query(User $model): QueryBuilder
     {
-        return $model->newQuery()->with(['userPejabatStruktural' => function ($query) {
+        return $model->newQuery()->whereHas('userPejabatStruktural', function ($query) {
             $query->where('kab_kota_id', Auth::user()->userProvKabKota->kab_kota_id);
-        }])->withWhereHas('mentes')->whereRoleIs('atasan_langsung');
+        })->withWhereHas('mentes')->whereRoleIs('atasan_langsung');
     }
 
     /**
@@ -81,7 +81,7 @@ class MenteDataTable extends DataTable
             ->orderCellsTop()
             ->columns($this->getColumns())
             ->minifiedAjax()
-            ->dom('Bfrtip')
+            ->dom('lfrtip')
             ->orderBy(1)
             ->buttons(
                 Button::make('create'),
@@ -105,7 +105,7 @@ class MenteDataTable extends DataTable
                 ->exportable(false)
                 ->printable(false)
                 ->width(60)
-                ->addClass('text-center'),
+                ->addClass('text-center action'),
         ];
     }
 
