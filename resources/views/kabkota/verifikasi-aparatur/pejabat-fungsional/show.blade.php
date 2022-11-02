@@ -176,81 +176,12 @@
         @if (in_array($user->status_akun, [0, 2]))
             <div class="row">
                 <div class="d-flex justify-content-end">
-                    <button class="btn btn-red" data-bs-toggle="modal" data-bs-target="#rejectModal">TOLAK</button>
-                    <button class="btn btn-blue ms-2" data-bs-toggle="modal"
-                        data-bs-target="#verifModal">VERIFIKASI</button>
+                    <button class="btn btn-red" onclick="tolak({{ $user->id }})">TOLAK</button>
+                    <button class="btn btn-blue ms-2" onclick="verifikasi({{ $user->id }})">VERIFIKASI</button>
                 </div>
             </div>
         @endif
     </section>
-
-    <div class="modal fade" id="verifModal" tabindex="-1" role="dialog" aria-labelledby="verifModalTitle"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="verifModalTitle">
-                        Peringatan
-                    </h5>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                        <i data-feather="x"></i>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>
-                        Apakah anda yakin memperifikasi akun ini?
-                    </p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
-                        <i class="bx bx-x"></i>
-                        <span>Batal</span>
-                    </button>
-                    <form action="{{ route('kab-kota.verifikasi-aparatur.verified', $user->id) }}" method="post">
-                        @csrf
-                        <button type="submit" class="btn btn-green ml-1">
-                            <i class="bx bx-check"></i>
-                            <span>Ya, yakin</span>
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="rejectModal" tabindex="-1" role="dialog" aria-labelledby="rejectModalTitle"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="rejectModalTitle">
-                        Peringatan
-                    </h5>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                        <i data-feather="x"></i>
-                    </button>
-                </div>
-                <form action="{{ route('kab-kota.verifikasi-aparatur.reject', $user->id) }}" method="post">
-                    <div class="modal-body">
-                        <p>
-                            Apakah anda yakin tolak akun ini?
-                        </p>
-                        @csrf
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
-                            <i class="bx bx-x"></i>
-                            <span>Batal</span>
-                        </button>
-
-                        <button type="submit" class="btn btn-green ml-1">
-                            <i class="bx bx-check"></i>
-                            <span>Ya, yakin</span>
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
 @endsection
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/css/pages/my-data.css') }}">
@@ -318,10 +249,86 @@
             cursor: not-allowed;
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
     <link rel="stylesheet" href="{{ asset('assets/extensions/choices.js/public/assets/styles/choices.css') }}">
 @endsection
 @section('js')
     <script src="{{ asset('assets/extensions/choices.js/public/assets/scripts/choices.js') }}"></script>
     <script src="{{ asset('assets/js/pages/form-element-select.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
+    <script>
+        function tolak(id) {
+            swal({
+                title: "Tolak?",
+                text: "Masukan alasan kenapa ditolak!",
+                type: "warning",
+                input: 'text',
+                inputPlaceholder: 'Catatan',
+                showCancelButton: true,
+                confirmButtonText: 'Ya, tolak!',
+                cancelButtonText: "Batal",
+                showLoaderOnConfirm: true,
+                inputValidator: (value) => {
+                    if (!value) {
+                        return 'Catatan tidak boleh kosong!'
+                    }
+                },
+                preConfirm: async (value) => {
+                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                    return await $.ajax({
+                        type: 'POST',
+                        url: url('/kab-kota/verifikasi-aparatur/' + id + '/reject'),
+                        data: {
+                            _token: CSRF_TOKEN,
+                            catatan: value
+                        },
+                        dataType: 'JSON'
+                    });
+                },
+            }).then(function(e) {
+                if (e.value.success == true) {
+                    swal("Selesai!", e.value.message, "success").then(() => {
+                        location.reload();
+                    });
+                } else {
+                    swal("Error!", e.value.message, "error");
+                }
+            })
+        }
+
+        function verifikasi(id) {
+            swal({
+                title: "Perifikasi?",
+                text: "Please ensure and then confirm!",
+                type: "warning",
+                showCancelButton: !0,
+                confirmButtonText: "Ya, verfikasi!",
+                cancelButtonText: "Batal",
+                reverseButtons: !0,
+                showLoaderOnConfirm: true,
+                preConfirm: async () => {
+                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                    return await $.ajax({
+                        type: 'POST',
+                        url: url('/kab-kota/verifikasi-aparatur/' + id + '/verified'),
+                        data: {
+                            _token: CSRF_TOKEN
+                        },
+                        dataType: 'JSON'
+                    });
+                },
+            }).then(function(e) {
+                if (e.value.success == true) {
+                    swal("Selesai!", e.value.message, "success").then(() => {
+                        location.reload();
+                    });
+                } else {
+                    swal("Error!", e.value.message, "error");
+                }
+            }, function(dismiss) {
+                return false;
+            })
+        }
+    </script>
 @endsection
