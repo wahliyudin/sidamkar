@@ -17,6 +17,7 @@ use App\Http\Controllers\AtasanLangsung\KegiatanLangsungController;
 use App\Http\Controllers\AtasanLangsung\KegiatanPengajuanController;
 use App\Http\Controllers\AtasanLangsung\OverviewController as AtasanLangsungOverviewController;
 use App\Http\Controllers\AtasanLangsung\PengajuanKegiatanController;
+use App\Http\Controllers\PenilaiAk\OverviewController as PenilaiAkOverviewController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\KabKota\ChatboxController;
 use App\Http\Controllers\KabKota\DataAparatur\PejabatstrukturalController as KabKotaPejabatStrukturalController;
@@ -138,6 +139,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('atasan-langsung/pengajuan-kegiatan', [PengajuanKegiatanController::class, 'index'])->name('atasan-langsung.pengajuan-kegiatan.index');
         Route::get('atasan-langsung/pengajuan-kegiatan/{id}/show', [PengajuanKegiatanController::class, 'show'])->name('atasan-langsung.pengajuan-kegiatan.show');
         Route::get('atasan-langsung/kegiatan-selesai', [KegiatanLangsungController::class, 'index'])->name('atasan-langsung.kegiatan-selesai');
+    });
+
+    Route::middleware(['role:penilai_ak)'])->group(function () {
+        Route::get('penilai-ak/overview', [PenilaiAkOverviewController::class, 'index'])->name('penilai-ak.overview');
     });
 
     Route::middleware(['role:provinsi'])->group(function () {

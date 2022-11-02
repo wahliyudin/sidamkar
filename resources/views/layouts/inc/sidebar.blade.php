@@ -140,6 +140,17 @@
                     </li>
                 @endrole
 
+                @role('penilai_ak')
+                    <li class="sidebar-item {{ request()->routeIs('penilai-ak.overview') ? 'active' : '' }}">
+                        <a href="{{ route('penilai-ak.overview') }}" class='sidebar-link'>
+                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                                <i class="bi bi-grid-fill"></i>
+                            </div>
+                            <span>Overview</span>
+                        </a>
+                    </li>
+                @endrole
+
                 @role('provinsi')
                     <li class="sidebar-item {{ request()->routeIs('provinsi.overview.index') ? 'active' : '' }}">
                         <a href="{{ route('provinsi.overview.index') }}" class='sidebar-link'>
