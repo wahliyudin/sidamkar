@@ -6,32 +6,29 @@
             <div class="col">
                 <div class="card">
                     <div class="card-header">
-                        <h5>Table Data Pendaftaran Aparatur</h5>
+                        <h5>Table Data Kabupaten / Kota</h5>
                     </div>
                     <div class="card-body">
                         <table class="table table-striped" id="table1">
                             <thead>
                                 <tr>
-                                    <th>Nama</th>
-                                    <th>Nomor Karpeg</th>
-                                    <th>Jabatan</th>
-                                    <th>Golongan</th>
-                                    <th>File</th>
-                                    <th>Status Verifikasi</th>
-                                    <th class="text-center">Action</th>
+                                    <th>Nama Daerah</th>
+                                    <th>Kab/Kota</th>
+                                    <th>Email</th>
+                                    <th>Username</th>
+                                    <th>Status</th>
+                                    <th>File SK</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>Graiden</td>
-                                    <td>5645645615151</td>
-                                    <td>Damkar Pemula</td>
-                                    <td>III A</td>
-                                    <td><i class="fa-regular fa-file-lines"></i></td>
-                                    <td class="text-danger">Belum Verifikasi</td>
+                                    <td>Jakarta Barat</td>
+                                    <td>JakartaBarat@jakbar.go.id</td>
+                                    <td>DamkarJakartaBarat</td>
+                                    <td style="color: #1cd926">Aktif</td>
                                     <td>
-                                        <a href=""
-                                            class="btn btn-primary d-flex justify-content-center">Verifikasi</a>
+                                        <span class=""><i class="fa-regular fa-file-lines"></i>Lihat</span>
                                     </td>
                                 </tr>
                             </tbody>

@@ -19,7 +19,6 @@ class PejabatFungsionalController extends Controller
     {
         $user = User::query()
             ->with('userAparatur')
-            ->where('verified', null)
             ->whereRoleIs(getAllRoleFungsional())
             ->findOrFail($id);
         return view('kabkota.verifikasi-aparatur.pejabat-fungsional.show', compact('user'));

@@ -67,7 +67,7 @@
                     <div class="row align-items-center justify-content-between">
                         <div class="form-group col-md-2">
                             <label>Tanggal</label>
-                            <input type="date" class="form-control">
+                            <input type="date" value="{{ now()->format('Y-m-d') }}" class="form-control">
                         </div>
                         <div class="form-group col-md-6">
                             <label>Search</label>

@@ -33,15 +33,23 @@ trait AuthenticatesUsers
     public function login(Request $request)
     {
         $this->validateLogin($request);
-        $user = User::query()->where('username', $request->username)->where('verified', '!=', null)->first();
-        if (!isset($user)) {
-            return to_route('login')->with('message', 'Anda belum diverifikasi oleh Admin');
+        $user = User::query()->where('username', $request->username)->first();
+        if ($user) {
+            if ($user->status_akun == 0) {
+                return redirect()->route('login')->with('warning', 'Anda belum diverifikasi oleh Admin');
+            }
+            if ($user->status_akun == 2) {
+                return redirect()->route('login')->with('error', 'Maaf!, anda ditolak oleh Admin');
+            }
         }
+
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
         // the IP address of the client making these requests into this application.
-        if (method_exists($this, 'hasTooManyLoginAttempts') &&
-            $this->hasTooManyLoginAttempts($request)) {
+        if (
+            method_exists($this, 'hasTooManyLoginAttempts') &&
+            $this->hasTooManyLoginAttempts($request)
+        ) {
             $this->fireLockoutEvent($request);
 
             return $this->sendLockoutResponse($request);
@@ -77,7 +85,6 @@ trait AuthenticatesUsers
             $this->username() => 'required|string',
             'password' => 'required|string',
         ]);
-
     }
 
     /**
@@ -89,7 +96,8 @@ trait AuthenticatesUsers
     protected function attemptLogin(Request $request)
     {
         return $this->guard()->attempt(
-            $this->credentials($request), $request->boolean('remember')
+            $this->credentials($request),
+            $request->boolean('remember')
         );
     }
 
@@ -121,8 +129,8 @@ trait AuthenticatesUsers
         }
 
         return $request->wantsJson()
-                    ? new JsonResponse([], 204)
-                    : redirect()->intended($this->redirectPath());
+            ? new JsonResponse([], 204)
+            : redirect()->intended($this->redirectPath());
     }
 
     /**

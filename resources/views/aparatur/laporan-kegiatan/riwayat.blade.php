@@ -4,16 +4,16 @@
         <div class="modal-content">
             <div class="modal-body px-4">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-7">
                         <div class="d-flex flex-column">
                             <h4>Laporan Kegiatan</h4>
                             <hr>
                             <div class="d-flex flex-column">
                                 <h6>File Dokumen</h6>
-                                <div class="d-flex flex-wrap align-items-center">
+                                <div class="d-flex flex-wrap gap-3 justify-content-center">
                                     @foreach ($rencanaButirKegiatan->dokumenKegiatanPokoks as $dokumenKegiatanPokok)
                                         <img src="{{ $dokumenKegiatanPokok->file }}"
-                                            style="max-width: 300px; max-height: 300px; object-fit: cover; border-radius: 10px;"
+                                            style="max-width: 300px; max-height: 400px; object-fit: contain; border-radius: 10px; overflow: hidden;"
                                             alt="">
                                     @endforeach
                                 </div>
@@ -24,7 +24,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-5">
 
                     </div>
                 </div>

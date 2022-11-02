@@ -44,6 +44,19 @@
                 padding: 0 !important;
             }
         }
+
+        tbody>tr>td:not(:nth-child(3)) {
+            cursor: pointer;
+        }
+
+        tbody>tr>td,
+        tbody>tr>th {
+            white-space: nowrap;
+        }
+
+        tbody>tr:hover {
+            background-color: rgb(250, 250, 250);
+        }
     </style>
 @endsection
 
@@ -54,4 +67,39 @@
     <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#pejabatstruktural-table').on('click', 'tbody > tr > td:not(:nth-child(1)):not(:nth-child(3))',
+                function() {
+                    window.location.replace(url(
+                        `/kab-kota/verifikasi-aparatur/pejabat-struktural/${$($(this.parentElement).find('.username')).data('detail')}/show`
+                    ));
+                });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            var table = $('#pejabatstruktural-table').DataTable();
+            $('#pejabatstruktural-table thead tr').clone(true).appendTo('#pejabatstruktural-table thead');
+            $('#pejabatstruktural-table thead tr:eq(1) th').each(function(i) {
+                var title = $(this).text();
+                if (title == 'No' || title == '' || $(this).hasClass('sorting_disabled'))
+                    $(this).html(' - ');
+                else
+                    $(this).html(
+                        '<input type="text" class="form-control form-control-sm" placeholder="Cari ' +
+                        title +
+                        '" />');
+
+                $('input', this).on('keyup change', function() {
+                    if (table.column(i).search() !== this.value) {
+                        table
+                            .column(i)
+                            .search(this.value)
+                            .draw();
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

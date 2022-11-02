@@ -23,7 +23,6 @@ class PejabatFungsionalDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addIndexColumn()
             ->addColumn('username', function (User $user) {
                 return '<p class="username" data-detail="' . $user->id . '">' . $user->username . '</p>';
             })
@@ -33,6 +32,26 @@ class PejabatFungsionalDataTable extends DataTable
             ->orderColumn('username', function ($query, $order) {
                 $query->orderBy('username', $order);
             })
+            ->addColumn('nip', function (User $user) {
+                return $user->userAparatur?->nip;
+            })
+            ->addColumn('jabatan', function (User $user) {
+                return $user->roles()->first()->display_name;
+            })
+            ->filterColumn('jabatan', function ($query, $keyword) {
+                $query->whereHas('roles', function($query) use ($keyword){
+                    $query->where('display_name', 'like', "%$keyword%");
+                });
+            })
+            ->orderColumn('jabatan', function ($query, $order) {
+                $query->whereHas('roles', function($query) use ($order){
+                    $query->orderBy('display_name', $order);
+                });
+            })
+            ->addColumn('status', function (User $user) {
+                return $this->statusAkun($user->status_akun);
+            })
+            ->rawColumns(['status'])
             ->setRowId('id');
     }
 
@@ -44,7 +63,7 @@ class PejabatFungsionalDataTable extends DataTable
      */
     public function query(User $model): QueryBuilder
     {
-        return $model->newQuery()->where('verified', null)->whereRoleIs(getAllRoleFungsional());
+        return $model->newQuery()->with('roles')->whereRoleIs(getAllRoleFungsional());
     }
 
     /**
@@ -56,6 +75,7 @@ class PejabatFungsionalDataTable extends DataTable
     {
         return $this->builder()
             ->responsive(true)
+            ->orderCellsTop(true)
             ->setTableId('pejabatfungsional-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
@@ -78,9 +98,12 @@ class PejabatFungsionalDataTable extends DataTable
     protected function getColumns(): array
     {
         return [
-            Column::computed('no'),
             Column::make('username')
-                ->title('Nama')
+                ->title('Nama'),
+            Column::make('nip'),
+            Column::make('jabatan'),
+            Column::make('status')
+                ->title('Status Verifikasi'),
         ];
     }
 
@@ -92,5 +115,20 @@ class PejabatFungsionalDataTable extends DataTable
     protected function filename(): string
     {
         return 'PejabatFungsional_' . date('YmdHis');
+    }
+
+    public function statusAkun($status)
+    {
+        switch ($status) {
+            case 0:
+                return '<span class="badge bg-yellow text-white text-sm py-2 px-3 rounded-md">Menunggu</span>';
+                break;
+            case 1:
+                return '<span class="badge bg-green text-white text-sm py-2 px-3 rounded-md">Verified</span>';
+                break;
+            case 2:
+                return '<span class="badge bg-red text-white text-sm py-2 px-3 rounded-md">Ditolak</span>';
+                break;
+        }
     }
 }

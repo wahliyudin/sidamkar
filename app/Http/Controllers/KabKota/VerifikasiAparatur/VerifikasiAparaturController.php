@@ -13,23 +13,17 @@ class VerifikasiAparaturController extends Controller
     public function verified($id)
     {
         $user = User::query()->with('userAparatur', 'userPejabatStruktural')->findOrFail($id);
-        $user->update(['verified' => now()]);
+        $user->update(['status_akun' => 1]);
         $user->notify(new UserVerified());
-        return $this->redirectTo(is_null($user->userPejabatStruktural), 'Berhasil diverifikasi');
+        return $this->redirectTo($user->hasRole(getAllRoleFungsional()), 'Berhasil diverifikasi');
     }
 
     public function reject($id)
     {
         $user = User::query()->with('userAparatur', 'userPejabatStruktural')->findOrFail($id);
-        $isFungsional = is_null($user->userPejabatStruktural);
-        if ($isFungsional) {
-            deleteImage($user->userAparatur->foto_pegawai);
-        } else {
-            deleteImage($user->userPejabatStruktural->file_ttd);
-        }
-        $user->delete();
+        $user->update(['status_akun' => 2]);
         $user->notify(new UserReject());
-        return $this->redirectTo(is_null($user->userPejabatStruktural), 'Berhasil ditolak');
+        return $this->redirectTo($user->hasRole(getAllRoleFungsional()), 'Berhasil ditolak');
     }
 
     private function redirectTo(bool $isFungsional, string $message)

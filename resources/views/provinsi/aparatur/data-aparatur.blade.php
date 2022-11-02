@@ -12,14 +12,6 @@
                                     Fungsional
                                 </h4>
                             </div>
-                            <div class="col-md-3">
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected>Open this select menu</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
-                            </div>
                         </div>
                     </div>
                     <div class="card-body" style="overflow: auto;">
@@ -27,7 +19,9 @@
                             <thead>
                                 <tr>
                                     <th>Nama</th>
-                                    <th>Bidang</th>
+                                    <th>NIP</th>
+                                    <th>Provinsi</th>
+                                    <th>Kab/Kota</th>
                                     <th>Jabatan</th>
                                     <th>Golongan</th>
                                     <th>Status</th>
@@ -40,7 +34,13 @@
                                         <a href="" style="color: #06152B;">Iqbal</a>
                                     </td>
                                     <td>
-                                        Sarana dan Prasarana
+                                        15615151115
+                                    </td>
+                                    <td>
+                                        DKI Jakarta
+                                    </td>
+                                    <td>
+                                        Jakarta Barat
                                     </td>
                                     <td>
                                         Seksi Prasarana

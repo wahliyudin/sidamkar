@@ -25,42 +25,69 @@ class UserSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => Hash::make('admin123'),
             'email_verified_at' => now(),
-            'verified' => now()
+            'status_akun' => 1
         ])->attachRole('kemendagri');
-        User::query()->create([
+
+        $damkarPemula = User::query()->create([
             'username' => 'Damkar Pemula',
             'email' => 'admin2@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'verified' => now()
+            'status_akun' => 1
         ])->attachRole('damkar_pemula');
-        User::query()->create([
+
+        $analisKebakaran = User::query()->create([
             'username' => 'Analis Kebakaran Ahli Pertama',
             'email' => 'admin3@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'verified' => now()
+            'status_akun' => 1
         ])->attachRole('analis_kebakaran_ahli_pertama');
-        User::query()->create([
+
+        $kabKota = User::query()->create([
             'username' => 'Kab Kota',
             'email' => 'admin4@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'verified' => now()
+            'status_akun' => 1
         ])->attachRole('kab_kota');
-        User::query()->create([
-            'username' => 'Atasan Langsung',
-            'email' => 'admin5@gmail.com',
+        $kabKota->userProvKabKota()->create([
+            'nomenklatur_perangkat_daerah_id' => 1,
+            'provinsi_id' => 11,
+            'kab_kota_id' => 1101,
+        ]);
+
+        $provinsi = User::query()->create([
+            'username' => 'Provinsi',
+            'email' => 'provinsi@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'verified' => now()
+            'status_akun' => 1
+        ])->attachRole('provinsi');
+        $provinsi->userProvKabKota()->create([
+            'nomenklatur_perangkat_daerah_id' => 1,
+            'provinsi_id' => 11,
+        ]);
+
+        $atasanLangsung = User::query()->create([
+            'username' => 'Atasan Langsung',
+            'email' => 'admin51@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
         ])->attachRole('atasan_langsung');
-        User::query()->create([
+        $atasanLangsung->userPejabatStruktural()->create([
+            'nama' => 'Atasan Langsung',
+            'provinsi_id' => 11,
+            'kab_kota_id' => 1101,
+        ]);
+
+        $penilaiAK = User::query()->create([
             'username' => 'Penilai AK',
             'email' => 'admin6@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'verified' => now()
+            'status_akun' => 1
         ])->attachRole('penilai_ak');
     }
 }

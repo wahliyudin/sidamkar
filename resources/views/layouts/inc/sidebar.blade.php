@@ -70,54 +70,32 @@
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="bi bi-grid-fill"></i>
                             </div>
-                            <span>Overview</span>
+                            <span>Dashboard</span>
                         </a>
                     </li>
                     <li
-                        class="sidebar-item has-sub {{ request()->is('kab-kota/verifikasi-aparatur/pejabat-fungsional*') || request()->is('kab-kota/verifikasi-aparatur/pejabat-struktural*') ? 'active' : '' }}">
+                        class="sidebar-item has-sub {{ request()->is('kab-kota/data-aparatur/pejabat-fungsional*') || request()->is('kab-kota/verifikasi-aparatur/pejabat-struktural*') ? 'active' : '' }}">
                         <a href="javascript(0)" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
-                                <i class="fa-solid fa-square-poll-vertical"></i>
+                                <i class="fa-solid fa-copy"></i>
                             </div>
-                            <span>Verifikasi Aparatur</span>
+                            <span>Manajemen User</span>
                         </a>
                         <ul
                             class="submenu {{ request()->is('kab-kota/verifikasi-aparatur/pejabat-fungsional*') || request()->is('kab-kota/verifikasi-aparatur/pejabat-struktural*') ? 'active' : '' }}">
                             <li
                                 class="submenu-item {{ request()->is('kab-kota/verifikasi-aparatur/pejabat-fungsional*') ? 'active' : '' }}">
-                                <a href="{{ route('kab-kota.verifikasi-aparatur.pejabat-fungsional.index') }}">Pejabat
-                                    Fungsional</a>
+                                <a
+                                    href="{{ route('kab-kota.verifikasi-aparatur.pejabat-fungsional.index') }}">Fungsional</a>
                             </li>
                             <li
                                 class="submenu-item {{ request()->is('kab-kota/verifikasi-aparatur/pejabat-struktural*') ? 'active' : '' }}">
-                                <a href="{{ route('kab-kota.verifikasi-aparatur.pejabat-struktural.index') }}">Pejabat
-                                    Struktural</a>
+                                <a
+                                    href="{{ route('kab-kota.verifikasi-aparatur.pejabat-struktural.index') }}">Struktural</a>
                             </li>
                         </ul>
                     </li>
-                    <li
-                        class="sidebar-item has-sub {{ request()->is('kab-kota/data-aparatur/pejabat-fungsional*') || request()->is('kab-kota/data-aparatur/pejabat-struktural*') ? 'active' : '' }}">
-                        <a href="javascript(0)" class='sidebar-link'>
-                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
-                                <i class="fa-solid fa-copy"></i>
-                            </div>
-                            <span>Data Aparatur</span>
-                        </a>
-                        <ul
-                            class="submenu {{ request()->is('kab-kota/data-aparatur/pejabat-fungsional*') || request()->is('kab-kota/data-aparatur/pejabat-struktural*') ? 'active' : '' }}">
-                            <li
-                                class="submenu-item {{ request()->is('kab-kota/data-aparatur/pejabat-fungsional*') ? 'active' : '' }}">
-                                <a href="{{ route('kab-kota.data-aparatur.pejabat-fungsional.index') }}">Pejabat
-                                    Fungsional</a>
-                            </li>
-                            <li
-                                class="submenu-item {{ request()->is('kab-kota/data-aparatur/pejabat-struktural*') ? 'active' : '' }}">
-                                <a href="{{ route('kab-kota.data-aparatur.pejabat-struktural.index') }}">Pejabat
-                                    Struktural</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="sidebar-item {{ request()->routeIs('kab-kota.data-mente') ? 'active' : '' }}">
+                    <li class="sidebar-item {{ request()->is('kab-kota/data-mente*') ? 'active' : '' }}">
                         <a href="{{ route('kab-kota.data-mente') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="fa-solid fa-clipboard-user"></i>
@@ -141,11 +119,10 @@
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="bi bi-grid-fill"></i>
                             </div>
-                            <span>Overview</span>
+                            <span>Dashboard</span>
                         </a>
                     </li>
-                    <li
-                        class="sidebar-item {{ request()->routeIs('atasan-langsung.pengajuan-kegiatan.index') || request()->routeIs('atasan-langsung.show') ? 'active' : '' }}">
+                    <li class="sidebar-item {{ request()->is('atasan-langsung/pengajuan-kegiatan*') ? 'active' : '' }}">
                         <a href="{{ route('atasan-langsung.pengajuan-kegiatan.index') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="fa-solid fa-clipboard"></i>
@@ -172,20 +149,31 @@
                             <span>Overview</span>
                         </a>
                     </li>
-                    <li class="sidebar-item {{ request()->routeIs('provinsi.aparatur.data-aparatur') ? 'active' : '' }}">
-                        <a href="{{ route('provinsi.aparatur.data-aparatur') }}" class='sidebar-link'>
+                    <li
+                        class="sidebar-item has-sub {{ request()->is('provinsi/aparatur/data-aparatur') || request()->is('provinsi/kabkota') ? 'active' : '' }}">
+                        <a href="javascript(0)" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
-                                <i class="fa-solid fa-folder-open"></i>
+                                <i class="fa-solid fa-copy"></i>
                             </div>
-                            <span>Data Pejabat Fungsional</span>
+                            <span>Manajemen User</span>
                         </a>
+                        <ul
+                            class="submenu {{ request()->is('provinsi/aparatur/data-aparatur') || request()->is('provinsi/kabkota') ? 'active' : '' }}">
+                            <li
+                                class="submenu-item {{ request()->is('provinsi/aparatur/data-aparatur') ? 'active' : '' }}">
+                                <a href="{{ route('provinsi.aparatur.data-aparatur') }}">Aparatur</a>
+                            </li>
+                            <li class="submenu-item {{ request()->is('provinsi/kabkota') ? 'active' : '' }}">
+                                <a href="{{ route('provinsi.kabkota') }}">Kab/Kota</a>
+                            </li>
+                        </ul>
                     </li>
-                    <li class="sidebar-item {{ request()->routeIs('provinsi.pejabat-struktural') ? 'active' : '' }}">
-                        <a href="{{ route('provinsi.pejabat-struktural') }}" class='sidebar-link'>
+                    <li class="sidebar-item {{ request()->routeIs('provinsi.chatbox') ? 'active' : '' }}">
+                        <a href="{{ route('provinsi.chatbox') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
-                                <i class="fa-solid fa-folder-open"></i>
+                                <i class="bi bi-grid-fill"></i>
                             </div>
-                            <span>Pejabat Struktural</span>
+                            <span>Chatbox</span>
                         </a>
                     </li>
                 @endrole

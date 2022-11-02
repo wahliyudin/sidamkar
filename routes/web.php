@@ -22,6 +22,7 @@ use App\Http\Controllers\KabKota\ChatboxController;
 use App\Http\Controllers\KabKota\DataAparatur\PejabatstrukturalController as KabKotaPejabatStrukturalController;
 use App\Http\Controllers\KabKota\DataAparatur\DataAparaturController as KabKotaPejabatFungsionalController;
 use App\Http\Controllers\KabKota\DataMenteController;
+use App\Http\Controllers\KabKota\MenteController;
 use App\Http\Controllers\KabKota\OverviewController as KabKotaOverviewController;
 use App\Http\Controllers\KabKota\VerifikasiAparatur\PejabatFungsionalController;
 use App\Http\Controllers\KabKota\VerifikasiAparatur\PejabatStrukturalController;
@@ -35,8 +36,16 @@ use App\Http\Controllers\Kemendagri\OverviewController as KemendagriOverviewCont
 use App\Http\Controllers\Kemendagri\PejabatStrukturalController as KemendagriPejabatStrukturalController;
 use App\Http\Controllers\Kemendagri\VerifikasiData\AdminKabKotaController;
 use App\Http\Controllers\Kemendagri\VerifikasiData\AdminProvinsiController;
+use App\Http\Controllers\provinsi\Chatbox;
 use App\Http\Controllers\Provinsi\DataAparaturController as ProvinsiDataAparaturController;
 use App\Http\Controllers\Provinsi\OverviewController as ProvinsiOverviewController;
+use App\Http\Controllers\Provinsi\PejabatStrukturalController as ProvinsiPejabatStrukturalController;
+use App\Http\Controllers\provinsi\ChatboxController as ProvinsiChatboxController;
+use App\Models\KabKota;
+use App\Models\Provinsi;
+use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
+use Illuminate\Database\Query\Builder;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -52,7 +61,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::redirect('/', 'login');
-
 Auth::routes(['verify' => true]);
 Route::post('register/file', [RegisterController::class, 'storeFile']);
 Route::delete('register/revert', [RegisterController::class, 'revert']);
@@ -110,7 +118,9 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('kab-kota/data-aparatur/pejabat-struktural', [KabKotaPejabatStrukturalController::class, 'index'])->name('kab-kota.data-aparatur.pejabat-struktural.index');
 
-        Route::get('kab-kota/data-mente', [DataMenteController::class, 'index'])->name('kab-kota.data-mente');
+        Route::get('kab-kota/data-mente', [MenteController::class, 'index'])->name('kab-kota.data-mente');
+        Route::post('kab-kota/data-mente/store', [MenteController::class, 'store'])->name('kab-kota.data-mente.store');
+        Route::get('kab-kota/data-mente/{id}/show', [MenteController::class, 'show'])->name('kab-kota.data-mente.show');
 
         Route::get('kab-kota/chatbox', [ChatboxController::class, 'index'])->name('kab-kota.chatbox');
     });
@@ -118,14 +128,15 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['role:atasan_langsung'])->group(function () {
         Route::get('atasan-langsung/overview', [AtasanLangsungOverviewController::class, 'index'])->name('atasan-langsung.overview.index');
         Route::get('atasan-langsung/pengajuan-kegiatan', [PengajuanKegiatanController::class, 'index'])->name('atasan-langsung.pengajuan-kegiatan.index');
-        Route::get('atasan-langsung/show', [KegiatanPengajuanController::class, 'index'])->name('atasan-langsung.show');
+        Route::get('atasan-langsung/pengajuan-kegiatan/{id}/show', [PengajuanKegiatanController::class, 'show'])->name('atasan-langsung.pengajuan-kegiatan.show');
         Route::get('atasan-langsung/kegiatan-selesai', [KegiatanLangsungController::class, 'index'])->name('atasan-langsung.kegiatan-selesai');
     });
 
     Route::middleware(['role:provinsi'])->group(function () {
         Route::get('provinsi/overview', [ProvinsiOverviewController::class, 'index'])->name('provinsi.overview.index');
         Route::get('provinsi/aparatur/data-aparatur', [ProvinsiDataAparaturController::class, 'index'])->name('provinsi.aparatur.data-aparatur');
-        Route::get('provinsi/pejabat-struktural', [ProvinsiPejabatStrukturalController::class, 'index'])->name('provinsi.pejabat-struktural');
+        Route::get('provinsi/kabkota', [ProvinsiPejabatStrukturalController::class, 'index'])->name('provinsi.kabkota');
+        Route::get('provinsi/chatbox', [ProvinsiChatboxController::class, 'index'])->name('provinsi.chatbox');
     });
 
     Route::middleware(['role:kemendagri'])->group(function () {
