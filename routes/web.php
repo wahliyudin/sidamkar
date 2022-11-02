@@ -35,6 +35,7 @@ use App\Http\Controllers\Kemendagri\OverviewController as KemendagriOverviewCont
 use App\Http\Controllers\Kemendagri\PejabatStrukturalController as KemendagriPejabatStrukturalController;
 use App\Http\Controllers\Kemendagri\VerifikasiData\AdminKabKotaController;
 use App\Http\Controllers\Kemendagri\VerifikasiData\AdminProvinsiController;
+use App\Http\Controllers\Kemendagri\VerifikasiData\AparaturController as KemendagriAparaturController;
 use App\Http\Controllers\provinsi\Chatbox;
 use App\Http\Controllers\Provinsi\DataAparaturController as ProvinsiDataAparaturController;
 use App\Http\Controllers\Provinsi\OverviewController as ProvinsiOverviewController;
@@ -137,6 +138,11 @@ Route::middleware(['auth'])->group(function () {
         Route::controller(AdminProvinsiController::class)->group(function () {
             Route::get('kemendagri/verifikasi-data/admin-provinsi', 'index')->name('kemendagri.verifikasi-data.admin-provinsi.index');
             Route::get('kemendagri/verifikasi-data/admin-provinsi/{id}/document', 'showDoc')->name('kemendagri.verifikasi-data.admin-provinsi.showdoc');
+        });
+
+        Route::controller(KemendagriAparaturController::class)->group(function () {
+            Route::get('kemendagri/verifikasi-data/aparatur', 'index')->name('kemendagri.verifikasi-data.aparatur.aparatur');
+            // Route::get('kemendagri/verifikasi-data/admin-provinsi/{id}/document', 'showDoc')->name('kemendagri.verifikasi-data.admin-provinsi.showdoc');
         });
 
         Route::controller(KemendagriPejabatStrukturalController::class)->group(function () {
