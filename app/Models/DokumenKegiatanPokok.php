@@ -10,13 +10,13 @@ class DokumenKegiatanPokok extends Model
     use HasFactory;
 
     protected $fillable = [
-        'rencana_sub_unsur_butir_kegiatan_id',
+        'rencana_butir_kegiatan_id',
         'title',
         'file'
     ];
 
-    public function rencanaSubUnsurButirKegiatan()
+    public function rencanaButirKegiatan()
     {
-        return $this->belongsTo(RencanaSubUnsurButirKegiatan::class);
+        return $this->belongsTo(RencanaButirKegiatan::class);
     }
 }

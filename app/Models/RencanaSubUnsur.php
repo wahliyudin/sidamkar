@@ -10,13 +10,13 @@ class RencanaSubUnsur extends Model
     use HasFactory;
 
     protected $fillable = [
-        'rencana_id',
+        'rencana_unsur_id',
         'sub_unsur_id'
     ];
 
-    public function rencana()
+    public function rencanaUnsur()
     {
-        return $this->belongsTo(Rencana::class);
+        return $this->belongsTo(RencanaUnsur::class);
     }
 
     public function subUnsur()
@@ -24,8 +24,8 @@ class RencanaSubUnsur extends Model
         return $this->belongsTo(SubUnsur::class);
     }
 
-    public function rencanaSubUnsurButirKegiatans()
+    public function rencanaButirKegiatans()
     {
-        return $this->hasMany(RencanaSubUnsurButirKegiatan::class);
+        return $this->hasMany(RencanaButirKegiatan::class);
     }
 }

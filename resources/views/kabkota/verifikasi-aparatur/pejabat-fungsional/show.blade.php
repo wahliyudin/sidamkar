@@ -173,13 +173,17 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="d-flex justify-content-end">
-                <button class="btn btn-red" data-bs-toggle="modal" data-bs-target="#rejectModal">TOLAK</button>
-                <button class="btn btn-blue ms-2" data-bs-toggle="modal" data-bs-target="#verifModal">VERIFIKASI</button>
+        @if (in_array($user->status_akun, [0, 2]))
+            <div class="row">
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-red" data-bs-toggle="modal" data-bs-target="#rejectModal">TOLAK</button>
+                    <button class="btn btn-blue ms-2" data-bs-toggle="modal"
+                        data-bs-target="#verifModal">VERIFIKASI</button>
+                </div>
             </div>
-        </div>
+        @endif
     </section>
+
     <div class="modal fade" id="verifModal" tabindex="-1" role="dialog" aria-labelledby="verifModalTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">

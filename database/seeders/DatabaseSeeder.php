@@ -4,12 +4,14 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\KabKota;
-use App\Models\Provinsi;
+use App\Models\ButirKegiatan;
+use App\Models\Mente;
+use App\Models\SubButirKegiatan;
+use App\Models\SubUnsur;
+use App\Models\Unsur;
 use App\Models\User;
 use App\Models\UserAparatur;
 use App\Models\UserPejabatStruktural;
-use App\Models\UserProvKabKota;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -30,12 +32,20 @@ class DatabaseSeeder extends Seeder
         $this->call(ProvinsiSeeder::class);
         $this->call(KabKotaSeeder::class);
         $this->call(RoleSeeder::class);
-        User::factory(50)->create();
-        
-        // UserAparatur::factory(50)->create();
-        // UserPejabatStruktural::factory(5)->create();
-        UserProvKabKota::factory(5)->create();
+        User::factory(10)->create();
+        UserAparatur::factory(10)->create();
+        UserPejabatStruktural::factory(10)->create();
+        // UserProvKabKota::factory(5)->create();
         $this->call(UserSeeder::class);
         $this->call(JenisKegiaranSeeder::class);
+        $this->call(NomenKlaturPerangkatDaerahSeeder::class);
+        // Rencana::factory(5)->create();
+        Unsur::factory(5)->create();
+        SubUnsur::factory(5)->create();
+        ButirKegiatan::factory(5)->create();
+        SubButirKegiatan::factory(5)->create();
+        // Mente::factory(10)->create();
+        // RencanaSubUnsur::factory(5)->create();
+        // RencanaSubUnsurButirKegiatan::factory(5)->create();
     }
 }

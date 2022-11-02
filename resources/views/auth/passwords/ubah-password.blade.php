@@ -12,21 +12,21 @@
                         @csrf
                         <div class="form-group">
                             <label>Password Lama</label>
-                            <input class="form-control" type="password" name="old_password">
+                            <input class="form-control" required type="password" name="old_password">
                             @error('old_password')
                                 <span class="text-danger text-sm">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label>Password</label>
-                            <input class="form-control" type="password" name="password">
+                            <input class="form-control" required type="password" name="password">
                             @error('password')
                                 <span class="text-danger text-sm">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label>Password Konfirmasi</label>
-                            <input class="form-control" type="password" name="password_confirmation">
+                            <input class="form-control" required type="password" name="password_confirmation">
                             @error('password_confirmation')
                                 <span class="text-danger text-sm">{{ $message }}</span>
                             @enderror

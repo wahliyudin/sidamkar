@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('rencana_sub_unsurs', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('rencana_id');
+            $table->unsignedBigInteger('rencana_unsur_id');
             $table->unsignedBigInteger('sub_unsur_id');
             $table->timestamps();
 
-            $table->foreign('rencana_id')->on('rencanas')->references('id')->cascadeOnDelete();
+            $table->foreign('rencana_unsur_id')->on('rencana_unsurs')->references('id')->cascadeOnDelete();
             $table->foreign('sub_unsur_id')->on('sub_unsurs')->references('id')->cascadeOnDelete();
         });
     }

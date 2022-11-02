@@ -3823,18 +3823,12 @@
         labelFileSizeKilobytes: ['KB', Type.STRING],
         labelFileSizeMegabytes: ['MB', Type.STRING],
         labelFileSizeGigabytes: ['GB', Type.STRING],
-
         labelDecimalSeparator: [getDecimalSeparator(), Type.STRING], // Default is locale separator
         labelThousandsSeparator: [getThousandsSeparator(), Type.STRING], // Default is locale separator
-
-        labelIdle: [
-            `<div style="display: flex; flex-direction: column;">
+        labelIdle: [`<div style="display: flex; flex-direction: column;">
         <span>Drag & Drop your files</span>
         <i class="fa-solid fa-cloud-arrow-up" style="font-size: 30px; margin-top: .5rem;"></i>
-    </div>`,
-            Type.STRING,
-        ],
-
+    </div>`, Type.STRING],
         labelInvalidField: ['Field contains invalid files', Type.STRING],
         labelFileWaitingForSize: ['Waiting for size', Type.STRING],
         labelFileSizeNotAvailable: ['Size not available', Type.STRING],

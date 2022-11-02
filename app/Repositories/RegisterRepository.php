@@ -2,9 +2,11 @@
 
 namespace App\Repositories;
 
+use App\Models\TemporaryFile;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class RegisterRepository
 {
@@ -35,10 +37,15 @@ class RegisterRepository
 
     public function storeProvKabKota(User $user, array $data)
     {
+        $tmp_file = TemporaryFile::query()->where('folder', $data['file_permohonan'])->first();
+        if ($tmp_file) {
+            Storage::copy("tmp/$tmp_file->folder/$tmp_file->file", "provkabkota/$tmp_file->file");
+            $tmp_file->delete();
+            Storage::deleteDirectory("tmp/$tmp_file->folder");
+        }
         return $user->userProvKabKota()->create([
-            'nomenklatur_perangkat_daerah' => $data['nomenklatur_perangkat_daerah'],
-            'file_permohonan' => asset('storage'). '/kabkota/'.str($data['file_permohonan'])->replace('"',
-            '')->replace('kabkota\/', ''),
+            'nomenklatur_perangkat_daerah_id' => $data['nomenklatur_perangkat_daerah_id'],
+            'file_permohonan' => url("storage/provkabkota/$tmp_file->file"),
             'kab_kota_id' => isset($data['kab_kota_id']) ? $data['kab_kota_id'] : null,
             'provinsi_id' => isset($data['provinsi_id']) ? $data['provinsi_id'] : null
         ]);
@@ -46,9 +53,15 @@ class RegisterRepository
 
     public function storeStruktural(User $user, array $data)
     {
+        $tmp_file = TemporaryFile::query()->where('folder', $data['file_sk'])->first();
+        if ($tmp_file) {
+            Storage::copy("tmp/$tmp_file->folder/$tmp_file->file", "struktural/$tmp_file->file");
+            $tmp_file->delete();
+            Storage::deleteDirectory("tmp/$tmp_file->folder");
+        }
         return $user->userPejabatStruktural()->create([
             'nama' => $data['nama'],
-            'file_sk' => $data['file_sk'],
+            'file_sk' => url("storage/struktural/$tmp_file->file"),
             'kab_kota_id' => $data['kab_kota_id'],
             'provinsi_id' => $data['provinsi_id']
         ]);

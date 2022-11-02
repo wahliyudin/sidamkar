@@ -19,7 +19,6 @@ class PejabatStrukturalController extends Controller
     {
         $user = User::query()
             ->with('userPejabatStruktural')
-            ->where('verified', null)
             ->whereRoleIs(['atasan_langsung', 'penilai_ak', 'penetap_ak'])
             ->findOrFail($id);
         return view('kabkota.verifikasi-aparatur.pejabat-struktural.show', compact('user'));

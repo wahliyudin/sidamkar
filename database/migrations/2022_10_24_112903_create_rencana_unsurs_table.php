@@ -13,15 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('rencana_butir_kegiatans', function (Blueprint $table) {
+        Schema::create('rencana_unsurs', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('rencana_id');
-            $table->unsignedBigInteger('butir_kegiatan_id');
-            $table->float('score');
+            $table->unsignedBigInteger('unsur_id');
             $table->timestamps();
 
             $table->foreign('rencana_id')->on('rencanas')->references('id')->cascadeOnDelete();
-            $table->foreign('butir_kegiatan_id')->on('butir_kegiatans')->references('id')->cascadeOnDelete();
+            $table->foreign('unsur_id')->on('unsurs')->references('id')->cascadeOnDelete();
         });
     }
 
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rencana_butir_kegiatans');
+        Schema::dropIfExists('rencana_unsurs');
     }
 };

@@ -4,6 +4,7 @@ namespace App\DataTables\KabKota\VerifikasiAparatur;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+use Illuminate\View\View;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
@@ -23,10 +24,38 @@ class PejabatStrukturalDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addIndexColumn()
-            ->addColumn('action', function (User $user) {
-                return '<a href="' . route('kab-kota.verifikasi-aparatur.pejabat-struktural.show', $user->id) . '" class="btn btn-blue text-sm">Detail</a>';
+            ->addColumn('username', function (User $user) {
+                return '<p class="username" data-detail="' . $user->id . '">' . $user->username . '</p>';
             })
+            ->filterColumn('username', function ($query, $keyword) {
+                $query->where('username', 'like', "%$keyword%");
+            })
+            ->orderColumn('username', function ($query, $order) {
+                $query->orderBy('username', $order);
+            })
+            ->addColumn('jabatan', function (User $user) {
+                return $user->roles()->first()->display_name;
+            })
+            ->filterColumn('jabatan', function ($query, $keyword) {
+                $query->whereHas('roles', function ($query) use ($keyword) {
+                    $query->where('display_name', 'like', "%$keyword%");
+                });
+            })
+            ->orderColumn('jabatan', function ($query, $order) {
+                $query->whereHas('roles', function ($query) use ($order) {
+                    $query->orderBy('display_name', $order);
+                });
+            })
+            ->addColumn('file-sk', function (User $user) {
+                return '<div data-bs-toggle="modal" data-bs-target="#fileSK'.$user->id.'" style="cursor: pointer;">
+                    <img src="'.asset("assets/images/template/icon-dokumen-png-0 1.png").'" style="width: 1.4rem;" alt="">
+                    '.view('kabkota.verifikasi-aparatur.pejabat-struktural.document', compact('user'))->render().'
+                </div>';
+            })
+            ->addColumn('status', function (User $user) {
+                return $this->statusAkun($user->status_akun);
+            })
+            ->rawColumns(['status', 'file-sk'])
             ->setRowId('id');
     }
 
@@ -38,10 +67,7 @@ class PejabatStrukturalDataTable extends DataTable
      */
     public function query(User $model): QueryBuilder
     {
-        return $model->newQuery()->where('verified', null)->whereRoleIs([
-            'atasan_langsung', 'penilai_ak',
-            'penetap_ak'
-        ]);
+        return $model->newQuery()->with('userPejabatStruktural')->whereRoleIs(getAllRoleStruktural());
     }
 
     /**
@@ -53,6 +79,7 @@ class PejabatStrukturalDataTable extends DataTable
     {
         return $this->builder()
             ->responsive(true)
+            ->orderCellsTop(true)
             ->setTableId('pejabatstruktural-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
@@ -75,13 +102,13 @@ class PejabatStrukturalDataTable extends DataTable
     protected function getColumns(): array
     {
         return [
-            Column::computed('no'),
             Column::make('username')
                 ->title('Nama'),
-            Column::computed('action')
-                ->exportable(false)
-                ->printable(false)
-                ->width(60),
+            Column::make('jabatan'),
+            Column::computed('file-sk')
+                ->title('File SK'),
+            Column::computed('status')
+                ->title('Status Verifikasi'),
         ];
     }
 
@@ -93,5 +120,20 @@ class PejabatStrukturalDataTable extends DataTable
     protected function filename(): string
     {
         return 'PejabatStruktural_' . date('YmdHis');
+    }
+
+    public function statusAkun($status)
+    {
+        switch ($status) {
+            case 0:
+                return '<span class="badge bg-yellow text-white text-sm py-2 px-3 rounded-md">Menunggu</span>';
+                break;
+            case 1:
+                return '<span class="badge bg-green text-white text-sm py-2 px-3 rounded-md">Verified</span>';
+                break;
+            case 2:
+                return '<span class="badge bg-red text-white text-sm py-2 px-3 rounded-md">Ditolak</span>';
+                break;
+        }
     }
 }

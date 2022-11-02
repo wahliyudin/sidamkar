@@ -12,7 +12,7 @@ class UserProvKabKota extends Model
 
     protected $fillable = [
         'user_id',
-        'nomenklatur_perangkat_daerah',
+        'nomenklatur_perangkat_daerah_id',
         'file_permohonan',
         'is_active',
         'catatan',

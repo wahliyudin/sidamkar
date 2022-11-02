@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('rencana_sub_unsur_butir_kegiatans', function (Blueprint $table) {
+        Schema::create('rencana_butir_kegiatans', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('rencana_sub_unsur_id');
             $table->unsignedBigInteger('butir_kegiatan_id');
-            $table->float('score');
+            $table->integer('status')->nullable();
+            $table->string('catatan')->nullable();
             $table->timestamps();
 
             $table->foreign('rencana_sub_unsur_id')->on('rencana_sub_unsurs')->references('id')->cascadeOnDelete();

@@ -26,7 +26,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'username',
         'email',
         'password',
-        'verified'
+        'verified',
+        'status_akun'
     ];
 
     /**
@@ -108,8 +109,17 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(UserProvKabKota::class);
     }
 
+    public function rencanas()
+    {
+        return $this->hasMany(Rencana::class);
+    }
+
     // public function roles()
     // {
     //     return $this->belongsToMany(Role::class);
     // }
+    public function mentes()
+    {
+        return $this->hasMany(Mente::class, 'atasan_langsung_id', 'id');
+    }
 }

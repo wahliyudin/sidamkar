@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('dokumen_kegiatan_pokoks', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('rencana_sub_unsur_butir_kegiatan_id');
+            $table->unsignedBigInteger('rencana_butir_kegiatan_id');
             $table->string('title');
             $table->string('file');
             $table->timestamps();
 
-            // $table->foreign('rencana_sub_unsur_butir_kegiatan_id')->on('rencana_sub_unsur_butir_kegiatans')->references('id')->cascadeOnDelete();
+            $table->foreign('rencana_butir_kegiatan_id')->on('rencana_butir_kegiatans')->references('id')->cascadeOnDelete();
         });
     }
 

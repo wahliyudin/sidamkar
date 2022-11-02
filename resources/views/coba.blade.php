@@ -8,11 +8,11 @@
         <button class="btn btn-primary">Submit</button>
     </form> --}}
     {{-- <iframe src="{{ asset('storage/produk.pdf') }}" width="100%" height="500px"></iframe> --}}
-    <form action="{{ route('kemendagri.cms.kegiatan-profesi.import') }}" method="post" enctype="multipart/form-data">
+    {{-- <form action="{{ route('kemendagri.cms.kegiatan-profesi.import') }}" method="post" enctype="multipart/form-data">
         @csrf
         <input type="file" name="file_import" id="">
         <button type="submit" class="btn btn-green">Sweet</button>
-    </form>
+    </form> --}}
 @endsection
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/extensions/filepond/filepond.css') }}">
@@ -26,6 +26,8 @@
     <!-- include jQuery library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    </script>
     <script>
         var drEvent = $('.dropify').dropify();
         drEvent.on('dropify.beforeClear', function(event, element) {
