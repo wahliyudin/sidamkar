@@ -16,12 +16,6 @@ class AdminKabKotaController extends Controller
         return $dataTable->render('kemendagri.verifikasi-data.admin-kabkota.index');
     }
 
-    public function showDoc($id)
-    {
-        $user = User::query()->with('userProvKabKota')->findOrFail($id);
-        return view('kemendagri.verifikasi-data.document', compact('user'));
-    }
-
     public function verified($id)
     {
         $user = User::query()->with('userProvKabKota')->find($id);
