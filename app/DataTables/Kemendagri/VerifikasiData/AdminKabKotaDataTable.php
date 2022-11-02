@@ -38,7 +38,7 @@ class AdminKabKotaDataTable extends DataTable
             ->addColumn('status', function (User $user) {
                 return $this->statusAkun($user->status_akun);
             })
-            ->rawColumns(['action', 'document', 'status', 'file-permohonan'])
+            ->rawColumns(['action', 'status', 'file-permohonan'])
             ->setRowId('id');
     }
 
@@ -107,6 +107,7 @@ class AdminKabKotaDataTable extends DataTable
     {
         return 'AdminKabKota_' . date('YmdHis');
     }
+
     public function statusAkun($status)
     {
         switch ($status) {
