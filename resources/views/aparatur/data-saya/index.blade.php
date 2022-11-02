@@ -1,155 +1,150 @@
 @extends('layouts.master')
 @section('content')
-    <style>
-        .container {
-            position: relative;
-            width: 50%;
-        }
-
-        .image {
-            opacity: 1;
-            display: block;
-            width: 100%;
-            height: auto;
-            transition: .5s ease;
-            backface-visibility: hidden;
-        }
-
-        .middle {
-            transition: .5s ease;
-            opacity: 0;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            -ms-transform: translate(-50%, -50%);
-            text-align: center;
-        }
-
-        .container:hover .image {
-            opacity: 0.3;
-        }
-
-        .container:hover .middle {
-            opacity: 1;
-        }
-    </style>
     <section class="section">
         <div class="card">
             <div class="card-body" style="padding-top: 3rem;">
-                <form action="{{ route('datasaya-store') }}" method="post">
+                <form action="{{ route('datasaya-store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-md-4">
                             <div class="container">
-                                <img src="{{ asset('assets/images/faces/3.jpg') }}" alt="Avatar" class="image"
-                                    style="width:100%; border-radius: 50%;">
-                                <span class="middle">
-                                    <div class="text" style="cursor: pointer;"><i
-                                            class="fa-regular fa-pen-to-square fa-xl"></i>
-                                    </div>
-                                </span>
+                                <input id="avatar" type="file" style="display: none;" name="avatar" id="">
+                                <label for="avatar">
+                                    <img src="{{ isset($user->userAparatur?->foto_pegawai) ? $user->userAparatur?->foto_pegawai : asset('assets/images/faces/3.jpg') }}"
+                                        alt="Avatar" class="image preview-avatar"
+                                        style="min-width:145px; min-height: 145px; max-width:145px; max-height: 145px; object-fit: cover; border-radius: 50%;">
+                                    <span class="middle">
+                                        <div class="text" style="cursor: pointer;"><i
+                                                class="fa-regular fa-pen-to-square fa-xl"></i>
+                                        </div>
+                                    </span>
+                                </label>
                             </div>
-                            {{--  <div class="container avatar avatar-xl me-3">
-                                <img class="img-profile" style="width: 180px; height: 180px;"
-                                    src="{{ asset('assets/images/faces/3.jpg') }}" alt="" srcset="">
-                                <div class="middle">
-                                    <div class="text">John Doe</div>
-                                </div>
-                            </div>  --}}
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="basicInput">Nama Lengkap</label>
-                                <input type="text" class="form-control" name="nama" value="{{ $user->userAparatur?->nama }}">
+                                <input type="text" class="form-control" name="nama"
+                                    value="{{ $user->userAparatur?->nama }}">
+                                @error('nama')
+                                    <span class="text-danger text-sm">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="basicInput">Jabatan</label>
-                                <input type="text" name="jabatan" class="form-control" placeholder="" value="{{ Auth::user()->roles()->first()->display_name }}">
+                                <input type="text" name="jabatan" disabled class="form-control" placeholder=""
+                                    value="{{ Auth::user()->roles()->first()->display_name }}">
                             </div>
                             <div class="form-group">
                                 <label for="basicInput">Jenis Kelamin</label>
-                                <select class="choices form-select" name="jenis_kelamin">
+                                <select class="jenis_kelamin form-select" name="jenis_kelamin">
                                     <option disabled selected>- Pilih Jenis Kelamin -</option>
                                     <option @selected($user->userAparatur?->jenis_kelamin == 'L') value="L">Laki - Laki</option>
                                     <option @selected($user->userAparatur?->jenis_kelamin == 'P') value="P">Perempuan</option>
                                 </select>
+                                @error('jenis_kelamin')
+                                    <span class="text-danger text-sm">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="basicInput">NIP</label>
-                                <input type="number" class="form-control" name="nip" value="{{ $user->userAparatur?->nip }}">
+                                <input type="number" class="form-control" name="nip"
+                                    value="{{ $user->userAparatur?->nip }}">
+                                @error('nip')
+                                    <span class="text-danger text-sm">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="form-group">
-                              <label>Tempat Tanggal Lahir</label>
-                              <div class="d-flex flex-row justify-content-between">
-                                  <input type="text" class="form-control me-1" name="tempat_lahir"
-                                    value="{{ $user->userAparatur?->tempat_lahir }}"
-                                    placeholder="" style="width: 50%">
-                                  <input type="date" class="form-control" name="tanggal_lahir"
-                                    value="{{ $user->userAparatur?->tanggal_lahir }}"
-                                    placeholder="" style="width: 50%">
-                              </div>
+                                <label>Tempat Tanggal Lahir</label>
+                                <div class="row">
+                                    <div class="col-md-6" style="padding-right: .3rem !important;">
+                                        <input type="text" class="form-control w-100" name="tempat_lahir"
+                                            value="{{ $user->userAparatur?->tempat_lahir }}" placeholder=""
+                                            style="width: 50%">
+                                        @error('tempat_lahir')
+                                            <span class="text-danger text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-6" style="padding-left: .3rem !important;">
+                                        <input type="date" class="form-control w-100" name="tanggal_lahir"
+                                            value="{{ $user->userAparatur?->tanggal_lahir }}" placeholder=""
+                                            style="width: 50%">
+                                        @error('tanggal_lahir')
+                                            <span class="text-danger text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="basicInput">Privinsi</label>
-                                <select class="choices form-select" name="provinsi_id">
-                                     @foreach ($provinsis as $prov)
-                                    <option value="{{ $prov->id }}" {{ $user->userAparatur->provinsi_id == $prov->id ? "selected" : ""  }}>{{ $prov->nama }}</option>
-                                     @endforeach
+                                <select class="provinsi_id form-select" name="provinsi_id">
+                                    <option disabled selected>- Pilih Privinsi -</option>
+                                    @foreach ($provinsis as $prov)
+                                        <option value="{{ $prov->id }}"
+                                            {{ $user->userAparatur?->provinsi_id == $prov->id ? 'selected' : '' }}>
+                                            {{ $prov->nama }}</option>
+                                    @endforeach
                                 </select>
+                                @error('provinsi_id')
+                                    <span class="text-danger text-sm">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="basicInput">Kabupaten / Kota</label>
-                                <select class="choices form-select" name="kab_kota_id">
-                                     @foreach ($kab_kota as $kabkota)
-                                    <option value="{{ $kabkota->id }}" {{ $user->userAparatur->kab_kota_id == $kabkota->id ? "selected" : ""  }} >{{ $kabkota->nama }}</option>
-                                     @endforeach
+                                <select class="kab_kota_id form-select" name="kab_kota_id">
+                                    <option disabled selected>- Pilih Kabupaten / Kota -</option>
+                                    @foreach ($kab_kota as $kabkota)
+                                        <option value="{{ $kabkota->id }}" @selected($user->userAparatur?->kab_kota_id == $kabkota->id)>
+                                            {{ $kabkota->nama }}</option>
+                                    @endforeach
                                 </select>
+                                @error('kab_kota_id')
+                                    <span class="text-danger text-sm">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="basicInput">Pendidikan Terakhir</label>
-                                <select class="choices form-select" name="Pen_terakhir">
-                                    {{-- <option disabled selected>- Pilih Pendidikan Terakhir -</option> --}}
+                                <select class="pen_terakhir form-select" name="pendidikan_terakhir">
+                                    <option disabled selected>- Pilih Pendidikan Terakhir -</option>
                                     <option @selected($user->userAparatur?->pendidikan_terakhir == '1') value="1">SMA/SMK/Sederajat</option>
                                     <option @selected($user->userAparatur?->pendidikan_terakhir == '2') value="2">D3</option>
                                     <option @selected($user->userAparatur?->pendidikan_terakhir == '3') value="3">S1/D4</option>
                                     <option @selected($user->userAparatur?->pendidikan_terakhir == '4') value="4">S2</option>
                                 </select>
+                                @error('pendidikan_terakhir')
+                                    <span class="text-danger text-sm">{{ $message }}</span>
+                                @enderror
                             </div>
-                             <div class="form-group">
+                            <div class="form-group">
                                 <label for="basicInput">Nomor Karpeg</label>
-                                <input type="number" name="nomor_karpeg" class="form-control" value="{{ $user->userAparatur?->nomor_karpeg }}">
+                                <input type="number" name="nomor_karpeg" class="form-control"
+                                    value="{{ $user->userAparatur?->nomor_karpeg }}">
+                                @error('nomor_karpeg')
+                                    <span class="text-danger text-sm">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="basicInput">Pangkat / Golongan / TMT</label>
-                                <select class="choices form-select" name="pangkat_golongan" name="pangkat">
+                                <select class="pangkat_golongan form-select" name="pangkat_golongan_tmt_id"
+                                    name="pangkat">
                                     <option disabled selected>- Pilih Pangkat / Golongan / TMT -</option>
-                                    <option @selected($user->userAparatur?->pendidikan_terakhir == '1') value="Juru Muda (I/a)">Juru Muda (I/a)</option>
-                                    <option @selected($user->userAparatur?->pendidikan_terakhir == '2') value="Juru Muda Tingkat I (I/b)">Juru Muda Tingkat I (I/b)</option>
-                                    <option @selected($user->userAparatur?->pendidikan_terakhir == '3') value="Juru (I/c)">Juru (I/c)</option>
-                                    <option @selected($user->userAparatur?->pendidikan_terakhir == '4') value="Juru Tingkat I (I/d)">Juru Tingkat I (I/d)</option>
-                                    <option @selected($user->userAparatur?->pendidikan_terakhir == '5') value="Pengatur Muda (II/a)">Pengatur Muda (II/a)</option>
-                                    <option @selected($user->userAparatur?->pendidikan_terakhir == '6') value="Pengatur Muda Tingkat I (II/b)">Pengatur Muda Tingkat I (II/b)</option>
-                                    <option @selected($user->userAparatur?->pendidikan_terakhir == '7') value="Pengatur (II/c)">Pengatur (II/c)</option>
-                                    <option @selected($user->userAparatur?->pendidikan_terakhir == '8') value="Pengatur Tingkat I (II/d)">Pengatur Tingkat I (II/d)</option>
-                                    <option @selected($user->userAparatur?->pendidikan_terakhir == '9') value="Penata Muda (III/a)">Penata Muda (III/a)</option>
-                                    <option @selected($user->userAparatur?->pendidikan_terakhir == '10') value="Penata Muda Tingkat I (III/b)">Penata Muda Tingkat I (III/b)</option>
-                                    <option @selected($user->userAparatur?->pendidikan_terakhir == '11') value="Penata (III/c)">Penata (III/c)</option>
-                                    <option @selected($user->userAparatur?->pendidikan_terakhir == '12') value="Penata Tingkat I (III/d)">Penata Tingkat I (III/d)</option>
-                                    <option @selected($user->userAparatur?->pendidikan_terakhir == '13') value="Pembina (IV/a)">Pembina (IV/a)</option>
-                                    <option @selected($user->userAparatur?->pendidikan_terakhir == '14') value="Pembina Tingkat I (IV/b)">Pembina Tingkat I (IV/b)</option>
-                                    <option @selected($user->userAparatur?->pendidikan_terakhir == '15') value="Pembina Muda (IV/c)">Pembina Muda (IV/c)</option>
-                                    <option @selected($user->userAparatur?->pendidikan_terakhir == '16') value="Pembina Madya (IV/d)">Pembina Madya (IV/d)</option>
-                                    <option @selected($user->userAparatur?->pendidikan_terakhir == '17') value="Pembina Utama (IV/e)">Pembina Utama (IV/e)</option>
+                                    @foreach ($pangkats as $pangkat)
+                                        <option @selected($user->userAparatur?->pangkat_golongan_tmt_id == $pangkat->id) value="{{ $pangkat->id }}">
+                                            {{ $pangkat->nama }}
+                                        </option>
+                                    @endforeach
                                 </select>
+                                @error('pangkat_golongan_tmt_id')
+                                    <span class="text-danger text-sm">{{ $message }}</span>
+                                @enderror
                             </div>
                         </div>
                     </div>
                     <div class="d-flex justify-content-end mt-2">
                         <button type="reset" class="btn btn-gray text-sm px-5">Reset</button>
-                        <button  type="submit" class="btn btn-blue text-sm ms-3 px-5">Simpan</button>
+                        <button type="submit" class="btn btn-blue text-sm ms-3 px-5">Simpan</button>
                     </div>
                 </form>
             </div>
@@ -190,7 +185,8 @@
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h4 style="color: #000000; margin: 0 !important;">Kompetensi</h4>
                         <span class="custom-badge custom-badge-green">
-                            <img src="{{ asset('assets/images/template/kompetensi.png') }}" alt="" srcset="">
+                            <img src="{{ asset('assets/images/template/kompetensi.png') }}" alt=""
+                                srcset="">
                         </span>
                     </div>
                     <div class="card-body">
@@ -302,11 +298,18 @@
         href="{{ asset('assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/pages/filepond.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/shared/sweetalert2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/pages/aparatur/data-saya.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('assets/plugins/select2/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
 @endsection
 @section('js')
+    <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/select2/js/select2.full.min.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/aparatur/data-saya.js') }}"></script>
+
     <script src="{{ asset('assets/extensions/choices.js/public/assets/scripts/choices.js') }}"></script>
     <script src="{{ asset('assets/js/pages/form-element-select.js') }}"></script>
-    <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/extensions/toastify-js/src/toastify.js') }}"></script>
     <script src="{{ asset('assets/extensions/filepond/filepond.js') }}"></script>
     <script src="{{ asset('assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js') }}">
@@ -542,6 +545,20 @@
                 })
             });
         });
+
+        $('#avatar').change(function(e) {
+            e.preventDefault();
+            previewImage(this, document.querySelector('.preview-avatar'))
+        });
+
+        function previewImage(image, imgPreview) {
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function(oFREvent) {
+                imgPreview.src = oFREvent.target.result;
+            }
+        }
     </script>
     @if (session('resent'))
         <script>

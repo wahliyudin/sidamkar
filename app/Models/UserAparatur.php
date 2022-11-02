@@ -16,7 +16,7 @@ class UserAparatur extends Model
         'jenjang',
         'nip',
         'nomor_karpeg',
-        'pangkat_golongan_tmt',
+        'pangkat_golongan_tmt_id',
         'tempat_lahir',
         'tanggal_lahir',
         'jenis_kelamin',
