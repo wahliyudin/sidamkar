@@ -3,7 +3,7 @@ $(document).ready(function () {
         responsive: true,
     });
     $(document).ready(function () {
-        $('#Mente-table').on('click', 'tbody > tr', function () {
+        $('#Mente-table').on('click', 'tbody > tr > td:not(.action)', function () {
             window.location.replace(url(
                 `/kab-kota/data-mente/${$($(this).find('.nama')).data('detail')}/show`
             ));
@@ -14,6 +14,44 @@ $(document).ready(function () {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+    $("#editMentee").on('hide.bs.modal', function () {
+        $("#table-fungsional-edit tbody").children().remove();
+    });
+    $('#Mente-table').on('click', '.edit-mente', function () {
+        $.ajax({
+            type: "GET",
+            url: url('/kab-kota/data-mente/' + $(this).data('id') + '/edit'),
+            dataType: "json",
+            beforeSend: function () {
+                $('#editMentee .bg-spin').show();
+                $('#editMentee').modal('show');
+            },
+            success: function (response) {
+                response.data.forEach(fungsional => {
+                    $('#table-fungsional-edit tbody').append(
+                        `<tr>
+                            <td>
+                                <input ${fungsional.isChecked ? 'checked' : ''} class="form-check-input" name="fungsionals[]"
+                                    type="checkbox" value="${fungsional.id}">
+                            </td>
+                            <td>${fungsional.user_aparatur?.nama}</td>
+                        </tr>`
+                    );
+                });
+                $('#editMentee .bg-spin').hide();
+                if ($.fn.DataTable.isDataTable('#table-fungsional-edit')) {
+                    $('#table-fungsional-edit').DataTable().fnClearTable();
+                    $('#table-fungsional-edit').DataTable().fnDestroy();
+                }
+                $('#table-fungsional-edit').DataTable({
+                    responsive: true,
+                });
+            },
+            error: ajaxError
+        });
+
+    });
+
     $('.simpan-mente').click(function (e) {
         e.preventDefault();
         var postData = new FormData($(".mente-fungsional")[0]);

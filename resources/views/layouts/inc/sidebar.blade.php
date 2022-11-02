@@ -140,6 +140,17 @@
                     </li>
                 @endrole
 
+                @role('penilai_ak')
+                    <li class="sidebar-item {{ request()->routeIs('penilai-ak.overview') ? 'active' : '' }}">
+                        <a href="{{ route('penilai-ak.overview') }}" class='sidebar-link'>
+                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                                <i class="bi bi-grid-fill"></i>
+                            </div>
+                            <span>Overview</span>
+                        </a>
+                    </li>
+                @endrole
+
                 @role('provinsi')
                     <li class="sidebar-item {{ request()->routeIs('provinsi.overview.index') ? 'active' : '' }}">
                         <a href="{{ route('provinsi.overview.index') }}" class='sidebar-link'>
@@ -188,7 +199,7 @@
                         </a>
                     </li>
                     <li
-                        class="sidebar-item has-sub {{ request()->is('kemendagri/verifikasi-data/admin-kabkota*') || request()->is('kemendagri/verifikasi-data/admin-provinsi*') ? 'active' : '' }}">
+                        class="sidebar-item has-sub {{ request()->is('kemendagri/verifikasi-data/admin-kabkota*') || request()->is('kemendagri/verifikasi-data/admin-provinsi*') || request()->is('kemendagri/verifikasi-data/aparatur*') ? 'active' : '' }}">
                         <a href="javascript(0)" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="fa-solid fa-square-poll-vertical"></i>
@@ -196,7 +207,7 @@
                             <span>Verifikasi Data</span>
                         </a>
                         <ul
-                            class="submenu {{ request()->is('kemendagri/verifikasi-data/admin-kabkota*') || request()->is('kemendagri/verifikasi-data/admin-provinsi*') ? 'active' : '' }}">
+                            class="submenu {{ request()->is('kemendagri/verifikasi-data/admin-kabkota*') || request()->is('kemendagri/verifikasi-data/admin-provinsi*') || request()->is('kemendagri/verifikasi-data/aparatur*') ? 'active' : '' }}">
                             <li
                                 class="submenu-item {{ request()->is('kemendagri/verifikasi-data/admin-kabkota*') ? 'active' : '' }}">
                                 <a href="{{ route('kemendagri.verifikasi-data.admin-kabkota.index') }}">Admin KabKota</a>
@@ -206,9 +217,13 @@
                                 <a href="{{ route('kemendagri.verifikasi-data.admin-provinsi.index') }}">Admin
                                     Provinsi</a>
                             </li>
+                            <li
+                                class="submenu-item {{ request()->is('kemendagri/verifikasi-data/aparatur*') ? 'active' : '' }}">
+                                <a href="{{ route('kemendagri.verifikasi-data.aparatur.aparatur') }}">Aparatur</a>
+                            </li>
                         </ul>
                     </li>
-                    <li class="sidebar-item {{ request()->is('kemendagri/pejabat-struktural*') ? 'active' : '' }}">
+                    {{--  <li class="sidebar-item {{ request()->is('kemendagri/pejabat-struktural*') ? 'active' : '' }}">
                         <a href="{{ route('kemendagri.pejabat-struktural.index') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="fa-solid fa-user-tie"></i>
@@ -246,7 +261,7 @@
                                     Provinsi</a>
                             </li>
                         </ul>
-                    </li>
+                    </li>  --}}
                     <li class="sidebar-item">
                         <a href="" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
