@@ -42,7 +42,9 @@ use App\Http\Controllers\Provinsi\OverviewController as ProvinsiOverviewControll
 use App\Http\Controllers\Provinsi\PejabatStrukturalController as ProvinsiPejabatStrukturalController;
 use App\Http\Controllers\provinsi\ChatboxController as ProvinsiChatboxController;
 use App\Models\KabKota;
+use App\Models\Mente;
 use App\Models\Provinsi;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
@@ -59,7 +61,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('coba', function(){
+    return User::query()->whereHas('userPejabatStruktural', function ($query) {
+        $query->where('kab_kota_id', Auth::user()->userProvKabKota->kab_kota_id);
+    })->withWhereHas('mentes')->whereRoleIs('atasan_langsung')->get();
+});
 Route::redirect('/', 'login');
 Auth::routes(['verify' => true]);
 Route::post('register/file', [RegisterController::class, 'storeFile']);
@@ -121,6 +127,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('kab-kota/data-mente', [MenteController::class, 'index'])->name('kab-kota.data-mente');
         Route::post('kab-kota/data-mente/store', [MenteController::class, 'store'])->name('kab-kota.data-mente.store');
         Route::get('kab-kota/data-mente/{id}/show', [MenteController::class, 'show'])->name('kab-kota.data-mente.show');
+        Route::get('kab-kota/data-mente/{id}/edit', [MenteController::class, 'edit'])->name('kab-kota.data-mente.edit');
 
         Route::get('kab-kota/chatbox', [ChatboxController::class, 'index'])->name('kab-kota.chatbox');
     });

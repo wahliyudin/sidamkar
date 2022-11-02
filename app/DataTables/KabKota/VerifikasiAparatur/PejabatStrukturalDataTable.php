@@ -83,7 +83,7 @@ class PejabatStrukturalDataTable extends DataTable
             ->setTableId('pejabatstruktural-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
-            ->dom('frtip')
+            ->dom('lrtip')
             ->orderBy(1)
             ->buttons(
                 Button::make('create'),
