@@ -28,10 +28,17 @@ class AdminKabKotaDataTable extends DataTable
                 $route = '';
                 return view('kemendagri.extensions.buttons-tolak-verif', compact('user', 'route'))->render();
             })
-            ->addColumn('document', function (User $user) {
-                $route = route('kemendagri.verifikasi-data.admin-kabkota.showdoc', $user->id);
-                return view('kemendagri.extensions.button-lihat', compact('route', 'user'))->render();
+            ->addColumn('file-permohonan', function (User $user) {
+                return '<div data-bs-toggle="modal" data-bs-target="#filePermohonan'.$user->id.'" style="cursor: pointer; display: flex; align-items: center;">
+                    <img src="'.asset('assets/images/template/lihat-doc.png').'" style="width: 26px;" alt="">
+                    <span style="color: #0090FF; font-weight: 600;">Lihat</span>
+                    '.view('kemendagri.verifikasi-data.admin-kabkota.document', compact('user'))->render().'
+                </div>';
             })
+            ->addColumn('status', function (User $user) {
+                return $this->statusAkun($user->status_akun);
+            })
+            ->rawColumns(['action', 'status', 'file-permohonan'])
             ->setRowId('id');
     }
 
@@ -80,8 +87,10 @@ class AdminKabKotaDataTable extends DataTable
             Column::computed('no'),
             Column::make('username')
                 ->title('Nama'),
-            Column::computed('document')
-                ->title('Dokumen'),
+            Column::computed('file-permohonan')
+                ->title('File Permohonan'),
+            Column::computed('status')
+                ->title('Status Akun'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
@@ -97,5 +106,20 @@ class AdminKabKotaDataTable extends DataTable
     protected function filename(): string
     {
         return 'AdminKabKota_' . date('YmdHis');
+    }
+
+    public function statusAkun($status)
+    {
+        switch ($status) {
+            case 0:
+                return '<span class="badge bg-yellow text-white text-sm py-2 px-3 rounded-md">Menunggu</span>';
+                break;
+            case 1:
+                return '<span class="badge bg-green text-white text-sm py-2 px-3 rounded-md">Verified</span>';
+                break;
+            case 2:
+                return '<span class="badge bg-red text-white text-sm py-2 px-3 rounded-md">Ditolak</span>';
+                break;
+        }
     }
 }

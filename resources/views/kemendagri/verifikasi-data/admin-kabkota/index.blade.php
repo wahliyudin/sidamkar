@@ -65,7 +65,7 @@
                 input: 'text',
                 inputPlaceholder: 'Catatan',
                 showCancelButton: true,
-                confirmButtonText: 'Ya, nonaktifkan!',
+                confirmButtonText: 'Ya, tolak!',
                 cancelButtonText: "Batal",
                 showLoaderOnConfirm: true,
                 inputValidator: (value) => {

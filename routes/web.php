@@ -42,6 +42,7 @@ use App\Http\Controllers\PenilaiAk\DataPengajuan\DataPengajuanController;
 use App\Http\Controllers\PenilaiAk\KegiatanSelesai\KegiatanSelesaiController;
 use App\Http\Controllers\PenilaiAk\ProfesiPenunjangController;
 use App\Http\Controllers\PenilaiAk\ProfesiPenunjangShowController;
+use App\Http\Controllers\Kemendagri\CMS\InformasiController;
 use App\Http\Controllers\provinsi\Chatbox;
 use App\Http\Controllers\Provinsi\DataAparaturController as ProvinsiDataAparaturController;
 use App\Http\Controllers\Provinsi\OverviewController as ProvinsiOverviewController;
@@ -68,9 +69,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('coba', function(){
-    return User::query()->whereHas('userPejabatStruktural', function ($query) {
-        $query->where('kab_kota_id', Auth::user()->userProvKabKota->kab_kota_id);
-    })->withWhereHas('mentes')->whereRoleIs('atasan_langsung')->get();
+    return User::query()->withWhereHas('mentes.fungsional')->get();
 });
 Route::redirect('/', 'login');
 Auth::routes(['verify' => true]);
@@ -134,6 +133,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('kab-kota/data-mente/store', [MenteController::class, 'store'])->name('kab-kota.data-mente.store');
         Route::get('kab-kota/data-mente/{id}/show', [MenteController::class, 'show'])->name('kab-kota.data-mente.show');
         Route::get('kab-kota/data-mente/{id}/edit', [MenteController::class, 'edit'])->name('kab-kota.data-mente.edit');
+        Route::put('kab-kota/data-mente/{id}/update', [MenteController::class, 'update'])->name('kab-kota.data-mente.update');
 
         Route::get('kab-kota/chatbox', [ChatboxController::class, 'index'])->name('kab-kota.chatbox');
     });
@@ -172,6 +172,8 @@ Route::middleware(['auth'])->group(function () {
         Route::controller(AdminProvinsiController::class)->group(function () {
             Route::get('kemendagri/verifikasi-data/admin-provinsi', 'index')->name('kemendagri.verifikasi-data.admin-provinsi.index');
             Route::get('kemendagri/verifikasi-data/admin-provinsi/{id}/document', 'showDoc')->name('kemendagri.verifikasi-data.admin-provinsi.showdoc');
+            Route::post('kemendagri/verifikasi-data/admin-provinsi/{id}/verified', 'verified')->name('kemendagri.verifikasi-data.admin-provinsi.verified');
+            Route::post('kemendagri/verifikasi-data/admin-provinsi/{id}/reject', 'reject')->name('kemendagri.verifikasi-data.admin-provinsi.reject');
         });
 
         Route::controller(KemendagriAparaturController::class)->group(function () {
@@ -218,6 +220,9 @@ Route::middleware(['auth'])->group(function () {
             Route::post('kemendagri/cms/kegiatan-profesi/import', 'import')->name('kemendagri.cms.kegiatan-profesi.import');
             Route::get('kemendagri/cms/kegiatan-profesi/download', 'downloadTemplate')->name('kemendagri.cms.kegiatan-profesi.download');
             Route::delete('kemendagri/cms/kegiatan-profesi/{id}/destroy', 'destroy')->name('kemendagri.cms.kegiatan-profesi.destroy');
+        });
+        Route::controller(InformasiController::class)->group(function () {
+            Route::get('kemendagri/cms/informasi', 'index')->name('kemendagri.cms.informasi.index');
         });
     });
 });

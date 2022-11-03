@@ -184,21 +184,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" class="mente-fungsional">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Atasan Langsung</label>
-                                    <select class="choices form-select" name="atasan_langsung">
-                                        <option disabled selected>Pilih Atasan</option>
-                                        @foreach ($atasanLangsungs as $atasanLangsung)
-                                            <option value="{{ $atasanLangsung->id }}">
-                                                {{ $atasanLangsung->userPejabatStruktural->nama }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
+                    <form method="post" class="mente-fungsional-edit">
                         <div class="row">
                             <div class="col">
                                 <div class="card mt-3 mb-0"
@@ -233,7 +219,7 @@
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
                         <span>Batal</span>
                     </button>
-                    <button type="button" class="btn btn-green ml-1 simpan-mente">
+                    <button type="button" class="btn btn-green ml-1 simpan-edit-mente">
                         <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
                             style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
                         <span>Simpan</span>
