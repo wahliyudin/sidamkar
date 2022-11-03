@@ -13,12 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('periodes', function (Blueprint $table) {
+        Schema::create('profesi_sub_unsurs', function (Blueprint $table) {
             $table->id();
-            $table->date('awal');
-            $table->date('akhir');
-            $table->boolean('is_active')->default(false);
+            $table->unsignedBigInteger('profesi_unsur_id');
+            $table->unsignedBigInteger('sub_unsur_id');
             $table->timestamps();
+
+            $table->foreign('profesi_unsur_id')->on('profesi_unsurs')->references('id')->cascadeOnDelete();
+            $table->foreign('sub_unsur_id')->on('sub_unsurs')->references('id')->cascadeOnDelete();
         });
     }
 
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('periodes');
+        Schema::dropIfExists('profesi_sub_unsurs');
     }
 };

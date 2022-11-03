@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Periode extends Model
+class ProfesiSubButirKegiatan extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'awal',
-        'akhir',
-        'is_active'
+        'profesi_butir_kegiatan_id',
+        'sub_butir_kegiatan_id',
+        'status',
+        'catatan'
     ];
 }
