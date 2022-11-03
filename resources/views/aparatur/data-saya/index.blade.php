@@ -25,7 +25,7 @@
                             <div class="form-group">
                                 <label for="basicInput">Nama Lengkap</label>
                                 <input type="text" class="form-control" name="nama"
-                                    value="{{ $user->userAparatur?->nama }}">
+                                    value="{{ old('nama', $user->userAparatur?->nama) }}">
                                 @error('nama')
                                     <span class="text-danger text-sm">{{ $message }}</span>
                                 @enderror
@@ -39,8 +39,8 @@
                                 <label for="basicInput">Jenis Kelamin</label>
                                 <select class="jenis_kelamin form-select" name="jenis_kelamin">
                                     <option disabled selected>- Pilih Jenis Kelamin -</option>
-                                    <option @selected($user->userAparatur?->jenis_kelamin == 'L') value="L">Laki - Laki</option>
-                                    <option @selected($user->userAparatur?->jenis_kelamin == 'P') value="P">Perempuan</option>
+                                    <option @selected(old('jenis_kelamin', $user->userAparatur?->jenis_kelamin) == 'L') value="L">Laki - Laki</option>
+                                    <option @selected(old('jenis_kelamin', $user->userAparatur?->jenis_kelamin) == 'P') value="P">Perempuan</option>
                                 </select>
                                 @error('jenis_kelamin')
                                     <span class="text-danger text-sm">{{ $message }}</span>
@@ -49,7 +49,7 @@
                             <div class="form-group">
                                 <label for="basicInput">NIP</label>
                                 <input type="number" class="form-control" name="nip"
-                                    value="{{ $user->userAparatur?->nip }}">
+                                    value="{{ old('nip', $user->userAparatur?->nip) }}">
                                 @error('nip')
                                     <span class="text-danger text-sm">{{ $message }}</span>
                                 @enderror
@@ -59,16 +59,16 @@
                                 <div class="row">
                                     <div class="col-md-6" style="padding-right: .3rem !important;">
                                         <input type="text" class="form-control w-100" name="tempat_lahir"
-                                            value="{{ $user->userAparatur?->tempat_lahir }}" placeholder=""
-                                            style="width: 50%">
+                                            value="{{ old('tempat_lahir', $user->userAparatur?->tempat_lahir) }}"
+                                            placeholder="" style="width: 50%">
                                         @error('tempat_lahir')
                                             <span class="text-danger text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div class="col-md-6" style="padding-left: .3rem !important;">
                                         <input type="date" class="form-control w-100" name="tanggal_lahir"
-                                            value="{{ $user->userAparatur?->tanggal_lahir }}" placeholder=""
-                                            style="width: 50%">
+                                            value="{{ old('tanggal_lahir', $user->userAparatur?->tanggal_lahir) }}"
+                                            placeholder="" style="width: 50%">
                                         @error('tanggal_lahir')
                                             <span class="text-danger text-sm">{{ $message }}</span>
                                         @enderror
@@ -82,8 +82,7 @@
                                 <select class="provinsi_id form-select" name="provinsi_id">
                                     <option disabled selected>- Pilih Privinsi -</option>
                                     @foreach ($provinsis as $prov)
-                                        <option value="{{ $prov->id }}"
-                                            {{ $user->userAparatur?->provinsi_id == $prov->id ? 'selected' : '' }}>
+                                        <option value="{{ $prov->id }}" @selected(old('provinsi_id', $user->userAparatur?->provinsi_id) == $prov->id)>
                                             {{ $prov->nama }}</option>
                                     @endforeach
                                 </select>
@@ -96,7 +95,7 @@
                                 <select class="kab_kota_id form-select" name="kab_kota_id">
                                     <option disabled selected>- Pilih Kabupaten / Kota -</option>
                                     @foreach ($kab_kota as $kabkota)
-                                        <option value="{{ $kabkota->id }}" @selected($user->userAparatur?->kab_kota_id == $kabkota->id)>
+                                        <option value="{{ $kabkota->id }}" @selected(old('kab_kota_id', $user->userAparatur?->kab_kota_id) == $kabkota->id)>
                                             {{ $kabkota->nama }}</option>
                                     @endforeach
                                 </select>
@@ -108,10 +107,10 @@
                                 <label for="basicInput">Pendidikan Terakhir</label>
                                 <select class="pen_terakhir form-select" name="pendidikan_terakhir">
                                     <option disabled selected>- Pilih Pendidikan Terakhir -</option>
-                                    <option @selected($user->userAparatur?->pendidikan_terakhir == '1') value="1">SMA/SMK/Sederajat</option>
-                                    <option @selected($user->userAparatur?->pendidikan_terakhir == '2') value="2">D3</option>
-                                    <option @selected($user->userAparatur?->pendidikan_terakhir == '3') value="3">S1/D4</option>
-                                    <option @selected($user->userAparatur?->pendidikan_terakhir == '4') value="4">S2</option>
+                                    <option @selected(old('pendidikan_terakhir', $user->userAparatur?->pendidikan_terakhir) == '1') value="1">SMA/SMK/Sederajat</option>
+                                    <option @selected(old('pendidikan_terakhir', $user->userAparatur?->pendidikan_terakhir) == '2') value="2">D3</option>
+                                    <option @selected(old('pendidikan_terakhir', $user->userAparatur?->pendidikan_terakhir) == '3') value="3">S1/D4</option>
+                                    <option @selected(old('pendidikan_terakhir', $user->userAparatur?->pendidikan_terakhir) == '4') value="4">S2</option>
                                 </select>
                                 @error('pendidikan_terakhir')
                                     <span class="text-danger text-sm">{{ $message }}</span>
@@ -120,7 +119,7 @@
                             <div class="form-group">
                                 <label for="basicInput">Nomor Karpeg</label>
                                 <input type="number" name="nomor_karpeg" class="form-control"
-                                    value="{{ $user->userAparatur?->nomor_karpeg }}">
+                                    value="{{ old('nomor_karpeg', $user->userAparatur?->nomor_karpeg) }}">
                                 @error('nomor_karpeg')
                                     <span class="text-danger text-sm">{{ $message }}</span>
                                 @enderror
@@ -131,7 +130,7 @@
                                     name="pangkat">
                                     <option disabled selected>- Pilih Pangkat / Golongan / TMT -</option>
                                     @foreach ($pangkats as $pangkat)
-                                        <option @selected($user->userAparatur?->pangkat_golongan_tmt_id == $pangkat->id) value="{{ $pangkat->id }}">
+                                        <option @selected(old('pangkat_golongan_tmt_id', $user->userAparatur?->pangkat_golongan_tmt_id) == $pangkat->id) value="{{ $pangkat->id }}">
                                             {{ $pangkat->nama }}
                                         </option>
                                     @endforeach
