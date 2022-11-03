@@ -32,9 +32,6 @@ class PejabatStrukturalController extends Controller
     {
         $user = User::query()
             ->with(['userPejabatStruktural.provinsi.kabkotas'])->find($id);
-        // return ($user);
-        // ->whereRoleIs(['atasan_langsung', 'penilai_ak', 'penetap_ak'])
-        // ->findOrFail($id);
         $provinsis = Provinsi::query()->get();
         $kab_kota = KabKota::query()->get();
         $pangkats = PangkatGolonganTmt::query()->get();

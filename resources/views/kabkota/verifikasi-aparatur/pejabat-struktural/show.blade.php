@@ -46,7 +46,6 @@
                                     <div class="form-group">
                                         <label for="basicInput">Jenis Kelamin</label>
                                         <select disabled class="jenis_kelamin form-select" name="jenis_kelamin">
-                                            <option disabled selected>- Pilih Jenis Kelamin -</option>
                                             <option @selected(old('jenis_kelamin', $user->userPejabatStruktural?->jenis_kelamin) == 'L') value="L">Laki - Laki</option>
                                             <option @selected(old('jenis_kelamin', $user->userPejabatStruktural?->jenis_kelamin) == 'P') value="P">Perempuan</option>
                                         </select>

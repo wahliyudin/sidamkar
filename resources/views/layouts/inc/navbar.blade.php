@@ -98,6 +98,38 @@
                                 </a>
                             </li>
                         @endrole
+                        @role('atasan_langsung')
+                            <li>
+                                <a class="dropdown-item" href="{{ route('data-atasan-langsung') }}">
+                                    <i class="icon-mid bi bi-person me-2"></i>
+                                    Data Saya
+                                </a>
+                            </li>
+                        @endrole
+                        @role('atasan_langsung')
+                            <li>
+                                <a class="dropdown-item" href="{{ route('ubah-password') }}">
+                                    <i class="fa-solid fa-lock me-2"></i>
+                                    Ubah Password
+                                </a>
+                            </li>
+                        @endrole
+                        @role('penilai_ak')
+                            <li>
+                                <a class="dropdown-item" href="{{ route('data-penilai-ak') }}">
+                                    <i class="icon-mid bi bi-person me-2"></i>
+                                    Data Saya
+                                </a>
+                            </li>
+                        @endrole
+                        @role('penilai_ak')
+                            <li>
+                                <a class="dropdown-item" href="{{ route('ubah-password') }}">
+                                    <i class="fa-solid fa-lock me-2"></i>
+                                    Ubah Password
+                                </a>
+                            </li>
+                        @endrole
                         <li>
                             <hr class="dropdown-divider">
                         </li>
