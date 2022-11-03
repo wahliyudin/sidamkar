@@ -43,6 +43,7 @@ use App\Http\Controllers\PenilaiAk\KegiatanSelesai\KegiatanSelesaiController;
 use App\Http\Controllers\PenilaiAk\ProfesiPenunjangController;
 use App\Http\Controllers\PenilaiAk\ProfesiPenunjangShowController;
 use App\Http\Controllers\Kemendagri\CMS\InformasiController;
+use App\Http\Controllers\Kemendagri\CMS\PeriodeController;
 use App\Http\Controllers\provinsi\Chatbox;
 use App\Http\Controllers\Provinsi\DataAparaturController as ProvinsiDataAparaturController;
 use App\Http\Controllers\Provinsi\OverviewController as ProvinsiOverviewController;
@@ -223,6 +224,10 @@ Route::middleware(['auth'])->group(function () {
         });
         Route::controller(InformasiController::class)->group(function () {
             Route::get('kemendagri/cms/informasi', 'index')->name('kemendagri.cms.informasi.index');
+        });
+        Route::controller(PeriodeController::class)->group(function () {
+            Route::get('kemendagri/cms/periode', 'index')->name('kemendagri.cms.periode.index');
+            Route::post('kemendagri/cms/periode/store', 'store')->name('kemendagri.cms.periode.store');
         });
     });
 });

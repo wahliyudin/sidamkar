@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\JenisKegiatan;
+use App\Models\Periode;
 use App\Models\Role;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -21,6 +22,7 @@ class UnsurFactory extends Factory
         return [
             'role_id' => fake()->randomElement(Role::query()->pluck('id')->toArray()),
             'jenis_kegiatan_id' => fake()->randomElement(JenisKegiatan::query()->pluck('id')->toArray()),
+            'periode_id' => fake()->randomElement(Periode::query()->pluck('id')->toArray()),
             'nama' => fake()->sentence()
         ];
     }

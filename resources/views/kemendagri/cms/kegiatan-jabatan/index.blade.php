@@ -123,6 +123,19 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Periode</label>
+                                    <select class="form-select" name="periode_id">
+                                        <option disabled selected>- Pilih Periode -</option>
+                                        @foreach ($periodes as $periode)
+                                            <option value="{{ $periode->id }}">
+                                                {{ $periode->awal->format('m-Y') . '-' . $periode->akhir->format('m-Y') }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                         <div class="row align-items-center">
                             <div class="col-md-10">

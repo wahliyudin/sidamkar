@@ -7,6 +7,7 @@ use App\Http\Requests\KegiatanJabatanRequest;
 use App\Imports\UnsursImport;
 use App\Models\ButirKegiatan;
 use App\Models\JenisKegiatan;
+use App\Models\Periode;
 use App\Models\RencanaSubUnsur;
 use App\Models\Role;
 use App\Models\SubUnsur;
@@ -19,13 +20,14 @@ class KegiatanJabatanController extends Controller
     public function index()
     {
         $roles = Role::query()->whereIn('name', getAllRoleFungsional())->get(['id', 'display_name']);
+        $periodes = Periode::query()->get();
         $kegiatan = JenisKegiatan::query()
             ->with([
                 'unsurs.role',
                 'unsurs.subUnsurs.butirKegiatans',
             ])
             ->findOrFail(1);
-        return view('kemendagri.cms.kegiatan-jabatan.index', compact('roles', 'kegiatan'));
+        return view('kemendagri.cms.kegiatan-jabatan.index', compact('roles', 'kegiatan', 'periodes'));
     }
 
     public function store(KegiatanJabatanRequest $request)
@@ -34,6 +36,7 @@ class KegiatanJabatanController extends Controller
             $unsur = Unsur::query()->create([
                 'role_id' => $request->role_id ?? null,
                 'jenis_kegiatan_id' => 1,
+                'periode_id' => $request->periode_id,
                 'nama' => $request->unsur
             ]);
             for ($i = 0; $i < count($request->sub_unsurs); $i++) {
@@ -72,6 +75,7 @@ class KegiatanJabatanController extends Controller
         $unsur = Unsur::query()->with('subUnsurs')->findOrFail($id);
         $unsur->update([
             'role_id' => $request->role_id ?? null,
+            'periode_id' => $request->periode_id,
             'nama' => $request->unsur
         ]);
         $tmpSubUnsurs = [];
