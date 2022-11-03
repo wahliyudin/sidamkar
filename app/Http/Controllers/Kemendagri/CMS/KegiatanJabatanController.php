@@ -12,6 +12,7 @@ use App\Models\RencanaSubUnsur;
 use App\Models\Role;
 use App\Models\SubUnsur;
 use App\Models\Unsur;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -20,7 +21,10 @@ class KegiatanJabatanController extends Controller
     public function index()
     {
         $roles = Role::query()->whereIn('name', getAllRoleFungsional())->get(['id', 'display_name']);
-        $periodes = Periode::query()->get();
+        $periodes = Periode::query()->get()->map(function(Periode $periode){
+            $periode->concat = Carbon::make($periode->awal)->format('F Y').' - '.Carbon::make($periode->akhir)->format('F Y');
+            return $periode;
+        });
         $kegiatan = JenisKegiatan::query()
             ->with([
                 'unsurs.role',

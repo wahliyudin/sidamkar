@@ -111,7 +111,7 @@
                 </div>
                 <div class="modal-body">
                     <form method="post" enctype="multipart/form-data" class="container-unsur">
-                        <div class="row">
+                        <div class="row justify-content-center">
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Pelaksana Jabatan</label>
@@ -130,7 +130,7 @@
                                         <option disabled selected>- Pilih Periode -</option>
                                         @foreach ($periodes as $periode)
                                             <option value="{{ $periode->id }}">
-                                                {{ $periode->awal->format('m-Y') . '-' . $periode->akhir->format('m-Y') }}
+                                                {{ $periode->concat }}
                                             </option>
                                         @endforeach
                                     </select>

@@ -167,6 +167,7 @@ $(function () {
     });
     $('#tambahDataModal').on('click', '.simpan-kegiatan.simpan', function () {
         var role_id = $('select[name="role_id"]').val();
+        var periode_id = $('select[name="periode_id"]').val();
         var unsur = $('input[name="unsur"]').val();
         result = [];
         $.each($('input[name="sub_unsur[]"]'), function (indexInArray, valueOfElement) {
@@ -187,6 +188,7 @@ $(function () {
             url: url("/kemendagri/cms/kegiatan-jabatan"),
             data: {
                 role_id: role_id,
+                periode_id: periode_id,
                 unsur: unsur,
                 sub_unsurs: result
             },
@@ -266,6 +268,7 @@ $(function () {
                         .trigger('change');
                 }
                 $('input[name="unsur"]').val(response.data.nama);
+                $('select[name="periode_id"]').val(response.data.periode_id);
                 response.data.sub_unsurs.forEach(subUnsur => {
                     $('.container-unsur').append(funSubUnsur(subUnsur));
                 });
@@ -325,6 +328,7 @@ $(function () {
     $('#tambahDataModal').on('click', '.simpan-kegiatan.update', function () {
         var role_id = $('select[name="role_id"]').val();
         var unsur = $('input[name="unsur"]').val();
+        var periode_id = $('select[name="periode_id"]').val();
         result = [];
         $.each($('input[name="sub_unsur[]"]'), function (indexInArray, valueOfElement) {
             result.push({
@@ -346,6 +350,7 @@ $(function () {
             url: url('/kemendagri/cms/kegiatan-jabatan/' + $(this).data('id') + '/update'),
             data: {
                 role_id: role_id,
+                periode_id: periode_id,
                 unsur: unsur,
                 sub_unsurs: result
             },
