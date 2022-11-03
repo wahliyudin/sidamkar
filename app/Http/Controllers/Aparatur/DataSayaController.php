@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Auth;
 
 // use Requests Data Aparatur
 use App\Http\Requests\DataAparatur\StoreDataAparatur;
+use App\Models\PangkatGolonganTmt;
+use Carbon\Carbon;
 
 class DataSayaController extends Controller
 {
@@ -28,26 +30,49 @@ class DataSayaController extends Controller
         $user = User::query()->with(['userAparatur.provinsi.kabkotas', 'dokKepegawaians', 'dokKompetensis'])->find(Auth::user()->id);
         $provinsis = Provinsi::query()->get();
         $kab_kota = KabKota::query()->get();
-        $user_fungional = UserAparatur::query()->get();
-        $role_user = userAparatur::query()->get();
-        return view('aparatur.data-saya.index', compact('user', 'provinsis', 'kab_kota'));
+        $pangkats = PangkatGolonganTmt::query()->get();
+        return view('aparatur.data-saya.index', compact('user', 'provinsis', 'kab_kota', 'pangkats'));
     }
 
     public function store(Request $request)
     {
-        // dd($request->all());
-        User::query()->find(auth()->user()->id)->userAparatur()->update([
+        $request->validate([
+            'nama' => 'required',
+            'nip' => 'required',
+            'pangkat_golongan_tmt_id' => 'required',
+            'nomor_karpeg' => 'required',
+            'pendidikan_terakhir' => 'required',
+            'tempat_lahir' => 'required',
+            'tanggal_lahir' => 'required',
+            'jenis_kelamin' => 'required',
+            'kab_kota_id' => 'required',
+            'provinsi_id' => 'required'
+        ]);
+        $data = [
             'nama' => $request->nama,
             'nip' => $request->nip,
-            'pangkat_golongan_tmt' => $request->pangkat,
+            'pangkat_golongan_tmt_id' => $request->pangkat_golongan_tmt_id,
             'nomor_karpeg' => $request->nomor_karpeg,
-            'pendidikan_terakhir' => $request->Pen_terakhir,
+            'pendidikan_terakhir' => $request->pendidikan_terakhir,
             'tempat_lahir' => $request->tempat_lahir,
-            'tanggal_lahir' => $request->tanggal_lahir,
+            'tanggal_lahir' => Carbon::make($request->tanggal_lahir)->format('Y-m-d'),
             'jenis_kelamin' => $request->jenis_kelamin,
             'kab_kota_id' => $request->kab_kota_id,
             'provinsi_id' => $request->provinsi_id,
-        ]);
+        ];
+        if ($request->hasFile('avatar')) {
+            $data['foto_pegawai'] = $this->storeImage($request->file('avatar'), 'aparatur');
+        }
+        $user = User::query()->with('userAparatur')->find(auth()->user()->id);
+        if (isset($user->userAparatur)) {
+            $user->userAparatur()->update($data);
+            if (isset($data['foto_pegawai'])) {
+                deleteImage($user->userAparatur->foto_pegawai);
+            }
+        } else {
+            $user->userAparatur()->create($data);
+        }
+
         return to_route('data-saya');
     }
 

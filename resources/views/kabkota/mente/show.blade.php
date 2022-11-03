@@ -173,10 +173,64 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Data Aparatur Fungsional</h5>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped w-100" id="table-fungsional">
+                            <thead style="position: sticky; top: 0; color: black; background-color: white;">
+                                <tr>
+                                    <th>Nama</th>
+                                    <th>Jabatan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($mentes as $mente)
+                                    <tr>
+                                        <td>{{ $mente->fungsional->username }}</td>
+                                        <td>{{ $mente->fungsional->roles[0]->display_name }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 @endsection
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/css/pages/my-data.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <style>
+        .dataTable>thead>tr>th {
+            border: 0 !important;
+        }
+
+        .dataTable th {
+            color: #809FB8 !important;
+        }
+
+        .table-striped-columns>:not(caption)>tr>:nth-child(2n),
+        .table-striped>tbody>tr:nth-of-type(odd)>* {
+            border-color: #F1F4F9 !important;
+        }
+
+        .table-striped>tbody>tr,
+        .table-striped>tbody>tr:nth-of-type(odd)>* {
+            color: #06152B !important;
+        }
+
+        @media screen and (max-width:780px) {
+            .card {
+                padding: 0 !important;
+            }
+        }
+    </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
     <style>
         .custom-badge {
@@ -244,7 +298,19 @@
     <link rel="stylesheet" href="{{ asset('assets/extensions/choices.js/public/assets/styles/choices.css') }}">
 @endsection
 @section('js')
+    <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/extensions/choices.js/public/assets/scripts/choices.js') }}"></script>
     <script src="{{ asset('assets/js/pages/form-element-select.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#table-fungsional').DataTable({
+                responsive: true,
+            });
+        });
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
 @endsection
