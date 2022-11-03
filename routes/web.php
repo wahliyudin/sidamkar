@@ -216,6 +216,7 @@ Route::middleware(['auth'])->group(function () {
         });
         Route::controller(InformasiController::class)->group(function () {
             Route::get('kemendagri/cms/informasi', 'index')->name('kemendagri.cms.informasi.index');
+            Route::post('kemendagri/cms/informasi', 'store')->name('kemendagri.cms.informasi.store');
         });
     });
 });
