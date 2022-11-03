@@ -45,7 +45,8 @@ class MenteController extends Controller
 
     public function show($id)
     {
-        return view('kabkota.mente.show');
+        $mentes = User::query()->withWhereHas('mentes.fungsional.roles')->find($id)->mentes;
+        return view('kabkota.mente.show', compact('mentes'));
     }
 
     public function edit($id)

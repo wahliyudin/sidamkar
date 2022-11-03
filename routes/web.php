@@ -64,9 +64,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('coba', function(){
-    return User::query()->whereHas('userPejabatStruktural', function ($query) {
-        $query->where('kab_kota_id', Auth::user()->userProvKabKota->kab_kota_id);
-    })->withWhereHas('mentes')->whereRoleIs('atasan_langsung')->get();
+    return User::query()->withWhereHas('mentes.fungsional')->get();
 });
 Route::redirect('/', 'login');
 Auth::routes(['verify' => true]);
