@@ -42,6 +42,18 @@
 @endsection
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/extensions/toastify-js/src/toastify.css') }}">
+    <style>
+        @media screen and (max-width:780px) {
+            .card {
+                padding: 0 !important;
+                width: 100vw !important;
+            }
+
+            #main-content {
+                padding: 0 !important;
+            }
+        }
+    </style>
 @endsection
 @section('js')
     <script src="{{ asset('assets/extensions/toastify-js/src/toastify.js') }}"></script>
