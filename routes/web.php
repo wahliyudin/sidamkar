@@ -38,6 +38,10 @@ use App\Http\Controllers\Kemendagri\PejabatStrukturalController as KemendagriPej
 use App\Http\Controllers\Kemendagri\VerifikasiData\AdminKabKotaController;
 use App\Http\Controllers\Kemendagri\VerifikasiData\AdminProvinsiController;
 use App\Http\Controllers\Kemendagri\VerifikasiData\AparaturController as KemendagriAparaturController;
+use App\Http\Controllers\PenilaiAk\DataPengajuan\DataPengajuanController;
+use App\Http\Controllers\PenilaiAk\KegiatanSelesai\KegiatanSelesaiController;
+use App\Http\Controllers\PenilaiAk\ProfesiPenunjangController;
+use App\Http\Controllers\PenilaiAk\ProfesiPenunjangShowController;
 use App\Http\Controllers\provinsi\Chatbox;
 use App\Http\Controllers\Provinsi\DataAparaturController as ProvinsiDataAparaturController;
 use App\Http\Controllers\Provinsi\OverviewController as ProvinsiOverviewController;
@@ -143,6 +147,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['role:penilai_ak'])->group(function () {
         Route::get('penilai-ak/overview', [PenilaiAkOverviewController::class, 'index'])->name('penilai-ak.overview');
+        Route::get('penilai-ak/kegiatan-profesi/profesi-penunjang', [ProfesiPenunjangController::class, 'index'])->name('penilai-ak.kegiatan-profesi.profesi-penunjang');
+        Route::get('penilai-ak/kegiatan-profesi/show', [ProfesiPenunjangShowController::class, 'index'])->name('penilai-ak.kegiatan-profesi.show');
+        Route::get('penilai-ak/data-penunjang/data-pengajuan', [DataPengajuanController::class, 'index'])->name('penilai-ak.data-penunjang.data-pengajuan');
+        Route::get('penilai-ak/kegiatan-selesai/kegiatan-selesai', [KegiatanSelesaiController::class, 'index'])->name('penilai-ak.kegiatan-selesai.kegiatan-selesai');
     });
 
     Route::middleware(['role:provinsi'])->group(function () {
