@@ -18,6 +18,7 @@ $(document).ready(function () {
         $("#table-fungsional-edit tbody").children().remove();
     });
     $('#Mente-table').on('click', '.edit-mente', function () {
+        $($('#editMentee').find('.simpan-edit-mente')).data('id', $(this).data('id'));
         $.ajax({
             type: "GET",
             url: url('/kab-kota/data-mente/' + $(this).data('id') + '/edit'),
@@ -77,6 +78,40 @@ $(document).ready(function () {
             error: ajaxError
         });
     });
+
+    $('.simpan-edit-mente').click(function (e) {
+        e.preventDefault();
+        fungsionals = $.map($('.mente-fungsional-edit input[name="fungsionals[]"]'), function (elementOrValue, indexOrKey) {
+            if ($(elementOrValue).is(':checked')) {
+                return $(elementOrValue).val();
+            }
+        });
+        $.ajax({
+            type: 'PUT',
+            url: url("/kab-kota/data-mente/" + $(this).data('id') + "/update"),
+            data: {
+                fungsionals: fungsionals
+            },
+            dataType: 'json',
+            beforeSend: function () {
+                $('.simpan-edit-mente span').hide();
+                $('.simpan-edit-mente .spin').show();
+            },
+            success: function (response) {
+                $('.simpan-edit-mente span').show();
+                $('.simpan-edit-mente .spin').hide();
+                if (response.status == 200) {
+                    swal("Selesai!", response.message, "success").then(() => {
+                        location.reload();
+                    });
+                } else {
+                    swal("Error!", response.message, "error");
+                }
+            },
+            error: ajaxError
+        });
+    });
+
     var ajaxError = function (jqXHR, xhr, textStatus, errorThrow, exception) {
         if (jqXHR.status === 0) {
             swal("Error!", 'Not connect.\n Verify Network.', "error");
@@ -116,5 +151,4 @@ $(document).ready(function () {
             $('.simpan-mente .spin').hide();
         }
     };
-
 });

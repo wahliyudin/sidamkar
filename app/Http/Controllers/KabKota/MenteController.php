@@ -68,4 +68,33 @@ class MenteController extends Controller
             'data' => $fungsionals
         ]);
     }
+
+    public function update(Request $request, $id)
+    {
+        $atasanLangsung = User::query()->where('status_akun', 1)->withWhereHas('mentes')->whereRoleIs('atasan_langsung')->find($id);
+        if (!isset($request->fungsionals)) {
+            $atasanLangsung->mentes()->delete();
+        } else {
+            $fungsionals = $atasanLangsung->mentes()->pluck('fungsional_id')->toArray();
+            $comingFungsionals = $request->fungsionals;
+            $createds = [];
+            for ($i=0; $i < count($comingFungsionals); $i++) {
+                if (!in_array($comingFungsionals[$i], $fungsionals)) {
+                    array_push($createds, [
+                        'fungsional_id' => $comingFungsionals[$i]
+                    ]);
+                }
+            }
+            for ($i=0; $i < count($fungsionals); $i++) {
+                if (!in_array($fungsionals[$i], $comingFungsionals)) {
+                    $atasanLangsung->mentes()->where('fungsional_id',$fungsionals[$i])->first()->delete();
+                }
+            }
+            $atasanLangsung->mentes()->createMany($createds);
+        }
+        return response()->json([
+            'status' => 200,
+            'message' => 'Berhasil diubah'
+        ]);
+    }
 }
