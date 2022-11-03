@@ -38,6 +38,7 @@ use App\Http\Controllers\Kemendagri\PejabatStrukturalController as KemendagriPej
 use App\Http\Controllers\Kemendagri\VerifikasiData\AdminKabKotaController;
 use App\Http\Controllers\Kemendagri\VerifikasiData\AdminProvinsiController;
 use App\Http\Controllers\Kemendagri\VerifikasiData\AparaturController as KemendagriAparaturController;
+use App\Http\Controllers\Kemendagri\CMS\InformasiController;
 use App\Http\Controllers\provinsi\Chatbox;
 use App\Http\Controllers\Provinsi\DataAparaturController as ProvinsiDataAparaturController;
 use App\Http\Controllers\Provinsi\OverviewController as ProvinsiOverviewController;
@@ -211,6 +212,9 @@ Route::middleware(['auth'])->group(function () {
             Route::post('kemendagri/cms/kegiatan-profesi/import', 'import')->name('kemendagri.cms.kegiatan-profesi.import');
             Route::get('kemendagri/cms/kegiatan-profesi/download', 'downloadTemplate')->name('kemendagri.cms.kegiatan-profesi.download');
             Route::delete('kemendagri/cms/kegiatan-profesi/{id}/destroy', 'destroy')->name('kemendagri.cms.kegiatan-profesi.destroy');
+        });
+        Route::controller(InformasiController::class)->group(function () {
+            Route::get('kemendagri/cms/informasi', 'index')->name('kemendagri.cms.informasi.index');
         });
     });
 });
