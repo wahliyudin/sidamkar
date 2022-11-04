@@ -83,18 +83,18 @@ $(function () {
         $('.container-unsur').append(`
             <div class="d-flex flex-column container-sub-unsur">
                 <div class="row align-items-center justify-content-end">
-                    <div class="col-md-9">
+                    <div class="col-md-10">
                         <div class="form-group">
                             <label>Sub Unsur</label>
                             <input class="form-control w-100" type="text" name="sub_unsur[]">
                         </div>
                     </div>
-                    <div class="col-md-2 d-flex align-items-center">
+                    <div class="col-md-1 d-flex align-items-center">
                         <button type="button" class="hapus-sub-unsur" style="transform: translateY(8px); color: #EA3A3D; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #EA3A3D; background-color: transparent !important;"><i
-                                class="fa-solid fa-minus"></i></button>
-                        <button type="button" class="btn btn-blue btn-sm ps-3 py-2 ms-2 tambah-butir"
-                            style="transform: translateY(7px)"><i class="fa-solid fa-plus me-2"></i>
-                            Butir</button>
+                                class="fa-solid fa-x"></i></button>
+                        <button type="button" class="ms-2 tambah-butir"
+                                    style="transform: translateY(8px); color: #1ad598; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #1ad598; background-color: transparent !important;"><i
+                                        class="fa-solid fa-plus"></i></button>
                     </div>
                 </div>
 
@@ -107,7 +107,7 @@ $(function () {
     $('.container-unsur').on('click', '.tambah-butir', function () {
         $(this.parentElement.parentElement.parentElement.querySelector('.container-butir')).append(`
             <div class="row align-items-center justify-content-end">
-                <div class="col-md-6 input-butir-kegiatan">
+                <div class="col-md-7 input-butir-kegiatan">
                     <div class="form-group">
                         <label>Butir Kegiatan</label>
                         <input class="form-control w-100" type="text" name="butir_kegiatan[]">
@@ -119,13 +119,13 @@ $(function () {
                         <input class="form-control w-100" step="0.01" type="number" name="angka_kredit[]">
                     </div>
                 </div>
-                <div class="col-md-2 d-flex align-items-center">
+                <div class="col-md-1 d-flex align-items-center">
                     <button type="button" class="hapus-butir"
                     style="transform: translateY(8px); color: #EA3A3D; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #EA3A3D; background-color: transparent !important;"><i
-                        class="fa-solid fa-minus"></i></button>
-                    <button type="button" class="btn btn-blue btn-sm ps-2 pe-2 py-2 ms-2 tambah-sub-butir"
-                        style="transform: translateY(7px)"><i class="fa-solid fa-plus me-1"></i>
-                        Sub Butir</button>
+                        class="fa-solid fa-x"></i></button>
+                    <button type="button" class="ms-2 tambah-sub-butir"
+                                    style="transform: translateY(8px); color: #1ad598; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #1ad598; background-color: transparent !important;"><i
+                                        class="fa-solid fa-plus"></i></button>
                 </div>
 
                 <div class="d-flex flex-column container-sub-butir">
@@ -138,14 +138,14 @@ $(function () {
         if ($(this.parentElement.parentElement).find('.angka-kredit-butir')) {
             $($(this.parentElement.parentElement).find('.angka-kredit-butir')).remove();
             $($(this.parentElement.parentElement).find('.input-butir-kegiatan')).addClass(
-                'col-md-8');
+                'col-md-9');
             $($(this.parentElement.parentElement).find('.input-butir-kegiatan')).removeClass(
-                'col-md-6');
+                'col-md-7');
         }
         $($(this.parentElement.parentElement).find('.container-sub-butir'))
             .append(`
             <div class="row align-items-center justify-content-end sub-butir">
-                <div class="col-md-5">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label>Sub Butir Kegiatan</label>
                         <input class="form-control w-100" type="text" name="sub_butir_kegiatan[]">
@@ -157,10 +157,10 @@ $(function () {
                         <input class="form-control w-100" step="0.01" type="number" name="angka_kredit[]">
                     </div>
                 </div>
-                <div class="col-md-2 d-flex align-items-center">
+                <div class="col-md-1 d-flex align-items-center">
                     <button type="button" class="hapus-sub-butir"
                     style="transform: translateY(8px); color: #EA3A3D; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #EA3A3D; background-color: transparent !important;"><i
-                        class="fa-solid fa-minus"></i></button>
+                        class="fa-solid fa-x"></i></button>
                 </div>
             </div>
         `);
@@ -171,8 +171,8 @@ $(function () {
                 if ($(this.parentElement.parentElement.parentElement).children().length == 1) {
                     el = $(this.parentElement.parentElement.parentElement.parentElement).find('.input-butir-kegiatan');
                     console.log(el);
-                    $(el).addClass('col-md-6');
-                    $(el).removeClass('col-md-8');
+                    $(el).addClass('col-md-7');
+                    $(el).removeClass('col-md-9');
                     el.after(`<div class="col-md-2 angka-kredit-butir">
                                 <div class="form-group">
                                     <label>Nilai Kredit</label>
@@ -406,18 +406,17 @@ $(function () {
     function htmlSubUnsur(subUnsur) {
         return `<div class="d-flex flex-column container-sub-unsur">
             <div class="row align-items-center justify-content-end">
-                <div class="col-md-9">
+                <div class="col-md-10">
                     <div class="form-group">
                         <label>Sub Unsur</label>
                         <input class="form-control w-100" data-id="${subUnsur.id}" value="${subUnsur.nama}" type="text" name="sub_unsur[]">
                     </div>
                 </div>
-                <div class="col-md-2 d-flex align-items-center">
+                <div class="col-md-1 d-flex align-items-center">
                     <button type="button" class="hapus-sub-unsur" style="transform: translateY(8px); color: #EA3A3D; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #EA3A3D; background-color: transparent !important;"><i
-                            class="fa-solid fa-minus"></i></button>
-                    <button type="button" class="btn btn-blue btn-sm ps-3 py-2 ms-2 tambah-butir"
-                        style="transform: translateY(7px)"><i class="fa-solid fa-plus me-2"></i>
-                        Butir</button>
+                            class="fa-solid fa-x"></i></button>
+                    <button type="button" class="ms-2 tambah-butir" style="transform: translateY(8px); color: #1ad598; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #1ad598; background-color: transparent !important;"><i
+                            class="fa-solid fa-plus"></i></button>
                 </div>
             </div>
 
@@ -431,19 +430,18 @@ $(function () {
         return $.map(butir_kegiatans, function (butirKegiatan, indexOrKey) {
             if (butirKegiatan.sub_butir_kegiatans.length != 0) {
                 return `<div class="row align-items-center justify-content-end">
-                    <div class="col-md-8 input-butir-kegiatan">
+                    <div class="col-md-9 input-butir-kegiatan">
                         <div class="form-group">
                             <label>Butir Kegiatan</label>
                             <input class="form-control w-100" type="text" data-id="${butirKegiatan.id}" value="${butirKegiatan.nama}" name="butir_kegiatan[]">
                         </div>
                     </div>
-                    <div class="col-md-2 d-flex">
+                    <div class="col-md-1 d-flex">
                         <button type="button" class="hapus-butir"
                             style="transform: translateY(8px); color: #EA3A3D; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #EA3A3D; background-color: transparent !important;"><i
-                                class="fa-solid fa-minus"></i></button>
-                                <button type="button" class="btn btn-blue btn-sm ps-2 pe-2 py-2 ms-2 tambah-sub-butir"
-                        style="transform: translateY(7px)"><i class="fa-solid fa-plus me-1"></i>
-                        Sub Butir</button>
+                                class="fa-solid fa-x"></i></button>
+                        <button type="button" class="ms-2 tambah-sub-butir" style="transform: translateY(8px); color: #1ad598; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #1ad598; background-color: transparent !important;"><i
+                            class="fa-solid fa-plus"></i></button>
                     </div>
 
                     <div class="d-flex flex-column container-sub-butir">
@@ -452,7 +450,7 @@ $(function () {
                 </div>`
             }
             return `<div class="row align-items-center justify-content-end">
-                <div class="col-md-6 input-butir-kegiatan">
+                <div class="col-md-7 input-butir-kegiatan">
                     <div class="form-group">
                         <label>Butir Kegiatan</label>
                         <input class="form-control w-100" type="text" data-id="${butirKegiatan.id}" value="${butirKegiatan.nama}" name="butir_kegiatan[]">
@@ -464,13 +462,12 @@ $(function () {
                         <input class="form-control w-100" step="0.01" value="${butirKegiatan.score}" type="number" name="angka_kredit[]">
                     </div>
                 </div>
-                <div class="col-md-2 d-flex">
+                <div class="col-md-1 d-flex">
                     <button type="button" class="hapus-butir"
                         style="transform: translateY(8px); color: #EA3A3D; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #EA3A3D; background-color: transparent !important;"><i
-                            class="fa-solid fa-minus"></i></button>
-                    <button type="button" class="btn btn-blue btn-sm ps-2 pe-2 py-2 ms-2 tambah-sub-butir"
-                        style="transform: translateY(7px)"><i class="fa-solid fa-plus me-1"></i>
-                        Sub Butir</button>
+                            class="fa-solid fa-x"></i></button>
+                    <button type="button" class="ms-2 tambah-sub-butir" style="transform: translateY(8px); color: #1ad598; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #1ad598; background-color: transparent !important;"><i
+                            class="fa-solid fa-plus"></i></button>
                 </div>
 
                 <div class="d-flex flex-column container-sub-butir">
@@ -483,7 +480,7 @@ $(function () {
     function htmlSubButirKegiatan(sub_butir_kegiatans) {
         return $.map(sub_butir_kegiatans, function (subButirKegiatan, indexOrKey) {
             return `<div class="row align-items-center justify-content-end sub-butir">
-                <div class="col-md-5">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label>Sub Butir Kegiatan</label>
                         <input class="form-control w-100" data-id="${subButirKegiatan.id}" value="${subButirKegiatan.nama}" type="text" name="sub_butir_kegiatan[]">
@@ -495,10 +492,10 @@ $(function () {
                         <input class="form-control w-100" step="0.01" value="${subButirKegiatan.score}" type="number" name="angka_kredit[]">
                     </div>
                 </div>
-                <div class="col-md-2 d-flex align-items-center">
+                <div class="col-md-1 d-flex align-items-center">
                     <button type="button" class="hapus-sub-butir"
                     style="transform: translateY(8px); color: #EA3A3D; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #EA3A3D; background-color: transparent !important;"><i
-                        class="fa-solid fa-minus"></i></button>
+                        class="fa-solid fa-x"></i></button>
                 </div>
             </div>`
         }).join('')

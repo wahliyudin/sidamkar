@@ -186,16 +186,16 @@
                             </div>
                         </div>
                         <div class="row align-items-center">
-                            <div class="col-md-10">
+                            <div class="col-md-11">
                                 <div class="form-group">
                                     <label>Unsur Kegiatan</label>
                                     <input class="form-control" type="text" name="unsur">
                                 </div>
                             </div>
-                            <div class="col-md-2">
-                                <button type="button" class="btn btn-blue btn-sm ps-3 py-2 tambah-sub-unsur"
-                                    style="transform: translateY(7px)"><i class="fa-solid fa-plus me-2"></i> Sub
-                                    Unsur</button>
+                            <div class="col-md-1">
+                                <button type="button" class="tambah-sub-unsur"
+                                    style="transform: translateY(8px); color: #1ad598; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #1ad598; background-color: transparent !important;"><i
+                                        class="fa-solid fa-plus"></i></button>
                             </div>
                         </div>
                     </form>

@@ -83,18 +83,18 @@ $(function () {
         $('.container-unsur').append(`
             <div class="d-flex flex-column container-sub-unsur">
                 <div class="row align-items-center justify-content-end">
-                    <div class="col-md-9">
+                    <div class="col-md-10">
                         <div class="form-group">
                             <label>Sub Unsur</label>
                             <input class="form-control w-100" type="text" name="sub_unsur[]">
                         </div>
                     </div>
-                    <div class="col-md-2 d-flex align-items-center">
+                    <div class="col-md-1 d-flex align-items-center">
                         <button type="button" class="hapus-sub-unsur" style="transform: translateY(8px); color: #EA3A3D; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #EA3A3D; background-color: transparent !important;"><i
-                                class="fa-solid fa-minus"></i></button>
-                        <button type="button" class="btn btn-blue btn-sm ps-3 py-2 ms-2 tambah-butir"
-                            style="transform: translateY(7px)"><i class="fa-solid fa-plus me-2"></i>
-                            Butir</button>
+                                class="fa-solid fa-x"></i></button>
+                        <button type="button" class="ms-2 tambah-butir"
+                                    style="transform: translateY(8px); color: #1ad598; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #1ad598; background-color: transparent !important;"><i
+                                        class="fa-solid fa-plus"></i></button>
                     </div>
                 </div>
 
@@ -107,7 +107,7 @@ $(function () {
     $('.container-unsur').on('click', '.tambah-butir', function () {
         $(this.parentElement.parentElement.parentElement.querySelector('.container-butir')).append(`
             <div class="row align-items-center justify-content-end">
-                <div class="col-md-6">
+                <div class="col-md-7">
                     <div class="form-group">
                         <label>Butir Kegiatan</label>
                         <input class="form-control w-100" type="text" name="butir_kegiatan[]">
@@ -119,10 +119,10 @@ $(function () {
                         <input class="form-control w-100" step="0.01" type="number" name="angka_kredit[]">
                     </div>
                 </div>
-                <div class="col-md-2 d-flex">
+                <div class="col-md-1 d-flex">
                     <button class="hapus-butir"
                         style="transform: translateY(8px); color: #EA3A3D; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #EA3A3D; background-color: transparent !important;"><i
-                            class="fa-solid fa-minus"></i></button>
+                            class="fa-solid fa-x"></i></button>
                 </div>
             </div>
         `);
@@ -266,18 +266,17 @@ $(function () {
     function funSubUnsur(subUnsur) {
         return `<div class="d-flex flex-column container-sub-unsur">
             <div class="row align-items-center justify-content-end">
-                <div class="col-md-9">
+                <div class="col-md-10">
                     <div class="form-group">
                         <label>Sub Unsur</label>
                         <input class="form-control w-100" type="text" data-id="${subUnsur.id}" value="${subUnsur.nama}" name="sub_unsur[]">
                     </div>
                 </div>
-                <div class="col-md-2 d-flex align-items-center">
+                <div class="col-md-1 d-flex align-items-center">
                     <button type="button" class="hapus-sub-unsur" style="transform: translateY(8px); color: #EA3A3D; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #EA3A3D; background-color: transparent !important;"><i
-                            class="fa-solid fa-minus"></i></button>
-                    <button type="button" class="btn btn-blue btn-sm ps-3 py-2 ms-2 tambah-butir"
-                        style="transform: translateY(7px)"><i class="fa-solid fa-plus me-2"></i>
-                        Butir</button>
+                            class="fa-solid fa-x"></i></button>
+                    <button type="button" class="ms-2 tambah-butir" style="transform: translateY(8px); color: #1ad598; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #1ad598; background-color: transparent !important;"><i
+                            class="fa-solid fa-plus"></i></button>
                 </div>
             </div>
 
@@ -290,7 +289,7 @@ $(function () {
     function funButirKegiatan(butir_kegiatans) {
         return $.map(butir_kegiatans, function (butirKegiatan, indexOrKey) {
             return `<div class="row align-items-center justify-content-end">
-                <div class="col-md-6">
+                <div class="col-md-7">
                     <div class="form-group">
                         <label>Butir Kegiatan</label>
                         <input class="form-control w-100" type="text" data-id="${butirKegiatan.id}" value="${butirKegiatan.nama}" name="butir_kegiatan[]">
@@ -302,10 +301,10 @@ $(function () {
                         <input class="form-control w-100" step="0.01" value="${butirKegiatan.score}" type="number" name="angka_kredit[]">
                     </div>
                 </div>
-                <div class="col-md-2 d-flex">
+                <div class="col-md-1 d-flex">
                     <button class="hapus-butir"
                         style="transform: translateY(8px); color: #EA3A3D; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #EA3A3D; background-color: transparent !important;"><i
-                            class="fa-solid fa-minus"></i></button>
+                            class="fa-solid fa-x"></i></button>
                 </div>
             </div>`
         }).join('')
