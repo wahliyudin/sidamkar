@@ -7,66 +7,15 @@
                 <div class="card">
                     <div class="card-body py-3 px-3" style="height: 100px;">
                         <div class="d-flex align-items-center h-100">
-                            <div class="circle circle-red-light">
-                                <i class="fa-solid fa-copy"></i>
+                            <div class="circle circle-green">
+                                <i class="fa-solid fa-user"></i>
                             </div>
                             <div class="d-flex flex-column ms-2">
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                    Jumlah Pejabat Fungsional
+                                    Penetap Angka Kredit
                                 </p>
-                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target">44</h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 px-2">
-                <div class="card">
-                    <div class="card-body py-3 px-3" style="height: 100px;">
-                        <div class="d-flex align-items-center h-100">
-                            <div class="circle circle-green-light">
-                                <i class="fa-solid fa-bullseye"></i>
-                            </div>
-                            <div class="d-flex flex-column ms-2">
-                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                    Mengajukan Penilaian
-                                </p>
-                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target">100</h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 px-2">
-                <div class="card">
-                    <div class="card-body py-3 px-3" style="height: 100px;">
-                        <div class="d-flex align-items-center h-100">
-                            <div class="circle circle-purple-light">
-                                <i class="fa-regular fa-envelope"></i>
-                            </div>
-                            <div class="d-flex flex-column ms-2">
-                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                    Belum Mengajukan Penilaian
-                                </p>
-                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target">56</h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 px-2">
-                <div class="card">
-                    <div class="card-body py-3 px-3" style="height: 100px;">
-                        <div class="d-flex align-items-center h-100">
-                            <div class="circle circle-yellow-light">
-                                <i class="fa-regular fa-envelope"></i>
-                            </div>
-                            <div class="d-flex flex-column ms-2">
-                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                    Laporan Selesai
-                                </p>
-                                <h2 style="font-family: 'Roboto';color: #06152B; font-size: 18px;" class="target">
-                                    2
+                                <h2 style="font-family: 'Roboto';color: #06152B; font-size: 16px;" class="target">
+                                    Muhammad Runggu
                                 </h2>
                             </div>
                         </div>
@@ -85,9 +34,11 @@
                             <thead>
                                 <tr>
                                     <th>Nama</th>
-                                    <th>Jenis Kelamin</th>
+                                    <th>Nomor Karpeg</th>
                                     <th>Jabatan</th>
-                                    <th>Status</th>
+                                    <th>Golongan</th>
+                                    <th>Pendidikan</th>
+                                    <th>Angka Kredit</th>
                                     <th class="text-center">Action</th>
                                 </tr>
                             </thead>
@@ -97,16 +48,23 @@
                                         <a href="" style="color: #06152B;">Iqbal Imran</a>
                                     </td>
                                     <td>
-                                        <a href="" style="color: #06152B;">Laki - Laki</a>
+                                        <a href="" style="color: #06152B;">44545144154454</a>
                                     </td>
                                     <td>
                                         <a href="" style="color: #06152B;">Seksi Prasarana</a>
                                     </td>
                                     <td>
-                                        <a href="" class="text-green">Aktif</a>
+                                        <a href="" style="color: #06152B;">III A</a>
+                                    </td>
+                                    <td>
+                                        <a href="" style="color: #06152B;">SMA</a>
+                                    </td>
+                                    <td>
+                                        <a href="" class="text-green">+100</a>
                                     </td>
                                     <td class="d-flex justify-content-center">
-                                        <a href="" class="btn btn-primary ">Details</a>
+                                        <a href="{{ route('penilai-ak.kegiatan-profesi.show') }}"
+                                            class="btn btn-primary ">Details</a>
                                     </td>
                                 </tr>
                             </tbody>

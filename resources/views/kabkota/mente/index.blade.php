@@ -68,7 +68,7 @@
                                 <h5>Tabel Data Mentee</h5>
                             </div>
                             <div class="col-md-5 d-flex justify-content-end">
-                                <a href="" class="btn btn-mente py-2 btn-sm" data-bs-toggle="modal"
+                                <a href="" class="btn btn-mente py-2 btn-sm text-wrap" data-bs-toggle="modal"
                                     data-bs-target="#tambahedit"><i class="fa-solid fa-user-tie me-2"></i>Tambah/Edit
                                     Penilai & Penetap AK</a>
                             </div>

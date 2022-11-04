@@ -10,6 +10,12 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
 class UnsursImport implements ToModel, WithHeadingRow
 {
+    private $periode_id;
+
+    public function __construct($periode_id)
+    {
+        $this->periode_id = $periode_id;
+    }
     /**
      * @param array $row
      *
@@ -43,6 +49,7 @@ class UnsursImport implements ToModel, WithHeadingRow
         return Unsur::query()->create([
             'role_id' => $role->id,
             'jenis_kegiatan_id' => 1,
+            'periode_id' => $this->periode_id,
             'nama' => $row['unsur']
         ]);
     }

@@ -21,6 +21,22 @@
         padding-left: 1rem;
         padding-right: 1rem;
     }
+
+    .wrapper-btn {
+        justify-content: center !important;
+    }
+
+    .wrapper-btn .btn-tambah {
+        margin-left: 0 !important;
+        margin-top: 1rem;
+    }
+
+}
+
+@media screen and (max-width:450px) {
+    .label-role {
+        max-width: 60% !important;
+    }
 }
 
 li::marker {

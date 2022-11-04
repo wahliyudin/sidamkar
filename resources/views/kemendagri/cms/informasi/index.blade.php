@@ -1,53 +1,50 @@
 @extends('layouts.master')
 
 @section('content')
-
-<style>
-
-  @media only screen and (min-width:801px) {
-  .kanan {
-    text-align: end;
-  }
-}
-
-</style>
-<div class="section">
-    <div class="card my-3 p-3 shadow-sm">
+    <div class="section">
+        <div class="card my-3 p-3 shadow-sm">
             <div class=" card-header">
                 <div class="row">
                     <div class="col-md-8">
                         <h5>List Informasi</h5>
                     </div>
-                    <div class="col-md-4 kanan" >
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahInformasi">Tambah Informasi</button>
+                    <div class="col-md-4 kanan">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">Tambah Informasi</button>
                     </div>
                 </div>
             </div>
-        <div class="card-body">    
-            <div class="d-flex text-muted pt-3">
-            <p class="pb-3 mb-0  lh-sm border-bottom">
-                <strong class="d-block mb-1 ">[Role : Aparatur]</strong>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda fuga ipsum magnam natus corrupti molestias porro repudiandae quisquam suscipit iusto nihil commodi, ad obcaecati id repellendus voluptates facere? Quas, repellendus.
-            </p>
+            <div class="card-body">
+                <div class="d-flex text-muted pt-3">
+                    <p class="pb-3 mb-0  lh-sm border-bottom">
+                        <strong class="d-block mb-1 ">[Role : Aparatur]</strong>
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda fuga ipsum magnam natus corrupti
+                        molestias porro repudiandae quisquam suscipit iusto nihil commodi, ad obcaecati id repellendus
+                        voluptates facere? Quas, repellendus.
+                    </p>
+                </div>
+                <div class="d-flex text-muted pt-3">
+                    <p class="pb-3 mb-0  lh-sm border-bottom">
+                        <strong class="d-block mb-1 ">[Role : Aparatur & Kab Kota]</strong>
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda fuga ipsum magnam natus corrupti
+                        molestias porro repudiandae quisquam suscipit iusto nihil commodi, ad obcaecati id repellendus
+                        voluptates facere? Quas, repellendus.
+                    </p>
+                </div>
+                <div class="d-flex text-muted pt-3">
+                    <p class="pb-3 mb-0  lh-sm border-bottom">
+                        <strong class="d-block mb-1 ">[Role : Semua User]</strong>
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda fuga ipsum magnam natus corrupti
+                        molestias porro repudiandae quisquam suscipit iusto nihil commodi, ad obcaecati id repellendus
+                        voluptates facere? Quas, repellendus.
+                    </p>
+                </div>
+                <small class="d-block text-end mt-3">
+                    <a href="#" class="keychainify-checked">Selengkapnya</a>
+                </small>
             </div>
-            <div class="d-flex text-muted pt-3">
-                <p class="pb-3 mb-0  lh-sm border-bottom">
-                    <strong class="d-block mb-1 ">[Role : Aparatur & Kab Kota]</strong>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda fuga ipsum magnam natus corrupti molestias porro repudiandae quisquam suscipit iusto nihil commodi, ad obcaecati id repellendus voluptates facere? Quas, repellendus.
-                </p>
-            </div>
-            <div class="d-flex text-muted pt-3">
-                <p class="pb-3 mb-0  lh-sm border-bottom">
-                    <strong class="d-block mb-1 ">[Role : Semua User]</strong>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda fuga ipsum magnam natus corrupti molestias porro repudiandae quisquam suscipit iusto nihil commodi, ad obcaecati id repellendus voluptates facere? Quas, repellendus.
-                </p>
-            </div>
-            <small class="d-block text-end mt-3">
-                <a href="#" class="keychainify-checked">Selengkapnya</a>
-            </small>
         </div>
     </div>
-</div>
 
 <!-- Modal -->
 <div class="modal fade" id="tambahInformasi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -87,6 +84,11 @@
                         <input class="form-control" name="file" type="file" id="formFile">
                     </div>
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-success">Simpan</button>
+                </div>
+                </form>
             </div>
         </form>
             <div class="modal-footer">
