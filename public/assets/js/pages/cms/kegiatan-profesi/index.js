@@ -265,7 +265,7 @@ $(function () {
                     location.reload();
                 }
             },
-            error: ajaxError
+            error: ajaxError1
         });
     });
     $(".btn-tambah").on('click', function () {
@@ -308,6 +308,7 @@ $(function () {
         result = [];
         $.each($('input[name="sub_unsur[]"]'), function (indexInArray, valueOfElement) {
             result.push({
+                id: $(valueOfElement).data('id'),
                 name: $(valueOfElement).val(),
                 butir_kegiatans: mapGetButirKegiatan(this)
             })
@@ -378,11 +379,13 @@ $(function () {
             var_angka_kredit = $($(butirKegiatan.parentElement.parentElement.parentElement).find('.angka-kredit-butir input[name="angka_kredit[]"]')).val();
             if (var_angka_kredit !== undefined) {
                 return {
+                    id: $(butirKegiatan).data('id'),
                     name: $(butirKegiatan).val(),
                     angka_kredit: var_angka_kredit
                 }
             } else {
                 return {
+                    id: $(butirKegiatan).data('id'),
                     name: $(butirKegiatan).val(),
                     sub_butir_kegiatans: mapGetSubButirKegiatan(butirKegiatan)
                 }
@@ -391,8 +394,9 @@ $(function () {
     }
 
     function mapGetSubButirKegiatan(butirKegiatan) {
-        return $.map($(butirKegiatan.parentElement.parentElement.parentElement.parentElement).find('input[name="sub_butir_kegiatan[]"]'), function (subButirKegiatan, indexOrKey) {
+        return $.map($(butirKegiatan.parentElement.parentElement.parentElement).find('input[name="sub_butir_kegiatan[]"]'), function (subButirKegiatan, indexOrKey) {
             return {
+                id: $(subButirKegiatan).data('id'),
                 name: $(subButirKegiatan).val(),
                 angka_kredit: $($(subButirKegiatan.parentElement.parentElement.parentElement).find('input[name="angka_kredit[]"]')).val()
             }
@@ -405,7 +409,7 @@ $(function () {
                 <div class="col-md-9">
                     <div class="form-group">
                         <label>Sub Unsur</label>
-                        <input class="form-control w-100" value="${subUnsur.nama}" type="text" name="sub_unsur[]">
+                        <input class="form-control w-100" data-id="${subUnsur.id}" value="${subUnsur.nama}" type="text" name="sub_unsur[]">
                     </div>
                 </div>
                 <div class="col-md-2 d-flex align-items-center">
@@ -430,7 +434,7 @@ $(function () {
                     <div class="col-md-8 input-butir-kegiatan">
                         <div class="form-group">
                             <label>Butir Kegiatan</label>
-                            <input class="form-control w-100" type="text" value="${butirKegiatan.nama}" name="butir_kegiatan[]">
+                            <input class="form-control w-100" type="text" data-id="${butirKegiatan.id}" value="${butirKegiatan.nama}" name="butir_kegiatan[]">
                         </div>
                     </div>
                     <div class="col-md-2 d-flex">
@@ -451,7 +455,7 @@ $(function () {
                 <div class="col-md-6 input-butir-kegiatan">
                     <div class="form-group">
                         <label>Butir Kegiatan</label>
-                        <input class="form-control w-100" type="text" value="${butirKegiatan.nama}" name="butir_kegiatan[]">
+                        <input class="form-control w-100" type="text" data-id="${butirKegiatan.id}" value="${butirKegiatan.nama}" name="butir_kegiatan[]">
                     </div>
                 </div>
                 <div class="col-md-2 angka-kredit-butir">
@@ -482,7 +486,7 @@ $(function () {
                 <div class="col-md-5">
                     <div class="form-group">
                         <label>Sub Butir Kegiatan</label>
-                        <input class="form-control w-100" value="${subButirKegiatan.nama}" type="text" name="sub_butir_kegiatan[]">
+                        <input class="form-control w-100" data-id="${subButirKegiatan.id}" value="${subButirKegiatan.nama}" type="text" name="sub_butir_kegiatan[]">
                     </div>
                 </div>
                 <div class="col-md-2">

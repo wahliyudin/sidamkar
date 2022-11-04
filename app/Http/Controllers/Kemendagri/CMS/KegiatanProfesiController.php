@@ -87,9 +87,10 @@ class KegiatanProfesiController extends Controller
                             $request->sub_unsurs[$i]['butir_kegiatans'][$j]['name'],
                             $request->sub_unsurs[$i]['butir_kegiatans'][$j]['angka_kredit']
                         );
+                        $butirKegiatan->subButirKegiatans()->delete();
                         array_push($tmpbutirKegiatans, $request->sub_unsurs[$i]['butir_kegiatans'][$j]['id']);
                     } else {
-                        $butirKegiatan = $this->storebutirKegiatan(
+                        $butirKegiatan = $this->storeButirKegiatan(
                             $subUnsur,
                             $request->sub_unsurs[$i]['butir_kegiatans'][$j]['name'],
                             $request->sub_unsurs[$i]['butir_kegiatans'][$j]['angka_kredit']
@@ -97,31 +98,42 @@ class KegiatanProfesiController extends Controller
                         array_push($tmpbutirKegiatans, $butirKegiatan->id);
                     }
                 } else {
-                    $butirKegiatan = $this->storebutirKegiatan(
-                        $subUnsur,
-                        $request->sub_unsurs[$i]['butir_kegiatans'][$j]['name']
-                    );
-                    array_push($tmpbutirKegiatans, $butirKegiatan->id);
-                    $tmpSubButirKegiatans = [];
-                    for ($k = 0; $k < count($request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans']); $k++) {
-                        if (isset($request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'][$k]['id'])) {
-                            $subButirKegiatan = $this->updateSubButirKegiatan(
-                                $butirKegiatan,
-                                $request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'][$k]['id'],
-                                $request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'][$k]['name'],
-                                $request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'][$k]['angka_kredit']
-                            );
-                            array_push($tmpSubButirKegiatans, $request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'][$k]['id']);
-                        } else {
-                            $subButirKegiatan = $this->storeSubButirKegiatan(
-                                $butirKegiatan,
-                                $request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'][$k]['name'],
-                                $request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'][$k]['angka_kredit']
-                            );
-                            array_push($tmpSubButirKegiatans, $subButirKegiatan->id);
-                        }
+                    if (isset($request->sub_unsurs[$i]['butir_kegiatans'][$j]['id'])) {
+                        $butirKegiatan = $this->updateButirKegiatan(
+                            $subUnsur,
+                            $request->sub_unsurs[$i]['butir_kegiatans'][$j]['id'],
+                            $request->sub_unsurs[$i]['butir_kegiatans'][$j]['name']
+                        );
+                        array_push($tmpbutirKegiatans, $request->sub_unsurs[$i]['butir_kegiatans'][$j]['id']);
+                    } else {
+                        $butirKegiatan = $this->storeButirKegiatan(
+                            $subUnsur,
+                            $request->sub_unsurs[$i]['butir_kegiatans'][$j]['name']
+                        );
+                        array_push($tmpbutirKegiatans, $butirKegiatan->id);
                     }
-                    $butirKegiatan->subButirKegiatans()->whereNotIn('id', $tmpSubButirKegiatans)->delete();
+                    if (isset($butirKegiatan->subButirKegiatans)) {
+                        $tmpSubButirKegiatans = [];
+                        for ($k = 0; $k < count($request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans']); $k++) {
+                            if (isset($request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'][$k]['id'])) {
+                                $subButirKegiatan = $this->updateSubButirKegiatan(
+                                    $butirKegiatan,
+                                    $request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'][$k]['id'],
+                                    $request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'][$k]['name'],
+                                    $request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'][$k]['angka_kredit']
+                                );
+                                array_push($tmpSubButirKegiatans, $request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'][$k]['id']);
+                            } else {
+                                $subButirKegiatan = $this->storeSubButirKegiatan(
+                                    $butirKegiatan,
+                                    $request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'][$k]['name'],
+                                    $request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'][$k]['angka_kredit']
+                                );
+                                array_push($tmpSubButirKegiatans, $subButirKegiatan->id);
+                            }
+                        }
+                        $butirKegiatan->subButirKegiatans()->whereNotIn('id', $tmpSubButirKegiatans)->delete();
+                    }
                 }
             }
             $subUnsur->butirKegiatans()->whereNotIn('id', $tmpbutirKegiatans)->delete();
@@ -169,12 +181,14 @@ class KegiatanProfesiController extends Controller
         return $butirKegiatan;
     }
 
-    public function updateButirKegiatan(SubUnsur $subUnsur, $id, string $name, $angka_kredit)
+    public function updateButirKegiatan(SubUnsur $subUnsur, $id, string $name, $angka_kredit = null)
     {
-        return $subUnsur->butirKegiatans()->find($id)->update([
+        $butirKegiatan = $subUnsur->butirKegiatans()->find($id);
+        $butirKegiatan->update([
             'nama' => $name,
             'score' => $angka_kredit,
         ]);
+        return $butirKegiatan;
     }
 
     public function storeSubButirKegiatan(ButirKegiatan $butirKegiatan, string $name, $angka_kredit)
@@ -219,8 +233,7 @@ class KegiatanProfesiController extends Controller
                     for ($k = 0; $k < count($request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans']); $k++) {
                         $butir_kegiatan->subButirKegiatans()->create([
                             'nama' => $request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'][$k]['name'],
-                            'score' =>
-                            $request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'][$k]['angka_kredit']
+                            'score' => $request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'][$k]['angka_kredit']
                         ]);
                     }
                 }
