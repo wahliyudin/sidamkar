@@ -89,5 +89,10 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'status_akun' => 1
         ])->attachRole('penilai_ak');
+        $penilaiAK->userPejabatStruktural()->create([
+            'nama' => 'Penilai AK',
+            'provinsi_id' => 11,
+            'kab_kota_id' => 1101,
+        ]);
     }
 }

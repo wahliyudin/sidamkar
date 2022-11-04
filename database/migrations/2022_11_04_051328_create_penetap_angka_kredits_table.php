@@ -17,10 +17,12 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('aparatur_id');
             $table->unsignedBigInteger('penetap_ak_id');
+            $table->unsignedBigInteger('kab_kota_id');
             $table->timestamps();
 
             $table->foreign('aparatur_id')->on('users')->references('id')->cascadeOnDelete();
             $table->foreign('penetap_ak_id')->on('users')->references('id')->cascadeOnDelete();
+            $table->foreign('kab_kota_id')->on('kab_kotas')->references('id')->cascadeOnDelete();
         });
     }
 
