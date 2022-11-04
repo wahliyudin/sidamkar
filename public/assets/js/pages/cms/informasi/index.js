@@ -24,27 +24,32 @@ $(function () {
             'role' : role,
             'file' : file
         } 
+        $('.simpan-informasi span').hide();
+        $('.simpan-informasi .spin').show();
         $.ajax({
             type: "POST",
             url: url("/kemendagri/cms/informasi"),
             data: data,
             success: function (response) {
                 console.log(response)
-                // $('.simpan-kegiatan span').show();
-                // $('.simpan-kegiatan .spin').hide();
-                // if (response.status == 200) {
-                //     Toastify({
-                //         text: response.message,
-                //         duration: 5000,
-                //         close: true,
-                //         gravity: "top",
-                //         position: "right",
-                //         backgroundColor: "#18b882",
-                //     }).showToast()
-                //     location.reload();
-                // } else {
-                //     swal('Error!', response.message, "error");
-                // }
+                if (response.status == 200) {
+                    Toastify({
+                        text: response.message,
+                        duration: 5000,
+                        close: true,
+                        gravity: "top",
+                        position: "right",
+                        backgroundColor: "#18b882",
+                    }).showToast()
+                    location.reload();
+                } else {
+                  
+                    swal('Error!', response.message, "error",);
+                    $('.swal2-confirm').click(function(){
+                        $('.simpan-informasi span').show();
+                        $('.simpan-informasi .spin').hide();
+                  });
+                }
             },
         });
     })

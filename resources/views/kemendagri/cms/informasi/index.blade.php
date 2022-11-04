@@ -15,34 +15,20 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="d-flex text-muted pt-3">
-                    <p class="pb-3 mb-0  lh-sm border-bottom">
-                        <strong class="d-block mb-1 ">[Role : Aparatur]</strong>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda fuga ipsum magnam natus corrupti
-                        molestias porro repudiandae quisquam suscipit iusto nihil commodi, ad obcaecati id repellendus
-                        voluptates facere? Quas, repellendus.
-                    </p>
+                <div class="d-flex flex-column text-muted pt-3 w-100 list">
+                @foreach ($informasis as $informasi)
+                <div>
+                    <h6 class=" mb-0 ">
+                        <strong class="d-block mb-1 ">Role [{{$informasi->jenjang}}]</strong>
+                    </h6>
+                    <p class="border-bottom">{{$informasi->judul}} </p>
+                </div>    
+                    @endforeach
                 </div>
-                <div class="d-flex text-muted pt-3">
-                    <p class="pb-3 mb-0  lh-sm border-bottom">
-                        <strong class="d-block mb-1 ">[Role : Aparatur & Kab Kota]</strong>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda fuga ipsum magnam natus corrupti
-                        molestias porro repudiandae quisquam suscipit iusto nihil commodi, ad obcaecati id repellendus
-                        voluptates facere? Quas, repellendus.
-                    </p>
-                </div>
-                <div class="d-flex text-muted pt-3">
-                    <p class="pb-3 mb-0  lh-sm border-bottom">
-                        <strong class="d-block mb-1 ">[Role : Semua User]</strong>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda fuga ipsum magnam natus corrupti
-                        molestias porro repudiandae quisquam suscipit iusto nihil commodi, ad obcaecati id repellendus
-                        voluptates facere? Quas, repellendus.
-                    </p>
-                </div>
-                <small class="d-block text-end mt-3">
-                    <a href="#" class="keychainify-checked">Selengkapnya</a>
-                </small>
-            </div>
+            <small class="d-block text-end mt-3">
+                <a href="#" class="keychainify-checked">Selengkapnya</a>
+            </small>
+        </div>
         </div>
     </div>
 
@@ -89,7 +75,11 @@
         </form>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
-                <button type="submit" class="btn btn-success simpan-informasi simpan">Simpan</button>
+                <button type="submit" class="btn btn-success simpan-informasi simpan">
+                    <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
+                    style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
+                    <span>Simpan</span>
+                </button>
             </div>
     </div>
   </div>
