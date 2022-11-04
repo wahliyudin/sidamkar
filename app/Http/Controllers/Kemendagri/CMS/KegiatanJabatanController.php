@@ -162,8 +162,15 @@ class KegiatanJabatanController extends Controller
 
     public function import(Request $request)
     {
+        $request->validate([
+            'periode_id' => 'required',
+            'file_import' => 'required'
+        ], [
+            'periode_id.required' => 'Periode harus diisi',
+            'file_import.required' => 'File harus diisi'
+        ]);
         try {
-            Excel::import(new UnsursImport(), $request->file('file_import'));
+            Excel::import(new UnsursImport($request->periode_id), $request->file('file_import'));
             return response()->json([
                 'status' => 200,
                 'message' => 'Berhasil diimport'

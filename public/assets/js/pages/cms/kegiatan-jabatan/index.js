@@ -52,42 +52,28 @@ $(function () {
     });
     $('.btn-simpan-file-import').click(function (e) {
         e.preventDefault();
-        if (!$('#form-import input[name="file_import_tmp"]').val()) {
-            Toastify({
-                text: "File harus diisi!",
-                duration: 5000,
-                close: true,
-                gravity: "top",
-                position: "right",
-                backgroundColor: "#EA3A3D",
-            }).showToast();
-        } else {
-            var postData = new FormData($("#form-import")[0]);
-            $('.btn-simpan-file-import span').hide();
-            $('.btn-simpan-file-import .spin').show();
-            $.ajax({
-                type: 'POST',
-                url: url("/kemendagri/cms/kegiatan-jabatan/import"),
-                processData: false,
-                contentType: false,
-                data: postData,
-                success: function (response) {
-                    $('.btn-simpan-file-import span').show();
-                    $('.btn-simpan-file-import .spin').hide();
-                    if (response.status == 200) {
-                        swal("Selesai!", response.message, "success").then(() => {
-                            location.reload();
-                        });
-                    } else {
-                        swal("Error!", response.message, "error");
-                    }
-                },
-                error: function (err) {
-                    $('.btn-simpan-file-import span').show();
-                    $('.btn-simpan-file-import .spin').hide();
+        var postData = new FormData($("#form-import")[0]);
+        $('.btn-simpan-file-import span').hide();
+        $('.btn-simpan-file-import .spin').show();
+        $.ajax({
+            type: 'POST',
+            url: url("/kemendagri/cms/kegiatan-jabatan/import"),
+            processData: false,
+            contentType: false,
+            data: postData,
+            success: function (response) {
+                $('.btn-simpan-file-import span').show();
+                $('.btn-simpan-file-import .spin').hide();
+                if (response.status == 200) {
+                    swal("Selesai!", response.message, "success").then(() => {
+                        location.reload();
+                    });
+                } else {
+                    swal("Error!", response.message, "error");
                 }
-            });
-        }
+            },
+            error: ajaxError
+        });
     });
     $("#importExcelModal").on('hide.bs.modal', function () {
         pond.removeFiles();
@@ -418,5 +404,44 @@ var ajaxError = function (jqXHR, xhr, textStatus, errorThrow, exception) {
         swal('Error!', jqXHR.responseText, "error");
         $('.simpan-kegiatan span').show();
         $('.simpan-kegiatan .spin').hide();
+    }
+};
+var ajaxError = function (jqXHR, xhr, textStatus, errorThrow, exception) {
+    if (jqXHR.status === 0) {
+        swal("Error!", 'Not connect.\n Verify Network.', "error");
+        $('.btn-simpan-file-import span').show();
+        $('.btn-simpan-file-import .spin').hide();
+    } else if (jqXHR.status == 400) {
+        swal("Peringatan!", jqXHR['responseJSON'].message, "warning");
+        $('.btn-simpan-file-import span').show();
+        $('.btn-simpan-file-import .spin').hide();
+    } else if (jqXHR.status == 404) {
+        swal('Error!', 'Requested page not found. [404]', "error");
+        $('.btn-simpan-file-import span').show();
+        $('.btn-simpan-file-import .spin').hide();
+    } else if (jqXHR.status == 500) {
+        swal('Error!', 'Internal Server Error [500].' + jqXHR['responseJSON'].message, "error");
+        $('.btn-simpan-file-import span').show();
+        $('.btn-simpan-file-import .spin').hide();
+    } else if (exception === 'parsererror') {
+        swal('Error!', 'Requested JSON parse failed.', "error");
+        $('.btn-simpan-file-import span').show();
+        $('.btn-simpan-file-import .spin').hide();
+    } else if (exception === 'timeout') {
+        swal('Error!', 'Time out error.', "error");
+        $('.btn-simpan-file-import span').show();
+        $('.btn-simpan-file-import .spin').hide();
+    } else if (exception === 'abort') {
+        swal('Error!', 'Ajax request aborted.', "error");
+        $('.btn-simpan-file-import span').show();
+        $('.btn-simpan-file-import .spin').hide();
+    } else if (jqXHR.status == 422) {
+        swal('Warning!', JSON.parse(jqXHR.responseText).message, "warning");
+        $('.btn-simpan-file-import span').show();
+        $('.btn-simpan-file-import .spin').hide();
+    } else {
+        swal('Error!', jqXHR.responseText, "error");
+        $('.btn-simpan-file-import span').show();
+        $('.btn-simpan-file-import .spin').hide();
     }
 };

@@ -52,42 +52,28 @@ $(function () {
     });
     $('.btn-simpan-file-import').click(function (e) {
         e.preventDefault();
-        if (!$('#form-import input[name="file_import_tmp"]').val()) {
-            Toastify({
-                text: "File harus diisi!",
-                duration: 5000,
-                close: true,
-                gravity: "top",
-                position: "right",
-                backgroundColor: "#EA3A3D",
-            }).showToast();
-        } else {
-            var postData = new FormData($("#form-import")[0]);
-            $('.btn-simpan-file-import span').hide();
-            $('.btn-simpan-file-import .spin').show();
-            $.ajax({
-                type: 'POST',
-                url: url("/kemendagri/cms/kegiatan-profesi/import"),
-                processData: false,
-                contentType: false,
-                data: postData,
-                success: function (response) {
-                    $('.btn-simpan-file-import span').show();
-                    $('.btn-simpan-file-import .spin').hide();
-                    if (response.status == 200) {
-                        swal("Selesai!", response.message, "success").then(() => {
-                            location.reload();
-                        });
-                    } else {
-                        swal("Warning!", response.message, "warning");
-                    }
-                },
-                error: function (err) {
-                    $('.btn-simpan-file-import span').show();
-                    $('.btn-simpan-file-import .spin').hide();
+        var postData = new FormData($("#form-import")[0]);
+        $('.btn-simpan-file-import span').hide();
+        $('.btn-simpan-file-import .spin').show();
+        $.ajax({
+            type: 'POST',
+            url: url("/kemendagri/cms/kegiatan-profesi/import"),
+            processData: false,
+            contentType: false,
+            data: postData,
+            success: function (response) {
+                $('.btn-simpan-file-import span').show();
+                $('.btn-simpan-file-import .spin').hide();
+                if (response.status == 200) {
+                    swal("Selesai!", response.message, "success").then(() => {
+                        location.reload();
+                    });
+                } else {
+                    swal("Error!", response.message, "error");
                 }
-            });
-        }
+            },
+            error: ajaxError2
+        });
     });
     $("#importExcelModal").on('hide.bs.modal', function () {
         pond.removeFiles();
@@ -244,6 +230,7 @@ $(function () {
     $('#tambahDataModal').on('click', '.simpan-kegiatan.simpan', function () {
         var role_id = $('select[name="role_id"]').val();
         var unsur = $('input[name="unsur"]').val();
+        var periode_id = $('select[name="periode_id"]').val();
         result = [];
         $.each($('input[name="sub_unsur[]"]'), function (indexInArray, valueOfElement) {
             result.push({
@@ -258,6 +245,7 @@ $(function () {
             url: url("/kemendagri/cms/kegiatan-profesi"),
             data: {
                 role_id: role_id,
+                periode_id: periode_id,
                 unsur: unsur,
                 sub_unsurs: result
             },
@@ -304,17 +292,19 @@ $(function () {
                         .trigger('change');
                 }
                 $('input[name="unsur"]').val(response.data.nama);
+                $('select[name="periode_id"]').val(response.data.periode_id);
                 response.data.sub_unsurs.forEach(subUnsur => {
                     $('.container-unsur').append(htmlSubUnsur(subUnsur));
                 });
             },
-            error: ajaxError
+            error: ajaxError1
         });
     });
 
     $('#tambahDataModal').on('click', '.simpan-kegiatan.update', function () {
         var role_id = $('select[name="role_id"]').val();
         var unsur = $('input[name="unsur"]').val();
+        var periode_id = $('select[name="periode_id"]').val();
         result = [];
         $.each($('input[name="sub_unsur[]"]'), function (indexInArray, valueOfElement) {
             result.push({
@@ -329,6 +319,7 @@ $(function () {
             url: url('/kemendagri/cms/kegiatan-profesi/' + $(this).data('id') + '/update'),
             data: {
                 role_id: role_id,
+                periode_id: periode_id,
                 unsur: unsur,
                 sub_unsurs: result
             },
@@ -348,7 +339,7 @@ $(function () {
                     location.reload();
                 }
             },
-            error: ajaxError
+            error: ajaxError1
         });
     });
 
@@ -516,7 +507,7 @@ $(function () {
     });
 });
 
-var ajaxError = function (jqXHR, xhr, textStatus, errorThrow, exception) {
+var ajaxError1 = function (jqXHR, xhr, textStatus, errorThrow, exception) {
     if (jqXHR.status === 0) {
         swal("Error!", 'Not connect.\n Verify Network.', "error");
         $('.simpan-kegiatan span').show();
@@ -553,5 +544,44 @@ var ajaxError = function (jqXHR, xhr, textStatus, errorThrow, exception) {
         swal('Error!', jqXHR.responseText, "error");
         $('.simpan-kegiatan span').show();
         $('.simpan-kegiatan .spin').hide();
+    }
+};
+var ajaxError2 = function (jqXHR, xhr, textStatus, errorThrow, exception) {
+    if (jqXHR.status === 0) {
+        swal("Error!", 'Not connect.\n Verify Network.', "error");
+        $('.btn-simpan-file-import span').show();
+        $('.btn-simpan-file-import .spin').hide();
+    } else if (jqXHR.status == 400) {
+        swal("Peringatan!", jqXHR['responseJSON'].message, "warning");
+        $('.btn-simpan-file-import span').show();
+        $('.btn-simpan-file-import .spin').hide();
+    } else if (jqXHR.status == 404) {
+        swal('Error!', 'Requested page not found. [404]', "error");
+        $('.btn-simpan-file-import span').show();
+        $('.btn-simpan-file-import .spin').hide();
+    } else if (jqXHR.status == 500) {
+        swal('Error!', 'Internal Server Error [500].' + jqXHR['responseJSON'].message, "error");
+        $('.btn-simpan-file-import span').show();
+        $('.btn-simpan-file-import .spin').hide();
+    } else if (exception === 'parsererror') {
+        swal('Error!', 'Requested JSON parse failed.', "error");
+        $('.btn-simpan-file-import span').show();
+        $('.btn-simpan-file-import .spin').hide();
+    } else if (exception === 'timeout') {
+        swal('Error!', 'Time out error.', "error");
+        $('.btn-simpan-file-import span').show();
+        $('.btn-simpan-file-import .spin').hide();
+    } else if (exception === 'abort') {
+        swal('Error!', 'Ajax request aborted.', "error");
+        $('.btn-simpan-file-import span').show();
+        $('.btn-simpan-file-import .spin').hide();
+    } else if (jqXHR.status == 422) {
+        swal('Warning!', JSON.parse(jqXHR.responseText).message, "warning");
+        $('.btn-simpan-file-import span').show();
+        $('.btn-simpan-file-import .spin').hide();
+    } else {
+        swal('Error!', jqXHR.responseText, "error");
+        $('.btn-simpan-file-import span').show();
+        $('.btn-simpan-file-import .spin').hide();
     }
 };
