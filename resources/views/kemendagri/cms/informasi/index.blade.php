@@ -10,7 +10,7 @@
                     </div>
                     <div class="col-md-4 kanan">
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">Tambah Informasi</button>
+                            data-bs-target="#tambahInformasi">Tambah Informasi</button>
                     </div>
                 </div>
             </div>
@@ -83,10 +83,6 @@
                         <label for="formFile" class="form-label">File(Jika Ada)</label>
                         <input class="form-control" name="file" type="file" id="formFile">
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-success">Simpan</button>
                 </div>
                 </form>
             </div>
