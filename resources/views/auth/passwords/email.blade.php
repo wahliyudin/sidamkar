@@ -35,7 +35,7 @@
 
                 <div class="row mb-0">
                     <div class="col-md-12 text-center">
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary btn-sm">
                             {{ __('Send Password Reset Link') }}
                         </button>
                     </div>

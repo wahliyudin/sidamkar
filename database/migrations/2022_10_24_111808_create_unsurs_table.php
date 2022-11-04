@@ -17,11 +17,13 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('role_id')->nullable()->default(null);
             $table->unsignedBigInteger('jenis_kegiatan_id');
+            $table->unsignedBigInteger('periode_id');
             $table->string('nama')->fulltext();
             $table->timestamps();
 
             $table->foreign('role_id')->on('roles')->references('id')->nullOnDelete();
             $table->foreign('jenis_kegiatan_id')->on('jenis_kegiatans')->references('id')->cascadeOnDelete();
+            $table->foreign('periode_id')->on('periodes')->references('id')->cascadeOnDelete();
         });
     }
 

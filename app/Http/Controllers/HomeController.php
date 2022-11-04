@@ -40,7 +40,7 @@ class HomeController extends Controller
             return to_route('provinsi.overview.index');
         } elseif (auth()->user()->hasRole('atasan_langsung')) {
             return to_route('atasan-langsung.overview.index');
-        } elseif (auth()->user()->hasRole('penilai_ak')) {
+        }elseif (auth()->user()->hasRole('penilai_ak')) {
             return to_route('penilai-ak.overview');
         } elseif (auth()->user()->hasRole('kemendagri')) {
             return to_route('kemendagri.overview.index');

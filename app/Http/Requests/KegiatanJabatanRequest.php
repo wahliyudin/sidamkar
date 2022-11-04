@@ -24,6 +24,7 @@ class KegiatanJabatanRequest extends FormRequest
     public function rules()
     {
         $rules = [
+            'periode_id' => 'required',
             'unsur' => 'required',
             'sub_unsurs' => 'required|array'
         ];
@@ -47,7 +48,8 @@ class KegiatanJabatanRequest extends FormRequest
     public function messages()
     {
         $messages = [
-            'sub_unsurs.array' => 'Sub Unsurs Harus diisi'
+            'sub_unsurs.array' => 'Sub Unsurs Harus diisi',
+            'periode_id.required' => 'Periode Harus diisi',
         ];
         if (isset(request()->sub_unsurs)) {
             foreach (request()->sub_unsurs as $a => $val) {

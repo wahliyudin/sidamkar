@@ -52,42 +52,28 @@ $(function () {
     });
     $('.btn-simpan-file-import').click(function (e) {
         e.preventDefault();
-        if (!$('#form-import input[name="file_import_tmp"]').val()) {
-            Toastify({
-                text: "File harus diisi!",
-                duration: 5000,
-                close: true,
-                gravity: "top",
-                position: "right",
-                backgroundColor: "#EA3A3D",
-            }).showToast();
-        } else {
-            var postData = new FormData($("#form-import")[0]);
-            $('.btn-simpan-file-import span').hide();
-            $('.btn-simpan-file-import .spin').show();
-            $.ajax({
-                type: 'POST',
-                url: url("/kemendagri/cms/kegiatan-profesi/import"),
-                processData: false,
-                contentType: false,
-                data: postData,
-                success: function (response) {
-                    $('.btn-simpan-file-import span').show();
-                    $('.btn-simpan-file-import .spin').hide();
-                    if (response.status == 200) {
-                        swal("Selesai!", response.message, "success").then(() => {
-                            location.reload();
-                        });
-                    } else {
-                        swal("Warning!", response.message, "warning");
-                    }
-                },
-                error: function (err) {
-                    $('.btn-simpan-file-import span').show();
-                    $('.btn-simpan-file-import .spin').hide();
+        var postData = new FormData($("#form-import")[0]);
+        $('.btn-simpan-file-import span').hide();
+        $('.btn-simpan-file-import .spin').show();
+        $.ajax({
+            type: 'POST',
+            url: url("/kemendagri/cms/kegiatan-profesi/import"),
+            processData: false,
+            contentType: false,
+            data: postData,
+            success: function (response) {
+                $('.btn-simpan-file-import span').show();
+                $('.btn-simpan-file-import .spin').hide();
+                if (response.status == 200) {
+                    swal("Selesai!", response.message, "success").then(() => {
+                        location.reload();
+                    });
+                } else {
+                    swal("Error!", response.message, "error");
                 }
-            });
-        }
+            },
+            error: ajaxError2
+        });
     });
     $("#importExcelModal").on('hide.bs.modal', function () {
         pond.removeFiles();
@@ -97,18 +83,18 @@ $(function () {
         $('.container-unsur').append(`
             <div class="d-flex flex-column container-sub-unsur">
                 <div class="row align-items-center justify-content-end">
-                    <div class="col-md-9">
+                    <div class="col-md-10">
                         <div class="form-group">
                             <label>Sub Unsur</label>
                             <input class="form-control w-100" type="text" name="sub_unsur[]">
                         </div>
                     </div>
-                    <div class="col-md-2 d-flex align-items-center">
+                    <div class="col-md-1 d-flex align-items-center">
                         <button type="button" class="hapus-sub-unsur" style="transform: translateY(8px); color: #EA3A3D; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #EA3A3D; background-color: transparent !important;"><i
-                                class="fa-solid fa-minus"></i></button>
-                        <button type="button" class="btn btn-blue btn-sm ps-3 py-2 ms-2 tambah-butir"
-                            style="transform: translateY(7px)"><i class="fa-solid fa-plus me-2"></i>
-                            Butir</button>
+                                class="fa-solid fa-x"></i></button>
+                        <button type="button" class="ms-2 tambah-butir"
+                                    style="transform: translateY(8px); color: #1ad598; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #1ad598; background-color: transparent !important;"><i
+                                        class="fa-solid fa-plus"></i></button>
                     </div>
                 </div>
 
@@ -121,7 +107,7 @@ $(function () {
     $('.container-unsur').on('click', '.tambah-butir', function () {
         $(this.parentElement.parentElement.parentElement.querySelector('.container-butir')).append(`
             <div class="row align-items-center justify-content-end">
-                <div class="col-md-6 input-butir-kegiatan">
+                <div class="col-md-7 input-butir-kegiatan">
                     <div class="form-group">
                         <label>Butir Kegiatan</label>
                         <input class="form-control w-100" type="text" name="butir_kegiatan[]">
@@ -133,13 +119,13 @@ $(function () {
                         <input class="form-control w-100" step="0.01" type="number" name="angka_kredit[]">
                     </div>
                 </div>
-                <div class="col-md-2 d-flex align-items-center">
+                <div class="col-md-1 d-flex align-items-center">
                     <button type="button" class="hapus-butir"
                     style="transform: translateY(8px); color: #EA3A3D; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #EA3A3D; background-color: transparent !important;"><i
-                        class="fa-solid fa-minus"></i></button>
-                    <button type="button" class="btn btn-blue btn-sm ps-2 pe-2 py-2 ms-2 tambah-sub-butir"
-                        style="transform: translateY(7px)"><i class="fa-solid fa-plus me-1"></i>
-                        Sub Butir</button>
+                        class="fa-solid fa-x"></i></button>
+                    <button type="button" class="ms-2 tambah-sub-butir"
+                                    style="transform: translateY(8px); color: #1ad598; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #1ad598; background-color: transparent !important;"><i
+                                        class="fa-solid fa-plus"></i></button>
                 </div>
 
                 <div class="d-flex flex-column container-sub-butir">
@@ -152,14 +138,14 @@ $(function () {
         if ($(this.parentElement.parentElement).find('.angka-kredit-butir')) {
             $($(this.parentElement.parentElement).find('.angka-kredit-butir')).remove();
             $($(this.parentElement.parentElement).find('.input-butir-kegiatan')).addClass(
-                'col-md-8');
+                'col-md-9');
             $($(this.parentElement.parentElement).find('.input-butir-kegiatan')).removeClass(
-                'col-md-6');
+                'col-md-7');
         }
         $($(this.parentElement.parentElement).find('.container-sub-butir'))
             .append(`
             <div class="row align-items-center justify-content-end sub-butir">
-                <div class="col-md-5">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label>Sub Butir Kegiatan</label>
                         <input class="form-control w-100" type="text" name="sub_butir_kegiatan[]">
@@ -171,10 +157,10 @@ $(function () {
                         <input class="form-control w-100" step="0.01" type="number" name="angka_kredit[]">
                     </div>
                 </div>
-                <div class="col-md-2 d-flex align-items-center">
+                <div class="col-md-1 d-flex align-items-center">
                     <button type="button" class="hapus-sub-butir"
                     style="transform: translateY(8px); color: #EA3A3D; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #EA3A3D; background-color: transparent !important;"><i
-                        class="fa-solid fa-minus"></i></button>
+                        class="fa-solid fa-x"></i></button>
                 </div>
             </div>
         `);
@@ -185,8 +171,8 @@ $(function () {
                 if ($(this.parentElement.parentElement.parentElement).children().length == 1) {
                     el = $(this.parentElement.parentElement.parentElement.parentElement).find('.input-butir-kegiatan');
                     console.log(el);
-                    $(el).addClass('col-md-6');
-                    $(el).removeClass('col-md-8');
+                    $(el).addClass('col-md-7');
+                    $(el).removeClass('col-md-9');
                     el.after(`<div class="col-md-2 angka-kredit-butir">
                                 <div class="form-group">
                                     <label>Nilai Kredit</label>
@@ -244,6 +230,7 @@ $(function () {
     $('#tambahDataModal').on('click', '.simpan-kegiatan.simpan', function () {
         var role_id = $('select[name="role_id"]').val();
         var unsur = $('input[name="unsur"]').val();
+        var periode_id = $('select[name="periode_id"]').val();
         result = [];
         $.each($('input[name="sub_unsur[]"]'), function (indexInArray, valueOfElement) {
             result.push({
@@ -258,6 +245,7 @@ $(function () {
             url: url("/kemendagri/cms/kegiatan-profesi"),
             data: {
                 role_id: role_id,
+                periode_id: periode_id,
                 unsur: unsur,
                 sub_unsurs: result
             },
@@ -277,7 +265,7 @@ $(function () {
                     location.reload();
                 }
             },
-            error: ajaxError
+            error: ajaxError1
         });
     });
     $(".btn-tambah").on('click', function () {
@@ -304,20 +292,23 @@ $(function () {
                         .trigger('change');
                 }
                 $('input[name="unsur"]').val(response.data.nama);
+                $('select[name="periode_id"]').val(response.data.periode_id);
                 response.data.sub_unsurs.forEach(subUnsur => {
                     $('.container-unsur').append(htmlSubUnsur(subUnsur));
                 });
             },
-            error: ajaxError
+            error: ajaxError1
         });
     });
 
     $('#tambahDataModal').on('click', '.simpan-kegiatan.update', function () {
         var role_id = $('select[name="role_id"]').val();
         var unsur = $('input[name="unsur"]').val();
+        var periode_id = $('select[name="periode_id"]').val();
         result = [];
         $.each($('input[name="sub_unsur[]"]'), function (indexInArray, valueOfElement) {
             result.push({
+                id: $(valueOfElement).data('id'),
                 name: $(valueOfElement).val(),
                 butir_kegiatans: mapGetButirKegiatan(this)
             })
@@ -329,6 +320,7 @@ $(function () {
             url: url('/kemendagri/cms/kegiatan-profesi/' + $(this).data('id') + '/update'),
             data: {
                 role_id: role_id,
+                periode_id: periode_id,
                 unsur: unsur,
                 sub_unsurs: result
             },
@@ -348,7 +340,7 @@ $(function () {
                     location.reload();
                 }
             },
-            error: ajaxError
+            error: ajaxError1
         });
     });
 
@@ -387,11 +379,13 @@ $(function () {
             var_angka_kredit = $($(butirKegiatan.parentElement.parentElement.parentElement).find('.angka-kredit-butir input[name="angka_kredit[]"]')).val();
             if (var_angka_kredit !== undefined) {
                 return {
+                    id: $(butirKegiatan).data('id'),
                     name: $(butirKegiatan).val(),
                     angka_kredit: var_angka_kredit
                 }
             } else {
                 return {
+                    id: $(butirKegiatan).data('id'),
                     name: $(butirKegiatan).val(),
                     sub_butir_kegiatans: mapGetSubButirKegiatan(butirKegiatan)
                 }
@@ -400,8 +394,9 @@ $(function () {
     }
 
     function mapGetSubButirKegiatan(butirKegiatan) {
-        return $.map($(butirKegiatan.parentElement.parentElement.parentElement.parentElement).find('input[name="sub_butir_kegiatan[]"]'), function (subButirKegiatan, indexOrKey) {
+        return $.map($(butirKegiatan.parentElement.parentElement.parentElement).find('input[name="sub_butir_kegiatan[]"]'), function (subButirKegiatan, indexOrKey) {
             return {
+                id: $(subButirKegiatan).data('id'),
                 name: $(subButirKegiatan).val(),
                 angka_kredit: $($(subButirKegiatan.parentElement.parentElement.parentElement).find('input[name="angka_kredit[]"]')).val()
             }
@@ -411,18 +406,17 @@ $(function () {
     function htmlSubUnsur(subUnsur) {
         return `<div class="d-flex flex-column container-sub-unsur">
             <div class="row align-items-center justify-content-end">
-                <div class="col-md-9">
+                <div class="col-md-10">
                     <div class="form-group">
                         <label>Sub Unsur</label>
-                        <input class="form-control w-100" value="${subUnsur.nama}" type="text" name="sub_unsur[]">
+                        <input class="form-control w-100" data-id="${subUnsur.id}" value="${subUnsur.nama}" type="text" name="sub_unsur[]">
                     </div>
                 </div>
-                <div class="col-md-2 d-flex align-items-center">
+                <div class="col-md-1 d-flex align-items-center">
                     <button type="button" class="hapus-sub-unsur" style="transform: translateY(8px); color: #EA3A3D; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #EA3A3D; background-color: transparent !important;"><i
-                            class="fa-solid fa-minus"></i></button>
-                    <button type="button" class="btn btn-blue btn-sm ps-3 py-2 ms-2 tambah-butir"
-                        style="transform: translateY(7px)"><i class="fa-solid fa-plus me-2"></i>
-                        Butir</button>
+                            class="fa-solid fa-x"></i></button>
+                    <button type="button" class="ms-2 tambah-butir" style="transform: translateY(8px); color: #1ad598; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #1ad598; background-color: transparent !important;"><i
+                            class="fa-solid fa-plus"></i></button>
                 </div>
             </div>
 
@@ -436,19 +430,18 @@ $(function () {
         return $.map(butir_kegiatans, function (butirKegiatan, indexOrKey) {
             if (butirKegiatan.sub_butir_kegiatans.length != 0) {
                 return `<div class="row align-items-center justify-content-end">
-                    <div class="col-md-8 input-butir-kegiatan">
+                    <div class="col-md-9 input-butir-kegiatan">
                         <div class="form-group">
                             <label>Butir Kegiatan</label>
-                            <input class="form-control w-100" type="text" value="${butirKegiatan.nama}" name="butir_kegiatan[]">
+                            <input class="form-control w-100" type="text" data-id="${butirKegiatan.id}" value="${butirKegiatan.nama}" name="butir_kegiatan[]">
                         </div>
                     </div>
-                    <div class="col-md-2 d-flex">
+                    <div class="col-md-1 d-flex">
                         <button type="button" class="hapus-butir"
                             style="transform: translateY(8px); color: #EA3A3D; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #EA3A3D; background-color: transparent !important;"><i
-                                class="fa-solid fa-minus"></i></button>
-                                <button type="button" class="btn btn-blue btn-sm ps-2 pe-2 py-2 ms-2 tambah-sub-butir"
-                        style="transform: translateY(7px)"><i class="fa-solid fa-plus me-1"></i>
-                        Sub Butir</button>
+                                class="fa-solid fa-x"></i></button>
+                        <button type="button" class="ms-2 tambah-sub-butir" style="transform: translateY(8px); color: #1ad598; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #1ad598; background-color: transparent !important;"><i
+                            class="fa-solid fa-plus"></i></button>
                     </div>
 
                     <div class="d-flex flex-column container-sub-butir">
@@ -457,10 +450,10 @@ $(function () {
                 </div>`
             }
             return `<div class="row align-items-center justify-content-end">
-                <div class="col-md-6 input-butir-kegiatan">
+                <div class="col-md-7 input-butir-kegiatan">
                     <div class="form-group">
                         <label>Butir Kegiatan</label>
-                        <input class="form-control w-100" type="text" value="${butirKegiatan.nama}" name="butir_kegiatan[]">
+                        <input class="form-control w-100" type="text" data-id="${butirKegiatan.id}" value="${butirKegiatan.nama}" name="butir_kegiatan[]">
                     </div>
                 </div>
                 <div class="col-md-2 angka-kredit-butir">
@@ -469,13 +462,12 @@ $(function () {
                         <input class="form-control w-100" step="0.01" value="${butirKegiatan.score}" type="number" name="angka_kredit[]">
                     </div>
                 </div>
-                <div class="col-md-2 d-flex">
+                <div class="col-md-1 d-flex">
                     <button type="button" class="hapus-butir"
                         style="transform: translateY(8px); color: #EA3A3D; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #EA3A3D; background-color: transparent !important;"><i
-                            class="fa-solid fa-minus"></i></button>
-                    <button type="button" class="btn btn-blue btn-sm ps-2 pe-2 py-2 ms-2 tambah-sub-butir"
-                        style="transform: translateY(7px)"><i class="fa-solid fa-plus me-1"></i>
-                        Sub Butir</button>
+                            class="fa-solid fa-x"></i></button>
+                    <button type="button" class="ms-2 tambah-sub-butir" style="transform: translateY(8px); color: #1ad598; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #1ad598; background-color: transparent !important;"><i
+                            class="fa-solid fa-plus"></i></button>
                 </div>
 
                 <div class="d-flex flex-column container-sub-butir">
@@ -488,10 +480,10 @@ $(function () {
     function htmlSubButirKegiatan(sub_butir_kegiatans) {
         return $.map(sub_butir_kegiatans, function (subButirKegiatan, indexOrKey) {
             return `<div class="row align-items-center justify-content-end sub-butir">
-                <div class="col-md-5">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label>Sub Butir Kegiatan</label>
-                        <input class="form-control w-100" value="${subButirKegiatan.nama}" type="text" name="sub_butir_kegiatan[]">
+                        <input class="form-control w-100" data-id="${subButirKegiatan.id}" value="${subButirKegiatan.nama}" type="text" name="sub_butir_kegiatan[]">
                     </div>
                 </div>
                 <div class="col-md-2">
@@ -500,10 +492,10 @@ $(function () {
                         <input class="form-control w-100" step="0.01" value="${subButirKegiatan.score}" type="number" name="angka_kredit[]">
                     </div>
                 </div>
-                <div class="col-md-2 d-flex align-items-center">
+                <div class="col-md-1 d-flex align-items-center">
                     <button type="button" class="hapus-sub-butir"
                     style="transform: translateY(8px); color: #EA3A3D; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #EA3A3D; background-color: transparent !important;"><i
-                        class="fa-solid fa-minus"></i></button>
+                        class="fa-solid fa-x"></i></button>
                 </div>
             </div>`
         }).join('')
@@ -516,7 +508,7 @@ $(function () {
     });
 });
 
-var ajaxError = function (jqXHR, xhr, textStatus, errorThrow, exception) {
+var ajaxError1 = function (jqXHR, xhr, textStatus, errorThrow, exception) {
     if (jqXHR.status === 0) {
         swal("Error!", 'Not connect.\n Verify Network.', "error");
         $('.simpan-kegiatan span').show();
@@ -553,5 +545,44 @@ var ajaxError = function (jqXHR, xhr, textStatus, errorThrow, exception) {
         swal('Error!', jqXHR.responseText, "error");
         $('.simpan-kegiatan span').show();
         $('.simpan-kegiatan .spin').hide();
+    }
+};
+var ajaxError2 = function (jqXHR, xhr, textStatus, errorThrow, exception) {
+    if (jqXHR.status === 0) {
+        swal("Error!", 'Not connect.\n Verify Network.', "error");
+        $('.btn-simpan-file-import span').show();
+        $('.btn-simpan-file-import .spin').hide();
+    } else if (jqXHR.status == 400) {
+        swal("Peringatan!", jqXHR['responseJSON'].message, "warning");
+        $('.btn-simpan-file-import span').show();
+        $('.btn-simpan-file-import .spin').hide();
+    } else if (jqXHR.status == 404) {
+        swal('Error!', 'Requested page not found. [404]', "error");
+        $('.btn-simpan-file-import span').show();
+        $('.btn-simpan-file-import .spin').hide();
+    } else if (jqXHR.status == 500) {
+        swal('Error!', 'Internal Server Error [500].' + jqXHR['responseJSON'].message, "error");
+        $('.btn-simpan-file-import span').show();
+        $('.btn-simpan-file-import .spin').hide();
+    } else if (exception === 'parsererror') {
+        swal('Error!', 'Requested JSON parse failed.', "error");
+        $('.btn-simpan-file-import span').show();
+        $('.btn-simpan-file-import .spin').hide();
+    } else if (exception === 'timeout') {
+        swal('Error!', 'Time out error.', "error");
+        $('.btn-simpan-file-import span').show();
+        $('.btn-simpan-file-import .spin').hide();
+    } else if (exception === 'abort') {
+        swal('Error!', 'Ajax request aborted.', "error");
+        $('.btn-simpan-file-import span').show();
+        $('.btn-simpan-file-import .spin').hide();
+    } else if (jqXHR.status == 422) {
+        swal('Warning!', JSON.parse(jqXHR.responseText).message, "warning");
+        $('.btn-simpan-file-import span').show();
+        $('.btn-simpan-file-import .spin').hide();
+    } else {
+        swal('Error!', jqXHR.responseText, "error");
+        $('.btn-simpan-file-import span').show();
+        $('.btn-simpan-file-import .spin').hide();
     }
 };
