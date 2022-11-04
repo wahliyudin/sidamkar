@@ -12,8 +12,37 @@ class InformasiController extends Controller
 {
     use ImageTrait;
     public function index(){
-        $roles= Role::query()->get();
-        return view('kemendagri.cms.informasi.index', compact("roles"));
+        $informasis = Informasi::query()->with('roles')->get()->map(function(Informasi $informasi){
+            $str = '';
+            if (count($informasi->roles) == 12) {
+                $str .= 'Semua Jenjang';
+            } else{
+                foreach ($informasi->roles as $role) {
+                    if (in_array($role->id, [1,2,3,4,5,6,7,11,12,13])) {
+                        if (!str($str)->contains('Aparatur')) {
+                            $str .= 'Aparatur';
+                        }
+                    }
+                    if ($role->name == 'kab_kota') {
+                        if (str($str)->contains('Aparatur')) {
+                            $str .= ' & Kab Kota';
+                        } else {
+                            $str .= 'Kab Kota';
+                        }
+                    }
+                    if ($role->name == 'provinsi') {
+                        if (str($str)->contains('Aparatur') || str($str)->contains('Kab Kota')) {
+                            $str .= ' & Provinsi';
+                        } else {
+                            $str .= 'Provinsi';
+                        }
+                    }
+                }
+            }
+            $informasi->jenjang = $str;
+            return $informasi;
+        });
+        return view('kemendagri.cms.informasi.index', compact('informasis') );
     }
 
     public function store(Request $request){
@@ -40,9 +69,15 @@ class InformasiController extends Controller
                 ]
             )->roles()->attach($roles);
 
-            return $roles ;
+            return response()->json([
+                'status' => 200,
+                'message' => 'Berhasil ditambahkan'
+            ]);
         }catch(\Throwable $e){
-            return $e;
+            return response()->json([
+                'status' => $e->getCode(),
+                'message' => $e->getMessage()
+            ]);
         }
     }
 }
