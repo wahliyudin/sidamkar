@@ -152,7 +152,7 @@
                                                                                                 ])
                                                                                         @elseif($rencanaButirKegiatan->status == 2)
                                                                                             <button
-                                                                                                class="btn btn-red ms-3 px-3"
+                                                                                                class="btn btn-red ms-3 px-3 btn-sm"
                                                                                                 data-bs-toggle="modal"
                                                                                                 data-bs-target="#riwayatKegiatan{{ $rencanaButirKegiatan->id }}"
                                                                                                 type="button">Revisi</button>

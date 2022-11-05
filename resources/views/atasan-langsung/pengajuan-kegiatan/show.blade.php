@@ -86,7 +86,7 @@
                                                                                     <div class="d-flex align-items-center">
                                                                                         @if ($rencanaButirKegiatan->status == 2)
                                                                                             <button
-                                                                                                class="btn btn-red ms-3 px-3"
+                                                                                                class="btn btn-red ms-3 px-3 btn-sm"
                                                                                                 data-bs-toggle="modal"
                                                                                                 data-bs-target="#lihat{{ $rencanaButirKegiatan->id }}"
                                                                                                 type="button">Revisi</button>

@@ -18,6 +18,7 @@ $(document).ready(function () {
     $('.revisi-kegiatan').each(function (index, element) {
         $(element).click(function (e) {
             e.preventDefault();
+            $('#lihat' + $(element).data('id')).modal('hide');
             revisi($(element).data('id'))
         });
     });
@@ -87,7 +88,7 @@ $(document).ready(function () {
             preConfirm: async (value) => {
                 return await $.ajax({
                     type: 'POST',
-                    url: "{{ url('kemendagri/verifikasi-data/admin-kabkota') }}/" + id + "/reject",
+                    url: url("/atasan-langsung/pengajuan-kegiatan/" + id + "/revisi"),
                     data: {
                         catatan: value
                     },
@@ -95,10 +96,13 @@ $(document).ready(function () {
                 });
             },
         }).then(function (e) {
-            if (e.value.success == true) {
+            if (e.dismiss == 'cancel') {
+                $('#lihat' + id).modal('show');
+                swal.close()
+            }
+            if (e.value.status == 200) {
                 swal("Selesai!", e.value.message, "success").then(() => {
-                    $('#adminkabkota-table').DataTable().ajax
-                        .reload()
+                    location.reload()
                 });
             } else {
                 swal("Error!", e.value.message, "error");
@@ -109,7 +113,6 @@ $(document).ready(function () {
     function verifikasi(id) {
         swal({
             title: "Perifikasi?",
-            text: "Please ensure and then confirm!",
             type: "warning",
             showCancelButton: !0,
             confirmButtonText: "Ya, verfikasi!",
@@ -119,22 +122,22 @@ $(document).ready(function () {
             preConfirm: async () => {
                 return await $.ajax({
                     type: 'POST',
-                    url: "{{ url('kemendagri/verifikasi-data/admin-kabkota') }}/" + id +
-                        "/verified",
+                    url: url("/atasan-langsung/pengajuan-kegiatan/" + id + "/verifikasi"),
                     dataType: 'JSON'
                 });
             },
         }).then(function (e) {
-            if (e.value.success == true) {
+            if (e.dismiss == 'cancel') {
+                $('#lihat' + id).modal('show');
+                swal.close()
+            }
+            if (e.value.status == 200) {
                 swal("Selesai!", e.value.message, "success").then(() => {
-                    $('#adminkabkota-table').DataTable().ajax
-                        .reload()
+                    location.reload()
                 });
             } else {
                 swal("Error!", e.value.message, "error");
             }
-        }, function (dismiss) {
-            return false;
         })
     }
 });

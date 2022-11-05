@@ -40,4 +40,28 @@ class PengajuanKegiatanController extends Controller
             'message' => 'Berhasil ditolak'
         ]);
     }
+
+    public function revisi(Request $request, $id)
+    {
+        RencanaButirKegiatan::query()->find($id)->update([
+            'status' => 2,
+            'catatan' => $request->catatan
+        ]);
+        return response()->json([
+            'status' => 200,
+            'message' => 'Berhasil direvisi'
+        ]);
+    }
+
+    public function verifikasi($id)
+    {
+        RencanaButirKegiatan::query()->find($id)->update([
+            'status' => 4,
+            'catatan' => null
+        ]);
+        return response()->json([
+            'status' => 200,
+            'message' => 'Berhasil diverifikasi'
+        ]);
+    }
 }
