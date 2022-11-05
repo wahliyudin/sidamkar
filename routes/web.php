@@ -70,7 +70,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('coba', function(){
-    return User::query()->withWhereHas('mentes.fungsional')->get();
+    return view('coba');
 });
 Route::redirect('/', 'login');
 Auth::routes(['verify' => true]);
@@ -143,6 +143,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('atasan-langsung/overview', [AtasanLangsungOverviewController::class, 'index'])->name('atasan-langsung.overview.index');
         Route::get('atasan-langsung/pengajuan-kegiatan', [PengajuanKegiatanController::class, 'index'])->name('atasan-langsung.pengajuan-kegiatan.index');
         Route::get('atasan-langsung/pengajuan-kegiatan/{id}/show', [PengajuanKegiatanController::class, 'show'])->name('atasan-langsung.pengajuan-kegiatan.show');
+        Route::post('atasan-langsung/pengajuan-kegiatan/{id}/tolak', [PengajuanKegiatanController::class, 'tolak'])->name('atasan-langsung.pengajuan-kegiatan.tolak');
         Route::get('atasan-langsung/kegiatan-selesai', [KegiatanLangsungController::class, 'index'])->name('atasan-langsung.kegiatan-selesai');
     });
 

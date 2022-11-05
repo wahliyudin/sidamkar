@@ -39,7 +39,10 @@
         max-width: 60% !important;
     }
 
-    .wrapper-btn .btn-tambah {
+    .wrapper-btn .btn-tambah,
+    .wrapper-btn .revisi-kegiatan,
+    .wrapper-btn .verif-kegiatan,
+    .wrapper-btn .tolak-kegiatan {
         margin-left: 0 !important;
         margin-top: 1rem;
     }

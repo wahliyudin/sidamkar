@@ -4,6 +4,7 @@ namespace App\Http\Controllers\AtasanLangsung;
 
 use App\DataTables\AtasanLangsung\PengajuanKegiatanDataTable;
 use App\Http\Controllers\Controller;
+use App\Models\RencanaButirKegiatan;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -26,5 +27,17 @@ class PengajuanKegiatanController extends Controller
             ])
             ->findOrFail($id)->rencanas;
         return view('atasan-langsung.pengajuan-kegiatan.show', compact('rencanas'));
+    }
+
+    public function tolak(Request $request, $id)
+    {
+        RencanaButirKegiatan::query()->find($id)->update([
+            'status' => 3,
+            'catatan' => $request->catatan
+        ]);
+        return response()->json([
+            'status' => 200,
+            'message' => 'Berhasil ditolak'
+        ]);
     }
 }

@@ -88,27 +88,31 @@
                                                                                             <button
                                                                                                 class="btn btn-red ms-3 px-3"
                                                                                                 data-bs-toggle="modal"
-                                                                                                data-bs-target="#riwayatKegiatan{{ $rencanaButirKegiatan->id }}"
+                                                                                                data-bs-target="#lihat{{ $rencanaButirKegiatan->id }}"
                                                                                                 type="button">Revisi</button>
                                                                                         @elseif($rencanaButirKegiatan->status == 3)
                                                                                             <button
                                                                                                 class="btn btn-black ms-3 px-3"
                                                                                                 data-bs-toggle="modal"
-                                                                                                data-bs-target="#riwayatKegiatan{{ $rencanaButirKegiatan->id }}"
+                                                                                                data-bs-target="#lihat{{ $rencanaButirKegiatan->id }}"
                                                                                                 type="button">Ditolak</button>
                                                                                         @elseif($rencanaButirKegiatan->status == 4)
                                                                                             <button
                                                                                                 class="btn btn-green-dark ms-3 px-3"
                                                                                                 data-bs-toggle="modal"
-                                                                                                data-bs-target="#riwayatKegiatan{{ $rencanaButirKegiatan->id }}"
+                                                                                                data-bs-target="#lihat{{ $rencanaButirKegiatan->id }}"
                                                                                                 type="button">Selesai</button>
                                                                                         @else
                                                                                             <button
                                                                                                 data-rencana="{{ $rencanaButirKegiatan->id }}"
                                                                                                 class="btn btn-blue ms-3 px-4 btn-sm laporkan"
                                                                                                 data-bs-toggle="modal"
-                                                                                                data-bs-target="#laporkan"
+                                                                                                data-bs-target="#lihat{{ $rencanaButirKegiatan->id }}"
                                                                                                 type="button">Lihat</button>
+                                                                                            @include('atasan-langsung.pengajuan-kegiatan.kegiatan.lihat',
+                                                                                                compact(
+                                                                                                    'rencanaButirKegiatan'
+                                                                                                ))
                                                                                         @endif
                                                                                     </div>
                                                                                 </div>
@@ -132,57 +136,8 @@
         </div>
     </div>
 
-    <div class="modal fade" id="lihat" tabindex="-1" role="dialog" aria-labelledby="tindakLanjutTitle"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5>Kegiatan Jabatan</h5>
-                </div>
-                <div class="modal-body">
-                    <div class="d-flex flex-column">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>File Dokumen</label>
-                                    <input type="file" name="doc_kepegawaian_tmp" data-max-file-size="1MB"
-                                        data-max-files="3" required />
-                                    <input type="file" name="doc_kepegawaian" style="display: none;"
-                                        data-max-file-size="1MB" data-max-files="3" required />
-                                </div>
 
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>File Gambar</label>
-                                    <input type="file" name="doc_kepegawaian_tmp" data-max-file-size="1MB"
-                                        data-max-files="3" required />
-                                    <input type="file" name="doc_kepegawaian" style="display: none;"
-                                        data-max-file-size="1MB" data-max-files="3" required />
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="">Detail Kegiatan</label>
-                                    <textarea name="" id="" class="form-control"></textarea>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="text-center mt-4">
-                            <button class="btn btn-danger px-5" data-bs-dismiss="modal">Tolak</button>
-                            <button class="btn btn-gray px-5 mx-4" data-bs-toggle="modal"
-                                data-bs-target="#revisi">Revisi</button>
-                            <a class="btn btn-blue px-5">Verifikasi</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="revisi" tabindex="-1" role="dialog" aria-labelledby="revisiTitle"
-        aria-hidden="true">
+    <div class="modal fade" id="revisi" tabindex="-1" role="dialog" aria-labelledby="revisiTitle" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -243,261 +198,5 @@
     </script>
     <script src="{{ asset('assets/extensions/filepond/filepond.jquery.js') }}"></script>
     <script src="{{ asset('assets/js/extensions/sweetalert2.all.min.js') }}"></script>
-    <script>
-        $(function() {
-            $.fn.filepond.registerPlugin(FilePondPluginImagePreview);
-            $.fn.filepond.registerPlugin(FilePondPluginFileValidateType);
-            pond = FilePond.create(document.querySelector('input[name="file_import_tmp"]'), {
-                acceptedFileTypes: [
-                    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                    "application/vnd.ms-excel",
-                    "application/vnd.oasis.opendocument.spreadsheet"
-                ],
-                fileValidateTypeDetectType: (source, type) =>
-                    new Promise((resolve, reject) => {
-                        // Do custom type detection here and return with promise
-
-                        resolve(type);
-                    }),
-            });
-            pond.setOptions({
-                server: {
-                    process: (fieldName, file, metadata, load, error, progress, abort, transfer,
-                        options) => {
-                        message = '';
-                        if (file.size / 1000 >= 2000) {
-                            error('file kegedean')
-                            message = "File tidak bole lebih dari 2MB";
-                        }
-                        const fileInput = document.querySelector('input[name="file_import"]');
-                        const myFile = new File([file], file.name, {
-                            type: file.type,
-                            lastModified: new Date(),
-                        });
-                        const dataTransfer = new DataTransfer();
-                        dataTransfer.items.add(myFile);
-                        fileInput.files = dataTransfer.files;
-                        load(file.name);
-                        if (message) {
-                            Toastify({
-                                text: message,
-                                duration: 5000,
-                                close: true,
-                                gravity: "top",
-                                position: "right",
-                                backgroundColor: "rgba(234, 58, 61, 0.9)",
-                            }).showToast();
-                        }
-                    }
-                },
-            });
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $('.btn-simpan-file-import').click(function(e) {
-                e.preventDefault();
-                if (!$('#form-import input[name="file_import_tmp"]').val()) {
-                    Toastify({
-                        text: "File harus diisi!",
-                        duration: 5000,
-                        close: true,
-                        gravity: "top",
-                        position: "right",
-                        backgroundColor: "#EA3A3D",
-                    }).showToast();
-                } else {
-                    var postData = new FormData($("#form-import")[0]);
-                    $('.btn-simpan-file-import span').hide();
-                    $('.btn-simpan-file-import .spin').show();
-                    $.ajax({
-                        type: 'POST',
-                        url: "{{ route('kemendagri.cms.kegiatan-jabatan.import') }}",
-                        processData: false,
-                        contentType: false,
-                        data: postData,
-                        success: function(response) {
-                            $('.btn-simpan-file-import span').show();
-                            $('.btn-simpan-file-import .spin').hide();
-                            if (response.status == 200) {
-                                swal("Selesai!", response.message, "success").then(() => {
-                                    location.reload();
-                                });
-                            } else {
-                                swal("Error!", response.message, "error");
-                            }
-                        },
-                        error: function(err) {
-                            $('.btn-simpan-file-import span').show();
-                            $('.btn-simpan-file-import .spin').hide();
-                        }
-                    });
-                }
-            });
-            $("#importExcelModal").on('hide.bs.modal', function() {
-                pond.removeFiles();
-            });
-            $('.tambah-sub-unsur').click(function(e) {
-                e.preventDefault();
-                $('.container-unsur').append(`
-                    <div class="d-flex flex-column container-sub-unsur">
-                        <div class="row align-items-center justify-content-end">
-                            <div class="col-md-9">
-                                <div class="form-group">
-                                    <label>Sub Unsur</label>
-                                    <input class="form-control w-100" type="text" name="sub_unsur[]">
-                                </div>
-                            </div>
-                            <div class="col-md-2 d-flex align-items-center">
-                                <button type="button" class="hapus-sub-unsur" style="transform: translateY(8px); color: #EA3A3D; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #EA3A3D; background-color: transparent !important;"><i
-                                        class="fa-solid fa-minus"></i></button>
-                                <button type="button" class="btn btn-blue btn-sm ps-3 py-2 ms-2 tambah-butir"
-                                    style="transform: translateY(7px)"><i class="fa-solid fa-plus me-2"></i>
-                                    Butir</button>
-                            </div>
-                        </div>
-
-                        <div class="d-flex flex-column container-butir">
-
-                        </div>
-                    </div>
-                `);
-            });
-            $('.container-unsur').on('click', '.tambah-butir', function() {
-                $(this.parentElement.parentElement.parentElement.querySelector('.container-butir')).append(`
-                    <div class="row align-items-center justify-content-end">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Butir Kegiatan</label>
-                                <input class="form-control w-100" type="text" name="butir_kegiatan[]">
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label>Nilai Kredit</label>
-                                <input class="form-control w-100" step="0.01" type="number" name="angka_kredit[]">
-                            </div>
-                        </div>
-                        <div class="col-md-2 d-flex">
-                            {{-- <button
-                                    style="transform: translateY(8px); color: #139A6E; background-color: transparent; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #139A6E;"><i
-                                        class="fa-solid fa-plus"></i></button> --}}
-                            <button class="hapus-butir"
-                                style="transform: translateY(8px); color: #EA3A3D; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #EA3A3D; background-color: transparent !important;"><i
-                                    class="fa-solid fa-minus"></i></button>
-                        </div>
-                    </div>
-                `);
-            });
-            $('.container-unsur').on('click', '.hapus-butir', function() {
-                $(this.parentElement.parentElement).remove();
-            });
-            $('.container-unsur').on('click', '.hapus-sub-unsur', async function(parent) {
-                isDelete = false;
-                await swal({
-                    title: "Yakin ingin menghapus unsur?",
-                    type: "warning",
-                    showCancelButton: !0,
-                    confirmButtonText: "Ya, yakin!",
-                    cancelButtonText: "Batal",
-                    reverseButtons: !0,
-                    showLoaderOnConfirm: true,
-                }).then(function(e) {
-                    if (e.value == true) {
-                        isDelete = true;
-                    }
-                }, function(dismiss) {
-                    return false;
-                })
-                if (isDelete == true) {
-                    $(this.parentElement.parentElement.parentElement).remove();
-                }
-            });
-            $('.simpan-kegiatan').click(function(e) {
-                e.preventDefault();
-                var role_id = $('select[name="role_id"]').val();
-                var unsur = $('input[name="unsur"]').val();
-                result = [];
-                $.each($('input[name="sub_unsur[]"]'), function(indexInArray, valueOfElement) {
-                    result.push({
-                        name: $(valueOfElement).val(),
-                        butir_kegiatans: $($(this.parentElement.parentElement.parentElement
-                            .parentElement).find(
-                            'input[name="butir_kegiatan[]"]')).map(
-                            function(idx2, elem2) {
-                                return $(elem2).val();
-                            }).get(),
-                        angka_kredits: $($(this.parentElement.parentElement.parentElement
-                            .parentElement).find(
-                            'input[name="angka_kredit[]"]')).map(
-                            function(idx2, elem2) {
-                                return $(elem2).val();
-                            }).get()
-                    })
-                });
-                $('.simpan-kegiatan span').hide();
-                $('.simpan-kegiatan .spin').show();
-                $.ajax({
-                    type: "POST",
-                    url: "{{ route('kemendagri.cms.kegiatan-jabatan.store') }}",
-                    data: {
-                        role_id: role_id,
-                        unsur: unsur,
-                        sub_unsurs: result
-                    },
-                    dataType: "json",
-                    success: function(response) {
-                        $('.simpan-kegiatan span').show();
-                        $('.simpan-kegiatan .spin').hide();
-                        if (response.status == 200) {
-                            Toastify({
-                                text: response.message,
-                                duration: 5000,
-                                close: true,
-                                gravity: "top",
-                                position: "right",
-                                backgroundColor: "#18b882",
-                            }).showToast()
-                            location.reload();
-                        }
-                    },
-                    error: function(err) {
-                        $('.simpan-kegiatan span').show();
-                        $('.simpan-kegiatan .spin').hide();
-                    }
-                });
-            });
-            $('.btn-hapus-kegiatan').click(function(e) {
-                e.preventDefault();
-                swal({
-                    title: "Yakin ingin menghapus?",
-                    type: "warning",
-                    showCancelButton: !0,
-                    confirmButtonText: "Ya, yakin!",
-                    cancelButtonText: "Batal",
-                    reverseButtons: !0,
-                    showLoaderOnConfirm: true,
-                    preConfirm: async () => {
-                        return await $.ajax({
-                            type: 'DELETE',
-                            url: "{{ url('kemendagri/cms/kegiatan-jabatan') }}/" + $(
-                                this).data('id') + '/destroy',
-                            dataType: 'JSON'
-                        });
-                    },
-                }).then(function(e) {
-                    if (e.value.status == 200) {
-                        swal("Selesai!", e.value.message, "success").then(() => {
-                            location.reload();
-                        });
-                    } else {
-                        swal("Error!", e.value.message, "error");
-                    }
-                }, function(dismiss) {
-                    return false;
-                })
-            });
-        });
-    </script>
+    <script src="{{ asset('assets/js/pages/atasan-langsung/pengajuan-kegiatan.js') }}"></script>
 @endsection
