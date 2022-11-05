@@ -152,10 +152,13 @@
                                                                                                 ])
                                                                                         @elseif($rencanaButirKegiatan->status == 2)
                                                                                             <button
-                                                                                                class="btn btn-red ms-3 px-3 btn-sm"
-                                                                                                data-bs-toggle="modal"
-                                                                                                data-bs-target="#riwayatKegiatan{{ $rencanaButirKegiatan->id }}"
+                                                                                                class="btn btn-red ms-3 px-3 btn-sm btn-revisi"
+                                                                                                data-rencana="{{ $rencanaButirKegiatan->id }}"
                                                                                                 type="button">Revisi</button>
+                                                                                            @include('aparatur.laporan-kegiatan.revisi',
+                                                                                                [
+                                                                                                    'rencanaButirKegiatan' => $rencanaButirKegiatan,
+                                                                                                ])
                                                                                         @elseif($rencanaButirKegiatan->status == 3)
                                                                                             <button
                                                                                                 class="btn btn-black ms-3 px-3"
@@ -244,6 +247,17 @@
     <link rel="stylesheet" href="{{ asset('assets/extensions/choices.js/public/assets/styles/choices.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/shared/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/pages/kemendagri.css') }}">
+    <style>
+        .filepond--item {
+            width: calc(50% - .5em);
+        }
+
+        @media screen and (max-width: 750px) {
+            .filepond--item {
+                width: 100%;
+            }
+        }
+    </style>
 @endsection
 @section('js')
     <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
@@ -317,6 +331,65 @@
             $("#laporkan").on('hide.bs.modal', function() {
                 pond.removeFiles();
             });
+            $("#laporkan").on('hide.bs.modal', function() {
+                pond.removeFiles();
+            });
+
+            $('.btn-revisi').each(function(index, element) {
+                // element == this
+                $(element).click(function(e) {
+                    e.preventDefault();
+                    $('#revisi' + $(element).data('rencana')).modal('show');
+                    $.ajax({
+                        type: "POST",
+                        url: url("/laporan-kegiatan/jabatan/" + $(element).data('rencana') +
+                            "/edit"),
+                        dataType: "json",
+                        success: function(response) {
+                            pond.removeFile();
+                            response.data.dokumen_kegiatan_pokoks.forEach((element,
+                                i) => {
+                                pond.addFile(element.file, {
+                                    index: i
+                                });
+                            });
+                        }
+                    });
+                });
+            });
+
+
+            $('.revisi-kegiatan').each(function(index, element) {
+                $(element).click(function(e) {
+                    e.preventDefault();
+                    var postData = new FormData($(".form-kegiatan" + $(element).data('rencana'))[
+                    0]);
+                    $('.revisi-kegiatan span').hide();
+                    $('.revisi-kegiatan .spin').show();
+                    $.ajax({
+                        type: 'POST',
+                        url: url("/laporan-kegiatan/jabatan/" + $(element).data('rencana') +
+                            "/update"),
+                        processData: false,
+                        contentType: false,
+                        data: postData,
+                        success: function(response) {
+                            $('.revisi-kegiatan span').show();
+                            $('.revisi-kegiatan .spin').hide();
+                            if (response.status == 200) {
+                                swal("Selesai!", response.message, "success").then(
+                                    () => {
+                                        location.reload();
+                                    });
+                            } else {
+                                swal("Error!", response.message, "error");
+                            }
+                        },
+                        error: ajaxError
+                    });
+                });
+            });
+
             var ajaxError = function(jqXHR, xhr, textStatus, errorThrow, exception) {
                 if (jqXHR.status === 0) {
                     swal("Error!", 'Not connect.\n Verify Network.', "error");

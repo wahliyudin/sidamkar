@@ -35,6 +35,11 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'status_akun' => 1
         ])->attachRole('damkar_pemula');
+        $damkarPemula->userAparatur()->create([
+            'nama' => 'Damkar Pemula',
+            'provinsi_id' => 11,
+            'kab_kota_id' => 1101,
+        ]);
 
         $analisKebakaran = User::query()->create([
             'username' => 'Analis Kebakaran Ahli Pertama',

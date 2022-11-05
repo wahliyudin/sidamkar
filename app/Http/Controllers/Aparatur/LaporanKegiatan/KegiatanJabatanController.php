@@ -59,6 +59,54 @@ class KegiatanJabatanController extends Controller
         ]);
     }
 
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'keterangan' => 'required',
+            'doc_kegiatan_tmp' => 'required|array'
+        ], [
+            'keterangan.required' => 'Detail kegiatan harus diisi',
+            'doc_kegiatan_tmp.required' => 'Dokumen Kegiatan harus diisi'
+        ]);
+        $rencanaButirKegiatan = RencanaButirKegiatan::query()->with('dokumenKegiatanPokoks')->find($id);
+        foreach ($rencanaButirKegiatan->dokumenKegiatanPokoks as $dok) {
+            deleteImage($dok->file);
+            $dok->delete();
+        }
+        foreach ($request->doc_kegiatan_tmp as $doc_kegiatan_tmp) {
+            $tmp_file = TemporaryFile::query()->where('folder', $doc_kegiatan_tmp)->first();
+            if ($tmp_file) {
+                Storage::copy("tmp/$tmp_file->folder/$tmp_file->file", "kegiatan/$tmp_file->file");
+                $rencanaButirKegiatan->dokumenKegiatanPokoks()->create([
+                    'title' => $request->keterangan,
+                    'file' => url("storage/kegiatan/$tmp_file->file")
+                ]);
+                $tmp_file->delete();
+                Storage::deleteDirectory("tmp/$tmp_file->folder");
+            }
+        }
+        $rencanaButirKegiatan->update([
+            'status' => 1
+        ]);
+        $rencanaButirKegiatan->historyButirKegiatans()->create([
+            'keterangan' => 'Kirim revisi Laporan kegiatan'
+        ]);
+        return response()->json([
+            'status' => 200,
+            'message' => 'Berhasil'
+        ]);
+    }
+
+    public function edit($id)
+    {
+        $rencanaButirKegiatan = RencanaButirKegiatan::query()->with('dokumenKegiatanPokoks')->find($id);
+
+        return response()->json([
+            'status' => 200,
+            'data' => $rencanaButirKegiatan
+        ]);
+    }
+
     public function tmpFile(Request $request)
     {
         foreach ($request->doc_kegiatan_tmp as $file) {
@@ -71,7 +119,7 @@ class KegiatanJabatanController extends Controller
             ]);
             return $folder;
         }
-        return '';
+        return;
     }
 
     public function revert(Request $request)
