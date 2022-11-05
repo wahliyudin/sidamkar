@@ -1,21 +1,21 @@
-
 $(document).ready(function () {
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
     loadData();
     $('input[name="search"]').keyup(function (e) {
-        loadData(e.target.value);
+        loadData(e.target.value, $('input[name="tanggal"]').val());
     });
 
-    function loadData(search = null) {
+    $('input[name="tanggal"]').change(function (e) {
+        e.preventDefault();
+        loadData($('input[name="search"]').val(), e.target.value);
+    });
+
+    function loadData(search = null, date = null) {
         $.ajax({
             type: "POST",
-            url: url('/kegiatan/jabatan/search'),
+            url: url('/laporan-kegiatan/jabatan/load-data'),
             data: {
                 search: search,
+                search_date: date,
             },
             dataType: "json",
             success: function (response) {
@@ -116,83 +116,12 @@ $(document).ready(function () {
                         <h6 class="accordian-title">
                             ${rencanaButirKegiatan.butir_kegiatan.nama}
                         </h6>
-                        <h6 class="accordian-title"
-                            style="color: #1AD598;">
-                            ${rencanaButirKegiatan.butir_kegiatan.score}
-                        </h6>
+                        <div class="d-flex align-items-center">
+                            ${rencanaButirKegiatan.button}
+                        </div>
                     </div>
                 </li>
             `;
         }).join('')
     }
-
-    $('.simpan-rencana').click(function (e) {
-        e.preventDefault();
-        $('.simpan-rencana span').hide();
-        $('.simpan-rencana .spin').show();
-        rencana = $('input[name="rencana"]').val();
-        subUnsurs = $.map($('input[name="sub_unsurs[]"]'), function (elementOrValue, indexOrKey) {
-            if ($(elementOrValue).is(':checked')) {
-                return {
-                    unsur_id: $(elementOrValue).data('unsurid'),
-                    sub_unsur_id: $(elementOrValue).val()
-                };
-            }
-        });
-        $.ajax({
-            type: "POST",
-            url: url('/kegiatan/jabatan/rencana-kinerja/store'),
-            data: {
-                rencana: rencana,
-                sub_unsurs: subUnsurs
-            },
-            dataType: "json",
-            success: function (response) {
-                $('.simpan-rencana span').show();
-                $('.simpan-rencana .spin').hide();
-                location.reload();
-            },
-            error: ajaxError
-        });
-    });
-
-    var ajaxError = function (jqXHR, xhr, textStatus, errorThrow, exception) {
-        if (jqXHR.status === 0) {
-            swal("Error!", 'Not connect.\n Verify Network.', "error");
-            $('.simpan-rencana span').show();
-            $('.simpan-rencana .spin').hide();
-        } else if (jqXHR.status == 400) {
-            swal("Peringatan!", jqXHR['responseJSON'].message, "warning");
-            $('.simpan-rencana span').show();
-            $('.simpan-rencana .spin').hide();
-        } else if (jqXHR.status == 404) {
-            swal('Error!', 'Requested page not found. [404]', "error");
-            $('.simpan-rencana span').show();
-            $('.simpan-rencana .spin').hide();
-        } else if (jqXHR.status == 500) {
-            swal('Error!', 'Internal Server Error [500].' + jqXHR['responseJSON'].message, "error");
-            $('.simpan-rencana span').show();
-            $('.simpan-rencana .spin').hide();
-        } else if (exception === 'parsererror') {
-            swal('Error!', 'Requested JSON parse failed.', "error");
-            $('.simpan-rencana span').show();
-            $('.simpan-rencana .spin').hide();
-        } else if (exception === 'timeout') {
-            swal('Error!', 'Time out error.', "error");
-            $('.simpan-rencana span').show();
-            $('.simpan-rencana .spin').hide();
-        } else if (exception === 'abort') {
-            swal('Error!', 'Ajax request aborted.', "error");
-            $('.simpan-rencana span').show();
-            $('.simpan-rencana .spin').hide();
-        } else if (jqXHR.status == 422) {
-            swal('Warning!', JSON.parse(jqXHR.responseText).message, "warning");
-            $('.simpan-rencana span').show();
-            $('.simpan-rencana .spin').hide();
-        } else {
-            swal('Error!', jqXHR.responseText, "error");
-            $('.simpan-rencana span').show();
-            $('.simpan-rencana .spin').hide();
-        }
-    };
 });

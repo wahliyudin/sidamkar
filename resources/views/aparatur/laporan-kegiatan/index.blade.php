@@ -67,18 +67,18 @@
                     <div class="row align-items-center justify-content-between">
                         <div class="form-group col-md-2">
                             <label>Tanggal</label>
-                            <input type="date" value="{{ now()->format('Y-m-d') }}" max="2022-11-28" min="2022-11-01"
-                                class="form-control">
+                            <input type="date" name="tanggal" value="{{ now()->format('Y-m-d') }}" max="2022-11-28"
+                                min="2022-11-01" class="form-control">
                         </div>
                         <div class="form-group col-md-6">
                             <label>Search</label>
-                            <input type="text" placeholder="Search..." class="form-control">
+                            <input type="text" name="search" placeholder="Search..." class="form-control">
                         </div>
                     </div>
                 </div>
 
-                <div class="card-body px-0">
-                    @foreach ($rencanas as $rencana)
+                <div class="card-body px-0 rencana-container">
+                    {{-- @foreach ($rencanas as $rencana)
                         <div class="row">
                             <div class="form-group col-md-4">
                                 <h5>{{ $rencana->nama }}</h5>
@@ -203,14 +203,13 @@
                                 @endforeach
                             </div>
                         </div>
-                    @endforeach
+                    @endforeach --}}
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="laporkan" tabindex="-1" role="dialog" aria-labelledby="laporkanTitle"
-        aria-hidden="true">
+    <div class="modal fade" id="laporkan" tabindex="-1" role="dialog" aria-labelledby="laporkanTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -255,72 +254,7 @@
     <link rel="stylesheet" href="{{ asset('assets/extensions/choices.js/public/assets/styles/choices.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/shared/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/pages/kemendagri.css') }}">
-    <style>
-        .filepond--item {
-            width: calc(50% - .5em);
-        }
-
-        @media screen and (max-width: 750px) {
-            .filepond--item {
-                width: 100%;
-            }
-        }
-
-        .history {
-            padding: 1rem 0;
-        }
-
-        .history p {
-            margin: 0;
-        }
-
-        .history .history-item {
-            display: flex;
-            align-items: flex-start;
-        }
-
-        .history .history-item .history-item-date {
-            white-space: nowrap;
-            font-style: italic;
-            color: rgba(0, 144, 255, 0.7);
-            font-size: 16px;
-        }
-
-        .history .history-item .history-item-wrapper {
-            border-left: 2px solid black;
-            margin-left: 2rem;
-            display: flex;
-            position: relative;
-        }
-
-        .history-item .history-item-wrapper .point-wrapper {
-            width: 1.5rem;
-            height: 1.4rem;
-            background-color: rgba(249, 185, 89, 0.47);
-            position: absolute;
-            left: -.83rem;
-            border-radius: 5px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .history-item-wrapper .point-wrapper .point {
-            width: .6rem;
-            height: .6rem;
-            background-color: black;
-            border-radius: 50%;
-        }
-
-        .history-item .history-item-wrapper p {
-            margin-left: 1.5rem;
-            color: black;
-        }
-
-        .history-item:not(:last-child) .history-item-wrapper p {
-            padding-bottom: .8rem;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('assets/css/pages/aparatur/kegiatan.css') }}">
 @endsection
 @section('js')
     <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
@@ -494,4 +428,5 @@
             };
         });
     </script>
+    <script src="{{ asset('assets/js/pages/aparatur/laporan-kegiatan.js') }}"></script>
 @endsection

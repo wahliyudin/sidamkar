@@ -24,7 +24,22 @@
                             </div>
                         </div>
                         <div class="col-md-5">
-
+                            <h4>Riwayat Laporan Kegiatan</h4>
+                            <hr>
+                            <div class="history">
+                                @foreach ($rencanaButirKegiatan->historyButirKegiatans as $historyButirKegiatan)
+                                    <div class="history-item">
+                                        <span
+                                            class="history-item-date">{{ $historyButirKegiatan->created_at->format('d-m-Y') }}</span>
+                                        <div class="history-item-wrapper">
+                                            <div class="point-wrapper">
+                                                <span class="point"></span>
+                                            </div>
+                                            <p>{{ $historyButirKegiatan->keterangan }}</p>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                     <div class="text-center mt-4">
