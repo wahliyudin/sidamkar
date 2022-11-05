@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Aparatur\LaporanKegiatan;
 
 use App\Http\Controllers\Controller;
+use App\Models\Periode;
 use App\Models\Rencana;
 use App\Models\RencanaButirKegiatan;
 use App\Models\TemporaryFile;
@@ -14,21 +15,7 @@ class KegiatanJabatanController extends Controller
 {
     public function index()
     {
-        // $date = now()->addDay()->format('Y-m-d');
-        // $akhir = now()->addDay()->format('Y-m-d');
-        // $rencanas = User::query()
-        //     ->with([
-        //         'rencanas' => function ($query) use ($date, $akhir) {
-        //             $query->whereHas('rencanaUnsurs.unsur', function ($query) use ($date, $akhir) {
-        //                 $query->whereDate('created_at', $date);
-        //             });
-        //         },
-        //         'rencanas.rencanaUnsurs.unsur',
-        //         'rencanas.rencanaUnsurs.rencanaSubUnsurs.subUnsur.butirKegiatans',
-        //         'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.butirKegiatan'
-        //     ])
-        //     ->find(auth()->user()->id)->rencanas;
-        // return $rencanas;
+        $periode = Periode::query()->where('is_active', true)->first();
         $rencanas = User::query()
             ->with([
                 'rencanas',
@@ -39,7 +26,7 @@ class KegiatanJabatanController extends Controller
                 'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.historyButirKegiatans',
             ])
             ->find(auth()->user()->id)->rencanas;
-        return view('aparatur.laporan-kegiatan.index', compact('rencanas'));
+        return view('aparatur.laporan-kegiatan.index', compact('rencanas', 'periode'));
     }
 
     public function loadData(Request $request)

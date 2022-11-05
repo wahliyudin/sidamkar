@@ -3,7 +3,7 @@
 @section('content')
     <div class="section">
         <div class="row">
-            <div class="col-md-4 px-2">
+            <div class="col-md-3 px-2">
                 <div class="card">
                     <div class="card-body py-3 px-3" style="height: 100px;">
                         <div class="d-flex align-items-center h-100">
@@ -20,7 +20,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 px-2">
+            <div class="col-md-3 px-2">
                 <div class="card">
                     <div class="card-body py-3 px-3" style="height: 100px;">
                         <div class="d-flex align-items-center h-100">
@@ -37,7 +37,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 px-2">
+            <div class="col-md-6 px-2">
                 <div class="card">
                     <div class="card-body py-3 px-3" style="height: 100px;">
                         <div class="d-flex align-items-center h-100">
@@ -49,8 +49,9 @@
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                     Periode
                                 </p>
-                                <h2 style="font-family: 'Roboto'; font-size: 20px; color: #06152B;" class="target">Januari
-                                    2022 - Juli 2022</h2>
+                                <h2 style="font-family: 'Roboto'; font-size: 20px; color: #06152B;" class="target">
+                                    {{ Carbon\Carbon::make($periode->awal)->format('F Y') . ' - ' . Carbon\Carbon::make($periode->akhir)->format('F Y') }}
+                                </h2>
                             </div>
                         </div>
                     </div>
@@ -67,8 +68,9 @@
                     <div class="row align-items-center justify-content-between">
                         <div class="form-group col-md-2">
                             <label>Tanggal</label>
-                            <input type="date" name="tanggal" value="{{ now()->format('Y-m-d') }}" max="2022-11-28"
-                                min="2022-11-01" class="form-control">
+                            <input type="date" name="tanggal" value="{{ now()->format('Y-m-d') }}"
+                                max="{{ Carbon\Carbon::make($periode->akhir)->format('Y-m-d') }}"
+                                min="{{ Carbon\Carbon::make($periode->awal)->format('Y-m-d') }}" class="form-control">
                         </div>
                         <div class="form-group col-md-6">
                             <label>Search</label>
@@ -78,132 +80,7 @@
                 </div>
 
                 <div class="card-body px-0 rencana-container">
-                    {{-- @foreach ($rencanas as $rencana)
-                        <div class="row">
-                            <div class="form-group col-md-4">
-                                <h5>{{ $rencana->nama }}</h5>
-                            </div>
-                        </div>
-                        <div class="card-body accordion-container">
-                            <div class="accordion" id="accordion-parent">
-                                @foreach ($rencana->rencanaUnsurs as $rencanaUnsur)
-                                    <div class="accordion-item">
-                                        <div class="d-flex justify-content-between accordion-header py-3 px-2"
-                                            id="unsur{{ $rencanaUnsur->id . $rencanaUnsur->unsur->id }}">
-                                            <div class="d-flex align-items-center justify-content-between w-100"
-                                                style="color: #000000;">
-                                                <p class="accordion-title">
-                                                    {{ $rencanaUnsur->unsur->nama }}
-                                                </p>
-                                            </div>
-                                            <button class="accordion-button collapsed" type="button"
-                                                data-bs-toggle="collapse"
-                                                data-bs-target="#contentUnsur{{ $rencanaUnsur->id . $rencanaUnsur->unsur->id }}"
-                                                aria-expanded="false"
-                                                aria-controls="contentUnsur{{ $rencanaUnsur->id . $rencanaUnsur->unsur->id }}">
-                                            </button>
-                                        </div>
-                                        <div id="contentUnsur{{ $rencanaUnsur->id . $rencanaUnsur->unsur->id }}"
-                                            class="accordion-collapse collapse"
-                                            aria-labelledby="unsur{{ $rencanaUnsur->id . $rencanaUnsur->unsur->id }}"
-                                            style="">
-                                            <div class="accordion-body">
-                                                <div class="accordion" id="accordion-child">
-                                                    @foreach ($rencanaUnsur->rencanaSubUnsurs as $rencanaSubUnsur)
-                                                        <div class="accordion-item">
-                                                            <div class="d-flex justify-content-between accordion-header py-1 px-1"
-                                                                id="subUnsur{{ $rencanaSubUnsur->subUnsur->id }}">
-                                                                <div class="d-flex align-items-center"
-                                                                    style="color: #000000;">
-                                                                    <h6 class="accordian-title">
-                                                                        {{ $rencanaSubUnsur->subUnsur->nama }}
-                                                                    </h6>
-                                                                </div>
-                                                                <button class="accordion-button collapsed" type="button"
-                                                                    data-bs-toggle="collapse"
-                                                                    data-bs-target="#contentchildSubUnsur{{ $rencanaSubUnsur->subUnsur->id }}"
-                                                                    aria-expanded="false"
-                                                                    aria-controls="contentchildSubUnsur{{ $rencanaSubUnsur->subUnsur->id }}">
-                                                                </button>
-                                                            </div>
-                                                            <div id="contentchildSubUnsur{{ $rencanaSubUnsur->subUnsur->id }}"
-                                                                class="accordion-collapse collapse"
-                                                                aria-labelledby="subUnsur{{ $rencanaSubUnsur->subUnsur->id }}"
-                                                                style="">
-                                                                <div class="accordion-body">
-                                                                    <ul class="ms-0">
-                                                                        @foreach ($rencanaSubUnsur->rencanaButirKegiatans as $rencanaButirKegiatan)
-                                                                            <li class="accordian-list">
-                                                                                <div
-                                                                                    class="d-flex align-items-center justify-content-between">
-                                                                                    <h6 class="accordian-title">
-                                                                                        {{ $rencanaButirKegiatan->butirKegiatan->nama }}
-                                                                                    </h6>
-                                                                                    <div class="d-flex align-items-center">
-                                                                                        @if ($rencanaButirKegiatan->status == 1)
-                                                                                            <button
-                                                                                                class="btn btn-yellow ms-3 px-3"
-                                                                                                data-bs-toggle="modal"
-                                                                                                data-bs-target="#riwayatKegiatan{{ $rencanaButirKegiatan->id }}"
-                                                                                                type="button">Prosess</button>
-                                                                                            @include('aparatur.laporan-kegiatan.riwayat',
-                                                                                                [
-                                                                                                    'rencanaButirKegiatan' => $rencanaButirKegiatan,
-                                                                                                ])
-                                                                                        @elseif($rencanaButirKegiatan->status == 2)
-                                                                                            <button
-                                                                                                class="btn btn-red ms-3 px-3 btn-sm btn-revisi"
-                                                                                                data-rencana="{{ $rencanaButirKegiatan->id }}"
-                                                                                                type="button">Revisi</button>
-                                                                                            @include('aparatur.laporan-kegiatan.revisi',
-                                                                                                [
-                                                                                                    'rencanaButirKegiatan' => $rencanaButirKegiatan,
-                                                                                                ])
-                                                                                        @elseif($rencanaButirKegiatan->status == 3)
-                                                                                            <button
-                                                                                                class="btn btn-black ms-3 px-3"
-                                                                                                data-bs-toggle="modal"
-                                                                                                data-bs-target="#riwayatKegiatan{{ $rencanaButirKegiatan->id }}"
-                                                                                                type="button">Ditolak</button>
-                                                                                            @include('aparatur.laporan-kegiatan.riwayat',
-                                                                                                [
-                                                                                                    'rencanaButirKegiatan' => $rencanaButirKegiatan,
-                                                                                                ])
-                                                                                        @elseif($rencanaButirKegiatan->status == 4)
-                                                                                            <button
-                                                                                                class="btn btn-green-dark ms-3 px-3"
-                                                                                                data-bs-toggle="modal"
-                                                                                                data-bs-target="#riwayatKegiatan{{ $rencanaButirKegiatan->id }}"
-                                                                                                type="button">Selesai</button>
-                                                                                            @include('aparatur.laporan-kegiatan.riwayat',
-                                                                                                [
-                                                                                                    'rencanaButirKegiatan' => $rencanaButirKegiatan,
-                                                                                                ])
-                                                                                        @else
-                                                                                            <button
-                                                                                                data-rencana="{{ $rencanaButirKegiatan->id }}"
-                                                                                                class="btn btn-gray ms-3 px-3 laporkan"
-                                                                                                data-bs-toggle="modal"
-                                                                                                data-bs-target="#laporkan"
-                                                                                                type="button">Laporkan</button>
-                                                                                        @endif
-                                                                                    </div>
-                                                                                </div>
-                                                                            </li>
-                                                                        @endforeach
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    @endforeach --}}
+
                 </div>
             </div>
         </div>

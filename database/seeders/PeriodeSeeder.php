@@ -19,6 +19,7 @@ class PeriodeSeeder extends Seeder
             [
                 'awal' => '2022-01-01',
                 'akhir' => '2022-12-31',
+                'is_active' => true
             ],
             [
                 'awal' => '2023-01-01',
