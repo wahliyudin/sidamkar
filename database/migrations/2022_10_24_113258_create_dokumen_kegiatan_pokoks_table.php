@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('rencana_butir_kegiatan_id');
             $table->string('title');
             $table->string('file');
+            $table->date('current_date');
             $table->timestamps();
 
             $table->foreign('rencana_butir_kegiatan_id')->on('rencana_butir_kegiatans')->references('id')->cascadeOnDelete();

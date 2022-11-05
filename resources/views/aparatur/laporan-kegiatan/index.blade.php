@@ -218,6 +218,7 @@
                 <div class="modal-body">
                     <form class="d-flex flex-column form-kegiatan" enctype="multipart/form-data">
                         <input type="hidden" name="rencana_butir_kegiatan">
+                        <input type="hidden" name="current_date">
                         <div class="row">
                             <div class="form-group col-md-12">
                                 <label>File Dokumen</label>
@@ -294,11 +295,10 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-            $('.laporkan').each(function(index, element) {
-                $(element).click(function(e) {
-                    e.preventDefault();
-                    $('input[name="rencana_butir_kegiatan"]').val($(this).data('rencana'));
-                });
+            $(document).on('click', '.laporkan', function(e) {
+                e.preventDefault();
+                $('input[name="rencana_butir_kegiatan"]').val($(this).data('rencana'));
+                $('input[name="current_date"]').val($('input[name="tanggal"]').val());
             });
             $('.simpan-kegiatan').click(function(e) {
                 e.preventDefault();

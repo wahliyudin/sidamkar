@@ -1,11 +1,17 @@
 $(document).ready(function () {
-    loadData();
+    if (localStorage.getItem('search_date')) {
+        loadData(null, localStorage.getItem('search_date'));
+        $('input[name="tanggal"]').val(localStorage.getItem('search_date'));
+    } else {
+        loadData();
+    }
     $('input[name="search"]').keyup(function (e) {
         loadData(e.target.value, $('input[name="tanggal"]').val());
     });
 
     $('input[name="tanggal"]').change(function (e) {
         e.preventDefault();
+        localStorage.setItem('search_date', e.target.value);
         loadData($('input[name="search"]').val(), e.target.value);
     });
 
