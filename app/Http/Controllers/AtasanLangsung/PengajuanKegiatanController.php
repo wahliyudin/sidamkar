@@ -50,6 +50,7 @@ class PengajuanKegiatanController extends Controller
                         foreach ($rencanaUnsur->rencanaSubUnsurs as $rencanaSubUnsur) {
                             foreach ($rencanaSubUnsur->rencanaButirKegiatans as $rencanaButirKegiatan) {
                                 if ($rencanaButirKegiatan->dokumenKegiatanPokoks()->whereDate('current_date', $date)->first() !== null) {
+                                    $rencanaButirKegiatan->dokumenKegiatanPokoks = $rencanaButirKegiatan->dokumenKegiatanPokoks()->whereDate('current_date', $date)->get();
                                     if ($rencanaButirKegiatan->status == 2) {
                                         $rencanaButirKegiatan->button = '<button class="btn btn-red ms-3 px-3 btn-sm"
                                             data-bs-toggle="modal"

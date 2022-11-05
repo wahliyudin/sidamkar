@@ -48,13 +48,15 @@ class KegiatanJabatanController extends Controller
                     },
                     'rencanas.rencanaUnsurs.unsur',
                     'rencanas.rencanaUnsurs.rencanaSubUnsurs.subUnsur.butirKegiatans',
-                    'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.butirKegiatan'
+                    'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.butirKegiatan',
+                    'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.dokumenKegiatanPokoks',
                 ])
                 ->find(auth()->user()->id)?->rencanas->map(function (Rencana $rencana) use ($date) {
                     foreach ($rencana->rencanaUnsurs as $rencanaUnsur) {
                         foreach ($rencanaUnsur->rencanaSubUnsurs as $rencanaSubUnsur) {
                             foreach ($rencanaSubUnsur->rencanaButirKegiatans as $rencanaButirKegiatan) {
                                 if ($rencanaButirKegiatan->dokumenKegiatanPokoks()->whereDate('current_date', $date)->first() !== null) {
+                                    $rencanaButirKegiatan->dokumenKegiatanPokoks = $rencanaButirKegiatan->dokumenKegiatanPokoks()->whereDate('current_date', $date)->get();
                                     if ($rencanaButirKegiatan->status == 1) {
                                         $rencanaButirKegiatan->button = '<button class="btn btn-yellow ms-3 px-3"
                                             data-bs-toggle="modal"
