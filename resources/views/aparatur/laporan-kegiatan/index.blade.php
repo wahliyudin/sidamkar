@@ -165,12 +165,20 @@
                                                                                                 data-bs-toggle="modal"
                                                                                                 data-bs-target="#riwayatKegiatan{{ $rencanaButirKegiatan->id }}"
                                                                                                 type="button">Ditolak</button>
+                                                                                            @include('aparatur.laporan-kegiatan.riwayat',
+                                                                                                [
+                                                                                                    'rencanaButirKegiatan' => $rencanaButirKegiatan,
+                                                                                                ])
                                                                                         @elseif($rencanaButirKegiatan->status == 4)
                                                                                             <button
                                                                                                 class="btn btn-green-dark ms-3 px-3"
                                                                                                 data-bs-toggle="modal"
                                                                                                 data-bs-target="#riwayatKegiatan{{ $rencanaButirKegiatan->id }}"
                                                                                                 type="button">Selesai</button>
+                                                                                            @include('aparatur.laporan-kegiatan.riwayat',
+                                                                                                [
+                                                                                                    'rencanaButirKegiatan' => $rencanaButirKegiatan,
+                                                                                                ])
                                                                                         @else
                                                                                             <button
                                                                                                 data-rencana="{{ $rencanaButirKegiatan->id }}"
@@ -256,6 +264,61 @@
             .filepond--item {
                 width: 100%;
             }
+        }
+
+        .history {
+            padding: 1rem 0;
+        }
+
+        .history p {
+            margin: 0;
+        }
+
+        .history .history-item {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .history .history-item .history-item-date {
+            white-space: nowrap;
+            font-style: italic;
+            color: rgba(0, 144, 255, 0.7);
+            font-size: 16px;
+        }
+
+        .history .history-item .history-item-wrapper {
+            border-left: 2px solid black;
+            margin-left: 2rem;
+            display: flex;
+            position: relative;
+        }
+
+        .history-item .history-item-wrapper .point-wrapper {
+            width: 1.5rem;
+            height: 1.4rem;
+            background-color: rgba(249, 185, 89, 0.47);
+            position: absolute;
+            left: -.83rem;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .history-item-wrapper .point-wrapper .point {
+            width: .6rem;
+            height: .6rem;
+            background-color: black;
+            border-radius: 50%;
+        }
+
+        .history-item .history-item-wrapper p {
+            margin-left: 1.5rem;
+            color: black;
+        }
+
+        .history-item:not(:last-child) .history-item-wrapper p {
+            padding-bottom: .8rem;
         }
     </style>
 @endsection
@@ -363,7 +426,7 @@
                 $(element).click(function(e) {
                     e.preventDefault();
                     var postData = new FormData($(".form-kegiatan" + $(element).data('rencana'))[
-                    0]);
+                        0]);
                     $('.revisi-kegiatan span').hide();
                     $('.revisi-kegiatan .spin').show();
                     $.ajax({

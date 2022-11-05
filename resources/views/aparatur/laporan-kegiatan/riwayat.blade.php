@@ -19,13 +19,28 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Detail Kegiatan</label>
-                                    <textarea class="form-control" name="" rows="3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore cupiditate odio ea consectetur quia. Perferendis eligendi quisquam exercitationem laudantium minima animi accusantium, autem neque? Facere in voluptatum dicta soluta. Velit.</textarea>
+                                    <textarea class="form-control" readonly name="" rows="3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore cupiditate odio ea consectetur quia. Perferendis eligendi quisquam exercitationem laudantium minima animi accusantium, autem neque? Facere in voluptatum dicta soluta. Velit.</textarea>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-5">
-
+                        <h4>Riwayat Laporan Kegiatan</h4>
+                        <hr>
+                        <div class="history">
+                            @foreach ($rencanaButirKegiatan->historyButirKegiatans as $historyButirKegiatan)
+                                <div class="history-item">
+                                    <span
+                                        class="history-item-date">{{ $historyButirKegiatan->created_at->format('d-m-Y') }}</span>
+                                    <div class="history-item-wrapper">
+                                        <div class="point-wrapper">
+                                            <span class="point"></span>
+                                        </div>
+                                        <p>{{ $historyButirKegiatan->keterangan }}</p>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>

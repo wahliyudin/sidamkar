@@ -31,9 +31,13 @@ class PengajuanKegiatanController extends Controller
 
     public function tolak(Request $request, $id)
     {
-        RencanaButirKegiatan::query()->find($id)->update([
+        $rencanaButirKegiatan = RencanaButirKegiatan::query()->find($id);
+        $rencanaButirKegiatan->update([
             'status' => 3,
             'catatan' => $request->catatan
+        ]);
+        $rencanaButirKegiatan->historyButirKegiatans()->create([
+            'keterangan' => 'Laporan ditolak'
         ]);
         return response()->json([
             'status' => 200,
@@ -43,9 +47,13 @@ class PengajuanKegiatanController extends Controller
 
     public function revisi(Request $request, $id)
     {
-        RencanaButirKegiatan::query()->find($id)->update([
+        $rencanaButirKegiatan = RencanaButirKegiatan::query()->find($id);
+        $rencanaButirKegiatan->update([
             'status' => 2,
             'catatan' => $request->catatan
+        ]);
+        $rencanaButirKegiatan->historyButirKegiatans()->create([
+            'keterangan' => 'Laporan direvisi'
         ]);
         return response()->json([
             'status' => 200,
@@ -55,9 +63,13 @@ class PengajuanKegiatanController extends Controller
 
     public function verifikasi($id)
     {
-        RencanaButirKegiatan::query()->find($id)->update([
+        $rencanaButirKegiatan = RencanaButirKegiatan::query()->find($id);
+        $rencanaButirKegiatan->update([
             'status' => 4,
             'catatan' => null
+        ]);
+        $rencanaButirKegiatan->historyButirKegiatans()->create([
+            'keterangan' => 'Laporan diverifikasi'
         ]);
         return response()->json([
             'status' => 200,

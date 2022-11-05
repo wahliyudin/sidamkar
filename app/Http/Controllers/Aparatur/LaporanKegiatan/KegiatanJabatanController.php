@@ -20,6 +20,7 @@ class KegiatanJabatanController extends Controller
                 'rencanas.rencanaUnsurs.rencanaSubUnsurs.subUnsur',
                 'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.butirKegiatan',
                 'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.dokumenKegiatanPokoks',
+                'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.historyButirKegiatans',
             ])
             ->find(auth()->user()->id)->rencanas;
         return view('aparatur.laporan-kegiatan.index', compact('rencanas'));

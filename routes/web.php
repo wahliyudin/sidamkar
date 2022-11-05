@@ -70,7 +70,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('coba', function(){
-    return view('coba');
+    return view('timeline');
 });
 Route::redirect('/', 'login');
 Auth::routes(['verify' => true]);
