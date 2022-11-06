@@ -1,10 +1,10 @@
 <div class="modal fade" id="lihat{{ $rencanaButirKegiatan->id }}" tabindex="-1" role="dialog" aria-labelledby="lihatTitle"
     aria-hidden="true">
-    <div class="modal-dialog {{ count($rencanaButirKegiatan->dokumenKegiatanPokoks) >= 1 ? 'modal-lg' : '' }} modal-dialog-centered modal-dialog-centered"
+    <div class="modal-dialog {{ isset($rencanaButirKegiatan->laporanKegiatanJabatan?->dokumenKegiatanPokoks) ? 'modal-lg' : '' }} modal-dialog-centered modal-dialog-centered"
         role="document">
         <div class="modal-content">
             <div class="modal-body px-4">
-                @if (count($rencanaButirKegiatan->dokumenKegiatanPokoks) >= 1)
+                @if (isset($rencanaButirKegiatan->laporanKegiatanJabatan?->dokumenKegiatanPokoks))
                     <div class="row">
                         <div class="col-md-12">
                             <div class="d-flex flex-column">
@@ -13,7 +13,7 @@
                                 <div class="d-flex flex-column">
                                     <h6>File Dokumen</h6>
                                     <div class="d-flex flex-wrap gap-3 justify-content-center">
-                                        @foreach ($rencanaButirKegiatan->dokumenKegiatanPokoks as $dokumenKegiatanPokok)
+                                        @foreach ($rencanaButirKegiatan->laporanKegiatanJabatan->dokumenKegiatanPokoks as $dokumenKegiatanPokok)
                                             <img src="{{ $dokumenKegiatanPokok->file }}"
                                                 style="max-width: 300px; max-height: 400px; object-fit: contain; border-radius: 10px; overflow: hidden;"
                                                 alt="">
@@ -21,7 +21,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Detail Kegiatan</label>
-                                        <textarea class="form-control catatan" name="" rows="3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore cupiditate odio ea consectetur quia. Perferendis eligendi quisquam exercitationem laudantium minima animi accusantium, autem neque? Facere in voluptatum dicta soluta. Velit.</textarea>
+                                        <textarea class="form-control" readonly name="keterangan" rows="3">{{ $rencanaButirKegiatan->laporanKegiatanJabatan->detail_kegiatan }}</textarea>
                                     </div>
                                 </div>
                             </div>

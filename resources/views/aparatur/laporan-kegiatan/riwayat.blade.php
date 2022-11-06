@@ -11,7 +11,7 @@
                             <div class="d-flex flex-column">
                                 <h6>File Dokumen</h6>
                                 <div class="d-flex flex-wrap gap-3 justify-content-center">
-                                    @foreach ($rencanaButirKegiatan->dokumenKegiatanPokoks as $dokumenKegiatanPokok)
+                                    @foreach ($rencanaButirKegiatan->laporanKegiatanJabatan->dokumenKegiatanPokoks as $dokumenKegiatanPokok)
                                         <img src="{{ $dokumenKegiatanPokok->file }}"
                                             style="max-width: 300px; max-height: 400px; object-fit: contain; border-radius: 10px; overflow: hidden;"
                                             alt="">
@@ -19,7 +19,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Detail Kegiatan</label>
-                                    <textarea class="form-control" readonly name="" rows="3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore cupiditate odio ea consectetur quia. Perferendis eligendi quisquam exercitationem laudantium minima animi accusantium, autem neque? Facere in voluptatum dicta soluta. Velit.</textarea>
+                                    <textarea class="form-control" readonly name="keterangan" rows="3">{{ $rencanaButirKegiatan->laporanKegiatanJabatan->detail_kegiatan }}</textarea>
                                 </div>
                             </div>
                         </div>

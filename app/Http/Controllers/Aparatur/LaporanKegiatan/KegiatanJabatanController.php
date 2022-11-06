@@ -22,7 +22,8 @@ class KegiatanJabatanController extends Controller
                 'rencanas.rencanaUnsurs.unsur',
                 'rencanas.rencanaUnsurs.rencanaSubUnsurs.subUnsur',
                 'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.butirKegiatan',
-                'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.dokumenKegiatanPokoks',
+                'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan',
+                'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan.dokumenKegiatanPokoks',
                 'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.historyButirKegiatans',
             ])
             ->find(auth()->user()->id)->rencanas;
@@ -49,14 +50,14 @@ class KegiatanJabatanController extends Controller
                     'rencanas.rencanaUnsurs.unsur',
                     'rencanas.rencanaUnsurs.rencanaSubUnsurs.subUnsur.butirKegiatans',
                     'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.butirKegiatan',
-                    'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.dokumenKegiatanPokoks',
+                    'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan',
+                    'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan.dokumenKegiatanPokoks',
                 ])
                 ->find(auth()->user()->id)?->rencanas->map(function (Rencana $rencana) use ($date) {
                     foreach ($rencana->rencanaUnsurs as $rencanaUnsur) {
                         foreach ($rencanaUnsur->rencanaSubUnsurs as $rencanaSubUnsur) {
                             foreach ($rencanaSubUnsur->rencanaButirKegiatans as $rencanaButirKegiatan) {
-                                if ($rencanaButirKegiatan->dokumenKegiatanPokoks()->whereDate('current_date', $date)->first() !== null) {
-                                    $rencanaButirKegiatan->dokumenKegiatanPokoks = $rencanaButirKegiatan->dokumenKegiatanPokoks()->whereDate('current_date', $date)->get();
+                                if ($rencanaButirKegiatan->laporanKegiatanJabatan?->whereDate('current_date', $date)->first() !== null) {
                                     if ($rencanaButirKegiatan->status == 1) {
                                         $rencanaButirKegiatan->button = '<button class="btn btn-yellow ms-3 px-3"
                                             data-bs-toggle="modal"
@@ -67,19 +68,19 @@ class KegiatanJabatanController extends Controller
                                         $rencanaButirKegiatan->button = '<button
                                             class="btn btn-red ms-3 px-3 btn-sm btn-revisi"
                                             data-rencana="' . $rencanaButirKegiatan->id . '" type="button">Revisi</button>'
-                                                . view('aparatur.laporan-kegiatan.revisi', compact('rencanaButirKegiatan'));
+                                            . view('aparatur.laporan-kegiatan.revisi', compact('rencanaButirKegiatan'));
                                     } elseif ($rencanaButirKegiatan->status == 3) {
                                         $rencanaButirKegiatan->button = '<button class="btn btn-black ms-3 px-3"
                                             data-bs-toggle="modal"
                                             data-bs-target="#riwayatKegiatan' . $rencanaButirKegiatan->id . '"
                                             type="button">Ditolak</button>'
-                                                . view('aparatur.laporan-kegiatan.riwayat', compact('rencanaButirKegiatan'));
+                                            . view('aparatur.laporan-kegiatan.riwayat', compact('rencanaButirKegiatan'));
                                     } elseif ($rencanaButirKegiatan->status == 4) {
                                         $rencanaButirKegiatan->button = ' <button class="btn btn-green-dark ms-3 px-3"
                                             data-bs-toggle="modal"
                                             data-bs-target="#riwayatKegiatan' . $rencanaButirKegiatan->id . '"
                                             type="button">Selesai</button>'
-                                                . view('aparatur.laporan-kegiatan.riwayat', compact('rencanaButirKegiatan'));
+                                            . view('aparatur.laporan-kegiatan.riwayat', compact('rencanaButirKegiatan'));
                                     } else {
                                         $rencanaButirKegiatan->button = '<button
                                             data-rencana="' . $rencanaButirKegiatan->id . '"
@@ -115,14 +116,16 @@ class KegiatanJabatanController extends Controller
             'doc_kegiatan_tmp.required' => 'Dokumen Kegiatan harus diisi'
         ]);
         $rencanaButirKegiatan = RencanaButirKegiatan::query()->findOrFail($request->rencana_butir_kegiatan);
+        $laporan = $rencanaButirKegiatan->laporanKegiatanJabatan()->create([
+            'detail_kegiatan' => $request->keterangan,
+            'current_date' => $request->current_date
+        ]);
         foreach ($request->doc_kegiatan_tmp as $doc_kegiatan_tmp) {
             $tmp_file = TemporaryFile::query()->where('folder', $doc_kegiatan_tmp)->first();
             if ($tmp_file) {
                 Storage::copy("tmp/$tmp_file->folder/$tmp_file->file", "kegiatan/$tmp_file->file");
-                $rencanaButirKegiatan->dokumenKegiatanPokoks()->create([
-                    'title' => $request->keterangan,
-                    'file' => url("storage/kegiatan/$tmp_file->file"),
-                    'current_date' => $request->current_date
+                $laporan->dokumenKegiatanPokoks()->create([
+                    'file' => url("storage/kegiatan/$tmp_file->file")
                 ]);
                 $tmp_file->delete();
                 Storage::deleteDirectory("tmp/$tmp_file->folder");
@@ -149,17 +152,20 @@ class KegiatanJabatanController extends Controller
             'keterangan.required' => 'Detail kegiatan harus diisi',
             'doc_kegiatan_tmp.required' => 'Dokumen Kegiatan harus diisi'
         ]);
-        $rencanaButirKegiatan = RencanaButirKegiatan::query()->with('dokumenKegiatanPokoks')->find($id);
-        foreach ($rencanaButirKegiatan->dokumenKegiatanPokoks as $dok) {
+        $rencanaButirKegiatan = RencanaButirKegiatan::query()->with('laporanKegiatanJabatan.dokumenKegiatanPokoks')->find($id);
+        foreach ($rencanaButirKegiatan->laporanKegiatanJabatan->dokumenKegiatanPokoks as $dok) {
             deleteImage($dok->file);
             $dok->delete();
         }
+        $rencanaButirKegiatan->laporanKegiatanJabatan()->update([
+            'detail_kegiatan' => $request->keterangan,
+            'current_date' => $request->current_date
+        ]);
         foreach ($request->doc_kegiatan_tmp as $doc_kegiatan_tmp) {
             $tmp_file = TemporaryFile::query()->where('folder', $doc_kegiatan_tmp)->first();
             if ($tmp_file) {
                 Storage::copy("tmp/$tmp_file->folder/$tmp_file->file", "kegiatan/$tmp_file->file");
-                $rencanaButirKegiatan->dokumenKegiatanPokoks()->create([
-                    'title' => $request->keterangan,
+                $rencanaButirKegiatan->laporanKegiatanJabatan->dokumenKegiatanPokoks()->create([
                     'file' => url("storage/kegiatan/$tmp_file->file")
                 ]);
                 $tmp_file->delete();
@@ -180,7 +186,7 @@ class KegiatanJabatanController extends Controller
 
     public function edit($id)
     {
-        $rencanaButirKegiatan = RencanaButirKegiatan::query()->with('dokumenKegiatanPokoks')->find($id);
+        $rencanaButirKegiatan = RencanaButirKegiatan::query()->with('laporanKegiatanJabatan.dokumenKegiatanPokoks')->find($id);
 
         return response()->json([
             'status' => 200,

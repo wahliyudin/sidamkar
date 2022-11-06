@@ -151,7 +151,7 @@
     </script>
     <script src="{{ asset('assets/js/extensions/sweetalert2.all.min.js') }}"></script>
     <script>
-        $(function() {
+        $(document).ready(function() {
             $.fn.filepond.registerPlugin(FilePondPluginImagePreview);
             $.fn.filepond.registerPlugin(FilePondPluginFileValidateType);
             $.fn.filepond.registerPlugin(FilePondPluginFileValidateSize);
@@ -208,59 +208,68 @@
             $("#laporkan").on('hide.bs.modal', function() {
                 pond.removeFiles();
             });
-
-            $('.btn-revisi').each(function(index, element) {
-                // element == this
-                $(element).click(function(e) {
-                    e.preventDefault();
-                    $('#revisi' + $(element).data('rencana')).modal('show');
-                    $.ajax({
-                        type: "POST",
-                        url: url("/laporan-kegiatan/jabatan/" + $(element).data('rencana') +
-                            "/edit"),
-                        dataType: "json",
-                        success: function(response) {
-                            pond.removeFile();
-                            response.data.dokumen_kegiatan_pokoks.forEach((element,
-                                i) => {
-                                pond.addFile(element.file, {
-                                    index: i
-                                });
-                            });
+            $(document).on('click', '.btn-revisi', function(e) {
+                e.preventDefault();
+                pondEdit = FilePond.create(document.querySelector(
+                    'input[name="doc_kegiatan_tmp[]"]'), {
+                    chunkUploads: true
+                });
+                pondEdit.setOptions({
+                    server: {
+                        process: '/laporan-kegiatan/jabatan/tmp-file',
+                        revert: '/laporan-kegiatan/jabatan/revert',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+                                'content')
                         }
-                    });
+                    },
+                });
+                $('input[name="current_date"]').val($('input[name="tanggal"]').val());
+                $('#revisi' + $(this).data('rencana')).modal('show');
+                $.ajax({
+                    type: "POST",
+                    url: url("/laporan-kegiatan/jabatan/" + $(this).data('rencana') +
+                        "/edit"),
+                    dataType: "json",
+                    success: function(response) {
+                        pondEdit.removeFile();
+                        response.data.laporan_kegiatan_jabatan.dokumen_kegiatan_pokoks.forEach((
+                            element,
+                            i) => {
+                            pondEdit.addFile(element.file, {
+                                index: i
+                            });
+                        });
+                    }
                 });
             });
 
-
-            $('.revisi-kegiatan').each(function(index, element) {
-                $(element).click(function(e) {
-                    e.preventDefault();
-                    var postData = new FormData($(".form-kegiatan" + $(element).data('rencana'))[
-                        0]);
-                    $('.revisi-kegiatan span').hide();
-                    $('.revisi-kegiatan .spin').show();
-                    $.ajax({
-                        type: 'POST',
-                        url: url("/laporan-kegiatan/jabatan/" + $(element).data('rencana') +
-                            "/update"),
-                        processData: false,
-                        contentType: false,
-                        data: postData,
-                        success: function(response) {
-                            $('.revisi-kegiatan span').show();
-                            $('.revisi-kegiatan .spin').hide();
-                            if (response.status == 200) {
-                                swal("Selesai!", response.message, "success").then(
-                                    () => {
-                                        location.reload();
-                                    });
-                            } else {
-                                swal("Error!", response.message, "error");
-                            }
-                        },
-                        error: ajaxError
-                    });
+            $(document).on('click', '.revisi-kegiatan', function(e) {
+                e.preventDefault();
+                var postData = new FormData($(".form-kegiatan" + $(this).data('rencana'))[
+                    0]);
+                $('.revisi-kegiatan span').hide();
+                $('.revisi-kegiatan .spin').show();
+                $.ajax({
+                    type: 'POST',
+                    url: url("/laporan-kegiatan/jabatan/" + $(this).data('rencana') +
+                        "/update"),
+                    processData: false,
+                    contentType: false,
+                    data: postData,
+                    success: function(response) {
+                        $('.revisi-kegiatan span').show();
+                        $('.revisi-kegiatan .spin').hide();
+                        if (response.status == 200) {
+                            swal("Selesai!", response.message, "success").then(
+                                () => {
+                                    location.reload();
+                                });
+                        } else {
+                            swal("Error!", response.message, "error");
+                        }
+                    },
+                    error: ajaxError
                 });
             });
 

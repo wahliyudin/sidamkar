@@ -43,14 +43,15 @@ class PengajuanKegiatanController extends Controller
                     },
                     'rencanas.rencanaUnsurs.unsur',
                     'rencanas.rencanaUnsurs.rencanaSubUnsurs.subUnsur.butirKegiatans',
-                    'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.butirKegiatan'
+                    'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.butirKegiatan',
+                    'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan',
+                    'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan.dokumenKegiatanPokoks',
                 ])
                 ->find($id)?->rencanas->map(function (Rencana $rencana) use ($date) {
                     foreach ($rencana->rencanaUnsurs as $rencanaUnsur) {
                         foreach ($rencanaUnsur->rencanaSubUnsurs as $rencanaSubUnsur) {
                             foreach ($rencanaSubUnsur->rencanaButirKegiatans as $rencanaButirKegiatan) {
-                                if ($rencanaButirKegiatan->dokumenKegiatanPokoks()->whereDate('current_date', $date)->first() !== null) {
-                                    $rencanaButirKegiatan->dokumenKegiatanPokoks = $rencanaButirKegiatan->dokumenKegiatanPokoks()->whereDate('current_date', $date)->get();
+                                if ($rencanaButirKegiatan->laporanKegiatanJabatan?->whereDate('current_date', $date)->first() !== null) {
                                     if ($rencanaButirKegiatan->status == 2) {
                                         $rencanaButirKegiatan->button = '<button class="btn btn-red ms-3 px-3 btn-sm"
                                             data-bs-toggle="modal"
@@ -76,7 +77,7 @@ class PengajuanKegiatanController extends Controller
                                             compact('rencanaButirKegiatan'));
                                     }
                                 } else {
-                                    $rencanaButirKegiatan->dokumenKegiatanPokoks = [];
+                                        $rencanaButirKegiatan->laporanKegiatanJabatan = [];
                                     $rencanaButirKegiatan->button = '<button
                                         data-rencana="'.$rencanaButirKegiatan->id.'"
                                         class="btn btn-blue ms-3 px-4 btn-sm laporkan" data-bs-toggle="modal"

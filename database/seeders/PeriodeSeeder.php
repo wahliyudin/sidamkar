@@ -24,6 +24,7 @@ class PeriodeSeeder extends Seeder
             [
                 'awal' => '2023-01-01',
                 'akhir' => '2023-12-31',
+                'is_active' => false
             ],
         ];
         Periode::query()->upsert($periodes, 'id');
