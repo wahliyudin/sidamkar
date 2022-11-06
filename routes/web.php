@@ -69,8 +69,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('coba', function(){
-    return view('timeline');
+
+Route::get('coba', function () {
+
 });
 Route::redirect('/', 'login');
 Auth::routes(['verify' => true]);
@@ -151,6 +152,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('atasan-langsung/pengajuan-kegiatan/{id}/revisi', [PengajuanKegiatanController::class, 'revisi'])->name('atasan-langsung.pengajuan-kegiatan.revisi');
         Route::post('atasan-langsung/pengajuan-kegiatan/{id}/verifikasi', [PengajuanKegiatanController::class, 'verifikasi'])->name('atasan-langsung.pengajuan-kegiatan.verifikasi');
         Route::get('atasan-langsung/kegiatan-selesai', [KegiatanLangsungController::class, 'index'])->name('atasan-langsung.kegiatan-selesai');
+        Route::get('atasan-langsung/kegiatan-selesai/{id}/show', [KegiatanLangsungController::class, 'show'])->name('atasan-langsung.kegiatan-selesai.show');
     });
 
     Route::middleware(['role:penilai_ak'])->group(function () {

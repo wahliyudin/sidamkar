@@ -46,4 +46,8 @@ class UserAparatur extends Model
     {
         return $this->belongsTo(kabkota::class);
     }
+    public function pangkatGolonganTmt(): BelongsTo
+    {
+        return $this->belongsTo(PangkatGolonganTmt::class);
+    }
 }

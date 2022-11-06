@@ -19,4 +19,9 @@ class LaporanKegiatanJabatan extends Model
     {
         return $this->hasMany(DokumenKegiatanPokok::class);
     }
+
+    public function rencanaButirKegiatan()
+    {
+        return $this->belongsTo(RencanaButirKegiatan::class);
+    }
 }

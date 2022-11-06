@@ -133,7 +133,7 @@
                     <li class="sidebar-item {{ request()->routeIs('atasan-langsung.kegiatan-selesai') ? 'active' : '' }}">
                         <a href="{{ route('atasan-langsung.kegiatan-selesai') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
-                                <i class="fa-solid fa-check"></i>
+                                <i class="fa-solid fa-clipboard-check"></i>
                             </div>
                             <span>Kegiatan Selesai</span>
                         </a>

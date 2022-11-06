@@ -36,6 +36,11 @@ class RencanaButirKegiatan extends Model
         return $this->hasOne(LaporanKegiatanJabatan::class);
     }
 
+    public function laporanKegiatanJabatans()
+    {
+        return $this->hasMany(LaporanKegiatanJabatan::class);
+    }
+
     public function historyButirKegiatans()
     {
         return $this->hasMany(HistoryButirKegiatan::class);
