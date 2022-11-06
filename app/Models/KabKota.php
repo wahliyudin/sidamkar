@@ -34,4 +34,9 @@ class KabKota extends Model
     {
         return $this->hasMany(UserPejabatStruktural::class);
     }
+
+    public function penilaiAngkaKredit()
+    {
+        return $this->hasOne(PenilaiAngkaKredit::class);
+    }
 }

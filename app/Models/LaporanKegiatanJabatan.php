@@ -5,14 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DokumenKegiatanPokok extends Model
+class LaporanKegiatanJabatan extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'rencana_butir_kegiatan_id',
-        'file'
+        'detail_kegiatan',
+        'current_date',
     ];
+
+    public function dokumenKegiatanPokoks()
+    {
+        return $this->hasMany(DokumenKegiatanPokok::class);
+    }
 
     public function rencanaButirKegiatan()
     {

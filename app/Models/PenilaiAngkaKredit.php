@@ -13,4 +13,9 @@ class PenilaiAngkaKredit extends Model
         'aparatur_id',
         'penilai_ak_id'
     ];
+
+    public function penilaiAK()
+    {
+        return $this->belongsTo(User::class, 'penilai_ak_id', 'id');
+    }
 }
