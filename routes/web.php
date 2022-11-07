@@ -93,6 +93,8 @@ Route::middleware(['auth'])->group(function () {
             Route::post('data-saya/store-dockom', 'storeDocKom')->name('data-saya.store-doc-kom');
             Route::delete('data-saya/destroy-dockepeg/{id}', 'destroyDocKepeg')->name('data-saya.destroy-doc-kepeg');
             Route::delete('data-saya/destroy-dockom/{id}', 'destroyDocKom')->name('data-saya.destroy-doc-kom');
+            Route::get('ubah-password', [ChangePasswordController::class, 'index'])->name('ubah-password');
+            Route::post('ubah-password', [ChangePasswordController::class, 'update'])->name('ubah-password.update');
         });
 
         Route::controller(KegiatanKegiatanJabatanController::class)->group(function () {
