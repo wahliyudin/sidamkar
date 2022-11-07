@@ -34,4 +34,14 @@ class LaporanKegiatanProfesi extends Model
     {
         return $this->belongsTo(SubButirKegiatan::class);
     }
+
+    public function dokumenKegiatanProfesis()
+    {
+        return $this->hasMany(DokumenKegiatanProfesi::class);
+    }
+
+    public function historyKegiatanProfesis()
+    {
+        return $this->hasMany(HistoryKegiatanProfesi::class);
+    }
 }

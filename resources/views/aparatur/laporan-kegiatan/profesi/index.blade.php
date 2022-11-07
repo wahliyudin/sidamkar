@@ -62,7 +62,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="row">
-                        <h3>Kegiatan Jabatan</h3>
+                        <h3>Kegiatan Profesi dan Penunjang</h3>
                     </div>
                     <hr>
                     <div class="row align-items-center justify-content-between">
@@ -79,44 +79,8 @@
                     </div>
                 </div>
 
-                <div class="card-body px-0 rencana-container">
+                <div class="card-body px-0 unsur-container">
 
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="laporkan" tabindex="-1" role="dialog" aria-labelledby="laporkanTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5>Laporan Kegiatan Jabatan</h5>
-                </div>
-                <div class="modal-body">
-                    <form class="d-flex flex-column form-kegiatan" enctype="multipart/form-data">
-                        <input type="hidden" name="rencana_butir_kegiatan">
-                        <input type="hidden" name="current_date">
-                        <div class="row">
-                            <div class="form-group col-md-12">
-                                <label>File Dokumen</label>
-                                <input type="file" name="doc_kegiatan_tmp[]" multiple data-max-file-size="2MB"
-                                    data-max-files="3" required />
-                            </div>
-                            <div class="form-group col-md-12">
-                                <label for="">Detail Kegiatan</label>
-                                <textarea name="keterangan" id="" class="form-control"></textarea>
-                            </div>
-                        </div>
-
-                        <div class="text-center mt-4">
-                            <button class="btn btn-danger px-5" data-bs-dismiss="modal">Batal</button>
-                            <button type="button" class="btn btn-blue px-5 simpan-kegiatan">
-                                <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
-                                    style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
-                                <span>Kirim</span>
-                            </button>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>
@@ -150,5 +114,5 @@
         src="{{ asset('assets/extensions/filepond-plugin-file-validate-size/filepond-plugin-file-validate-size.js') }}">
     </script>
     <script src="{{ asset('assets/js/extensions/sweetalert2.all.min.js') }}"></script>
-    <script src="{{ asset('assets/js/pages/aparatur/laporan-kegiatan/jabatan.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/aparatur/laporan-kegiatan/profesi.js') }}"></script>
 @endsection

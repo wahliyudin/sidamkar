@@ -7,6 +7,7 @@ use App\Http\Controllers\Aparatur\DataSayaController;
 use App\Http\Controllers\Aparatur\Kegiatan\KegiatanJabatanController as KegiatanKegiatanJabatanController;
 use App\Http\Controllers\Aparatur\LaporanJabatanController;
 use App\Http\Controllers\Aparatur\LaporanKegiatan\KegiatanJabatanController as LaporanKegiatanKegiatanJabatanController;
+use App\Http\Controllers\Aparatur\LaporanKegiatan\KegiatanProfesiController as LaporanKegiatanKegiatanProfesiController;
 use App\Http\Controllers\Aparatur\LaporanKegiatanController;
 use App\Http\Controllers\Aparatur\OverviewController;
 use App\Http\Controllers\Aparatur\TabelKegiatanController;
@@ -105,6 +106,10 @@ Route::middleware(['auth'])->group(function () {
             Route::post('laporan-kegiatan/jabatan/{id}/update', 'update')->name('laporan-kegiatan.jabatan.update');
             Route::post('laporan-kegiatan/jabatan/tmp-file', 'tmpFile')->name('laporan-kegiatan.jabatan.tmp-file');
             Route::delete('laporan-kegiatan/jabatan/revert', 'revert')->name('laporan-kegiatan.jabatan.revert');
+        });
+
+        Route::controller(LaporanKegiatanKegiatanProfesiController::class)->group(function () {
+            Route::get('laporan-kegiatan/profesi', 'index')->name('laporan-kegiatan.profesi');
         });
 
         Route::get('ubah-password', [ChangePasswordController::class, 'index'])->name('ubah-password');

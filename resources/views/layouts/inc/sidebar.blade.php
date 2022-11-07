@@ -52,13 +52,12 @@
                             </div>
                             <span>Laporan Kegiatan</span>
                         </a>
-                        <ul
-                            class="submenu {{ request()->routeIs('laporan-kegiatan.jabatan*') || request()->is('laporan-kegiatan*') ? 'active' : '' }}">
-                            <li class="submenu-item {{ request()->routeIs('laporan-kegiatan.jabatan*') ? 'active' : '' }}">
+                        <ul class="submenu {{ request()->is('laporan-kegiatan*') ? 'active' : '' }}">
+                            <li class="submenu-item {{ request()->routeIs('laporan-kegiatan.jabatan') ? 'active' : '' }}">
                                 <a href="{{ route('laporan-kegiatan.jabatan') }}">Jabatan</a>
                             </li>
-                            <li class="submenu-item">
-                                <a href="{{ route('laporan-kegiatan') }}">Profesi dan Penunjang</a>
+                            <li class="submenu-item {{ request()->routeIs('laporan-kegiatan.profesi') ? 'active' : '' }}">
+                                <a href="{{ route('laporan-kegiatan.profesi') }}">Profesi</a>
                             </li>
                         </ul>
                     </li>
