@@ -3,6 +3,7 @@
 use App\Http\Controllers\Aparatur\ChangePasswordController;
 use App\Http\Controllers\Aparatur\DaftarKegiatanController;
 use App\Http\Controllers\Aparatur\DaftarPenunjangController;
+use App\Http\Controllers\aparatur\DataKegiatanController;
 use App\Http\Controllers\Aparatur\DataSayaController;
 use App\Http\Controllers\Aparatur\Kegiatan\KegiatanJabatanController as KegiatanKegiatanJabatanController;
 use App\Http\Controllers\Aparatur\LaporanJabatanController;
@@ -78,6 +79,7 @@ Route::delete('register/revert', [RegisterController::class, 'revert']);
 Route::middleware(['auth'])->group(function () {
     Route::middleware(['role:damkar_pemula|damkar_terampil|damkar_mahir|damkar_penyelia|analis_kebakaran_ahli_pertama|analis_kebakaran_ahli_muda|analis_kebakaran_ahli_madya'])->group(function () {
         Route::get('/overview', [OverviewController::class, 'index'])->name('overview');
+        Route::get('/data-kegiatan', [DataKegiatanController::class, 'index'])->name('data-saya.data-kegiatan');
 
         Route::controller(DataSayaController::class)->group(function () {
             Route::get('/data-saya', 'index')->name('data-saya');

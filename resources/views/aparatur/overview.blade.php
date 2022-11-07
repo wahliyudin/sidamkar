@@ -2,7 +2,9 @@
 
 @section('content')
     <section class="section">
-        <div class="alert alert-danger "><i class="fa-solid fa-circle-exclamation"></i> Harap Lengkapi Data
+        <div class="alert alert-warning w-50" style="color: white;"><i class="fa-solid fa-circle-exclamation"></i> Harap
+            Lengkapi
+            Data
             Profile
         </div>
         <div class="row">

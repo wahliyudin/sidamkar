@@ -234,7 +234,7 @@
                             <div class="card-header">
                                 <h4 class="card-title" style="color: #17181A; font-family: 'Roboto';">Butir Kegiatan</h4>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body" style="overflow: auto;">
                                 <table class="table table-striped" id="table1">
                                     <thead>
                                         <tr>

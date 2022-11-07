@@ -1,7 +1,20 @@
 @extends('layouts.master')
 @section('content')
     <section class="section">
-        <div class="card">
+        <div class="row ">
+            <div class="col-md-12">
+                <ul class="nav nav-pills d-flex justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{ route('data-saya') }}">Detail</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page"
+                            href="{{ route('data-saya.data-kegiatan') }}">KEGIATAN</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="card mt-4">
             <div class="card-body" style="padding-top: 3rem;">
                 <form action="{{ route('datasaya-store') }}" method="post" enctype="multipart/form-data">
                     @csrf
@@ -141,9 +154,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="d-flex justify-content-end mt-2">
+                    <div class="btn-my-data mt-2" style="float: right; position: relative;">
                         <button type="reset" class="btn btn-gray text-sm px-5">Reset</button>
-                        <button type="submit" class="btn btn-blue text-sm ms-3 px-5">Simpan</button>
+                        <button type="submit" class="btn btn-blue btn-simpan text-sm px-5">Simpan</button>
                     </div>
                 </form>
             </div>
