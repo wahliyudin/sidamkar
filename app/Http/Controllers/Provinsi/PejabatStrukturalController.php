@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\provinsi;
+namespace App\Http\Controllers\Provinsi;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;

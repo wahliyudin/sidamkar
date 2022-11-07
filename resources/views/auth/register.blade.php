@@ -391,7 +391,7 @@
                                                             <div class="form-group">
                                                                 <label>Kabupaten / Kota<span
                                                                         class="text-danger">*</span></label>
-                                                                <select required name="kab_kota_id" id="kab_kota_id"
+                                                                <select required name="kab_kota_id" id="kab_kota_id" name="kab_kota_id"
                                                                     class="custom-select">
                                                                     <option value="">- Pilih Provinsi Terlebih
                                                                         Dahulu -</option>
@@ -500,7 +500,6 @@
                                         <!-- /wizard with validation -->
                                     </div>
                                 </div>
-
                                 <div class="px-4 link-login" style="position: absolute; bottom: 1rem;">
                                     <p>Sudah memiliki akun?<a href="{{ route('login') }}"> Masuk </a></p>
                                 </div>

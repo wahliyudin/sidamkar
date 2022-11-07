@@ -21,27 +21,16 @@
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="bi bi-grid-fill"></i>
                             </div>
-                            <span>Overview</span>
+                            <span>Dashboard</span>
                         </a>
                     </li>
-
-                    <li
-                        class="sidebar-item has-sub {{ request()->routeIs('kegiatan.jabatan') || request()->is('tabel-penunjang*') ? 'active' : '' }}">
-                        <a href="javascript(0)" class='sidebar-link'>
+                    <li class="sidebar-item {{ request()->routeIs('kegiatan.jabatan') ? 'active' : '' }}">
+                        <a href="{{ route('kegiatan.jabatan') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="bi bi-grid-fill"></i>
                             </div>
-                            <span>Tabel Kegiatan</span>
+                            <span>Rencana Kinerja</span>
                         </a>
-                        <ul
-                            class="submenu {{ request()->routeIs('kegiatan.jabatan') || request()->is('tabel-penunjang*') ? 'active' : '' }}">
-                            <li class="submenu-item {{ request()->routeIs('kegiatan.jabatan') ? 'active' : '' }}">
-                                <a href="{{ route('kegiatan.jabatan') }}">Jabatan</a>
-                            </li>
-                            <li class="submenu-item {{ request()->is('tabel-penunjang*') ? 'active' : '' }}">
-                                <a href="{{ route('tabel-penunjang') }}">Profesi dan Penunjang</a>
-                            </li>
-                        </ul>
                     </li>
 
                     <li
@@ -145,7 +134,7 @@
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="bi bi-grid-fill"></i>
                             </div>
-                            <span>Overview</span>
+                            <span>Dashboard</span>
                         </a>
                     </li>
                     <li
@@ -222,7 +211,7 @@
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="fa-solid fa-table-columns"></i>
                             </div>
-                            <span>Overview</span>
+                            <span>Dashboard</span>
                         </a>
                     </li>
                     <li
@@ -231,7 +220,7 @@
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="fa-solid fa-square-poll-vertical"></i>
                             </div>
-                            <span>Verifikasi Data</span>
+                            <span>Manajemen User</span>
                         </a>
                         <ul
                             class="submenu {{ request()->is('kemendagri/verifikasi-data/admin-kabkota*') || request()->is('kemendagri/verifikasi-data/admin-provinsi*') || request()->is('kemendagri/verifikasi-data/aparatur*') ? 'active' : '' }}">

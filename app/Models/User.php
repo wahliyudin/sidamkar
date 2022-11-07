@@ -80,6 +80,16 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
+     * kabKota
+     *
+     * @return BelongsTo
+     */
+    public function provinsi(): BelongsTo
+    {
+        return $this->belongsTo(Provinsi::class);
+    }
+
+    /**
      * userAparatur
      *
      * @return HasOne

@@ -7,99 +7,137 @@
                 <div class="row">
                     <div class="col-md-4 d-flex justify-content-center">
                         <div class="avatar avatar-xl me-3">
-                            <img style="width: 180px; height: 180px;" src="{{ asset('assets/images/faces/3.jpg') }}"
+                            <img style="width: 180px; height: 180px;" src="{{ isset($user->userPejabatStruktural?->foto_pegawai) ? $user->userPejabatStruktural?->foto_pegawai : asset('assets/images/faces/3.jpg') }}"
                                 alt="" srcset="">
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="basicInput">Tingkat Admin</label>
-                            <select class="choices form-select" disabled>
-                                <option value="square">Square</option>
-                                <option value="rectangle">Rectangle</option>
-                                <option value="rombo">Rombo</option>
-                            </select>
+                     <div class="row col-md-8 justify-content-center">
+                            <div class="row col-md-12" style="border: 2px solid #E5E5E5;border-radius: 6px;padding: 4px;">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">Nama Lengkap</label>
+                                        <input type="text" disabled class="form-control" name="nama"
+                                            value="{{ old('nama', $user->userPejabatStruktural?->nama) }}">
+                                        @error('nama')
+                                            <span class="text-danger text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Tempat Tanggal Lahir</label>
+                                        <div class="row">
+                                            <div class="col-md-6" style="padding-right: .3rem !important;">
+                                                <input type="text" disabled class="form-control w-100" name="tempat_lahir"
+                                                    value="{{ old('tempat_lahir', $user->userPejabatStruktural?->tempat_lahir) }}"
+                                                    placeholder="" style="width: 50%">
+                                                @error('tempat_lahir')
+                                                    <span class="text-danger text-sm">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                            <div class="col-md-6" style="padding-left: .3rem !important;">
+                                                <input type="date" disabled class="form-control w-100" name="tanggal_lahir"
+                                                    value="{{ old('tanggal_lahir', $user->userPejabatStruktural?->tanggal_lahir) }}"
+                                                    placeholder="" style="width: 50%">
+                                                @error('tanggal_lahir')
+                                                    <span class="text-danger text-sm">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="basicInput">Jenis Kelamin</label>
+                                        <select disabled class="jenis_kelamin form-select" name="jenis_kelamin">
+                                            <option @selected(old('jenis_kelamin', $user->userPejabatStruktural?->jenis_kelamin) == 'L') value="L">Laki - Laki</option>
+                                            <option @selected(old('jenis_kelamin', $user->userPejabatStruktural?->jenis_kelamin) == 'P') value="P">Perempuan</option>
+                                        </select>
+                                        @error('jenis_kelamin')
+                                            <span class="text-danger text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">Pendidikan Terakhir</label>
+                                        <select disabled class="pen_terakhir form-select" name="pendidikan_terakhir">
+                                            <option disabled selected>- Pilih Pendidikan Terakhir -</option>
+                                            <option @selected(old('pendidikan_terakhir', $user->userPejabatStruktural?->pendidikan_terakhir) == '1') value="1">SMA/SMK/Sederajat</option>
+                                            <option @selected(old('pendidikan_terakhir', $user->userPejabatStruktural?->pendidikan_terakhir) == '2') value="2">D3</option>
+                                            <option @selected(old('pendidikan_terakhir', $user->userPejabatStruktural?->pendidikan_terakhir) == '3') value="3">S1/D4</option>
+                                            <option @selected(old('pendidikan_terakhir', $user->userPejabatStruktural?->pendidikan_terakhir) == '4') value="4">S2</option>
+                                        </select>
+                                        @error('pendidikan_terakhir')
+                                            <span class="text-danger text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="basicInput">Privinsi</label>
+                                        <select disabled class="provinsi_id form-select" name="provinsi_id">
+                                            <option selected>- Pilih Privinsi -</option>
+                                            @foreach ($provinsis as $prov)
+                                                <option value="{{ $prov->id }}" @selected(old('provinsi_id', $user->userPejabatStruktural?->provinsi_id) == $prov->id)>
+                                                    {{ $prov->nama }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('provinsi_id')
+                                            <span class="text-danger text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="basicInput">Kabupaten / Kota</label>
+                                        <select disabled class="kab_kota_id form-select" name="kab_kota_id">
+                                            <option disabled selected>- Pilih Kabupaten / Kota -</option>
+                                            @foreach ($kab_kota as $kabkota)
+                                                <option value="{{ $kabkota->id }}" @selected(old('kab_kota_id', $user->userPejabatStruktural?->kab_kota_id) == $kabkota->id)>
+                                                    {{ $kabkota->nama }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('kab_kota_id')
+                                            <span class="text-danger text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row col-md-12" style="border: 2px solid #E5E5E5;border-radius: 6px;padding: 4px;margin-top: 19px;">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">NIP</label>
+                                        <input type="number" disabled class="form-control" name="nip"
+                                            value="{{ old('nip', $user->userPejabatStruktural?->nip) }}">
+                                        @error('nip')
+                                            <span class="text-danger text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="basicInput">Jabatan</label>
+                                        <input type="text" name="jabatan" disabled class="form-control" placeholder="" value="{{ Auth::user()->roles()->first()->display_name }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">Nomor Karpeg</label>
+                                        <input disabled type="number" name="nomor_karpeg" class="form-control"
+                                            value="{{ old('nomor_karpeg', $user->userPejabatStruktural?->nomor_karpeg) }}">
+                                        @error('nomor_karpeg')
+                                            <span class="text-danger text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="basicInput">Pangkat / Golongan / TMT</label>
+                                        <select disabled class="pangkat_golongan form-select" name="pangkat_golongan_tmt_id"
+                                            name="pangkat">
+                                            <option disabled selected>- Pilih Pangkat / Golongan / TMT -</option>
+                                            @foreach ($pangkats as $pangkat)
+                                                <option @selected(old('pangkat_golongan_tmt_id', $user->userPejabatStruktural?->pangkat_golongan_tmt_id) == $pangkat->id) value="{{ $pangkat->id }}">
+                                                    {{ $pangkat->nama }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('pangkat_golongan_tmt_id')
+                                            <span class="text-danger text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="basicInput">Provinsi</label>
-                            <select class="choices form-select" disabled>
-                                <option value="square">Square</option>
-                                <option value="rectangle">Rectangle</option>
-                                <option value="rombo">Rombo</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="basicInput">Kabupaten / Kota</label>
-                            <select class="choices form-select" disabled>
-                                <option value="square">Square</option>
-                                <option value="rectangle">Rectangle</option>
-                                <option value="rombo">Rombo</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="basicInput">Nomenklatur Perangkat Daerah</label>
-                            <select class="choices form-select" disabled>
-                                <option value="square">Square</option>
-                                <option value="rectangle">Rectangle</option>
-                                <option value="rombo">Rombo</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="basicInput">Nama</label>
-                            <input disabled type="text" class="form-control" id="basicInput" placeholder="Nama">
-                        </div>
-                        <div class="form-group">
-                            <label for="basicInput">NIP / Nomor Registrasi</label>
-                            <input disabled type="number" class="form-control" id="basicInput"
-                                placeholder="15080912345677001">
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="basicInput">Tempat Tanggal Lahir</label>
-                            <input disabled type="text" class="form-control" id="basicInput" placeholder="">
-                        </div>
-                        <div class="form-group">
-                            <label for="basicInput">Pangkat / Golongan / TMT</label>
-                            <select class="choices form-select" disabled>
-                                <option value="square">Square</option>
-                                <option value="rectangle">Rectangle</option>
-                                <option value="rombo">Rombo</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="basicInput">Jenis Kelamin</label>
-                            <select class="choices form-select" disabled>
-                                <option value="square">Square</option>
-                                <option value="rectangle">Rectangle</option>
-                                <option value="rombo">Rombo</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="basicInput">Pendidikan Terakhir</label>
-                            <select class="choices form-select" disabled>
-                                <option value="square">Square</option>
-                                <option value="rectangle">Rectangle</option>
-                                <option value="rombo">Rombo</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="basicInput">Pendidikan Terakhir</label>
-                            <select class="choices form-select" disabled>
-                                <option value="square">Square</option>
-                                <option value="rectangle">Rectangle</option>
-                                <option value="rombo">Rombo</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="basicInput">Jabatan</label>
-                            <select class="choices form-select" disabled>
-                                <option value="square">Square</option>
-                                <option value="rectangle">Rectangle</option>
-                                <option value="rombo">Rombo</option>
-                            </select>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -250,6 +288,7 @@
             cursor: not-allowed;
         }
     </style>
+    <link rel="stylesheet" href="{{ asset('assets/css/pages/my-data.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
     <link rel="stylesheet" href="{{ asset('assets/extensions/choices.js/public/assets/styles/choices.css') }}">
 @endsection

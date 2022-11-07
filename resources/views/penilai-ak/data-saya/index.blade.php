@@ -4,12 +4,13 @@
         <div class="card">
             <div class="card-body" style="padding-top: 3rem;">
                 <form action="" method="post" class="form-data">
+                    @csrf
                     <div class="row">
                         <div class="col-md-4">
                             <div class="container">
                                 <input id="avatar" type="file" style="display: none;" name="avatar" id="">
                                 <label for="avatar">
-                                    <img src="{{ isset($user->userAparatur?->foto_pegawai) ? $user->userAparatur?->foto_pegawai : asset('assets/images/faces/3.jpg') }}"
+                                    <img src="{{ isset($user->userPejabatStruktural?->foto_pegawai) ? $user->userPejabatStruktural?->foto_pegawai : asset('assets/images/faces/3.jpg') }}"
                                         alt="Avatar" class="image preview-avatar"
                                         style="min-width:145px; min-height: 145px; max-width:145px; max-height: 145px; object-fit: cover; border-radius: 50%;">
                                     <span class="middle">
@@ -26,7 +27,7 @@
                                     <div class="form-group">
                                         <label for="basicInput">Nama Lengkap</label>
                                         <input type="text" class="form-control" name="nama"
-                                            value="{{ old('nama', $user->userAparatur?->nama) }}">
+                                            value="{{ old('nama', $user->userPejabatStruktural?->nama) }}">
                                         @error('nama')
                                             <span class="text-danger text-sm">{{ $message }}</span>
                                         @enderror
@@ -36,7 +37,7 @@
                                         <div class="row">
                                             <div class="col-md-6" style="padding-right: .3rem !important;">
                                                 <input type="text" class="form-control w-100" name="tempat_lahir"
-                                                    value="{{ old('tempat_lahir', $user->userAparatur?->tempat_lahir) }}"
+                                                    value="{{ old('tempat_lahir', $user->userPejabatStruktural?->tempat_lahir) }}"
                                                     placeholder="" style="width: 50%">
                                                 @error('tempat_lahir')
                                                     <span class="text-danger text-sm">{{ $message }}</span>
@@ -44,7 +45,7 @@
                                             </div>
                                             <div class="col-md-6" style="padding-left: .3rem !important;">
                                                 <input type="date" class="form-control w-100" name="tanggal_lahir"
-                                                    value="{{ old('tanggal_lahir', $user->userAparatur?->tanggal_lahir) }}"
+                                                    value="{{ old('tanggal_lahir', $user->userPejabatStruktural?->tanggal_lahir) }}"
                                                     placeholder="" style="width: 50%">
                                                 @error('tanggal_lahir')
                                                     <span class="text-danger text-sm">{{ $message }}</span>
@@ -56,8 +57,8 @@
                                         <label for="basicInput">Jenis Kelamin</label>
                                         <select class="jenis_kelamin form-select" name="jenis_kelamin">
                                             <option disabled selected>- Pilih Jenis Kelamin -</option>
-                                            <option @selected(old('jenis_kelamin', $user->userAparatur?->jenis_kelamin) == 'L') value="L">Laki - Laki</option>
-                                            <option @selected(old('jenis_kelamin', $user->userAparatur?->jenis_kelamin) == 'P') value="P">Perempuan</option>
+                                            <option @selected(old('jenis_kelamin', $user->userPejabatStruktural?->jenis_kelamin) == 'L') value="L">Laki - Laki</option>
+                                            <option @selected(old('jenis_kelamin', $user->userPejabatStruktural?->jenis_kelamin) == 'P') value="P">Perempuan</option>
                                         </select>
                                         @error('jenis_kelamin')
                                             <span class="text-danger text-sm">{{ $message }}</span>
@@ -69,10 +70,10 @@
                                         <label for="basicInput">Pendidikan Terakhir</label>
                                         <select class="pen_terakhir form-select" name="pendidikan_terakhir">
                                             <option disabled selected>- Pilih Pendidikan Terakhir -</option>
-                                            <option @selected(old('pendidikan_terakhir', $user->userAparatur?->pendidikan_terakhir) == '1') value="1">SMA/SMK/Sederajat</option>
-                                            <option @selected(old('pendidikan_terakhir', $user->userAparatur?->pendidikan_terakhir) == '2') value="2">D3</option>
-                                            <option @selected(old('pendidikan_terakhir', $user->userAparatur?->pendidikan_terakhir) == '3') value="3">S1/D4</option>
-                                            <option @selected(old('pendidikan_terakhir', $user->userAparatur?->pendidikan_terakhir) == '4') value="4">S2</option>
+                                            <option @selected(old('pendidikan_terakhir', $user->userPejabatStruktural?->pendidikan_terakhir) == '1') value="1">SMA/SMK/Sederajat</option>
+                                            <option @selected(old('pendidikan_terakhir', $user->userPejabatStruktural?->pendidikan_terakhir) == '2') value="2">D3</option>
+                                            <option @selected(old('pendidikan_terakhir', $user->userPejabatStruktural?->pendidikan_terakhir) == '3') value="3">S1/D4</option>
+                                            <option @selected(old('pendidikan_terakhir', $user->userPejabatStruktural?->pendidikan_terakhir) == '4') value="4">S2</option>
                                         </select>
                                         @error('pendidikan_terakhir')
                                             <span class="text-danger text-sm">{{ $message }}</span>
@@ -83,7 +84,7 @@
                                         <select class="form-select provinsi2" data-id=".provinsi2" name="provinsi_id">
                                             <option disabled selected>- Pilih Privinsi -</option>
                                             @foreach ($provinsis as $prov)
-                                                <option value="{{ $prov->id }}" @selected(old('provinsi_id', $user->userAparatur?->provinsi_id) == $prov->id)>
+                                                <option value="{{ $prov->id }}" @selected(old('provinsi_id', $user->userPejabatStruktural?->provinsi_id) == $prov->id)>
                                                     {{ $prov->nama }}</option>
                                             @endforeach
                                         </select>
@@ -96,7 +97,7 @@
                                         <select class="kab_kota_id form-select" name="kab_kota_id" id="kab_kota_id">
                                             <option disabled selected>- Pilih Kabupaten / Kota -</option>
                                             @foreach ($kab_kota as $kabkota)
-                                                <option value="{{ $kabkota->id }}" @selected(old('kab_kota_id', $user->userAparatur?->kab_kota_id) == $kabkota->id)>
+                                                <option value="{{ $kabkota->id }}" @selected(old('kab_kota_id', $user->userPejabatStruktural?->kab_kota_id) == $kabkota->id)>
                                                     {{ $kabkota->nama }}</option>
                                             @endforeach
                                         </select>
@@ -111,7 +112,7 @@
                                     <div class="form-group">
                                         <label for="basicInput">NIP</label>
                                         <input type="number" class="form-control" name="nip"
-                                            value="{{ old('nip', $user->userAparatur?->nip) }}">
+                                            value="{{ old('nip', $user->userPejabatStruktural?->nip) }}">
                                         @error('nip')
                                             <span class="text-danger text-sm">{{ $message }}</span>
                                         @enderror
@@ -125,7 +126,7 @@
                                     <div class="form-group">
                                         <label for="basicInput">Nomor Karpeg</label>
                                         <input type="number" name="nomor_karpeg" class="form-control"
-                                            value="{{ old('nomor_karpeg', $user->userAparatur?->nomor_karpeg) }}">
+                                            value="{{ old('nomor_karpeg', $user->userPejabatStruktural?->nomor_karpeg) }}">
                                         @error('nomor_karpeg')
                                             <span class="text-danger text-sm">{{ $message }}</span>
                                         @enderror
@@ -136,7 +137,7 @@
                                             name="pangkat">
                                             <option disabled selected>- Pilih Pangkat / Golongan / TMT -</option>
                                             @foreach ($pangkats as $pangkat)
-                                                <option @selected(old('pangkat_golongan_tmt_id', $user->userAparatur?->pangkat_golongan_tmt_id) == $pangkat->id) value="{{ $pangkat->id }}">
+                                                <option @selected(old('pangkat_golongan_tmt_id', $user->userPejabatStruktural?->pangkat_golongan_tmt_id) == $pangkat->id) value="{{ $pangkat->id }}">
                                                     {{ $pangkat->nama }}
                                                 </option>
                                             @endforeach
@@ -151,7 +152,7 @@
                     </div>
                     <div class="d-flex justify-content-end mt-2">
                         <button type="reset" class="btn btn-gray text-sm px-5" id="reset">Reset</button>
-                        <button type="submit" class="btn btn-blue text-sm ms-3 px-5" id="simpan">Simpan</button>
+                       <button class="btn btn-blue text-sm ms-3 px-5 simpan-data" id="simpan" >Simpan</button>
                     </div>
                 </form>
             </div>
@@ -169,7 +170,7 @@
                         <ul class="doc-wrapper">
                             @foreach ($user->dokKepegawaians as $docKepeg)
                                 <li class="doc-item">
-                                    <a href="{{ route('data-saya.show-doc-kepeg', $docKepeg->id) }}"
+                                    <a href="{{ route('data-penilai-ak.show-doc-kepeg', $docKepeg->id) }}"
                                         class="d-flex align-items-center">
                                         <img src="{{ asset('assets/images/template/icon-dokumen-png-0 1.png') }}"
                                             alt="">
@@ -328,64 +329,63 @@
             e.preventDefault();
             location.reload()
         });
-          $('#simpan').click(function(e) {
-                e.preventDefault();
-                var postData = new FormData($(".form-data")[0]);
-                swal({
-                    title: "Apakah Data Yang Anda Masukkan Sudah Benar?",
-                    type: "warning",
-                    showCancelButton: !0,
-                    confirmButtonText: "Ya, Sudah Benar!",
-                    cancelButtonText: "Batal",
-                    reverseButtons: !0,
-                    showLoaderOnConfirm: true,
-                    preConfirm: async () => {
-                        return await $.ajax({
-                            type: 'POST',
-                            url: url("/datasaya-store"),
-                            processData: false,
-                            contentType: false,
-                            data: postData,
-                        });
-                    },
-                }).then(function(e) {
-                    if (e.value.status == 200) {
-                        swal("Selesai!", e.value.message, "success").then(() => {
-                            location.reload();
-                        });
-                    } else {
-                        swal("Error!", e.value.message, "error");
-                    }
-                }, function(dismiss) {
-                    return false;
-                })
-            });
-         $('select[name="provinsi_id"]').each(function(index, element) {
-                $(element).change(function(e) {
-                    e.preventDefault();
-                    window.localStorage.setItem('provinsi', $(element).data('id'));
-                    loadKabKota(this.value, $(element.parentElement.parentElement.parentElement)
-                        .find('#kab_kota_id'))
+        $('#simpan').click(function(e) {
+            e.preventDefault();
+            var postData = new FormData($(".form-data")[0]);
+            swal({
+                title: "Apakah Data Yang Anda Masukkan Sudah Benar?",
+                type: "warning",
+                showCancelButton: !0,
+                confirmButtonText: "Ya, Sudah Benar!",
+                cancelButtonText: "Batal",
+                reverseButtons: !0,
+                showLoaderOnConfirm: true,
+                preConfirm: async () => {
+                    return await $.ajax({
+                        type: 'POST',
+                        url: url("/data-penilai-ak-store"),
+                        processData: false,
+                        contentType: false,
+                        data: postData,
+                    });
+        },
+        }).then(function(e) {
+            if (e.value.status == 200) {
+                swal("Selesai!", e.value.message, "success").then(() => {
+                    location.reload();
                 });
-            });
-
-            function loadKabKota(val, kabupaten, kabupaten_id = null) {
-                return new Promise(resolve => {
-                    $(kabupaten).html('<option value="">Memuat...</option>');
-                    fetch('/api/kab-kota/' + val)
-                        .then(res => res.json())
-                        .then(res => {
-                            $(kabupaten).html(
-                                '<option selected disabled>- Pilih Kabupaten / Kota -</option>');
-                            res.forEach(model => {
-                                var selected = kabupaten_id == model.id ? 'selected=""' : '';
-                                $(kabupaten).append('<option value="' + model.id + '" ' +
-                                    selected + '>' + model.nama + '</option>');
-                            })
-                            resolve()
-                        })
-                })
+            } else {
+                swal("Error!", e.value.message, "error");
             }
+        }, function(dismiss) {
+            return false;
+        })
+    });
+    $('select[name="provinsi_id"]').each(function(index, element) {
+        $(element).change(function(e) {
+            e.preventDefault();
+            window.localStorage.setItem('provinsi', $(element).data('id'));
+            loadKabKota(this.value, $(element.parentElement.parentElement.parentElement)
+                .find('#kab_kota_id'))
+        });
+    });
+    function loadKabKota(val, kabupaten, kabupaten_id = null) {
+        return new Promise(resolve => {
+            $(kabupaten).html('<option value="">Memuat...</option>');
+            fetch('/api/kab-kota/' + val)
+                .then(res => res.json())
+                .then(res => {
+                    $(kabupaten).html(
+                        '<option selected disabled>- Pilih Kabupaten / Kota -</option>');
+                    res.forEach(model => {
+                        var selected = kabupaten_id == model.id ? 'selected=""' : '';
+                        $(kabupaten).append('<option value="' + model.id + '" ' +
+                            selected + '>' + model.nama + '</option>');
+                    })
+                    resolve()
+                })
+            })
+        }
         $(function() {
             $.fn.filepond.registerPlugin(FilePondPluginImagePreview);
             FilePond.create(document.querySelector('input[name="doc_kepegawaian_tmp"]')).setOptions({
@@ -484,7 +484,7 @@
                     $('.btn-simpan-doc-kep .spin').show();
                     $.ajax({
                         type: 'POST',
-                        url: "{{ route('data-saya.store-doc-kepeg') }}",
+                        url: "{{ route('data-penilai-ak.store-doc-kepeg') }}",
                         processData: false,
                         contentType: false,
                         data: postData,
@@ -527,7 +527,7 @@
                     $('.btn-simpan-doc-kom .spin').show();
                     $.ajax({
                         type: 'POST',
-                        url: "{{ route('data-saya.store-doc-kom') }}",
+                        url: "{{ route('data-penilai-ak.store-doc-kom') }}",
                         processData: false,
                         contentType: false,
                         data: postData,
@@ -566,7 +566,7 @@
                     preConfirm: async () => {
                         return await $.ajax({
                             type: 'DELETE',
-                            url: "{{ url('data-saya/destroy-dockepeg') }}/" + $(this)
+                            url: "{{ url('data-penilai-ak/destroy-dockepeg') }}/" + $(this)
                                 .data('id'),
                             dataType: 'JSON'
                         });
@@ -596,7 +596,7 @@
                     preConfirm: async () => {
                         return await $.ajax({
                             type: 'DELETE',
-                            url: "{{ url('data-saya/destroy-dockom') }}/" + $(this)
+                            url: "{{ url('data-penilai-ak/destroy-dockom') }}/" + $(this)
                                 .data('id'),
                             dataType: 'JSON'
                         });
