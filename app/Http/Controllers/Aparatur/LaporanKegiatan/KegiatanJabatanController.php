@@ -16,18 +16,18 @@ class KegiatanJabatanController extends Controller
     public function index()
     {
         $periode = Periode::query()->where('is_active', true)->first();
-        $rencanas = User::query()
-            ->with([
-                'rencanas',
-                'rencanas.rencanaUnsurs.unsur',
-                'rencanas.rencanaUnsurs.rencanaSubUnsurs.subUnsur',
-                'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.butirKegiatan',
-                'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan',
-                'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan.dokumenKegiatanPokoks',
-                'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.historyButirKegiatans',
-            ])
-            ->find(auth()->user()->id)->rencanas;
-        return view('aparatur.laporan-kegiatan.index', compact('rencanas', 'periode'));
+        // $rencanas = User::query()
+        //     ->with([
+        //         'rencanas',
+        //         'rencanas.rencanaUnsurs.unsur',
+        //         'rencanas.rencanaUnsurs.rencanaSubUnsurs.subUnsur',
+        //         'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.butirKegiatan',
+        //         'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan',
+        //         'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan.dokumenKegiatanPokoks',
+        //         'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.historyButirKegiatans',
+        //     ])
+        //     ->find(auth()->user()->id)->rencanas;
+        return view('aparatur.laporan-kegiatan.index', compact('periode'));
     }
 
     public function loadData(Request $request)
