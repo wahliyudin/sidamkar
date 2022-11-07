@@ -24,7 +24,7 @@ class KegiatanJabatanController extends Controller
         //         'rencanas.rencanaUnsurs.rencanaSubUnsurs.subUnsur',
         //         'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.butirKegiatan',
         //         'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan' => function($query){
-        //             $query->where('current_date', now()->addDays(-1)->format('Y-m-d'))->first();
+        //             $query->where('current_date', now()->addDays(-1)->format('Y-m-d'));
         //         },
         //         'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan.dokumenKegiatanPokoks',
         //         'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan.historyButirKegiatans',
@@ -55,7 +55,7 @@ class KegiatanJabatanController extends Controller
                     'rencanas.rencanaUnsurs.rencanaSubUnsurs.subUnsur.butirKegiatans',
                     'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.butirKegiatan',
                     'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan' => function($query) use ($date){
-                        $query->where('current_date', $date)->first();
+                        $query->where('current_date', $date);
                     },
                     'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan.dokumenKegiatanPokoks',
                     'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan.historyButirKegiatans',
