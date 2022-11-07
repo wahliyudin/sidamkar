@@ -110,6 +110,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::controller(LaporanKegiatanKegiatanProfesiController::class)->group(function () {
             Route::get('laporan-kegiatan/profesi', 'index')->name('laporan-kegiatan.profesi');
+            Route::post('laporan-kegiatan/profesi/load-data', 'loadData')->name('laporan-kegiatan.profesi.load-data');
         });
 
         Route::get('ubah-password', [ChangePasswordController::class, 'index'])->name('ubah-password');

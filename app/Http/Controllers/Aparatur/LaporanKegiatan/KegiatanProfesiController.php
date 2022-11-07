@@ -12,7 +12,31 @@ class KegiatanProfesiController extends Controller
     public function index()
     {
         $periode = Periode::query()->where('is_active', true)->first();
-
+        $current_date = now()->format('Y-m-d');
+        $unsurs = Unsur::query()
+            ->where('jenis_kegiatan_id', 2)
+            ->with([
+                'subUnsurs.butirKegiatans' => function ($query) use ($current_date) {
+                    $query->withWhereHas('laporanKegiatanProfesi', function ($query) use ($current_date) {
+                        $query->where('user_id', auth()->user()->id)
+                            ->whereDate('current_date', $current_date)
+                            ->with([
+                                'dokumenKegiatanProfesis',
+                                'historyKegiatanProfesis'
+                            ]);
+                    })->withWhereHas('subButirKegiatans', function ($query) use ($current_date) {
+                        $query->withWhereHas('laporanKegiatanProfesi', function ($query) use ($current_date) {
+                            $query->where('user_id', auth()->user()->id)
+                                ->whereDate('current_date', $current_date)
+                                ->with([
+                                    'dokumenKegiatanProfesis',
+                                    'historyKegiatanProfesis'
+                                ]);
+                        });
+                    });
+                }
+            ])->get();
+        return $unsurs;
         return view('aparatur.laporan-kegiatan.profesi.index', compact('periode'));
     }
 
