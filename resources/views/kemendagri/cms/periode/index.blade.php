@@ -15,8 +15,9 @@
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                     Periode
                                 </p>
-                                <h2 style="font-family: 'Roboto'; font-size: 16px; color: #06152B;" class="target">Januari
-                                    2022 - Juli 2022</h2>
+                                <h2 style="font-family: 'Roboto'; font-size: 16px; color: #06152B;" class="target">
+                                    {{ Carbon\Carbon::make($periode->awal)->translatedFormat('F Y') . ' - ' . Carbon\Carbon::make($periode->akhir)->translatedFormat('F Y') }}
+                                </h2>
                             </div>
                         </div>
                     </div>

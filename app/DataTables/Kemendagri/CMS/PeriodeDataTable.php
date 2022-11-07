@@ -25,10 +25,10 @@ class PeriodeDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('awal', function(Periode $periode){
-                return Carbon::make($periode->awal)->format('F Y');
+                return Carbon::make($periode->awal)->translatedFormat('F Y');
             })
             ->addColumn('akhir', function(Periode $periode){
-                return Carbon::make($periode->akhir)->format('F Y');
+                return Carbon::make($periode->akhir)->translatedFormat('F Y');
             })
             ->setRowId('id');
     }

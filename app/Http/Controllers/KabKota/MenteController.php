@@ -8,6 +8,7 @@ use App\Models\KabKota;
 use App\Models\Mente;
 use App\Models\PenetapAngkaKredit;
 use App\Models\PenilaiAngkaKredit;
+use App\Models\Periode;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,6 +18,7 @@ class MenteController extends Controller
 {
     public function index(MenteDataTable $dataTable)
     {
+        $periode = Periode::query()->where('is_active', true)->first();
         $mentes = Mente::query()->pluck('fungsional_id')->toArray();
         $fungsionals = User::query()->whereHas('userAparatur', function ($query) {
             $query->where('kab_kota_id', Auth::user()->userProvKabKota->kab_kota_id);
@@ -32,7 +34,7 @@ class MenteController extends Controller
         })->where('status_akun', 1)->whereRoleIs('penetap_ak')->get();
         $penilai = PenilaiAngkaKredit::query()->with('penilaiAK.userPejabatStruktural')->where('kab_kota_id', Auth::user()->userProvKabKota->kab_kota_id)->first()?->penilaiAK?->userPejabatStruktural;
         $penetap = PenetapAngkaKredit::query()->with('penetapAK.userPejabatStruktural')->where('kab_kota_id', Auth::user()->userProvKabKota->kab_kota_id)->first()?->penetapAK?->userPejabatStruktural;
-        return $dataTable->render('kabkota.mente.index', compact('fungsionals', 'atasanLangsungs', 'penilais', 'penetaps', 'penilai', 'penetap'));
+        return $dataTable->render('kabkota.mente.index', compact('fungsionals', 'atasanLangsungs', 'penilais', 'penetaps', 'penilai', 'penetap', 'periode'));
     }
 
     public function store(Request $request)
