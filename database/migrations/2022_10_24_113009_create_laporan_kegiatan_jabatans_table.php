@@ -18,6 +18,9 @@ return new class extends Migration
             $table->unsignedBigInteger('rencana_butir_kegiatan_id');
             $table->text('detail_kegiatan');
             $table->date('current_date');
+            $table->float('score', unsigned: true)->nullable();
+            $table->integer('status')->nullable();
+            $table->string('catatan')->nullable();
             $table->timestamps();
 
             $table->foreign('rencana_butir_kegiatan_id')->on('rencana_butir_kegiatans')->references('id')->cascadeOnDelete();

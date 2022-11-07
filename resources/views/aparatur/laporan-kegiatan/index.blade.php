@@ -177,11 +177,54 @@
                 $('input[name="rencana_butir_kegiatan"]').val($(this).data('rencana'));
                 $('input[name="current_date"]').val($('input[name="tanggal"]').val());
             });
+
             $('.simpan-kegiatan').click(function(e) {
                 e.preventDefault();
                 var postData = new FormData($(".form-kegiatan")[0]);
                 $('.simpan-kegiatan span').hide();
                 $('.simpan-kegiatan .spin').show();
+                // $.ajax({
+                //     xhr: function() {
+                //         var xhr = new window.XMLHttpRequest();
+
+                //         // Upload progress
+                //         xhr.upload.addEventListener("progress", function(evt) {
+                //             if (evt.lengthComputable) {
+                //                 var percentComplete = evt.loaded / evt.total;
+                //                 //Do something with upload progress
+                //                 console.log(percentComplete);
+                //             }
+                //         }, false);
+
+                //         // Download progress
+                //         xhr.addEventListener("progress", function(evt) {
+                //             if (evt.lengthComputable) {
+                //                 var percentComplete = evt.loaded / evt.total;
+                //                 // Do something with download progress
+                //                 console.log(percentComplete);
+                //             }
+                //         }, false);
+
+                //         return xhr;
+                //     },
+                //     type: 'POST',
+                //     url: "{{ route('laporan-kegiatan.jabatan.store-laporan') }}",
+                //     processData: false,
+                //     contentType: false,
+                //     data: postData,
+                //     success: function(data) {
+                //         $('.simpan-kegiatan span').show();
+                //         $('.simpan-kegiatan .spin').hide();
+                //         if (response.status == 200) {
+                //             swal("Selesai!", response.message, "success").then(() => {
+                //                 location.reload();
+                //             });
+                //         } else {
+                //             swal("Error!", response.message, "error");
+                //         }
+                //     },
+                //     error: ajaxError
+                // });
                 $.ajax({
                     type: 'POST',
                     url: "{{ route('laporan-kegiatan.jabatan.store-laporan') }}",
@@ -228,8 +271,8 @@
                 $('#revisi' + $(this).data('rencana')).modal('show');
                 $.ajax({
                     type: "POST",
-                    url: url("/laporan-kegiatan/jabatan/" + $(this).data('rencana') +
-                        "/edit"),
+                    url: url("/laporan-kegiatan/jabatan/" + $(this).data('rencana') + "/" + $(
+                        'input[name="tanggal"]').val() + "/edit"),
                     dataType: "json",
                     success: function(response) {
                         pondEdit.removeFile();

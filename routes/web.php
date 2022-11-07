@@ -71,7 +71,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('coba', function () {
-
+    return view('generate-pdf.surat-pernyataan');
 });
 Route::redirect('/', 'login');
 Auth::routes(['verify' => true]);
@@ -101,7 +101,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('laporan-kegiatan/jabatan', 'index')->name('laporan-kegiatan.jabatan');
             Route::post('laporan-kegiatan/jabatan/load-data', 'loadData')->name('laporan-kegiatan.jabatan.load-data');
             Route::post('laporan-kegiatan/jabatan', 'storeLaporan')->name('laporan-kegiatan.jabatan.store-laporan');
-            Route::post('laporan-kegiatan/jabatan/{id}/edit', 'edit')->name('laporan-kegiatan.jabatan.edit');
+            Route::post('laporan-kegiatan/jabatan/{id}/{current_date}/edit', 'edit')->name('laporan-kegiatan.jabatan.edit');
             Route::post('laporan-kegiatan/jabatan/{id}/update', 'update')->name('laporan-kegiatan.jabatan.update');
             Route::post('laporan-kegiatan/jabatan/tmp-file', 'tmpFile')->name('laporan-kegiatan.jabatan.tmp-file');
             Route::delete('laporan-kegiatan/jabatan/revert', 'revert')->name('laporan-kegiatan.jabatan.revert');
@@ -148,9 +148,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('atasan-langsung/pengajuan-kegiatan', [PengajuanKegiatanController::class, 'index'])->name('atasan-langsung.pengajuan-kegiatan.index');
         Route::post('atasan-langsung/pengajuan-kegiatan/{id}/load-data', [PengajuanKegiatanController::class, 'loadData'])->name('atasan-langsung.pengajuan-kegiatan.load-data');
         Route::get('atasan-langsung/pengajuan-kegiatan/{id}/show', [PengajuanKegiatanController::class, 'show'])->name('atasan-langsung.pengajuan-kegiatan.show');
-        Route::post('atasan-langsung/pengajuan-kegiatan/{id}/tolak', [PengajuanKegiatanController::class, 'tolak'])->name('atasan-langsung.pengajuan-kegiatan.tolak');
-        Route::post('atasan-langsung/pengajuan-kegiatan/{id}/revisi', [PengajuanKegiatanController::class, 'revisi'])->name('atasan-langsung.pengajuan-kegiatan.revisi');
-        Route::post('atasan-langsung/pengajuan-kegiatan/{id}/verifikasi', [PengajuanKegiatanController::class, 'verifikasi'])->name('atasan-langsung.pengajuan-kegiatan.verifikasi');
+        Route::post('atasan-langsung/pengajuan-kegiatan/{id}/{current_date}/tolak', [PengajuanKegiatanController::class, 'tolak'])->name('atasan-langsung.pengajuan-kegiatan.tolak');
+        Route::post('atasan-langsung/pengajuan-kegiatan/{id}/{current_date}/revisi', [PengajuanKegiatanController::class, 'revisi'])->name('atasan-langsung.pengajuan-kegiatan.revisi');
+        Route::post('atasan-langsung/pengajuan-kegiatan/{id}/{current_date}/verifikasi', [PengajuanKegiatanController::class, 'verifikasi'])->name('atasan-langsung.pengajuan-kegiatan.verifikasi');
         Route::get('atasan-langsung/kegiatan-selesai', [KegiatanLangsungController::class, 'index'])->name('atasan-langsung.kegiatan-selesai');
         Route::get('atasan-langsung/kegiatan-selesai/{id}/show', [KegiatanLangsungController::class, 'show'])->name('atasan-langsung.kegiatan-selesai.show');
     });

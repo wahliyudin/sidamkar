@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Aparatur\LaporanKegiatan;
 
 use App\Http\Controllers\Controller;
+use App\Models\LaporanKegiatanJabatan;
 use App\Models\Periode;
 use App\Models\Rencana;
 use App\Models\RencanaButirKegiatan;
@@ -16,18 +17,21 @@ class KegiatanJabatanController extends Controller
     public function index()
     {
         $periode = Periode::query()->where('is_active', true)->first();
-        $rencanas = User::query()
-            ->with([
-                'rencanas',
-                'rencanas.rencanaUnsurs.unsur',
-                'rencanas.rencanaUnsurs.rencanaSubUnsurs.subUnsur',
-                'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.butirKegiatan',
-                'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan',
-                'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan.dokumenKegiatanPokoks',
-                'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.historyButirKegiatans',
-            ])
-            ->find(auth()->user()->id)->rencanas;
-        return view('aparatur.laporan-kegiatan.index', compact('rencanas', 'periode'));
+        // $rencanas = User::query()
+        //     ->with([
+        //         'rencanas',
+        //         'rencanas.rencanaUnsurs.unsur',
+        //         'rencanas.rencanaUnsurs.rencanaSubUnsurs.subUnsur',
+        //         'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.butirKegiatan',
+        //         'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan' => function($query){
+        //             $query->where('current_date', now()->addDays(-1)->format('Y-m-d'))->first();
+        //         },
+        //         'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan.dokumenKegiatanPokoks',
+        //         'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan.historyButirKegiatans',
+        //     ])
+        //     ->find(auth()->user()->id)->rencanas;
+        // return $rencanas;
+        return view('aparatur.laporan-kegiatan.index', compact('periode'));
     }
 
     public function loadData(Request $request)
@@ -50,32 +54,35 @@ class KegiatanJabatanController extends Controller
                     'rencanas.rencanaUnsurs.unsur',
                     'rencanas.rencanaUnsurs.rencanaSubUnsurs.subUnsur.butirKegiatans',
                     'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.butirKegiatan',
-                    'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan',
+                    'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan' => function($query) use ($date){
+                        $query->where('current_date', $date)->first();
+                    },
                     'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan.dokumenKegiatanPokoks',
+                    'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan.historyButirKegiatans',
                 ])
-                ->find(auth()->user()->id)?->rencanas->map(function (Rencana $rencana) use ($date) {
+                ->find(auth()->user()->id)?->rencanas->map(function (Rencana $rencana) {
                     foreach ($rencana->rencanaUnsurs as $rencanaUnsur) {
                         foreach ($rencanaUnsur->rencanaSubUnsurs as $rencanaSubUnsur) {
                             foreach ($rencanaSubUnsur->rencanaButirKegiatans as $rencanaButirKegiatan) {
-                                if ($rencanaButirKegiatan->laporanKegiatanJabatan?->whereDate('current_date', $date)->first() !== null) {
-                                    if ($rencanaButirKegiatan->status == 1) {
+                                if (isset($rencanaButirKegiatan->laporanKegiatanJabatan)) {
+                                    if ($rencanaButirKegiatan->laporanKegiatanJabatan->status == 1) {
                                         $rencanaButirKegiatan->button = '<button class="btn btn-yellow ms-3 px-3"
                                             data-bs-toggle="modal"
                                             data-bs-target="#riwayatKegiatan' . $rencanaButirKegiatan->id . '"
                                             type="button">Prosess</button>
                                         ' . view('aparatur.laporan-kegiatan.riwayat', compact('rencanaButirKegiatan'));
-                                    } elseif ($rencanaButirKegiatan->status == 2) {
+                                    } elseif ($rencanaButirKegiatan->laporanKegiatanJabatan->status == 2) {
                                         $rencanaButirKegiatan->button = '<button
                                             class="btn btn-red ms-3 px-3 btn-sm btn-revisi"
                                             data-rencana="' . $rencanaButirKegiatan->id . '" type="button">Revisi</button>'
                                             . view('aparatur.laporan-kegiatan.revisi', compact('rencanaButirKegiatan'));
-                                    } elseif ($rencanaButirKegiatan->status == 3) {
+                                    } elseif ($rencanaButirKegiatan->laporanKegiatanJabatan->status == 3) {
                                         $rencanaButirKegiatan->button = '<button class="btn btn-black ms-3 px-3"
                                             data-bs-toggle="modal"
                                             data-bs-target="#riwayatKegiatan' . $rencanaButirKegiatan->id . '"
                                             type="button">Ditolak</button>'
                                             . view('aparatur.laporan-kegiatan.riwayat', compact('rencanaButirKegiatan'));
-                                    } elseif ($rencanaButirKegiatan->status == 4) {
+                                    } elseif ($rencanaButirKegiatan->laporanKegiatanJabatan->status == 4) {
                                         $rencanaButirKegiatan->button = ' <button class="btn btn-green-dark ms-3 px-3"
                                             data-bs-toggle="modal"
                                             data-bs-target="#riwayatKegiatan' . $rencanaButirKegiatan->id . '"
@@ -115,26 +122,27 @@ class KegiatanJabatanController extends Controller
             'keterangan.required' => 'Detail kegiatan harus diisi',
             'doc_kegiatan_tmp.required' => 'Dokumen Kegiatan harus diisi'
         ]);
-        $rencanaButirKegiatan = RencanaButirKegiatan::query()->findOrFail($request->rencana_butir_kegiatan);
-        $laporan = $rencanaButirKegiatan->laporanKegiatanJabatan()->create([
+        $rencanaButirKegiatan = RencanaButirKegiatan::query()->with('butirKegiatan')->findOrFail($request->rencana_butir_kegiatan);
+        $laporanKegiatanJabatan = $rencanaButirKegiatan->laporanKegiatanJabatans()->create([
             'detail_kegiatan' => $request->keterangan,
-            'current_date' => $request->current_date
+            'current_date' => $request->current_date,
+            'score' => $rencanaButirKegiatan->butirKegiatan->score
         ]);
         foreach ($request->doc_kegiatan_tmp as $doc_kegiatan_tmp) {
             $tmp_file = TemporaryFile::query()->where('folder', $doc_kegiatan_tmp)->first();
             if ($tmp_file) {
                 Storage::copy("tmp/$tmp_file->folder/$tmp_file->file", "kegiatan/$tmp_file->file");
-                $laporan->dokumenKegiatanPokoks()->create([
+                $laporanKegiatanJabatan->dokumenKegiatanPokoks()->create([
                     'file' => url("storage/kegiatan/$tmp_file->file")
                 ]);
                 $tmp_file->delete();
                 Storage::deleteDirectory("tmp/$tmp_file->folder");
             }
         }
-        $rencanaButirKegiatan->update([
+        $laporanKegiatanJabatan->update([
             'status' => 1
         ]);
-        $rencanaButirKegiatan->historyButirKegiatans()->create([
+        $laporanKegiatanJabatan->historyButirKegiatans()->create([
             'keterangan' => 'Menginput Laporan kegiatan'
         ]);
         return response()->json([
@@ -147,35 +155,37 @@ class KegiatanJabatanController extends Controller
     {
         $request->validate([
             'keterangan' => 'required',
+            'current_date' => 'required',
             'doc_kegiatan_tmp' => 'required|array'
         ], [
             'keterangan.required' => 'Detail kegiatan harus diisi',
             'doc_kegiatan_tmp.required' => 'Dokumen Kegiatan harus diisi'
         ]);
-        $rencanaButirKegiatan = RencanaButirKegiatan::query()->with('laporanKegiatanJabatan.dokumenKegiatanPokoks')->find($id);
-        foreach ($rencanaButirKegiatan->laporanKegiatanJabatan->dokumenKegiatanPokoks as $dok) {
+        $laporanKegiatanJabatan = LaporanKegiatanJabatan::query()->with(['rencanaButirKegiatan.butirKegiatan', 'dokumenKegiatanPokoks'])->where('rencana_butir_kegiatan_id', $id)->whereDate('current_date', $request->current_date)->first();
+        foreach ($laporanKegiatanJabatan->dokumenKegiatanPokoks as $dok) {
             deleteImage($dok->file);
             $dok->delete();
         }
-        $rencanaButirKegiatan->laporanKegiatanJabatan()->update([
+        $laporanKegiatanJabatan->update([
             'detail_kegiatan' => $request->keterangan,
-            'current_date' => $request->current_date
+            'score' => $laporanKegiatanJabatan->rencanaButirKegiatan->butirKegiatan->score
         ]);
         foreach ($request->doc_kegiatan_tmp as $doc_kegiatan_tmp) {
             $tmp_file = TemporaryFile::query()->where('folder', $doc_kegiatan_tmp)->first();
             if ($tmp_file) {
                 Storage::copy("tmp/$tmp_file->folder/$tmp_file->file", "kegiatan/$tmp_file->file");
-                $rencanaButirKegiatan->laporanKegiatanJabatan->dokumenKegiatanPokoks()->create([
+                $laporanKegiatanJabatan->dokumenKegiatanPokoks()->create([
                     'file' => url("storage/kegiatan/$tmp_file->file")
                 ]);
                 $tmp_file->delete();
                 Storage::deleteDirectory("tmp/$tmp_file->folder");
             }
         }
-        $rencanaButirKegiatan->update([
-            'status' => 1
+        $laporanKegiatanJabatan->update([
+            'status' => 1,
+            'catatan' => null
         ]);
-        $rencanaButirKegiatan->historyButirKegiatans()->create([
+        $laporanKegiatanJabatan->historyButirKegiatans()->create([
             'keterangan' => 'Kirim revisi Laporan kegiatan'
         ]);
         return response()->json([
@@ -184,9 +194,11 @@ class KegiatanJabatanController extends Controller
         ]);
     }
 
-    public function edit($id)
+    public function edit($id, $current_date)
     {
-        $rencanaButirKegiatan = RencanaButirKegiatan::query()->with('laporanKegiatanJabatan.dokumenKegiatanPokoks')->find($id);
+        $rencanaButirKegiatan = RencanaButirKegiatan::query()->withWhereHas('laporanKegiatanJabatan', function ($query) use ($current_date) {
+            $query->with('dokumenKegiatanPokoks')->where('current_date', $current_date);
+        })->find($id);
 
         return response()->json([
             'status' => 200,

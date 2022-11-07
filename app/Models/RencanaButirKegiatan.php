@@ -8,17 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class RencanaButirKegiatan extends Model
 {
     use HasFactory;
-    /*
-        1 => prosess
-        2 => revisi
-        3 => tolak
-        4 => selesai
-    */
+
     protected $fillable = [
         'rencana_sub_unsur_id',
-        'butir_kegiatan_id',
-        'status',
-        'catatan'
+        'butir_kegiatan_id'
     ];
 
     public function rencanaSubUnsur()
@@ -41,8 +34,4 @@ class RencanaButirKegiatan extends Model
         return $this->hasMany(LaporanKegiatanJabatan::class);
     }
 
-    public function historyButirKegiatans()
-    {
-        return $this->hasMany(HistoryButirKegiatan::class);
-    }
 }

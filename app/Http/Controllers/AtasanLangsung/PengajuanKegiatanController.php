@@ -44,25 +44,28 @@ class PengajuanKegiatanController extends Controller
                     'rencanas.rencanaUnsurs.unsur',
                     'rencanas.rencanaUnsurs.rencanaSubUnsurs.subUnsur.butirKegiatans',
                     'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.butirKegiatan',
-                    'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan',
+                    'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan' => function($query) use ($date){
+                        $query->where('current_date', $date)->first();
+                    },
                     'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan.dokumenKegiatanPokoks',
+                    'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan.historyButirKegiatans',
                 ])
                 ->find($id)?->rencanas->map(function (Rencana $rencana) use ($date) {
                     foreach ($rencana->rencanaUnsurs as $rencanaUnsur) {
                         foreach ($rencanaUnsur->rencanaSubUnsurs as $rencanaSubUnsur) {
                             foreach ($rencanaSubUnsur->rencanaButirKegiatans as $rencanaButirKegiatan) {
-                                if ($rencanaButirKegiatan->laporanKegiatanJabatan?->whereDate('current_date', $date)->first() !== null) {
-                                    if ($rencanaButirKegiatan->status == 2) {
+                                if (isset($rencanaButirKegiatan->laporanKegiatanJabatan)) {
+                                    if ($rencanaButirKegiatan->laporanKegiatanJabatan->status == 2) {
                                         $rencanaButirKegiatan->button = '<button class="btn btn-red ms-3 px-3 btn-sm"
                                             data-bs-toggle="modal"
                                             data-bs-target="#lihat' . $rencanaButirKegiatan->id . '"
                                             type="button">Revisi</button>';
-                                    } elseif ($rencanaButirKegiatan->status == 3) {
+                                    } elseif ($rencanaButirKegiatan->laporanKegiatanJabatan->status == 3) {
                                         $rencanaButirKegiatan->button = '<button class="btn btn-black ms-3 px-3"
                                             data-bs-toggle="modal"
                                             data-bs-target="#lihat' . $rencanaButirKegiatan->id . '"
                                             type="button">Ditolak</button>';
-                                    } elseif ($rencanaButirKegiatan->status == 4) {
+                                    } elseif ($rencanaButirKegiatan->laporanKegiatanJabatan->status == 4) {
                                         $rencanaButirKegiatan->button = '<button class="btn btn-green-dark ms-3 px-3"
                                             data-bs-toggle="modal"
                                             data-bs-target="#lihat' . $rencanaButirKegiatan->id . '"
@@ -77,7 +80,7 @@ class PengajuanKegiatanController extends Controller
                                             compact('rencanaButirKegiatan'));
                                     }
                                 } else {
-                                        $rencanaButirKegiatan->laporanKegiatanJabatan = [];
+                                    $rencanaButirKegiatan->laporanKegiatanJabatan = [];
                                     $rencanaButirKegiatan->button = '<button
                                         data-rencana="'.$rencanaButirKegiatan->id.'"
                                         class="btn btn-blue ms-3 px-4 btn-sm laporkan" data-bs-toggle="modal"
@@ -97,14 +100,16 @@ class PengajuanKegiatanController extends Controller
         }
     }
 
-    public function tolak(Request $request, $id)
+    public function tolak(Request $request, $id, $current_date)
     {
-        $rencanaButirKegiatan = RencanaButirKegiatan::query()->find($id);
-        $rencanaButirKegiatan->update([
+        $rencanaButirKegiatan = RencanaButirKegiatan::query()->withWhereHas('laporanKegiatanJabatan', function ($query) use ($current_date) {
+            $query->with('dokumenKegiatanPokoks')->where('current_date', $current_date);
+        })->find($id);
+        $rencanaButirKegiatan->laporanKegiatanJabatan->update([
             'status' => 3,
             'catatan' => $request->catatan
         ]);
-        $rencanaButirKegiatan->historyButirKegiatans()->create([
+        $rencanaButirKegiatan->laporanKegiatanJabatan->historyButirKegiatans()->create([
             'keterangan' => 'Laporan ditolak'
         ]);
         return response()->json([
@@ -113,14 +118,16 @@ class PengajuanKegiatanController extends Controller
         ]);
     }
 
-    public function revisi(Request $request, $id)
+    public function revisi(Request $request, $id, $current_date)
     {
-        $rencanaButirKegiatan = RencanaButirKegiatan::query()->find($id);
-        $rencanaButirKegiatan->update([
+        $rencanaButirKegiatan = RencanaButirKegiatan::query()->withWhereHas('laporanKegiatanJabatan', function ($query) use ($current_date) {
+            $query->with('dokumenKegiatanPokoks')->where('current_date', $current_date);
+        })->find($id);
+        $rencanaButirKegiatan->laporanKegiatanJabatan->update([
             'status' => 2,
             'catatan' => $request->catatan
         ]);
-        $rencanaButirKegiatan->historyButirKegiatans()->create([
+        $rencanaButirKegiatan->laporanKegiatanJabatan->historyButirKegiatans()->create([
             'keterangan' => 'Laporan direvisi'
         ]);
         return response()->json([
@@ -129,14 +136,16 @@ class PengajuanKegiatanController extends Controller
         ]);
     }
 
-    public function verifikasi($id)
+    public function verifikasi($id, $current_date)
     {
-        $rencanaButirKegiatan = RencanaButirKegiatan::query()->find($id);
-        $rencanaButirKegiatan->update([
+        $rencanaButirKegiatan = RencanaButirKegiatan::query()->withWhereHas('laporanKegiatanJabatan', function ($query) use ($current_date) {
+            $query->with('dokumenKegiatanPokoks')->where('current_date', $current_date);
+        })->find($id);
+        $rencanaButirKegiatan->laporanKegiatanJabatan->update([
             'status' => 4,
             'catatan' => null
         ]);
-        $rencanaButirKegiatan->historyButirKegiatans()->create([
+        $rencanaButirKegiatan->laporanKegiatanJabatan->historyButirKegiatans()->create([
             'keterangan' => 'Laporan diverifikasi'
         ]);
         return response()->json([

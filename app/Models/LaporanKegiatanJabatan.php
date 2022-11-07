@@ -13,6 +13,9 @@ class LaporanKegiatanJabatan extends Model
         'rencana_butir_kegiatan_id',
         'detail_kegiatan',
         'current_date',
+        'score',
+        'status',
+        'catatan'
     ];
 
     public function dokumenKegiatanPokoks()
@@ -23,5 +26,10 @@ class LaporanKegiatanJabatan extends Model
     public function rencanaButirKegiatan()
     {
         return $this->belongsTo(RencanaButirKegiatan::class);
+    }
+
+    public function historyButirKegiatans()
+    {
+        return $this->hasMany(HistoryButirKegiatan::class);
     }
 }

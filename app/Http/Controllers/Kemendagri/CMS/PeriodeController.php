@@ -13,7 +13,8 @@ class PeriodeController extends Controller
 {
     public function index(PeriodeDataTable $dataTable)
     {
-        return $dataTable->render('kemendagri.cms.periode.index');
+        $periode = Periode::query()->where('is_active', true)->first();
+        return $dataTable->render('kemendagri.cms.periode.index', compact('periode'));
     }
 
     public function store(Request $request)
