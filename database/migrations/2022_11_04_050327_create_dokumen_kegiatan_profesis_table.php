@@ -15,14 +15,11 @@ return new class extends Migration
     {
         Schema::create('dokumen_kegiatan_profesis', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable();
+            $table->unsignedBigInteger('laporan_kegiatan_profesi_id');
             $table->string('file');
-            $table->unsignedBigInteger('profesi_butir_kegiatan_id');
-            $table->unsignedBigInteger('profesi_sub_butir_kegiatan_id');
             $table->timestamps();
 
-            $table->foreign('profesi_butir_kegiatan_id')->on('profesi_butir_kegiatans')->references('id')->cascadeOnDelete();
-            $table->foreign('profesi_sub_butir_kegiatan_id')->on('profesi_sub_butir_kegiatans')->references('id')->cascadeOnDelete();
+            $table->foreign('laporan_kegiatan_profesi_id')->on('laporan_kegiatan_profesis')->references('id')->cascadeOnDelete();
         });
     }
 
