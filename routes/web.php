@@ -71,7 +71,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('coba', function () {
-
+    return view('generate-pdf.surat-pernyataan');
 });
 Route::redirect('/', 'login');
 Auth::routes(['verify' => true]);

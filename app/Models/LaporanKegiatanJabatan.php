@@ -13,6 +13,9 @@ class LaporanKegiatanJabatan extends Model
         'rencana_butir_kegiatan_id',
         'detail_kegiatan',
         'current_date',
+        'score',
+        'status',
+        'catatan'
     ];
 
     public function dokumenKegiatanPokoks()
