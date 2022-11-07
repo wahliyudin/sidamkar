@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Aparatur;
+namespace App\Http\Controllers\PenetapAK;
 
 use App\Http\Controllers\Controller;
 use App\Models\DokKepegawaian;
@@ -21,17 +21,17 @@ use App\Http\Requests\DataAparatur\StoreDataAparatur;
 use App\Models\PangkatGolonganTmt;
 use Carbon\Carbon;
 
-class DataSayaController extends Controller
+class DataPenetapAKController extends Controller
 {
     use ImageTrait;
 
     public function index()
     {
-        $user = User::query()->with(['userAparatur.provinsi.kabkotas', 'dokKepegawaians', 'dokKompetensis'])->find(Auth::user()->id);
+        $user = User::query()->with(['userPejabatStruktural.provinsi.kabkotas', 'dokKepegawaians', 'dokKompetensis'])->find(Auth::user()->id);
         $provinsis = Provinsi::query()->get();
         $kab_kota = KabKota::query()->get();
         $pangkats = PangkatGolonganTmt::query()->get();
-        return view('aparatur.data-saya.index', compact('user', 'provinsis', 'kab_kota', 'pangkats'));
+        return view('penetap-ak.data-saya.index', compact('user', 'provinsis', 'kab_kota', 'pangkats'));
     }
 
     public function store(Request $request)
@@ -63,14 +63,14 @@ class DataSayaController extends Controller
         if ($request->hasFile('avatar')) {
             $data['foto_pegawai'] = $this->storeImage($request->file('avatar'), 'aparatur');
         }
-        $user = User::query()->with('userAparatur')->find(auth()->user()->id);
-        if (isset($user->userAparatur)) {
-            $user->userAparatur()->update($data);
+        $user = User::query()->with('userPejabatStruktural')->find(auth()->user()->id);
+        if (isset($user->userPejabatStruktural)) {
+            $user->userPejabatStruktural()->update($data);
             if (isset($data['foto_pegawai'])) {
-                deleteImage($user->userAparatur->foto_pegawai);
+                deleteImage($user->userPejabatStruktural->foto_pegawai);
             }
         } else {
-            $user->userAparatur()->create($data);
+            $user->userPejabatStruktural()->create($data);
         }
 
         return response()->json([
@@ -82,19 +82,19 @@ class DataSayaController extends Controller
 
     public function create()
     {
-        return view('aparatur.data-saya.index');
+        return view('penetap-ak.data-saya.index');
     }
 
     public function showDocKepeg($id)
     {
         $file = DokKepegawaian::query()->findOrFail($id)->file;
-        return view('aparatur.data-saya.show-document', compact('file'));
+        return view('penetap-ak.data-saya.show-document', compact('file'));
     }
 
     public function storeDocKepeg(Request $request)
     {
         try {
-            $file = $this->storeFile($request->file('doc_kepegawaian'), 'fungsional/doc');
+            $file = $this->storeFile($request->file('doc_kepegawaian'), 'struktural/doc');
             User::query()->find(Auth::user()->id)->dokKepegawaians()->create([
                 'file' => $file,
                 'nama' => $request->nama
@@ -111,7 +111,7 @@ class DataSayaController extends Controller
     public function storeDocKom(Request $request)
     {
         try {
-            $file = $this->storeFile($request->file('doc_kompetensi'), 'fungsional/doc');
+            $file = $this->storeFile($request->file('doc_kompetensi'), 'struktural/doc');
             User::query()->find(Auth::user()->id)->dokKompetensis()->create([
                 'file' => $file,
                 'nama' => $request->nama

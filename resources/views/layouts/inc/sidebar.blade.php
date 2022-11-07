@@ -21,7 +21,7 @@
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="bi bi-grid-fill"></i>
                             </div>
-                            <span>Overview</span>
+                            <span>Dashboard</span>
                         </a>
                     </li>
 
@@ -146,7 +146,7 @@
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="bi bi-grid-fill"></i>
                             </div>
-                            <span>Overview</span>
+                            <span>Dashboard</span>
                         </a>
                     </li>
                     <li
@@ -223,7 +223,7 @@
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="fa-solid fa-table-columns"></i>
                             </div>
-                            <span>Overview</span>
+                            <span>Dashboard</span>
                         </a>
                     </li>
                     <li
@@ -232,7 +232,7 @@
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="fa-solid fa-square-poll-vertical"></i>
                             </div>
-                            <span>Verifikasi Data</span>
+                            <span>Manajemen User</span>
                         </a>
                         <ul
                             class="submenu {{ request()->is('kemendagri/verifikasi-data/admin-kabkota*') || request()->is('kemendagri/verifikasi-data/admin-provinsi*') || request()->is('kemendagri/verifikasi-data/aparatur*') ? 'active' : '' }}">
