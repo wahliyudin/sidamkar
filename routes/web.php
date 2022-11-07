@@ -81,7 +81,10 @@ Route::redirect('/', 'login');
 Auth::routes(['verify' => true]);
 Route::post('register/file', [RegisterController::class, 'storeFile']);
 Route::delete('register/revert', [RegisterController::class, 'revert']);
+Route::get('ubah-password', [ChangePasswordController::class, 'index'])->name('ubah-password');
+Route::post('ubah-password', [ChangePasswordController::class, 'update'])->name('ubah-password.update');
 Route::middleware(['auth'])->group(function () {
+
     Route::middleware(['role:damkar_pemula|damkar_terampil|damkar_mahir|damkar_penyelia|analis_kebakaran_ahli_pertama|analis_kebakaran_ahli_muda|analis_kebakaran_ahli_madya'])->group(function () {
         Route::get('/overview', [OverviewController::class, 'index'])->name('overview');
 
@@ -111,8 +114,6 @@ Route::middleware(['auth'])->group(function () {
             Route::delete('laporan-kegiatan/jabatan/revert', 'revert')->name('laporan-kegiatan.jabatan.revert');
         });
 
-        Route::get('ubah-password', [ChangePasswordController::class, 'index'])->name('ubah-password');
-        Route::post('ubah-password', [ChangePasswordController::class, 'update'])->name('ubah-password.update');
         Route::get('/daftar-kegiatan', [DaftarKegiatanController::class, 'index'])->name('daftar-kegiatan');
         Route::get('/daftar-penunjang', [DaftarPenunjangController::class, 'index'])->name('daftar-penunjang');
         Route::get('/tabel-kegiatan', [TabelKegiatanController::class, 'index'])->name('tabel-kegiatan');
@@ -163,8 +164,6 @@ Route::middleware(['auth'])->group(function () {
         Route::post('atasan-langsung/pengajuan-kegiatan/{id}/{current_date}/revisi', [PengajuanKegiatanController::class, 'revisi'])->name('atasan-langsung.pengajuan-kegiatan.revisi');
         Route::post('atasan-langsung/pengajuan-kegiatan/{id}/{current_date}/verifikasi', [PengajuanKegiatanController::class, 'verifikasi'])->name('atasan-langsung.pengajuan-kegiatan.verifikasi');
         Route::get('atasan-langsung/kegiatan-selesai', [KegiatanLangsungController::class, 'index'])->name('atasan-langsung.kegiatan-selesai');
-        Route::get('ubah-password', [ChangePasswordController::class, 'index'])->name('ubah-password');
-        Route::post('ubah-password', [ChangePasswordController::class, 'update'])->name('ubah-password.update');
         Route::get('atasan-langsung/kegiatan-selesai/{id}/show', [KegiatanLangsungController::class, 'show'])->name('atasan-langsung.kegiatan-selesai.show');
     });
 
@@ -177,8 +176,6 @@ Route::middleware(['auth'])->group(function () {
         Route::post('data-penilai-ak/store-dockom', [DataAtasanLangsungController::class, 'storeDocKom'])->name('data-penilai-ak.store-doc-kom');
         Route::delete('data-penilai-ak/destroy-dockepeg/{id}', [DataAtasanLangsungController::class, 'destroyDocKepeg'])->name('data-penilai-ak.destroy-doc-kepeg');
         Route::delete('data-penilai-ak/destroy-dockom/{id}', [DataAtasanLangsungController::class, 'destroyDocKom'])->name('data-penilai-ak.destroy-doc-kom');
-        Route::get('ubah-password', [ChangePasswordController::class, 'index'])->name('ubah-password');
-        Route::post('ubah-password', [ChangePasswordController::class, 'update'])->name('ubah-password.update');
     });
     Route::middleware(['role:penetap_ak'])->group(function () {
         // Route::get('penetap_ak/overview', [PenilaiAkOverviewController::class, 'index'])->name('penetap_ak.overview');
@@ -193,8 +190,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('penilai-ak/kegiatan-profesi/show', [ProfesiPenunjangShowController::class, 'index'])->name('penilai-ak.kegiatan-profesi.show');
         Route::get('penilai-ak/data-penunjang/data-pengajuan', [DataPengajuanController::class, 'index'])->name('penilai-ak.data-penunjang.data-pengajuan');
         Route::get('penilai-ak/kegiatan-selesai/kegiatan-selesai', [KegiatanSelesaiController::class, 'index'])->name('penilai-ak.kegiatan-selesai.kegiatan-selesai');
-        Route::get('ubah-password', [ChangePasswordController::class, 'index'])->name('ubah-password');
-        Route::post('ubah-password', [ChangePasswordController::class, 'update'])->name('ubah-password.update');
     });
 
     Route::middleware(['role:provinsi'])->group(function () {
