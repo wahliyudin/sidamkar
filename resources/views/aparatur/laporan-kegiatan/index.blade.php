@@ -61,8 +61,16 @@
         <div class="row">
             <div class="card">
                 <div class="card-header">
-                    <div class="row">
-                        <h3>Kegiatan Jabatan</h3>
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-md-4">
+                            <h3>Kegiatan Jabatan</h3>
+                        </div>
+                        <div class="col-md-6 text-end">
+                            <div data-bs-toggle="modal" data-bs-target="#rekap" class="btn btn-green btn-sm ps-3 pe-3 py-2">
+                                <i class="fa-solid fa-paper-plane me-1"></i>
+                                Ajukan Laporan Rekapitulasi Capaian
+                            </div>
+                        </div>
                     </div>
                     <hr>
                     <div class="row align-items-center justify-content-between">
@@ -81,6 +89,27 @@
 
                 <div class="card-body px-0 rencana-container">
 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="rekap" tabindex="-1" role="dialog" aria-labelledby="rekapTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="text-red uppercase">Surat Pernyataan Melakukan Kegiatan</h5>
+                </div>
+                <div class="modal-body">
+                    <iframe src="" width="100%" height="420px"></iframe>
+                    <div class="text-center mt-4">
+                        <button class="btn btn-danger px-5" data-bs-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-blue px-5 simpan-kegiatan">
+                            <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
+                                style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
+                            <span>Kirim</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
