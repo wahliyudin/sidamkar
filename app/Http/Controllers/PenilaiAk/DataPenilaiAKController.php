@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\PenilaiAK;
+namespace App\Http\Controllers\PenilaiAk;
 
 use App\Http\Controllers\Controller;
 use App\Models\DokKepegawaian;
