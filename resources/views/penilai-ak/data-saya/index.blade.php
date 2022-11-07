@@ -3,7 +3,7 @@
     <section class="section">
         <div class="card">
             <div class="card-body" style="padding-top: 3rem;">
-                <form action="{{ route('data-penilai-ak-store') }}" method="post" enctype="multipart/form-data">
+                <form action="" method="post" class="form-data">
                     @csrf
                     <div class="row">
                         <div class="col-md-4">
@@ -81,7 +81,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="basicInput">Privinsi</label>
-                                        <select class="provinsi_id form-select" name="provinsi_id">
+                                        <select class="form-select provinsi2" data-id=".provinsi2" name="provinsi_id">
                                             <option disabled selected>- Pilih Privinsi -</option>
                                             @foreach ($provinsis as $prov)
                                                 <option value="{{ $prov->id }}" @selected(old('provinsi_id', $user->userPejabatStruktural?->provinsi_id) == $prov->id)>
@@ -94,7 +94,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="basicInput">Kabupaten / Kota</label>
-                                        <select class="kab_kota_id form-select" name="kab_kota_id">
+                                        <select class="kab_kota_id form-select" name="kab_kota_id" id="kab_kota_id">
                                             <option disabled selected>- Pilih Kabupaten / Kota -</option>
                                             @foreach ($kab_kota as $kabkota)
                                                 <option value="{{ $kabkota->id }}" @selected(old('kab_kota_id', $user->userPejabatStruktural?->kab_kota_id) == $kabkota->id)>
@@ -152,7 +152,7 @@
                     </div>
                     <div class="d-flex justify-content-end mt-2">
                         <button type="reset" class="btn btn-gray text-sm px-5" id="reset">Reset</button>
-                        <button type="submit" class="btn btn-blue text-sm ms-3 px-5">Simpan</button>
+                       <button class="btn btn-blue text-sm ms-3 px-5 simpan-data" id="simpan" >Simpan</button>
                     </div>
                 </form>
             </div>
@@ -329,6 +329,63 @@
             e.preventDefault();
             location.reload()
         });
+        $('#simpan').click(function(e) {
+            e.preventDefault();
+            var postData = new FormData($(".form-data")[0]);
+            swal({
+                title: "Apakah Data Yang Anda Masukkan Sudah Benar?",
+                type: "warning",
+                showCancelButton: !0,
+                confirmButtonText: "Ya, Sudah Benar!",
+                cancelButtonText: "Batal",
+                reverseButtons: !0,
+                showLoaderOnConfirm: true,
+                preConfirm: async () => {
+                    return await $.ajax({
+                        type: 'POST',
+                        url: url("/data-penilai-ak-store"),
+                        processData: false,
+                        contentType: false,
+                        data: postData,
+                    });
+        },
+        }).then(function(e) {
+            if (e.value.status == 200) {
+                swal("Selesai!", e.value.message, "success").then(() => {
+                    location.reload();
+                });
+            } else {
+                swal("Error!", e.value.message, "error");
+            }
+        }, function(dismiss) {
+            return false;
+        })
+    });
+    $('select[name="provinsi_id"]').each(function(index, element) {
+        $(element).change(function(e) {
+            e.preventDefault();
+            window.localStorage.setItem('provinsi', $(element).data('id'));
+            loadKabKota(this.value, $(element.parentElement.parentElement.parentElement)
+                .find('#kab_kota_id'))
+        });
+    });
+    function loadKabKota(val, kabupaten, kabupaten_id = null) {
+        return new Promise(resolve => {
+            $(kabupaten).html('<option value="">Memuat...</option>');
+            fetch('/api/kab-kota/' + val)
+                .then(res => res.json())
+                .then(res => {
+                    $(kabupaten).html(
+                        '<option selected disabled>- Pilih Kabupaten / Kota -</option>');
+                    res.forEach(model => {
+                        var selected = kabupaten_id == model.id ? 'selected=""' : '';
+                        $(kabupaten).append('<option value="' + model.id + '" ' +
+                            selected + '>' + model.nama + '</option>');
+                    })
+                    resolve()
+                })
+            })
+        }
         $(function() {
             $.fn.filepond.registerPlugin(FilePondPluginImagePreview);
             FilePond.create(document.querySelector('input[name="doc_kepegawaian_tmp"]')).setOptions({

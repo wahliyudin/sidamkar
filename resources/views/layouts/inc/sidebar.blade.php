@@ -204,7 +204,7 @@
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="fa-solid fa-square-poll-vertical"></i>
                             </div>
-                            <span>Verifikasi Data</span>
+                            <span>Manajemen User</span>
                         </a>
                         <ul
                             class="submenu {{ request()->is('kemendagri/verifikasi-data/admin-kabkota*') || request()->is('kemendagri/verifikasi-data/admin-provinsi*') || request()->is('kemendagri/verifikasi-data/aparatur*') ? 'active' : '' }}">

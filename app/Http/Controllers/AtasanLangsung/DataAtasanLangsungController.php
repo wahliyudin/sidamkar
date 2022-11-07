@@ -73,7 +73,11 @@ class DataAtasanLangsungController extends Controller
             $user->userPejabatStruktural()->create($data);
         }
 
-        return to_route('data-atasan-langsung');
+        return response()->json([
+            'status' => 200,
+            'message' => 'Berhasil Disimpan'
+
+        ]);
     }
 
     public function create()

@@ -3,26 +3,26 @@
     <section class="section">
         <div class="card">
             <div class="card-body" style="padding-top: 3rem;">
-                 <form action="" method="post" class="form-data">
+                <form action="" method="post" class="form-data">
                     @csrf
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-4 col-sm-6 mb-3 foto">
+                            <div class="container text-center">
                                 <input id="avatar" type="file" style="display: none;" name="avatar" id="">
                                 <label for="avatar">
-                                    <img src="{{ isset($user->userPejabatStruktural?->foto_pegawai) ? $user->userPejabatStruktural?->foto_pegawai : asset('assets/images/faces/3.jpg') }}"
+                                    <img class="rounded-circle position-relative" src="{{ isset($user->userPejabatStruktural->foto_pegawai) ? $user->userPejabatStruktural?->foto_pegawai : asset('assets/images/faces/3.jpg') }}"
                                         alt="Avatar" class="image preview-avatar"
-                                        style="min-width:145px; min-height: 145px; max-width:145px; max-height: 145px; object-fit: cover; border-radius: 50%;">
+                                        style="min-width: 145px;max-height: 145px; object-fit: cover;  border-color:aqua">
                                     <span class="middle">
                                         <div class="text" style="cursor: pointer;"><i
-                                                class="fa-regular fa-pen-to-square fa-xl"></i>
+                                                class="fa-regular fa-pen-to-square fa-xl edit-gambar position-absolute top-50 start-50 translate-middle"></i>
                                         </div>
                                     </span>
                                 </label>
                             </div>
                         </div>
                          <div class="row col-md-8 justify-content-center">
-                            <div class="row col-md-12" style="border: 2px solid #E5E5E5;border-radius: 6px;padding: 4px;">
+                            <div class="row col-md-12 isi-form" style="border: 2px solid #E5E5E5;border-radius: 6px;padding: 4px;">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="basicInput">Nama Lengkap</label>
@@ -35,7 +35,7 @@
                                     <div class="form-group">
                                         <label>Tempat Tanggal Lahir</label>
                                         <div class="row">
-                                            <div class="col-md-6" style="padding-right: .3rem !important;">
+                                            <div class="col-md-6" >
                                                 <input type="text" class="form-control w-100" name="tempat_lahir"
                                                     value="{{ old('tempat_lahir', $user->userPejabatStruktural?->tempat_lahir) }}"
                                                     placeholder="" style="width: 50%">
@@ -43,8 +43,8 @@
                                                     <span class="text-danger text-sm">{{ $message }}</span>
                                                 @enderror
                                             </div>
-                                            <div class="col-md-6" style="padding-left: .3rem !important;">
-                                                <input type="date" class="form-control w-100" name="tanggal_lahir"
+                                            <div class="col-md-6" >
+                                                <input type="date" class="ttl form-control w-100 " name="tanggal_lahir"
                                                     value="{{ old('tanggal_lahir', $user->userPejabatStruktural?->tanggal_lahir) }}"
                                                     placeholder="" style="width: 50%">
                                                 @error('tanggal_lahir')
@@ -94,7 +94,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="basicInput">Kabupaten / Kota</label>
-                                         <select class="kab_kota_id form-select" name="kab_kota_id" id="kab_kota_id">
+                                        <select class="kab_kota_id form-select" name="kab_kota_id" id="kab_kota_id">
                                             <option disabled selected>- Pilih Kabupaten / Kota -</option>
                                             @foreach ($kab_kota as $kabkota)
                                                 <option value="{{ $kabkota->id }}" @selected(old('kab_kota_id', $user->userPejabatStruktural?->kab_kota_id) == $kabkota->id)>
@@ -150,7 +150,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="d-flex justify-content-end mt-2">
+                    <div class="d-flex justify-content-end mt-2 button-simpan-reset">
                         <button type="reset" class="btn btn-gray text-sm px-5" id="reset">Reset</button>
                         <button class="btn btn-blue text-sm ms-3 px-5 simpan-data" id="simpan" >Simpan</button>
                     </div>
@@ -170,7 +170,7 @@
                         <ul class="doc-wrapper">
                             @foreach ($user->dokKepegawaians as $docKepeg)
                                 <li class="doc-item">
-                                    <a href="{{ route('data-atasan-langsung.show-doc-kepeg', $docKepeg->id) }}"
+                                    <a href="{{ route('data-penetap-ak.show-doc-kepeg', $docKepeg->id) }}"
                                         class="d-flex align-items-center">
                                         <img src="{{ asset('assets/images/template/icon-dokumen-png-0 1.png') }}"
                                             alt="">
@@ -182,8 +182,7 @@
                             @endforeach
                         </ul>
                         <div class="d-flex justify-content-end">
-                            <button class="btn btn-red text-sm" data-bs-toggle="modal"
-                                data-bs-target="#tambahDocModal">Tambah Dokumen</button>
+                            <button class="btn btn-red text-sm btn-dok-kep" data-bs-toggle="modal" data-bs-target="#tambahDocModal">Tambah Dokumen</button>
                         </div>
                     </div>
                 </div>
@@ -212,8 +211,7 @@
                             @endforeach
                         </ul>
                         <div class="d-flex justify-content-end">
-                            <button class="btn btn-red text-sm" data-bs-toggle="modal"
-                                data-bs-target="#tambahKomModal">Tambah Kompetensi</button>
+                            <button class="btn btn-red text-sm btn-dok-kom" data-bs-toggle="modal" data-bs-target="#tambahKomModal">Tambah Kompetensi</button>
                         </div>
                     </div>
                 </div>
@@ -310,6 +308,7 @@
 
     <link rel="stylesheet" href="{{ asset('assets/plugins/select2/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
+    
 @endsection
 @section('js')
     <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
@@ -329,26 +328,26 @@
             e.preventDefault();
             location.reload()
         });
-        $('#simpan').click(function(e) {
-        e.preventDefault();
-        var postData = new FormData($(".form-data")[0]);
-        swal({
-            title: "Apakah Data Yang Anda Masukkan Sudah Benar?",
-            type: "warning",
-            showCancelButton: !0,
-            confirmButtonText: "Ya, Sudah Benar!",
-            cancelButtonText: "Batal",
-            reverseButtons: !0,
-            showLoaderOnConfirm: true,
-            preConfirm: async () => {
-                return await $.ajax({
-                    type: 'POST',
-                    url: url("/data-atasan-langsung-store"),
-                    processData: false,
-                    contentType: false,
-                    data: postData,
-                });
-            },
+         $('#simpan').click(function(e) {
+            e.preventDefault();
+            var postData = new FormData($(".form-data")[0]);
+            swal({
+                title: "Apakah Data Yang Anda Masukkan Sudah Benar?",
+                type: "warning",
+                showCancelButton: !0,
+                confirmButtonText: "Ya, Sudah Benar!",
+                cancelButtonText: "Batal",
+                reverseButtons: !0,
+                showLoaderOnConfirm: true,
+                preConfirm: async () => {
+                    return await $.ajax({
+                        type: 'POST',
+                        url: url("/data-penetap-ak-store"),
+                        processData: false,
+                        contentType: false,
+                        data: postData,
+                    });
+        },
         }).then(function(e) {
             if (e.value.status == 200) {
                 swal("Selesai!", e.value.message, "success").then(() => {
@@ -484,7 +483,7 @@
                     $('.btn-simpan-doc-kep .spin').show();
                     $.ajax({
                         type: 'POST',
-                        url: "{{ route('data-atasan-langsung.store-doc-kepeg') }}",
+                        url: "{{ route('data-penetap-ak.store-doc-kepeg') }}",
                         processData: false,
                         contentType: false,
                         data: postData,
@@ -527,7 +526,7 @@
                     $('.btn-simpan-doc-kom .spin').show();
                     $.ajax({
                         type: 'POST',
-                        url: "{{ route('data-atasan-langsung.store-doc-kom') }}",
+                        url: "{{ route('data-penetap-ak.store-doc-kom') }}",
                         processData: false,
                         contentType: false,
                         data: postData,
@@ -566,7 +565,7 @@
                     preConfirm: async () => {
                         return await $.ajax({
                             type: 'DELETE',
-                            url: "{{ url('data-atasan-langsung/destroy-dockepeg') }}/" + $(this)
+                            url: "{{ url('data-penetap-ak/destroy-dockepeg') }}/" + $(this)
                                 .data('id'),
                             dataType: 'JSON'
                         });
@@ -596,7 +595,7 @@
                     preConfirm: async () => {
                         return await $.ajax({
                             type: 'DELETE',
-                            url: "{{ url('data-atasan-langsung/destroy-dockom') }}/" + $(this)
+                            url: "{{ url('data-penetap-ak/destroy-dockom') }}/" + $(this)
                                 .data('id'),
                             dataType: 'JSON'
                         });

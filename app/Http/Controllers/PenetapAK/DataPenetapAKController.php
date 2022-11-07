@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\PenilaiAK;
+namespace App\Http\Controllers\PenetapAK;
 
 use App\Http\Controllers\Controller;
 use App\Models\DokKepegawaian;
@@ -21,7 +21,7 @@ use App\Http\Requests\DataAparatur\StoreDataAparatur;
 use App\Models\PangkatGolonganTmt;
 use Carbon\Carbon;
 
-class DataPenilaiAKController extends Controller
+class DataPenetapAKController extends Controller
 {
     use ImageTrait;
 
@@ -31,7 +31,7 @@ class DataPenilaiAKController extends Controller
         $provinsis = Provinsi::query()->get();
         $kab_kota = KabKota::query()->get();
         $pangkats = PangkatGolonganTmt::query()->get();
-        return view('penilai-ak.data-saya.index', compact('user', 'provinsis', 'kab_kota', 'pangkats'));
+        return view('penetap-ak.data-saya.index', compact('user', 'provinsis', 'kab_kota', 'pangkats'));
     }
 
     public function store(Request $request)
@@ -82,13 +82,13 @@ class DataPenilaiAKController extends Controller
 
     public function create()
     {
-        return view('penilai-ak.data-saya.index');
+        return view('penetap-ak.data-saya.index');
     }
 
     public function showDocKepeg($id)
     {
         $file = DokKepegawaian::query()->findOrFail($id)->file;
-        return view('penilai-ak.data-saya.show-document', compact('file'));
+        return view('penetap-ak.data-saya.show-document', compact('file'));
     }
 
     public function storeDocKepeg(Request $request)

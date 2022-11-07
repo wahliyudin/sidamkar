@@ -68,3 +68,48 @@ label {
 .doc-wrapper .doc-item p {
     margin: 0 0 0 1rem;
 }
+
+.edit-gambar{
+    margin-right: 30px;
+}
+
+@media screen and (max-width: 405px) {
+ .foto{
+    position-absolute top-0 end-0
+ }
+}
+
+/* @media screen and (max-width: 750px) {
+    .ttl {
+        margin-top: 1rem !important;
+    }
+
+    .card {
+        margin-right: 32px;
+    }
+    .img.image.preview-avatar{
+        margin-right: 40px;
+    }
+    .edit-gambar{
+        margin-left: 40px;
+    }
+    .preview-avatar{
+        margin-left: -20px;
+    }
+}
+
+
+@media screen and (max-width: 750px){
+    .isi {
+        margin-left: 30rem !important;
+    }
+
+    .isi-form {
+        margin-top: 15px;
+    }
+
+    .btn-dok-kep,
+    .btn-dok-kom {
+        margin: auto;
+    } */
+

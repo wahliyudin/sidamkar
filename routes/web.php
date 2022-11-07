@@ -40,6 +40,7 @@ use App\Http\Controllers\Kemendagri\VerifikasiData\AdminKabKotaController;
 use App\Http\Controllers\Kemendagri\VerifikasiData\AdminProvinsiController;
 use App\Http\Controllers\Kemendagri\VerifikasiData\AparaturController as KemendagriAparaturController;
 use App\Http\Controllers\Kemendagri\CMS\InformasiController;
+use App\Http\Controllers\PenetapAK\DataPenetapAKController;
 use App\Http\Controllers\PenilaiAK\DataPenilaiAKController;
 use App\Http\Controllers\provinsi\Chatbox;
 use App\Http\Controllers\Provinsi\DataAparaturController as ProvinsiDataAparaturController;
@@ -80,7 +81,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::controller(DataSayaController::class)->group(function () {
             Route::get('/data-saya', 'index')->name('data-saya');
-            Route::post('/datasaya-store', [DataSayaController::class, 'store'])->name('datasaya-store');
+            Route::post('/datasaya-store', 'store')->name('datasaya-store');
             Route::get('data-saya/show-dockepeg/{id}', 'showDocKepeg')->name('data-saya.show-doc-kepeg');
             Route::post('data-saya/store-dockepeg', 'storeDocKepeg')->name('data-saya.store-doc-kepeg');
             Route::post('data-saya/store-dockom', 'storeDocKom')->name('data-saya.store-doc-kom');
@@ -139,7 +140,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['role:atasan_langsung'])->group(function () {
         Route::get('data-atasan-langsung', [DataAtasanLangsungController::class, 'index'])->name('data-atasan-langsung');
-        Route::post('/data-atasan-langsung-store', [DataAtasanLangsungController::class, 'store'])->name('data-atasan-langsung-store');
+        Route::post('data-atasan-langsung-store', [DataAtasanLangsungController::class, 'store'])->name('data-atasan-langsung-store');
         Route::get('data-atasan-langsung/show-dockepeg/{id}', [DataAtasanLangsungController::class, 'showDocKepeg'])->name('data-atasan-langsung.show-doc-kepeg');
         Route::post('data-atasan-langsung/store-dockepeg', [DataAtasanLangsungController::class, 'storeDocKepeg'])->name('data-atasan-langsung.store-doc-kepeg');
         Route::post('data-atasan-langsung/store-dockom', [DataAtasanLangsungController::class, 'storeDocKom'])->name('data-atasan-langsung.store-doc-kom');
@@ -162,6 +163,16 @@ Route::middleware(['auth'])->group(function () {
         Route::post('data-penilai-ak/store-dockom', [DataAtasanLangsungController::class, 'storeDocKom'])->name('data-penilai-ak.store-doc-kom');
         Route::delete('data-penilai-ak/destroy-dockepeg/{id}', [DataAtasanLangsungController::class, 'destroyDocKepeg'])->name('data-penilai-ak.destroy-doc-kepeg');
         Route::delete('data-penilai-ak/destroy-dockom/{id}', [DataAtasanLangsungController::class, 'destroyDocKom'])->name('data-penilai-ak.destroy-doc-kom');
+    });
+    Route::middleware(['role:penetap_ak'])->group(function () {
+        // Route::get('penetap_ak/overview', [PenilaiAkOverviewController::class, 'index'])->name('penetap_ak.overview');
+        Route::get('data-penetap-ak', [DataPenetapAKController::class, 'index'])->name('data-penetap-ak');
+        Route::post('/data-penetap-ak-store', [DataPenetapAKController::class, 'store'])->name('data-penetap-ak-store');
+        Route::get('data-penetap-ak/show-dockepeg/{id}', [DataPenetapAKController::class, 'showDocKepeg'])->name('data-penetap-ak.show-doc-kepeg');
+        Route::post('data-penetap-ak/store-dockepeg', [DataAtasanLangsungController::class, 'storeDocKepeg'])->name('data-penetap-ak.store-doc-kepeg');
+        Route::post('data-penetap-ak/store-dockom', [DataAtasanLangsungController::class, 'storeDocKom'])->name('data-penetap-ak.store-doc-kom');
+        Route::delete('data-penetap-ak/destroy-dockepeg/{id}', [DataAtasanLangsungController::class, 'destroyDocKepeg'])->name('data-penetap-ak.destroy-doc-kepeg');
+        Route::delete('data-penetap-ak/destroy-dockom/{id}', [DataAtasanLangsungController::class, 'destroyDocKom'])->name('data-penetap-ak.destroy-doc-kom');
     });
 
     Route::middleware(['role:provinsi'])->group(function () {

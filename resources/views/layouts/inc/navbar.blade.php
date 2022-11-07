@@ -1,10 +1,19 @@
+{{-- <style>
+     @media only screen and (max-width: 600px) {
+        .dropdown-menu-end.show {
+            left: 23% !important;
+            right: -8% !important;
+            top: 100%;
+        }
+    }
+
+</style> --}}
 <header class='mb-3'>
     <nav class="navbar navbar-expand navbar-light navbar-top">
         <div class="container-fluid">
             <a href="#" class="burger-btn d-block">
                 <i class="bi bi-justify fs-3"></i>
             </a>
-
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -20,7 +29,7 @@
                             <li>
                                 <h6 class="dropdown-header">Mail</h6>
                             </li>
-                            <li><a class="dropdown-item" href="#">No new mail</a></li>
+                            <li><a class="dropdown-item pesan" href="#" style="">No new maillllllll</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown me-3">
@@ -70,11 +79,34 @@
                             <div class="user-name text-end me-3">
                                 <h6 class="mb-0 text-gray-600">{{ Auth::user()->username }}</h6>
                             </div>
+                            @role(getAllRoleFungsional())
                             <div class="user-img d-flex align-items-center">
                                 <div class="avatar avatar-md">
-                                    <img src="{{ asset('assets/images/faces/1.jpg') }}">
+                                     <img src="{{ isset($user->userAparatur?->foto_pegawai) ? $user->userAparatur?->foto_pegawai : asset('assets/images/faces/3.jpg') }}">
                                 </div>
                             </div>
+                            @endrole
+                            @role('atasan_langsung')
+                            <div class="user-img d-flex align-items-center">
+                                <div class="avatar avatar-md">
+                                     <img src="{{ isset($user->userPejabatStruktural?->foto_pegawai) ? $user->userPejabatStruktural?->foto_pegawai : asset('assets/images/faces/3.jpg') }}">
+                                </div>
+                            </div>
+                            @endrole
+                            @role('penilai_ak')
+                            <div class="user-img d-flex align-items-center">
+                                <div class="avatar avatar-md">
+                                     <img src="{{ isset($user->userPejabatStruktural?->foto_pegawai) ? $user->userPejabatStruktural?->foto_pegawai : asset('assets/images/faces/3.jpg') }}">
+                                </div>
+                            </div>
+                            @endrole
+                            @role('penetap_ak')
+                            <div class="user-img d-flex align-items-center">
+                                <div class="avatar avatar-md">
+                                     <img src="{{ isset($user->userPejabatStruktural?->foto_pegawai) ? $user->userPejabatStruktural?->foto_pegawai : asset('assets/images/faces/3.jpg') }}">
+                                </div>
+                            </div>
+                            @endrole
                         </div>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton"
@@ -123,6 +155,22 @@
                             </li>
                         @endrole
                         @role('penilai_ak')
+                            <li>
+                                <a class="dropdown-item" href="{{ route('ubah-password') }}">
+                                    <i class="fa-solid fa-lock me-2"></i>
+                                    Ubah Password
+                                </a>
+                            </li>
+                        @endrole
+                        @role('penetap_ak')
+                            <li>
+                                <a class="dropdown-item" href="{{ route('data-penetap-ak') }}">
+                                    <i class="icon-mid bi bi-person me-2"></i>
+                                    Data Saya
+                                </a>
+                            </li>
+                        @endrole
+                        @role('penetap_ak')
                             <li>
                                 <a class="dropdown-item" href="{{ route('ubah-password') }}">
                                     <i class="fa-solid fa-lock me-2"></i>
