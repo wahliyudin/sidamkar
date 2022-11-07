@@ -11,7 +11,6 @@ class DokumenKegiatanPokok extends Model
 
     protected $fillable = [
         'rencana_butir_kegiatan_id',
-        'title',
         'file'
     ];
 

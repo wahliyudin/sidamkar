@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('history_butir_kegiatans', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('rencana_butir_kegiatan_id');
+            $table->unsignedBigInteger('laporan_kegiatan_jabatan_id');
             $table->string('keterangan');
             $table->timestamps();
 
-            $table->foreign('rencana_butir_kegiatan_id')->on('rencana_butir_kegiatans')->references('id')->cascadeOnDelete();
+            $table->foreign('laporan_kegiatan_jabatan_id')->on('laporan_kegiatan_jabatans')->references('id')->cascadeOnDelete();
         });
     }
 

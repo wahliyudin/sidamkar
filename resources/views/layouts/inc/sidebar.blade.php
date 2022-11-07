@@ -133,7 +133,7 @@
                     <li class="sidebar-item {{ request()->routeIs('atasan-langsung.kegiatan-selesai') ? 'active' : '' }}">
                         <a href="{{ route('atasan-langsung.kegiatan-selesai') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
-                                <i class="fa-solid fa-check"></i>
+                                <i class="fa-solid fa-clipboard-check"></i>
                             </div>
                             <span>Kegiatan Selesai</span>
                         </a>
@@ -147,6 +147,34 @@
                                 <i class="bi bi-grid-fill"></i>
                             </div>
                             <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li
+                        class="sidebar-item {{ request()->routeIs('penilai-ak.kegiatan-profesi.profesi-penunjang') || request()->routeIs('penilai-ak.kegiatan-profesi.show') ? 'active' : '' }}">
+                        <a href="{{ route('penilai-ak.kegiatan-profesi.profesi-penunjang') }}" class='sidebar-link'>
+                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                                <i class="fa-solid fa-square-poll-vertical"></i>
+                            </div>
+                            <span>Kegiatan Profesi
+                                & Penunjang </span>
+                        </a>
+                    </li>
+                    <li
+                        class="sidebar-item {{ request()->routeIs('penilai-ak.data-penunjang.data-pengajuan') || request()->routeIs('penilai-ak.kegiatan-profesi.show') ? 'active' : '' }}">
+                        <a href="{{ route('penilai-ak.data-penunjang.data-pengajuan') }}" class='sidebar-link'>
+                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                                <i class="fa-solid fa-table"></i>
+                            </div>
+                            <span>Data Pengajuan</span>
+                        </a>
+                    </li>
+                    <li
+                        class="sidebar-item {{ request()->routeIs('penilai-ak.kegiatan-selesai.kegiatan-selesai') ? 'active' : '' }}">
+                        <a href="{{ route('penilai-ak.kegiatan-selesai.kegiatan-selesai') }}" class='sidebar-link'>
+                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <span>Kegiatan Selesai</span>
                         </a>
                     </li>
                 @endrole
@@ -271,7 +299,7 @@
                         </a>
                     </li>
                     <li
-                        class="sidebar-item has-sub {{ request()->is('kemendagri/cms/kegiatan-profesi*') || request()->is('kemendagri/cms/informasi*') || request()->is('kemendagri/cms/kegiatan-jabatan*') ? 'active' : '' }}">
+                        class="sidebar-item has-sub {{ request()->is('kemendagri/cms/kegiatan-profesi*') || request()->is('kemendagri/cms/informasi*') || request()->is('kemendagri/cms/kegiatan-jabatan*') || request()->is('kemendagri/cms/periode*') ? 'active' : '' }}">
                         <a href="javascript(0)" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="fa-solid fa-laptop"></i>
@@ -279,7 +307,7 @@
                             <span>CMS</span>
                         </a>
                         <ul
-                            class="submenu {{ request()->is('kemendagri/cms/kegiatan-profesi*') || request()->is('kemendagri/cms/informasi*') || request()->is('kemendagri/cms/kegiatan-jabatan*') ? 'active' : '' }}">
+                            class="submenu {{ request()->is('kemendagri/cms/kegiatan-profesi*') || request()->is('kemendagri/cms/informasi*') || request()->is('kemendagri/cms/kegiatan-jabatan*') || request()->is('kemendagri/cms/periode*') ? 'active' : '' }}">
                             <li
                                 class="submenu-item {{ request()->is('kemendagri/cms/kegiatan-jabatan*') ? 'active' : '' }}">
                                 <a href="{{ route('kemendagri.cms.kegiatan-jabatan.index') }}">Kegiatan Jabatan</a>
@@ -290,6 +318,9 @@
                             </li>
                             <li class="submenu-item {{ request()->is('kemendagri/cms/informasi*') ? 'active' : '' }}">
                                 <a href="{{ route('kemendagri.cms.informasi.index') }}">Informasi</a>
+                            </li>
+                            <li class="submenu-item {{ request()->is('kemendagri/cms/periode*') ? 'active' : '' }}">
+                                <a href="{{ route('kemendagri.cms.periode.index') }}">Periode</a>
                             </li>
                         </ul>
                     </li>

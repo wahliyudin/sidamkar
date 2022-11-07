@@ -12,6 +12,7 @@ class Unsur extends Model
     protected $fillable = [
         'role_id',
         'jenis_kegiatan_id',
+        'periode_id',
         'nama'
     ];
 
@@ -28,5 +29,10 @@ class Unsur extends Model
     public function subUnsurs()
     {
         return $this->hasMany(SubUnsur::class);
+    }
+
+    public function periode()
+    {
+        return $this->belongsTo(Periode::class);
     }
 }
