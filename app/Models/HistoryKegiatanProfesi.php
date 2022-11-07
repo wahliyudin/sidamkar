@@ -5,14 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ProfesiSubButirKegiatan extends Model
+class HistoryKegiatanProfesi extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'profesi_butir_kegiatan_id',
-        'sub_butir_kegiatan_id',
-        'status',
-        'catatan'
+        'laporan_kegiatan_profesi_id',
+        'keterangan'
     ];
 }
