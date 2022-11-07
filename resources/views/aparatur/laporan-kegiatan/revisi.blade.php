@@ -28,7 +28,7 @@
                             <h4>Riwayat Laporan Kegiatan</h4>
                             <hr>
                             <div class="history">
-                                @foreach ($rencanaButirKegiatan->historyButirKegiatans as $historyButirKegiatan)
+                                @foreach ($rencanaButirKegiatan->laporanKegiatanJabatan->historyButirKegiatans as $historyButirKegiatan)
                                     <div class="history-item">
                                         <span
                                             class="history-item-date">{{ $historyButirKegiatan->created_at->format('d-m-Y') }}</span>

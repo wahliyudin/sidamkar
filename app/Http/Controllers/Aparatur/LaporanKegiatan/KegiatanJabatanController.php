@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Aparatur\LaporanKegiatan;
 
 use App\Http\Controllers\Controller;
+use App\Models\LaporanKegiatanJabatan;
 use App\Models\Periode;
 use App\Models\Rencana;
 use App\Models\RencanaButirKegiatan;
@@ -121,10 +122,11 @@ class KegiatanJabatanController extends Controller
             'keterangan.required' => 'Detail kegiatan harus diisi',
             'doc_kegiatan_tmp.required' => 'Dokumen Kegiatan harus diisi'
         ]);
-        $rencanaButirKegiatan = RencanaButirKegiatan::query()->findOrFail($request->rencana_butir_kegiatan);
+        $rencanaButirKegiatan = RencanaButirKegiatan::query()->with('butirKegiatan')->findOrFail($request->rencana_butir_kegiatan);
         $laporanKegiatanJabatan = $rencanaButirKegiatan->laporanKegiatanJabatans()->create([
             'detail_kegiatan' => $request->keterangan,
-            'current_date' => $request->current_date
+            'current_date' => $request->current_date,
+            'score' => $rencanaButirKegiatan->butirKegiatan->score
         ]);
         foreach ($request->doc_kegiatan_tmp as $doc_kegiatan_tmp) {
             $tmp_file = TemporaryFile::query()->where('folder', $doc_kegiatan_tmp)->first();
@@ -153,39 +155,37 @@ class KegiatanJabatanController extends Controller
     {
         $request->validate([
             'keterangan' => 'required',
-            'rencana_butir_kegiatan' => 'required',
             'current_date' => 'required',
             'doc_kegiatan_tmp' => 'required|array'
         ], [
             'keterangan.required' => 'Detail kegiatan harus diisi',
             'doc_kegiatan_tmp.required' => 'Dokumen Kegiatan harus diisi'
         ]);
-        $rencanaButirKegiatan = RencanaButirKegiatan::query()->withWhereHas('laporanKegiatanJabatans', function ($query) use ($request) {
-            $query->with('dokumenKegiatanPokoks')->where('current_date', $request->current_date)->first();
-        })->find($id);
-        foreach ($rencanaButirKegiatan->laporanKegiatanJabatans->dokumenKegiatanPokoks as $dok) {
+        $laporanKegiatanJabatan = LaporanKegiatanJabatan::query()->with(['rencanaButirKegiatan.butirKegiatan', 'dokumenKegiatanPokoks'])->where('rencana_butir_kegiatan_id', $id)->whereDate('current_date', $request->current_date)->first();
+        foreach ($laporanKegiatanJabatan->dokumenKegiatanPokoks as $dok) {
             deleteImage($dok->file);
             $dok->delete();
         }
-        $rencanaButirKegiatan->laporanKegiatanJabatans()->update([
+        $laporanKegiatanJabatan->update([
             'detail_kegiatan' => $request->keterangan,
-            'current_date' => $request->current_date
+            'score' => $laporanKegiatanJabatan->rencanaButirKegiatan->butirKegiatan->score
         ]);
         foreach ($request->doc_kegiatan_tmp as $doc_kegiatan_tmp) {
             $tmp_file = TemporaryFile::query()->where('folder', $doc_kegiatan_tmp)->first();
             if ($tmp_file) {
                 Storage::copy("tmp/$tmp_file->folder/$tmp_file->file", "kegiatan/$tmp_file->file");
-                $rencanaButirKegiatan->laporanKegiatanJabatans->dokumenKegiatanPokoks()->create([
+                $laporanKegiatanJabatan->dokumenKegiatanPokoks()->create([
                     'file' => url("storage/kegiatan/$tmp_file->file")
                 ]);
                 $tmp_file->delete();
                 Storage::deleteDirectory("tmp/$tmp_file->folder");
             }
         }
-        $rencanaButirKegiatan->laporanKegiatanJabatans()->update([
-            'status' => 1
+        $laporanKegiatanJabatan->update([
+            'status' => 1,
+            'catatan' => null
         ]);
-        $rencanaButirKegiatan->laporanKegiatanJabatans()->historyButirKegiatans()->create([
+        $laporanKegiatanJabatan->historyButirKegiatans()->create([
             'keterangan' => 'Kirim revisi Laporan kegiatan'
         ]);
         return response()->json([
@@ -196,8 +196,8 @@ class KegiatanJabatanController extends Controller
 
     public function edit($id, $current_date)
     {
-        $rencanaButirKegiatan = RencanaButirKegiatan::query()->withWhereHas('laporanKegiatanJabatans', function ($query) use ($current_date) {
-            $query->with('dokumenKegiatanPokoks')->where('current_date', $current_date)->first();
+        $rencanaButirKegiatan = RencanaButirKegiatan::query()->withWhereHas('laporanKegiatanJabatan', function ($query) use ($current_date) {
+            $query->with('dokumenKegiatanPokoks')->where('current_date', $current_date);
         })->find($id);
 
         return response()->json([

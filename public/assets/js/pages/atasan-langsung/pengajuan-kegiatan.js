@@ -7,18 +7,18 @@ $(document).ready(function () {
     $(document).on('click', '.tolak-kegiatan', function (e) {
         e.preventDefault();
         $('#lihat' + $(this).data('id')).modal('hide');
-        tolak($(this).data('id'))
+        tolak($(this).data('id'), $('input[name="tanggal"]').val())
     });
     $(document).on('click', '.revisi-kegiatan', function (e) {
         e.preventDefault();
         $('#lihat' + $(this).data('id')).modal('hide');
-        revisi($(this).data('id'))
+        revisi($(this).data('id'), $('input[name="tanggal"]').val())
     });
     $(document).on('click', '.verifikasi-kegiatan', function (e) {
         e.preventDefault();
-        verifikasi($(this).data('id'))
+        verifikasi($(this).data('id'), $('input[name="tanggal"]').val())
     });
-    function tolak(id) {
+    function tolak(id, current_date) {
         swal({
             title: "Tolak?",
             text: "Masukan alasan kenapa ditolak!",
@@ -37,7 +37,7 @@ $(document).ready(function () {
             preConfirm: async (value) => {
                 return await $.ajax({
                     type: 'POST',
-                    url: url("/atasan-langsung/pengajuan-kegiatan/" + id + "/tolak"),
+                    url: url("/atasan-langsung/pengajuan-kegiatan/" + id + "/" + current_date + "/tolak"),
                     data: {
                         catatan: value
                     },
@@ -59,7 +59,7 @@ $(document).ready(function () {
         })
     }
 
-    function revisi(id) {
+    function revisi(id, current_date) {
         swal({
             title: "Revisi?",
             text: "Masukan alasan kenapa harus direvisi!",
@@ -78,7 +78,7 @@ $(document).ready(function () {
             preConfirm: async (value) => {
                 return await $.ajax({
                     type: 'POST',
-                    url: url("/atasan-langsung/pengajuan-kegiatan/" + id + "/revisi"),
+                    url: url("/atasan-langsung/pengajuan-kegiatan/" + id + "/" + current_date + "/revisi"),
                     data: {
                         catatan: value
                     },
@@ -100,7 +100,7 @@ $(document).ready(function () {
         })
     }
 
-    function verifikasi(id) {
+    function verifikasi(id, current_date) {
         swal({
             title: "Perifikasi?",
             type: "warning",
@@ -112,7 +112,7 @@ $(document).ready(function () {
             preConfirm: async () => {
                 return await $.ajax({
                     type: 'POST',
-                    url: url("/atasan-langsung/pengajuan-kegiatan/" + id + "/verifikasi"),
+                    url: url("/atasan-langsung/pengajuan-kegiatan/" + id + "/" + current_date + "/verifikasi"),
                     dataType: 'JSON'
                 });
             },

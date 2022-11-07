@@ -183,55 +183,36 @@
                 var postData = new FormData($(".form-kegiatan")[0]);
                 $('.simpan-kegiatan span').hide();
                 $('.simpan-kegiatan .spin').show();
-                $.ajax({
-                    xhr: function() {
-                        var xhr = new window.XMLHttpRequest();
-
-                        // Upload progress
-                        xhr.upload.addEventListener("progress", function(evt) {
-                            if (evt.lengthComputable) {
-                                var percentComplete = evt.loaded / evt.total;
-                                //Do something with upload progress
-                                console.log(percentComplete);
-                            }
-                        }, false);
-
-                        // Download progress
-                        xhr.addEventListener("progress", function(evt) {
-                            if (evt.lengthComputable) {
-                                var percentComplete = evt.loaded / evt.total;
-                                // Do something with download progress
-                                console.log(percentComplete);
-                            }
-                        }, false);
-
-                        return xhr;
-                    },
-                    type: 'POST',
-                    url: "{{ route('laporan-kegiatan.jabatan.store-laporan') }}",
-                    processData: false,
-                    contentType: false,
-                    data: postData,
-                    success: function(data) {
-                        $('.simpan-kegiatan span').show();
-                        $('.simpan-kegiatan .spin').hide();
-                        if (response.status == 200) {
-                            swal("Selesai!", response.message, "success").then(() => {
-                                location.reload();
-                            });
-                        } else {
-                            swal("Error!", response.message, "error");
-                        }
-                    },
-                    error: ajaxError
-                });
                 // $.ajax({
+                //     xhr: function() {
+                //         var xhr = new window.XMLHttpRequest();
+
+                //         // Upload progress
+                //         xhr.upload.addEventListener("progress", function(evt) {
+                //             if (evt.lengthComputable) {
+                //                 var percentComplete = evt.loaded / evt.total;
+                //                 //Do something with upload progress
+                //                 console.log(percentComplete);
+                //             }
+                //         }, false);
+
+                //         // Download progress
+                //         xhr.addEventListener("progress", function(evt) {
+                //             if (evt.lengthComputable) {
+                //                 var percentComplete = evt.loaded / evt.total;
+                //                 // Do something with download progress
+                //                 console.log(percentComplete);
+                //             }
+                //         }, false);
+
+                //         return xhr;
+                //     },
                 //     type: 'POST',
                 //     url: "{{ route('laporan-kegiatan.jabatan.store-laporan') }}",
                 //     processData: false,
                 //     contentType: false,
                 //     data: postData,
-                //     success: function(response) {
+                //     success: function(data) {
                 //         $('.simpan-kegiatan span').show();
                 //         $('.simpan-kegiatan .spin').hide();
                 //         if (response.status == 200) {
@@ -244,6 +225,25 @@
                 //     },
                 //     error: ajaxError
                 // });
+                $.ajax({
+                    type: 'POST',
+                    url: "{{ route('laporan-kegiatan.jabatan.store-laporan') }}",
+                    processData: false,
+                    contentType: false,
+                    data: postData,
+                    success: function(response) {
+                        $('.simpan-kegiatan span').show();
+                        $('.simpan-kegiatan .spin').hide();
+                        if (response.status == 200) {
+                            swal("Selesai!", response.message, "success").then(() => {
+                                location.reload();
+                            });
+                        } else {
+                            swal("Error!", response.message, "error");
+                        }
+                    },
+                    error: ajaxError
+                });
             });
             $("#laporkan").on('hide.bs.modal', function() {
                 pond.removeFiles();
@@ -271,11 +271,8 @@
                 $('#revisi' + $(this).data('rencana')).modal('show');
                 $.ajax({
                     type: "POST",
-                    url: url("/laporan-kegiatan/jabatan/" + $(this).data('rencana') +
-                        "/edit"),
-                    data: {
-                        current_date: $('input[name="tanggal"]').val()
-                    },
+                    url: url("/laporan-kegiatan/jabatan/" + $(this).data('rencana') + "/" + $(
+                        'input[name="tanggal"]').val() + "/edit"),
                     dataType: "json",
                     success: function(response) {
                         pondEdit.removeFile();
