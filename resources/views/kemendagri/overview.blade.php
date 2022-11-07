@@ -261,7 +261,7 @@
             <div class="col-md-3 informasi-wrapper">
                 <div class="card mb-3" style="min-height: 68vh;">
                     <div class="card-body">
-                        <h1 class="card-title" style="color: #17181A; font-family: 'Roboto';">INFORMATION</h1>
+                        <h1 class="card-title text-center" style="color: #17181A; font-family: 'Roboto';">INFORMATION</h1>
                     </div>
                 </div>
             </div>
