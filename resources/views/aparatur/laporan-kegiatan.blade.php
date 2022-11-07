@@ -172,7 +172,6 @@
                                     <input type="file" name="doc_kepegawaian" style="display: none;"
                                         data-max-file-size="1MB" data-max-files="3" required />
                                 </div>
-
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">

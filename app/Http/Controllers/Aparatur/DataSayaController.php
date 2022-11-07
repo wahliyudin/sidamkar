@@ -73,7 +73,11 @@ class DataSayaController extends Controller
             $user->userAparatur()->create($data);
         }
 
-        return to_route('data-saya');
+        return response()->json([
+            'status' => 200,
+            'message' => 'Berhasil Disimpan'
+
+        ]);
     }
 
     public function create()

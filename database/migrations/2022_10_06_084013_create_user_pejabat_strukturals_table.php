@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->string('nama');
-            $table->enum('pangkat_golongan_tmt', ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17'])->nullable();
+            $table->unsignedBigInteger('pangkat_golongan_tmt_id')->nullable();
             $table->enum('nomenklatur_jabatan', ['1', '2', '3', '4'])->nullable();
             $table->bigInteger('nip')->nullable();
             $table->bigInteger('nomor_karpeg')->nullable();

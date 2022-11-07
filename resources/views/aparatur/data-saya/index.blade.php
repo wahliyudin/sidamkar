@@ -16,8 +16,7 @@
         </div>
         <div class="card mt-4">
             <div class="card-body" style="padding-top: 3rem;">
-                <form action="{{ route('datasaya-store') }}" method="post" enctype="multipart/form-data">
-                    @csrf
+                <form action="" method="post" class="form-data">
                     <div class="row">
                         <div class="col-md-4">
                             <div class="container">
@@ -34,129 +33,140 @@
                                 </label>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="basicInput">Nama Lengkap</label>
-                                <input type="text" class="form-control" name="nama"
-                                    value="{{ old('nama', $user->userAparatur?->nama) }}">
-                                @error('nama')
-                                    <span class="text-danger text-sm">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="basicInput">Jabatan</label>
-                                <input type="text" name="jabatan" disabled class="form-control" placeholder=""
-                                    value="{{ Auth::user()->roles()->first()->display_name }}">
-                            </div>
-                            <div class="form-group">
-                                <label for="basicInput">Jenis Kelamin</label>
-                                <select class="jenis_kelamin form-select" name="jenis_kelamin">
-                                    <option disabled selected>- Pilih Jenis Kelamin -</option>
-                                    <option @selected(old('jenis_kelamin', $user->userAparatur?->jenis_kelamin) == 'L') value="L">Laki - Laki</option>
-                                    <option @selected(old('jenis_kelamin', $user->userAparatur?->jenis_kelamin) == 'P') value="P">Perempuan</option>
-                                </select>
-                                @error('jenis_kelamin')
-                                    <span class="text-danger text-sm">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="basicInput">NIP</label>
-                                <input type="number" class="form-control" name="nip"
-                                    value="{{ old('nip', $user->userAparatur?->nip) }}">
-                                @error('nip')
-                                    <span class="text-danger text-sm">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label>Tempat Tanggal Lahir</label>
-                                <div class="row">
-                                    <div class="col-md-6" style="padding-right: .3rem !important;">
-                                        <input type="text" class="form-control w-100" name="tempat_lahir"
-                                            value="{{ old('tempat_lahir', $user->userAparatur?->tempat_lahir) }}"
-                                            placeholder="" style="width: 50%">
-                                        @error('tempat_lahir')
+                        <div class="row col-md-8 justify-content-center">
+                            <div class="row col-md-12" style="border: 2px solid #E5E5E5;border-radius: 6px;padding: 4px;">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">Nama Lengkap</label>
+                                        <input type="text" class="form-control" name="nama"
+                                            value="{{ old('nama', $user->userAparatur?->nama) }}">
+                                        @error('nama')
                                             <span class="text-danger text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
-                                    <div class="col-md-6" style="padding-left: .3rem !important;">
-                                        <input type="date" class="form-control w-100" name="tanggal_lahir"
-                                            value="{{ old('tanggal_lahir', $user->userAparatur?->tanggal_lahir) }}"
-                                            placeholder="" style="width: 50%">
-                                        @error('tanggal_lahir')
+                                    <div class="form-group">
+                                        <label>Tempat Tanggal Lahir</label>
+                                        <div class="row">
+                                            <div class="col-md-6" style="padding-right: .3rem !important;">
+                                                <input type="text" class="form-control w-100" name="tempat_lahir"
+                                                    value="{{ old('tempat_lahir', $user->userAparatur?->tempat_lahir) }}"
+                                                    placeholder="" style="width: 50%">
+                                                @error('tempat_lahir')
+                                                    <span class="text-danger text-sm">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                            <div class="col-md-6" style="padding-left: .3rem !important;">
+                                                <input type="date" class="form-control w-100" name="tanggal_lahir"
+                                                    value="{{ old('tanggal_lahir', $user->userAparatur?->tanggal_lahir) }}"
+                                                    placeholder="" style="width: 50%">
+                                                @error('tanggal_lahir')
+                                                    <span class="text-danger text-sm">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="basicInput">Jenis Kelamin</label>
+                                        <select class="jenis_kelamin form-select" name="jenis_kelamin">
+                                            <option disabled selected>- Pilih Jenis Kelamin -</option>
+                                            <option @selected(old('jenis_kelamin', $user->userAparatur?->jenis_kelamin) == 'L') value="L">Laki - Laki</option>
+                                            <option @selected(old('jenis_kelamin', $user->userAparatur?->jenis_kelamin) == 'P') value="P">Perempuan</option>
+                                        </select>
+                                        @error('jenis_kelamin')
+                                            <span class="text-danger text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">Pendidikan Terakhir</label>
+                                        <select class="pen_terakhir form-select" name="pendidikan_terakhir">
+                                            <option disabled selected>- Pilih Pendidikan Terakhir -</option>
+                                            <option @selected(old('pendidikan_terakhir', $user->userAparatur?->pendidikan_terakhir) == '1') value="1">SMA/SMK/Sederajat</option>
+                                            <option @selected(old('pendidikan_terakhir', $user->userAparatur?->pendidikan_terakhir) == '2') value="2">D3</option>
+                                            <option @selected(old('pendidikan_terakhir', $user->userAparatur?->pendidikan_terakhir) == '3') value="3">S1/D4</option>
+                                            <option @selected(old('pendidikan_terakhir', $user->userAparatur?->pendidikan_terakhir) == '4') value="4">S2</option>
+                                        </select>
+                                        @error('pendidikan_terakhir')
+                                            <span class="text-danger text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="basicInput">Privinsi</label>
+                                        <select class="form-select provinsi2" data-id=".provinsi2" name="provinsi_id">
+                                            <option disabled selected>- Pilih Privinsi -</option>
+                                            @foreach ($provinsis as $prov)
+                                                <option value="{{ $prov->id }}" @selected(old('provinsi_id', $user->userAparatur?->provinsi_id) == $prov->id)>
+                                                    {{ $prov->nama }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('provinsi_id')
+                                            <span class="text-danger text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="basicInput">Kabupaten / Kota</label>
+                                        <select class="kab_kota_id form-select" name="kab_kota_id" id="kab_kota_id">
+                                            <option disabled selected>- Pilih Kabupaten / Kota -</option>
+                                            @foreach ($kab_kota as $kabkota)
+                                                <option value="{{ $kabkota->id }}" @selected(old('kab_kota_id', $user->userAparatur?->kab_kota_id) == $kabkota->id)>
+                                                    {{ $kabkota->nama }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('kab_kota_id')
+                                            <span class="text-danger text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row col-md-12"
+                                style="border: 2px solid #E5E5E5;border-radius: 6px;padding: 4px;margin-top: 19px;">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">NIP</label>
+                                        <input type="number" class="form-control" name="nip"
+                                            value="{{ old('nip', $user->userAparatur?->nip) }}">
+                                        @error('nip')
+                                            <span class="text-danger text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="basicInput">Jabatan</label>
+                                        <input type="text" name="jabatan" disabled class="form-control"
+                                            placeholder="" value="{{ Auth::user()->roles()->first()->display_name }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">Nomor Karpeg</label>
+                                        <input type="number" name="nomor_karpeg" class="form-control"
+                                            value="{{ old('nomor_karpeg', $user->userAparatur?->nomor_karpeg) }}">
+                                        @error('nomor_karpeg')
+                                            <span class="text-danger text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="basicInput">Pangkat / Golongan / TMT</label>
+                                        <select class="pangkat_golongan form-select" name="pangkat_golongan_tmt_id"
+                                            name="pangkat">
+                                            <option disabled selected>- Pilih Pangkat / Golongan / TMT -</option>
+                                            @foreach ($pangkats as $pangkat)
+                                                <option @selected(old('pangkat_golongan_tmt_id', $user->userAparatur?->pangkat_golongan_tmt_id) == $pangkat->id) value="{{ $pangkat->id }}">
+                                                    {{ $pangkat->nama }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('pangkat_golongan_tmt_id')
                                             <span class="text-danger text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="basicInput">Privinsi</label>
-                                <select class="provinsi_id form-select" name="provinsi_id">
-                                    <option disabled selected>- Pilih Privinsi -</option>
-                                    @foreach ($provinsis as $prov)
-                                        <option value="{{ $prov->id }}" @selected(old('provinsi_id', $user->userAparatur?->provinsi_id) == $prov->id)>
-                                            {{ $prov->nama }}</option>
-                                    @endforeach
-                                </select>
-                                @error('provinsi_id')
-                                    <span class="text-danger text-sm">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="basicInput">Kabupaten / Kota</label>
-                                <select class="kab_kota_id form-select" name="kab_kota_id">
-                                    <option disabled selected>- Pilih Kabupaten / Kota -</option>
-                                    @foreach ($kab_kota as $kabkota)
-                                        <option value="{{ $kabkota->id }}" @selected(old('kab_kota_id', $user->userAparatur?->kab_kota_id) == $kabkota->id)>
-                                            {{ $kabkota->nama }}</option>
-                                    @endforeach
-                                </select>
-                                @error('kab_kota_id')
-                                    <span class="text-danger text-sm">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="basicInput">Pendidikan Terakhir</label>
-                                <select class="pen_terakhir form-select" name="pendidikan_terakhir">
-                                    <option disabled selected>- Pilih Pendidikan Terakhir -</option>
-                                    <option @selected(old('pendidikan_terakhir', $user->userAparatur?->pendidikan_terakhir) == '1') value="1">SMA/SMK/Sederajat</option>
-                                    <option @selected(old('pendidikan_terakhir', $user->userAparatur?->pendidikan_terakhir) == '2') value="2">D3</option>
-                                    <option @selected(old('pendidikan_terakhir', $user->userAparatur?->pendidikan_terakhir) == '3') value="3">S1/D4</option>
-                                    <option @selected(old('pendidikan_terakhir', $user->userAparatur?->pendidikan_terakhir) == '4') value="4">S2</option>
-                                </select>
-                                @error('pendidikan_terakhir')
-                                    <span class="text-danger text-sm">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="basicInput">Nomor Karpeg</label>
-                                <input type="number" name="nomor_karpeg" class="form-control"
-                                    value="{{ old('nomor_karpeg', $user->userAparatur?->nomor_karpeg) }}">
-                                @error('nomor_karpeg')
-                                    <span class="text-danger text-sm">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="basicInput">Pangkat / Golongan / TMT</label>
-                                <select class="pangkat_golongan form-select" name="pangkat_golongan_tmt_id"
-                                    name="pangkat">
-                                    <option disabled selected>- Pilih Pangkat / Golongan / TMT -</option>
-                                    @foreach ($pangkats as $pangkat)
-                                        <option @selected(old('pangkat_golongan_tmt_id', $user->userAparatur?->pangkat_golongan_tmt_id) == $pangkat->id) value="{{ $pangkat->id }}">
-                                            {{ $pangkat->nama }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @error('pangkat_golongan_tmt_id')
-                                    <span class="text-danger text-sm">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
                     </div>
-                    <div class="btn-my-data mt-2" style="float: right; position: relative;">
-                        <button type="reset" class="btn btn-gray text-sm px-5">Reset</button>
-                        <button type="submit" class="btn btn-blue btn-simpan text-sm px-5">Simpan</button>
+                    <div class="d-flex justify-content-end mt-2">
+                        <button type="reset" class="btn btn-gray text-sm px-5" id="reset">Reset</button>
+                        <button type="submit" class="btn btn-blue text-sm ms-3 px-5" id="simpan">Simpan</button>
                     </div>
                 </form>
             </div>
@@ -329,6 +339,68 @@
     <script src="{{ asset('assets/extensions/filepond/filepond.jquery.js') }}"></script>
     <script src="{{ asset('assets/js/extensions/sweetalert2.all.min.js') }}"></script>
     <script>
+        $('#reset').click(function(e) {
+            e.preventDefault();
+            location.reload()
+        });
+        $('#simpan').click(function(e) {
+            e.preventDefault();
+            var postData = new FormData($(".form-data")[0]);
+            swal({
+                title: "Apakah Data Yang Anda Masukkan Sudah Benar?",
+                type: "warning",
+                showCancelButton: !0,
+                confirmButtonText: "Ya, Sudah Benar!",
+                cancelButtonText: "Batal",
+                reverseButtons: !0,
+                showLoaderOnConfirm: true,
+                preConfirm: async () => {
+                    return await $.ajax({
+                        type: 'POST',
+                        url: url("/datasaya-store"),
+                        processData: false,
+                        contentType: false,
+                        data: postData,
+                    });
+                },
+            }).then(function(e) {
+                if (e.value.status == 200) {
+                    swal("Selesai!", e.value.message, "success").then(() => {
+                        location.reload();
+                    });
+                } else {
+                    swal("Error!", e.value.message, "error");
+                }
+            }, function(dismiss) {
+                return false;
+            })
+        });
+        $('select[name="provinsi_id"]').each(function(index, element) {
+            $(element).change(function(e) {
+                e.preventDefault();
+                window.localStorage.setItem('provinsi', $(element).data('id'));
+                loadKabKota(this.value, $(element.parentElement.parentElement.parentElement)
+                    .find('#kab_kota_id'))
+            });
+        });
+
+        function loadKabKota(val, kabupaten, kabupaten_id = null) {
+            return new Promise(resolve => {
+                $(kabupaten).html('<option value="">Memuat...</option>');
+                fetch('/api/kab-kota/' + val)
+                    .then(res => res.json())
+                    .then(res => {
+                        $(kabupaten).html(
+                            '<option selected disabled>- Pilih Kabupaten / Kota -</option>');
+                        res.forEach(model => {
+                            var selected = kabupaten_id == model.id ? 'selected=""' : '';
+                            $(kabupaten).append('<option value="' + model.id + '" ' +
+                                selected + '>' + model.nama + '</option>');
+                        })
+                        resolve()
+                    })
+            })
+        }
         $(function() {
             $.fn.filepond.registerPlugin(FilePondPluginImagePreview);
             FilePond.create(document.querySelector('input[name="doc_kepegawaian_tmp"]')).setOptions({

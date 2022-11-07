@@ -15,8 +15,9 @@
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                     Periode
                                 </p>
-                                <h2 style="font-family: 'Roboto'; font-size: 16px; color: #06152B;" class="target">Januari
-                                    2022 - Juli 2022</h2>
+                                <h2 style="font-family: 'Roboto'; font-size: 16px; color: #06152B;" class="target">
+                                    {{ Carbon\Carbon::make($periode->awal)->translatedFormat('F Y') . ' - ' . Carbon\Carbon::make($periode->akhir)->translatedFormat('F Y') }}
+                                </h2>
                             </div>
                         </div>
                     </div>
@@ -33,7 +34,8 @@
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                     Penilai AK
                                 </p>
-                                <h2 style="font-family: 'Roboto';color: #06152B; font-size: 16px;" class="target">Rohmat
+                                <h2 style="font-family: 'Roboto';color: #06152B; font-size: 16px;" class="target">
+                                    {{ $penilai?->nama ?? '-' }}
                                 </h2>
                             </div>
                         </div>
@@ -51,7 +53,8 @@
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                     Penetap AK
                                 </p>
-                                <h2 style="font-family: 'Roboto';color: #06152B; font-size: 16px" class="target">Alifta
+                                <h2 style="font-family: 'Roboto';color: #06152B; font-size: 16px" class="target">
+                                    {{ $penetap?->nama ?? '-' }}
                                 </h2>
                             </div>
                         </div>
@@ -68,7 +71,7 @@
                                 <h5>Tabel Data Mentee</h5>
                             </div>
                             <div class="col-md-5 d-flex justify-content-end">
-                                <a href="" class="btn btn-mente py-2 btn-sm" data-bs-toggle="modal"
+                                <a href="" class="btn btn-mente py-2 btn-sm text-wrap" data-bs-toggle="modal"
                                     data-bs-target="#tambahedit"><i class="fa-solid fa-user-tie me-2"></i>Tambah/Edit
                                     Penilai & Penetap AK</a>
                             </div>
@@ -244,21 +247,25 @@
                 <div class="modal-body">
                     <form method="post" enctype="multipart/form-data" class="container-unsur">
                         <div class="row justify-content-center">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Penilai AK</label>
-                                    <select class="choices form-select" name="role_id">
-                                        <option disabled selected>Pilih Penilai</option>
-                                        <option>Iqbal</option>
+                                    <select class="form-select" name="role_id">
+                                        <option disabled selected>- Pilih Penilai -</option>
+                                        @foreach ($penilais as $penilai)
+                                            <option>{{ $penilai->userPejabatStruktural->nama }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Penetap AK</label>
                                     <select class="choices form-select" name="role_id">
-                                        <option disabled selected>Pilih Penetap</option>
-                                        <option>Iqbal</option>
+                                        <option disabled selected>- Pilih Penetap -</option>
+                                        @foreach ($penetaps as $penetap)
+                                            <option>{{ $penetap->userPejabatStruktural->nama }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>

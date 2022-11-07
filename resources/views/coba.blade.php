@@ -14,7 +14,7 @@
         <button type="submit" class="btn btn-green">Sweet</button>
     </form> --}}
 @endsection
-@section('css')
+{{-- @section('css')
     <link rel="stylesheet" href="{{ asset('assets/extensions/filepond/filepond.css') }}">
     <link rel="stylesheet"
         href="{{ asset('assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.min.css') }}">
@@ -87,4 +87,4 @@
         // sessionStorage.setItem("nama", "wahli");
         console.log(sessionStorage.getItem("nama"));
     </script>
-@endsection
+@endsection --}}

@@ -52,42 +52,28 @@ $(function () {
     });
     $('.btn-simpan-file-import').click(function (e) {
         e.preventDefault();
-        if (!$('#form-import input[name="file_import_tmp"]').val()) {
-            Toastify({
-                text: "File harus diisi!",
-                duration: 5000,
-                close: true,
-                gravity: "top",
-                position: "right",
-                backgroundColor: "#EA3A3D",
-            }).showToast();
-        } else {
-            var postData = new FormData($("#form-import")[0]);
-            $('.btn-simpan-file-import span').hide();
-            $('.btn-simpan-file-import .spin').show();
-            $.ajax({
-                type: 'POST',
-                url: url("/kemendagri/cms/kegiatan-jabatan/import"),
-                processData: false,
-                contentType: false,
-                data: postData,
-                success: function (response) {
-                    $('.btn-simpan-file-import span').show();
-                    $('.btn-simpan-file-import .spin').hide();
-                    if (response.status == 200) {
-                        swal("Selesai!", response.message, "success").then(() => {
-                            location.reload();
-                        });
-                    } else {
-                        swal("Error!", response.message, "error");
-                    }
-                },
-                error: function (err) {
-                    $('.btn-simpan-file-import span').show();
-                    $('.btn-simpan-file-import .spin').hide();
+        var postData = new FormData($("#form-import")[0]);
+        $('.btn-simpan-file-import span').hide();
+        $('.btn-simpan-file-import .spin').show();
+        $.ajax({
+            type: 'POST',
+            url: url("/kemendagri/cms/kegiatan-jabatan/import"),
+            processData: false,
+            contentType: false,
+            data: postData,
+            success: function (response) {
+                $('.btn-simpan-file-import span').show();
+                $('.btn-simpan-file-import .spin').hide();
+                if (response.status == 200) {
+                    swal("Selesai!", response.message, "success").then(() => {
+                        location.reload();
+                    });
+                } else {
+                    swal("Error!", response.message, "error");
                 }
-            });
-        }
+            },
+            error: ajaxError
+        });
     });
     $("#importExcelModal").on('hide.bs.modal', function () {
         pond.removeFiles();
@@ -97,18 +83,18 @@ $(function () {
         $('.container-unsur').append(`
             <div class="d-flex flex-column container-sub-unsur">
                 <div class="row align-items-center justify-content-end">
-                    <div class="col-md-9">
+                    <div class="col-md-10">
                         <div class="form-group">
                             <label>Sub Unsur</label>
                             <input class="form-control w-100" type="text" name="sub_unsur[]">
                         </div>
                     </div>
-                    <div class="col-md-2 d-flex align-items-center">
+                    <div class="col-md-1 d-flex align-items-center">
                         <button type="button" class="hapus-sub-unsur" style="transform: translateY(8px); color: #EA3A3D; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #EA3A3D; background-color: transparent !important;"><i
-                                class="fa-solid fa-minus"></i></button>
-                        <button type="button" class="btn btn-blue btn-sm ps-3 py-2 ms-2 tambah-butir"
-                            style="transform: translateY(7px)"><i class="fa-solid fa-plus me-2"></i>
-                            Butir</button>
+                                class="fa-solid fa-x"></i></button>
+                        <button type="button" class="ms-2 tambah-butir"
+                                    style="transform: translateY(8px); color: #1ad598; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #1ad598; background-color: transparent !important;"><i
+                                        class="fa-solid fa-plus"></i></button>
                     </div>
                 </div>
 
@@ -121,7 +107,7 @@ $(function () {
     $('.container-unsur').on('click', '.tambah-butir', function () {
         $(this.parentElement.parentElement.parentElement.querySelector('.container-butir')).append(`
             <div class="row align-items-center justify-content-end">
-                <div class="col-md-6">
+                <div class="col-md-7">
                     <div class="form-group">
                         <label>Butir Kegiatan</label>
                         <input class="form-control w-100" type="text" name="butir_kegiatan[]">
@@ -133,10 +119,10 @@ $(function () {
                         <input class="form-control w-100" step="0.01" type="number" name="angka_kredit[]">
                     </div>
                 </div>
-                <div class="col-md-2 d-flex">
+                <div class="col-md-1 d-flex">
                     <button class="hapus-butir"
                         style="transform: translateY(8px); color: #EA3A3D; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #EA3A3D; background-color: transparent !important;"><i
-                            class="fa-solid fa-minus"></i></button>
+                            class="fa-solid fa-x"></i></button>
                 </div>
             </div>
         `);
@@ -167,6 +153,7 @@ $(function () {
     });
     $('#tambahDataModal').on('click', '.simpan-kegiatan.simpan', function () {
         var role_id = $('select[name="role_id"]').val();
+        var periode_id = $('select[name="periode_id"]').val();
         var unsur = $('input[name="unsur"]').val();
         result = [];
         $.each($('input[name="sub_unsur[]"]'), function (indexInArray, valueOfElement) {
@@ -187,6 +174,7 @@ $(function () {
             url: url("/kemendagri/cms/kegiatan-jabatan"),
             data: {
                 role_id: role_id,
+                periode_id: periode_id,
                 unsur: unsur,
                 sub_unsurs: result
             },
@@ -266,6 +254,7 @@ $(function () {
                         .trigger('change');
                 }
                 $('input[name="unsur"]').val(response.data.nama);
+                $('select[name="periode_id"]').val(response.data.periode_id);
                 response.data.sub_unsurs.forEach(subUnsur => {
                     $('.container-unsur').append(funSubUnsur(subUnsur));
                 });
@@ -277,18 +266,17 @@ $(function () {
     function funSubUnsur(subUnsur) {
         return `<div class="d-flex flex-column container-sub-unsur">
             <div class="row align-items-center justify-content-end">
-                <div class="col-md-9">
+                <div class="col-md-10">
                     <div class="form-group">
                         <label>Sub Unsur</label>
                         <input class="form-control w-100" type="text" data-id="${subUnsur.id}" value="${subUnsur.nama}" name="sub_unsur[]">
                     </div>
                 </div>
-                <div class="col-md-2 d-flex align-items-center">
+                <div class="col-md-1 d-flex align-items-center">
                     <button type="button" class="hapus-sub-unsur" style="transform: translateY(8px); color: #EA3A3D; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #EA3A3D; background-color: transparent !important;"><i
-                            class="fa-solid fa-minus"></i></button>
-                    <button type="button" class="btn btn-blue btn-sm ps-3 py-2 ms-2 tambah-butir"
-                        style="transform: translateY(7px)"><i class="fa-solid fa-plus me-2"></i>
-                        Butir</button>
+                            class="fa-solid fa-x"></i></button>
+                    <button type="button" class="ms-2 tambah-butir" style="transform: translateY(8px); color: #1ad598; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #1ad598; background-color: transparent !important;"><i
+                            class="fa-solid fa-plus"></i></button>
                 </div>
             </div>
 
@@ -301,7 +289,7 @@ $(function () {
     function funButirKegiatan(butir_kegiatans) {
         return $.map(butir_kegiatans, function (butirKegiatan, indexOrKey) {
             return `<div class="row align-items-center justify-content-end">
-                <div class="col-md-6">
+                <div class="col-md-7">
                     <div class="form-group">
                         <label>Butir Kegiatan</label>
                         <input class="form-control w-100" type="text" data-id="${butirKegiatan.id}" value="${butirKegiatan.nama}" name="butir_kegiatan[]">
@@ -313,10 +301,10 @@ $(function () {
                         <input class="form-control w-100" step="0.01" value="${butirKegiatan.score}" type="number" name="angka_kredit[]">
                     </div>
                 </div>
-                <div class="col-md-2 d-flex">
+                <div class="col-md-1 d-flex">
                     <button class="hapus-butir"
                         style="transform: translateY(8px); color: #EA3A3D; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #EA3A3D; background-color: transparent !important;"><i
-                            class="fa-solid fa-minus"></i></button>
+                            class="fa-solid fa-x"></i></button>
                 </div>
             </div>`
         }).join('')
@@ -325,6 +313,7 @@ $(function () {
     $('#tambahDataModal').on('click', '.simpan-kegiatan.update', function () {
         var role_id = $('select[name="role_id"]').val();
         var unsur = $('input[name="unsur"]').val();
+        var periode_id = $('select[name="periode_id"]').val();
         result = [];
         $.each($('input[name="sub_unsur[]"]'), function (indexInArray, valueOfElement) {
             result.push({
@@ -346,6 +335,7 @@ $(function () {
             url: url('/kemendagri/cms/kegiatan-jabatan/' + $(this).data('id') + '/update'),
             data: {
                 role_id: role_id,
+                periode_id: periode_id,
                 unsur: unsur,
                 sub_unsurs: result
             },
@@ -413,5 +403,44 @@ var ajaxError = function (jqXHR, xhr, textStatus, errorThrow, exception) {
         swal('Error!', jqXHR.responseText, "error");
         $('.simpan-kegiatan span').show();
         $('.simpan-kegiatan .spin').hide();
+    }
+};
+var ajaxError = function (jqXHR, xhr, textStatus, errorThrow, exception) {
+    if (jqXHR.status === 0) {
+        swal("Error!", 'Not connect.\n Verify Network.', "error");
+        $('.btn-simpan-file-import span').show();
+        $('.btn-simpan-file-import .spin').hide();
+    } else if (jqXHR.status == 400) {
+        swal("Peringatan!", jqXHR['responseJSON'].message, "warning");
+        $('.btn-simpan-file-import span').show();
+        $('.btn-simpan-file-import .spin').hide();
+    } else if (jqXHR.status == 404) {
+        swal('Error!', 'Requested page not found. [404]', "error");
+        $('.btn-simpan-file-import span').show();
+        $('.btn-simpan-file-import .spin').hide();
+    } else if (jqXHR.status == 500) {
+        swal('Error!', 'Internal Server Error [500].' + jqXHR['responseJSON'].message, "error");
+        $('.btn-simpan-file-import span').show();
+        $('.btn-simpan-file-import .spin').hide();
+    } else if (exception === 'parsererror') {
+        swal('Error!', 'Requested JSON parse failed.', "error");
+        $('.btn-simpan-file-import span').show();
+        $('.btn-simpan-file-import .spin').hide();
+    } else if (exception === 'timeout') {
+        swal('Error!', 'Time out error.', "error");
+        $('.btn-simpan-file-import span').show();
+        $('.btn-simpan-file-import .spin').hide();
+    } else if (exception === 'abort') {
+        swal('Error!', 'Ajax request aborted.', "error");
+        $('.btn-simpan-file-import span').show();
+        $('.btn-simpan-file-import .spin').hide();
+    } else if (jqXHR.status == 422) {
+        swal('Warning!', JSON.parse(jqXHR.responseText).message, "warning");
+        $('.btn-simpan-file-import span').show();
+        $('.btn-simpan-file-import .spin').hide();
+    } else {
+        swal('Error!', jqXHR.responseText, "error");
+        $('.btn-simpan-file-import span').show();
+        $('.btn-simpan-file-import .spin').hide();
     }
 };

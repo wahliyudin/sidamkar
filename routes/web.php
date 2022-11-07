@@ -14,6 +14,7 @@ use App\Http\Controllers\Aparatur\TabelKegiatanController;
 use App\Http\Controllers\Aparatur\tabelPenunjangController;
 use App\Http\Controllers\Api\FilePondController;
 use App\Http\Controllers\Api\KabKotaController;
+use App\Http\Controllers\AtasanLangsung\DataAtasanLangsungController;
 use App\Http\Controllers\AtasanLangsung\KegiatanLangsungController;
 use App\Http\Controllers\AtasanLangsung\KegiatanPengajuanController;
 use App\Http\Controllers\AtasanLangsung\OverviewController as AtasanLangsungOverviewController;
@@ -44,6 +45,9 @@ use App\Http\Controllers\PenilaiAk\KegiatanSelesai\KegiatanSelesaiController;
 use App\Http\Controllers\PenilaiAk\ProfesiPenunjangController;
 use App\Http\Controllers\PenilaiAk\ProfesiPenunjangShowController;
 use App\Http\Controllers\Kemendagri\CMS\InformasiController;
+use App\Http\Controllers\PenetapAK\DataPenetapAKController;
+use App\Http\Controllers\PenilaiAK\DataPenilaiAKController;
+use App\Http\Controllers\Kemendagri\CMS\PeriodeController;
 use App\Http\Controllers\provinsi\Chatbox;
 use App\Http\Controllers\Provinsi\DataAparaturController as ProvinsiDataAparaturController;
 use App\Http\Controllers\Provinsi\OverviewController as ProvinsiOverviewController;
@@ -69,8 +73,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('coba', function(){
+
+Route::get('coba', function () {
     return User::query()->withWhereHas('mentes.fungsional')->get();
+    return view('generate-pdf.surat-pernyataan');
 });
 Route::redirect('/', 'login');
 Auth::routes(['verify' => true]);
@@ -83,7 +89,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::controller(DataSayaController::class)->group(function () {
             Route::get('/data-saya', 'index')->name('data-saya');
-            Route::post('/datasaya-store', [DataSayaController::class, 'store'])->name('datasaya-store');
+            Route::post('/datasaya-store', 'store')->name('datasaya-store');
             Route::get('data-saya/show-dockepeg/{id}', 'showDocKepeg')->name('data-saya.show-doc-kepeg');
             Route::post('data-saya/store-dockepeg', 'storeDocKepeg')->name('data-saya.store-doc-kepeg');
             Route::post('data-saya/store-dockom', 'storeDocKom')->name('data-saya.store-doc-kom');
@@ -99,7 +105,10 @@ Route::middleware(['auth'])->group(function () {
 
         Route::controller(LaporanKegiatanKegiatanJabatanController::class)->group(function () {
             Route::get('laporan-kegiatan/jabatan', 'index')->name('laporan-kegiatan.jabatan');
+            Route::post('laporan-kegiatan/jabatan/load-data', 'loadData')->name('laporan-kegiatan.jabatan.load-data');
             Route::post('laporan-kegiatan/jabatan', 'storeLaporan')->name('laporan-kegiatan.jabatan.store-laporan');
+            Route::post('laporan-kegiatan/jabatan/{id}/{current_date}/edit', 'edit')->name('laporan-kegiatan.jabatan.edit');
+            Route::post('laporan-kegiatan/jabatan/{id}/update', 'update')->name('laporan-kegiatan.jabatan.update');
             Route::post('laporan-kegiatan/jabatan/tmp-file', 'tmpFile')->name('laporan-kegiatan.jabatan.tmp-file');
             Route::delete('laporan-kegiatan/jabatan/revert', 'revert')->name('laporan-kegiatan.jabatan.revert');
         });
@@ -141,14 +150,45 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::middleware(['role:atasan_langsung'])->group(function () {
+        Route::get('data-atasan-langsung', [DataAtasanLangsungController::class, 'index'])->name('data-atasan-langsung');
+        Route::post('data-atasan-langsung-store', [DataAtasanLangsungController::class, 'store'])->name('data-atasan-langsung-store');
+        Route::get('data-atasan-langsung/show-dockepeg/{id}', [DataAtasanLangsungController::class, 'showDocKepeg'])->name('data-atasan-langsung.show-doc-kepeg');
+        Route::post('data-atasan-langsung/store-dockepeg', [DataAtasanLangsungController::class, 'storeDocKepeg'])->name('data-atasan-langsung.store-doc-kepeg');
+        Route::post('data-atasan-langsung/store-dockom', [DataAtasanLangsungController::class, 'storeDocKom'])->name('data-atasan-langsung.store-doc-kom');
+        Route::delete('data-atasan-langsung/destroy-dockepeg/{id}', [DataAtasanLangsungController::class, 'destroyDocKepeg'])->name('data-atasan-langsung.destroy-doc-kepeg');
+        Route::delete('data-atasan-langsung/destroy-dockom/{id}', [DataAtasanLangsungController::class, 'destroyDocKom'])->name('data-atasan-langsung.destroy-doc-kom');
         Route::get('atasan-langsung/overview', [AtasanLangsungOverviewController::class, 'index'])->name('atasan-langsung.overview.index');
         Route::get('atasan-langsung/pengajuan-kegiatan', [PengajuanKegiatanController::class, 'index'])->name('atasan-langsung.pengajuan-kegiatan.index');
+        Route::post('atasan-langsung/pengajuan-kegiatan/{id}/load-data', [PengajuanKegiatanController::class, 'loadData'])->name('atasan-langsung.pengajuan-kegiatan.load-data');
         Route::get('atasan-langsung/pengajuan-kegiatan/{id}/show', [PengajuanKegiatanController::class, 'show'])->name('atasan-langsung.pengajuan-kegiatan.show');
+        Route::post('atasan-langsung/pengajuan-kegiatan/{id}/{current_date}/tolak', [PengajuanKegiatanController::class, 'tolak'])->name('atasan-langsung.pengajuan-kegiatan.tolak');
+        Route::post('atasan-langsung/pengajuan-kegiatan/{id}/{current_date}/revisi', [PengajuanKegiatanController::class, 'revisi'])->name('atasan-langsung.pengajuan-kegiatan.revisi');
+        Route::post('atasan-langsung/pengajuan-kegiatan/{id}/{current_date}/verifikasi', [PengajuanKegiatanController::class, 'verifikasi'])->name('atasan-langsung.pengajuan-kegiatan.verifikasi');
         Route::get('atasan-langsung/kegiatan-selesai', [KegiatanLangsungController::class, 'index'])->name('atasan-langsung.kegiatan-selesai');
+        Route::get('ubah-password', [ChangePasswordController::class, 'index'])->name('ubah-password');
+        Route::post('ubah-password', [ChangePasswordController::class, 'update'])->name('ubah-password.update');
+        Route::get('atasan-langsung/kegiatan-selesai/{id}/show', [KegiatanLangsungController::class, 'show'])->name('atasan-langsung.kegiatan-selesai.show');
     });
 
     Route::middleware(['role:penilai_ak'])->group(function () {
         Route::get('penilai-ak/overview', [PenilaiAkOverviewController::class, 'index'])->name('penilai-ak.overview');
+        Route::get('data-penilai-ak', [DataPenilaiAKController::class, 'index'])->name('data-penilai-ak');
+        Route::post('/data-penilai-ak-store', [DataPenilaiAKController::class, 'store'])->name('data-penilai-ak-store');
+        Route::get('data-penilai-ak/show-dockepeg/{id}', [DataAtasanLangsungController::class, 'showDocKepeg'])->name('data-penilai-ak.show-doc-kepeg');
+        Route::post('data-penilai-ak/store-dockepeg', [DataAtasanLangsungController::class, 'storeDocKepeg'])->name('data-penilai-ak.store-doc-kepeg');
+        Route::post('data-penilai-ak/store-dockom', [DataAtasanLangsungController::class, 'storeDocKom'])->name('data-penilai-ak.store-doc-kom');
+        Route::delete('data-penilai-ak/destroy-dockepeg/{id}', [DataAtasanLangsungController::class, 'destroyDocKepeg'])->name('data-penilai-ak.destroy-doc-kepeg');
+        Route::delete('data-penilai-ak/destroy-dockom/{id}', [DataAtasanLangsungController::class, 'destroyDocKom'])->name('data-penilai-ak.destroy-doc-kom');
+    });
+    Route::middleware(['role:penetap_ak'])->group(function () {
+        // Route::get('penetap_ak/overview', [PenilaiAkOverviewController::class, 'index'])->name('penetap_ak.overview');
+        Route::get('data-penetap-ak', [DataPenetapAKController::class, 'index'])->name('data-penetap-ak');
+        Route::post('/data-penetap-ak-store', [DataPenetapAKController::class, 'store'])->name('data-penetap-ak-store');
+        Route::get('data-penetap-ak/show-dockepeg/{id}', [DataPenetapAKController::class, 'showDocKepeg'])->name('data-penetap-ak.show-doc-kepeg');
+        Route::post('data-penetap-ak/store-dockepeg', [DataAtasanLangsungController::class, 'storeDocKepeg'])->name('data-penetap-ak.store-doc-kepeg');
+        Route::post('data-penetap-ak/store-dockom', [DataAtasanLangsungController::class, 'storeDocKom'])->name('data-penetap-ak.store-doc-kom');
+        Route::delete('data-penetap-ak/destroy-dockepeg/{id}', [DataAtasanLangsungController::class, 'destroyDocKepeg'])->name('data-penetap-ak.destroy-doc-kepeg');
+        Route::delete('data-penetap-ak/destroy-dockom/{id}', [DataAtasanLangsungController::class, 'destroyDocKom'])->name('data-penetap-ak.destroy-doc-kom');
         Route::get('penilai-ak/kegiatan-profesi/profesi-penunjang', [ProfesiPenunjangController::class, 'index'])->name('penilai-ak.kegiatan-profesi.profesi-penunjang');
         Route::get('penilai-ak/kegiatan-profesi/show', [ProfesiPenunjangShowController::class, 'index'])->name('penilai-ak.kegiatan-profesi.show');
         Route::get('penilai-ak/data-penunjang/data-pengajuan', [DataPengajuanController::class, 'index'])->name('penilai-ak.data-penunjang.data-pengajuan');
@@ -225,6 +265,11 @@ Route::middleware(['auth'])->group(function () {
         });
         Route::controller(InformasiController::class)->group(function () {
             Route::get('kemendagri/cms/informasi', 'index')->name('kemendagri.cms.informasi.index');
+            Route::post('kemendagri/cms/informasi', 'store')->name('kemendagri.cms.informasi.store');
+        });
+        Route::controller(PeriodeController::class)->group(function () {
+            Route::get('kemendagri/cms/periode', 'index')->name('kemendagri.cms.periode.index');
+            Route::post('kemendagri/cms/periode/store', 'store')->name('kemendagri.cms.periode.store');
         });
     });
 });

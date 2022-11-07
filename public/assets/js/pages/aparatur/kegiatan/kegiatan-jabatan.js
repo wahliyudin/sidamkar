@@ -1,15 +1,16 @@
-$.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-});
+
 $(document).ready(function () {
-    getData();
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    loadData();
     $('input[name="search"]').keyup(function (e) {
-        getData(e.target.value);
+        loadData(e.target.value);
     });
 
-    function getData(search = null) {
+    function loadData(search = null) {
         $.ajax({
             type: "POST",
             url: url('/kegiatan/jabatan/search'),
@@ -22,36 +23,6 @@ $(document).ready(function () {
             }
         });
     }
-
-    $('.simpan-rencana').click(function (e) {
-        e.preventDefault();
-        $('.simpan-rencana span').hide();
-        $('.simpan-rencana .spin').show();
-        rencana = $('input[name="rencana"]').val();
-        subUnsurs = $.map($('input[name="sub_unsurs[]"]'), function (elementOrValue, indexOrKey) {
-            if ($(elementOrValue).is(':checked')) {
-                return {
-                    unsur_id: $(elementOrValue).data('unsurid'),
-                    sub_unsur_id: $(elementOrValue).val()
-                };
-            }
-        });
-        $.ajax({
-            type: "POST",
-            url: url('/kegiatan/jabatan/rencana-kinerja/store'),
-            data: {
-                rencana: rencana,
-                sub_unsurs: subUnsurs
-            },
-            dataType: "json",
-            success: function (response) {
-                $('.simpan-rencana span').show();
-                $('.simpan-rencana .spin').hide();
-                location.reload();
-            },
-            error: ajaxError
-        });
-    });
 
     function rencanas(rencanas) {
         return $.map(rencanas, function (rencana, indexOrKey) {
@@ -154,6 +125,36 @@ $(document).ready(function () {
             `;
         }).join('')
     }
+
+    $('.simpan-rencana').click(function (e) {
+        e.preventDefault();
+        $('.simpan-rencana span').hide();
+        $('.simpan-rencana .spin').show();
+        rencana = $('input[name="rencana"]').val();
+        subUnsurs = $.map($('input[name="sub_unsurs[]"]'), function (elementOrValue, indexOrKey) {
+            if ($(elementOrValue).is(':checked')) {
+                return {
+                    unsur_id: $(elementOrValue).data('unsurid'),
+                    sub_unsur_id: $(elementOrValue).val()
+                };
+            }
+        });
+        $.ajax({
+            type: "POST",
+            url: url('/kegiatan/jabatan/rencana-kinerja/store'),
+            data: {
+                rencana: rencana,
+                sub_unsurs: subUnsurs
+            },
+            dataType: "json",
+            success: function (response) {
+                $('.simpan-rencana span').show();
+                $('.simpan-rencana .spin').hide();
+                location.reload();
+            },
+            error: ajaxError
+        });
+    });
 
     var ajaxError = function (jqXHR, xhr, textStatus, errorThrow, exception) {
         if (jqXHR.status === 0) {
