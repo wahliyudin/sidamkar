@@ -27,4 +27,9 @@ class LaporanKegiatanJabatan extends Model
     {
         return $this->belongsTo(RencanaButirKegiatan::class);
     }
+
+    public function historyButirKegiatans()
+    {
+        return $this->hasMany(HistoryButirKegiatan::class);
+    }
 }

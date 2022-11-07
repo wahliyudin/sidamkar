@@ -10,12 +10,12 @@ class HistoryButirKegiatan extends Model
     use HasFactory;
 
     protected $fillable = [
-        'rencana_butir_kegiatan_id',
+        'laporan_kegiatan_jabatan_id',
         'keterangan'
     ];
 
-    public function rencanaButirKegiatan()
+    public function laporanKegiatanJabatan()
     {
-        return $this->belongsTo(RencanaButirKegiatan::class);
+        return $this->belongsTo(LaporanKegiatanJabatan::class);
     }
 }
