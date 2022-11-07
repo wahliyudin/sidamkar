@@ -62,11 +62,16 @@
             <div class="card">
                 <div class="card-header">
                     <div class="row align-items-center justify-content-between">
+                        <div class="progress progress-info  mb-4">
+                            <div class="progress-bar progress-label" role="progressbar" style="width: 0%" aria-valuenow="0"
+                                aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
                         <div class="col-md-4">
                             <h3>Kegiatan Jabatan</h3>
                         </div>
                         <div class="col-md-6 text-end">
-                            <div data-bs-toggle="modal" data-bs-target="#rekap" class="btn btn-green btn-sm ps-3 pe-3 py-2">
+                            <div data-bs-toggle="modal" data-bs-target="#rekap"
+                                class="btn btn-green btn-sm ps-3 pe-3 py-2 rekap">
                                 <i class="fa-solid fa-paper-plane me-1"></i>
                                 Ajukan Laporan Rekapitulasi Capaian
                             </div>
@@ -96,12 +101,16 @@
 
     <div class="modal fade" id="rekap" tabindex="-1" role="dialog" aria-labelledby="rekapTitle" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-centered" role="document">
-            <div class="modal-content">
+            <div class="modal-content relative">
+                <div class="bg-spin" style="display: none;">
+                    <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
+                        style="height: 3rem; object-fit: cover;" alt="" srcset="">
+                </div>
                 <div class="modal-header">
                     <h5 class="text-red uppercase">Surat Pernyataan Melakukan Kegiatan</h5>
                 </div>
                 <div class="modal-body">
-                    <iframe src="" width="100%" height="420px"></iframe>
+                    <iframe class="review-rekap" src="" width="100%" height="450px"></iframe>
                     <div class="text-center mt-4">
                         <button class="btn btn-danger px-5" data-bs-dismiss="modal">Batal</button>
                         <button type="button" class="btn btn-blue px-5 simpan-kegiatan">
@@ -115,7 +124,8 @@
         </div>
     </div>
 
-    <div class="modal fade" id="laporkan" tabindex="-1" role="dialog" aria-labelledby="laporkanTitle" aria-hidden="true">
+    <div class="modal fade" id="laporkan" tabindex="-1" role="dialog" aria-labelledby="laporkanTitle"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -162,9 +172,22 @@
     <link rel="stylesheet" href="{{ asset('assets/css/shared/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/pages/kemendagri.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/pages/aparatur/kegiatan.css') }}">
+    <style>
+        #rekap .modal-content .bg-spin {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 99;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #00000075;
+        }
+    </style>
 @endsection
 @section('js')
     <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
     <script src="{{ asset('assets/extensions/choices.js/public/assets/scripts/choices.js') }}"></script>
     <script src="{{ asset('assets/js/pages/form-element-select.js') }}"></script>
     <script src="{{ asset('assets/extensions/toastify-js/src/toastify.js') }}"></script>

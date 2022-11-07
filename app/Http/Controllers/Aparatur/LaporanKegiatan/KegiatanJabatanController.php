@@ -9,6 +9,7 @@ use App\Models\Rencana;
 use App\Models\RencanaButirKegiatan;
 use App\Models\TemporaryFile;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -228,5 +229,15 @@ class KegiatanJabatanController extends Controller
             $tmp_file->delete();
             Storage::deleteDirectory("tmp/$tmp_file->folder");
         }
+    }
+
+    public function rekapitulasi()
+    {
+        $pdf = PDF::loadView('generate-pdf.surat-pernyataan');
+        Storage::put('pdf/example.pdf', $pdf->output());
+        return response()->json([
+            'message' => 'Berhasil',
+            'data' => asset('storage/pdf/example.pdf')
+        ]);
     }
 }
