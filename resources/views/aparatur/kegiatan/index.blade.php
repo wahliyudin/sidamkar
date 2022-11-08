@@ -66,7 +66,8 @@
                         </div>
                     </div>
                     <div class="d-flex align-items-center justify-content-between">
-                        <button class="btn btn-green" data-bs-toggle="modal" data-bs-target="#tambahRencana">Tambah
+                        <button class="btn btn-green text-sm ps-3" data-bs-toggle="modal" data-bs-target="#tambahRencana"><i
+                                class="fa-solid fa-clipboard-list me-1"></i> Tambah
                             Rencana</button>
                         <div class="form-group col-md-4">
                             <label>Search</label>
@@ -128,8 +129,8 @@
                                                                             style="margin-top: 0 !important;"
                                                                             class="form-check-input"
                                                                             data-unsurid="{{ $unsur->id }}"
-                                                                            value="{{ $sub_unsur->id }}" name="sub_unsurs[]"
-                                                                            id="">
+                                                                            value="{{ $sub_unsur->id }}"
+                                                                            name="sub_unsurs[]" id="">
                                                                         <h6 class="accordian-title ms-1"
                                                                             style="margin-bottom: 0 !important; user-select: none;">
                                                                             {{ $sub_unsur->nama }}

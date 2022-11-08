@@ -287,4 +287,25 @@ class KegiatanJabatanController extends Controller
         ]);
 
     }
+
+    public function sendRekap()
+    {
+        $periode = Periode::query()->where('is_active', true)->first();
+        $rekap = RekapitulasiKegiatan::query()
+            ->where('fungsional_id', auth()->user()->id)
+            ->where('periode_id', $periode->id)
+            ->first();
+        if (!$rekap) {
+            throw ValidationException::withMessages(['Data rekapitulasi tidak ditemukan']);
+        }
+        if ($rekap->is_send == true) {
+            throw ValidationException::withMessages(['Data rekapitulasi sudah dikirim']);
+        }
+        $rekap->update([
+            'is_send' => true
+        ]);
+        return response()->json([
+            'message' => 'Berhasil dikirim'
+        ]);
+    }
 }

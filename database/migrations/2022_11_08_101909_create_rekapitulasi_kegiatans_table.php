@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('fungsional_id');
             $table->unsignedBigInteger('periode_id');
+            $table->boolean('is_send')->default(false);
             $table->string('file');
             $table->string('file_name');
             $table->timestamps();
