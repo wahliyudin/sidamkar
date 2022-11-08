@@ -76,11 +76,9 @@
                 <div class="dropdown">
                     <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
                         <div class="user-menu d-flex align-items-center">
-                            @role(getAllRoleFungsional())
                             <div class="user-name text-end me-3">
                                 <h6 class="mb-0 text-gray-600">{{ Auth::user()->username }}</h6>
                             </div>
-                            @endrole
                             @role(getAllRoleFungsional())
                             <div class="user-img d-flex align-items-center">
                                 <div class="avatar avatar-md">
