@@ -75,7 +75,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('coba', function () {
-    return User::query()->withWhereHas('mentes.fungsional')->get();
+    // return User::query()->withWhereHas('mentes.fungsional')->get();
     return view('generate-pdf.surat-pernyataan');
 });
 Route::redirect('/', 'login');

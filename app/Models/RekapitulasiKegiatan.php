@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Mente extends Model
+class RekapitulasiKegiatan extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'atasan_langsung_id',
-        'fungsional_id'
+        'fungsional_id',
+        'file',
+        'file_name'
     ];
 
     public function fungsional()
@@ -19,8 +20,8 @@ class Mente extends Model
         return $this->belongsTo(User::class, 'fungsional_id', 'id');
     }
 
-    public function atasanLangsung()
+    public function historyRekapitulasiKegiatans()
     {
-        return $this->belongsTo(User::class, 'atasan_langsung_id', 'id');
+        return $this->hasMany(HistoryRekapitulasiKegiatan::class);
     }
 }

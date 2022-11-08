@@ -3,13 +3,17 @@
 namespace App\Http\Controllers\Aparatur\LaporanKegiatan;
 
 use App\Http\Controllers\Controller;
+use App\Models\HistoryRekapitulasiKegiatan;
 use App\Models\LaporanKegiatanJabatan;
 use App\Models\Periode;
+use App\Models\RekapitulasiKegiatan;
 use App\Models\Rencana;
 use App\Models\RencanaButirKegiatan;
 use App\Models\TemporaryFile;
+use App\Models\Unsur;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -18,20 +22,6 @@ class KegiatanJabatanController extends Controller
     public function index()
     {
         $periode = Periode::query()->where('is_active', true)->first();
-        // $rencanas = User::query()
-        //     ->with([
-        //         'rencanas',
-        //         'rencanas.rencanaUnsurs.unsur',
-        //         'rencanas.rencanaUnsurs.rencanaSubUnsurs.subUnsur',
-        //         'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.butirKegiatan',
-        //         'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan' => function($query){
-        //             $query->where('current_date', now()->addDays(-1)->format('Y-m-d'));
-        //         },
-        //         'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan.dokumenKegiatanPokoks',
-        //         'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan.historyButirKegiatans',
-        //     ])
-        //     ->find(auth()->user()->id)->rencanas;
-        // return $rencanas;
         return view('aparatur.laporan-kegiatan.index', compact('periode'));
     }
 
@@ -233,11 +223,49 @@ class KegiatanJabatanController extends Controller
 
     public function rekapitulasi()
     {
-        $pdf = PDF::loadView('generate-pdf.surat-pernyataan');
-        Storage::put('pdf/example.pdf', $pdf->output());
-        return response()->json([
-            'message' => 'Berhasil',
-            'data' => asset('storage/pdf/example.pdf')
-        ]);
+        $rekapitulasi = RekapitulasiKegiatan::query()->where('fungsional_id', auth()->user()->id)->first();
+        if ($rekapitulasi) {
+            return response()->json([
+                'message' => 'Berhasil',
+                'data' => $rekapitulasi->file
+            ]);
+        } else {
+            $periode = Periode::query()->where('is_active', true)->first();
+            $user = User::query()->with(['mente.atasanLangsung.roles',
+            'mente.atasanLangsung.userPejabatStruktural.pangkatGolonganTmt', 'roles',
+            'userAparatur.pangkatGolonganTmt'])->find(auth()->user()->id);
+            $rencanas = User::query()
+                ->with([
+                    'rencanas',
+                    'rencanas.rencanaUnsurs.unsur',
+                    'rencanas.rencanaUnsurs.rencanaSubUnsurs.subUnsur',
+                    'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.butirKegiatan',
+                    'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans' => function($query) use ($periode){
+                        $query->withSum(['laporanKegiatanJabatans' => function($query) use ($periode){
+                            $query->where('status', 4)->whereBetween('current_date', [$periode->awal, $periode->akhir]);
+                        }], 'score')->withCount(['laporanKegiatanJabatans' => function($query) use ($periode){
+                            $query->where('status', 4)->whereBetween('current_date', [$periode->awal, $periode->akhir]);
+                        }]);
+                    },
+                ])
+                ->find(auth()->user()->id)->rencanas;
+            $pdf = PDF::loadView('generate-pdf.surat-pernyataan', ['rencanas' => $rencanas, 'user' => $user]);
+            $file_name = uniqid();
+            Storage::put("rekapitulasi/$file_name.pdf", $pdf->output());
+            $url = asset("storage/rekapitulasi/$file_name.pdf");
+            $rekapitulasiKegiatan = RekapitulasiKegiatan::query()->updateOrCreate(['fungsional_id' => auth()->user()->id], [
+                'file' => $url,
+                'file_name' => $file_name
+            ]);
+            $rekapitulasiKegiatan->historyRekapitulasiKegiatans()->create([
+                'struktural_id' => $user->mente->atasanLangsung->id,
+                'content' => 'Rekapitulasi diterima Atasan Langsung'
+            ]);
+            return response()->json([
+                'message' => 'Berhasil',
+                'data' => $url
+            ]);
+        }
+
     }
 }

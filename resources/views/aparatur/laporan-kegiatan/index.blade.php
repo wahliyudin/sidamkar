@@ -62,10 +62,6 @@
             <div class="card">
                 <div class="card-header">
                     <div class="row align-items-center justify-content-between">
-                        <div class="progress progress-info  mb-4">
-                            <div class="progress-bar progress-label" role="progressbar" style="width: 0%" aria-valuenow="0"
-                                aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
                         <div class="col-md-4">
                             <h3>Kegiatan Jabatan</h3>
                         </div>
@@ -124,8 +120,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="laporkan" tabindex="-1" role="dialog" aria-labelledby="laporkanTitle"
-        aria-hidden="true">
+    <div class="modal fade" id="laporkan" tabindex="-1" role="dialog" aria-labelledby="laporkanTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
