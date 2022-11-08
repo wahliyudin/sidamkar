@@ -87,5 +87,33 @@ class SubUnsurSeeder extends Seeder
             ]
         ];
         SubUnsur::query()->upsert($damkarPemula, 'id');
+
+        $termapil = [
+            [
+                'unsur_id' => 5,
+                'nama' => 'Apel sebagai pengatur Regu dan serah terima tugas jaga'
+            ],
+            [
+                'unsur_id' => 5,
+                'nama' => 'Tugas piket jaga'
+            ],
+            [
+                'unsur_id' => 5,
+                'nama' => 'Apel Pengecekan unit dan personil'
+            ],
+            [
+                'unsur_id' => 5,
+                'nama' => 'Latihan rutin ketrampilan'
+            ],
+            [
+                'unsur_id' => 5,
+                'nama' => 'Pembinaan fisik'
+            ],
+            [
+                'unsur_id' => 5,
+                'nama' => 'Kebersihan lingkungan kerja (korve)'
+            ],
+        ];
+        SubUnsur::query()->upsert($termapil, 'id');
     }
 }

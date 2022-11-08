@@ -306,5 +306,69 @@ class ButirKegiatanSeeder extends Seeder
             ]
         ];
         ButirKegiatan::query()->upsert($damkarPemula, 'id');
+
+        $terampil = [
+            [
+                'sub_unsur_id' => 18,
+                'nama' => 'Mempersiapkan personil',
+                'satuan_hasil' => 'Laporan kesiapan personil',
+                'score' => 0.004
+            ],
+            [
+                'sub_unsur_id' => 18,
+                'nama' => 'Mengkoordinir Apel Tingkat Regu',
+                'satuan_hasil' => 'Laporan Apel Tingkat Regu',
+                'score' => 0.004
+            ],
+            [
+                'sub_unsur_id' => 18,
+                'nama' => 'Memeriksa kondisi volume air tangki unit',
+                'satuan_hasil' => 'Laporan kondisi volume air tangki unit',
+                'score' => 0.004
+            ],
+            [
+                'sub_unsur_id' => 18,
+                'nama' => 'Melaksanakan pengecekan peralatan unit mobil',
+                'satuan_hasil' => 'Laporan pengecekan peralatan unit mobil',
+                'score' => 0.004
+            ],
+            [
+                'sub_unsur_id' => 18,
+                'nama' => 'Memeriksa fungsi Pompa/ PTO, rem, level bahan bakar, Oli, Radiator, Accu, Minyak Kopling, tekanan angin roda',
+                'satuan_hasil' => 'Laporan fungsi Pompa/ PTO, rem, level bahan bakar, Oli, Radiator, Accu,Minyak Kopling, tekanan angin roda',
+                'score' => 0.004
+            ],
+            [
+                'sub_unsur_id' => 18,
+                'nama' => 'Memanaskan mesin kendaraan',
+                'satuan_hasil' => 'Laporan mesin kendaraan',
+                'score' => 0.004
+            ],
+            [
+                'sub_unsur_id' => 18,
+                'nama' => 'Memeriksa fungsi lampu rotary, sirine, dan lampu kendaraan',
+                'satuan_hasil' => 'Memeriksa fungsi lampu rotary, sirine,dan lampu kendaraan',
+                'score' => 0.004
+            ],
+            [
+                'sub_unsur_id' => 18,
+                'nama' => 'Memeriksa fungsi alat komunikasi Rig dan HT',
+                'satuan_hasil' => 'Memeriksa fungsi alat komunikasi Rig dan HT',
+                'score' => 0.004
+            ],
+            [
+                'sub_unsur_id' => 18,
+                'nama' => 'Melaksanakan serah terima unit mobil',
+                'satuan_hasil' => 'Laporan serah terima unit mobil',
+                'score' => 0.004
+            ],
+            [
+                'sub_unsur_id' => 18,
+                'nama' => 'Membuat laporan sesuai dengan form check list',
+                'satuan_hasil' => 'Dokumen sesuai dengan form check list',
+                'score' => 0.004
+            ],
+        ];
+        ButirKegiatan::query()->upsert($terampil, 'id');
     }
 }

@@ -42,5 +42,22 @@ class UnsurSeeder extends Seeder
             ]
         ];
         Unsur::query()->upsert($damkarPemula, 'id');
+
+        $terampil = [
+            [
+                'role_id' => 2,
+                'jenis_kegiatan_id' => 1,
+                'periode_id' => 1,
+                'nama' => 'Kesiapsiagaan petugas pengemudi mobil pemadam kebakaran dan penyelamatan'
+            ],
+            [
+                'role_id' => 2,
+                'jenis_kegiatan_id' => 1,
+                'periode_id' => 1,
+                'nama' => 'Pelaksanaan prosedur pelaporan informasi penanggulangan kebakaran
+'
+            ],
+        ];
+        Unsur::query()->upsert($terampil, 'id');
     }
 }
