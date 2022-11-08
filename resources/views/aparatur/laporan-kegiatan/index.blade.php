@@ -66,8 +66,10 @@
                             <h3>Kegiatan Jabatan</h3>
                         </div>
                         <div class="col-md-6 text-end">
-                            <button {{ count($user->rencanas) <= 0 ? 'disabled' : '' }} data-bs-toggle="modal"
-                                data-bs-target="#rekap" class="btn btn-green btn-sm ps-3 pe-3 py-2 rekap">
+                            <button
+                                {{ count($user->rencanas) <= 0 || $user->rekapitulasiKegiatan?->is_send ? 'disabled' : '' }}
+                                data-bs-toggle="modal" data-bs-target="#rekap"
+                                class="btn btn-green btn-sm ps-3 pe-3 py-2 rekap">
                                 <i class="fa-solid fa-paper-plane me-1"></i>
                                 Ajukan Laporan Rekapitulasi Capaian
                             </button>

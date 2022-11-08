@@ -25,15 +25,17 @@ class KegiatanJabatanController extends Controller
     public function index()
     {
         $periode = Periode::query()->where('is_active', true)->first();
-        $user = User::query()->with('rencanas')->find(auth()->user()->id);
+        $user = User::query()->with('rencanas', 'rekapitulasiKegiatan')->find(auth()->user()->id);
         return view('aparatur.laporan-kegiatan.index', compact('periode', 'user'));
     }
 
     public function loadData(Request $request)
     {
         if ($request->ajax()) {
+            $is_rekap = auth()->user()->load('rekapitulasiKegiatan')->rekapitulasiKegiatan->is_send;
             $search = str($request->search)->lower()->trim();
             $date = $request->search_date ?? now()->format('Y-m-d');
+            $isDisabled = $is_rekap ? 'disabled' : '';
             $rencanas = User::query()
                 ->with([
                     'rencanas' => function ($query) use ($search) {
@@ -49,48 +51,51 @@ class KegiatanJabatanController extends Controller
                     'rencanas.rencanaUnsurs.unsur',
                     'rencanas.rencanaUnsurs.rencanaSubUnsurs.subUnsur.butirKegiatans',
                     'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.butirKegiatan',
-                    'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan' => function($query) use ($date){
+                    'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan' => function ($query) use ($date) {
                         $query->where('current_date', $date);
                     },
                     'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan.dokumenKegiatanPokoks',
                     'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan.historyButirKegiatans',
                 ])
-                ->find(auth()->user()->id)?->rencanas->map(function (Rencana $rencana) {
+                ->find(auth()->user()->id)?->rencanas->map(function (Rencana $rencana) use ($isDisabled) {
                     foreach ($rencana->rencanaUnsurs as $rencanaUnsur) {
                         foreach ($rencanaUnsur->rencanaSubUnsurs as $rencanaSubUnsur) {
                             foreach ($rencanaSubUnsur->rencanaButirKegiatans as $rencanaButirKegiatan) {
                                 if (isset($rencanaButirKegiatan->laporanKegiatanJabatan)) {
                                     if ($rencanaButirKegiatan->laporanKegiatanJabatan->status == 1) {
-                                        $rencanaButirKegiatan->button = '<button class="btn btn-yellow ms-3 px-3"
+                                        $rencanaButirKegiatan->button = '<button '.$isDisabled.' class="btn btn-yellow ms-3 px-3"
                                             data-bs-toggle="modal"
                                             data-bs-target="#riwayatKegiatan' . $rencanaButirKegiatan->id . '"
                                             type="button">Prosess</button>
                                         ' . view('aparatur.laporan-kegiatan.riwayat', compact('rencanaButirKegiatan'));
                                     } elseif ($rencanaButirKegiatan->laporanKegiatanJabatan->status == 2) {
                                         $rencanaButirKegiatan->button = '<button
+                                            '.$isDisabled.'
                                             class="btn btn-red ms-3 px-3 btn-sm btn-revisi"
                                             data-rencana="' . $rencanaButirKegiatan->id . '" type="button">Revisi</button>'
                                             . view('aparatur.laporan-kegiatan.revisi', compact('rencanaButirKegiatan'));
                                     } elseif ($rencanaButirKegiatan->laporanKegiatanJabatan->status == 3) {
-                                        $rencanaButirKegiatan->button = '<button class="btn btn-black ms-3 px-3"
+                                        $rencanaButirKegiatan->button = '<button '.$isDisabled.' class="btn btn-black ms-3 px-3"
                                             data-bs-toggle="modal"
                                             data-bs-target="#riwayatKegiatan' . $rencanaButirKegiatan->id . '"
                                             type="button">Ditolak</button>'
                                             . view('aparatur.laporan-kegiatan.riwayat', compact('rencanaButirKegiatan'));
                                     } elseif ($rencanaButirKegiatan->laporanKegiatanJabatan->status == 4) {
-                                        $rencanaButirKegiatan->button = ' <button class="btn btn-green-dark ms-3 px-3"
+                                        $rencanaButirKegiatan->button = ' <button '.$isDisabled.' class="btn btn-green-dark ms-3 px-3"
                                             data-bs-toggle="modal"
                                             data-bs-target="#riwayatKegiatan' . $rencanaButirKegiatan->id . '"
                                             type="button">Selesai</button>'
                                             . view('aparatur.laporan-kegiatan.riwayat', compact('rencanaButirKegiatan'));
                                     } else {
                                         $rencanaButirKegiatan->button = '<button
+                                            '.$isDisabled.'
                                             data-rencana="' . $rencanaButirKegiatan->id . '"
                                             class="btn btn-gray ms-3 px-3 laporkan" data-bs-toggle="modal"
                                             data-bs-target="#laporkan" type="button">Laporkan</button>';
                                     }
                                 } else {
                                     $rencanaButirKegiatan->button = '<button
+                                        '.$isDisabled.'
                                         data-rencana="' . $rencanaButirKegiatan->id . '"
                                         class="btn btn-gray ms-3 px-3 laporkan" data-bs-toggle="modal"
                                         data-bs-target="#laporkan" type="button">Laporkan</button>';
@@ -228,9 +233,11 @@ class KegiatanJabatanController extends Controller
     public function rekapitulasi()
     {
         $periode = Periode::query()->where('is_active', true)->first();
-        $user = User::query()->with(['mente.atasanLangsung.roles',
-        'mente.atasanLangsung.userPejabatStruktural.pangkatGolonganTmt', 'roles',
-        'userAparatur.pangkatGolonganTmt'])->find(auth()->user()->id);
+        $user = User::query()->with([
+            'mente.atasanLangsung.roles',
+            'mente.atasanLangsung.userPejabatStruktural.pangkatGolonganTmt', 'roles',
+            'userAparatur.pangkatGolonganTmt'
+        ])->find(auth()->user()->id);
         if (!isset($user->userAparatur->pangkatGolonganTmt)) {
             throw ValidationException::withMessages(["Maaf anda belum melengkapi data diri anda"]);
         }
@@ -246,10 +253,10 @@ class KegiatanJabatanController extends Controller
                 'rencanas.rencanaUnsurs.unsur',
                 'rencanas.rencanaUnsurs.rencanaSubUnsurs.subUnsur',
                 'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.butirKegiatan',
-                'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans' => function($query) use ($periode){
-                    $query->withSum(['laporanKegiatanJabatans' => function($query) use ($periode){
+                'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans' => function ($query) use ($periode) {
+                    $query->withSum(['laporanKegiatanJabatans' => function ($query) use ($periode) {
                         $query->where('status', 4)->whereBetween('current_date', [$periode->awal, $periode->akhir]);
-                    }], 'score')->withCount(['laporanKegiatanJabatans' => function($query) use ($periode){
+                    }], 'score')->withCount(['laporanKegiatanJabatans' => function ($query) use ($periode) {
                         $query->where('status', 4)->whereBetween('current_date', [$periode->awal, $periode->akhir]);
                     }]);
                 },
@@ -271,7 +278,7 @@ class KegiatanJabatanController extends Controller
             ]);
         } else {
             $rekapitulasiKegiatan = RekapitulasiKegiatan::query()->create([
-                'fungsional_id'=>auth()->user()->id,
+                'fungsional_id' => auth()->user()->id,
                 'file' => $url,
                 'file_name' => $file_name,
                 'periode_id' => $periode->id
@@ -285,7 +292,6 @@ class KegiatanJabatanController extends Controller
             'message' => 'Berhasil',
             'data' => $url
         ]);
-
     }
 
     public function sendRekap()
