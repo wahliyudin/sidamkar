@@ -16,11 +16,13 @@ return new class extends Migration
         Schema::create('rekapitulasi_kegiatans', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('fungsional_id');
+            $table->unsignedBigInteger('periode_id');
             $table->string('file');
             $table->string('file_name');
             $table->timestamps();
 
             $table->foreign('fungsional_id')->on('users')->references('id')->cascadeOnDelete();
+            $table->foreign('periode_id')->on('periodes')->references('id')->cascadeOnDelete();
         });
     }
 

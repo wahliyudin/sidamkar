@@ -66,25 +66,25 @@
                             <h3>Kegiatan Jabatan</h3>
                         </div>
                         <div class="col-md-6 text-end">
-                            <div data-bs-toggle="modal" data-bs-target="#rekap"
-                                class="btn btn-green btn-sm ps-3 pe-3 py-2 rekap">
+                            <button {{ count($user->rencanas) <= 0 ? 'disabled' : '' }} data-bs-toggle="modal"
+                                data-bs-target="#rekap" class="btn btn-green btn-sm ps-3 pe-3 py-2 rekap">
                                 <i class="fa-solid fa-paper-plane me-1"></i>
                                 Ajukan Laporan Rekapitulasi Capaian
-                            </div>
+                            </button>
                         </div>
                     </div>
-                    <hr>
-                    <div class="row align-items-center justify-content-between">
-                        <div class="form-group col-md-2">
-                            <label>Tanggal</label>
-                            <input type="date" name="tanggal" value="{{ now()->format('Y-m-d') }}"
-                                max="{{ Carbon\Carbon::make($periode->akhir)->format('Y-m-d') }}"
-                                min="{{ Carbon\Carbon::make($periode->awal)->format('Y-m-d') }}" class="form-control">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label>Search</label>
-                            <input type="text" name="search" placeholder="Search..." class="form-control">
-                        </div>
+                </div>
+                <hr>
+                <div class="row align-items-center justify-content-between">
+                    <div class="form-group col-md-2">
+                        <label>Tanggal</label>
+                        <input type="date" name="tanggal" value="{{ now()->format('Y-m-d') }}"
+                            max="{{ Carbon\Carbon::make($periode->akhir)->format('Y-m-d') }}"
+                            min="{{ Carbon\Carbon::make($periode->awal)->format('Y-m-d') }}" class="form-control">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Search</label>
+                        <input type="text" name="search" placeholder="Search..." class="form-control">
                     </div>
                 </div>
 
@@ -143,7 +143,7 @@
                         </div>
 
                         <div class="text-center mt-4">
-                            <button class="btn btn-danger px-5" data-bs-dismiss="modal">Batal</button>
+                            <button type="button" class="btn btn-danger px-5" data-bs-dismiss="modal">Batal</button>
                             <button type="button" class="btn btn-blue px-5 simpan-kegiatan">
                                 <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
                                     style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">

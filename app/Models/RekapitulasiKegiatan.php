@@ -11,6 +11,7 @@ class RekapitulasiKegiatan extends Model
 
     protected $fillable = [
         'fungsional_id',
+        'periode_id',
         'file',
         'file_name'
     ];
@@ -23,5 +24,10 @@ class RekapitulasiKegiatan extends Model
     public function historyRekapitulasiKegiatans()
     {
         return $this->hasMany(HistoryRekapitulasiKegiatan::class);
+    }
+
+    public function periode()
+    {
+        return $this->belongsTo(Periode::class);
     }
 }

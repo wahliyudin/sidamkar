@@ -145,38 +145,47 @@ $(document).ready(function () {
             swal("Error!", 'Not connect.\n Verify Network.', "error");
             $('.simpan-kegiatan span').show();
             $('.simpan-kegiatan .spin').hide();
+            $('#rekap .bg-spin').hide();
         } else if (jqXHR.status == 400) {
             swal("Peringatan!", jqXHR['responseJSON'].message, "warning");
             $('.simpan-kegiatan span').show();
             $('.simpan-kegiatan .spin').hide();
+            $('#rekap .bg-spin').hide();
         } else if (jqXHR.status == 404) {
             swal('Error!', 'Requested page not found. [404]', "error");
             $('.simpan-kegiatan span').show();
             $('.simpan-kegiatan .spin').hide();
+            $('#rekap .bg-spin').hide();
         } else if (jqXHR.status == 500) {
             swal('Error!', 'Internal Server Error [500].' + jqXHR['responseJSON'].message, "error");
             $('.simpan-kegiatan span').show();
             $('.simpan-kegiatan .spin').hide();
+            $('#rekap .bg-spin').hide();
         } else if (exception === 'parsererror') {
             swal('Error!', 'Requested JSON parse failed.', "error");
             $('.simpan-kegiatan span').show();
             $('.simpan-kegiatan .spin').hide();
+            $('#rekap .bg-spin').hide();
         } else if (exception === 'timeout') {
             swal('Error!', 'Time out error.', "error");
             $('.simpan-kegiatan span').show();
             $('.simpan-kegiatan .spin').hide();
+            $('#rekap .bg-spin').hide();
         } else if (exception === 'abort') {
             swal('Error!', 'Ajax request aborted.', "error");
             $('.simpan-kegiatan span').show();
             $('.simpan-kegiatan .spin').hide();
+            $('#rekap .bg-spin').hide();
         } else if (jqXHR.status == 422) {
             swal('Warning!', JSON.parse(jqXHR.responseText).message, "warning");
             $('.simpan-kegiatan span').show();
             $('.simpan-kegiatan .spin').hide();
+            $('#rekap .bg-spin').hide();
         } else {
             swal('Error!', jqXHR.responseText, "error");
             $('.simpan-kegiatan span').show();
             $('.simpan-kegiatan .spin').hide();
+            $('#rekap .bg-spin').hide();
         }
     };
 
