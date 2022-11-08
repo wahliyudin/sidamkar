@@ -55,7 +55,7 @@ class PengajuanKegiatanDataTable extends DataTable
     public function query(Mente $model): QueryBuilder
     {
         return $model->newQuery()->withWhereHas('fungsional', function ($query) {
-            $query->with('userAparatur')->whereHas('rencanas');
+            $query->with('userAparatur');
         })->where('atasan_langsung_id', auth()->user()->id);
     }
 

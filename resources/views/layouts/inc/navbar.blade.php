@@ -111,6 +111,30 @@
                                     </div>
                                 </div>
                             @endrole
+                            @role('kab_kota')
+                                <div class="user-img d-flex align-items-center">
+                                    <div class="avatar avatar-md">
+                                        <img
+                                            src="{{ isset($user->userPejabatStruktural?->foto_pegawai) ? $user->userPejabatStruktural?->foto_pegawai : asset('assets/images/faces/3.jpg') }}">
+                                    </div>
+                                </div>
+                            @endrole
+                            @role('provinsi')
+                                <div class="user-img d-flex align-items-center">
+                                    <div class="avatar avatar-md">
+                                        <img
+                                            src="{{ isset($user->userPejabatStruktural?->foto_pegawai) ? $user->userPejabatStruktural?->foto_pegawai : asset('assets/images/faces/3.jpg') }}">
+                                    </div>
+                                </div>
+                            @endrole
+                            @role('kemendagri')
+                                <div class="user-img d-flex align-items-center">
+                                    <div class="avatar avatar-md">
+                                        <img
+                                            src="{{ isset($user->userPejabatStruktural?->foto_pegawai) ? $user->userPejabatStruktural?->foto_pegawai : asset('assets/images/faces/3.jpg') }}">
+                                    </div>
+                                </div>
+                            @endrole
                         </div>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton"

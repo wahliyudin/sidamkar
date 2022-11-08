@@ -99,5 +99,17 @@ class UserSeeder extends Seeder
             'provinsi_id' => 11,
             'kab_kota_id' => 1101,
         ]);
+        $penetapAK = User::query()->create([
+            'username' => 'Penetap AK',
+            'email' => 'admin0099@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('penetap_ak');
+        $penetapAK->userPejabatStruktural()->create([
+            'nama' => 'Penetap AK',
+            'provinsi_id' => 11,
+            'kab_kota_id' => 1101,
+        ]);
     }
 }

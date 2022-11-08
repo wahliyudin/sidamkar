@@ -18,4 +18,9 @@ class Mente extends Model
     {
         return $this->belongsTo(User::class, 'fungsional_id', 'id');
     }
+
+    public function atasanLangsung()
+    {
+        return $this->belongsTo(User::class, 'atasan_langsung_id', 'id');
+    }
 }
