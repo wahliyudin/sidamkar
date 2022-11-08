@@ -83,9 +83,9 @@ class PengajuanKegiatanController extends Controller
                                     $rencanaButirKegiatan->laporanKegiatanJabatan = [];
                                     $rencanaButirKegiatan->button = '<button
                                         data-rencana="'.$rencanaButirKegiatan->id.'"
-                                        class="btn btn-blue ms-3 px-4 btn-sm laporkan" data-bs-toggle="modal"
+                                        class="btn btn-gray ms-3 px-4 btn-sm laporkan" data-bs-toggle="modal"
                                         data-bs-target="#lihat' . $rencanaButirKegiatan->id . '"
-                                        type="button">Lihat</button>' .
+                                        type="button">Belum</button>' .
                                     view('atasan-langsung.pengajuan-kegiatan.kegiatan.lihat',
                                     compact('rencanaButirKegiatan'));
                                 }
