@@ -109,7 +109,7 @@
                     <iframe class="review-rekap" src="" width="100%" height="450px"></iframe>
                     <div class="text-center mt-4">
                         <button class="btn btn-danger px-5" data-bs-dismiss="modal">Batal</button>
-                        <button type="button" class="btn btn-blue px-5 simpan-kegiatan">
+                        <button type="button" class="btn btn-blue px-5 send-rekap">
                             <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
                                 style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
                             <span>Kirim</span>

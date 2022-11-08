@@ -115,6 +115,7 @@ Route::middleware(['auth'])->group(function () {
             Route::delete('laporan-kegiatan/jabatan/revert', 'revert')->name('laporan-kegiatan.jabatan.revert');
 
             Route::post('laporan-kegiatan/jabatan/rekapitulasi', 'rekapitulasi')->name('laporan-kegiatan.jabatan.rekapitulasi');
+            Route::post('laporan-kegiatan/jabatan/rekapitulasi/send-rekap', 'sendRekap')->name('laporan-kegiatan.jabatan.rekapitulasi.send-rekap');
         });
 
         Route::controller(LaporanKegiatanKegiatanProfesiController::class)->group(function () {
