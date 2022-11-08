@@ -301,6 +301,7 @@
                 showCancelButton: true,
                 confirmButtonText: 'Ya, tolak!',
                 cancelButtonText: "Batal",
+                reverseButtons:true,
                 showLoaderOnConfirm: true,
                 inputValidator: (value) => {
                     if (!value) {
@@ -332,8 +333,8 @@
 
         function verifikasi(id) {
             swal({
-                title: "Perifikasi?",
-                text: "Please ensure and then confirm!",
+                title: "Verifikasi?",
+                text: "Harap Pastikan Dan Kemudian Verifikasi!",
                 type: "warning",
                 showCancelButton: !0,
                 confirmButtonText: "Ya, verfikasi!",
