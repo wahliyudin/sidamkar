@@ -75,7 +75,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('coba', function () {
-    return User::query()->withWhereHas('mentes.fungsional')->get();
+    // return User::query()->withWhereHas('mentes.fungsional')->get();
     return view('generate-pdf.surat-pernyataan');
 });
 Route::redirect('/', 'login');
@@ -113,6 +113,8 @@ Route::middleware(['auth'])->group(function () {
             Route::post('laporan-kegiatan/jabatan/{id}/update', 'update')->name('laporan-kegiatan.jabatan.update');
             Route::post('laporan-kegiatan/jabatan/tmp-file', 'tmpFile')->name('laporan-kegiatan.jabatan.tmp-file');
             Route::delete('laporan-kegiatan/jabatan/revert', 'revert')->name('laporan-kegiatan.jabatan.revert');
+
+            Route::post('laporan-kegiatan/jabatan/rekapitulasi', 'rekapitulasi')->name('laporan-kegiatan.jabatan.rekapitulasi');
         });
 
         Route::controller(LaporanKegiatanKegiatanProfesiController::class)->group(function () {

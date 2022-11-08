@@ -40469,3 +40469,7 @@ body {
 .layout-boxed .page-content {
     background-color: #f5f5f5
 }
+
+.uppercase {
+    text-transform: uppercase;
+}

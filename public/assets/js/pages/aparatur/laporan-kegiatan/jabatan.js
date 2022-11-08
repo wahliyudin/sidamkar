@@ -30,48 +30,7 @@ $(document).ready(function () {
         var postData = new FormData($(".form-kegiatan")[0]);
         $('.simpan-kegiatan span').hide();
         $('.simpan-kegiatan .spin').show();
-        // $.ajax({
-        //     xhr: function() {
-        //         var xhr = new window.XMLHttpRequest();
 
-        //         // Upload progress
-        //         xhr.upload.addEventListener("progress", function(evt) {
-        //             if (evt.lengthComputable) {
-        //                 var percentComplete = evt.loaded / evt.total;
-        //                 //Do something with upload progress
-        //                 console.log(percentComplete);
-        //             }
-        //         }, false);
-
-        //         // Download progress
-        //         xhr.addEventListener("progress", function(evt) {
-        //             if (evt.lengthComputable) {
-        //                 var percentComplete = evt.loaded / evt.total;
-        //                 // Do something with download progress
-        //                 console.log(percentComplete);
-        //             }
-        //         }, false);
-
-        //         return xhr;
-        //     },
-        //     type: 'POST',
-        //     url: "{{ route('laporan-kegiatan.jabatan.store-laporan') }}",
-        //     processData: false,
-        //     contentType: false,
-        //     data: postData,
-        //     success: function(data) {
-        //         $('.simpan-kegiatan span').show();
-        //         $('.simpan-kegiatan .spin').hide();
-        //         if (response.status == 200) {
-        //             swal("Selesai!", response.message, "success").then(() => {
-        //                 location.reload();
-        //             });
-        //         } else {
-        //             swal("Error!", response.message, "error");
-        //         }
-        //     },
-        //     error: ajaxError
-        // });
         $.ajax({
             type: 'POST',
             url: url('/laporan-kegiatan/jabatan/store'),
@@ -163,43 +122,70 @@ $(document).ready(function () {
         });
     });
 
+    $(document).on('click', '.rekap', function (e) {
+        e.preventDefault();
+        $.ajax({
+            beforeSend: function () {
+                $('#rekap .bg-spin').show();
+            },
+            type: 'POST',
+            url: url('/laporan-kegiatan/jabatan/rekapitulasi'),
+            dataType: "json",
+            success: function (response) {
+                $('.review-rekap').attr('src', response.data);
+                $('#rekap .bg-spin').hide();
+                swal("Selesai!", response.message, "success");
+            },
+            error: ajaxError
+        });
+    });
+
     var ajaxError = function (jqXHR, xhr, textStatus, errorThrow, exception) {
         if (jqXHR.status === 0) {
             swal("Error!", 'Not connect.\n Verify Network.', "error");
             $('.simpan-kegiatan span').show();
             $('.simpan-kegiatan .spin').hide();
+            $('#rekap .bg-spin').hide();
         } else if (jqXHR.status == 400) {
             swal("Peringatan!", jqXHR['responseJSON'].message, "warning");
             $('.simpan-kegiatan span').show();
             $('.simpan-kegiatan .spin').hide();
+            $('#rekap .bg-spin').hide();
         } else if (jqXHR.status == 404) {
             swal('Error!', 'Requested page not found. [404]', "error");
             $('.simpan-kegiatan span').show();
             $('.simpan-kegiatan .spin').hide();
+            $('#rekap .bg-spin').hide();
         } else if (jqXHR.status == 500) {
             swal('Error!', 'Internal Server Error [500].' + jqXHR['responseJSON'].message, "error");
             $('.simpan-kegiatan span').show();
             $('.simpan-kegiatan .spin').hide();
+            $('#rekap .bg-spin').hide();
         } else if (exception === 'parsererror') {
             swal('Error!', 'Requested JSON parse failed.', "error");
             $('.simpan-kegiatan span').show();
             $('.simpan-kegiatan .spin').hide();
+            $('#rekap .bg-spin').hide();
         } else if (exception === 'timeout') {
             swal('Error!', 'Time out error.', "error");
             $('.simpan-kegiatan span').show();
             $('.simpan-kegiatan .spin').hide();
+            $('#rekap .bg-spin').hide();
         } else if (exception === 'abort') {
             swal('Error!', 'Ajax request aborted.', "error");
             $('.simpan-kegiatan span').show();
             $('.simpan-kegiatan .spin').hide();
+            $('#rekap .bg-spin').hide();
         } else if (jqXHR.status == 422) {
             swal('Warning!', JSON.parse(jqXHR.responseText).message, "warning");
             $('.simpan-kegiatan span').show();
             $('.simpan-kegiatan .spin').hide();
+            $('#rekap .bg-spin').hide();
         } else {
             swal('Error!', jqXHR.responseText, "error");
             $('.simpan-kegiatan span').show();
             $('.simpan-kegiatan .spin').hide();
+            $('#rekap .bg-spin').hide();
         }
     };
 
