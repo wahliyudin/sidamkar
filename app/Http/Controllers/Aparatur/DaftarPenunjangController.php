@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\aparatur;
+namespace App\Http\Controllers\Aparatur;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -58,7 +58,7 @@ class DaftarPenunjangController extends Controller
     public function import(Request $request)
     {
         try {
-            Excel::import(new UnsursImport(), $request->file('file_import'));
+            Excel::import(new UnsursImport($request->periode_id), $request->file('file_import'));
             return response()->json([
                 'status' => 200,
                 'message' => 'Berhasil diimport'

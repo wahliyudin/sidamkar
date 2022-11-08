@@ -56,24 +56,24 @@ class PengajuanKegiatanController extends Controller
                             foreach ($rencanaSubUnsur->rencanaButirKegiatans as $rencanaButirKegiatan) {
                                 if (isset($rencanaButirKegiatan->laporanKegiatanJabatan)) {
                                     if ($rencanaButirKegiatan->laporanKegiatanJabatan->status == 2) {
-                                        $rencanaButirKegiatan->button = '<button class="btn btn-red ms-3 px-3 btn-sm"
+                                        $rencanaButirKegiatan->button = '<button class="btn btn-red ms-3 m-1 px-3 btn-sm"
                                             data-bs-toggle="modal"
                                             data-bs-target="#lihat' . $rencanaButirKegiatan->id . '"
                                             type="button">Revisi</button>';
                                     } elseif ($rencanaButirKegiatan->laporanKegiatanJabatan->status == 3) {
-                                        $rencanaButirKegiatan->button = '<button class="btn btn-black ms-3 px-3"
+                                        $rencanaButirKegiatan->button = '<button class="btn btn-black m-1 ms-3 px-3"
                                             data-bs-toggle="modal"
                                             data-bs-target="#lihat' . $rencanaButirKegiatan->id . '"
                                             type="button">Ditolak</button>';
                                     } elseif ($rencanaButirKegiatan->laporanKegiatanJabatan->status == 4) {
-                                        $rencanaButirKegiatan->button = '<button class="btn btn-green-dark ms-3 px-3"
+                                        $rencanaButirKegiatan->button = '<button class="btn btn-green-dark m-1 ms-3 px-3"
                                             data-bs-toggle="modal"
                                             data-bs-target="#lihat' . $rencanaButirKegiatan->id . '"
                                             type="button">Selesai</button>';
                                     } else {
                                         $rencanaButirKegiatan->button = '<button
                                             data-rencana="'.$rencanaButirKegiatan->id.'"
-                                            class="btn btn-blue ms-3 px-4 btn-sm laporkan" data-bs-toggle="modal"
+                                            class="btn btn-blue ms-3 m-1 px-4 btn-sm laporkan" data-bs-toggle="modal"
                                             data-bs-target="#lihat' . $rencanaButirKegiatan->id . '"
                                             type="button">Lihat</button>' .
                                             view('atasan-langsung.pengajuan-kegiatan.kegiatan.lihat',
@@ -83,9 +83,9 @@ class PengajuanKegiatanController extends Controller
                                     $rencanaButirKegiatan->laporanKegiatanJabatan = [];
                                     $rencanaButirKegiatan->button = '<button
                                         data-rencana="'.$rencanaButirKegiatan->id.'"
-                                        class="btn btn-blue ms-3 px-4 btn-sm laporkan" data-bs-toggle="modal"
+                                        class="btn btn-gray ms-3 px-4 m-1 btn-sm laporkan" data-bs-toggle="modal"
                                         data-bs-target="#lihat' . $rencanaButirKegiatan->id . '"
-                                        type="button">Lihat</button>' .
+                                        type="button">Belum</button>' .
                                     view('atasan-langsung.pengajuan-kegiatan.kegiatan.lihat',
                                     compact('rencanaButirKegiatan'));
                                 }

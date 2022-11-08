@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('rencana_butir_kegiatan_id');
             $table->text('detail_kegiatan');
             $table->date('current_date');
-            $table->float('score', unsigned: true)->nullable();
+            $table->float('score', places: 3, unsigned: true)->nullable();
             $table->integer('status')->nullable();
             $table->string('catatan')->nullable();
             $table->timestamps();

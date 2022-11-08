@@ -124,6 +124,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Rencana::class);
     }
 
+    public function laporanKegiatanProfesi()
+    {
+        return $this->hasMany(LaporanKegiatanProfesi::class);
+    }
+
     // public function roles()
     // {
     //     return $this->belongsToMany(Role::class);
@@ -131,5 +136,15 @@ class User extends Authenticatable implements MustVerifyEmail
     public function mentes()
     {
         return $this->hasMany(Mente::class, 'atasan_langsung_id', 'id');
+    }
+
+    public function mente()
+    {
+        return $this->hasOne(Mente::class, 'fungsional_id', 'id');
+    }
+
+    public function rekapitulasiKegiatan()
+    {
+        return $this->hasOne(RekapitulasiKegiatan::class, 'fungsional_id', 'id');
     }
 }
