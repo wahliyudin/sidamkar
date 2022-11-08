@@ -88,7 +88,7 @@ class SubUnsurSeeder extends Seeder
         ];
         SubUnsur::query()->upsert($damkarPemula, 'id');
 
-        $termapil = [
+        $terampil = [
             [
                 'unsur_id' => 5,
                 'nama' => 'Apel sebagai pengatur Regu dan serah terima tugas jaga'
@@ -113,7 +113,103 @@ class SubUnsurSeeder extends Seeder
                 'unsur_id' => 5,
                 'nama' => 'Kebersihan lingkungan kerja (korve)'
             ],
+            [
+                'unsur_id' => 6,
+                'nama' => 'Pengecekan alat komunikasi penanggulangan kebakaran'
+            ],
+            [
+                'unsur_id' => 6,
+                'nama' => 'Sarana, prasarana komunikasi dan dokumentasi poskotis penanggulangan kebakaran'
+            ],
+            [
+                'unsur_id' => 6,
+                'nama' => 'Pemeliharaan Sarana prasarana komunikasi penanggulangan kebakaran'
+            ],
+            [
+                'unsur_id' => 7,
+                'nama' => 'Keberangkatan menuju tempat kejadian kebakaran'
+            ],
+            [
+                'unsur_id' => 7,
+                'nama' => 'Pemadaman kebakaran'
+            ],
+            [
+                'unsur_id' => 7,
+                'nama' => 'Persiapan kembali ke pos pemadam kebakaran'
+            ],
+            [
+                'unsur_id' => 7,
+                'nama' => 'Pengembalian peralatan di pos pemadam kebakaran'
+            ],
+            [
+                'unsur_id' => 8,
+                'nama' => 'Prosedur pelaporan informasi kejadian evakuasi dan penyelamatan'
+            ],
+            [
+                'unsur_id' => 8,
+                'nama' => 'Penyiapan sarana, prasarana prosedur informasi kejadian evakuasi dan penyelamatan'
+            ],
+            [
+                'unsur_id' => 8,
+                'nama' => 'Pemeliharaan Sarana prasarana komunikasi evakuasi dan penyelamatan'
+            ],
+            [
+                'unsur_id' => 9,
+                'nama' => 'Pemberangkatkan menuju lokasi evakuasi dan penyelamatan'
+            ],
+            [
+                'unsur_id' => 9,
+                'nama' => 'Evakuasi dan penyelamatan'
+            ],
+            [
+                'unsur_id' => 9,
+                'nama' => 'Persiapan kembali ke Pos pemadam kebakaran dan penyelamatan'
+            ],
+            [
+                'unsur_id' => 9,
+                'nama' => 'Pengembalian peralatan di pos pemadam kebakaran dan penyelamatan'
+            ],
+            [
+                'unsur_id' => 10,
+                'nama' => 'Apel Pagi sebagai penanggung jawab Regu'
+            ],
+            [
+                'unsur_id' => 10,
+                'nama' => 'Tugas piket jaga'
+            ],
+            [
+                'unsur_id' => 10,
+                'nama' => 'Apel Malam sebagai penanggungjawab Regu'
+            ],
+            [
+                'unsur_id' => 10,
+                'nama' => 'Latihan rutin ketrampilan'
+            ],
+            [
+                'unsur_id' => 10,
+                'nama' => 'Pembinaan fisik'
+            ],
+            [
+                'unsur_id' => 10,
+                'nama' => 'Kebersihan lingkungan kerja (korve)'
+            ],
+            [
+                'unsur_id' => 11,
+                'nama' => 'Validasi informasi kejadian kebakaran'
+            ],
+            [
+                'unsur_id' => 11,
+                'nama' => 'Koordinasi informasi dengan call center , regu lainnya dan instansi terkait tentang informasi kejadian kebakaran'
+            ],
+            [
+                'unsur_id' => 12,
+                'nama' => 'Mobilisasi regu menuju tempat kejadian kebakaran'
+            ],
+            [
+                'unsur_id' => 12,
+                'nama' => 'Pelaksanaan pemadaman kebakaran'
+            ],
         ];
-        SubUnsur::query()->upsert($termapil, 'id');
+        SubUnsur::query()->upsert($terampil, 'id');
     }
 }
