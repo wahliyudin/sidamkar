@@ -76,9 +76,11 @@
                 <div class="dropdown">
                     <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
                         <div class="user-menu d-flex align-items-center">
+                            @role(getAllRoleFungsional())
                             <div class="user-name text-end me-3">
                                 <h6 class="mb-0 text-gray-600">{{ Auth::user()->username }}</h6>
                             </div>
+                            @endrole
                             @role(getAllRoleFungsional())
                             <div class="user-img d-flex align-items-center">
                                 <div class="avatar avatar-md">
@@ -101,6 +103,27 @@
                             </div>
                             @endrole
                             @role('penetap_ak')
+                            <div class="user-img d-flex align-items-center">
+                                <div class="avatar avatar-md">
+                                     <img src="{{ isset($user->userPejabatStruktural?->foto_pegawai) ? $user->userPejabatStruktural?->foto_pegawai : asset('assets/images/faces/3.jpg') }}">
+                                </div>
+                            </div>
+                            @endrole
+                            @role('kab_kota')
+                            <div class="user-img d-flex align-items-center">
+                                <div class="avatar avatar-md">
+                                     <img src="{{ isset($user->userPejabatStruktural?->foto_pegawai) ? $user->userPejabatStruktural?->foto_pegawai : asset('assets/images/faces/3.jpg') }}">
+                                </div>
+                            </div>
+                            @endrole
+                            @role('provinsi')
+                            <div class="user-img d-flex align-items-center">
+                                <div class="avatar avatar-md">
+                                     <img src="{{ isset($user->userPejabatStruktural?->foto_pegawai) ? $user->userPejabatStruktural?->foto_pegawai : asset('assets/images/faces/3.jpg') }}">
+                                </div>
+                            </div>
+                            @endrole
+                            @role('kemendagri')
                             <div class="user-img d-flex align-items-center">
                                 <div class="avatar avatar-md">
                                      <img src="{{ isset($user->userPejabatStruktural?->foto_pegawai) ? $user->userPejabatStruktural?->foto_pegawai : asset('assets/images/faces/3.jpg') }}">
