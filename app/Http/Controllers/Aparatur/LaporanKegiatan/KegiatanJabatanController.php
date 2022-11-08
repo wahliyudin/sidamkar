@@ -263,13 +263,15 @@ class KegiatanJabatanController extends Controller
             ->where('fungsional_id', auth()->user()->id)
             ->where('periode_id', $periode->id)->first();
         if ($rekapitulasiKegiatan) {
+            deleteImage($rekapitulasiKegiatan->file);
+
             $rekapitulasiKegiatan->update([
                 'file' => $url,
                 'file_name' => $file_name
             ]);
-            deleteImage($rekapitulasiKegiatan->file);
         } else {
             $rekapitulasiKegiatan = RekapitulasiKegiatan::query()->create([
+                'fungsional_id'=>auth()->user()->id,
                 'file' => $url,
                 'file_name' => $file_name,
                 'periode_id' => $periode->id
