@@ -32,7 +32,7 @@ class KegiatanJabatanController extends Controller
     public function loadData(Request $request)
     {
         if ($request->ajax()) {
-            $is_rekap = auth()->user()->load('rekapitulasiKegiatan')->rekapitulasiKegiatan->is_send;
+            $is_rekap = auth()->user()->load('rekapitulasiKegiatan')->rekapitulasiKegiatan?->is_send;
             $search = str($request->search)->lower()->trim();
             $date = $request->search_date ?? now()->format('Y-m-d');
             $isDisabled = $is_rekap ? 'disabled' : '';
