@@ -55,7 +55,9 @@ class KegiatanJabatanController extends Controller
                         $query->where('current_date', $date);
                     },
                     'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan.dokumenKegiatanPokoks',
-                    'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan.historyButirKegiatans',
+                    'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan.historyButirKegiatans' => function ($query) {
+                        $query->latest();
+                    },
                 ])
                 ->find(auth()->user()->id)?->rencanas->map(function (Rencana $rencana) use ($isDisabled) {
                     foreach ($rencana->rencanaUnsurs as $rencanaUnsur) {
@@ -143,7 +145,8 @@ class KegiatanJabatanController extends Controller
             'status' => 1
         ]);
         $laporanKegiatanJabatan->historyButirKegiatans()->create([
-            'keterangan' => 'Menginput Laporan kegiatan'
+            'keterangan' => 'Menginput Laporan kegiatan',
+            'status' => 1
         ]);
         return response()->json([
             'status' => 200,
@@ -186,7 +189,8 @@ class KegiatanJabatanController extends Controller
             'catatan' => null
         ]);
         $laporanKegiatanJabatan->historyButirKegiatans()->create([
-            'keterangan' => 'Kirim revisi Laporan kegiatan'
+            'keterangan' => 'Kirim revisi Laporan kegiatan',
+            'status' => 1
         ]);
         return response()->json([
             'status' => 200,
