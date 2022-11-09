@@ -168,6 +168,7 @@
     <link rel="stylesheet" href="{{ asset('assets/extensions/choices.js/public/assets/styles/choices.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/shared/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/pages/kemendagri.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/pages/aparatur/timeline.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/pages/aparatur/kegiatan.css') }}">
     <style>
         #rekap .modal-content .bg-spin {
@@ -200,4 +201,5 @@
     </script>
     <script src="{{ asset('assets/js/extensions/sweetalert2.all.min.js') }}"></script>
     <script src="{{ asset('assets/js/pages/aparatur/laporan-kegiatan/jabatan.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/aparatur/laporan-kegiatan/simplebar.js') }}"></script>
 @endsection

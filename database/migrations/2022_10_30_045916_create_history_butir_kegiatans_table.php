@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('laporan_kegiatan_jabatan_id');
             $table->string('keterangan');
+            $table->integer('status');
             $table->timestamps();
 
             $table->foreign('laporan_kegiatan_jabatan_id')->on('laporan_kegiatan_jabatans')->references('id')->cascadeOnDelete();
