@@ -46,6 +46,9 @@ use App\Http\Controllers\PenilaiAk\KegiatanSelesai\KegiatanSelesaiController;
 use App\Http\Controllers\PenilaiAk\ProfesiPenunjangController;
 use App\Http\Controllers\PenilaiAk\ProfesiPenunjangShowController;
 use App\Http\Controllers\Kemendagri\CMS\InformasiController;
+use App\Http\Controllers\PenetapAK\OverviewPenetapAk;
+use App\Http\Controllers\PenetapAK\DataPengajuan\KabKotaExternal;
+use App\Http\Controllers\PenetapAK\DataPengajuan\KabKotaInternal;
 use App\Http\Controllers\PenetapAK\DataPenetapAKController;
 use App\Http\Controllers\PenilaiAK\DataPenilaiAKController;
 use App\Http\Controllers\Kemendagri\CMS\PeriodeController;
@@ -195,6 +198,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('penilai-ak/kegiatan-selesai/kegiatan-selesai', [KegiatanSelesaiController::class, 'index'])->name('penilai-ak.kegiatan-selesai.kegiatan-selesai');
     });
     Route::middleware(['role:penetap_ak'])->group(function () {
+        Route::get('penetap-ak/overview', [OverviewPenetapAk::class, 'index'])->name('penetap-ak.overview');
+        Route::get('penetap-ak/data-pengajuan/kabkota-external/kabKota-external', [KabKotaExternal::class, 'index'])->name('penetap-ak.data-pengajuan.kabkota-external.kabKota-external');
+        Route::get('penetap-ak/data-pengajuan/kabkota-internal/kabKota-internal', [KabKotaInternal::class, 'index'])->name('penetap-ak.data-pengajuan.kabkota-internal.kabKota-internal');
         // Route::get('penetap_ak/overview', [PenilaiAkOverviewController::class, 'index'])->name('penetap_ak.overview');
         Route::get('data-penetap-ak', [DataPenetapAKController::class, 'index'])->name('data-penetap-ak');
         Route::post('/data-penetap-ak-store', [DataPenetapAKController::class, 'store'])->name('data-penetap-ak-store');

@@ -167,6 +167,41 @@
                     </li>
                 @endrole
 
+
+                @role('penetap_ak')
+                    <li class="sidebar-item {{ request()->routeIs('penetap-ak.overview') ? 'active' : '' }}">
+                        <a href="{{ route('penetap-ak.overview') }}" class='sidebar-link'>
+                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                                <i class="bi bi-grid-fill"></i>
+                            </div>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li
+                        class="sidebar-item has-sub {{ request()->is('penetap-ak/data-pengajuan/kabkota-external/kabKota-external') || request()->is('penetap-ak/data-pengajuan/kabkota-internal/kabKota-internal') ? 'active' : '' }}">
+                        <a href="javascript(0)" class='sidebar-link'>
+                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                                <i class="fa-solid fa-square-poll-vertical"></i>
+                            </div>
+                            <span>Data Pengajuan</span>
+                        </a>
+                        <ul
+                            class="submenu {{ request()->is('penetap-ak/data-pengajuan/kabkota-external/kabKota-external') || request()->is('penetap-ak/data-pengajuan/kabkota-internal/kabKota-internal') ? 'active' : '' }}">
+                            <li
+                                class="submenu-item {{ request()->is('penetap-ak/data-pengajuan/kabkota-internal/kabKota-internal') ? 'active' : '' }}">
+                                <a href="{{ route('penetap-ak.data-pengajuan.kabkota-internal.kabKota-internal') }}">Kab/Kota
+                                    Internal</a>
+                            </li>
+                            <li
+                                class="submenu-item {{ request()->is('penetap-ak/data-pengajuan/kabkota-external/kabKota-external') ? 'active' : '' }}">
+                                <a href="{{ route('penetap-ak.data-pengajuan.kabkota-external.kabKota-external') }}">Kab/Kota
+                                    External</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                @endrole
+
                 @role('provinsi')
                     <li class="sidebar-item {{ request()->routeIs('provinsi.overview.index') ? 'active' : '' }}">
                         <a href="{{ route('provinsi.overview.index') }}" class='sidebar-link'>

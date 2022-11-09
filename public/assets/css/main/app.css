@@ -21742,14 +21742,18 @@ body .bi:before {
     font-weight: 600;
 }
 
-/* .sidebar-wrapper .menu .sidebar-link:hover {
-    background-color: #f0f1f5;
-} */
+.sidebar-wrapper .menu .sidebar-link:hover {
+    background-color: #ebff02;
+}
 
-.sidebar-wrapper .menu .sidebar-link:hover i,
+/* .sidebar-wrapper .menu .sidebar-link:hover i,
 .sidebar-wrapper .menu .sidebar-link:hover svg,
 .sidebar-wrapper .menu .sidebar-link:hover span {
     color: #ebff02;
+} */
+
+.sidebar-item.active .sidebar-link {
+    background-color: #ebff02;
 }
 
 .sidebar-wrapper .menu .sidebar-item {
@@ -21775,7 +21779,7 @@ body .bi:before {
     content: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><path style="fill:none;stroke:%23fff;stroke-width:1" d="m6 9 6 6 6-6"/></svg>');
 }
 
-.sidebar-wrapper
+/* .sidebar-wrapper
     .menu
     .sidebar-item:not(.has-sub).active
     > .sidebar-link::after {
@@ -21797,7 +21801,7 @@ body .bi:before {
     right: 0;
     border-radius: 5px 0 0 5px;
     transition: all 0.3s;
-}
+} */
 
 .sidebar-wrapper
     .menu
@@ -21807,13 +21811,13 @@ body .bi:before {
 }
 
 .sidebar-wrapper .menu .sidebar-item.active > .sidebar-link span {
-    color: #ebff02;
+    color: #ff1e1e;
 }
 
 .sidebar-wrapper .menu .sidebar-item.active > .sidebar-link i,
 .sidebar-wrapper .menu .sidebar-item.active > .sidebar-link svg {
-    fill: #ebff02;
-    color: #ebff02;
+    fill: #ff1e1e;
+    color: #ff1e1e;
 }
 
 .sidebar-wrapper .menu .sidebar-item.active > .sidebar-link.has-sub:after {
