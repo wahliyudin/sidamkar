@@ -12,8 +12,9 @@ use Illuminate\Http\Request;
 class AdminKabKotaController extends Controller
 {
     public function index(AdminKabKotaDataTable $dataTable)
-    {
-        return $dataTable->render('kemendagri.verifikasi-data.admin-kabkota.index');
+    {   
+        $judul = 'Manajemen User Kab/Kota';
+        return $dataTable->render('kemendagri.verifikasi-data.admin-kabkota.index', compact('judul'));
     }
 
     public function verified($id)

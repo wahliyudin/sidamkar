@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 class OverviewController extends Controller
 {
     public function index()
-    {
-        return view('kabkota.overview');
+    {   
+        $judul = 'Kab/Kota Dasboard';
+        return view('kabkota.overview', compact('judul'));
     }
 }

@@ -24,8 +24,9 @@ use Carbon\Carbon;
 class PejabatStrukturalController extends Controller
 {
     public function index(PejabatStrukturalDataTable $dataTable)
-    {
-        return $dataTable->render('kabkota.verifikasi-aparatur.pejabat-struktural.index');
+    {   
+        $judul = 'Manajemen User';
+        return $dataTable->render('kabkota.verifikasi-aparatur.pejabat-struktural.index', compact('judul'));
     }
 
     public function show($id)

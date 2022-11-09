@@ -14,8 +14,9 @@ use Illuminate\Http\Request;
 class PejabatFungsionalController extends Controller
 {
     public function index(PejabatFungsionalDataTable $dataTable)
-    {
-        return $dataTable->render('kabkota.verifikasi-aparatur.pejabat-fungsional.index');
+    {   
+        $judul = 'Manajemen User';
+        return $dataTable->render('kabkota.verifikasi-aparatur.pejabat-fungsional.index', compact('judul'));
     }
 
     public function show($id)
