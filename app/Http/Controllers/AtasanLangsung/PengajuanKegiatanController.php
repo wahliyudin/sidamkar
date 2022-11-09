@@ -13,8 +13,8 @@ use Illuminate\Http\Request;
 class PengajuanKegiatanController extends Controller
 {
     public function index(PengajuanKegiatanDataTable $dataTable)
-    {
-        return $dataTable->render('atasan-langsung.pengajuan-kegiatan.index');
+    {   $judul = 'Pengajuan Kegiatan';
+        return $dataTable->render('atasan-langsung.pengajuan-kegiatan.index', compact('judul'));
     }
 
     public function show($id)
@@ -110,7 +110,8 @@ class PengajuanKegiatanController extends Controller
             'catatan' => $request->catatan
         ]);
         $rencanaButirKegiatan->laporanKegiatanJabatan->historyButirKegiatans()->create([
-            'keterangan' => 'Laporan ditolak'
+            'keterangan' => 'Laporan ditolak',
+            'status' => 3
         ]);
         return response()->json([
             'status' => 200,
@@ -128,7 +129,8 @@ class PengajuanKegiatanController extends Controller
             'catatan' => $request->catatan
         ]);
         $rencanaButirKegiatan->laporanKegiatanJabatan->historyButirKegiatans()->create([
-            'keterangan' => 'Laporan direvisi'
+            'keterangan' => 'Laporan direvisi',
+            'status' => 2
         ]);
         return response()->json([
             'status' => 200,
@@ -146,7 +148,8 @@ class PengajuanKegiatanController extends Controller
             'catatan' => null
         ]);
         $rencanaButirKegiatan->laporanKegiatanJabatan->historyButirKegiatans()->create([
-            'keterangan' => 'Laporan diverifikasi'
+            'keterangan' => 'Laporan diverifikasi',
+            'status' => 4
         ]);
         return response()->json([
             'status' => 200,

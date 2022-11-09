@@ -12,6 +12,7 @@ class OverviewController extends Controller
     public function index()
     {
         $user = User::query()->with(['userAparatur.provinsi.kabkotas', 'dokKepegawaians', 'dokKompetensis'])->find(Auth::user()->id);
-        return view('aparatur.overview', compact('user'));
+        $judul = "Aparatur Fungsional Dashboard";
+        return view('aparatur.overview', compact('user', 'judul') );
     }
 }

@@ -19,7 +19,8 @@ use Maatwebsite\Excel\Facades\Excel;
 class KegiatanJabatanController extends Controller
 {
     public function index()
-    {
+    {   
+        $judul = 'CMS Kegiatan Jabatan';
         $roles = Role::query()->whereIn('name', getAllRoleFungsional())->get(['id', 'display_name']);
         $periodes = Periode::query()->get()->map(function(Periode $periode){
             $periode->concat = Carbon::make($periode->awal)->format('F Y').' - '.Carbon::make($periode->akhir)->format('F Y');
@@ -31,7 +32,7 @@ class KegiatanJabatanController extends Controller
                 'unsurs.subUnsurs.butirKegiatans',
             ])
             ->findOrFail(1);
-        return view('kemendagri.cms.kegiatan-jabatan.index', compact('roles', 'kegiatan', 'periodes'));
+        return view('kemendagri.cms.kegiatan-jabatan.index', compact('roles', 'kegiatan', 'periodes', 'judul'));
     }
 
     public function store(KegiatanJabatanRequest $request)

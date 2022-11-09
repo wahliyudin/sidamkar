@@ -17,7 +17,8 @@ use Yajra\DataTables\Facades\DataTables;
 class MenteController extends Controller
 {
     public function index(MenteDataTable $dataTable)
-    {
+    {   
+        $judul = 'Data Mentee';
         $periode = Periode::query()->where('is_active', true)->first();
         $mentes = Mente::query()->pluck('fungsional_id')->toArray();
         $fungsionals = User::query()->whereHas('userAparatur', function ($query) {
@@ -34,7 +35,7 @@ class MenteController extends Controller
         })->where('status_akun', 1)->whereRoleIs('penetap_ak')->get();
         $penilai = PenilaiAngkaKredit::query()->with('penilaiAK.userPejabatStruktural')->where('kab_kota_id', Auth::user()->userProvKabKota->kab_kota_id)->first()?->penilaiAK?->userPejabatStruktural;
         $penetap = PenetapAngkaKredit::query()->with('penetapAK.userPejabatStruktural')->where('kab_kota_id', Auth::user()->userProvKabKota->kab_kota_id)->first()?->penetapAK?->userPejabatStruktural;
-        return $dataTable->render('kabkota.mente.index', compact('fungsionals', 'atasanLangsungs', 'penilais', 'penetaps', 'penilai', 'penetap', 'periode'));
+        return $dataTable->render('kabkota.mente.index', compact('fungsionals', 'atasanLangsungs', 'penilais', 'penetaps', 'penilai', 'penetap', 'periode', 'judul'));
     }
 
     public function store(Request $request)

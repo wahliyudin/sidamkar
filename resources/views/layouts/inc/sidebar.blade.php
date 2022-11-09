@@ -1,5 +1,5 @@
 <div id="sidebar" class="active">
-    <div class="sidebar-wrapper active">
+    <div class="sidebar-wrapper position-fixed active">
         <div class="sidebar-header position-relative">
             <div class="d-flex justify-content-center align-items-center">
                 <div class="logo">
@@ -88,7 +88,7 @@
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="fa-solid fa-clipboard-user"></i>
                             </div>
-                            <span>Data Mente</span>
+                            <span>Data Mentee</span>
                         </a>
                     </li>
                     <li class="sidebar-item {{ request()->routeIs('kab-kota.chatbox') ? 'active' : '' }}">

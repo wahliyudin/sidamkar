@@ -80,7 +80,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('coba', function () {
     // return User::query()->withWhereHas('mentes.fungsional')->get();
-    return view('generate-pdf.surat-pernyataan');
+    return view('timeline');
 });
 Route::redirect('/', 'login');
 Auth::routes(['verify' => true]);
@@ -128,8 +128,6 @@ Route::middleware(['auth'])->group(function () {
             Route::post('laporan-kegiatan/profesi/load-data', 'loadData')->name('laporan-kegiatan.profesi.load-data');
         });
 
-        Route::get('ubah-password', [ChangePasswordController::class, 'index'])->name('ubah-password');
-        Route::post('ubah-password', [ChangePasswordController::class, 'update'])->name('ubah-password.update');
         Route::get('/daftar-kegiatan', [DaftarKegiatanController::class, 'index'])->name('daftar-kegiatan');
         Route::get('/daftar-penunjang', [DaftarPenunjangController::class, 'index'])->name('daftar-penunjang');
         Route::get('/tabel-kegiatan', [TabelKegiatanController::class, 'index'])->name('tabel-kegiatan');
