@@ -3,7 +3,7 @@
 use App\Http\Controllers\Aparatur\ChangePasswordController;
 use App\Http\Controllers\Aparatur\DaftarKegiatanController;
 use App\Http\Controllers\Aparatur\DaftarPenunjangController;
-use App\Http\Controllers\aparatur\DataKegiatanController;
+use App\Http\Controllers\Aparatur\DataKegiatanController;
 use App\Http\Controllers\Aparatur\DataSayaController;
 use App\Http\Controllers\Aparatur\Kegiatan\KegiatanJabatanController as KegiatanKegiatanJabatanController;
 use App\Http\Controllers\Aparatur\LaporanJabatanController;
