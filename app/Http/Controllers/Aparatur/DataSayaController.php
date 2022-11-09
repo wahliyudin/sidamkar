@@ -31,7 +31,8 @@ class DataSayaController extends Controller
         $provinsis = Provinsi::query()->get();
         $kab_kota = KabKota::query()->get();
         $pangkats = PangkatGolonganTmt::query()->get();
-        return view('aparatur.data-saya.index', compact('user', 'provinsis', 'kab_kota', 'pangkats'));
+        $judul = 'Data Saya';
+        return view('aparatur.data-saya.index', compact('user', 'provinsis', 'kab_kota', 'pangkats', 'judul'));
     }
 
     public function store(Request $request)

@@ -36,7 +36,8 @@ class KegiatanJabatanController extends Controller
                 $unsur->isSubUnsur = count($unsur->subUnsurs) != 0;
                 return $unsur;
             });
-        return view('aparatur.kegiatan.index', compact('rencanas', 'unsurs'));
+        $judul = 'Rencana Kinerja';
+        return view('aparatur.kegiatan.index', compact('rencanas', 'unsurs', 'judul'));
     }
 
     public function search(Request $request)

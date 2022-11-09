@@ -12,9 +12,10 @@ use Illuminate\Http\Request;
 class PeriodeController extends Controller
 {
     public function index(PeriodeDataTable $dataTable)
-    {
+    {   
+        $judul = 'CMS Periode';
         $periode = Periode::query()->where('is_active', true)->first();
-        return $dataTable->render('kemendagri.cms.periode.index', compact('periode'));
+        return $dataTable->render('kemendagri.cms.periode.index', compact('periode', 'judul'));
     }
 
     public function store(Request $request)
