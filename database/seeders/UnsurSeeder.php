@@ -96,6 +96,42 @@ class UnsurSeeder extends Seeder
                 'periode_id' => 1,
                 'nama' => 'Pelaksanaan operasional pemadaman kebakaran'
             ],
+            [
+                'role_id' => 3,
+                'jenis_kegiatan_id' => 1,
+                'periode_id' => 1,
+                'nama' => 'Pengendalian operasional evakuasi dan penyelamatan'
+            ],
+            [
+                'role_id' => 4,
+                'jenis_kegiatan_id' => 1,
+                'periode_id' => 1,
+                'nama' => 'Kesiapsiagaan kepala peleton pemadam kebakaran dan penyelamatan'
+            ],
+            [
+                'role_id' => 4,
+                'jenis_kegiatan_id' => 1,
+                'periode_id' => 1,
+                'nama' => 'Pengkoordinasian pengelolaan prosedur pelaporan informasi kejadian kebakaran'
+            ],
+            [
+                'role_id' => 4,
+                'jenis_kegiatan_id' => 1,
+                'periode_id' => 1,
+                'nama' => 'Pengkoordinasian operasional pemadaman kebakaran'
+            ],
+            [
+                'role_id' => 4,
+                'jenis_kegiatan_id' => 1,
+                'periode_id' => 1,
+                'nama' => 'Pengkoordinasian operasional evakuasi dan penyelamatan'
+            ],
+            [
+                'role_id' => 4,
+                'jenis_kegiatan_id' => 1,
+                'periode_id' => 1,
+                'nama' => 'Pengkoordinasian operasional evakuasi dan penyelamatan'
+            ],
         ];
         Unsur::query()->upsert($mahir, 'id');
     }
