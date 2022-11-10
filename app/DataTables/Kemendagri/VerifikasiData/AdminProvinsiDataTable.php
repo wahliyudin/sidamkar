@@ -28,6 +28,9 @@ class AdminProvinsiDataTable extends DataTable
                 $route = '';
                 return view('kemendagri.extensions.buttons-tolak-verif', compact('user', 'route'))->render();
             })
+            ->addColumn('provinsi', function (User $user){
+                return $user->userProvKabKota->provinsi->nama;
+            })
             ->addColumn('file-permohonan', function (User $user) {
                 return '<div data-bs-toggle="modal" data-bs-target="#filePermohonan' . $user->id . '"
                 style="cursor: pointer; display: flex; align-items: center;">
@@ -87,7 +90,9 @@ class AdminProvinsiDataTable extends DataTable
         return [
             Column::computed('no'),
             Column::make('username')
-                ->title('Nama'),
+                ->title('Username'),
+            Column::make('provinsi')
+                ->title('Provinsi'),
             Column::computed('file-permohonan')
                 ->title('File Permohonan'),
             Column::computed('status')

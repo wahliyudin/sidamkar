@@ -30,7 +30,7 @@ class AdminKabKotaController extends Controller
         $user->notify(new UserVerified());
         return response()->json([
             'success' => true,
-            'message' => "Berhasil diverifikasi",
+            'message' => "Akun Berhasil DIVERIFIKASI",
         ]);
     }
 

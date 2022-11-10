@@ -329,7 +329,7 @@
                 },
             }).then(function(e) {
                 if (e.value.success == true) {
-                    swal("Selesai!", e.value.message, "success").then(() => {
+                    swal({type: 'success', title:'Berhasil', html:'Akun Dinyatakan <b style="font-weight: bold; color:red;">DITOLAK</b>'}).then(() => {
                         location.reload();
                     });
                 } else {
@@ -361,7 +361,7 @@
                 },
             }).then(function(e) {
                 if (e.value.success == true) {
-                    swal("Selesai!", e.value.message, "success").then(() => {
+                    swal({type: 'success', title:'Berhasil', html:'Akun Berhasil <b style="font-weight: bold; color:green;">DIVERIFIKASI</b>'}).then(() => {
                         location.reload();
                     });
                 } else {
