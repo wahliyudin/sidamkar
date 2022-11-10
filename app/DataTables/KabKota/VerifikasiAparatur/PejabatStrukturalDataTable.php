@@ -70,7 +70,9 @@ class PejabatStrukturalDataTable extends DataTable
      */
     public function query(User $model): QueryBuilder
     {
-        return $model->newQuery()->with('userPejabatStruktural')->whereRoleIs(getAllRoleStruktural())->latest();
+        return $model->newQuery()->withWhereHas('userPejabatStruktural', function($query) {
+            $query->where('kab_kota_id', auth()->user()->load('userProvKabKota')->userProvKabKota->kab_kota_id);
+        })->whereRoleIs(getAllRoleStruktural())->latest();
     }
 
     /**
@@ -82,11 +84,10 @@ class PejabatStrukturalDataTable extends DataTable
     {
         return $this->builder()
             ->responsive(true)
-            ->orderCellsTop(true)
             ->setTableId('pejabatstruktural-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
-            ->dom('lrtip')
+            ->dom('lfrtip')
             ->orderBy(1)
             ->buttons(
                 Button::make('create'),

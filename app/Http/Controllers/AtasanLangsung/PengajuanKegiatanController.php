@@ -13,7 +13,8 @@ use Illuminate\Http\Request;
 class PengajuanKegiatanController extends Controller
 {
     public function index(PengajuanKegiatanDataTable $dataTable)
-    {   $judul = 'Pengajuan Kegiatan';
+    {
+        $judul = 'Pengajuan Kegiatan';
         return $dataTable->render('atasan-langsung.pengajuan-kegiatan.index', compact('judul'));
     }
 
@@ -31,6 +32,7 @@ class PengajuanKegiatanController extends Controller
             $date = $request->search_date ?? now()->format('Y-m-d');
             $rencanas = User::query()
                 ->with([
+                    'roles',
                     'rencanas' => function ($query) use ($search) {
                         $query->where('nama', 'like', "%$search%")
                             ->orWhereHas('rencanaUnsurs.unsur', function ($query) use ($search) {
@@ -76,10 +78,10 @@ class PengajuanKegiatanController extends Controller
                                             class="btn btn-blue ms-3 m-1 px-4 btn-sm laporkan" data-bs-toggle="modal"
                                             data-bs-target="#lihat' . $rencanaButirKegiatan->id . '"
                                             type="button">Lihat</button>' .
-                                            view(
-                                                'atasan-langsung.pengajuan-kegiatan.kegiatan.lihat',
-                                                compact('rencanaButirKegiatan')
-                                            );
+                                            view('atasan-langsung.pengajuan-kegiatan.kegiatan.lihat', [
+                                                'rencanaButirKegiatan' => $rencanaButirKegiatan,
+                                                'user' => $rencana->user
+                                            ]);
                                     }
                                 } else {
                                     $rencanaButirKegiatan->laporanKegiatanJabatan = [];
@@ -114,7 +116,7 @@ class PengajuanKegiatanController extends Controller
             'catatan' => $request->catatan
         ]);
         $rencanaButirKegiatan->laporanKegiatanJabatan->historyButirKegiatans()->create([
-            'keterangan' => 'Laporan ditolak',
+            'keterangan' => 'Laporan ditolak oleh ATASAN LANGSUNG',
             'status' => 3,
             'catatan' => $request->catatan,
             'icon' => 3
@@ -134,8 +136,12 @@ class PengajuanKegiatanController extends Controller
             'status' => 2,
             'catatan' => $request->catatan
         ]);
+        $user = User::query()->with(['roles', 'userAparatur'])->find($request->user_id);
+        $role = $user->roles()->first();
+        $userNama = $user->userAparatur?->nama;
+        $jabatan = $role->display_name;
         $rencanaButirKegiatan->laporanKegiatanJabatan->historyButirKegiatans()->create([
-            'keterangan' => 'Laporan direvisi',
+            'keterangan' => "Laporan perlu direvisi oleh $userNama - $jabatan",
             'status' => 2,
             'catatan' => $request->catatan,
             'icon' => 2
@@ -156,7 +162,7 @@ class PengajuanKegiatanController extends Controller
             'catatan' => null
         ]);
         $rencanaButirKegiatan->laporanKegiatanJabatan->historyButirKegiatans()->create([
-            'keterangan' => 'Laporan diverifikasi',
+            'keterangan' => 'Laporan dinyatakan selesai oleh ATASAN LANGSUNG',
             'status' => 4,
             'icon' => 4
         ]);

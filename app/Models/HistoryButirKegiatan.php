@@ -14,11 +14,17 @@ class HistoryButirKegiatan extends Model
         'status',
         'catatan',
         'icon',
+        'detail_kegiatan',
         'keterangan'
     ];
 
     public function laporanKegiatanJabatan()
     {
         return $this->belongsTo(LaporanKegiatanJabatan::class);
+    }
+
+    public function dokumenHistoryButirKegiatans()
+    {
+        return $this->hasMany(DokumenHistoryButirKegiatan::class);
     }
 }

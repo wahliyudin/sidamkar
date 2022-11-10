@@ -2,13 +2,13 @@ $(document).ready(function () {
     $('#table-fungsional').DataTable({
         responsive: true,
     });
-    $(document).ready(function () {
-        $('#Mente-table').on('click', 'tbody > tr > td:not(.action)', function () {
-            window.location.replace(url(
-                `/kab-kota/data-mente/${$($(this).find('.nama')).data('detail')}/show`
-            ));
-        });
-    });
+    // $(document).ready(function () {
+    //     $('#Mente-table').on('click', 'tbody > tr > td:not(.action)', function () {
+    //         window.location.replace(url(
+    //             `/kab-kota/data-mente/${$($(this).find('.nama')).data('detail')}/show`
+    //         ));
+    //     });
+    // });
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

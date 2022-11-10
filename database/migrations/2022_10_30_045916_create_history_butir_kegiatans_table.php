@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('history_butir_kegiatans', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('laporan_kegiatan_jabatan_id');
-            $table->string('keterangan');
+            $table->text('keterangan');
+            $table->text('detail_kegiatan')->nullable();
             $table->string('catatan')->nullable();
             $table->string('icon');
             $table->integer('status');

@@ -32,7 +32,7 @@
 
                                 @switch($rencanaButirKegiatan->laporanKegiatanJabatan->status)
                                     @case(1)
-                                        <button class="btn btn-yellow px-3 btn-sm text-sm">Prosess</button>
+                                        <button class="btn btn-yellow px-3 btn-sm text-sm">Validasi</button>
                                     @break
 
                                     @case(2)
@@ -79,19 +79,45 @@
 
                                             @case(5)
                                                 <div class="timeline-icon icon-item icon-item-lg border-300">
-                                                    <i class="fa-solid fa-paper-plane"></i>
+                                                    <i class="text-red-terang fa-solid fa-paper-plane"></i>
                                                 </div>
                                             @break
 
                                             @case(6)
                                                 <div class="timeline-icon icon-item icon-item-lg border-300">
-                                                    <i class="text-gray fa-solid fa-keyboard"></i>
+                                                    <i class="text-red-terang fa-solid fa-keyboard"></i>
                                                 </div>
                                             @break
                                         @endswitch
                                         <div class="row">
                                             <div class="col-lg-12 timeline-item-time">
                                                 <div>
+                                                    @switch($historyButirKegiatan->status)
+                                                        @case(1)
+                                                            <span class="btn btn-yellow py-1 px-3"
+                                                                style="font-size: 12px !important;">Validasi</span>
+                                                        @break
+
+                                                        @case(2)
+                                                            <span class="btn btn-red-dark py-1 px-3"
+                                                                style="font-size: 12px !important;">Revisi</span>
+                                                        @break
+
+                                                        @case(3)
+                                                            <span class="btn btn-black py-1 px-3"
+                                                                style="font-size: 12px !important;">Ditolak</span>
+                                                        @break
+
+                                                        @case(4)
+                                                            <span class="btn btn-green py-1 px-3"
+                                                                style="font-size: 12px !important;">Selesai</span>
+                                                        @break
+
+                                                        @case(5)
+                                                            <span class="btn btn-red-terang py-1 px-3"
+                                                                style="font-size: 12px !important;">Laporkan</span>
+                                                        @break
+                                                    @endswitch
                                                     <p class="fs--1 mb-0 fw-semi-bold text-600">
                                                         {{ $historyButirKegiatan->keterangan }}
                                                     </p>
@@ -101,6 +127,22 @@
                                                     </p>
                                                 </div>
                                             </div>
+                                            @if (isset($historyButirKegiatan->dokumenHistoryButirKegiatans) &&
+                                                count($historyButirKegiatan->dokumenHistoryButirKegiatans) > 0)
+                                                <div class="col-lg-12">
+                                                    <div class="timeline-item-content">
+                                                        <div class="timeline-item-card">
+                                                            @foreach ($historyButirKegiatan->dokumenHistoryButirKegiatans as $dokumenHistoryButirKegiatan)
+                                                                <img src="{{ $dokumenHistoryButirKegiatan->file }}"
+                                                                    style="width: 48%; max-height: 400px; object-fit: contain; border-radius: 10px; overflow: hidden;"
+                                                                    alt="">
+                                                            @endforeach
+                                                            <p class="fs--1 mb-0 text-gray mt-2">
+                                                                {{ $historyButirKegiatan->detail_kegiatan }}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
                                             @if (isset($historyButirKegiatan?->catatan))
                                                 <div class="col-lg-12">
                                                     <div class="timeline-item-content">

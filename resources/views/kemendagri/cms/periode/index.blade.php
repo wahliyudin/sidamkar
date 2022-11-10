@@ -16,7 +16,7 @@
                                     Periode
                                 </p>
                                 <h2 style="font-family: 'Roboto'; font-size: 16px; color: #06152B;" class="target">
-                                    {{ Carbon\Carbon::make($periode->awal)->translatedFormat('F Y') . ' - ' . Carbon\Carbon::make($periode->akhir)->translatedFormat('F Y') }}
+                                    {{ $periode != null ? Carbon\Carbon::make($periode->awal)->translatedFormat('F Y') . ' - ' . Carbon\Carbon::make($periode->akhir)->translatedFormat('F Y') : '-' }}
                                 </h2>
                             </div>
                         </div>
@@ -101,6 +101,89 @@
                 padding: 0 !important;
             }
         }
+
+        .wrapper {
+            padding: 10px;
+        }
+
+        .input_wrapper {
+            width: 70px;
+            height: 40px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .input_wrapper .switch {
+            width: 70px;
+            height: 30px;
+            cursor: pointer;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background: #e74c3c;
+            border-radius: 50px;
+            position: relative;
+            outline: 0;
+            -webkit-transition: all .2s;
+            transition: all .2s;
+        }
+
+        .input_wrapper input[type="checkbox"]:after {
+            position: absolute;
+            content: "";
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background: #dfeaec;
+            z-index: 2;
+            border-radius: 50px;
+            -webkit-transition: all .35s;
+            transition: all .35s;
+        }
+
+        .input_wrapper svg {
+            position: absolute;
+            top: 30%;
+            -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+            fill: #fff;
+            -webkit-transition: all .35s;
+            transition: all .35s;
+            z-index: 1;
+        }
+
+        .input_wrapper .is_checked {
+            width: 15px;
+            left: 12%;
+            -webkit-transform: translateX(190%) translateY(-30%) scale(0);
+            transform: translateX(190%) translateY(-30%) scale(0);
+        }
+
+        .input_wrapper .is_unchecked {
+            width: 15px;
+            right: 12%;
+            -webkit-transform: translateX(0) translateY(-30%) scale(1);
+            transform: translateX(0) translateY(-30%) scale(1);
+        }
+
+        .input_wrapper .switch:checked {
+            background: #2ecc71;
+        }
+
+        .input_wrapper .switch:checked:after {
+            left: calc(100% - 28px);
+        }
+
+        .input_wrapper .switch:checked+.is_checked {
+            -webkit-transform: translateX(0) translateY(-30%) scale(1);
+            transform: translateX(0) translateY(-30%) scale(1);
+        }
+
+        .input_wrapper .switch:checked~.is_unchecked {
+            -webkit-transform: translateX(-190%) translateY(-30%) scale(0);
+            transform: translateX(-190%) translateY(-30%) scale(0);
+        }
     </style>
     <link rel="stylesheet" href="{{ asset('assets/css/shared/sweetalert2.min.css') }}">
 @endsection
@@ -141,6 +224,26 @@
                         } else {
                             swal("Error!", response.message, "error");
                         }
+                    },
+                    error: ajaxError
+                });
+            });
+
+            $(document).on('click', '.switch-periode', function() {
+                is_active = $(this).is(':checked');
+                $.ajax({
+                    type: 'POST',
+                    url: url("/kemendagri/cms/periode/" + $(this).data('periode') + "/switch"),
+                    data: {
+                        is_active: is_active
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        $('.simpan-periode span').show();
+                        $('.simpan-periode .spin').hide();
+                        swal("Selesai!", response.message, "success").then(() => {
+                            location.reload()
+                        });
                     },
                     error: ajaxError
                 });
