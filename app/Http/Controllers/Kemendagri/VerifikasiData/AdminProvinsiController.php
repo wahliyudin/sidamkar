@@ -12,8 +12,9 @@ use Illuminate\Http\Request;
 class AdminProvinsiController extends Controller
 {
     public function index(AdminProvinsiDataTable $dataTable)
-    {
-        return $dataTable->render('kemendagri.verifikasi-data.admin-provinsi.index');
+    {   
+        $judul = 'Manajemen User Provinsi';
+        return $dataTable->render('kemendagri.verifikasi-data.admin-provinsi.index', compact('judul'));
     }
 
     public function verified($id)

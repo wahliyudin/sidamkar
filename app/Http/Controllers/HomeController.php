@@ -44,6 +44,8 @@ class HomeController extends Controller
             return to_route('penilai-ak.overview');
         } elseif (auth()->user()->hasRole('kemendagri')) {
             return to_route('kemendagri.overview.index');
+        } elseif (auth()->user()->hasRole('penetap_ak')) {
+            return to_route('penetap-ak.overview');
         } else {
             return view('home');
         }

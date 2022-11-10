@@ -12,6 +12,7 @@ class InformasiController extends Controller
 {
     use ImageTrait;
     public function index(){
+        $judul = 'CMS Informasi';
         $informasis = Informasi::query()->with('roles')->get()->map(function(Informasi $informasi){
             $str = '';
             if (count($informasi->roles) == 12) {
@@ -42,7 +43,7 @@ class InformasiController extends Controller
             $informasi->jenjang = $str;
             return $informasi;
         });
-        return view('kemendagri.cms.informasi.index', compact('informasis') );
+        return view('kemendagri.cms.informasi.index', compact('informasis', 'judul') );
     }
 
     public function store(Request $request){
