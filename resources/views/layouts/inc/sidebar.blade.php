@@ -1,5 +1,5 @@
 <div id="sidebar" class="active">
-    <div class="sidebar-wrapper active">
+    <div class="sidebar-wrapper position-fixed active">
         <div class="sidebar-header position-relative">
             <div class="d-flex justify-content-center align-items-center">
                 <div class="logo">
@@ -88,7 +88,7 @@
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="fa-solid fa-clipboard-user"></i>
                             </div>
-                            <span>Data Mente</span>
+                            <span>Data Mentee</span>
                         </a>
                     </li>
                     <li class="sidebar-item {{ request()->routeIs('kab-kota.chatbox') ? 'active' : '' }}">
@@ -164,6 +164,41 @@
                             </div>
                             <span>Kegiatan Selesai</span>
                         </a>
+                    </li>
+                @endrole
+
+
+                @role('penetap_ak')
+                    <li class="sidebar-item {{ request()->routeIs('penetap-ak.overview') ? 'active' : '' }}">
+                        <a href="{{ route('penetap-ak.overview') }}" class='sidebar-link'>
+                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                                <i class="bi bi-grid-fill"></i>
+                            </div>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li
+                        class="sidebar-item has-sub {{ request()->is('penetap-ak/data-pengajuan/kabkota-external/kabKota-external') || request()->is('penetap-ak/data-pengajuan/kabkota-internal/kabKota-internal') ? 'active' : '' }}">
+                        <a href="javascript(0)" class='sidebar-link'>
+                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                                <i class="fa-solid fa-square-poll-vertical"></i>
+                            </div>
+                            <span>Data Pengajuan</span>
+                        </a>
+                        <ul
+                            class="submenu {{ request()->is('penetap-ak/data-pengajuan/kabkota-external/kabKota-external') || request()->is('penetap-ak/data-pengajuan/kabkota-internal/kabKota-internal') ? 'active' : '' }}">
+                            <li
+                                class="submenu-item {{ request()->is('penetap-ak/data-pengajuan/kabkota-internal/kabKota-internal') ? 'active' : '' }}">
+                                <a href="{{ route('penetap-ak.data-pengajuan.kabkota-internal.kabKota-internal') }}">Kab/Kota
+                                    Internal</a>
+                            </li>
+                            <li
+                                class="submenu-item {{ request()->is('penetap-ak/data-pengajuan/kabkota-external/kabKota-external') ? 'active' : '' }}">
+                                <a href="{{ route('penetap-ak.data-pengajuan.kabkota-external.kabKota-external') }}">Kab/Kota
+                                    External</a>
+                            </li>
+
+                        </ul>
                     </li>
                 @endrole
 

@@ -22,8 +22,8 @@
         @include('layouts.inc.sidebar')
         <div id="main" class='layout-navbar'>
             @include('layouts.inc.navbar')
-            <div id="main-content">
-                <div class="page-heading">
+            <div id="main-content" style="padding-top:120px">
+                <div class="page-heading" >
                     @yield('breadcrumbs')
                     @yield('content')
                 </div>

@@ -1,14 +1,13 @@
-{{-- <style>
-     @media only screen and (max-width: 600px) {
-        .dropdown-menu-end.show {
-            left: 23% !important;
-            right: -8% !important;
-            top: 100%;
-        }
+<style>
+    .navbar-diam{
+        position: fixed; z-index:9;
+        width: 100%;
+        width: -moz-available;          /* WebKit-based browsers will ignore this. */
+        width: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+        width: fill-available;
     }
-
-</style> --}}
-<header class='mb-3'>
+</style>
+<header class='mb-3 bg-dark shadow-sm navbar-diam'>
     <nav class="navbar navbar-expand navbar-light navbar-top">
         <div class="container-fluid">
             <a href="#" class="burger-btn d-block">
@@ -18,7 +17,12 @@
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <h6 class=" ms-3" style="margin-top:12px">
+                @isset($judul)
+                {{$judul}}
+                @endisset
+            </h6>
+            <div class="collapse navbar-collapse " id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-lg-0">
                     <li class="nav-item dropdown me-1">
                         <a class="nav-link active dropdown-toggle text-gray-600" href="#"
@@ -80,53 +84,60 @@
                                 <h6 class="mb-0 text-gray-600">{{ Auth::user()->username }}</h6>
                             </div>
                             @role(getAllRoleFungsional())
-                            <div class="user-img d-flex align-items-center">
-                                <div class="avatar avatar-md">
-                                     <img src="{{ isset($user->userAparatur?->foto_pegawai) ? $user->userAparatur?->foto_pegawai : asset('assets/images/faces/3.jpg') }}">
+                                <div class="user-img d-flex align-items-center">
+                                    <div class="avatar avatar-md">
+                                        <img
+                                            src="{{ isset($user->userAparatur?->foto_pegawai) ? $user->userAparatur?->foto_pegawai : asset('assets/images/faces/3.jpg') }}">
+                                    </div>
                                 </div>
-                            </div>
                             @endrole
                             @role('atasan_langsung')
-                            <div class="user-img d-flex align-items-center">
-                                <div class="avatar avatar-md">
-                                     <img src="{{ isset($user->userPejabatStruktural?->foto_pegawai) ? $user->userPejabatStruktural?->foto_pegawai : asset('assets/images/faces/3.jpg') }}">
+                                <div class="user-img d-flex align-items-center">
+                                    <div class="avatar avatar-md">
+                                        <img
+                                            src="{{ isset($user->userPejabatStruktural?->foto_pegawai) ? $user->userPejabatStruktural?->foto_pegawai : asset('assets/images/faces/3.jpg') }}">
+                                    </div>
                                 </div>
-                            </div>
                             @endrole
                             @role('penilai_ak')
-                            <div class="user-img d-flex align-items-center">
-                                <div class="avatar avatar-md">
-                                     <img src="{{ isset($user->userPejabatStruktural?->foto_pegawai) ? $user->userPejabatStruktural?->foto_pegawai : asset('assets/images/faces/3.jpg') }}">
+                                <div class="user-img d-flex align-items-center">
+                                    <div class="avatar avatar-md">
+                                        <img
+                                            src="{{ isset($user->userPejabatStruktural?->foto_pegawai) ? $user->userPejabatStruktural?->foto_pegawai : asset('assets/images/faces/3.jpg') }}">
+                                    </div>
                                 </div>
-                            </div>
                             @endrole
                             @role('penetap_ak')
-                            <div class="user-img d-flex align-items-center">
-                                <div class="avatar avatar-md">
-                                     <img src="{{ isset($user->userPejabatStruktural?->foto_pegawai) ? $user->userPejabatStruktural?->foto_pegawai : asset('assets/images/faces/3.jpg') }}">
+                                <div class="user-img d-flex align-items-center">
+                                    <div class="avatar avatar-md">
+                                        <img
+                                            src="{{ isset($user->userPejabatStruktural?->foto_pegawai) ? $user->userPejabatStruktural?->foto_pegawai : asset('assets/images/faces/3.jpg') }}">
+                                    </div>
                                 </div>
-                            </div>
                             @endrole
                             @role('kab_kota')
-                            <div class="user-img d-flex align-items-center">
-                                <div class="avatar avatar-md">
-                                     <img src="{{ isset($user->userPejabatStruktural?->foto_pegawai) ? $user->userPejabatStruktural?->foto_pegawai : asset('assets/images/faces/3.jpg') }}">
+                                <div class="user-img d-flex align-items-center">
+                                    <div class="avatar avatar-md">
+                                        <img
+                                            src="{{ isset($user->userPejabatStruktural?->foto_pegawai) ? $user->userPejabatStruktural?->foto_pegawai : asset('assets/images/faces/3.jpg') }}">
+                                    </div>
                                 </div>
-                            </div>
                             @endrole
                             @role('provinsi')
-                            <div class="user-img d-flex align-items-center">
-                                <div class="avatar avatar-md">
-                                     <img src="{{ isset($user->userPejabatStruktural?->foto_pegawai) ? $user->userPejabatStruktural?->foto_pegawai : asset('assets/images/faces/3.jpg') }}">
+                                <div class="user-img d-flex align-items-center">
+                                    <div class="avatar avatar-md">
+                                        <img
+                                            src="{{ isset($user->userPejabatStruktural?->foto_pegawai) ? $user->userPejabatStruktural?->foto_pegawai : asset('assets/images/faces/3.jpg') }}">
+                                    </div>
                                 </div>
-                            </div>
                             @endrole
                             @role('kemendagri')
-                            <div class="user-img d-flex align-items-center">
-                                <div class="avatar avatar-md">
-                                     <img src="{{ isset($user->userPejabatStruktural?->foto_pegawai) ? $user->userPejabatStruktural?->foto_pegawai : asset('assets/images/faces/3.jpg') }}">
+                                <div class="user-img d-flex align-items-center">
+                                    <div class="avatar avatar-md">
+                                        <img
+                                            src="{{ isset($user->userPejabatStruktural?->foto_pegawai) ? $user->userPejabatStruktural?->foto_pegawai : asset('assets/images/faces/3.jpg') }}">
+                                    </div>
                                 </div>
-                            </div>
                             @endrole
                         </div>
                     </a>
@@ -218,3 +229,7 @@
         </div>
     </nav>
 </header>
+
+<script>
+
+</script>

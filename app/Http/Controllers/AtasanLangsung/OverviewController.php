@@ -10,8 +10,9 @@ use Illuminate\Support\Facades\Auth;
 class OverviewController extends Controller
 {
     public function index()
-    {
+    {   
         $user = User::query()->with(['userPejabatStruktural.provinsi.kabkotas', 'dokKepegawaians', 'dokKompetensis'])->find(Auth::user()->id);
-        return view('atasan-langsung.overview', compact('user'));
+        $judul = 'Aparatur Struktural Dashboard';
+        return view('atasan-langsung.overview', compact('user', 'judul'));
     }
 }

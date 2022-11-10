@@ -26,12 +26,13 @@ class DataAtasanLangsungController extends Controller
     use ImageTrait;
 
     public function index()
-    {
+    {   
+        $judul = 'Data Saya';
         $user = User::query()->with(['userPejabatStruktural.provinsi.kabkotas', 'dokKepegawaians', 'dokKompetensis'])->find(Auth::user()->id);
         $provinsis = Provinsi::query()->get();
         $kab_kota = KabKota::query()->get();
         $pangkats = PangkatGolonganTmt::query()->get();
-        return view('atasan-langsung.data-saya.index', compact('user', 'provinsis', 'kab_kota', 'pangkats'));
+        return view('atasan-langsung.data-saya.index', compact('user', 'provinsis', 'kab_kota', 'pangkats', 'judul'));
     }
 
     public function store(Request $request)

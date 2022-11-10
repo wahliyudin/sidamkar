@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('content')
     <section class="section">
+
         <div class="card">
             <div class="card-body" style="padding-top: 3rem;">
                 <div class="row">

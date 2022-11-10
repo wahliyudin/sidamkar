@@ -13,8 +13,8 @@ use Illuminate\Http\Request;
 class PengajuanKegiatanController extends Controller
 {
     public function index(PengajuanKegiatanDataTable $dataTable)
-    {
-        return $dataTable->render('atasan-langsung.pengajuan-kegiatan.index');
+    {   $judul = 'Pengajuan Kegiatan';
+        return $dataTable->render('atasan-langsung.pengajuan-kegiatan.index', compact('judul'));
     }
 
     public function show($id)

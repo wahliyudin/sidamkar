@@ -26,7 +26,8 @@ class KegiatanJabatanController extends Controller
     {
         $periode = Periode::query()->where('is_active', true)->first();
         $user = User::query()->with('rencanas', 'rekapitulasiKegiatan')->find(auth()->user()->id);
-        return view('aparatur.laporan-kegiatan.index', compact('periode', 'user'));
+        $judul = 'Laporan Kegiatan Jabatan';
+        return view('aparatur.laporan-kegiatan.index', compact('periode', 'user', 'judul'));
     }
 
     public function loadData(Request $request)

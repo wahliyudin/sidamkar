@@ -11,7 +11,7 @@ class KegiatanLangsungController extends Controller
 {
     public function index()
     {
-
+        $judul = 'Kegiatan Selesai';
         $periode = Periode::query()->where('is_active', true)->first();
         $fungsionals = User::query()
             ->withWhereHas('userAparatur', function ($query) {
@@ -40,7 +40,7 @@ class KegiatanLangsungController extends Controller
                 }
                 return $user;
             });
-        return view('atasan-langsung.kegiatan-selesai', compact('fungsionals'));
+        return view('atasan-langsung.kegiatan-selesai', compact('fungsionals', 'judul'));
     }
 
     public function show($id)

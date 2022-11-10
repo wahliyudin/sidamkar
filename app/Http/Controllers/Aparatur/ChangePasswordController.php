@@ -11,8 +11,9 @@ class ChangePasswordController extends Controller
     use ChangePassword;
 
     public function index()
-    {
-        return view('auth.passwords.ubah-password');
+    {   
+        $judul = 'Ubah Password';
+        return view('auth.passwords.ubah-password', compact('judul'));
     }
 
     public function update(Request $request)
