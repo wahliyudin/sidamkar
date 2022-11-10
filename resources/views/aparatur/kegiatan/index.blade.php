@@ -181,10 +181,6 @@
                                 @endforeach
                             </div>
                         </div>
-<<<<<<< HEAD
-=======
-
->>>>>>> 568ec0a2d38b67d7fced0e91b57786e1185fceb4
                         <div class="text-center mt-4">
                             <button type="button" class="btn btn-danger px-5" data-bs-dismiss="modal">Batal</button>
                             <button type="button" class="btn btn-blue px-5 simpan-rencana">

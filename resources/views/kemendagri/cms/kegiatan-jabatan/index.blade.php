@@ -99,7 +99,7 @@
     </div>
     <div class="modal fade" id="tambahDataModal" tabindex="-1" role="dialog" aria-labelledby="tambahDataModalTitle"
         aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
             <div class="modal-content relative">
                 <div class="bg-spin" style="display: none;">
                     <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
