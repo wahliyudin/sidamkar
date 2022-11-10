@@ -28,6 +28,7 @@ $(document).ready(function () {
             showCancelButton: true,
             confirmButtonText: 'Ya, tolak!',
             cancelButtonText: "Batal",
+            reverseButtons:true,
             showLoaderOnConfirm: true,
             inputValidator: (value) => {
                 if (!value) {
@@ -50,7 +51,7 @@ $(document).ready(function () {
                 swal.close()
             }
             if (e.value.status == 200) {
-                swal("Selesai!", e.value.message, "success").then(() => {
+                swal({type: 'success', title:'Berhasil', html:'Laporan Dinyatakan <b style="font-weight: bold; color:black;">DITOLAK</b>'}).then(() => {
                     location.reload()
                 });
             } else {
@@ -69,6 +70,7 @@ $(document).ready(function () {
             showCancelButton: true,
             confirmButtonText: 'Ya, Revisi!',
             cancelButtonText: "Batal",
+            reverseButtons:true,
             showLoaderOnConfirm: true,
             inputValidator: (value) => {
                 if (!value) {
@@ -92,7 +94,7 @@ $(document).ready(function () {
                 swal.close()
             }
             if (e.value.status == 200) {
-                swal("Selesai!", e.value.message, "success").then(() => {
+                swal({type: 'success', title:'Berhasil', html:'Laporan Perlu <b style="font-weight: bold; color:red;">DIREVISI</b>'}).then(() => {
                     location.reload()
                 });
             } else {
@@ -103,7 +105,8 @@ $(document).ready(function () {
 
     function verifikasi(id, current_date) {
         swal({
-            title: "Perifikasi?",
+            title: "Verifikasi?",
+            text: "Pastikan Data Yang Dicek Sudah Benar!",
             type: "warning",
             showCancelButton: !0,
             confirmButtonText: "Ya, verfikasi!",
@@ -123,7 +126,7 @@ $(document).ready(function () {
                 swal.close()
             }
             if (e.value.status == 200) {
-                swal("Selesai!", e.value.message, "success").then(() => {
+                swal({type: 'success', title:'Berhasil', html:'Laporan Dinyatakan <b style="font-weight: bold; color:green;">SELESAI</b>'}).then(() => {
                     location.reload()
                 });
             } else {
