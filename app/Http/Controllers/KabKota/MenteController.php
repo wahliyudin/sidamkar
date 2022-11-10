@@ -12,6 +12,7 @@ use App\Models\Periode;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 use Yajra\DataTables\Facades\DataTables;
 
 class MenteController extends Controller
@@ -25,7 +26,7 @@ class MenteController extends Controller
         })->where('status_akun', 1)->whereNotIn('id', $mentes)->whereRoleIs(getAllRoleFungsional())->latest()->get();
         $atasanLangsungs = User::query()->withWhereHas('userPejabatStruktural', function ($query) {
             $query->where('kab_kota_id', Auth::user()->userProvKabKota->kab_kota_id);
-        })->where('status_akun', 1)->whereDoesntHave('mentes')->whereRoleIs('atasan_langsung')->get();
+        })->where('status_akun', 1)->whereRoleIs('atasan_langsung')->get();
         $penilais = User::query()->withWhereHas('userPejabatStruktural', function ($query) {
             $query->where('kab_kota_id', Auth::user()->userProvKabKota->kab_kota_id);
         })->where('status_akun', 1)->whereRoleIs('penilai_ak')->get();
@@ -64,48 +65,27 @@ class MenteController extends Controller
 
     public function edit($id)
     {
-        $mentes = Mente::query()->whereNot('atasan_langsung_id', $id)->pluck('fungsional_id')->toArray();
-        $mentesTrue = Mente::query()->where('atasan_langsung_id', $id)->pluck('fungsional_id')->toArray();
-        $fungsionals = User::query()->withWhereHas('userAparatur', function ($query) {
-            $query->where('kab_kota_id', Auth::user()->userProvKabKota->kab_kota_id);
-        })
-            ->where('status_akun', 1)
-            ->whereNotIn('id', $mentes)
-            ->whereRoleIs(getAllRoleFungsional())
-            ->latest()
-            ->get()
-            ->map(function (User $user) use ($mentesTrue) {
-                $user->isChecked = in_array($user->id, $mentesTrue);
-                return $user;
-            });
+        $atasan_langsung_id = Mente::query()->where('fungsional_id', $id)->first()?->atasan_langsung_id;
+        if (!$atasan_langsung_id) {
+            throw ValidationException::withMessages(['Data tidak ditemukan']);
+        }
         return response()->json([
-            'data' => $fungsionals
+            'data' => $atasan_langsung_id
         ]);
     }
 
     public function update(Request $request, $id)
     {
-        $atasanLangsung = User::query()->where('status_akun', 1)->withWhereHas('mentes')->whereRoleIs('atasan_langsung')->find($id);
-        if (!isset($request->fungsionals)) {
-            $atasanLangsung->mentes()->delete();
-        } else {
-            $fungsionals = $atasanLangsung->mentes()->pluck('fungsional_id')->toArray();
-            $comingFungsionals = $request->fungsionals;
-            $createds = [];
-            for ($i = 0; $i < count($comingFungsionals); $i++) {
-                if (!in_array($comingFungsionals[$i], $fungsionals)) {
-                    array_push($createds, [
-                        'fungsional_id' => $comingFungsionals[$i]
-                    ]);
-                }
-            }
-            for ($i = 0; $i < count($fungsionals); $i++) {
-                if (!in_array($fungsionals[$i], $comingFungsionals)) {
-                    $atasanLangsung->mentes()->where('fungsional_id', $fungsionals[$i])->first()->delete();
-                }
-            }
-            $atasanLangsung->mentes()->createMany($createds);
+        $request->validate([
+            'atasan_langsung' => 'required'
+        ]);
+        $aparatur = User::query()->where('status_akun', 1)->whereRoleIs(getAllRoleFungsional())->find($id);
+        if (!$aparatur) {
+            throw ValidationException::withMessages(['Data tidak ditemukan']);
         }
+        $aparatur->mente()->update([
+            'atasan_langsung_id' => $request->atasan_langsung
+        ]);
         return response()->json([
             'status' => 200,
             'message' => 'Berhasil diubah'

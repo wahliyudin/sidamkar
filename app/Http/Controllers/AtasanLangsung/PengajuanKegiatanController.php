@@ -44,7 +44,7 @@ class PengajuanKegiatanController extends Controller
                     'rencanas.rencanaUnsurs.unsur',
                     'rencanas.rencanaUnsurs.rencanaSubUnsurs.subUnsur.butirKegiatans',
                     'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.butirKegiatan',
-                    'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan' => function($query) use ($date){
+                    'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan' => function ($query) use ($date) {
                         $query->where('current_date', $date);
                     },
                     'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.laporanKegiatanJabatan.dokumenKegiatanPokoks',
@@ -72,22 +72,26 @@ class PengajuanKegiatanController extends Controller
                                             type="button">Selesai</button>';
                                     } else {
                                         $rencanaButirKegiatan->button = '<button
-                                            data-rencana="'.$rencanaButirKegiatan->id.'"
+                                            data-rencana="' . $rencanaButirKegiatan->id . '"
                                             class="btn btn-blue ms-3 m-1 px-4 btn-sm laporkan" data-bs-toggle="modal"
                                             data-bs-target="#lihat' . $rencanaButirKegiatan->id . '"
                                             type="button">Lihat</button>' .
-                                            view('atasan-langsung.pengajuan-kegiatan.kegiatan.lihat',
-                                            compact('rencanaButirKegiatan'));
+                                            view(
+                                                'atasan-langsung.pengajuan-kegiatan.kegiatan.lihat',
+                                                compact('rencanaButirKegiatan')
+                                            );
                                     }
                                 } else {
                                     $rencanaButirKegiatan->laporanKegiatanJabatan = [];
                                     $rencanaButirKegiatan->button = '<button
-                                        data-rencana="'.$rencanaButirKegiatan->id.'"
+                                        data-rencana="' . $rencanaButirKegiatan->id . '"
                                         class="btn btn-gray ms-3 px-4 m-1 btn-sm laporkan" data-bs-toggle="modal"
                                         data-bs-target="#lihat' . $rencanaButirKegiatan->id . '"
                                         type="button">Belum</button>' .
-                                    view('atasan-langsung.pengajuan-kegiatan.kegiatan.lihat',
-                                    compact('rencanaButirKegiatan'));
+                                        view(
+                                            'atasan-langsung.pengajuan-kegiatan.kegiatan.lihat',
+                                            compact('rencanaButirKegiatan')
+                                        );
                                 }
                             }
                         }
@@ -111,7 +115,9 @@ class PengajuanKegiatanController extends Controller
         ]);
         $rencanaButirKegiatan->laporanKegiatanJabatan->historyButirKegiatans()->create([
             'keterangan' => 'Laporan ditolak',
-            'status' => 3
+            'status' => 3,
+            'catatan' => $request->catatan,
+            'icon' => 3
         ]);
         return response()->json([
             'status' => 200,
@@ -130,7 +136,9 @@ class PengajuanKegiatanController extends Controller
         ]);
         $rencanaButirKegiatan->laporanKegiatanJabatan->historyButirKegiatans()->create([
             'keterangan' => 'Laporan direvisi',
-            'status' => 2
+            'status' => 2,
+            'catatan' => $request->catatan,
+            'icon' => 2
         ]);
         return response()->json([
             'status' => 200,
@@ -149,7 +157,8 @@ class PengajuanKegiatanController extends Controller
         ]);
         $rencanaButirKegiatan->laporanKegiatanJabatan->historyButirKegiatans()->create([
             'keterangan' => 'Laporan diverifikasi',
-            'status' => 4
+            'status' => 4,
+            'icon' => 4
         ]);
         return response()->json([
             'status' => 200,

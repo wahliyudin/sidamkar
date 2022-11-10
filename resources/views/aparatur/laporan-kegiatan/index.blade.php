@@ -123,7 +123,7 @@
     </div>
 
     <div class="modal fade" id="laporkan" tabindex="-1" role="dialog" aria-labelledby="laporkanTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-md modal-dialog-centered modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5>Laporan Kegiatan Jabatan</h5>
@@ -133,6 +133,11 @@
                         <input type="hidden" name="rencana_butir_kegiatan">
                         <input type="hidden" name="current_date">
                         <div class="row">
+                            <ul class="ms-4">
+                                <li>
+                                    <p class="butir text-gray m-0 p-0"></p>
+                                </li>
+                            </ul>
                             <div class="form-group col-md-12">
                                 <label>File Dokumen</label>
                                 <input type="file" name="doc_kegiatan_tmp[]" multiple data-max-file-size="2MB"
