@@ -17,36 +17,17 @@ $(document).ready(function () {
     $("#editMentee").on('hide.bs.modal', function () {
         $("#table-fungsional-edit tbody").children().remove();
     });
-    $('#Mente-table').on('click', '.edit-mente', function () {
+    $(document).on('click', '.edit-mente', function () {
         $($('#editMentee').find('.simpan-edit-mente')).data('id', $(this).data('id'));
         $.ajax({
             type: "GET",
             url: url('/kab-kota/data-mente/' + $(this).data('id') + '/edit'),
             dataType: "json",
             beforeSend: function () {
-                $('#editMentee .bg-spin').show();
                 $('#editMentee').modal('show');
             },
             success: function (response) {
-                response.data.forEach(fungsional => {
-                    $('#table-fungsional-edit tbody').append(
-                        `<tr>
-                            <td>
-                                <input ${fungsional.isChecked ? 'checked' : ''} class="form-check-input" name="fungsionals[]"
-                                    type="checkbox" value="${fungsional.id}">
-                            </td>
-                            <td>${fungsional.user_aparatur?.nama}</td>
-                        </tr>`
-                    );
-                });
-                $('#editMentee .bg-spin').hide();
-                if ($.fn.DataTable.isDataTable('#table-fungsional-edit')) {
-                    $('#table-fungsional-edit').DataTable().fnClearTable();
-                    $('#table-fungsional-edit').DataTable().fnDestroy();
-                }
-                $('#table-fungsional-edit').DataTable({
-                    responsive: true,
-                });
+                $('.mente-fungsional-edit select[name="atasan_langsung"]').val(response.data);
             },
             error: ajaxError
         });
@@ -81,16 +62,12 @@ $(document).ready(function () {
 
     $('.simpan-edit-mente').click(function (e) {
         e.preventDefault();
-        fungsionals = $.map($('.mente-fungsional-edit input[name="fungsionals[]"]'), function (elementOrValue, indexOrKey) {
-            if ($(elementOrValue).is(':checked')) {
-                return $(elementOrValue).val();
-            }
-        });
+        var atasan_langsung = $('.mente-fungsional-edit select[name="atasan_langsung"]').val();
         $.ajax({
             type: 'PUT',
             url: url("/kab-kota/data-mente/" + $(this).data('id') + "/update"),
             data: {
-                fungsionals: fungsionals
+                atasan_langsung: atasan_langsung
             },
             dataType: 'json',
             beforeSend: function () {
@@ -102,7 +79,8 @@ $(document).ready(function () {
                 $('.simpan-edit-mente .spin').hide();
                 if (response.status == 200) {
                     swal("Selesai!", response.message, "success").then(() => {
-                        location.reload();
+                        $('#editMentee').modal('hide');
+                        $('#Mente-table').DataTable().ajax.reload();
                     });
                 } else {
                     swal("Error!", response.message, "error");

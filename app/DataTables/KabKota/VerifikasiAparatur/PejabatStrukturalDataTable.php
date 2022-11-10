@@ -52,6 +52,9 @@ class PejabatStrukturalDataTable extends DataTable
                     '.view('kabkota.verifikasi-aparatur.pejabat-struktural.document', compact('user'))->render().'
                 </div>';
             })
+            ->addColumn('tgl_registrasi', function (User $user) {
+                return $user->created_at->translatedFormat('d F Y');
+            })
             ->addColumn('status', function (User $user) {
                 return $this->statusAkun($user->status_akun);
             })
@@ -67,7 +70,7 @@ class PejabatStrukturalDataTable extends DataTable
      */
     public function query(User $model): QueryBuilder
     {
-        return $model->newQuery()->with('userPejabatStruktural')->whereRoleIs(getAllRoleStruktural());
+        return $model->newQuery()->with('userPejabatStruktural')->whereRoleIs(getAllRoleStruktural())->latest();
     }
 
     /**
@@ -107,6 +110,7 @@ class PejabatStrukturalDataTable extends DataTable
             Column::make('jabatan'),
             Column::computed('file-sk')
                 ->title('File SK'),
+            Column::make('tgl_registrasi'),
             Column::computed('status')
                 ->title('Status Verifikasi'),
         ];

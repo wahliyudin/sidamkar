@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('laporan_kegiatan_jabatan_id');
             $table->string('keterangan');
+            $table->string('catatan')->nullable();
+            $table->string('icon');
             $table->integer('status');
             $table->timestamps();
 

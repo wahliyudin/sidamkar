@@ -880,7 +880,7 @@
 }
 
 .timeline-vertical .timeline-item-content .timeline-item-card {
-    padding: 1.5rem;
+    padding: 0.5rem 1rem;
     background-color: var(--falcon-gray-100);
     border-radius: .375rem
 }
@@ -1170,7 +1170,7 @@
 }
 
 .fs-1 {
-    font-size: 1.2rem !important
+    font-size: 1.2rem !important;
 }
 
 .icon-group .icon-item:not(:last-child) {

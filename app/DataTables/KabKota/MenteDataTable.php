@@ -25,28 +25,58 @@ class MenteDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('nama', function (User $user) {
-                return '<p class="nama" data-detail="' . $user->id . '">' . $user->userPejabatStruktural?->nama . '</p>
+                return '<p class="nama" data-detail="' . $user->id . '">' . $user->userAparatur?->nama . '</p>
                 ';
             })
             ->filterColumn('nama', function ($query, $keyword) {
-                $query->whereHas('userPejabatStruktural', function ($query) use ($keyword) {
+                $query->whereHas('userAparatur', function ($query) use ($keyword) {
                     $query->where('nama', 'like', "%$keyword%");
                 });
             })
             ->orderColumn('nama', function ($query, $order) {
-                $query->whereHas('userPejabatStruktural', function ($query) use ($order) {
+                $query->whereHas('userAparatur', function ($query) use ($order) {
                     $query->orderBy('nama', $order);
                 });
             })
-            ->filterColumn('nama', function ($query, $keyword) {
-                $query->whereHas('userPejabatStruktural', function ($query) use ($keyword) {
-                    $query->where('nama', 'like', "%$keyword%");
+            ->addColumn('jabatan', function (User $user) {
+                return $user->roles()->first()->display_name;
+            })
+            ->filterColumn('jabatan', function ($query, $keyword) {
+                $query->whereHas('roles', function ($query) use ($keyword) {
+                    $query->where('display_name', 'like', "%$keyword%");
                 });
             })
-            ->orderColumn('nama', function ($query, $order) {
-                $query->whereHas('userPejabatStruktural', function ($query) use ($order) {
-                    $query->orderBy('nama', $order);
+            ->orderColumn('jabatan', function ($query, $order) {
+                $query->whereHas('roles', function ($query) use ($order) {
+                    $query->orderBy('display_name', $order);
                 });
+            })
+            ->addColumn('atasan_langsung', function (User $user) {
+                return $user->mente?->atasanLangsung?->userPejabatStruktural->nama;
+            })
+            ->filterColumn('atasan_langsung', function ($query, $keyword) {
+                $query->whereHas('mente', function ($query) use ($keyword) {
+                    $query->whereHas('atasanLangsung', function ($query) use ($keyword) {
+                        $query->whereHas('userPejabatStruktural', function ($query) use ($keyword) {
+                            $query->where('nama', 'like', "%$keyword%");
+                        });
+                    });
+                });
+            })
+            ->orderColumn('atasan_langsung', function ($query, $order) {
+                $query->whereHas('mente', function ($query) use ($order) {
+                    $query->whereHas('atasanLangsung', function ($query) use ($order) {
+                        $query->whereHas('userPejabatStruktural', function ($query) use ($order) {
+                            $query->orderBy('nama', $order);
+                        });
+                    });
+                });
+            })
+            ->addColumn('penilai_ak', function (User $user) {
+                return '-';
+            })
+            ->addColumn('penetap_ak', function (User $user) {
+                return '-';
             })
             ->addColumn('action', function (User $user) {
                 return '<button class="btn btn-blue btn-sm edit-mente" data-id="' . $user->id . '">edit</button>';
@@ -63,9 +93,9 @@ class MenteDataTable extends DataTable
      */
     public function query(User $model): QueryBuilder
     {
-        return $model->newQuery()->whereHas('userPejabatStruktural', function ($query) {
-            $query->where('kab_kota_id', Auth::user()->userProvKabKota->kab_kota_id);
-        })->withWhereHas('mentes')->whereRoleIs('atasan_langsung');
+        return $model->newQuery()->with('mente.atasanLangsung.userPejabatStruktural')->whereHas('userAparatur', function ($query) {
+            $query->where('kab_kota_id', Auth::user()->load('userProvKabKota')->userProvKabKota->kab_kota_id);
+        })->whereRoleIs(getAllRoleFungsional());
     }
 
     /**
@@ -101,6 +131,10 @@ class MenteDataTable extends DataTable
     {
         return [
             Column::make('nama'),
+            Column::make('jabatan'),
+            Column::make('atasan_langsung'),
+            Column::make('penilai_ak'),
+            Column::make('penetap_ak'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

@@ -26,36 +26,68 @@
                         </div>
                     </div>
                     <div class="col-md-6 py-4">
-                        <h5 class="text-center pb-2">Riwayat
-                            Laporan
-                            Kegiatan</h5>
+                        <div class="d-flex justify-content-between align-items-center pb-3">
+                            <h5 class="text-center mb-0">Riwayat
+                                Laporan
+                                Kegiatan</h5>
+
+                            @switch($rencanaButirKegiatan->laporanKegiatanJabatan->status)
+                                @case(1)
+                                    <button class="btn btn-yellow px-3 btn-sm text-sm">Prosess</button>
+                                @break
+
+                                @case(2)
+                                    <button class="btn btn-red px-3 btn-sm text-sm">Revisi</button>
+                                @break
+
+                                @case(3)
+                                    <button class="btn btn-black px-3 btn-sm text-sm">Tolak</button>
+                                @break
+
+                                @case(4)
+                                    <button class="btn btn-green-dark px-3 btn-sm text-sm">Selesai</button>
+                                @break
+                            @endswitch
+                        </div>
 
                         <div class="timeline-vertical" data-simplebar
                             style="max-height: 74vh; overflow-y: auto; overflow-x: hidden;">
                             @foreach ($rencanaButirKegiatan->laporanKegiatanJabatan->historyButirKegiatans as $historyButirKegiatan)
                                 <div class="timeline-item">
-                                    @switch($historyButirKegiatan->status)
+                                    @switch($historyButirKegiatan->icon)
                                         @case(1)
-                                            <div class="timeline-icon icon-item icon-item-lg text-yellow border-300">
-                                                <i class="fa-solid fa-spinner"></i>
+                                            <div class="timeline-icon icon-item icon-item-lg border-300">
+                                                <i class="text-yellow fa-solid fa-spinner"></i>
                                             </div>
                                         @break
 
                                         @case(2)
-                                            <div class="timeline-icon icon-item icon-item-lg text-red border-300">
-                                                <i class="fa-solid fa-file-pen"></i>
+                                            <div class="timeline-icon icon-item icon-item-lg border-300">
+                                                <i class="text-red fa-solid fa-file-pen"></i>
                                             </div>
                                         @break
 
                                         @case(3)
-                                            <div class="timeline-icon icon-item icon-item-lg text-black border-300">
-                                                <i class="fa-solid fa-x"></i>
+                                            <div class="timeline-icon icon-item icon-item-lg border-300">
+                                                <i class="text-black fa-solid fa-x"></i>
                                             </div>
                                         @break
 
                                         @case(4)
-                                            <div class="timeline-icon icon-item icon-item-lg text-green border-300">
-                                                <i class="fa-solid fa-check"></i>
+                                            <div class="timeline-icon icon-item icon-item-lg border-300">
+                                                <i class="text-green fa-solid fa-check"></i>
+                                            </div>
+                                        @break
+
+                                        @case(5)
+                                            <div class="timeline-icon icon-item icon-item-lg border-300">
+                                                <i class="fa-solid fa-paper-plane"></i>
+                                            </div>
+                                        @break
+
+                                        @case(6)
+                                            <div class="timeline-icon icon-item icon-item-lg border-300">
+                                                <i class="text-gray fa-solid fa-keyboard"></i>
                                             </div>
                                         @break
                                     @endswitch
@@ -71,134 +103,19 @@
                                                 </p>
                                             </div>
                                         </div>
-                                        <div class="col-lg-12">
-                                            <div class="timeline-item-content">
-                                                <div class="timeline-item-card">
-                                                    <h5 class="mb-2">{{ $historyButirKegiatan->keterangan }}</h5>
-                                                    <p class="fs--1 mb-0">Most advanced dual‑camera system ever.
-                                                        Durability
-                                                        that’s front and center. And edge to edge. A lightning-fast chip
-                                                        that leaves the competition behind.</p>
+                                        @if (isset($historyButirKegiatan?->catatan))
+                                            <div class="col-lg-12">
+                                                <div class="timeline-item-content">
+                                                    <div class="timeline-item-card">
+                                                        <p class="fs--1 mb-0 text-gray">
+                                                            {{ $historyButirKegiatan->catatan }}</p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        @endif
                                     </div>
                                 </div>
                             @endforeach
-                            <div class="timeline-item">
-                                <div class="timeline-icon icon-item icon-item-lg text-primary border-300"><span
-                                        class="fs-1 fas fa-fire"></span></div>
-                                <div class="row">
-                                    <div class="col-lg-12 timeline-item-time">
-                                        <div>
-                                            <p class="fs--1 mb-0 fw-semi-bold">2010-2014</p>
-                                            <p class="fs--2 text-600">03 April</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="timeline-item-content">
-                                            <div class="timeline-item-card">
-                                                <h5 class="mb-2">iPad launched</h5>
-                                                <p class="fs--1 mb-0">Following on from the success of their iPhone
-                                                    launches and the popularity of lighter, more portable laptops, the
-                                                    iPad was born in 2010, combining the best features of both products.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            {{-- <div class="timeline-item">
-                                <div class="timeline-icon icon-item icon-item-lg text-primary border-300"><span
-                                        class="fs-1 fas fa-book-open"></span></div>
-                                <div class="row">
-                                    <div class="col-lg-12 timeline-item-time">
-                                        <div>
-                                            <p class="fs--1 mb-0 fw-semi-bold">2008</p>
-                                            <p class="fs--2 text-600">15 January</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="timeline-item-content">
-                                            <div class="timeline-item-card">
-                                                <h5 class="mb-2">MacBook Air released</h5>
-                                                <p class="fs--1 mb-0">Along with releasing the next generation of the
-                                                    iPhone, the iPhone 3G, Apple also released the MacBook Air which
-                                                    would set the precedent across the industry for thinner, lighter
-                                                    laptops. </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-icon icon-item icon-item-lg text-primary border-300"><span
-                                        class="fs-1 fas fa-rocket"></span></div>
-                                <div class="row">
-                                    <div class="col-lg-12 timeline-item-time">
-                                        <div>
-                                            <p class="fs--1 mb-0 fw-semi-bold">2007</p>
-                                            <p class="fs--2 text-600">01 January</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="timeline-item-content">
-                                            <div class="timeline-item-card">
-                                                <h5 class="mb-2">First generation iphone</h5>
-                                                <p class="fs--1 mb-0">The first-generation iPhone was released with a
-                                                    mere 4GB storage and would launch the company into a new portable
-                                                    internet age of smartphones.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-icon icon-item icon-item-lg text-primary border-300"><span
-                                        class="fs-1 fas fa-tint"></span></div>
-                                <div class="row">
-                                    <div class="col-lg-12 timeline-item-time">
-                                        <div>
-                                            <p class="fs--1 mb-0 fw-semi-bold">1984</p>
-                                            <p class="fs--2 text-600">24 April</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="timeline-item-content">
-                                            <div class="timeline-item-card">
-                                                <h5 class="mb-2">Apple IIc &amp; The Mac</h5>
-                                                <p class="fs--1 mb-0">1984 saw the rise of the Apple IIc, the first
-                                                    portable computer which was intended to be carried around but had no
-                                                    battery, this meant that a power socket would need to be nearby for
-                                                    you to use it.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-icon icon-item icon-item-lg text-primary border-300"><span
-                                        class="fs-1 fas fa-flag"></span></div>
-                                <div class="row">
-                                    <div class="col-lg-12 timeline-item-time">
-                                        <div>
-                                            <p class="fs--1 mb-0 fw-semi-bold">1976</p>
-                                            <p class="fs--2 text-600">01 July</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="timeline-item-content">
-                                            <div class="timeline-item-card">
-                                                <h5 class="mb-2">Apple I was launched</h5>
-                                                <p class="fs--1 mb-0">July 1st, 1976 was when the Apple I was launched,
-                                                    designed and built by Steve Wozniak, the co-founder of Apple.
-                                                    However, it was Steve Jobs who had the idea to sell the computer and
-                                                    it was there that the Apple empire was born.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> --}}
                         </div>
                     </div>
                 </div>

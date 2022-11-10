@@ -50,4 +50,21 @@ class AdminKabKotaController extends Controller
             'message' => "Berhasil ditolak",
         ]);
     }
+
+    public function hapus($id)
+    {
+        $user = User::query()->with('userProvKabKota')->find($id);
+        if (!$user) {
+            return response()->json([
+                'success' => false,
+                'message' => "Data tidak ditemukan",
+            ]);
+        }
+        deleteImage($user->userProvKabKota?->file_permohonan);
+        $user->delete();
+        return response()->json([
+            'success' => true,
+            'message' => "Berhasil dihapus",
+        ]);
+    }
 }

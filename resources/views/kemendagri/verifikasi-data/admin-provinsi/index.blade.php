@@ -67,7 +67,7 @@
                 showCancelButton: true,
                 confirmButtonText: 'Ya, tolak!',
                 cancelButtonText: "Batal",
-                reverseButtons:true,
+                reverseButtons: true,
                 showLoaderOnConfirm: true,
                 inputValidator: (value) => {
                     if (!value) {
@@ -114,6 +114,42 @@
                         type: 'POST',
                         url: "{{ url('kemendagri/verifikasi-data/admin-provinsi') }}/" + id +
                             "/verified",
+                        data: {
+                            _token: CSRF_TOKEN
+                        },
+                        dataType: 'JSON'
+                    });
+                },
+            }).then(function(e) {
+                if (e.value.success == true) {
+                    swal("Selesai!", e.value.message, "success").then(() => {
+                        $('#adminprovinsi-table').DataTable().ajax
+                            .reload()
+                    });
+                } else {
+                    swal("Error!", e.value.message, "error");
+                }
+            }, function(dismiss) {
+                return false;
+            })
+        }
+
+        function hapus(id) {
+            swal({
+                title: "Hapus?",
+                text: "Harap Pastikan Dan Kemudian Hapus!",
+                type: "warning",
+                showCancelButton: !0,
+                confirmButtonText: "Ya, hapus!",
+                cancelButtonText: "Batal",
+                reverseButtons: !0,
+                showLoaderOnConfirm: true,
+                preConfirm: async () => {
+                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                    return await $.ajax({
+                        type: 'POST',
+                        url: "{{ url('kemendagri/verifikasi-data/admin-provinsi') }}/" + id +
+                            "/hapus",
                         data: {
                             _token: CSRF_TOKEN
                         },
