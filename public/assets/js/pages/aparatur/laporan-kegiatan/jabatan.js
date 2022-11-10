@@ -23,6 +23,8 @@ $(document).ready(function () {
         e.preventDefault();
         $('input[name="rencana_butir_kegiatan"]').val($(this).data('rencana'));
         $('input[name="current_date"]').val($('input[name="tanggal"]').val());
+        console.log($(this).data('butir'));
+        $('#laporkan .butir').text($(this).data('butir'));
     });
 
     $('.simpan-kegiatan').click(function (e) {
@@ -122,26 +124,44 @@ $(document).ready(function () {
         });
     });
 
-    $(document).on('click', '.send-rekap', function (e) {
+    $(document).on('click', '.send-rekap', async function (e) {
         e.preventDefault();
-        $.ajax({
-            beforeSend: function () {
-                $('.send-rekap span').hide();
-                $('.send-rekap .spin').show();
-            },
-            type: 'POST',
-            url: url('/laporan-kegiatan/jabatan/rekapitulasi/send-rekap'),
-            dataType: "json",
-            success: function (response) {
-                $('.send-rekap span').show();
-                $('.send-rekap .spin').hide();
-                swal("Selesai!", response.message, "success").then(
-                    () => {
-                        location.reload();
-                    });
-            },
-            error: ajaxError
-        });
+        is_send = false;
+        await swal({
+            title: "Yakin ingin mengirim rekapitulasi?",
+            type: "warning",
+            showCancelButton: !0,
+            confirmButtonText: "Ya, yakin!",
+            cancelButtonText: "Batal",
+            reverseButtons: !0,
+            showLoaderOnConfirm: true,
+        }).then(function (e) {
+            if (e.value == true) {
+                is_send = true;
+            }
+        }, function (dismiss) {
+            return false;
+        })
+        if (is_send) {
+            $.ajax({
+                beforeSend: function () {
+                    $('.send-rekap span').hide();
+                    $('.send-rekap .spin').show();
+                },
+                type: 'POST',
+                url: url('/laporan-kegiatan/jabatan/rekapitulasi/send-rekap'),
+                dataType: "json",
+                success: function (response) {
+                    $('.send-rekap span').show();
+                    $('.send-rekap .spin').hide();
+                    swal("Selesai!", response.message, "success").then(
+                        () => {
+                            location.reload();
+                        });
+                },
+                error: ajaxError
+            });
+        }
     });
 
     $(document).on('click', '.rekap', function (e) {

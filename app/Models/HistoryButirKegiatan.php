@@ -12,6 +12,8 @@ class HistoryButirKegiatan extends Model
     protected $fillable = [
         'laporan_kegiatan_jabatan_id',
         'status',
+        'catatan',
+        'icon',
         'keterangan'
     ];
 
