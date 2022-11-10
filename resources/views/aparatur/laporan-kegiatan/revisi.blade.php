@@ -156,13 +156,34 @@
                                         </div>
                                     </div>
                                 @endforeach
-
+                                <div class="timeline-item">
+                                    <div class="timeline-icon icon-item icon-item-lg border-300">
+                                        <i class="text-gray fa-solid fa-clipboard-list"></i>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12 timeline-item-time">
+                                            <div>
+                                                <span class="btn btn-gray py-1 px-3"
+                                                    style="font-size: 12px !important;">Rencana Kinerja</span>
+                                                <p class="fs--1 mb-0 fw-semi-bold text-600">
+                                                    Rencana Kinerja Berhasil Disusun Oleh
+                                                    {{ $user->userAparatur?->nama }}
+                                                    - {{ $user->roles()->first()->display_name }}
+                                                </p>
+                                                <p class="fs--2 text-600">
+                                                    {{ $rencanaButirKegiatan->created_at->format('H:i:s') }} WIB,
+                                                    {{ $rencanaButirKegiatan->created_at->format('d F Y') }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="text-center my-4">
-                        <button class="btn btn-danger px-5" data-bs-dismiss="modal">Batal</button>
-                        <button type="button" data-rencana="{{ $rencanaButirKegiatan->id }}"
+                    <div class="text-end mb-4 mt-0">
+                        <button type="button" class="btn btn-danger px-5" data-bs-dismiss="modal">Batal</button>
+                        <button type="button" {{ $isDisabled }} data-rencana="{{ $rencanaButirKegiatan->id }}"
                             class="btn btn-blue px-5 revisi-kegiatan">
                             <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
                                 style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
