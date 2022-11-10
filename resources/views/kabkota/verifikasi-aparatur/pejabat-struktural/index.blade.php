@@ -77,7 +77,7 @@
                 });
         });
     </script>
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             var table = $('#pejabatstruktural-table').DataTable();
             $('#pejabatstruktural-table thead tr').clone(true).appendTo('#pejabatstruktural-table thead');
@@ -101,5 +101,5 @@
                 });
             });
         });
-    </script>
+    </script> --}}
 @endsection

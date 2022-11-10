@@ -127,17 +127,35 @@ class KegiatanJabatanController extends Controller
             'keterangan.required' => 'Detail kegiatan harus diisi',
             'doc_kegiatan_tmp.required' => 'Dokumen Kegiatan harus diisi'
         ]);
-        $rencanaButirKegiatan = RencanaButirKegiatan::query()->with('butirKegiatan')->findOrFail($request->rencana_butir_kegiatan);
+        $user = auth()->user()->load(['roles', 'userAparatur']);
+        $role = $user->roles()->first();
+        $rencanaButirKegiatan = RencanaButirKegiatan::query()->with('butirKegiatan.subUnsur.unsur.role')->findOrFail($request->rencana_butir_kegiatan);
         $laporanKegiatanJabatan = $rencanaButirKegiatan->laporanKegiatanJabatans()->create([
             'detail_kegiatan' => $request->keterangan,
             'current_date' => $request->current_date,
             'score' => $rencanaButirKegiatan->butirKegiatan->score
+        ]);
+        $userNama = $user->userAparatur->nama;
+        $jabatan = $role->display_name;
+        $historyButirKegiatan = $laporanKegiatanJabatan->historyButirKegiatans()->create([
+            'keterangan' => "Kegiatan dilaporkan oleh $userNama - $jabatan",
+            'detail_kegiatan' => $request->keterangan,
+            'status' => 5,
+            'icon' => 6
+        ]);
+        $laporanKegiatanJabatan->historyButirKegiatans()->create([
+            'keterangan' => 'Sedang divalidasi oleh Atasan Langsung',
+            'status' => 1,
+            'icon' => 1
         ]);
         foreach ($request->doc_kegiatan_tmp as $doc_kegiatan_tmp) {
             $tmp_file = TemporaryFile::query()->where('folder', $doc_kegiatan_tmp)->first();
             if ($tmp_file) {
                 Storage::copy("tmp/$tmp_file->folder/$tmp_file->file", "kegiatan/$tmp_file->file");
                 $laporanKegiatanJabatan->dokumenKegiatanPokoks()->create([
+                    'file' => url("storage/kegiatan/$tmp_file->file")
+                ]);
+                $historyButirKegiatan->dokumenHistoryButirKegiatans()->create([
                     'file' => url("storage/kegiatan/$tmp_file->file")
                 ]);
                 $tmp_file->delete();
@@ -147,19 +165,6 @@ class KegiatanJabatanController extends Controller
         $laporanKegiatanJabatan->update([
             'status' => 1
         ]);
-        $hsitories = [
-            [
-                'keterangan' => 'Menginput Laporan kegiatan',
-                'status' => 1,
-                'icon' => 6
-            ],
-            [
-                'keterangan' => 'Sedang divalidasi oleh Atasan Langsung',
-                'status' => 1,
-                'icon' => 1
-            ]
-        ];
-        $laporanKegiatanJabatan->historyButirKegiatans()->createMany($hsitories);
         return response()->json([
             'status' => 200,
             'message' => 'Berhasil'
@@ -185,11 +190,25 @@ class KegiatanJabatanController extends Controller
             'detail_kegiatan' => $request->keterangan,
             'score' => $laporanKegiatanJabatan->rencanaButirKegiatan->butirKegiatan->score
         ]);
+        $historyButirKegiatan = $laporanKegiatanJabatan->historyButirKegiatans()->create( [
+            'keterangan' => 'Kirim revisi Laporan kegiatan',
+            'detail_kegiatan' => $request->keterangan,
+            'status' => 5,
+            'icon' => 5
+        ]);
+        $laporanKegiatanJabatan->historyButirKegiatans()->create([
+            'keterangan' => 'Sedang divalidasi oleh Atasan Langsung',
+            'status' => 1,
+            'icon' => 1
+        ]);
         foreach ($request->doc_kegiatan_tmp as $doc_kegiatan_tmp) {
             $tmp_file = TemporaryFile::query()->where('folder', $doc_kegiatan_tmp)->first();
             if ($tmp_file) {
                 Storage::copy("tmp/$tmp_file->folder/$tmp_file->file", "kegiatan/$tmp_file->file");
                 $laporanKegiatanJabatan->dokumenKegiatanPokoks()->create([
+                    'file' => url("storage/kegiatan/$tmp_file->file")
+                ]);
+                $historyButirKegiatan->dokumenHistoryButirKegiatans()->create([
                     'file' => url("storage/kegiatan/$tmp_file->file")
                 ]);
                 $tmp_file->delete();
@@ -200,19 +219,6 @@ class KegiatanJabatanController extends Controller
             'status' => 1,
             'catatan' => null
         ]);
-        $hsitories = [
-            [
-                'keterangan' => 'Kirim revisi Laporan kegiatan',
-                'status' => 1,
-                'icon' => 5
-            ],
-            [
-                'keterangan' => 'Sedang divalidasi oleh Atasan Langsung',
-                'status' => 1,
-                'icon' => 1
-            ]
-        ];
-        $laporanKegiatanJabatan->historyButirKegiatans()->createMany($hsitories);
         return response()->json([
             'status' => 200,
             'message' => 'Berhasil'

@@ -83,7 +83,8 @@
     </div>
     <div class="modal fade" id="tambahRencana" tabindex="-1" role="dialog" aria-labelledby="tambahRencanaTitle"
         aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-centered modal-dialog-scrollable"
+            role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5>Tambah Rencana Kinerja</h5>
@@ -102,8 +103,8 @@
                                     @if ($unsur->isSubUnsur)
                                         <div class="accordion-item">
                                             <span
-                                            class="bg-green text-sm text-white font-bold py-1 mt-1 px-2 rounded-md label-role">
-                                            {{ $unsur->role?->display_name }}
+                                                class="bg-green text-sm text-white font-bold py-1 mt-1 px-2 rounded-md label-role">
+                                                {{ $unsur->role?->display_name }}
                                             </span>
                                             <div class="d-flex justify-content-between accordion-header py-3 px-2"
                                                 id="unsur{{ $unsur->id }}">
@@ -180,16 +181,17 @@
                                 @endforeach
                             </div>
                         </div>
-                    </div>
-                    <div class="modal-footer text-center" >
-                        <button class="btn btn-danger px-5" data-bs-dismiss="modal">Batal</button>
-                        <button type="button" class="btn btn-blue px-5 simpan-rencana">
-                            <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
-                                style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
-                            <span>Simpan</span>
-                        </button>
-                    </div>
-                </form>
+
+                        <div class="text-center mt-4">
+                            <button type="button" class="btn btn-danger px-5" data-bs-dismiss="modal">Batal</button>
+                            <button type="button" class="btn btn-blue px-5 simpan-rencana">
+                                <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
+                                    style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
+                                <span>Simpan</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

@@ -328,14 +328,6 @@
             }
         }
 
-        tbody>tr>td {
-            cursor: pointer;
-        }
-
-        tbody>tr:hover {
-            background-color: rgb(250, 250, 250);
-        }
-
         .btn-tambah-mente {
             background-color: #0D6EF8;
             padding: .5rem 1.5rem;
