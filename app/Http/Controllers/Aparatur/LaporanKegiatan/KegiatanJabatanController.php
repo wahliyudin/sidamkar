@@ -39,6 +39,8 @@ class KegiatanJabatanController extends Controller
             $isDisabled = $is_rekap ? 'disabled' : '';
             $rencanas = User::query()
                 ->with([
+                    'roles',
+                    'userAparatur',
                     'rencanas' => function ($query) use ($search) {
                         $query->where('nama', 'like', "%$search%")
                             ->orWhereHas('rencanaUnsurs.unsur', function ($query) use ($search) {
@@ -61,40 +63,40 @@ class KegiatanJabatanController extends Controller
                     },
                 ])
                 ->find(auth()->user()->id)?->rencanas->map(function (Rencana $rencana) use ($isDisabled) {
+                    $user = $rencana->user;
                     foreach ($rencana->rencanaUnsurs as $rencanaUnsur) {
                         foreach ($rencanaUnsur->rencanaSubUnsurs as $rencanaSubUnsur) {
                             foreach ($rencanaSubUnsur->rencanaButirKegiatans as $rencanaButirKegiatan) {
                                 if (isset($rencanaButirKegiatan->laporanKegiatanJabatan)) {
                                     if ($rencanaButirKegiatan->laporanKegiatanJabatan->status == 1) {
-                                        $rencanaButirKegiatan->button = '<button ' . $isDisabled . ' class="btn btn-yellow ms-3 px-3"
+                                        $rencanaButirKegiatan->button = '<button class="btn btn-yellow ms-3 px-3"
                                             data-bs-toggle="modal"
                                             data-bs-target="#riwayatKegiatan' . $rencanaButirKegiatan->id . '"
                                             type="button">Prosess</button>
-                                        ' . view('aparatur.laporan-kegiatan.riwayat', compact('rencanaButirKegiatan'));
+                                        ' . view('aparatur.laporan-kegiatan.riwayat', compact('rencanaButirKegiatan', 'user'));
                                     } elseif ($rencanaButirKegiatan->laporanKegiatanJabatan->status == 2) {
                                         $rencanaButirKegiatan->button = '<button
-                                            ' . $isDisabled . '
                                             class="btn btn-red ms-3 px-3 btn-sm btn-revisi"
                                             data-rencana="' . $rencanaButirKegiatan->id . '" type="button">Revisi</button>'
-                                            . view('aparatur.laporan-kegiatan.revisi', compact('rencanaButirKegiatan'));
+                                            . view('aparatur.laporan-kegiatan.revisi', compact('rencanaButirKegiatan', 'isDisabled', 'user'));
                                     } elseif ($rencanaButirKegiatan->laporanKegiatanJabatan->status == 3) {
-                                        $rencanaButirKegiatan->button = '<button ' . $isDisabled . ' class="btn btn-black ms-3 px-3"
+                                        $rencanaButirKegiatan->button = '<button class="btn btn-black ms-3 px-3"
                                             data-bs-toggle="modal"
                                             data-bs-target="#riwayatKegiatan' . $rencanaButirKegiatan->id . '"
                                             type="button">Ditolak</button>'
-                                            . view('aparatur.laporan-kegiatan.riwayat', compact('rencanaButirKegiatan'));
+                                            . view('aparatur.laporan-kegiatan.riwayat', compact('rencanaButirKegiatan', 'user'));
                                     } elseif ($rencanaButirKegiatan->laporanKegiatanJabatan->status == 4) {
-                                        $rencanaButirKegiatan->button = ' <button ' . $isDisabled . ' class="btn btn-green-dark ms-3 px-3"
+                                        $rencanaButirKegiatan->button = ' <button class="btn btn-green-dark ms-3 px-3"
                                             data-bs-toggle="modal"
                                             data-bs-target="#riwayatKegiatan' . $rencanaButirKegiatan->id . '"
                                             type="button">Selesai</button>'
-                                            . view('aparatur.laporan-kegiatan.riwayat', compact('rencanaButirKegiatan'));
+                                            . view('aparatur.laporan-kegiatan.riwayat', compact('rencanaButirKegiatan', 'user'));
                                     } else {
                                         $rencanaButirKegiatan->button = '<button
                                             ' . $isDisabled . '
                                             data-butir="' . $rencanaButirKegiatan->butirKegiatan->nama . '"
                                             data-rencana="' . $rencanaButirKegiatan->id . '"
-                                            class="btn btn-gray ms-3 px-3 laporkan" data-bs-toggle="modal"
+                                            class="btn btn-red-terang btn-sm ms-3 px-3 laporkan" style="font-size: 13px !important;" data-bs-toggle="modal"
                                             data-bs-target="#laporkan" type="button">Laporkan</button>';
                                     }
                                 } else {
@@ -102,7 +104,7 @@ class KegiatanJabatanController extends Controller
                                         ' . $isDisabled . '
                                         data-butir="' . $rencanaButirKegiatan->butirKegiatan->nama . '"
                                         data-rencana="' . $rencanaButirKegiatan->id . '"
-                                        class="btn btn-gray ms-3 px-3 laporkan" data-bs-toggle="modal"
+                                        class="btn btn-red-terang btn-sm ms-3 px-3 laporkan" style="font-size: 13px !important;" data-bs-toggle="modal"
                                         data-bs-target="#laporkan" type="button">Laporkan</button>';
                                 }
                             }
