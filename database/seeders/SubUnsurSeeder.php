@@ -15,6 +15,7 @@ class SubUnsurSeeder extends Seeder
      */
     public function run()
     {
+        // Sub Unsur dengan id 1 sampai dengan 73 adalah milik dari kegiatan pokok JABATAN FUNGSIONAL PEMADAM KEBAKARAN 
 
         $damkarPemula = [
             [
@@ -206,6 +207,10 @@ class SubUnsurSeeder extends Seeder
                 'unsur_id' => 9,
                 'nama' => 'Pengembalian peralatan di pos pemadam kebakaran dan penyelamatan'
             ],
+        ];
+        SubUnsur::query()->upsert($terampil, 'id');
+
+        $mahir = [
             [
                 // 38
                 'unsur_id' => 10,
@@ -291,6 +296,10 @@ class SubUnsurSeeder extends Seeder
                 'unsur_id' => 13,
                 'nama' => 'Pengembalian peralatan di pos pemadam kebakaran'
             ],
+        ];
+        SubUnsur::query()->upsert($mahir, 'id');
+
+        $penyelia = [
             [
                 // 55
                 'unsur_id' => 14,
@@ -386,8 +395,68 @@ class SubUnsurSeeder extends Seeder
                 'unsur_id' => 18,
                 'nama' => 'Pengembalian peralatan di pos pemadam kebakaran dan penyelamatan'
             ],
-
         ];
-        SubUnsur::query()->upsert($terampil, 'id');
+        SubUnsur::query()->upsert($penyelia, 'id');
+        //end Sub Unsur dengan id 1 sampai dengan 73 adalah milik dari kegiatan pokok JABATAN FUNGSIONAL PEMADAM KEBAKARAN 
+
+        // Sub unsur ini untuk kegiatan pokok dar JABATAN FUNGSIONAL ANALIS KEBAKARAN DAN ANGKA KREDITNYA
+
+        //     [
+        //         // 74
+        //         'unsur_id' => 19,
+        //         'nama' => 'Pengetahuan regulasi dalam bidang proteksi kebakaran'
+        //     ],
+        //     [
+        //         // 75
+        //         'unsur_id' => 20,
+        //         'nama' => 'Pengetahuan regulasi dalam bidang proteksi kebakaran'
+        //     ],
+        //     [
+        //         // 76
+        //         'unsur_id' => 19,
+        //         'nama' => 'Persiapan dan pemyusunan kebutuhan dokumen dan peralatan pemeriksaan gedung'
+        //     ],
+        //     [
+        //         // 77
+        //         'unsur_id' => 20,
+        //         'nama' => 'Persiapan dan pemyusunan kebutuhan dokumen dan peralatan pemeriksaan gedung'
+        //     ],
+        //     [
+        //         // 78
+        //         'unsur_id' => 19,
+        //         'nama' => 'Pengetahuan teknis prosedur pemeriksaan dan pengujian'
+        //     ],
+        //     [
+        //         // 79
+        //         'unsur_id' => 20,
+        //         'nama' => 'Pengetahuan teknis prosedur pemeriksaan dan pengujian'
+        //     ],
+        //     [
+        //         // 80
+        //         'unsur_id' => 21,
+        //         'nama' => 'Verifikasi dokumen pemeriksaan'
+        //     ],
+        //     [
+        //         // 81
+        //         'unsur_id' => 22,
+        //         'nama' => 'Verifikasi dokumen pemeriksaan'
+        //     ],
+        //     [
+        //         // 82
+        //         'unsur_id' => 21,
+        //         'nama' => 'Pemeriksaan dan pengujian sistem proteksi kebakaran, sarana penyelamatan jiwa dan akses pemadam kebakaran'
+        //     ],
+        //     [
+        //         // 84
+        //         'unsur_id' => 23,
+        //         'nama' => 'Pengetahuan teknik pelaporan hasil pemeriksaan dan pengujian'
+        //     ],
+        //     [
+        //         // 85
+        //         'unsur_id' => 24,
+        //         'nama' => 'Pengetahuan teknik pelaporan hasil pemeriksaan dan pengujian'
+        //     ],
+        // ];
+        // SubUnsur::query()->upsert($terampil, 'id');
     }
 }

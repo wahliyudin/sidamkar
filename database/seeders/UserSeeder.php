@@ -7,6 +7,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 class UserSeeder extends Seeder
 {
@@ -48,6 +49,18 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'status_akun' => 1
         ])->attachRole('analis_kebakaran_ahli_pertama');
+        $analisKebakaran->userAparatur()->create([
+            'nama' => 'Analis Kebakaran Ahli Pertama',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 11,
+            'kab_kota_id' => 1101,
+        ]);
 
         $kabKota = User::query()->create([
             'username' => 'Kab Kota',
