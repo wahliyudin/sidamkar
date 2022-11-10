@@ -48,6 +48,9 @@ class PejabatFungsionalDataTable extends DataTable
                     $query->orderBy('display_name', $order);
                 });
             })
+            ->addColumn('tgl_registrasi', function (User $user) {
+                return $user->created_at->translatedFormat('d F Y');
+            })
             ->addColumn('status', function (User $user) {
                 return $this->statusAkun($user->status_akun);
             })
@@ -63,7 +66,7 @@ class PejabatFungsionalDataTable extends DataTable
      */
     public function query(User $model): QueryBuilder
     {
-        return $model->newQuery()->with('roles')->whereRoleIs(getAllRoleFungsional());
+        return $model->newQuery()->with('roles')->whereRoleIs(getAllRoleFungsional())->latest();
     }
 
     /**
@@ -102,6 +105,7 @@ class PejabatFungsionalDataTable extends DataTable
                 ->title('Nama'),
             Column::make('nip'),
             Column::make('jabatan'),
+            Column::make('tgl_registrasi'),
             Column::make('status')
                 ->title('Status Verifikasi'),
         ];

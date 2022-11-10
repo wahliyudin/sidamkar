@@ -22947,6 +22947,14 @@ a {
     color: rgba(234, 58, 61, 0.8);
 }
 
+.text-yellow {
+    color: #FFC107;
+}
+
+.text-gray {
+    color: #6C757D;
+}
+
 .circle {
     border-radius: 100%;
     font-size: 25px;

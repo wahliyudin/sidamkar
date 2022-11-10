@@ -30,13 +30,18 @@
                             <div class="circle circle-blue">
                                 <i class="fa-solid fa-user"></i>
                             </div>
-                            <div class="d-flex flex-column ms-2">
+                            <div class="d-flex flex-column ms-2" style="flex-grow: 1;">
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                     Penilai AK
                                 </p>
-                                <h2 style="font-family: 'Roboto';color: #06152B; font-size: 16px;" class="target">
-                                    {{ $penilai?->nama ?? '-' }}
-                                </h2>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h2 style="font-family: 'Roboto';color: #06152B; font-size: 16px" class="target">
+                                        {{ $penilai?->nama ?? '-' }}
+                                    </h2>
+                                    <button class="tambah-penilai" data-bs-toggle="modal" data-bs-target="#tambahPenilai">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -49,13 +54,18 @@
                             <div class="circle circle-purple">
                                 <i class="fa-solid fa-user"></i>
                             </div>
-                            <div class="d-flex flex-column ms-2">
+                            <div class="d-flex flex-column ms-2" style="flex-grow: 1;">
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                     Penetap AK
                                 </p>
-                                <h2 style="font-family: 'Roboto';color: #06152B; font-size: 16px" class="target">
-                                    {{ $penetap?->nama ?? '-' }}
-                                </h2>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h2 style="font-family: 'Roboto';color: #06152B; font-size: 16px" class="target">
+                                        {{ $penetap?->nama ?? '-' }}
+                                    </h2>
+                                    <button class="tambah-penetap" data-bs-toggle="modal" data-bs-target="#tambahPenetap">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -68,15 +78,8 @@
                     <div class="card-header">
                         <div class="row justify-content-between align-items-center">
                             <div class="col-md-7">
-                                <h5>Tabel Data Mentee</h5>
+                                <h5>Tabel Data Aparatur</h5>
                             </div>
-                            <div class="col-md-5 d-flex justify-content-end">
-                                <a href="" class="btn btn-mente py-2 btn-sm text-wrap" data-bs-toggle="modal"
-                                    data-bs-target="#tambahedit"><i class="fa-solid fa-user-tie me-2"></i>Tambah/Edit
-                                    Penilai & Penetap AK</a>
-                            </div>
-                        </div>
-                        <div class="row justify-content-end" style="margin-top: 1rem;">
                             <div class="col-md-3 d-flex justify-content-end">
                                 <a href="" class="btn-tambah-mente btn-sm" style="right: 0;" data-bs-toggle="modal"
                                     data-bs-target="#tambahMentee"><i class="fa-solid fa-user-group"></i> Tambah Mentee</a>
@@ -172,12 +175,8 @@
 
     <div class="modal fade" id="editMentee" tabindex="-1" role="dialog" aria-labelledby="editMenteeTitle"
         aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-centered" role="document">
-            <div class="modal-content relative">
-                <div class="bg-spin" style="display: none;">
-                    <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
-                        style="height: 3rem; object-fit: cover;" alt="" srcset="">
-                </div>
+        <div class="modal-dialog modal-dialog-centered modal-dialog-centered" role="document">
+            <div class="modal-content">
                 <div class="modal-header">
                     <h5 style="color: #06152B;" class="modal-title" id="editMenteeTitle">
                         Edit Mentee
@@ -188,33 +187,15 @@
                 </div>
                 <div class="modal-body">
                     <form method="post" class="mente-fungsional-edit">
-                        <div class="row">
-                            <div class="col">
-                                <div class="card mt-3 mb-0"
-                                    style="border: var(--bs-modal-header-border-width) solid var(--bs-modal-header-border-color); overflow: hidden;">
-                                    <div class="card-header py-3">
-                                        <div class="row justify-content-between">
-                                            <div class="col-md-3">
-                                                <h5 style="color: #06152B;">Data Pejabat Fungsional</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <table class="table table-striped w-100" id="table-fungsional-edit">
-                                            <thead
-                                                style="position: sticky; top: 0; color: black; background-color: white;">
-                                                <tr>
-                                                    <th>Pilih</th>
-                                                    <th>Nama</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="form-group">
+                            <label>Atasan Langsung</label>
+                            <select class="choices form-select" name="atasan_langsung">
+                                <option disabled selected>Pilih Atasan</option>
+                                @foreach ($atasanLangsungs as $atasanLangsung)
+                                    <option value="{{ $atasanLangsung->id }}">
+                                        {{ $atasanLangsung->userPejabatStruktural?->nama }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </form>
                 </div>
@@ -232,13 +213,13 @@
         </div>
     </div>
 
-    <div class="modal fade" id="tambahedit" tabindex="-1" role="dialog" aria-labelledby="tambaheditTitle"
+    <div class="modal fade" id="tambahPenilai" tabindex="-1" role="dialog" aria-labelledby="tambahPenilaiTitle"
         aria-hidden="true">
-        <div class="modal-dialog modal-md modal-dialog-centered modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="tambaheditTitle">
-                        Penilai & Penetap AK
+                    <h5 class="modal-title" id="tambahPenilaiTitle">
+                        Penilai AK
                     </h5>
                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <i data-feather="x"></i>
@@ -258,13 +239,44 @@
                                     </select>
                                 </div>
                             </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                        <span>Batal</span>
+                    </button>
+                    <button class="btn btn-green ml-1 simpan-penilai">
+                        <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
+                            style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
+                        <span>Simpan</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="tambahPenetap" tabindex="-1" role="dialog" aria-labelledby="tambahPenetapTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tambahPenetapTitle">
+                        Penetap AK
+                    </h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <i data-feather="x"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" enctype="multipart/form-data" class="container-unsur">
+                        <div class="row justify-content-center">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Penetap AK</label>
-                                    <select class="choices form-select" name="role_id">
+                                    <select class="form-select" name="role_id">
                                         <option disabled selected>- Pilih Penetap -</option>
                                         @foreach ($penetaps as $penetap)
-                                            <option>{{ $penetap->userPejabatStruktural->nama }}</option>
+                                            <option>{{ $penetap->userPejabatStruktural?->nama }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -276,7 +288,7 @@
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
                         <span>Batal</span>
                     </button>
-                    <button class="btn btn-green ml-1 simpan-kegiatan">
+                    <button class="btn btn-green ml-1 simpan-penetap">
                         <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
                             style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
                         <span>Simpan</span>
@@ -344,6 +356,23 @@
             justify-content: center;
             align-items: center;
             background-color: #00000075;
+        }
+
+        .tambah-penetap,
+        .tambah-penilai {
+            padding: .06rem .32rem;
+            border-radius: 50%;
+            font-size: 14px;
+        }
+
+        .tambah-penilai {
+            border: 2px solid #28d5e0;
+            color: #28d5e0;
+        }
+
+        .tambah-penetap {
+            border: 2px solid #0D6EF8;
+            color: #0D6EF8;
         }
     </style>
     <link rel="stylesheet" href="{{ asset('assets/css/shared/sweetalert2.min.css') }}">
