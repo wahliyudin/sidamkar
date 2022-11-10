@@ -28,6 +28,12 @@ class AdminKabKotaDataTable extends DataTable
                 $route = '';
                 return view('kemendagri.extensions.buttons-tolak-verif', compact('user', 'route'))->render();
             })
+            ->addColumn('provinsi', function (User $user){
+                return $user->userProvKabKota->provinsi->nama;
+            })
+            ->addColumn('kab_kota', function (User $user){
+                return $user->userProvKabKota->kab_kota->nama;
+            })
             ->addColumn('file-permohonan', function (User $user) {
                 return '<div data-bs-toggle="modal" data-bs-target="#filePermohonan'.$user->id.'" style="cursor: pointer; display: flex; align-items: center;">
                     <img src="'.asset('assets/images/template/lihat-doc.png').'" style="width: 26px;" alt="">
@@ -86,7 +92,11 @@ class AdminKabKotaDataTable extends DataTable
         return [
             Column::computed('no'),
             Column::make('username')
-                ->title('Nama'),
+                ->title('Username'),
+            Column::make('provinsi')
+                ->title('Provinsi'),
+            Column::make('kab_kota')
+                ->title('Kabupaten/Kota'),
             Column::computed('file-permohonan')
                 ->title('File Permohonan'),
             Column::computed('status')
