@@ -331,6 +331,9 @@
                         </a>
                         <ul
                             class="submenu {{ request()->is('kemendagri/cms/kegiatan-profesi*') || request()->is('kemendagri/cms/informasi*') || request()->is('kemendagri/cms/kegiatan-jabatan*') || request()->is('kemendagri/cms/periode*') ? 'active' : '' }}">
+                            <li class="submenu-item {{ request()->is('kemendagri/cms/periode*') ? 'active' : '' }}">
+                                <a href="{{ route('kemendagri.cms.periode.index') }}">Periode</a>
+                            </li>
                             <li
                                 class="submenu-item {{ request()->is('kemendagri/cms/kegiatan-jabatan*') ? 'active' : '' }}">
                                 <a href="{{ route('kemendagri.cms.kegiatan-jabatan.index') }}">Kegiatan Jabatan</a>
@@ -341,9 +344,6 @@
                             </li>
                             <li class="submenu-item {{ request()->is('kemendagri/cms/informasi*') ? 'active' : '' }}">
                                 <a href="{{ route('kemendagri.cms.informasi.index') }}">Informasi</a>
-                            </li>
-                            <li class="submenu-item {{ request()->is('kemendagri/cms/periode*') ? 'active' : '' }}">
-                                <a href="{{ route('kemendagri.cms.periode.index') }}">Periode</a>
                             </li>
                         </ul>
                     </li>
