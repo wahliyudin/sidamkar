@@ -108,7 +108,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="basicInput">Jabatan</label>
-                                        <input type="text" name="jabatan" disabled class="form-control" placeholder="" value="{{ Auth::user()->roles()->first()->display_name }}">
+                                        <input type="text" name="jabatan" disabled class="form-control" placeholder="" value="{{ $user->roles()->first()->display_name }}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
