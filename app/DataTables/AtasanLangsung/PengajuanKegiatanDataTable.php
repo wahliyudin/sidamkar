@@ -40,6 +40,9 @@ class PengajuanKegiatanDataTable extends DataTable
                     });
                 });
             })
+            ->addColumn('nip', function (Mente $mente) {
+                return $mente->fungsional->userAparatur?->nip;
+            })
             ->addColumn('action', function (Mente $mente) {
                 return '<a class="btn btn-primary btn-status px-3 text-sm" href="' . route('atasan-langsung.pengajuan-kegiatan.show', $mente->fungsional->id) . '">Detail</a>';
             })
@@ -92,6 +95,7 @@ class PengajuanKegiatanDataTable extends DataTable
     {
         return [
             Column::make('nama'),
+            Column::make('nip'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

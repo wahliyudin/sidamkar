@@ -27,7 +27,7 @@
                     <li class="sidebar-item {{ request()->routeIs('kegiatan.jabatan') ? 'active' : '' }}">
                         <a href="{{ route('kegiatan.jabatan') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
-                                <i class="bi bi-grid-fill"></i>
+                                <i class="bi bi-file-earmark-text-fill"></i>
                             </div>
                             <span>Rencana Kinerja</span>
                         </a>
