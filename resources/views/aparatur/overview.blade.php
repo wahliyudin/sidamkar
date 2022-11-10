@@ -3,10 +3,7 @@
 @section('content')
     <section class="section">
         @if (!isset(Auth::user()->userAparatur?->nip))
-            <div class="alert alert-warning" style="color: white;"><i class="fa-solid fa-circle-exclamation"></i> Harap
-                Lengkapi
-                Data
-                Profile
+            <div class="alert alert-danger" style="color: white;"><i class="fa-solid fa-circle-exclamation"></i> Harap Lengkapi Data Profile
             </div>
         @endif
         <div class="row">
