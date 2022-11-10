@@ -34,7 +34,7 @@
                                 style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
                             <span>Tolak</span>
                         </button>
-                        <button type="button" data-id="{{ $rencanaButirKegiatan->id }}"
+                        <button type="button" data-user="{{ $user->id }}" data-id="{{ $rencanaButirKegiatan->id }}"
                             class="btn btn-gray px-4 revisi-kegiatan ms-2">
                             <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
                                 style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">

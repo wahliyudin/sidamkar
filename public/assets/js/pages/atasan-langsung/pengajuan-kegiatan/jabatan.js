@@ -12,7 +12,7 @@ $(document).ready(function () {
     $(document).on('click', '.revisi-kegiatan', function (e) {
         e.preventDefault();
         $('#lihat' + $(this).data('id')).modal('hide');
-        revisi($(this).data('id'), $('input[name="tanggal"]').val())
+        revisi($(this).data('id'), $('input[name="tanggal"]').val(), $(this).data('user'))
     });
     $(document).on('click', '.verifikasi-kegiatan', function (e) {
         e.preventDefault();
@@ -59,7 +59,7 @@ $(document).ready(function () {
         })
     }
 
-    function revisi(id, current_date) {
+    function revisi(id, current_date, user_id) {
         swal({
             title: "Revisi?",
             text: "Masukan alasan kenapa harus direvisi!",
@@ -80,7 +80,8 @@ $(document).ready(function () {
                     type: 'POST',
                     url: url("/atasan-langsung/pengajuan-kegiatan/" + id + "/" + current_date + "/revisi"),
                     data: {
-                        catatan: value
+                        catatan: value,
+                        user_id: user_id
                     },
                     dataType: 'JSON'
                 });
