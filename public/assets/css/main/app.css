@@ -21726,6 +21726,11 @@ body .bi:before {
     position: relative;
 }
 
+.sidebar-wrapper .menu .sidebar-link:hover,
+.sidebar-wrapper .menu .sidebar-link:hover i {
+    color: #ff1e1e;
+}
+
 .sidebar-wrapper .menu .sidebar-link i,
 .sidebar-wrapper .menu .sidebar-link svg {
     color: #ffffff;

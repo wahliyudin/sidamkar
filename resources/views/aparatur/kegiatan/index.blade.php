@@ -60,20 +60,19 @@
         <div class="row">
             <div class="card">
                 <div class="card-header">
-                    <div class="row">
+                    <div class="row justify-content-between">
                         <div class="col-md-6">
                             <h3>Kegiatan Jabatan</h3>
+                            <button class="btn btn-green text-sm ps-3" data-bs-toggle="modal"
+                                data-bs-target="#tambahRencana"><i class="fa-solid fa-clipboard-list me-1"></i> Tambah
+                                Rencana</button>
                         </div>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between">
-                        <button class="btn btn-green text-sm ps-3" data-bs-toggle="modal" data-bs-target="#tambahRencana"><i
-                                class="fa-solid fa-clipboard-list me-1"></i> Tambah
-                            Rencana</button>
                         <div class="form-group col-md-4">
                             <label>Search</label>
                             <input type="text" placeholder="Search..." name="search" class="form-control">
                         </div>
                     </div>
+
                 </div>
                 <div class="card-body px-2 rencana-container">
 
@@ -129,8 +128,8 @@
                                                                             style="margin-top: 0 !important;"
                                                                             class="form-check-input"
                                                                             data-unsurid="{{ $unsur->id }}"
-                                                                            value="{{ $sub_unsur->id }}"
-                                                                            name="sub_unsurs[]" id="">
+                                                                            value="{{ $sub_unsur->id }}" name="sub_unsurs[]"
+                                                                            id="">
                                                                         <h6 class="accordian-title ms-1"
                                                                             style="margin-bottom: 0 !important; user-select: none;">
                                                                             {{ $sub_unsur->nama }}
