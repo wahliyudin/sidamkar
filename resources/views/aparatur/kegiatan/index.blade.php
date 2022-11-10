@@ -181,17 +181,16 @@
                                 @endforeach
                             </div>
                         </div>
-
-                    </div>
-                    <div class="modal-footer">
+                        <div class="text-center mt-4">
+                            <button type="button" class="btn btn-danger px-5" data-bs-dismiss="modal">Batal</button>
+                            <button type="button" class="btn btn-blue px-5 simpan-rencana">
+                                <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
+                                    style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
+                                <span>Simpan</span>
+                            </button>
+                        </div>
                     </form>
-                        <button type="button" class="btn btn-danger px-5" data-bs-dismiss="modal">Batal</button>
-                        <button type="button" class="btn btn-blue px-5 simpan-rencana">
-                            <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
-                                style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
-                            <span>Simpan</span>
-                        </button>
-                    </div>
+                </div>
             </div>
         </div>
     </div>
