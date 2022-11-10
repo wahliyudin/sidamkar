@@ -179,7 +179,8 @@
                                             <span class="btn btn-gray py-1 px-3"
                                                 style="font-size: 12px !important;">Rencana Kinerja</span>
                                             <p class="fs--1 mb-0 fw-semi-bold text-600">
-                                                Rencana Kinerja Berhasil Disusun Oleh {{ $user->userAparatur?->nama }}
+                                                Rencana Kinerja Berhasil Disusun Oleh
+                                                {{ $user->userAparatur?->nama }}
                                                 - {{ $user->roles()->first()->display_name }}
                                             </p>
                                             <p class="fs--2 text-600">
@@ -196,3 +197,4 @@
             </div>
         </div>
     </div>
+</div>

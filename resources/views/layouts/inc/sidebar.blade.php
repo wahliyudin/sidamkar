@@ -115,7 +115,7 @@
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="fa-solid fa-clipboard"></i>
                             </div>
-                            <span>Pengajuan Kegiatan</span>
+                            <span>Verifikasi Kegiatan</span>
                         </a>
                     </li>
                     <li class="sidebar-item {{ request()->routeIs('atasan-langsung.kegiatan-selesai') ? 'active' : '' }}">
