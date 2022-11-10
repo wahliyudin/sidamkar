@@ -39,12 +39,12 @@ class PejabatFungsionalDataTable extends DataTable
                 return $user->roles()->first()->display_name;
             })
             ->filterColumn('jabatan', function ($query, $keyword) {
-                $query->whereHas('roles', function($query) use ($keyword){
+                $query->whereHas('roles', function ($query) use ($keyword) {
                     $query->where('display_name', 'like', "%$keyword%");
                 });
             })
             ->orderColumn('jabatan', function ($query, $order) {
-                $query->whereHas('roles', function($query) use ($order){
+                $query->whereHas('roles', function ($query) use ($order) {
                     $query->orderBy('display_name', $order);
                 });
             })
@@ -66,7 +66,9 @@ class PejabatFungsionalDataTable extends DataTable
      */
     public function query(User $model): QueryBuilder
     {
-        return $model->newQuery()->with('roles')->whereRoleIs(getAllRoleFungsional())->latest();
+        return $model->newQuery()->with(['roles'])->withWhereHas('userAparatur', function ($query) {
+            $query->where('kab_kota_id', auth()->user()->load('userProvKabKota')->userProvKabKota->kab_kota_id);
+        })->whereRoleIs(getAllRoleFungsional())->latest();
     }
 
     /**
