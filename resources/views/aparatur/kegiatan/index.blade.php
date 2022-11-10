@@ -83,7 +83,8 @@
     </div>
     <div class="modal fade" id="tambahRencana" tabindex="-1" role="dialog" aria-labelledby="tambahRencanaTitle"
         aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-centered modal-dialog-scrollable"
+            role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5>Tambah Rencana Kinerja</h5>
@@ -101,6 +102,10 @@
                                 @foreach ($unsurs as $unsur)
                                     @if ($unsur->isSubUnsur)
                                         <div class="accordion-item">
+                                            <span
+                                                class="bg-green text-sm text-white font-bold py-1 mt-1 px-2 rounded-md label-role">
+                                                {{ $unsur->role?->display_name }}
+                                            </span>
                                             <div class="d-flex justify-content-between accordion-header py-3 px-2"
                                                 id="unsur{{ $unsur->id }}">
                                                 <div class="d-flex align-items-center justify-content-between w-100"
