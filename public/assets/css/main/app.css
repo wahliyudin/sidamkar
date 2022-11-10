@@ -21727,7 +21727,8 @@ body .bi:before {
 }
 
 .sidebar-wrapper .menu .sidebar-link:hover,
-.sidebar-wrapper .menu .sidebar-link:hover i {
+.sidebar-wrapper .menu .sidebar-link:hover i,
+.sidebar-wrapper .menu .sidebar-link:hover svg {
     color: #ff1e1e;
 }
 
