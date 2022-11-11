@@ -702,7 +702,7 @@ class UserSeeder extends Seeder
             'jenis_kelamin' => 'L',
             'pendidikan_terakhir' => 2,
             'provinsi_id' => 11,
-            'kab_kota_id' => 1101,
+            'kab_kota_id' => 1106,
         ]);
 
         $atasanLangsung5 = User::query()->create([
@@ -868,7 +868,7 @@ class UserSeeder extends Seeder
             'email' => 'adminrwr6@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'status_akun' => 1
+            'status_akun' => 0
         ])->attachRole('penilai_ak');
         $penilaiAK3->userPejabatStruktural()->create([
             'nama' =>  fake()->name,
@@ -880,17 +880,18 @@ class UserSeeder extends Seeder
             'jenis_kelamin' => 'L',
             'pendidikan_terakhir' => 2,
             'provinsi_id' => 11,
-            'kab_kota_id' => 1101,
+            'kab_kota_id' => 1106,
         ]);
+
         $penilaiAK4 = User::query()->create([
-            'username' =>  fake()->name,
+            'username' => 'Penilai AK4',
             'email' => 'admasasin6@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 0
         ])->attachRole('penilai_ak');
         $penilaiAK4->userPejabatStruktural()->create([
-            'nama' => 'Penilai AK4',
+            'nama' => fake()->name(),
             'nip' => '2020020088',
             'nomor_karpeg' => '2020020088',
             'pangkat_golongan_tmt_id' => 5,
@@ -899,7 +900,87 @@ class UserSeeder extends Seeder
             'jenis_kelamin' => 'L',
             'pendidikan_terakhir' => 2,
             'provinsi_id' => 11,
-            'kab_kota_id' => 1101,
+            'kab_kota_id' => 1106,
+        ]);
+
+        $penilaiAK5 = User::query()->create([
+            'username' =>  'Penilai AK5',
+            'email' => 'admas4546asin6@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ])->attachRole('penilai_ak');
+        $penilaiAK5->userPejabatStruktural()->create([
+            'nama' => fake()->name,
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 32,
+            'kab_kota_id' => 3204,
+        ]);
+
+        $penilaiAK6 = User::query()->create([
+            'username' =>  'Penilai AK6',
+            'email' => 'admas4ewewin6@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ])->attachRole('penilai_ak');
+        $penilaiAK6->userPejabatStruktural()->create([
+            'nama' => fake()->name,
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 32,
+            'kab_kota_id' => 3204,
+        ]);
+
+        $penilaiAK7 = User::query()->create([
+            'username' =>  'Penilai AK7',
+            'email' => 'admas4edsdswewin6@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ])->attachRole('penilai_ak');
+        $penilaiAK7->userPejabatStruktural()->create([
+            'nama' => fake()->name,
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 32,
+            'kab_kota_id' => 3276,
+        ]);
+
+        $penilaiAK8 = User::query()->create([
+            'username' =>  'Penilai AK8',
+            'email' => 'admas4sdsdsewewfdin6@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ])->attachRole('penilai_ak');
+        $penilaiAK8->userPejabatStruktural()->create([
+            'nama' => fake()->name,
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 32,
+            'kab_kota_id' => 3276,
         ]);
 
         $penetapAK3232 = User::query()->create([
