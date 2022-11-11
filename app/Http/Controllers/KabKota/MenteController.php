@@ -68,7 +68,7 @@ class MenteController extends Controller
     {
         $atasan_langsung_id = Mente::query()->where('fungsional_id', $id)->first()?->atasan_langsung_id;
         if (!$atasan_langsung_id) {
-            throw ValidationException::withMessages(['Data tidak ditemukan']);
+            throw ValidationException::withMessages(['Pejabat fungsional belum memiliki atasan langsung']);
         }
         return response()->json([
             'data' => $atasan_langsung_id

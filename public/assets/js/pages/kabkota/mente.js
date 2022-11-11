@@ -23,11 +23,9 @@ $(document).ready(function () {
             type: "GET",
             url: url('/kab-kota/data-mente/' + $(this).data('id') + '/edit'),
             dataType: "json",
-            beforeSend: function () {
-                $('#editMentee').modal('show');
-            },
             success: function (response) {
                 $('.mente-fungsional-edit select[name="atasan_langsung"]').val(response.data);
+                $('#editMentee').modal('show');
             },
             error: ajaxError
         });
