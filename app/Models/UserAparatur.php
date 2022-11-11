@@ -44,7 +44,7 @@ class UserAparatur extends Model
     }
     public function kabkota(): BelongsTo
     {
-        return $this->belongsTo(kabkota::class);
+        return $this->belongsTo(KabKota::class);
     }
     public function pangkatGolonganTmt(): BelongsTo
     {
