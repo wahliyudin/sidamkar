@@ -33,7 +33,7 @@ class AparaturDataTable extends DataTable
                 return $user->userAparatur?->provinsi?->nama;
             })
             ->addColumn('kab_kota', function(User $user){
-                return $user->userAparatur?->kabKota?->nama;
+                return $user->userAparatur?->kabkota?->nama;
             })
             ->addColumn('jabatan', function(User $user){
                 return $user->roles()->first()->display_name;
@@ -52,7 +52,7 @@ class AparaturDataTable extends DataTable
      */
     public function query(User $model): QueryBuilder
     {
-        return $model->newQuery()->with(['roles', 'userAparatur.provinsi', 'userAparatur.kabKota',
+        return $model->newQuery()->with(['roles', 'userAparatur.provinsi', 'userAparatur.kabkota',
         'userAparatur.pangkatGolonganTmt'])->whereRoleIs(getAllRoleFungsional());
     }
 
