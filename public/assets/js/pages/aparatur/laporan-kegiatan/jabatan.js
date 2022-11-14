@@ -43,7 +43,7 @@ $(document).ready(function () {
                 $('.simpan-kegiatan span').show();
                 $('.simpan-kegiatan .spin').hide();
                 if (response.status == 200) {
-                    swal("Selesai!", response.message, "success").then(() => {
+                    swal({type: 'success', title:'Berhasil', html:'Kegiatan Berhasil <b style="font-weight: bold; color:red;">DILAPORKAN</b>'}).then(() => {
                         location.reload();
                     });
                 } else {
@@ -112,7 +112,7 @@ $(document).ready(function () {
                 $('.revisi-kegiatan span').show();
                 $('.revisi-kegiatan .spin').hide();
                 if (response.status == 200) {
-                    swal("Selesai!", response.message, "success").then(
+                    swal({type: 'success', title:'Berhasil', html:'Revisi Berhasil <b style="font-weight: bold; color:#d40004;">DILAPORKAN</b>'}).then(
                         () => {
                             location.reload();
                         });

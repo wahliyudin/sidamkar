@@ -14,7 +14,7 @@
                     <div class="row col-md-8 justify-content-center">
                         <div class="row col-md-12" style="border: 2px solid #E5E5E5;border-radius: 6px;padding: 4px;">
                             <div class="col-md-6">
-                                    <div class="form-group">
+                                <div class="form-group">
                                     <label for="basicInput">Nama Lengkap</label>
                                     <input type="text" disabled class="form-control" name="nama"
                                         value="{{ old('nama', $user->userAparatur?->nama) }}">
@@ -103,7 +103,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="basicInput">Jabatan</label>
-                                    <input type="text" name="jabatan" disabled class="form-control" placeholder="" value="{{ Auth::user()->roles()->first()->display_name }}">
+                                    <input type="text" name="jabatan" disabled class="form-control" placeholder="" value="{{ $user->roles()->first()->display_name }}">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -322,7 +322,7 @@
                 },
             }).then(function(e) {
                 if (e.value.success == true) {
-                    swal("Selesai!", e.value.message, "success").then(() => {
+                    swal({type: 'success', title:'Berhasil', html:'Akun Dinyatakan <b style="font-weight: bold; color:red;">DITOLAK</b>'}).then(() => {
                         location.reload();
                     });
                 } else {
@@ -354,7 +354,7 @@
                 },
             }).then(function(e) {
                 if (e.value.success == true) {
-                    swal("Selesai!", e.value.message, "success").then(() => {
+                    swal({type: 'success', title:'Berhasil', html:'Akun Berhasil <b style="font-weight: bold; color:green;">DIVERIFIKASI</b>'}).then(() => {
                         location.reload();
                     });
                 } else {

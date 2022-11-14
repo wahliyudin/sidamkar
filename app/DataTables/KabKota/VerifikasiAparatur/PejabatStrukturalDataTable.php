@@ -25,7 +25,7 @@ class PejabatStrukturalDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('username', function (User $user) {
-                return '<p class="username" data-detail="' . $user->id . '">' . $user->username . '</p>';
+                return '<p class="username" data-detail="' . $user->id . '">' . $user->userPejabatStruktural->nama . '</p>';
             })
             ->filterColumn('username', function ($query, $keyword) {
                 $query->where('username', 'like', "%$keyword%");
@@ -47,9 +47,9 @@ class PejabatStrukturalDataTable extends DataTable
                 });
             })
             ->addColumn('file-sk', function (User $user) {
-                return '<div data-bs-toggle="modal" data-bs-target="#fileSK'.$user->id.'" style="cursor: pointer;">
-                    <img src="'.asset("assets/images/template/icon-dokumen-png-0 1.png").'" style="width: 1.4rem;" alt="">
-                    '.view('kabkota.verifikasi-aparatur.pejabat-struktural.document', compact('user'))->render().'
+                return '<div data-bs-toggle="modal" data-bs-target="#fileSK' . $user->id . '" style="cursor: pointer;">
+                    <img src="' . asset("assets/images/template/icon-dokumen-png-0 1.png") . '" style="width: 1.4rem;" alt="">
+                    ' . view('kabkota.verifikasi-aparatur.pejabat-struktural.document', compact('user'))->render() . '
                 </div>';
             })
             ->addColumn('tgl_registrasi', function (User $user) {
@@ -70,7 +70,9 @@ class PejabatStrukturalDataTable extends DataTable
      */
     public function query(User $model): QueryBuilder
     {
-        return $model->newQuery()->with('userPejabatStruktural')->whereRoleIs(getAllRoleStruktural())->latest();
+        return $model->newQuery()->withWhereHas('userPejabatStruktural', function ($query) {
+            $query->where('kab_kota_id', auth()->user()->load('userProvKabKota')->userProvKabKota->kab_kota_id);
+        })->whereRoleIs(getAllRoleStruktural())->latest();
     }
 
     /**
@@ -82,11 +84,10 @@ class PejabatStrukturalDataTable extends DataTable
     {
         return $this->builder()
             ->responsive(true)
-            ->orderCellsTop(true)
             ->setTableId('pejabatstruktural-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
-            ->dom('lrtip')
+            ->dom('lfrtip')
             ->orderBy(1)
             ->buttons(
                 Button::make('create'),

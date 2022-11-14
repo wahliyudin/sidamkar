@@ -12,7 +12,7 @@ $(document).ready(function () {
     $(document).on('click', '.revisi-kegiatan', function (e) {
         e.preventDefault();
         $('#lihat' + $(this).data('id')).modal('hide');
-        revisi($(this).data('id'), $('input[name="tanggal"]').val())
+        revisi($(this).data('id'), $('input[name="tanggal"]').val(), $(this).data('user'))
     });
     $(document).on('click', '.verifikasi-kegiatan', function (e) {
         e.preventDefault();
@@ -28,6 +28,7 @@ $(document).ready(function () {
             showCancelButton: true,
             confirmButtonText: 'Ya, tolak!',
             cancelButtonText: "Batal",
+            reverseButtons:true,
             showLoaderOnConfirm: true,
             inputValidator: (value) => {
                 if (!value) {
@@ -50,7 +51,7 @@ $(document).ready(function () {
                 swal.close()
             }
             if (e.value.status == 200) {
-                swal("Selesai!", e.value.message, "success").then(() => {
+                swal({type: 'success', title:'Berhasil', html:'Laporan Dinyatakan <b style="font-weight: bold; color:black;">DITOLAK</b>'}).then(() => {
                     location.reload()
                 });
             } else {
@@ -59,7 +60,7 @@ $(document).ready(function () {
         })
     }
 
-    function revisi(id, current_date) {
+    function revisi(id, current_date, user_id) {
         swal({
             title: "Revisi?",
             text: "Masukan alasan kenapa harus direvisi!",
@@ -69,6 +70,7 @@ $(document).ready(function () {
             showCancelButton: true,
             confirmButtonText: 'Ya, Revisi!',
             cancelButtonText: "Batal",
+            reverseButtons:true,
             showLoaderOnConfirm: true,
             inputValidator: (value) => {
                 if (!value) {
@@ -80,7 +82,8 @@ $(document).ready(function () {
                     type: 'POST',
                     url: url("/atasan-langsung/pengajuan-kegiatan/" + id + "/" + current_date + "/revisi"),
                     data: {
-                        catatan: value
+                        catatan: value,
+                        user_id: user_id
                     },
                     dataType: 'JSON'
                 });
@@ -91,7 +94,7 @@ $(document).ready(function () {
                 swal.close()
             }
             if (e.value.status == 200) {
-                swal("Selesai!", e.value.message, "success").then(() => {
+                swal({type: 'success', title:'Berhasil', html:'Laporan Perlu <b style="font-weight: bold; color:red;">DIREVISI</b>'}).then(() => {
                     location.reload()
                 });
             } else {
@@ -102,7 +105,8 @@ $(document).ready(function () {
 
     function verifikasi(id, current_date) {
         swal({
-            title: "Perifikasi?",
+            title: "Verifikasi?",
+            text: "Pastikan Data Yang Dicek Sudah Benar!",
             type: "warning",
             showCancelButton: !0,
             confirmButtonText: "Ya, verfikasi!",
@@ -122,7 +126,7 @@ $(document).ready(function () {
                 swal.close()
             }
             if (e.value.status == 200) {
-                swal("Selesai!", e.value.message, "success").then(() => {
+                swal({type: 'success', title:'Berhasil', html:'Laporan Dinyatakan <b style="font-weight: bold; color:green;">SELESAI</b>'}).then(() => {
                     location.reload()
                 });
             } else {

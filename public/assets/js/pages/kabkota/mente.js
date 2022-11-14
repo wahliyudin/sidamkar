@@ -2,13 +2,13 @@ $(document).ready(function () {
     $('#table-fungsional').DataTable({
         responsive: true,
     });
-    $(document).ready(function () {
-        $('#Mente-table').on('click', 'tbody > tr > td:not(.action)', function () {
-            window.location.replace(url(
-                `/kab-kota/data-mente/${$($(this).find('.nama')).data('detail')}/show`
-            ));
-        });
-    });
+    // $(document).ready(function () {
+    //     $('#Mente-table').on('click', 'tbody > tr > td:not(.action)', function () {
+    //         window.location.replace(url(
+    //             `/kab-kota/data-mente/${$($(this).find('.nama')).data('detail')}/show`
+    //         ));
+    //     });
+    // });
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -23,11 +23,9 @@ $(document).ready(function () {
             type: "GET",
             url: url('/kab-kota/data-mente/' + $(this).data('id') + '/edit'),
             dataType: "json",
-            beforeSend: function () {
-                $('#editMentee').modal('show');
-            },
             success: function (response) {
                 $('.mente-fungsional-edit select[name="atasan_langsung"]').val(response.data);
+                $('#editMentee').modal('show');
             },
             error: ajaxError
         });
