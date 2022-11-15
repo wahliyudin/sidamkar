@@ -1,6 +1,12 @@
 @extends('layouts.master')
 
 @section('content')
+<style>
+    .ck-editor__editable {
+    min-height: 150px !important;
+    max-height: 160px !important;
+}
+</style>
 <div class="section">
     <div class="row">
         <div class="card">
@@ -24,8 +30,8 @@
                                             {{ $informasi->jenjang}}
                                         </span>
                                         <div class="d-flex align-items-center">
-                                            <i class="fa-regular fa-pen-to-square me-2 cursor-pointer text-green btn-edit-kegiatan"
-                                                data-id="{{ $informasi->id }}"></i>
+                                            <i class="fa-regular fa-pen-to-square me-2 cursor-pointer text-green btn-edit-informasi"
+                                                data-id="{{ $informasi->id }}" id="edit-informasi-id"></i>
                                             <i class="fa-solid fa-trash-can me-2 cursor-pointer text-red btn-hapus-kegiatan"
                                                 data-id="{{ $informasi->id }}"></i>
                                             <button class="accordion-button collapsed" type="button"
@@ -47,9 +53,7 @@
                                                     <div class="d-flex justify-content-between accordion-header py-1 px-2"
                                                         id="deskripsi{{ $informasi->id }}">
                                                         <div class="d-flex align-items-center" style="color: #000000;">
-                                                            <h6 class="accordian-title">
-                                                                {{ $informasi->deskripsi }}
-                                                            </h6>
+                                                            {!! $informasi->deskripsi !!}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -67,13 +71,18 @@
 
 <!-- Modal -->
 <div class="modal fade" id="tambahInformasi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-      <div class="modal-content">
+    <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
+      <div class="modal-content relative">
+        <div class="bg-spin" style="display: none;">
+            <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
+                style="height: 3rem; object-fit: cover;" alt="" srcset="">
+        </div>
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Tambah Informasi</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body p-4">
+            
             <form class="row" method="post" enctype="multipart/form-data">
                 <div class="col-md-12 mb-2">
                   <label for="judul" class="form-label">Judul Informasi</label>
@@ -81,8 +90,8 @@
                 </div>
                 <div class="col-md-12 mb-2">
                     <label for="deskripsi" class="form-label">Deskripsi</label>
-                    <textarea type="text" class="form-control" id="deskripsi" name="deskripsi"></textarea>
-                  </div>
+                    <textarea id="editor"></textarea>
+                </div>
                   <div class="col-md-12 mb-2">
                     <label>Tujuan</label>
                     <div class="form-check">
@@ -141,5 +150,7 @@
     </script>
     <script src="{{ asset('assets/extensions/filepond/filepond.jquery.js') }}"></script>
     <script src="{{ asset('assets/js/extensions/sweetalert2.all.min.js') }}"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
+    {{-- <script src="{{ asset('assets/js/pages/ckeditor.js') }}"></script> --}}
     <script src="{{ asset('assets/js/pages/cms/informasi/index.js') }}"></script>
 @endsection
