@@ -3,7 +3,8 @@
 @section('content')
     <section class="section">
         @if (!isset(Auth::user()->userAparatur?->nip))
-            <div class="alert alert-danger" style="color: white;"><i class="fa-solid fa-circle-exclamation"></i> Harap `\Lengkapi `\Data `\Profile
+            <div class="alert alert-danger" style="color: white;"><i class="fa-solid fa-circle-exclamation"></i> Harap
+                `\Lengkapi `\Data \Profile
             </div>
         @endif
         <div class="row">
@@ -69,7 +70,8 @@
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                     Periode Aktif
                                 </p>
-                                <h2 style="font-family: 'Roboto';color: #06152B; font-size: 18px;" class="target">Januari
+                                <h2 style="font-family: 'Roboto';color: #06152B; font-size: 10px;"
+                                    class="target target-periode">Januari
                                     2022 - Juli 2022
                                 </h2>
                             </div>
@@ -79,7 +81,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-9 col order-md-0 order-2">
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title" style="color: #17181A; font-family: 'Roboto';">Data Graph Angka Kredit</h4>
@@ -136,7 +138,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 col">
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title text-center" style="color: #17181A; font-family: 'Roboto';">
@@ -186,6 +188,12 @@
         @media screen and (max-width:780px) {
             .card {
                 padding: 0 !important;
+            }
+        }
+
+        @media screen and (max-width: 450px) {
+            .target-periode {
+                font-size: 14px !important;
             }
         }
     </style>

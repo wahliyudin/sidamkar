@@ -49,7 +49,8 @@
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                     Periode
                                 </p>
-                                <h2 style="font-family: 'Roboto'; font-size: 20px; color: #06152B;" class="target">Januari
+                                <h2 style="font-family: 'Roboto'; font-size: 20px; color: #06152B;"
+                                    class="target target-periode">Januari
                                     2022 - Juli 2022</h2>
                             </div>
                         </div>
@@ -72,9 +73,8 @@
                             <input type="text" placeholder="Search..." name="search" class="form-control">
                         </div>
                     </div>
-
                 </div>
-                <div class="card-body px-2 rencana-container">
+                <div class="card-body px-2 rencana-container ">
 
                 </div>
             </div>
@@ -133,8 +133,8 @@
                                                                             style="margin-top: 0 !important;"
                                                                             class="form-check-input"
                                                                             data-unsurid="{{ $unsur->id }}"
-                                                                            value="{{ $sub_unsur->id }}" name="sub_unsurs[]"
-                                                                            id="">
+                                                                            value="{{ $sub_unsur->id }}"
+                                                                            name="sub_unsurs[]" id="">
                                                                         <h6 class="accordian-title ms-1"
                                                                             style="margin-bottom: 0 !important; user-select: none;">
                                                                             {{ $sub_unsur->nama }}
@@ -203,6 +203,13 @@
     <link rel="stylesheet" href="{{ asset('assets/extensions/choices.js/public/assets/styles/choices.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/shared/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/pages/kemendagri.css') }}">
+    <style>
+        @media screen and (max-width: 450px) {
+            .target-periode {
+                font-size: 14px !important;
+            }
+        }
+    </style>
 @endsection
 @section('js')
     <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>

@@ -49,7 +49,8 @@
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                     Periode
                                 </p>
-                                <h2 style="font-family: 'Roboto'; font-size: 20px; color: #06152B;" class="target">
+                                <h2 style="font-family: 'Roboto'; font-size: 20px; color: #06152B;"
+                                    class="target target-periode">
                                     {{ Carbon\Carbon::make($periode->awal)->translatedFormat('F Y') . ' - ' . Carbon\Carbon::make($periode->akhir)->translatedFormat('F Y') }}
                                 </h2>
                             </div>
@@ -185,6 +186,12 @@
             justify-content: center;
             align-items: center;
             background-color: #00000075;
+        }
+
+        @media screen and (max-width: 450px) {
+            .target-periode {
+                font-size: 14px !important;
+            }
         }
     </style>
 @endsection

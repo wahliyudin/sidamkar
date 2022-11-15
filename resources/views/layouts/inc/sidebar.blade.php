@@ -189,12 +189,14 @@
                             class="submenu {{ request()->is('penetap-ak/data-pengajuan/kabkota-external/kabKota-external') || request()->is('penetap-ak/data-pengajuan/kabkota-internal/kabKota-internal') ? 'active' : '' }}">
                             <li
                                 class="submenu-item {{ request()->is('penetap-ak/data-pengajuan/kabkota-internal/kabKota-internal') ? 'active' : '' }}">
-                                <a href="{{ route('penetap-ak.data-pengajuan.kabkota-internal.kabKota-internal') }}">Kab/Kota
+                                <a href="{{ route('penetap-ak.data-pengajuan.kabkota-internal.kabKota-internal') }}">Kabupaten
+                                    / Kota
                                     Internal</a>
                             </li>
                             <li
                                 class="submenu-item {{ request()->is('penetap-ak/data-pengajuan/kabkota-external/kabKota-external') ? 'active' : '' }}">
-                                <a href="{{ route('penetap-ak.data-pengajuan.kabkota-external.kabKota-external') }}">Kab/Kota
+                                <a href="{{ route('penetap-ak.data-pengajuan.kabkota-external.kabKota-external') }}">Kabupaten
+                                    / Kota
                                     External</a>
                             </li>
 
@@ -226,7 +228,7 @@
                                 <a href="{{ route('provinsi.aparatur.data-aparatur') }}">Aparatur</a>
                             </li>
                             <li class="submenu-item {{ request()->is('provinsi/kabkota') ? 'active' : '' }}">
-                                <a href="{{ route('provinsi.kabkota') }}">Kab/Kota</a>
+                                <a href="{{ route('provinsi.kabkota') }}">Kabupaten / Kota</a>
                             </li>
                         </ul>
                     </li>
@@ -260,18 +262,19 @@
                         <ul
                             class="submenu {{ request()->is('kemendagri/verifikasi-data/admin-kabkota*') || request()->is('kemendagri/verifikasi-data/admin-provinsi*') || request()->is('kemendagri/verifikasi-data/aparatur*') ? 'active' : '' }}">
                             <li
+                                class="submenu-item {{ request()->is('kemendagri/verifikasi-data/aparatur*') ? 'active' : '' }}">
+                                <a href="{{ route('kemendagri.verifikasi-data.aparatur.aparatur') }}">Aparatur</a>
+                            </li>
+                            <li
                                 class="submenu-item {{ request()->is('kemendagri/verifikasi-data/admin-kabkota*') ? 'active' : '' }}">
-                                <a href="{{ route('kemendagri.verifikasi-data.admin-kabkota.index') }}">Admin KabKota</a>
+                                <a href="{{ route('kemendagri.verifikasi-data.admin-kabkota.index') }}">Admin Kabupaten /
+                                    Kota</a>
                             </li>
                             <li
                                 class="submenu-item {{ request()->is('kemendagri/verifikasi-data/admin-provinsi*') ? 'active' : '' }}">
                                 <a href="{{ route('kemendagri.verifikasi-data.admin-provinsi.index') }}">Admin
                                     Provinsi</a>
-                            </li>
-                            <li
-                                class="submenu-item {{ request()->is('kemendagri/verifikasi-data/aparatur*') ? 'active' : '' }}">
-                                <a href="{{ route('kemendagri.verifikasi-data.aparatur.aparatur') }}">Aparatur</a>
-                            </li>
+                            </li>   
                         </ul>
                     </li>
                     {{--  <li class="sidebar-item {{ request()->is('kemendagri/pejabat-struktural*') ? 'active' : '' }}">
@@ -288,7 +291,7 @@
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="fa-solid fa-table"></i>
                             </div>
-                            <span>Data Prov/Kab/Kota</span>
+                            <span>Data Prov/Kabupaten / Kota</span>
                         </a>
                     </li>
                     <li
