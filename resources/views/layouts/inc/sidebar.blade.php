@@ -267,14 +267,14 @@
                             </li>
                             <li
                                 class="submenu-item {{ request()->is('kemendagri/verifikasi-data/admin-kabkota*') ? 'active' : '' }}">
-                                <a href="{{ route('kemendagri.verifikasi-data.admin-kabkota.index') }}">Admin Kabupaten /
+                                <a href="{{ route('kemendagri.verifikasi-data.admin-kabkota.index') }}">Admin Kabupaten
                                     Kota</a>
                             </li>
                             <li
                                 class="submenu-item {{ request()->is('kemendagri/verifikasi-data/admin-provinsi*') ? 'active' : '' }}">
                                 <a href="{{ route('kemendagri.verifikasi-data.admin-provinsi.index') }}">Admin
                                     Provinsi</a>
-                            </li>   
+                            </li>
                         </ul>
                     </li>
                     {{--  <li class="sidebar-item {{ request()->is('kemendagri/pejabat-struktural*') ? 'active' : '' }}">
@@ -316,14 +316,6 @@
                             </li>
                         </ul>
                     </li>  --}}
-                    <li class="sidebar-item">
-                        <a href="" class='sidebar-link'>
-                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
-                                <i class="fa-regular fa-comments"></i>
-                            </div>
-                            <span>Chatbox</span>
-                        </a>
-                    </li>
                     <li
                         class="sidebar-item has-sub {{ request()->is('kemendagri/cms/kegiatan-profesi*') || request()->is('kemendagri/cms/informasi*') || request()->is('kemendagri/cms/kegiatan-jabatan*') || request()->is('kemendagri/cms/periode*') ? 'active' : '' }}">
                         <a href="javascript(0)" class='sidebar-link'>
@@ -349,6 +341,14 @@
                                 <a href="{{ route('kemendagri.cms.informasi.index') }}">Informasi</a>
                             </li>
                         </ul>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="" class='sidebar-link'>
+                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                                <i class="fa-regular fa-comments"></i>
+                            </div>
+                            <span>Chatbox</span>
+                        </a>
                     </li>
                 @endrole
             </ul>

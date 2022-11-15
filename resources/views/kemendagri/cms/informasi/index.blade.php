@@ -1,36 +1,69 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="section">
-        <div class="card my-3 p-3 shadow-sm">
-            <div class=" card-header">
-                <div class="row">
-                    <div class="col-md-8">
-                        <h5>List Informasi</h5>
-                    </div>
-                    <div class="col-md-4 kanan">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#tambahInformasi">Tambah Informasi</button>
+<div class="section">
+    <div class="row">
+        <div class="card">
+            <div class="card-header">
+                <div class="d-flex justify-content-end flex-wrap wrapper-btn">
+                    <button class="btn btn-blue-reverse ms-3 btn-tambah" data-bs-toggle="modal"
+                        data-bs-target="#tambahInformasi"><i class="fa-solid fa-file-circle-plus me-2"></i>Tambah
+                        Data</button>
+                </div>
+            </div>
+            <div class="card-body px-0">
+                <div class="card-body accordion-container">
+                    <div class="accordion" id="accordion-parent">
+                        @foreach ($informasis as $informasi)
+                            <div class="accordion-item">
+                                <div class="d-flex flex-column accordion-header py-3 px-2"
+                                    id="unsur{{ $informasi->id }}">
+                                    <div class="d-flex justify-content-between align-items-center ps-2 mb-1">
+                                        <span
+                                            class="bg-green text-sm text-white font-bold py-1 px-2 rounded-md label-role">
+                                            {{ $informasi->jenjang}}
+                                        </span>
+                                        <div class="d-flex align-items-center">
+                                            <i class="fa-regular fa-pen-to-square me-2 cursor-pointer text-green btn-edit-kegiatan"
+                                                data-id="{{ $informasi->id }}"></i>
+                                            <i class="fa-solid fa-trash-can me-2 cursor-pointer text-red btn-hapus-kegiatan"
+                                                data-id="{{ $informasi->id }}"></i>
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse"
+                                                data-bs-target="#contentUnsur{{ $informasi->id }}" aria-expanded="false"
+                                                aria-controls="contentUnsur{{ $informasi->id }}">
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="ps-2 pt-2">
+                                        <h6 class="accordian-title" style="color: #000000;">{{ $informasi->judul }}</h6>
+                                    </div>
+                                </div>
+                                <div id="contentUnsur{{ $informasi->id }}" class="accordion-collapse collapse"
+                                    aria-labelledby="informasi{{ $informasi->id }}" style="">
+                                    <div class="accordion-body pt-0">
+                                        <div class="accordion" id="accordion-child">
+                                                <div class="accordion-item">
+                                                    <div class="d-flex justify-content-between accordion-header py-1 px-2"
+                                                        id="deskripsi{{ $informasi->id }}">
+                                                        <div class="d-flex align-items-center" style="color: #000000;">
+                                                            <h6 class="accordian-title">
+                                                                {{ $informasi->deskripsi }}
+                                                            </h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
-            <div class="card-body">
-                <div class="d-flex flex-column text-muted pt-3 w-100 list">
-                @foreach ($informasis as $informasi)
-                <div>
-                    <h6 class=" mb-0 ">
-                        <strong class="d-block mb-1 ">Role [{{$informasi->jenjang}}]</strong>
-                    </h6>
-                    <p class="border-bottom">{{$informasi->judul}} </p>
-                </div>    
-                    @endforeach
-                </div>
-            <small class="d-block text-end mt-3">
-                <a href="#" class="keychainify-checked">Selengkapnya</a>
-            </small>
-        </div>
         </div>
     </div>
+</div>
 
 <!-- Modal -->
 <div class="modal fade" id="tambahInformasi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
