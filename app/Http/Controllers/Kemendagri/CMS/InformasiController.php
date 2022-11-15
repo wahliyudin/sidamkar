@@ -81,4 +81,13 @@ class InformasiController extends Controller
             ]);
         }
     }
+
+    public function edit($id){
+        $informasi = Informasi::query()->where('id', $id)->get();
+
+        return response()->json([
+            'status' => 200,
+            'data' => $informasi
+        ]);
+    }
 }
