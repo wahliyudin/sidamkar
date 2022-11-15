@@ -261,7 +261,7 @@
                             class="submenu {{ request()->is('kemendagri/verifikasi-data/admin-kabkota*') || request()->is('kemendagri/verifikasi-data/admin-provinsi*') || request()->is('kemendagri/verifikasi-data/aparatur*') ? 'active' : '' }}">
                             <li
                                 class="submenu-item {{ request()->is('kemendagri/verifikasi-data/admin-kabkota*') ? 'active' : '' }}">
-                                <a href="{{ route('kemendagri.verifikasi-data.admin-kabkota.index') }}">Admin KabKota</a>
+                                <a href="{{ route('kemendagri.verifikasi-data.admin-kabkota.index') }}">Admin Kabupaten Kota</a>
                             </li>
                             <li
                                 class="submenu-item {{ request()->is('kemendagri/verifikasi-data/admin-provinsi*') ? 'active' : '' }}">
@@ -313,14 +313,6 @@
                             </li>
                         </ul>
                     </li>  --}}
-                    <li class="sidebar-item">
-                        <a href="" class='sidebar-link'>
-                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
-                                <i class="fa-regular fa-comments"></i>
-                            </div>
-                            <span>Chatbox</span>
-                        </a>
-                    </li>
                     <li
                         class="sidebar-item has-sub {{ request()->is('kemendagri/cms/kegiatan-profesi*') || request()->is('kemendagri/cms/informasi*') || request()->is('kemendagri/cms/kegiatan-jabatan*') || request()->is('kemendagri/cms/periode*') ? 'active' : '' }}">
                         <a href="javascript(0)" class='sidebar-link'>
@@ -347,6 +339,15 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="sidebar-item">
+                        <a href="" class='sidebar-link'>
+                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                                <i class="fa-regular fa-comments"></i>
+                            </div>
+                            <span>Chatbox</span>
+                        </a>
+                    </li>
+                    
                 @endrole
             </ul>
         </div>

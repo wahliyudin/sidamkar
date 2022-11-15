@@ -200,8 +200,7 @@
                                                                     class="custom-select">
                                                                     <option selected disabled value="">- Pilih
                                                                         Jabatan -</option>
-                                                                    <option value="fungsional">Pejabat Fungsional
-                                                                    </option>
+                                                                    <option value="fungsional">JF Damkar/Analis                                                                    </option>
                                                                     <option value="struktural">Pejabat Struktural
                                                                     </option>
                                                                 </select>
@@ -359,7 +358,7 @@
                                                                 <select name="jenis_jabatan" required
                                                                     class="custom-select jenis-jabatan-kabkota">
                                                                     <option selected disabled>- Pilih Tingkat -</option>
-                                                                    <option value="kab_kota">Kab Kota
+                                                                    <option value="kab_kota">Kabupaten/Kota
                                                                     </option>
                                                                     <option value="provinsi">Provinsi
                                                                     </option>
