@@ -32,7 +32,7 @@
                                         <div class="d-flex align-items-center">
                                             <i class="fa-regular fa-pen-to-square me-2 cursor-pointer text-green btn-edit-informasi"
                                                 data-id="{{ $informasi->id }}" id="edit-informasi-id"></i>
-                                            <i class="fa-solid fa-trash-can me-2 cursor-pointer text-red btn-hapus-kegiatan"
+                                            <i class="fa-solid fa-trash-can me-2 cursor-pointer text-red btn-hapus-informasi"
                                                 data-id="{{ $informasi->id }}"></i>
                                             <button class="accordion-button collapsed" type="button"
                                                 data-bs-toggle="collapse"
@@ -52,7 +52,7 @@
                                                 <div class="accordion-item">
                                                     <div class="d-flex justify-content-between accordion-header py-1 px-2"
                                                         id="deskripsi{{ $informasi->id }}">
-                                                        <div class="d-flex align-items-center" style="color: #000000;">
+                                                        <div class=" align-items-center" style="color: #000000;">
                                                             {!! $informasi->deskripsi !!}
                                                         </div>
                                                     </div>
@@ -95,15 +95,15 @@
                   <div class="col-md-12 mb-2">
                     <label>Tujuan</label>
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" name="tujuan[]" id="tujuan1" value="aparatur">
+                      <input class="form-check-input checkbox" type="checkbox" name="tujuan[]" id="tujuan1" value="aparatur">
                         Aparatur
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="tujuan[]" id="tujuan2" value="8" >
-                        Kab/kota
+                        <input class="form-check-input checkbox" type="checkbox" name="tujuan[]" id="tujuan2" value="8" >
+                        Kabupaten/kota
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="tujuan[]" id="tujuan3" value="9" >
+                        <input class="form-check-input checkbox" type="checkbox" name="tujuan[]" id="tujuan3" value="9" >
                         Provinsi
                     </div>
                     
@@ -120,7 +120,7 @@
                 <button type="submit" class="btn btn-success simpan-informasi simpan">
                     <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
                     style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
-                    <span>Simpan</span>
+                    <span id="simpan">Simpan</span>
                 </button>
             </div>
     </div>
