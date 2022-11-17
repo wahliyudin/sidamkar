@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-4 px-2">
                 <div class="card">
-                    <div class="card-body py-3 px-3" style="height: 100px;">
+                    <div class="card-body py-3 px-3" style="height: 85px;">
                         <div class="d-flex align-items-center h-100">
                             <div class="circle circle-blue">
                                 <i class="fa-solid fa-copy"></i>
@@ -22,7 +22,7 @@
             </div>
             <div class="col-md-4 px-2">
                 <div class="card">
-                    <div class="card-body py-3 px-3" style="height: 100px;">
+                    <div class="card-body py-3 px-3" style="height: 85px;">
                         <div class="d-flex align-items-center h-100">
                             <div class="circle circle-purple">
                                 <i class="fa-solid fa-copy"></i>
@@ -39,7 +39,7 @@
             </div>
             <div class="col-md-4 px-2">
                 <div class="card">
-                    <div class="card-body py-3 px-3" style="height: 100px;">
+                    <div class="card-body py-3 px-3" style="height: 85px;">
                         <div class="d-flex align-items-center h-100">
                             <div class="circle circle-green">
                                 <i class="fa-solid
@@ -75,16 +75,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-body px-2 rencana-container">
-
+                <div class="card-body px-2">
+                    <div class="d-flex flex-column rencana-container">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="modal fade" id="tambahRencana" tabindex="-1" role="dialog" aria-labelledby="tambahRencanaTitle"
         aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-centered modal-dialog-scrollable"
-            role="document">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5>Tambah Rencana Kinerja</h5>
@@ -92,93 +92,9 @@
                 <div class="modal-body">
                     <form class="d-flex flex-column form-kegiatan">
                         <div class="row">
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-12">
                                 <label>Rencana Kinerja</label>
-                                <input class="form-control" type="text" name="rencana">
-                            </div>
-                        </div>
-                        <div class="card-body accordion-container">
-                            <div class="accordion" id="accordion-parent">
-                                @foreach ($unsurs as $unsur)
-                                    @if ($unsur->isSubUnsur)
-                                        <div class="accordion-item">
-                                            <span
-                                                class="bg-green text-sm text-white font-bold py-1 mt-1 px-2 rounded-md label-role">
-                                                {{ $unsur->role?->display_name }}
-                                            </span>
-                                            <div class="d-flex justify-content-between accordion-header py-3 px-2"
-                                                id="unsur{{ $unsur->id }}">
-                                                <div class="d-flex align-items-center justify-content-between w-100"
-                                                    style="color: #000000;">
-                                                    <p class="accordion-title">
-                                                        {{ $unsur->nama }}
-                                                    </p>
-                                                </div>
-                                                <button class="accordion-button collapsed" type="button"
-                                                    data-bs-toggle="collapse"
-                                                    data-bs-target="#contentUnsur{{ $unsur->id }}" aria-expanded="false"
-                                                    aria-controls="contentUnsur{{ $unsur->id }}">
-                                                </button>
-                                            </div>
-                                            <div id="contentUnsur{{ $unsur->id }}" class="accordion-collapse collapse"
-                                                aria-labelledby="unsur{{ $unsur->id }}" style="">
-                                                <div class="accordion-body">
-                                                    <div class="accordion" id="accordion-child">
-                                                        @foreach ($unsur->subUnsurs as $sub_unsur)
-                                                            <div class="accordion-item">
-                                                                <div class="d-flex justify-content-between accordion-header py-1 px-1"
-                                                                    id="subUnsur{{ $sub_unsur->id }}">
-                                                                    <label class="d-flex align-items-center"
-                                                                        style="color: #000000; cursor: pointer;">
-                                                                        <input type="checkbox"
-                                                                            style="margin-top: 0 !important;"
-                                                                            class="form-check-input"
-                                                                            data-unsurid="{{ $unsur->id }}"
-                                                                            value="{{ $sub_unsur->id }}"
-                                                                            name="sub_unsurs[]" id="">
-                                                                        <h6 class="accordian-title ms-1"
-                                                                            style="margin-bottom: 0 !important; user-select: none;">
-                                                                            {{ $sub_unsur->nama }}
-                                                                        </h6>
-                                                                    </label>
-                                                                    <button class="accordion-button collapsed"
-                                                                        type="button" data-bs-toggle="collapse"
-                                                                        data-bs-target="#contentchildSubUnsur{{ $sub_unsur->id }}"
-                                                                        aria-expanded="false"
-                                                                        aria-controls="contentchildSubUnsur{{ $sub_unsur->id }}">
-                                                                    </button>
-                                                                </div>
-                                                                <div id="contentchildSubUnsur{{ $sub_unsur->id }}"
-                                                                    class="accordion-collapse collapse"
-                                                                    aria-labelledby="subUnsur{{ $sub_unsur->id }}"
-                                                                    style="">
-                                                                    <div class="accordion-body">
-                                                                        <ul class="ms-0">
-                                                                            @foreach ($sub_unsur->butirKegiatans as $butir_kegiatan)
-                                                                                <li class="accordian-list">
-                                                                                    <div
-                                                                                        class="d-flex align-items-center justify-content-between">
-                                                                                        <h6 class="accordian-title">
-                                                                                            {{ $butir_kegiatan->nama }}
-                                                                                        </h6>
-                                                                                        <h6 class="accordian-title"
-                                                                                            style="color: #1AD598;">
-                                                                                            {{ $butir_kegiatan->score }}
-                                                                                        </h6>
-                                                                                    </div>
-                                                                                </li>
-                                                                            @endforeach
-                                                                        </ul>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        @endforeach
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endif
-                                @endforeach
+                                <textarea id="" class="form-control" name="rencana"></textarea>
                             </div>
                         </div>
                         <div class="text-center mt-4">
@@ -204,6 +120,64 @@
     <link rel="stylesheet" href="{{ asset('assets/extensions/choices.js/public/assets/styles/choices.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/shared/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/pages/kemendagri.css') }}">
+    <style>
+        .rencana-item {
+            border: 1px solid rgba(0, 0, 0, 0.125);
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .rencana-item:not(:first-child) {
+            margin-top: 1rem;
+        }
+
+        .rencana-item p {
+            margin: 0 !important;
+            max-width: 90%;
+        }
+
+        .rencana-item .rencana-buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        .rencana-buttons .rencana-button:first-child {
+            padding: .5rem .5rem !important;
+        }
+
+        .rencana-buttons .rencana-button {
+            border: 1px solid rgba(0, 0, 0, 0.125) !important;
+            border-radius: 50%;
+            padding: .5rem .6rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .rencana-buttons .rencana-button:hover {
+            border: 1px solid rgba(0, 0, 0, 0.322) !important;
+        }
+
+        @media screen and (max-width:750px) {
+            .rencana-item {
+                flex-direction: column;
+                padding: .5rem .5rem;
+            }
+
+            .rencana-item p {
+                width: 100%;
+            }
+
+            .rencana-item .rencana-buttons {
+                justify-content: end;
+                margin-top: 1rem;
+                width: 100%;
+            }
+        }
+    </style>
 @endsection
 @section('js')
     <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
