@@ -254,7 +254,7 @@ class UserSeeder extends Seeder
             'email' => 'admia232sn2434@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'status_akun' => 0
+            'status_akun' => 1
         ])->attachRole('damkar_terampil');
         $damkarTerampil->userAparatur()->create([
             'nama' =>  fake()->name,

@@ -59,7 +59,9 @@ use App\Http\Controllers\Provinsi\PejabatStrukturalController as ProvinsiPejabat
 use App\Http\Controllers\provinsi\ChatboxController as ProvinsiChatboxController;
 use App\Models\KabKota;
 use App\Models\Mente;
+use App\Models\Periode;
 use App\Models\Provinsi;
+use App\Models\Unsur;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Query\Builder;
@@ -79,6 +81,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('coba', function () {
+    $periode = Periode::query()->where('is_active', true)->first();
+    return Unsur::query()->where('periode_id', $periode->id)->with(['subUnsurs.butirKegiatans'])->get();
     // return \Str::random(20);
     // return User::query()->withWhereHas('mentes.fungsional')->get();
     return view('timeline');
