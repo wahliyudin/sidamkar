@@ -16,10 +16,11 @@ class NomenKlaturPerangkatDaerahSeeder extends Seeder
     public function run()
     {
         $nomeklaturs = [
-            ['nama' =>'Dinas Pemadam Kebakaran dan Penyelamatan'],
-           ['nama' => 'Satuan Polisi Pamong Praja'],
-           ['nama' => 'Badan Penanggulangan Bencana Daerah'],
-            ['nama' =>'Dinas Pekerjaan Umum dan Perumahan Rakyat']
+            ['nama' => 'Dinas Pemadam Kebakaran dan Penyelamatan'],
+            ['nama' => 'Satuan Polisi Pamong Praja'],
+            ['nama' => 'Badan Penanggulangan Bencana Daerah'],
+            ['nama' => 'Dinas Pekerjaan Umum dan Perumahan Rakyat'],
+            ['nama' => 'Lainnya']
         ];
         NomenKlaturPerangkatDaerah::query()->upsert($nomeklaturs, 'id');
     }

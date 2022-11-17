@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Role;
 use App\Models\User;
 use App\Repositories\RegisterRepository;
 use App\Traits\ImageTrait;
@@ -32,23 +33,36 @@ class RegisterService
      */
     public function store(array $data): User
     {
-        if (!isset($data['jenis_jabatan'])) {
-            throw new Exception("Jabatan tidak ada", 400);
+        if (isset($data['jenis_jabatan'])) {
+            if (in_array($data['jenis_jabatan'], ['kab_kota', 'provinsi'])) {
+                $user = $this->storeProvKabKota($data);
+                $user->attachRole($data['jenis_jabatan']);
+                return $user;
+            }
         }
-        if (in_array($data['jenis_jabatan'], getAllRoleFungsional())) {
-            $user = $this->storeAparatur($data);
-            $user->attachRole($data['jenis_jabatan']);
-            return $user;
-        }
-        if (in_array($data['jenis_jabatan'], ['atasan_langsung', 'penilai_ak', 'penetap_ak'])) {
-            $user = $this->storeStruktural($data);
-            $user->attachRole($data['jenis_jabatan']);
-            return $user;
-        }
-        if (in_array($data['jenis_jabatan'], ['kab_kota', 'provinsi'])) {
-            $user = $this->storeProvKabKota($data);
-            $user->attachRole($data['jenis_jabatan']);
-            return $user;
+        if (isset($data['jenis_aparatur'])) {
+            if ($data['jenis_aparatur'] == 'fungsional') {
+                if (in_array($data['jenis_jabatan'], getAllRoleFungsional())) {
+                    $user = $this->storeAparatur($data);
+                    $user->attachRole($data['jenis_jabatan']);
+                    return $user;
+                }
+            } elseif ($data['jenis_aparatur'] == 'struktural') {
+                return $this->storeStruktural($data);
+            } elseif ($data['jenis_aparatur'] == 'fungsional_umum') {
+                if ($data['jenis_jabatan_umum'] == 'lainnya') {
+                    $role = Role::query()->create([
+                        'name' => str($data['jenis_jabatan_text'])->snake(),
+                        'display_name' => ucwords($data['jenis_jabatan_text']),
+                        'description' => ''
+                    ]);
+                    $user = $this->storeAparatur($data);
+                    $user->attachRole($role->name);
+                } else {
+                    $user = $this->storeAparatur($data);
+                    $user->attachRole($data['jenis_jabatan_umum']);
+                }
+            }
         }
     }
 

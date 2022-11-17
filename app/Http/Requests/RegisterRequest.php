@@ -23,17 +23,25 @@ class RegisterRequest extends FormRequest
      */
     public function rules()
     {
+        dd(request()->all());
         $rules = [
             'username' => ['required', 'string', 'max:255', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'jenis_jabatan' => ['required']
+            'no_hp' => ['required', 'min:11', 'max:12', 'numeric']
         ];
-        if (request()->jenis_aparatur == 'struktural') {
-            $rules['file_sk'] = 'required';
-        }
-        if (request()->jenis_jabatan == 'kab_kota') {
-            $rules['kab_kota_id'] = 'required';
+        if (request()->jenis_aparatur == 'fungsional_umum') {
+            $rules['jenis_jabatan_umum'] = 'required';
+            if (request()->jenis_jabatan_umum == 'lainnya') {
+                $rules['jenis_jabatan_text'] = 'required|min:3';
+            }
+        } elseif (request()->jenis_aparatur == 'struktural') {
+            $rules['jenis_eselon'] = 'required';
+        } else {
+            $rules['jenis_jabatan'] = 'required';
+            if (request()->jenis_jabatan == 'kab_kota') {
+                $rules['kab_kota_id'] = 'required';
+            }
         }
         if (in_array(request()->jenis_jabatan, ['kab_kota', 'provinsi'])) {
             $rules['file_permohonan'] = 'required';
@@ -44,7 +52,10 @@ class RegisterRequest extends FormRequest
     public function messages()
     {
         $messages = [
-            'jenis_jabatan.required' => 'Jenis Aparatur wajib diisi'
+            'jenis_jabatan.required' => 'Jenis Aparatur wajib diisi',
+            'jenis_jabatan_umum.required' => 'Jenis Aparatur wajib diisi',
+            'jenis_jabatan_text.required' => 'Jenis Aparatur Baru wajib diisi',
+            'jenis_jabatan_text.min:3' => 'Jenis Aparatur Baru Minimal 3 Huruf',
         ];
         return $messages;
     }
