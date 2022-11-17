@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Aparatur\LaporanKegiatan;
 
 use App\Http\Controllers\Controller;
+use App\Models\ButirKegiatan;
 use App\Models\HistoryRekapitulasiKegiatan;
 use App\Models\LaporanKegiatanJabatan;
 use App\Models\Periode;
@@ -36,24 +37,35 @@ class KegiatanJabatanController extends Controller
             $periode = Periode::query()->where('is_active', true)->first();
             $role = auth()->user()->load('roles')->roles()->first();
             $search = str($request->search)->lower()->trim();
-            $unsurs = Unsur::query()->where('periode_id', $periode->id)
-                ->whereIn('role_id', [$role->id + 1, $role->id - 1, $role->id])
-                ->where('nama', 'like', "%$search%")
-                ->orWhereHas('subUnsurs', function ($query) use ($search) {
+            $unsurs = Unsur::query()
+                ->where('jenis_kegiatan_id', 1)
+                ->where('periode_id', $periode->id)
+                ->with(['role' => function ($query) use ($role) {
+                    $query->whereIn('id', [$role->id + 1, $role->id - 1, $role->id]);
+                }, 'subUnsurs.butirKegiatans'])
+                ->whereHas('role', function ($query) use ($search, $role) {
+                    $query->where('nama', 'like',
+                    "%$search%");
+                })
+                ->when($search, function ($query) use ($search) {
                     $query->where('nama', 'like', "%$search%")
-                        ->orWhereHas('butirKegiatans', function ($query) use ($search) {
-                            $query->where('nama', 'like', "%$search%");
+                        ->orWhereHas('subUnsurs', function ($query) use ($search) {
+                            $query->where('nama', 'like', "%$search%")
+                                ->orWhereHas('butirKegiatans', function ($query) use ($search) {
+                                    $query->where('nama', 'like', "%$search%");
+                                });
                         });
                 })
-                ->with([
-                    'role',
-                    'subUnsurs.butirKegiatans',
-                ])
                 ->get();
             return response()->json([
                 'unsurs' => $unsurs
             ]);
         }
+    }
+
+    public function show(ButirKegiatan $butir_kegiatan)
+    {
+        return view('aparatur.laporan-kegiatan.jabatan.show', compact('butir_kegiatan'));
     }
 
     public function storeLaporan(Request $request)
