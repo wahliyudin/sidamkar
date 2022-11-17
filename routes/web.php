@@ -79,6 +79,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('coba', function () {
+    // return \Str::random(20);
     // return User::query()->withWhereHas('mentes.fungsional')->get();
     return view('timeline');
 });

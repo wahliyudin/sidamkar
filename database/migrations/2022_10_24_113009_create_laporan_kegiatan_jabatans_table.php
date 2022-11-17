@@ -15,15 +15,17 @@ return new class extends Migration
     {
         Schema::create('laporan_kegiatan_jabatans', function (Blueprint $table) {
             $table->id();
+            $table->string('kode');
             $table->unsignedBigInteger('rencana_butir_kegiatan_id');
+            $table->unsignedBigInteger('butir_kegiatan_id');
             $table->text('detail_kegiatan');
-            $table->date('current_date');
             $table->float('score', places: 3, unsigned: true)->nullable();
             $table->integer('status')->nullable();
             $table->string('catatan')->nullable();
             $table->timestamps();
 
-            $table->foreign('rencana_butir_kegiatan_id')->on('rencana_butir_kegiatans')->references('id')->cascadeOnDelete();
+            // $table->foreign('rencana_butir_kegiatan_id')->on('rencana_butir_kegiatans')->references('id')->cascadeOnDelete();
+            // $table->foreign('butir_kegiatan_id')->on('butir_kegiatans')->references('id')->cascadeOnDelete();
         });
     }
 
