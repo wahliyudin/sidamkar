@@ -108,6 +108,9 @@ Route::middleware(['auth'])->group(function () {
             Route::get('kegiatan/jabatan', 'index')->name('kegiatan.jabatan');
             Route::post('kegiatan/jabatan/search', 'search')->name('kegiatan.jabatan.search');
             Route::post('kegiatan/jabatan/rencana-kinerja/store', 'store')->name('kegiatan.jabatan.rencana-kinerja.store');
+            Route::get('kegiatan/jabatan/rencana-kinerja/{id}/edit', 'edit')->name('kegiatan.jabatan.rencana-kinerja.edit');
+            Route::put('kegiatan/jabatan/rencana-kinerja/{id}/update', 'update')->name('kegiatan.jabatan.rencana-kinerja.update');
+            Route::delete('kegiatan/jabatan/rencana-kinerja/{id}/destroy', 'destroy')->name('kegiatan.jabatan.rencana-kinerja.destroy');
         });
 
         Route::controller(LaporanKegiatanKegiatanJabatanController::class)->group(function () {

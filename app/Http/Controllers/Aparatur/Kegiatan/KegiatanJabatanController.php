@@ -51,4 +51,35 @@ class KegiatanJabatanController extends Controller
             'message' => "Berhasil"
         ]);
     }
+
+    public function edit($id)
+    {
+        $rencana = Rencana::query()->findOrFail($id);
+        return response()->json([
+            'rencana' => $rencana
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'rencana' => 'required'
+        ], [
+            'rencana.required' => 'Rencana kinerja harus diisi'
+        ]);
+        Rencana::query()->findOrFail($id)->update([
+            'nama' => $request->rencana
+        ]);
+        return response()->json([
+            'message' => "Berhasil diubah"
+        ]);
+    }
+
+    public function destroy($id)
+    {
+        Rencana::query()->findOrFail($id)->delete();
+        return response()->json([
+            'message' => "Berhasil dihapus"
+        ]);
+    }
 }

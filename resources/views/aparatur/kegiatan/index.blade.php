@@ -110,6 +110,35 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="editRencana" tabindex="-1" role="dialog" aria-labelledby="editRencanaTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>Edit Rencana Kinerja</h5>
+                </div>
+                <div class="modal-body">
+                    <form class="d-flex flex-column form-kegiatan">
+                        <input type="hidden" name="__rencana">
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label>Rencana Kinerja</label>
+                                <textarea id="" class="form-control" name="rencana"></textarea>
+                            </div>
+                        </div>
+                        <div class="text-center mt-4">
+                            <button type="button" class="btn btn-danger px-5" data-bs-dismiss="modal">Batal</button>
+                            <button type="button" class="btn btn-blue px-5 update-rencana">
+                                <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
+                                    style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
+                                <span>Simpan</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/extensions/toastify-js/src/toastify.css') }}">
