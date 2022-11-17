@@ -32,13 +32,13 @@ return new class extends Migration
             $table->string('file_ttd')->nullable();
             $table->boolean('is_active')->default(true);
             $table->string('catatan')->nullable();
-            $table->unsignedBigInteger('kab_kota_id');
+            $table->unsignedBigInteger('kab_kota_id')->nullable();
             $table->unsignedBigInteger('provinsi_id');
             $table->timestamps();
 
             $table->foreign('user_id')->on('users')->references('id')->cascadeOnDelete();
             $table->foreign('provinsi_id')->on('provinsis')->references('id')->cascadeOnDelete();
-            $table->foreign('kab_kota_id')->on('kab_kotas')->references('id')->cascadeOnDelete();
+            $table->foreign('kab_kota_id')->on('kab_kotas')->references('id')->nullOnDelete();
         });
     }
 

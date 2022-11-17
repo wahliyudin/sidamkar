@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Role;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\ValidationException;
 
 class RegisterRequest extends FormRequest
 {
@@ -23,17 +25,22 @@ class RegisterRequest extends FormRequest
      */
     public function rules()
     {
-        dd(request()->all());
         $rules = [
             'username' => ['required', 'string', 'max:255', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'no_hp' => ['required', 'min:11', 'max:12', 'numeric']
+            'no_hp' => ['required', 'numeric']
         ];
         if (request()->jenis_aparatur == 'fungsional_umum') {
             $rules['jenis_jabatan_umum'] = 'required';
             if (request()->jenis_jabatan_umum == 'lainnya') {
-                $rules['jenis_jabatan_text'] = 'required|min:3';
+                if (in_array(str(request()->jenis_jabatan_text)->snake(), array_merge(getAllRoleFungsional(), getAllRoleStruktural(), getAllRoleProvKabKota(), ['kemendagri']))) {
+                    throw ValidationException::withMessages(['jenis_jabatan_text' => 'Jenis Jabatan Baru Tidak Diizinkan']);
+                }
+                if (Role::query()->where('name', str(request()->jenis_jabatan_text)->snake())->first()) {
+                    throw ValidationException::withMessages(['jenis_jabatan_text' => 'Jenis Jabatan Baru Sudah Ada']);
+                }
+                $rules['jenis_jabatan_text'] = 'unique:roles,name|required|min:3';
             }
         } elseif (request()->jenis_aparatur == 'struktural') {
             $rules['jenis_eselon'] = 'required';

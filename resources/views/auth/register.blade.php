@@ -89,9 +89,11 @@
                                                                     class="custom-select">
                                                                     <option selected disabled value="">- Pilih
                                                                         Tingkat Aparatur -</option>
-                                                                    <option value="provinsi">Provinsi
+                                                                    <option @selected(old('tingkat_aparatur') == 'provinsi')
+                                                                        value="provinsi">Provinsi
                                                                     </option>
-                                                                    <option value="kab_kota">Kabupaten/Kota
+                                                                    <option @selected(old('tingkat_aparatur') == 'kab_kota')
+                                                                        value="kab_kota">Kabupaten/Kota
                                                                     </option>
                                                                 </select>
                                                                 @error('tingkat_aparatur')
@@ -585,9 +587,9 @@
             }
         </script>
     @endif
-    @if (old('jenis-jabatan-umum') !== null)
+    @if (old('jenis_jabatan_umum') !== null)
         <script>
-            if ("{{ old('jenis-jabatan-umum') }}" == 'lainnya') {
+            if ("{{ old('jenis_jabatan_umum') }}" == 'lainnya') {
                 $('.jenis-jabatan-text').show();
             }
         </script>

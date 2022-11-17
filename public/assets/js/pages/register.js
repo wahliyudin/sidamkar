@@ -107,13 +107,11 @@ $(function () {
             $('.wrapper-select').show();
             $('.jenis-eselon').hide();
             $('.jenis-jabatan-umum').hide();
-            $('.jenis-jabatan-text').hide();
         }
         if (e.target.value == 'struktural') {
             $('.jenis-jabatan').hide();
             $('.jenis-eselon').show();
             $('.jenis-jabatan-umum').hide();
-            $('.jenis-jabatan-text').hide();
         }
         if (e.target.value == 'fungsional') {
             $('.struktural').hide();
@@ -121,12 +119,10 @@ $(function () {
             $('.select-fungsional').show();
             $('.jenis-eselon').hide();
             $('.jenis-jabatan-umum').hide();
-            $('.jenis-jabatan-text').hide();
         }
         if (e.target.value == 'fungsional_umum') {
             $('.jenis-jabatan-umum').show();
             $('.jenis-jabatan').hide();
-            $('.jenis-jabatan-text').hide();
         }
     });
 
@@ -146,13 +142,11 @@ $(function () {
             $('.wrapper-select').show();
             $('.jenis-eselon').hide();
             $('.jenis-jabatan-umum').hide();
-            $('.jenis-jabatan-text').hide();
         }
         if (localStorage.getItem('jenis_aparatur') == 'struktural') {
             $('.jenis-jabatan').hide();
             $('.jenis-eselon').show();
             $('.jenis-jabatan-umum').hide();
-            $('.jenis-jabatan-text').hide();
         }
         if (localStorage.getItem('jenis_aparatur') == 'fungsional') {
             $('.struktural').hide();
@@ -160,12 +154,10 @@ $(function () {
             $('.select-struktural').hide();
             $('.select-fungsional').show();
             $('.jenis-jabatan-umum').hide();
-            $('.jenis-jabatan-text').hide();
         }
         if (localStorage.getItem('jenis_aparatur') == 'fungsional_umum') {
             $('.jenis-jabatan-umum').show();
             $('.jenis-jabatan').hide();
-            $('.jenis-jabatan-text').hide();
         }
     }
 });

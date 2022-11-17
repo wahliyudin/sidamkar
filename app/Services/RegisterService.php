@@ -51,17 +51,21 @@ class RegisterService
                 return $this->storeStruktural($data);
             } elseif ($data['jenis_aparatur'] == 'fungsional_umum') {
                 if ($data['jenis_jabatan_umum'] == 'lainnya') {
-                    $role = Role::query()->create([
-                        'name' => str($data['jenis_jabatan_text'])->snake(),
-                        'display_name' => ucwords($data['jenis_jabatan_text']),
-                        'description' => ''
-                    ]);
+                    $role = Role::query()->find(str($data['jenis_jabatan_text'])->snake());
+                    if (!$role) {
+                        $role = Role::query()->create([
+                            'name' => str($data['jenis_jabatan_text'])->snake(),
+                            'display_name' => ucwords($data['jenis_jabatan_text']),
+                            'description' => ''
+                        ]);
+                    }
                     $user = $this->storeAparatur($data);
-                    $user->attachRole($role->name);
+                    $user->attachRole($role);
                 } else {
                     $user = $this->storeAparatur($data);
                     $user->attachRole($data['jenis_jabatan_umum']);
                 }
+                return $user;
             }
         }
     }
