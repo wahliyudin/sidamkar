@@ -79,7 +79,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-9 col order-md-0 order-2">
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title" style="color: #17181A; font-family: 'Roboto';">Daftar Kegiatan</h4>
