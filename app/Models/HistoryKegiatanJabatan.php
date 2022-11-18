@@ -4,8 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class HistoryButirKegiatan extends Model
+class HistoryKegiatanJabatan extends Model
 {
     use HasFactory;
 
@@ -18,13 +20,13 @@ class HistoryButirKegiatan extends Model
         'keterangan'
     ];
 
-    public function laporanKegiatanJabatan()
+    public function laporanKegiatanJabatan(): BelongsTo
     {
         return $this->belongsTo(LaporanKegiatanJabatan::class);
     }
 
-    public function dokumenHistoryButirKegiatans()
+    public function historyDokumenKegiatanJabatans(): HasMany
     {
-        return $this->hasMany(DokumenHistoryButirKegiatan::class);
+        return $this->hasMany(HistoryDokumenKegiatanJabatan::class);
     }
 }

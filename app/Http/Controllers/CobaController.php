@@ -2,20 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Traits\ScoringTrait;
 use Illuminate\Http\Request;
 
 class CobaController extends Controller
 {
+    use ScoringTrait;
+
     public function index()
     {
-        return view('sweet');
-    }
-
-    public function delete($id)
-    {
-        return response()->json([
-            'success' => true,
-            'message' => $id,
-        ]);
+        dd($this->getScore(1, 0, 0.002));
     }
 }

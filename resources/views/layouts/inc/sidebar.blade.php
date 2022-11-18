@@ -42,7 +42,7 @@
                             <span>Laporan Kegiatan</span>
                         </a>
                         <ul class="submenu {{ request()->is('laporan-kegiatan*') ? 'active' : '' }}">
-                            <li class="submenu-item {{ request()->routeIs('laporan-kegiatan.jabatan') ? 'active' : '' }}">
+                            <li class="submenu-item {{ request()->is('laporan-kegiatan/jabatan*') ? 'active' : '' }}">
                                 <a href="{{ route('laporan-kegiatan.jabatan') }}">Jabatan</a>
                             </li>
                             <li class="submenu-item {{ request()->routeIs('laporan-kegiatan.profesi') ? 'active' : '' }}">
