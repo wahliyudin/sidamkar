@@ -12,7 +12,10 @@ class DokumenKegiatanJabatan extends Model
 
     protected $fillable = [
         'laporan_kegiatan_jabatan_id',
-        'file'
+        'link',
+        'name',
+        'size',
+        'type'
     ];
 
     public function laporanKegiatanJabatan(): BelongsTo

@@ -11,6 +11,9 @@ class HistoryDokumenKegiatanJabatan extends Model
 
     protected $fillable = [
         'history_kegiatan_jabatan_id',
-        'file'
+        'link',
+        'name',
+        'size',
+        'type'
     ];
 }

@@ -16,7 +16,10 @@ return new class extends Migration
         Schema::create('history_dokumen_kegiatan_jabatans', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('history_kegiatan_jabatan_id');
-            $table->string('file');
+            $table->string('name');
+            $table->string('link');
+            $table->integer('size');
+            $table->string('type');
             $table->timestamps();
         });
     }
