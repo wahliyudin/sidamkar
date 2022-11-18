@@ -23,4 +23,9 @@ class Rencana extends Model
     {
         return $this->hasMany(RencanaUnsur::class);
     }
+
+    public function laporanKegiatanJabatans()
+    {
+        return $this->hasMany(LaporanKegiatanJabatan::class);
+    }
 }

@@ -1,0 +1,71 @@
+@media screen and (max-width: 750px) {
+    .container-laporan {
+        margin-top: 1rem;
+    }
+
+    .card-header,
+    .card-body {
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+    }
+
+    .head-butir,
+    .container-date {
+        flex-direction: column;
+    }
+
+    .container-date input[type="date"] {
+        max-width: 50%;
+    }
+
+    .head-butir h5 {
+        font-size: 17px;
+        align-self: flex-start;
+    }
+
+    .head-butir>button {
+        margin-top: 1rem;
+        align-self: flex-end;
+        font-size: 13px;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .card-header p {
+        font-size: 14px;
+    }
+
+}
+
+.filepond--item {
+    width: calc(50% - .5em);
+}
+
+@media screen and (max-width: 750px) {
+    .filepond--item {
+        width: 100%;
+    }
+}
+
+.list-laporan {
+    background-color: gray;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    border-radius: 10px;
+}
+
+.list-laporan .list-laporan-item {
+    color: white;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+}
+
+.list-laporan .list-laporan-item.active {
+    color: red;
+}
+
+.list-laporan .list-laporan-item:not(:last-child) {
+    border-bottom: 1px solid #000000;
+}

@@ -22,6 +22,7 @@ use App\Http\Controllers\AtasanLangsung\OverviewController as AtasanLangsungOver
 use App\Http\Controllers\AtasanLangsung\PengajuanKegiatanController;
 use App\Http\Controllers\PenilaiAk\OverviewController as PenilaiAkOverviewController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\CobaController;
 use App\Http\Controllers\KabKota\ChatboxController;
 use App\Http\Controllers\KabKota\DataAparatur\PejabatstrukturalController as KabKotaPejabatStrukturalController;
 use App\Http\Controllers\KabKota\DataAparatur\DataAparaturController as KabKotaPejabatFungsionalController;
@@ -59,7 +60,9 @@ use App\Http\Controllers\Provinsi\PejabatStrukturalController as ProvinsiPejabat
 use App\Http\Controllers\provinsi\ChatboxController as ProvinsiChatboxController;
 use App\Models\KabKota;
 use App\Models\Mente;
+use App\Models\Periode;
 use App\Models\Provinsi;
+use App\Models\Unsur;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Query\Builder;
@@ -78,10 +81,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('coba', function () {
-    // return User::query()->withWhereHas('mentes.fungsional')->get();
-    return view('timeline');
-});
+Route::get('coba', [CobaController::class, 'index']);
 Route::redirect('/', 'login');
 Auth::routes(['verify' => true]);
 Route::post('register/file', [RegisterController::class, 'storeFile']);
@@ -108,12 +108,16 @@ Route::middleware(['auth'])->group(function () {
             Route::get('kegiatan/jabatan', 'index')->name('kegiatan.jabatan');
             Route::post('kegiatan/jabatan/search', 'search')->name('kegiatan.jabatan.search');
             Route::post('kegiatan/jabatan/rencana-kinerja/store', 'store')->name('kegiatan.jabatan.rencana-kinerja.store');
+            Route::get('kegiatan/jabatan/rencana-kinerja/{id}/edit', 'edit')->name('kegiatan.jabatan.rencana-kinerja.edit');
+            Route::put('kegiatan/jabatan/rencana-kinerja/{id}/update', 'update')->name('kegiatan.jabatan.rencana-kinerja.update');
+            Route::delete('kegiatan/jabatan/rencana-kinerja/{id}/destroy', 'destroy')->name('kegiatan.jabatan.rencana-kinerja.destroy');
         });
 
         Route::controller(LaporanKegiatanKegiatanJabatanController::class)->group(function () {
             Route::get('laporan-kegiatan/jabatan', 'index')->name('laporan-kegiatan.jabatan');
             Route::post('laporan-kegiatan/jabatan/load-data', 'loadData')->name('laporan-kegiatan.jabatan.load-data');
-            Route::post('laporan-kegiatan/jabatan/store', 'storeLaporan')->name('laporan-kegiatan.jabatan.store-laporan');
+            Route::get('laporan-kegiatan/jabatan/{butir_kegiatan}/show', 'show')->name('laporan-kegiatan.jabatan.show');
+            Route::post('laporan-kegiatan/jabatan/{butir_kegiatan}/store', 'storeLaporan')->name('laporan-kegiatan.jabatan.store-laporan');
             Route::post('laporan-kegiatan/jabatan/{id}/{current_date}/edit', 'edit')->name('laporan-kegiatan.jabatan.edit');
             Route::post('laporan-kegiatan/jabatan/{id}/update', 'update')->name('laporan-kegiatan.jabatan.update');
             Route::post('laporan-kegiatan/jabatan/tmp-file', 'tmpFile')->name('laporan-kegiatan.jabatan.tmp-file');
@@ -284,6 +288,8 @@ Route::middleware(['auth'])->group(function () {
             Route::get('kemendagri/cms/informasi', 'index')->name('kemendagri.cms.informasi.index');
             Route::post('kemendagri/cms/informasi', 'store')->name('kemendagri.cms.informasi.store');
             Route::get('kemendagri/cms/informasi/{id}/edit', 'edit')->name('kemendagri.cms.informasi.edit');
+            Route::put('kemendagri/cms/informasi/{id}/update', 'update')->name('kemendagri.cms.informasi.update');
+            Route::delete('kemendagri/cms/informasi/{id}/destroy', 'destroy')->name('kemendagri.cms.informasi.destroy');
         });
         Route::controller(PeriodeController::class)->group(function () {
             Route::get('kemendagri/cms/periode', 'index')->name('kemendagri.cms.periode.index');

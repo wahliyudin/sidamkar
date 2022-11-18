@@ -13,17 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('history_butir_kegiatans', function (Blueprint $table) {
+        Schema::create('dokumen_kegiatan_jabatans', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('laporan_kegiatan_jabatan_id');
-            $table->text('keterangan');
-            $table->text('detail_kegiatan')->nullable();
-            $table->string('catatan')->nullable();
-            $table->string('icon');
-            $table->integer('status');
+            $table->string('file');
             $table->timestamps();
 
-            $table->foreign('laporan_kegiatan_jabatan_id')->on('laporan_kegiatan_jabatans')->references('id')->cascadeOnDelete();
+            // $table->foreign('laporan_kegiatan_jabatan_id')->on('laporan_kegiatan_jabatans')->references('id')->cascadeOnDelete();
         });
     }
 
@@ -34,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('history_butir_kegiatans');
+        Schema::dropIfExists('dokumen_kegiatan_jabatans');
     }
 };

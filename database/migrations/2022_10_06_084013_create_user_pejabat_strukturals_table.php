@@ -24,19 +24,21 @@ return new class extends Migration
             $table->string('tempat_lahir')->nullable();
             $table->date('tanggal_lahir')->nullable();
             $table->enum('jenis_kelamin', ['P', 'L'])->nullable();
+            $table->enum('tingkat_aparatur', ['provinsi', 'kab_kota'])->nullable();
             $table->enum('pendidikan_terakhir', ['1', '2', '3'])->nullable(); // Enum
+            $table->enum('eselon', ['1', '2', '3', '4'])->nullable(); // Enum
             $table->string('foto_pegawai')->nullable();
-            $table->string('file_sk')->nullable();
+            $table->string('no_hp')->nullable();
             $table->string('file_ttd')->nullable();
             $table->boolean('is_active')->default(true);
             $table->string('catatan')->nullable();
-            $table->unsignedBigInteger('kab_kota_id');
+            $table->unsignedBigInteger('kab_kota_id')->nullable();
             $table->unsignedBigInteger('provinsi_id');
             $table->timestamps();
 
             $table->foreign('user_id')->on('users')->references('id')->cascadeOnDelete();
             $table->foreign('provinsi_id')->on('provinsis')->references('id')->cascadeOnDelete();
-            $table->foreign('kab_kota_id')->on('kab_kotas')->references('id')->cascadeOnDelete();
+            $table->foreign('kab_kota_id')->on('kab_kotas')->references('id')->nullOnDelete();
         });
     }
 

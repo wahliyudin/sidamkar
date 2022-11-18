@@ -14,30 +14,9 @@ class KegiatanJabatanController extends Controller
 {
     public function index()
     {
-        $rencanas = Rencana::query()->with([
-            'rencanaUnsurs.unsur',
-            'rencanaUnsurs.rencanaSubUnsurs.subUnsur',
-            'rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.butirKegiatan',
-        ])->where('user_id', auth()->user()->id)->get();
-        $unsurs = JenisKegiatan::query()
-            ->with([
-                'unsurs.role',
-                'unsurs.subUnsurs' => function (Builder $subUnsur) {
-                    User::query()->with(['rencanas.rencanaUnsurs.rencanaSubUnsurs' => function (Builder
-                    $rencanaSubUnsur) use (&$subUnsur) {
-                        $subUnsur->with('butirKegiatans')->whereNotIn(
-                            'id',
-                            $rencanaSubUnsur->pluck('sub_unsur_id')->toArray()
-                        );
-                    }])->find(auth()->user()->id);
-                },
-            ])
-            ->findOrFail(1)->unsurs->map(function (Unsur $unsur) {
-                $unsur->isSubUnsur = count($unsur->subUnsurs) != 0;
-                return $unsur;
-            });
+        $rencanas = Rencana::query()->get();
         $judul = 'Rencana Kinerja';
-        return view('aparatur.kegiatan.index', compact('rencanas', 'unsurs', 'judul'));
+        return view('aparatur.kegiatan.index', compact('rencanas', 'judul'));
     }
 
     public function search(Request $request)
@@ -47,18 +26,8 @@ class KegiatanJabatanController extends Controller
             $rencanas = User::query()
                 ->with([
                     'rencanas' => function ($query) use ($search) {
-                        $query->where('nama', 'like', "%$search%")
-                            ->orWhereHas('rencanaUnsurs.unsur', function ($query) use ($search) {
-                                $query->where('nama', 'like', "%$search%");
-                            })->orWhereHas('rencanaUnsurs.rencanaSubUnsurs.subUnsur', function ($query) use ($search) {
-                                $query->where('nama', 'like', "%$search%");
-                            })->orWhereHas('rencanaUnsurs.rencanaSubUnsurs.subUnsur.butirKegiatans', function ($query) use ($search) {
-                                $query->where('nama', 'like', "%$search%");
-                            });
-                    },
-                    'rencanas.rencanaUnsurs.unsur',
-                    'rencanas.rencanaUnsurs.rencanaSubUnsurs.subUnsur.butirKegiatans',
-                    'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.butirKegiatan'
+                        $query->where('nama', 'like', "%$search%");
+                    }
                 ])
                 ->find(auth()->user()->id)->rencanas;
             return response()->json([
@@ -70,43 +39,47 @@ class KegiatanJabatanController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'rencana' => 'required',
-            'sub_unsurs' => 'required|array',
+            'rencana' => 'required'
         ], [
             'rencana.required' => 'Rencana kinerja harus diisi'
         ]);
-        $user = User::query()->findOrFail(auth()->user()->id);
-        $rencana = $user->rencanas()->create([
+        User::query()->findOrFail(auth()->user()->id)->rencanas()->create([
             'nama' => $request->rencana
         ]);
-        $unsurId = null;
-        $rencanaUnsurTmp = null;
-        for ($i = 0; $i < count($request->sub_unsurs); $i++) {
-            if ($unsurId == $request->sub_unsurs[$i]['unsur_id']) {
-                $rencanaSubUnsur = $rencanaUnsurTmp?->rencanaSubUnsurs()->create([
-                    'sub_unsur_id' => $request->sub_unsurs[$i]['sub_unsur_id']
-                ]);
-            } else {
-                $rencanaUnsur = $rencana->rencanaUnsurs()->create([
-                    'unsur_id' => $request->sub_unsurs[$i]['unsur_id']
-                ]);
-                $rencanaSubUnsur = $rencanaUnsur->rencanaSubUnsurs()->create([
-                    'sub_unsur_id' => $request->sub_unsurs[$i]['sub_unsur_id']
-                ]);
-            }
-            $butirKegiatans = [];
-            foreach ($rencanaSubUnsur->subUnsur->butirKegiatans->pluck('id')->toArray() as $key => $value) {
-                array_push($butirKegiatans, [
-                    'butir_kegiatan_id' => $value
-                ]);
-            }
-            $rencanaSubUnsur->rencanaButirKegiatans()->createMany($butirKegiatans);
-            $unsurId = $request->sub_unsurs[$i]['unsur_id'];
-            $rencanaUnsurTmp = $rencanaUnsur;
-        }
         return response()->json([
             'status' => 200,
             'message' => "Berhasil"
+        ]);
+    }
+
+    public function edit($id)
+    {
+        $rencana = Rencana::query()->findOrFail($id);
+        return response()->json([
+            'rencana' => $rencana
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'rencana' => 'required'
+        ], [
+            'rencana.required' => 'Rencana kinerja harus diisi'
+        ]);
+        Rencana::query()->findOrFail($id)->update([
+            'nama' => $request->rencana
+        ]);
+        return response()->json([
+            'message' => "Berhasil diubah"
+        ]);
+    }
+
+    public function destroy($id)
+    {
+        Rencana::query()->findOrFail($id)->delete();
+        return response()->json([
+            'message' => "Berhasil dihapus"
         ]);
     }
 }
