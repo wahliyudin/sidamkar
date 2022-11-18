@@ -1,46 +1,88 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="section">
-        <div class="card my-3 p-3 shadow-sm">
-            <div class=" card-header">
-                <div class="row">
-                    <div class="col-md-8">
-                        <h5>List Informasi</h5>
-                    </div>
-                    <div class="col-md-4 kanan">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#tambahInformasi">Tambah Informasi</button>
+<style>
+    .ck-editor__editable {
+    min-height: 150px !important;
+    max-height: 160px !important;
+}
+</style>
+<div class="section">
+    <div class="row">
+        <div class="card">
+            <div class="card-header">
+                <div class="d-flex justify-content-end flex-wrap wrapper-btn">
+                    <button class="btn btn-blue-reverse ms-3 btn-tambah" data-bs-toggle="modal"
+                        data-bs-target="#tambahInformasi"><i class="fa-solid fa-file-circle-plus me-2"></i>Tambah
+                        Data</button>
+                </div>
+            </div>
+            <div class="card-body px-0">
+                <div class="card-body accordion-container">
+                    <div class="accordion" id="accordion-parent">
+                        @foreach ($informasis as $informasi)
+                            <div class="accordion-item">
+                                <div class="d-flex flex-column accordion-header py-3 px-2"
+                                    id="unsur{{ $informasi->id }}">
+                                    <div class="d-flex justify-content-between align-items-center ps-2 mb-1">
+                                        <span
+                                            class="bg-green text-sm text-white font-bold py-1 px-2 rounded-md label-role">
+                                            {{ $informasi->jenjang}}
+                                        </span>
+                                        <div class="d-flex align-items-center">
+                                            <i class="fa-regular fa-pen-to-square me-2 cursor-pointer text-green btn-edit-informasi"
+                                                data-id="{{ $informasi->id }}" id="edit-informasi-id"></i>
+                                            <i class="fa-solid fa-trash-can me-2 cursor-pointer text-red btn-hapus-informasi"
+                                                data-id="{{ $informasi->id }}"></i>
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse"
+                                                data-bs-target="#contentUnsur{{ $informasi->id }}" aria-expanded="false"
+                                                aria-controls="contentUnsur{{ $informasi->id }}">
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="ps-2 pt-2">
+                                        <h6 class="accordian-title" style="color: #000000;">{{ $informasi->judul }}</h6>
+                                    </div>
+                                </div>
+                                <div id="contentUnsur{{ $informasi->id }}" class="accordion-collapse collapse"
+                                    aria-labelledby="informasi{{ $informasi->id }}" style="">
+                                    <div class="accordion-body pt-0">
+                                        <div class="accordion" id="accordion-child">
+                                                <div class="accordion-item">
+                                                    <div class="d-flex justify-content-between accordion-header py-1 px-2"
+                                                        id="deskripsi{{ $informasi->id }}">
+                                                        <div class=" align-items-center" style="color: #000000;">
+                                                            {!! $informasi->deskripsi !!}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
-            <div class="card-body">
-                <div class="d-flex flex-column text-muted pt-3 w-100 list">
-                @foreach ($informasis as $informasi)
-                <div>
-                    <h6 class=" mb-0 ">
-                        <strong class="d-block mb-1 ">Role [{{$informasi->jenjang}}]</strong>
-                    </h6>
-                    <p class="border-bottom">{{$informasi->judul}} </p>
-                </div>    
-                    @endforeach
-                </div>
-            <small class="d-block text-end mt-3">
-                <a href="#" class="keychainify-checked">Selengkapnya</a>
-            </small>
-        </div>
         </div>
     </div>
+</div>
 
 <!-- Modal -->
 <div class="modal fade" id="tambahInformasi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-      <div class="modal-content">
+    <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
+      <div class="modal-content relative">
+        <div class="bg-spin" style="display: none;">
+            <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
+                style="height: 3rem; object-fit: cover;" alt="" srcset="">
+        </div>
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Tambah Informasi</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body p-4">
+            
             <form class="row" method="post" enctype="multipart/form-data">
                 <div class="col-md-12 mb-2">
                   <label for="judul" class="form-label">Judul Informasi</label>
@@ -48,20 +90,20 @@
                 </div>
                 <div class="col-md-12 mb-2">
                     <label for="deskripsi" class="form-label">Deskripsi</label>
-                    <textarea type="text" class="form-control" id="deskripsi" name="deskripsi"></textarea>
-                  </div>
+                    <textarea id="editor"></textarea>
+                </div>
                   <div class="col-md-12 mb-2">
                     <label>Tujuan</label>
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" name="tujuan[]" id="tujuan1" value="aparatur">
+                      <input class="form-check-input checkbox" type="checkbox" name="tujuan[]" id="tujuan1" value="aparatur">
                         Aparatur
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="tujuan[]" id="tujuan2" value="8" >
-                        Kab/kota
+                        <input class="form-check-input checkbox" type="checkbox" name="tujuan[]" id="tujuan2" value="8" >
+                        Kabupaten/kota
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="tujuan[]" id="tujuan3" value="9" >
+                        <input class="form-check-input checkbox" type="checkbox" name="tujuan[]" id="tujuan3" value="9" >
                         Provinsi
                     </div>
                     
@@ -78,7 +120,7 @@
                 <button type="submit" class="btn btn-success simpan-informasi simpan">
                     <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
                     style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
-                    <span>Simpan</span>
+                    <span id="simpan">Simpan</span>
                 </button>
             </div>
     </div>
@@ -108,5 +150,7 @@
     </script>
     <script src="{{ asset('assets/extensions/filepond/filepond.jquery.js') }}"></script>
     <script src="{{ asset('assets/js/extensions/sweetalert2.all.min.js') }}"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
+    {{-- <script src="{{ asset('assets/js/pages/ckeditor.js') }}"></script> --}}
     <script src="{{ asset('assets/js/pages/cms/informasi/index.js') }}"></script>
 @endsection

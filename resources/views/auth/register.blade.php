@@ -147,7 +147,7 @@
                                                                     class="custom-select">
                                                                     <option selected disabled value="">- Pilih
                                                                         Jabatan -</option>
-                                                                    <option value="fungsional">Pejabat Fungsional
+                                                                    <option value="fungsional">JF Damkar/Analis
                                                                     </option>
                                                                     <option value="struktural">Pejabat Struktural
                                                                     </option>
