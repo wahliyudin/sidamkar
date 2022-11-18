@@ -13,13 +13,18 @@ class LaporanKegiatanJabatan extends Model
 
     protected $fillable = [
         'kode',
-        'rencana_butir_kegiatan_id',
+        'rencana_id',
         'butir_kegiatan_id',
         'detail_kegiatan',
         'score',
         'status',
         'catatan'
     ];
+
+    public function rencana(): BelongsTo
+    {
+        return $this->belongsTo(Rencana::class);
+    }
 
     public function dokumenKegiatanJabatans(): HasMany
     {
@@ -31,8 +36,8 @@ class LaporanKegiatanJabatan extends Model
         return $this->belongsTo(ButirKegiatan::class);
     }
 
-    public function historyButirKegiatans()
+    public function historyKegiatanJabatans(): HasMany
     {
-        return $this->hasMany(HistoryButirKegiatan::class);
+        return $this->hasMany(HistoryKegiatanJabatan::class);
     }
 }

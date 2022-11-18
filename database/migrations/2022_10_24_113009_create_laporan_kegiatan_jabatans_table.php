@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('laporan_kegiatan_jabatans', function (Blueprint $table) {
             $table->id();
             $table->string('kode');
-            $table->unsignedBigInteger('rencana_butir_kegiatan_id');
+            $table->unsignedBigInteger('rencana_id');
             $table->unsignedBigInteger('butir_kegiatan_id');
             $table->text('detail_kegiatan');
             $table->float('score', places: 3, unsigned: true)->nullable();

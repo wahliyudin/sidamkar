@@ -22,6 +22,7 @@ use App\Http\Controllers\AtasanLangsung\OverviewController as AtasanLangsungOver
 use App\Http\Controllers\AtasanLangsung\PengajuanKegiatanController;
 use App\Http\Controllers\PenilaiAk\OverviewController as PenilaiAkOverviewController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\CobaController;
 use App\Http\Controllers\KabKota\ChatboxController;
 use App\Http\Controllers\KabKota\DataAparatur\PejabatstrukturalController as KabKotaPejabatStrukturalController;
 use App\Http\Controllers\KabKota\DataAparatur\DataAparaturController as KabKotaPejabatFungsionalController;
@@ -80,15 +81,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('coba', function () {
-    // $role = auth()->user()->load('roles')->roles()->first();
-    // return [$role->id + 1, $role->id - 1, $role->id];
-    // $periode = Periode::query()->where('is_active', true)->first();
-    // return Unsur::query()->where('periode_id', $periode->id)->with(['subUnsurs.butirKegiatans'])->get();
-    // return \Str::random(20);
-    // return User::query()->withWhereHas('mentes.fungsional')->get();
-    return view('timeline');
-});
+Route::get('coba', [CobaController::class, 'index']);
 Route::redirect('/', 'login');
 Auth::routes(['verify' => true]);
 Route::post('register/file', [RegisterController::class, 'storeFile']);
@@ -124,7 +117,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('laporan-kegiatan/jabatan', 'index')->name('laporan-kegiatan.jabatan');
             Route::post('laporan-kegiatan/jabatan/load-data', 'loadData')->name('laporan-kegiatan.jabatan.load-data');
             Route::get('laporan-kegiatan/jabatan/{butir_kegiatan}/show', 'show')->name('laporan-kegiatan.jabatan.show');
-            Route::post('laporan-kegiatan/jabatan/store', 'storeLaporan')->name('laporan-kegiatan.jabatan.store-laporan');
+            Route::post('laporan-kegiatan/jabatan/{butir_kegiatan}/store', 'storeLaporan')->name('laporan-kegiatan.jabatan.store-laporan');
             Route::post('laporan-kegiatan/jabatan/{id}/{current_date}/edit', 'edit')->name('laporan-kegiatan.jabatan.edit');
             Route::post('laporan-kegiatan/jabatan/{id}/update', 'update')->name('laporan-kegiatan.jabatan.update');
             Route::post('laporan-kegiatan/jabatan/tmp-file', 'tmpFile')->name('laporan-kegiatan.jabatan.tmp-file');

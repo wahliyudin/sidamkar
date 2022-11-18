@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Aparatur\LaporanKegiatan;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreLaporanRequest;
 use App\Models\ButirKegiatan;
 use App\Models\HistoryRekapitulasiKegiatan;
 use App\Models\LaporanKegiatanJabatan;
@@ -13,6 +14,8 @@ use App\Models\RencanaButirKegiatan;
 use App\Models\TemporaryFile;
 use App\Models\Unsur;
 use App\Models\User;
+use App\Traits\AuthTrait;
+use App\Traits\ScoringTrait;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
@@ -23,6 +26,8 @@ use Illuminate\Validation\ValidationException;
 
 class KegiatanJabatanController extends Controller
 {
+    use ScoringTrait, AuthTrait;
+
     public function index()
     {
         $periode = Periode::query()->where('is_active', true)->first();
@@ -44,8 +49,11 @@ class KegiatanJabatanController extends Controller
                     $query->whereIn('id', [$role->id + 1, $role->id - 1, $role->id]);
                 }, 'subUnsurs.butirKegiatans'])
                 ->whereHas('role', function ($query) use ($search, $role) {
-                    $query->where('nama', 'like',
-                    "%$search%");
+                    $query->where(
+                        'nama',
+                        'like',
+                        "%$search%"
+                    );
                 })
                 ->when($search, function ($query) use ($search) {
                     $query->where('nama', 'like', "%$search%")
@@ -63,63 +71,57 @@ class KegiatanJabatanController extends Controller
         }
     }
 
-    public function show(ButirKegiatan $butir_kegiatan)
+    public function show(ButirKegiatan $butirKegiatan)
     {
-        return view('aparatur.laporan-kegiatan.jabatan.show', compact('butir_kegiatan'));
+        $laporanKegiatanJabatans = LaporanKegiatanJabatan::query()
+            ->with(['rencana'])
+            ->whereHas('rencana', function($query){
+                $query->where('user_id', auth()->user()->id);
+            })
+            ->where('butir_kegiatan_id', $butirKegiatan->id)
+            ->get();
+        $laporanKegiatanJabatan = null;
+        if (request()->has('kode')) {
+            $laporanKegiatanJabatan = $laporanKegiatanJabatans->where('kode', request()->get('kode'))->first();
+        }
+        $rencanas = Rencana::query()->where('user_id', auth()->user()->id)->get();
+        return view('aparatur.laporan-kegiatan.jabatan.show', compact('butirKegiatan', 'laporanKegiatanJabatans', 'rencanas', 'laporanKegiatanJabatan'));
     }
 
-    public function storeLaporan(Request $request)
+    public function storeLaporan(StoreLaporanRequest $request, ButirKegiatan $butirKegiatan)
     {
-        $request->validate([
-            'keterangan' => 'required',
-            'rencana_butir_kegiatan' => 'required',
-            'current_date' => 'required',
-            'doc_kegiatan_tmp' => 'required|array'
-        ], [
-            'keterangan.required' => 'Detail kegiatan harus diisi',
-            'doc_kegiatan_tmp.required' => 'Dokumen Kegiatan harus diisi'
-        ]);
-        $user = auth()->user()->load(['roles', 'userAparatur']);
-        $role = $user->roles()->first();
-        $rencanaButirKegiatan = RencanaButirKegiatan::query()->with('butirKegiatan.subUnsur.unsur.role')->findOrFail($request->rencana_butir_kegiatan);
-        $laporanKegiatanJabatan = $rencanaButirKegiatan->laporanKegiatanJabatans()->create([
+        $butirKegiatan = $butirKegiatan->load(['subUnsur.Unsur']);
+        $laporanKegiatanJabatan = LaporanKegiatanJabatan::query()->create([
+            'kode' => uniqid(),
+            'rencana_id' => $request->rencana_id,
+            'butir_kegiatan_id' => $butirKegiatan->id,
             'detail_kegiatan' => $request->keterangan,
-            'current_date' => $request->current_date,
-            'score' => $rencanaButirKegiatan->butirKegiatan->score
+            'score' => $this->getScore($this->getFirstRole()->id, $butirKegiatan->subUnsur->unsur->role_id, $butirKegiatan->score),
+            'status' => 1
         ]);
-        $userNama = $user->userAparatur->nama;
-        $jabatan = $role->display_name;
-        $historyButirKegiatan = $laporanKegiatanJabatan->historyButirKegiatans()->create([
-            'keterangan' => "Kegiatan dilaporkan oleh $userNama - $jabatan",
-            'detail_kegiatan' => $request->keterangan,
-            'status' => 5,
-            'icon' => 6
-        ]);
-        $laporanKegiatanJabatan->historyButirKegiatans()->create([
-            'keterangan' => 'Sedang divalidasi oleh Atasan Langsung',
+        $historyKegiatanJabatan = $laporanKegiatanJabatan->historyKegiatanJabatans()->create([
             'status' => 1,
-            'icon' => 1
+            'icon' => 1,
+            'detail_kegiatan' => $request->keterangan,
+            'keterangan' => 'Berhasil dilaporkan',
         ]);
         foreach ($request->doc_kegiatan_tmp as $doc_kegiatan_tmp) {
             $tmp_file = TemporaryFile::query()->where('folder', $doc_kegiatan_tmp)->first();
             if ($tmp_file) {
                 Storage::copy("tmp/$tmp_file->folder/$tmp_file->file", "kegiatan/$tmp_file->file");
-                $laporanKegiatanJabatan->dokumenKegiatanPokoks()->create([
+                $laporanKegiatanJabatan->dokumenKegiatanJabatans()->create([
                     'file' => url("storage/kegiatan/$tmp_file->file")
                 ]);
-                $historyButirKegiatan->dokumenHistoryButirKegiatans()->create([
+                $historyKegiatanJabatan->historyDokumenKegiatanJabatans()->create([
                     'file' => url("storage/kegiatan/$tmp_file->file")
                 ]);
                 $tmp_file->delete();
                 Storage::deleteDirectory("tmp/$tmp_file->folder");
             }
         }
-        $laporanKegiatanJabatan->update([
-            'status' => 1
-        ]);
         return response()->json([
             'status' => 200,
-            'message' => 'Berhasil'
+            'message' => 'Berhasil dilaporkan'
         ]);
     }
 
@@ -192,12 +194,12 @@ class KegiatanJabatanController extends Controller
     public function tmpFile(Request $request)
     {
         foreach ($request->doc_kegiatan_tmp as $file) {
-            $file_name = $file->getClientOriginalName();
+            $name = uniqid() . '.' . $file->getClientOriginalExtension();
             $folder = uniqid('kegiatan', true);
-            $file->storeAs("tmp/$folder", $file_name);
+            $file->storeAs("tmp/$folder", $name);
             TemporaryFile::query()->create([
                 'folder' => $folder,
-                'file' => $file_name
+                'file' => $name
             ]);
             return $folder;
         }
