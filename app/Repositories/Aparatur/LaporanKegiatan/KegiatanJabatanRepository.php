@@ -29,7 +29,7 @@ class KegiatanJabatanRepository
     private function laporanKegiatanJabatanByUser(ButirKegiatan $butirKegiatan, User $user)
     {
         return $this->laporanKegiatanJabatan->query()
-            ->with(['rencana'])
+            ->with(['rencana', 'dokumenKegiatanJabatans', 'butirKegiatan'])
             ->whereHas('rencana', function ($query) use ($user) {
                 $query->where('user_id', $user->id)->with(['user.roles', 'user.userAparatur']);
             })
@@ -98,7 +98,7 @@ class KegiatanJabatanRepository
     public function storeDokumenKegiatanJabatan(LaporanKegiatanJabatan $laporanKegiatanJabatan, TemporaryFile $temporaryFile): DokumenKegiatanJabatan
     {
         return $laporanKegiatanJabatan->dokumenKegiatanJabatans()->create([
-            'link' => url("storage/kegiatan/$temporaryFile->link"),
+            'link' => url("storage/kegiatan/$temporaryFile->name"),
             'name' => $temporaryFile->name,
             'size' => $temporaryFile->size,
             'type' => $temporaryFile->type

@@ -1,4 +1,9 @@
 $(document).ready(function () {
+    var swiper = new Swiper(".mySwiper", {
+        pagination: {
+            el: ".swiper-pagination",
+        },
+    });
     $.fn.filepond.registerPlugin(FilePondPluginImagePreview);
     $.fn.filepond.registerPlugin(FilePondPluginFileValidateType);
     $.fn.filepond.registerPlugin(FilePondPluginFileValidateSize);

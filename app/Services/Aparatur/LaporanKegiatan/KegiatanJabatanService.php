@@ -84,7 +84,7 @@ class KegiatanJabatanService
         foreach ($request->doc_kegiatan_tmp as $doc_kegiatan_tmp) {
             $tmpFile = $this->temporaryFileRepository->getByFolder($doc_kegiatan_tmp);
             if ($tmpFile) {
-                Storage::copy("tmp/$tmpFile->folder/$tmpFile->file", "kegiatan/$tmpFile->file");
+                Storage::copy("tmp/$tmpFile->folder/$tmpFile->name", "kegiatan/$tmpFile->name");
                 $this->kegiatanJabatanRepository->storeDokumenKegiatanJabatan($laporanKegiatanJabatan, $tmpFile);
                 $this->kegiatanJabatanRepository->storeHistoryDokumenKegiatanJabatan($historyKegiatanJabatan, $tmpFile);
                 $this->temporaryFileRepository->destroy($tmpFile);
