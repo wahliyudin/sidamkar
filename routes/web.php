@@ -120,8 +120,8 @@ Route::middleware(['auth'])->group(function () {
             Route::post('laporan-kegiatan/jabatan/{butir_kegiatan}/store', 'storeLaporan')->name('laporan-kegiatan.jabatan.store-laporan');
             Route::post('laporan-kegiatan/jabatan/{id}/{current_date}/edit', 'edit')->name('laporan-kegiatan.jabatan.edit');
             Route::post('laporan-kegiatan/jabatan/{id}/update', 'update')->name('laporan-kegiatan.jabatan.update');
-            Route::post('laporan-kegiatan/jabatan/tmp-file', 'tmpFile')->name('laporan-kegiatan.jabatan.tmp-file');
-            Route::delete('laporan-kegiatan/jabatan/revert', 'revert')->name('laporan-kegiatan.jabatan.revert');
+            Route::post('laporan-kegiatan/jabatan/tmp-file', 'storeTmpFile')->name('laporan-kegiatan.jabatan.tmp-file');
+            Route::delete('laporan-kegiatan/jabatan/revert', 'revertTmpFile')->name('laporan-kegiatan.jabatan.revert');
 
             Route::post('laporan-kegiatan/jabatan/rekapitulasi', 'rekapitulasi')->name('laporan-kegiatan.jabatan.rekapitulasi');
             Route::post('laporan-kegiatan/jabatan/rekapitulasi/send-rekap', 'sendRekap')->name('laporan-kegiatan.jabatan.rekapitulasi.send-rekap');

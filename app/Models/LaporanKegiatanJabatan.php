@@ -22,6 +22,7 @@ class LaporanKegiatanJabatan extends Model
         'rencana_id',
         'butir_kegiatan_id',
         'detail_kegiatan',
+        'current_date',
         'score',
         'status',
         'catatan'

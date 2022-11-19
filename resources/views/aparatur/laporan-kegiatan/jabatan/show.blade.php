@@ -4,7 +4,7 @@
     <div class="section">
         <div class="d-flex px-4 mb-4 container-control justify-content-between align-items-center">
             <div class="form-group mb-0">
-                <input class="form-control" type="date" value="{{ now()->format('Y-m-d') }}" name="current_date">
+                <input class="form-control" type="date" value="{{ now()->format('Y-m-d') }}" name="tanggal">
             </div>
             <button class="btn btn-gray" data-bs-toggle="modal" data-bs-target="#laporkan">Laporkan</button>
         </div>
@@ -17,11 +17,13 @@
                         <p class="m-0" style="font-style: italic;">Total :
                             {{ count($laporanKegiatanJabatanStatusValidasis) }}</p>
                     </div>
-                    <div class="card-body mx-0 my-2" data-simplebar style="max-height: 580px;">
+                    <div class="card-body mx-0 my-2" data-simplebar style="max-height: 540px;">
                         @forelse ($laporanKegiatanJabatanStatusValidasis as $laporanKegiatanJabatanStatusValidasi)
                             <div class="laporan-item pb-4">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <p class="m-0" style="font-weight: 600;">02 Nov 2022</p>
+                                    <p class="m-0" style="font-weight: 600;">
+                                        {{ $laporanKegiatanJabatanStatusValidasi->created_at->translatedFormat('d M Y') }}
+                                    </p>
                                     <button class="btn btn-yellow btn-sm text-sm px-3">Validasi</button>
                                 </div>
                                 <img src="{{ asset('storage/bi.jpg') }}"
@@ -72,11 +74,13 @@
                         <p class="m-0" style="font-style: italic;">Total :
                             {{ count($laporanKegiatanJabatanStatusRevisis) }}</p>
                     </div>
-                    <div class="card-body mx-0 my-2" data-simplebar style="max-height: 580px;">
+                    <div class="card-body mx-0 my-2" data-simplebar style="max-height: 540px;">
                         @forelse ($laporanKegiatanJabatanStatusRevisis as $laporanKegiatanJabatanStatusRevisi)
                             <div class="laporan-item pb-4">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <p class="m-0" style="font-weight: 600;">02 Nov 2022</p>
+                                    <p class="m-0" style="font-weight: 600;">
+                                        {{ $laporanKegiatanJabatanStatusRevisi->created_at->translatedFormat('d M Y') }}
+                                    </p>
                                     <button class="btn btn-red btn-sm text-sm px-3">Revisi</button>
                                 </div>
                                 <img src="{{ asset('storage/bi.jpg') }}"
@@ -91,7 +95,8 @@
                                     <div class="d-flex align-items-center item-attr">
                                         <i class="fa-solid fa-user" style="font-size: 1.3rem; width: 27px;"></i>
                                         <p class="m-0 ms-3" style="font-weight: 600;">
-                                            {{ $laporanKegiatanJabatanStatusRevisi->rencana->user->userAparatur->nama }}</p>
+                                            {{ $laporanKegiatanJabatanStatusRevisi->rencana->user->userAparatur->nama }}
+                                        </p>
                                     </div>
                                     <div class="d-flex align-items-center item-attr">
                                         <i class="fa-solid fa-comments" style="font-size: 1.3rem; width: 27px;"></i>
@@ -128,11 +133,13 @@
                         <p class="m-0" style="font-style: italic;">Total :
                             {{ count($laporanKegiatanJabatanStatusSelesais) }}</p>
                     </div>
-                    <div class="card-body mx-0 my-2" data-simplebar style="max-height: 580px;">
+                    <div class="card-body mx-0 my-2" data-simplebar style="max-height: 540px;">
                         @forelse ($laporanKegiatanJabatanStatusSelesais as $laporanKegiatanJabatanStatusSelesai)
                             <div class="laporan-item pb-4">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <p class="m-0" style="font-weight: 600;">02 Nov 2022</p>
+                                    <p class="m-0" style="font-weight: 600;">
+                                        {{ $laporanKegiatanJabatanStatusSelesai->created_at->translatedFormat('d M Y') }}
+                                    </p>
                                     <button class="btn btn-green btn-sm text-sm px-3">Selesai</button>
                                 </div>
                                 <img src="{{ asset('storage/bi.jpg') }}"
@@ -183,11 +190,13 @@
                         <p class="m-0" style="font-style: italic;">Total :
                             {{ count($laporanKegiatanJabatanStatusTolaks) }}</p>
                     </div>
-                    <div class="card-body mx-0 my-2" data-simplebar style="max-height: 580px;">
+                    <div class="card-body mx-0 my-2" data-simplebar style="max-height: 540px;">
                         @forelse ($laporanKegiatanJabatanStatusTolaks as $laporanKegiatanJabatanStatusTolak)
                             <div class="laporan-item pb-4">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <p class="m-0" style="font-weight: 600;">02 Nov 2022</p>
+                                    <p class="m-0" style="font-weight: 600;">
+                                        {{ $laporanKegiatanJabatanStatusTolak->created_at->translatedFormat('d M Y') }}
+                                    </p>
                                     <button class="btn btn-black btn-sm text-sm px-3">DITOLAK</button>
                                 </div>
                                 <img src="{{ asset('storage/bi.jpg') }}"
@@ -241,22 +250,31 @@
                 </div>
                 <div class="modal-body">
                     <form class="d-flex flex-column form-kegiatan" enctype="multipart/form-data">
-                        <input type="hidden" name="rencana_butir_kegiatan">
-                        <input type="hidden" name="current_date">
+                        <input type="hidden" name="butir_kegiatan" value="{{ $butirKegiatan->id }}">
+                        <input type="hidden" name="rencana_count" value="{{ $laporanKegiatanJabatanCount }}">
                         <div class="row">
-                            <ul class="ms-4">
-                                <li>
-                                    <p class="butir text-gray m-0 p-0">Lorem ipsum dolor sit amet.</p>
-                                </li>
-                            </ul>
+                            <div class="form-group col-md-6">
+                                <label>Tanggal</label>
+                                <input class="form-control" type="date" value="{{ now()->format('Y-m-d') }}"
+                                    name="current_date">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label>Rencana</label>
+                                <select name="rencana_id" class="form-select">
+                                    <option selected disabled>- Pilih Rencana -</option>
+                                    @foreach ($rencanas as $rencana)
+                                        <option value="{{ $rencana->id }}">{{ $rencana->nama }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <div class="form-group col-md-12">
                                 <label>File Dokumen</label>
                                 <input type="file" name="doc_kegiatan_tmp[]" multiple data-max-file-size="2MB"
                                     data-max-files="3" required />
                             </div>
                             <div class="form-group col-md-12">
-                                <label for="">Detail Kegiatan</label>
-                                <textarea name="keterangan" id="" class="form-control"></textarea>
+                                <label>Detail Kegiatan</label>
+                                <textarea name="detail_kegiatan" rows="3" class="form-control"></textarea>
                             </div>
                         </div>
 
@@ -284,6 +302,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/pages/filepond.css') }}">
     <link href="{{ asset('assets/extensions/filepond-plugin-file-poster/dist/filepond-plugin-file-poster.css') }}"
         rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('assets/css/shared/sweetalert2.min.css') }}">
 @endsection
 @section('js')
     <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
@@ -299,6 +318,7 @@
     </script>
     <script src="{{ asset('assets/extensions/filepond-plugin-file-poster/dist/filepond-plugin-file-poster.js') }}">
     </script>
+    <script src="{{ asset('assets/js/extensions/sweetalert2.all.min.js') }}"></script>
     <script src="{{ asset('assets/js/pages/aparatur/laporan-kegiatan/simplebar.js') }}"></script>
     <script src="{{ asset('assets/js/pages/aparatur/laporan-kegiatan/jabatan/show.js') }}"></script>
 @endsection
