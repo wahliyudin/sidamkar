@@ -28,6 +28,7 @@ class StoreLaporanRequest extends FormRequest
             'rencana_count' => 'required',
             'butir_kegiatan' => 'required',
             'current_date' => 'required',
+            'doc_kegiatan_tmp' => 'required',
         ];
         if (request()->rencana_count <= 0) {
             $rules['rencana_id'] = 'required';
@@ -37,6 +38,10 @@ class StoreLaporanRequest extends FormRequest
 
     public function messages()
     {
-        return [];
+        return [
+            'doc_kegiatan_tmp.required' => 'Dokemen Kegiatan Wajib Diisi',
+            'rencana_id' => 'Rencana Wajib Diisi',
+            'current_date' => 'Tanggal Wajib Diisi'
+        ];
     }
 }

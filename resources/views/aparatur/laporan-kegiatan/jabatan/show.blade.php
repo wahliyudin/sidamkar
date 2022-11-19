@@ -4,7 +4,9 @@
     <div class="section">
         <div class="d-flex px-4 mb-4 container-control justify-content-between align-items-center">
             <div class="form-group mb-0">
-                <input class="form-control" type="date" value="{{ now()->format('Y-m-d') }}" name="tanggal">
+                <input class="form-control" type="date" value="{{ now()->format('Y-m-d') }}"
+                    max="{{ Carbon\Carbon::make($periode->akhir)->format('Y-m-d') }}"
+                    min="{{ Carbon\Carbon::make($periode->awal)->format('Y-m-d') }}" name="tanggal">
             </div>
             <button class="btn btn-gray" data-bs-toggle="modal" data-bs-target="#laporkan">Laporkan</button>
         </div>
@@ -37,27 +39,27 @@
                                     <div class="swiper-pagination"></div>
                                 </div>
                                 <div class="d-flex flex-column mt-3">
-                                    <div class="d-flex align-items-center item-attr">
+                                    <div class="d-flex align-items-start item-attr">
                                         <i class="fa-solid fa-address-card" style="font-size: 1.3rem; width: 27px;"></i>
-                                        <p class="m-0 ms-3" style="font-weight: 600;">
+                                        <p class="m-0 ms-3" style="font-weight: 600; max-width: 385px;">
                                             {{ $laporanKegiatanJabatanStatusValidasi->kode }}
                                         </p>
                                     </div>
-                                    <div class="d-flex align-items-center item-attr">
+                                    <div class="d-flex align-items-start item-attr">
                                         <i class="fa-solid fa-user" style="font-size: 1.3rem; width: 27px;"></i>
-                                        <p class="m-0 ms-3" style="font-weight: 600;">
+                                        <p class="m-0 ms-3" style="font-weight: 600; max-width: 385px;">
                                             {{ $laporanKegiatanJabatanStatusValidasi->rencana->user->userAparatur->nama }}
                                         </p>
                                     </div>
-                                    <div class="d-flex align-items-center item-attr">
+                                    <div class="d-flex align-items-start item-attr">
                                         <i class="fa-solid fa-person-running" style="font-size: 1.3rem; width: 27px;"></i>
-                                        <p class="m-0 ms-3" style="font-weight: 600;">
+                                        <p class="m-0 ms-3" style="font-weight: 600; max-width: 385px;">
                                             {{ $laporanKegiatanJabatanStatusValidasi->butirKegiatan->nama }}
                                         </p>
                                     </div>
-                                    <div class="d-flex align-items-center item-attr">
+                                    <div class="d-flex align-items-start item-attr">
                                         <i class="fa-solid fa-list-ul" style="font-size: 1.3rem; width: 27px;"></i>
-                                        <p class="m-0 ms-3" style="font-weight: 600;">
+                                        <p class="m-0 ms-3" style="font-weight: 600; max-width: 385px;">
                                             {{ $laporanKegiatanJabatanStatusValidasi->rencana->nama }}
                                         </p>
                                     </div>
@@ -100,27 +102,27 @@
                                     <div class="swiper-pagination"></div>
                                 </div>
                                 <div class="d-flex flex-column mt-3">
-                                    <div class="d-flex align-items-center item-attr">
+                                    <div class="d-flex align-items-start item-attr">
                                         <i class="fa-solid fa-address-card" style="font-size: 1.3rem; width: 27px;"></i>
-                                        <p class="m-0 ms-3" style="font-weight: 600;">
+                                        <p class="m-0 ms-3" style="font-weight: 600; max-width: 385px;">
                                             {{ $laporanKegiatanJabatanStatusRevisi->kode }}
                                         </p>
                                     </div>
-                                    <div class="d-flex align-items-center item-attr">
+                                    <div class="d-flex align-items-start item-attr">
                                         <i class="fa-solid fa-user" style="font-size: 1.3rem; width: 27px;"></i>
-                                        <p class="m-0 ms-3" style="font-weight: 600;">
+                                        <p class="m-0 ms-3" style="font-weight: 600; max-width: 385px;">
                                             {{ $laporanKegiatanJabatanStatusRevisi->rencana->user->userAparatur->nama }}
                                         </p>
                                     </div>
-                                    <div class="d-flex align-items-center item-attr">
+                                    <div class="d-flex align-items-start item-attr">
                                         <i class="fa-solid fa-person-running" style="font-size: 1.3rem; width: 27px;"></i>
-                                        <p class="m-0 ms-3" style="font-weight: 600;">
+                                        <p class="m-0 ms-3" style="font-weight: 600; max-width: 385px;">
                                             {{ $laporanKegiatanJabatanStatusRevisi->butirKegiatan->nama }}
                                         </p>
                                     </div>
-                                    <div class="d-flex align-items-center item-attr">
+                                    <div class="d-flex align-items-start item-attr">
                                         <i class="fa-solid fa-list-ul" style="font-size: 1.3rem; width: 27px;"></i>
-                                        <p class="m-0 ms-3" style="font-weight: 600;">
+                                        <p class="m-0 ms-3" style="font-weight: 600; max-width: 385px;">
                                             {{ $laporanKegiatanJabatanStatusRevisi->rencana->nama }}
                                         </p>
                                     </div>
@@ -165,27 +167,27 @@
                                     <div class="swiper-pagination"></div>
                                 </div>
                                 <div class="d-flex flex-column mt-3">
-                                    <div class="d-flex align-items-center item-attr">
+                                    <div class="d-flex align-items-start item-attr">
                                         <i class="fa-solid fa-address-card" style="font-size: 1.3rem; width: 27px;"></i>
-                                        <p class="m-0 ms-3" style="font-weight: 600;">
+                                        <p class="m-0 ms-3" style="font-weight: 600; max-width: 385px;">
                                             {{ $laporanKegiatanJabatanStatusSelesai->kode }}
                                         </p>
                                     </div>
-                                    <div class="d-flex align-items-center item-attr">
+                                    <div class="d-flex align-items-start item-attr">
                                         <i class="fa-solid fa-user" style="font-size: 1.3rem; width: 27px;"></i>
-                                        <p class="m-0 ms-3" style="font-weight: 600;">
+                                        <p class="m-0 ms-3" style="font-weight: 600; max-width: 385px;">
                                             {{ $laporanKegiatanJabatanStatusSelesai->rencana->user->userAparatur->nama }}
                                         </p>
                                     </div>
-                                    <div class="d-flex align-items-center item-attr">
+                                    <div class="d-flex align-items-start item-attr">
                                         <i class="fa-solid fa-person-running" style="font-size: 1.3rem; width: 27px;"></i>
-                                        <p class="m-0 ms-3" style="font-weight: 600;">
+                                        <p class="m-0 ms-3" style="font-weight: 600; max-width: 385px;">
                                             {{ $laporanKegiatanJabatanStatusSelesai->butirKegiatan->nama }}
                                         </p>
                                     </div>
-                                    <div class="d-flex align-items-center item-attr">
+                                    <div class="d-flex align-items-start item-attr">
                                         <i class="fa-solid fa-list-ul" style="font-size: 1.3rem; width: 27px;"></i>
-                                        <p class="m-0 ms-3" style="font-weight: 600;">
+                                        <p class="m-0 ms-3" style="font-weight: 600; max-width: 385px;">
                                             {{ $laporanKegiatanJabatanStatusSelesai->rencana->nama }}
                                         </p>
                                     </div>
@@ -228,26 +230,26 @@
                                     <div class="swiper-pagination"></div>
                                 </div>
                                 <div class="d-flex flex-column mt-3">
-                                    <div class="d-flex align-items-center item-attr">
+                                    <div class="d-flex align-items-start item-attr">
                                         <i class="fa-solid fa-address-card" style="font-size: 1.3rem; width: 27px;"></i>
-                                        <p class="m-0 ms-3" style="font-weight: 600;">
+                                        <p class="m-0 ms-3" style="font-weight: 600; max-width: 385px;">
                                             {{ $laporanKegiatanJabatanStatusTolak->kode }}
                                         </p>
                                     </div>
-                                    <div class="d-flex align-items-center item-attr">
+                                    <div class="d-flex align-items-start item-attr">
                                         <i class="fa-solid fa-user" style="font-size: 1.3rem; width: 27px;"></i>
-                                        <p class="m-0 ms-3" style="font-weight: 600;">
+                                        <p class="m-0 ms-3" style="font-weight: 600; max-width: 385px;">
                                             {{ $laporanKegiatanJabatanStatusTolak->rencana->user->userAparatur->nama }}</p>
                                     </div>
-                                    <div class="d-flex align-items-center item-attr">
+                                    <div class="d-flex align-items-start item-attr">
                                         <i class="fa-solid fa-person-running" style="font-size: 1.3rem; width: 27px;"></i>
-                                        <p class="m-0 ms-3" style="font-weight: 600;">
+                                        <p class="m-0 ms-3" style="font-weight: 600; max-width: 385px;">
                                             {{ $laporanKegiatanJabatanStatusTolak->butirKegiatan->nama }}
                                         </p>
                                     </div>
-                                    <div class="d-flex align-items-center item-attr">
+                                    <div class="d-flex align-items-start item-attr">
                                         <i class="fa-solid fa-list-ul" style="font-size: 1.3rem; width: 27px;"></i>
-                                        <p class="m-0 ms-3" style="font-weight: 600;">
+                                        <p class="m-0 ms-3" style="font-weight: 600; max-width: 385px;">
                                             {{ $laporanKegiatanJabatanStatusTolak->rencana->nama }}
                                         </p>
                                     </div>
@@ -279,7 +281,10 @@
                         <div class="row">
                             <div class="form-group col-md-6">
                                 <label>Tanggal</label>
-                                <input class="form-control" type="date" value="{{ now()->format('Y-m-d') }}"
+                                <input class="form-control" type="datetime-local"
+                                    value="{{ now()->format('Y-m-d H:i') }}"
+                                    max="{{ Carbon\Carbon::make($periode->akhir)->format('Y-m-d H:i') }}"
+                                    min="{{ Carbon\Carbon::make($periode->awal)->format('Y-m-d H:i') }}"
                                     name="current_date">
                             </div>
                             <div class="form-group col-md-12">

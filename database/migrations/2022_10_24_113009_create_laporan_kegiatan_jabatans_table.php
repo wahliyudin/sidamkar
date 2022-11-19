@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('rencana_id');
             $table->unsignedBigInteger('butir_kegiatan_id');
             $table->text('detail_kegiatan');
-            $table->date('current_date');
+            $table->dateTime('current_date');
             $table->float('score', places: 4, unsigned: true)->nullable();
             $table->enum('status', [1, 2, 3, 4])->nullable();
             $table->string('catatan')->nullable();

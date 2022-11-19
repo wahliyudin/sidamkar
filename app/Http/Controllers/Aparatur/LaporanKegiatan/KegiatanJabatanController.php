@@ -37,6 +37,7 @@ class KegiatanJabatanController extends Controller
 
     public function show(ButirKegiatan $butirKegiatan)
     {
+        $periode = $this->periodeRepository->isActive();
         $user = $this->authUser();
         [
             $laporanKegiatanJabatanStatusValidasis,
@@ -54,7 +55,8 @@ class KegiatanJabatanController extends Controller
             'laporanKegiatanJabatanCount',
             'user',
             'rencanas',
-            'butirKegiatan'
+            'butirKegiatan',
+            'periode'
         ));
     }
 

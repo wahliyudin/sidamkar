@@ -77,7 +77,7 @@ class KegiatanJabatanRepository
             'rencana_id' => $request->rencana_id,
             'butir_kegiatan_id' => $butirKegiatan->id,
             'detail_kegiatan' => $request->detail_kegiatan,
-            'score' => $this->getScore($this->authUser()->id, $role->id, $butirKegiatan->score),
+            'score' => $this->getScore($this->getFirstRole()->id, $role->id, $butirKegiatan->score),
             'status' => $this->laporanKegiatanJabatan::VALIDASI,
             'current_date' => $current_date
         ];
