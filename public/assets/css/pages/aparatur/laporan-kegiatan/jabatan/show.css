@@ -1,0 +1,35 @@
+.col-md-5 {
+    width: 45%;
+}
+
+.laporan-item {
+    border-bottom: 2px solid rgba(0, 0, 0, 0.125);
+}
+
+.laporan-item:not(:first-child) {
+    margin-top: 1rem;
+}
+
+.item-attr:not(:first-child) {
+    margin-top: .4rem;
+}
+
+@media screen and (max-width: 750px) {
+    .col-md-5 {
+        width: 100%;
+    }
+
+    .container-control {
+        padding: 0 !important;
+    }
+}
+
+.filepond--item {
+    width: calc(50% - .5em);
+}
+
+@media screen and (max-width: 750px) {
+    .filepond--item {
+        width: 100%;
+    }
+}
