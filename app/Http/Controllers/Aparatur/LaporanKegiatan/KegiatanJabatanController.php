@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Aparatur\LaporanKegiatan;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Aparatur\LaporanKegiatan\StoreLaporanRequest;
+use App\Http\Requests\Aparatur\LaporanKegiatan\UpdateLaporanRequest;
 use App\Models\ButirKegiatan;
+use App\Models\LaporanKegiatanJabatan;
 use App\Models\User;
 use App\Repositories\PeriodeRepository;
 use App\Services\Aparatur\LaporanKegiatan\KegiatanJabatanService;
@@ -79,6 +81,22 @@ class KegiatanJabatanController extends Controller
         return response()->json([
             'status' => 200,
             'message' => 'Berhasil dilaporkan'
+        ]);
+    }
+
+    public function edit(LaporanKegiatanJabatan $laporanKegiatanJabatan)
+    {
+        return response()->json([
+            'data' => $this->kegiatanJabatanService->edit($laporanKegiatanJabatan)
+        ]);
+    }
+
+    public function update(UpdateLaporanRequest $request, LaporanKegiatanJabatan $laporanKegiatanJabatan)
+    {
+        $this->kegiatanJabatanService->update($request, $laporanKegiatanJabatan);
+        return response()->json([
+            'status' => 200,
+            'message' => 'Berhasil diperbaiki'
         ]);
     }
 

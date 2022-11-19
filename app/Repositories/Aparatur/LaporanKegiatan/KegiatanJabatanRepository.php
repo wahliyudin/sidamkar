@@ -29,11 +29,12 @@ class KegiatanJabatanRepository
     private function laporanKegiatanJabatanByUser(ButirKegiatan $butirKegiatan, User $user)
     {
         return $this->laporanKegiatanJabatan->query()
-            ->with(['rencana', 'dokumenKegiatanJabatans', 'butirKegiatan'])
+            ->with(['rencana', 'dokumenKegiatanJabatans', 'butirKegiatan.subUnsur.unsur'])
             ->whereHas('rencana', function ($query) use ($user) {
                 $query->where('user_id', $user->id)->with(['user.roles', 'user.userAparatur']);
             })
             ->where('butir_kegiatan_id', $butirKegiatan->id)
+            ->orderBy('id', 'desc')
             ->get();
     }
 
@@ -84,7 +85,7 @@ class KegiatanJabatanRepository
         return $this->laporanKegiatanJabatan->query()->create($data);
     }
 
-    public function storeHistoryKegiatanJabatan(LaporanKegiatanJabatan $laporanKegiatanJabatan, int $status, int $icon, string $detail_kegiatan, string $keterangan, $current_date): HistoryKegiatanJabatan
+    public function storeHistoryKegiatanJabatan(LaporanKegiatanJabatan $laporanKegiatanJabatan, int $status, int $icon, string $detail_kegiatan = null, string $keterangan, $current_date): HistoryKegiatanJabatan
     {
         return $laporanKegiatanJabatan->historyKegiatanJabatans()->create([
             'status' => $status,
@@ -108,7 +109,7 @@ class KegiatanJabatanRepository
     public function storeHistoryDokumenKegiatanJabatan(HistoryKegiatanJabatan $historyKegiatanJabatan, TemporaryFile $temporaryFile): HistoryDokumenKegiatanJabatan
     {
         return $historyKegiatanJabatan->historyDokumenKegiatanJabatans()->create([
-            'link' => url("storage/kegiatan/$temporaryFile->link"),
+            'link' => url("storage/kegiatan/$temporaryFile->name"),
             'name' => $temporaryFile->name,
             'size' => $temporaryFile->size,
             'type' => $temporaryFile->type

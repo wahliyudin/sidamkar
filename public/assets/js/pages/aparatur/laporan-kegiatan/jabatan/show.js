@@ -7,13 +7,14 @@ $(document).ready(function () {
     $.fn.filepond.registerPlugin(FilePondPluginImagePreview);
     $.fn.filepond.registerPlugin(FilePondPluginFileValidateType);
     $.fn.filepond.registerPlugin(FilePondPluginFileValidateSize);
+    $.fn.filepond.registerPlugin(FilePondPluginFilePoster);
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-    var laporkan = FilePond.create(document.querySelector('input[name="doc_kegiatan_tmp[]"]'));
-    laporkan.setOptions({
+    var pond = FilePond.create(document.querySelector('#laporkan input[name="doc_kegiatan_tmp[]"]'));
+    pond.setOptions({
         server: {
             process: '/laporan-kegiatan/jabatan/tmp-file',
             revert: '/laporan-kegiatan/jabatan/revert',
@@ -21,10 +22,6 @@ $(document).ready(function () {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         },
-    });
-
-    $(document).on('click', '.laporkan', function (e) {
-        e.preventDefault();
     });
 
     $('.simpan-kegiatan').click(function (e) {
@@ -50,10 +47,54 @@ $(document).ready(function () {
         });
     });
     $("#laporkan").on('hide.bs.modal', function () {
-        laporkan.removeFiles();
+        pond.removeFiles();
     });
-    $("#laporkan").on('hide.bs.modal', function () {
-        laporkan.removeFiles();
+
+    $(document).on('click', '.detail-revisi', function (e) {
+        e.preventDefault();
+        var pondEdit = FilePond.create(document.querySelector(`#revisiKegiatan${$(this).data('laporan')} input[name="doc_kegiatan_tmp[]"]`));
+        $.ajax({
+            type: "GET",
+            url: url("/laporan-kegiatan/jabatan/" + $(this).data('laporan') + "/edit"),
+            dataType: "JSON",
+            success: function (response) {
+                pondEdit.setOptions({
+                    files: response.data,
+                });
+                pondEdit.setOptions({
+                    server: {
+                        process: '/laporan-kegiatan/jabatan/tmp-file',
+                        revert: '/laporan-kegiatan/jabatan/revert',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    },
+                });
+            }
+        });
+    });
+
+    $(document).on('click', '.revisi-kegiatan', function (e) {
+        e.preventDefault();
+        var postData = new FormData($(".form-kegiatan" + $(this).data('laporan'))[0]);
+        $('.revisi-kegiatan span').hide();
+        $('.revisi-kegiatan .spin').show();
+        $.ajax({
+            type: 'POST',
+            url: url("/laporan-kegiatan/jabatan/" + $(this).data('laporan') + "/update"),
+            processData: false,
+            contentType: false,
+            data: postData,
+            success: function (response) {
+                $('.revisi-kegiatan span').show();
+                $('.revisi-kegiatan .spin').hide();
+                swal({ type: 'success', title: 'Berhasil', html: 'Revisi Berhasil <b style="font-weight: bold; color:#d40004;">DILAPORKAN</b>' }).then(
+                    () => {
+                        location.reload();
+                    });
+            },
+            error: ajaxError
+        });
     });
 
     var ajaxError = function (jqXHR, xhr, textStatus, errorThrow, exception) {
@@ -78,5 +119,7 @@ $(document).ready(function () {
         }
         $('.simpan-kegiatan span').show();
         $('.simpan-kegiatan .spin').hide();
+        $('.revisi-kegiatan span').show();
+        $('.revisi-kegiatan .spin').hide();
     };
 });

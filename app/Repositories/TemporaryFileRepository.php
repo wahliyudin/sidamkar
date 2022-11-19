@@ -13,7 +13,7 @@ class TemporaryFileRepository
         $this->temporaryFile = $temporaryFile;
     }
 
-    public function getByFolder(string $folder): TemporaryFile
+    public function getByFolder(string $folder): TemporaryFile|null
     {
         return $this->temporaryFile->query()->where('folder', $folder)->first();
     }
