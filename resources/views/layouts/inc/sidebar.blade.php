@@ -220,7 +220,11 @@
                             <span>Manajemen User</span>
                         </a>
                         <ul
-                            class="submenu {{ request()->is('provinsi/aparatur/data-aparatur') || request()->is('provinsi/kabkota') ? 'active' : '' }}">
+                            class="submenu {{ request()->is('provinsi/manajemen-user/struktural*') || request()->is('provinsi/aparatur/data-aparatur') || request()->is('provinsi/kabkota') ? 'active' : '' }}">
+                            <li
+                                class="submenu-item {{ request()->is('provinsi/manajemen-user/struktural*') ? 'active' : '' }}">
+                                <a href="{{ route('provinsi.manajemen-user.struktural') }}">Struktural</a>
+                            </li>
                             <li
                                 class="submenu-item {{ request()->is('provinsi/aparatur/data-aparatur') ? 'active' : '' }}">
                                 <a href="{{ route('provinsi.aparatur.data-aparatur') }}">Aparatur</a>
@@ -261,7 +265,8 @@
                             class="submenu {{ request()->is('kemendagri/verifikasi-data/admin-kabkota*') || request()->is('kemendagri/verifikasi-data/admin-provinsi*') || request()->is('kemendagri/verifikasi-data/aparatur*') ? 'active' : '' }}">
                             <li
                                 class="submenu-item {{ request()->is('kemendagri/verifikasi-data/admin-kabkota*') ? 'active' : '' }}">
-                                <a href="{{ route('kemendagri.verifikasi-data.admin-kabkota.index') }}">Admin Kabupaten Kota</a>
+                                <a href="{{ route('kemendagri.verifikasi-data.admin-kabkota.index') }}">Admin Kabupaten
+                                    Kota</a>
                             </li>
                             <li
                                 class="submenu-item {{ request()->is('kemendagri/verifikasi-data/admin-provinsi*') ? 'active' : '' }}">
@@ -347,7 +352,6 @@
                             <span>Chatbox</span>
                         </a>
                     </li>
-                    
                 @endrole
             </ul>
         </div>
