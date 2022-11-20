@@ -12,6 +12,9 @@ use App\Repositories\PeriodeRepository;
 use App\Services\Aparatur\LaporanKegiatan\KegiatanJabatanService;
 use App\Services\TemporaryFileService;
 use App\Traits\AuthTrait;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class KegiatanJabatanController extends Controller
@@ -22,6 +25,15 @@ class KegiatanJabatanController extends Controller
     private KegiatanJabatanService $kegiatanJabatanService;
     private TemporaryFileService $temporaryFileService;
 
+    /**
+     * __construct
+     * Inject Service dan Repository
+     *
+     * @param PeriodeRepository $periodeRepository
+     * @param KegiatanJabatanService $kegiatanJabatanService
+     * @param TemporaryFileService $temporaryFileService
+     * @return void
+     */
     public function __construct(PeriodeRepository $periodeRepository, KegiatanJabatanService $kegiatanJabatanService, TemporaryFileService $temporaryFileService)
     {
         $this->periodeRepository = $periodeRepository;
@@ -29,7 +41,15 @@ class KegiatanJabatanController extends Controller
         $this->temporaryFileService = $temporaryFileService;
     }
 
-    public function index()
+    /**
+     * index
+     * Menampilkan Unsur, SubUnsur, dan ButirKegiatan
+     * Berdasarkan Jabatan Satu Tingkat diatasnya
+     * Dan Satu Tingkat dibawahnya
+     *
+     * @return View
+     */
+    public function index(): View|Factory
     {
         $periode = $this->periodeRepository->isActive();
         $user = $this->authUser()->load(['rencanas', 'rekapitulasiKegiatan']);
@@ -37,7 +57,13 @@ class KegiatanJabatanController extends Controller
         return view('aparatur.laporan-kegiatan.jabatan.index', compact('periode', 'user', 'judul'));
     }
 
-    public function show(ButirKegiatan $butirKegiatan)
+    /**
+     * show
+     *
+     * @param ButirKegiatan $butirKegiatan
+     * @return View
+     */
+    public function show(ButirKegiatan $butirKegiatan): View|Factory
     {
         $periode = $this->periodeRepository->isActive();
         $user = $this->authUser();
@@ -62,7 +88,16 @@ class KegiatanJabatanController extends Controller
         ));
     }
 
-    public function loadData(Request $request)
+    /**
+     * loadData
+     * Mengirim Data Unsur, SubUnsur, dan ButirKegiatan
+     * Berdasarkan Jabatan Satu Tingkat diatasnya
+     * Dan Satu Tingkat dibawahnya
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function loadData(Request $request): JsonResponse|null
     {
         if ($request->ajax()) {
             $periode = $this->periodeRepository->isActive();
@@ -75,7 +110,14 @@ class KegiatanJabatanController extends Controller
         }
     }
 
-    public function storeLaporan(StoreLaporanRequest $request, ButirKegiatan $butirKegiatan)
+    /**
+     * storeLaporan
+     *
+     * @param StoreLaporanRequest $request
+     * @param ButirKegiatan $butirKegiatan
+     * @return JsonResponse
+     */
+    public function storeLaporan(StoreLaporanRequest $request, ButirKegiatan $butirKegiatan): JsonResponse
     {
         $this->kegiatanJabatanService->storeLaporan($request, $butirKegiatan);
         return response()->json([
@@ -84,14 +126,27 @@ class KegiatanJabatanController extends Controller
         ]);
     }
 
-    public function edit(LaporanKegiatanJabatan $laporanKegiatanJabatan)
+    /**
+     * edit
+     *
+     * @param LaporanKegiatanJabatan $laporanKegiatanJabatan
+     * @return JsonResponse
+     */
+    public function edit(LaporanKegiatanJabatan $laporanKegiatanJabatan): JsonResponse
     {
         return response()->json([
             'data' => $this->kegiatanJabatanService->edit($laporanKegiatanJabatan)
         ]);
     }
 
-    public function update(UpdateLaporanRequest $request, LaporanKegiatanJabatan $laporanKegiatanJabatan)
+    /**
+     * update
+     *
+     * @param UpdateLaporanRequest $request
+     * @param LaporanKegiatanJabatan $laporanKegiatanJabatan
+     * @return JsonResponse
+     */
+    public function update(UpdateLaporanRequest $request, LaporanKegiatanJabatan $laporanKegiatanJabatan): JsonResponse
     {
         $this->kegiatanJabatanService->update($request, $laporanKegiatanJabatan);
         return response()->json([
@@ -100,16 +155,112 @@ class KegiatanJabatanController extends Controller
         ]);
     }
 
-    public function storeTmpFile(Request $request)
+    /**
+     * storeTmpFile
+     *
+     * @param Request $request
+     * @return string
+     */
+    public function storeTmpFile(Request $request): string
     {
         foreach ($request->doc_kegiatan_tmp as $file) {
             return $this->temporaryFileService->store($file, 'kegiatan');
         }
-        return;
     }
 
-    public function revertTmpFile(Request $request)
+    /**
+     * revertTmpFile
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function revertTmpFile(Request $request): void
     {
         $this->temporaryFileService->revert($request->getContent());
     }
+
+    // public function rekapitulasi()
+    // {
+    //     $periode = Periode::query()->where('is_active', true)->first();
+    //     $user = User::query()->with([
+    //         'mente.atasanLangsung.roles',
+    //         'mente.atasanLangsung.userPejabatStruktural.pangkatGolonganTmt', 'roles',
+    //         'userAparatur.pangkatGolonganTmt'
+    //     ])->find(auth()->user()->id);
+    //     if (!isset($user->userAparatur->pangkatGolonganTmt)) {
+    //         throw ValidationException::withMessages(["Maaf anda belum melengkapi data diri anda"]);
+    //     }
+    //     if (!isset($user->mente->atasanLangsung)) {
+    //         throw ValidationException::withMessages(["Maaf anda belum mempunyai atasan langsung"]);
+    //     }
+    //     if (!isset($user->mente->atasanLangsung->userPejabatStruktural->pangkatGolonganTmt)) {
+    //         throw ValidationException::withMessages(["Maaf atasan langsung anda belum melengkapi data dirinya"]);
+    //     }
+    //     $rencanas = User::query()
+    //         ->with([
+    //             'rencanas',
+    //             'rencanas.rencanaUnsurs.unsur',
+    //             'rencanas.rencanaUnsurs.rencanaSubUnsurs.subUnsur',
+    //             'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.butirKegiatan',
+    //             'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans' => function ($query) use ($periode) {
+    //                 $query->withSum(['laporanKegiatanJabatans' => function ($query) use ($periode) {
+    //                     $query->where('status', 4)->whereBetween('current_date', [$periode->awal, $periode->akhir]);
+    //                 }], 'score')->withCount(['laporanKegiatanJabatans' => function ($query) use ($periode) {
+    //                     $query->where('status', 4)->whereBetween('current_date', [$periode->awal, $periode->akhir]);
+    //                 }]);
+    //             },
+    //         ])
+    //         ->find(auth()->user()->id)->rencanas;
+    //     $pdf = PDF::loadView('generate-pdf.surat-pernyataan', ['rencanas' => $rencanas, 'user' => $user]);
+    //     $file_name = uniqid();
+    //     Storage::put("rekapitulasi/$file_name.pdf", $pdf->output());
+    //     $url = asset("storage/rekapitulasi/$file_name.pdf");
+    //     $rekapitulasiKegiatan = RekapitulasiKegiatan::query()
+    //         ->where('fungsional_id', auth()->user()->id)
+    //         ->where('periode_id', $periode->id)->first();
+    //     if ($rekapitulasiKegiatan) {
+    //         deleteImage($rekapitulasiKegiatan->file);
+
+    //         $rekapitulasiKegiatan->update([
+    //             'file' => $url,
+    //             'file_name' => $file_name
+    //         ]);
+    //     } else {
+    //         $rekapitulasiKegiatan = RekapitulasiKegiatan::query()->create([
+    //             'fungsional_id' => auth()->user()->id,
+    //             'file' => $url,
+    //             'file_name' => $file_name,
+    //             'periode_id' => $periode->id
+    //         ]);
+    //         $rekapitulasiKegiatan->historyRekapitulasiKegiatans()->create([
+    //             'struktural_id' => $user->mente->atasanLangsung->id,
+    //             'content' => 'Rekapitulasi diterima Atasan Langsung'
+    //         ]);
+    //     }
+    //     return response()->json([
+    //         'message' => 'Berhasil',
+    //         'data' => $url
+    //     ]);
+    // }
+
+    // public function sendRekap()
+    // {
+    //     $periode = Periode::query()->where('is_active', true)->first();
+    //     $rekap = RekapitulasiKegiatan::query()
+    //         ->where('fungsional_id', auth()->user()->id)
+    //         ->where('periode_id', $periode->id)
+    //         ->first();
+    //     if (!$rekap) {
+    //         throw ValidationException::withMessages(['Data rekapitulasi tidak ditemukan']);
+    //     }
+    //     if ($rekap->is_send == true) {
+    //         throw ValidationException::withMessages(['Data rekapitulasi sudah dikirim']);
+    //     }
+    //     $rekap->update([
+    //         'is_send' => true
+    //     ]);
+    //     return response()->json([
+    //         'message' => 'Berhasil dikirim'
+    //     ]);
+    // }
 }

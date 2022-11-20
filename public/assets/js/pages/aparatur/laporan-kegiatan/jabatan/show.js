@@ -3,6 +3,9 @@ $(document).ready(function () {
         pagination: {
             el: ".swiper-pagination",
         },
+        autoplay: {
+            delay: 5000,
+        },
     });
     $.fn.filepond.registerPlugin(FilePondPluginImagePreview);
     $.fn.filepond.registerPlugin(FilePondPluginFileValidateType);
