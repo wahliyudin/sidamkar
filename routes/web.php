@@ -64,6 +64,7 @@ use App\Http\Controllers\provinsi\ChatboxController as ProvinsiChatboxController
 use App\Http\Controllers\Provinsi\ManajemenUser\FungsionalController as ProvinsiFungsionalController;
 use App\Http\Controllers\Provinsi\ManajemenUser\FungsionalUmumController as ProvinsiFungsionalUmumController;
 use App\Http\Controllers\Provinsi\ManajemenUser\StrukturalController as ProvinsiStrukturalController;
+use App\Http\Controllers\Provinsi\ManajemenUser\UserKabKotaController;
 use App\Models\KabKota;
 use App\Models\Mente;
 use App\Models\Periode;
@@ -234,6 +235,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('provinsi/manajemen-user/struktural', [ProvinsiStrukturalController::class, 'index'])->name('provinsi.manajemen-user.struktural');
         Route::get('provinsi/manajemen-user/fungsional', [ProvinsiFungsionalController::class, 'index'])->name('provinsi.manajemen-user.fungsional');
         Route::get('provinsi/manajemen-user/umum', [ProvinsiFungsionalUmumController::class, 'index'])->name('provinsi.manajemen-user.fungsional-umum');
+        Route::get('provinsi/manajemen-user/user-kab-kota', [UserKabKotaController::class, 'index'])->name('provinsi.manajemen-user.user-kab-kota');
     });
 
     Route::middleware(['role:kemendagri'])->group(function () {
