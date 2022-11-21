@@ -58,6 +58,7 @@ use App\Http\Controllers\Provinsi\DataAparaturController as ProvinsiDataAparatur
 use App\Http\Controllers\Provinsi\OverviewController as ProvinsiOverviewController;
 use App\Http\Controllers\Provinsi\PejabatStrukturalController as ProvinsiPejabatStrukturalController;
 use App\Http\Controllers\provinsi\ChatboxController as ProvinsiChatboxController;
+use App\Http\Controllers\Provinsi\ManajemenUser\StrukturalController as ProvinsiStrukturalController;
 use App\Models\KabKota;
 use App\Models\Mente;
 use App\Models\Periode;
@@ -118,10 +119,10 @@ Route::middleware(['auth'])->group(function () {
             Route::post('laporan-kegiatan/jabatan/load-data', 'loadData')->name('laporan-kegiatan.jabatan.load-data');
             Route::get('laporan-kegiatan/jabatan/{butir_kegiatan}/show', 'show')->name('laporan-kegiatan.jabatan.show');
             Route::post('laporan-kegiatan/jabatan/{butir_kegiatan}/store', 'storeLaporan')->name('laporan-kegiatan.jabatan.store-laporan');
-            Route::post('laporan-kegiatan/jabatan/{id}/{current_date}/edit', 'edit')->name('laporan-kegiatan.jabatan.edit');
-            Route::post('laporan-kegiatan/jabatan/{id}/update', 'update')->name('laporan-kegiatan.jabatan.update');
-            Route::post('laporan-kegiatan/jabatan/tmp-file', 'tmpFile')->name('laporan-kegiatan.jabatan.tmp-file');
-            Route::delete('laporan-kegiatan/jabatan/revert', 'revert')->name('laporan-kegiatan.jabatan.revert');
+            Route::get('laporan-kegiatan/jabatan/{laporan_kegiatan_jabatan}/edit', 'edit')->name('laporan-kegiatan.jabatan.edit');
+            Route::post('laporan-kegiatan/jabatan/{laporan_kegiatan_jabatan}/update', 'update')->name('laporan-kegiatan.jabatan.update');
+            Route::post('laporan-kegiatan/jabatan/tmp-file', 'storeTmpFile')->name('laporan-kegiatan.jabatan.tmp-file');
+            Route::delete('laporan-kegiatan/jabatan/revert', 'revertTmpFile')->name('laporan-kegiatan.jabatan.revert');
 
             Route::post('laporan-kegiatan/jabatan/rekapitulasi', 'rekapitulasi')->name('laporan-kegiatan.jabatan.rekapitulasi');
             Route::post('laporan-kegiatan/jabatan/rekapitulasi/send-rekap', 'sendRekap')->name('laporan-kegiatan.jabatan.rekapitulasi.send-rekap');
@@ -219,6 +220,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('provinsi/aparatur/data-aparatur', [ProvinsiDataAparaturController::class, 'index'])->name('provinsi.aparatur.data-aparatur');
         Route::get('provinsi/kabkota', [ProvinsiPejabatStrukturalController::class, 'index'])->name('provinsi.kabkota');
         Route::get('provinsi/chatbox', [ProvinsiChatboxController::class, 'index'])->name('provinsi.chatbox');
+
+
+        Route::get('provinsi/manajemen-user/struktural', [ProvinsiStrukturalController::class, 'index'])->name('provinsi.manajemen-user.struktural');
     });
 
     Route::middleware(['role:kemendagri'])->group(function () {
