@@ -29,6 +29,7 @@ use App\Http\Controllers\KabKota\DataAparatur\DataAparaturController as KabKotaP
 use App\Http\Controllers\KabKota\DataMenteController;
 use App\Http\Controllers\KabKota\ManajemenUser\FungsionalController as KabKotaFungsionalController;
 use App\Http\Controllers\KabKota\ManajemenUser\FungsionalUmumController as KabKotaFungsionalUmumController;
+use App\Http\Controllers\KabKota\ManajemenUser\StrukturalController as KabKotaStrukturalController;
 use App\Http\Controllers\KabKota\MenteController;
 use App\Http\Controllers\KabKota\OverviewController as KabKotaOverviewController;
 use App\Http\Controllers\KabKota\VerifikasiAparatur\PejabatFungsionalController;
@@ -148,7 +149,7 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['role:kab_kota'])->group(function () {
         Route::get('kab-kota/overview', [KabKotaOverviewController::class, 'index'])->name('kab-kota.overview');
 
-        // Route::get('kab-kota/manajemen-user/struktural', [ProvinsiStrukturalController::class, 'index'])->name('kab-kota.manajemen-user.struktural');
+        Route::get('kab-kota/manajemen-user/struktural', [KabKotaStrukturalController::class, 'index'])->name('kab-kota.manajemen-user.struktural');
         Route::get('kab-kota/manajemen-user/fungsional', [KabKotaFungsionalController::class, 'index'])->name('kab-kota.manajemen-user.fungsional');
         Route::get('kab-kota/manajemen-user/umum', [KabKotaFungsionalUmumController::class, 'index'])->name('kab-kota.manajemen-user.fungsional-umum');
 
