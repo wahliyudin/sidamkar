@@ -29,7 +29,6 @@ class StrukturalDataTable extends DataTable
             ->addColumn('username', function (User $user) {
                 return '<p class="username m-0" data-detail="' . $user->id . '">' . $user->userPejabatStruktural->nama . '</p>';
             })
-
             ->filterColumn('username', function ($query, $keyword) {
                 return $query->where('username', 'like', "%$keyword%");;
             })
@@ -65,7 +64,6 @@ class StrukturalDataTable extends DataTable
      */
     public function query(User $model): QueryBuilder
     {
-
         return $model->newQuery()->with(['roles:id,display_name'])->withWhereHas('userPejabatStruktural', function ($query) {
             $query->where('provinsi_id', $this->authUser()->load('userProvKabKota')->userProvKabKota->provinsi_id)
                 ->where('tingkat_aparatur', 'provinsi');
