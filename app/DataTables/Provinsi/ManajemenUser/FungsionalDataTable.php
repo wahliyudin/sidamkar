@@ -27,7 +27,7 @@ class FungsionalDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('username', function (User $user) {
-                return '<p class="username m-0" data-detail="' . $user->id . '">' . $user->userPejabatStruktural->nama . '</p>';
+                return '<p class="username m-0" data-detail="' . $user->id . '">' . $user->userAparatur->nama . '</p>';
             })
             ->filterColumn('username', function ($query, $keyword) {
                 return $query->where('username', 'like', "%$keyword%");;
@@ -64,10 +64,10 @@ class FungsionalDataTable extends DataTable
      */
     public function query(User $model): QueryBuilder
     {
-        return $model->newQuery()->with(['roles:id,display_name'])->withWhereHas('userPejabatStruktural', function ($query) {
+        return $model->newQuery()->with(['roles:id,display_name'])->withWhereHas('userAparatur', function ($query) {
             $query->where('provinsi_id', $this->authUser()->load('userProvKabKota')->userProvKabKota->provinsi_id)
                 ->where('tingkat_aparatur', 'provinsi');
-        });
+        })->whereRoleIs(getAllRoleFungsional());
     }
 
     /**

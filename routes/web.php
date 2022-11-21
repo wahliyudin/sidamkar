@@ -58,6 +58,7 @@ use App\Http\Controllers\Provinsi\DataAparaturController as ProvinsiDataAparatur
 use App\Http\Controllers\Provinsi\OverviewController as ProvinsiOverviewController;
 use App\Http\Controllers\Provinsi\PejabatStrukturalController as ProvinsiPejabatStrukturalController;
 use App\Http\Controllers\provinsi\ChatboxController as ProvinsiChatboxController;
+use App\Http\Controllers\Provinsi\ManajemenUser\FungsionalController as ProvinsiFungsionalController;
 use App\Http\Controllers\Provinsi\ManajemenUser\StrukturalController as ProvinsiStrukturalController;
 use App\Models\KabKota;
 use App\Models\Mente;
@@ -223,6 +224,7 @@ Route::middleware(['auth'])->group(function () {
 
 
         Route::get('provinsi/manajemen-user/struktural', [ProvinsiStrukturalController::class, 'index'])->name('provinsi.manajemen-user.struktural');
+        Route::get('provinsi/manajemen-user/fungsional', [ProvinsiFungsionalController::class, 'index'])->name('provinsi.manajemen-user.fungsional');
     });
 
     Route::middleware(['role:kemendagri'])->group(function () {

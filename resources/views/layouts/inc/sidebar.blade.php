@@ -220,10 +220,14 @@
                             <span>Manajemen User</span>
                         </a>
                         <ul
-                            class="submenu {{ request()->is('provinsi/manajemen-user/struktural*') || request()->is('provinsi/aparatur/data-aparatur') || request()->is('provinsi/kabkota') ? 'active' : '' }}">
+                            class="submenu {{ request()->is('provinsi/manajemen-user/fungsional*') || request()->is('provinsi/manajemen-user/struktural*') || request()->is('provinsi/aparatur/data-aparatur') || request()->is('provinsi/kabkota') ? 'active' : '' }}">
                             <li
                                 class="submenu-item {{ request()->is('provinsi/manajemen-user/struktural*') ? 'active' : '' }}">
                                 <a href="{{ route('provinsi.manajemen-user.struktural') }}">Struktural</a>
+                            </li>
+                            <li
+                                class="submenu-item {{ request()->is('provinsi/manajemen-user/fungsional*') ? 'active' : '' }}">
+                                <a href="{{ route('provinsi.manajemen-user.fungsional') }}">Fungsional</a>
                             </li>
                             <li
                                 class="submenu-item {{ request()->is('provinsi/aparatur/data-aparatur') ? 'active' : '' }}">
