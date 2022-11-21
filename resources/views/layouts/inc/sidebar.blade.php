@@ -70,11 +70,10 @@
                             <span>Manajemen User</span>
                         </a>
                         <ul
-                            class="submenu {{ request()->is('kab-kota/verifikasi-aparatur/pejabat-fungsional*') || request()->is('kab-kota/verifikasi-aparatur/pejabat-struktural*') ? 'active' : '' }}">
+                            class="submenu {{ request()->is('kab-kota/manajemen-user/fungsional*') || request()->is('kab-kota/verifikasi-aparatur/pejabat-struktural*') ? 'active' : '' }}">
                             <li
-                                class="submenu-item {{ request()->is('kab-kota/verifikasi-aparatur/pejabat-fungsional*') ? 'active' : '' }}">
-                                <a
-                                    href="{{ route('kab-kota.verifikasi-aparatur.pejabat-fungsional.index') }}">Fungsional</a>
+                                class="submenu-item {{ request()->is('kab-kota/manajemen-user/fungsional*') ? 'active' : '' }}">
+                                <a href="{{ route('kab-kota.manajemen-user.fungsional') }}">Fungsional</a>
                             </li>
                             <li
                                 class="submenu-item {{ request()->is('kab-kota/verifikasi-aparatur/pejabat-struktural*') ? 'active' : '' }}">
