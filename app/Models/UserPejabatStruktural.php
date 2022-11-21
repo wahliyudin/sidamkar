@@ -15,6 +15,7 @@ class UserPejabatStruktural extends Model
         'nama',
         'pangkat_golongan_tmt_id',
         'nip',
+        'no_hp',
         'tempat_lahir',
         'tanggal_lahir',
         'jenis_kelamin',
