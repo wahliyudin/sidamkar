@@ -111,8 +111,8 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
-                    <li class="sidebar-item {{ request()->is('atasan-langsung/pengajuan-kegiatan*') ? 'active' : '' }}">
-                        <a href="{{ route('atasan-langsung.pengajuan-kegiatan.index') }}" class='sidebar-link'>
+                    <li class="sidebar-item {{ request()->is('atasan-langsung/verifikasi-kegiatan*') ? 'active' : '' }}">
+                        <a href="{{ route('atasan-langsung.verifikasi-kegiatan') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="fa-solid fa-clipboard"></i>
                             </div>

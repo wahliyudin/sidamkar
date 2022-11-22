@@ -18,6 +18,11 @@ class UserRepository
         $this->user = $user;
     }
 
+    public function getUserById($id): User
+    {
+        return $this->user->query()->with('roles')->findOrFail($id);
+    }
+
     public function getFungsionalMenteByKabKota(array $mentes): Collection
     {
         return $this->user->query()
