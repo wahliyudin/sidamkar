@@ -152,7 +152,13 @@ Route::middleware(['auth'])->group(function () {
         Route::get('kab-kota/overview', [KabKotaOverviewController::class, 'index'])->name('kab-kota.overview');
 
         Route::get('kab-kota/manajemen-user/struktural', [KabKotaStrukturalController::class, 'index'])->name('kab-kota.manajemen-user.struktural');
+        Route::post('kab-kota/manajemen-user/struktural/{id}/reject', [KabKotaStrukturalController::class, 'reject'])->name('kab-kota.manajemen-user.struktural.reject');
+        Route::post('kab-kota/manajemen-user/struktural/{id}/verification', [KabKotaStrukturalController::class, 'verification'])->name('kab-kota.manajemen-user.struktural.verification');
+        Route::delete('kab-kota/manajemen-user/struktural/{id}/destroy', [KabKotaStrukturalController::class, 'destroy'])->name('kab-kota.manajemen-user.struktural.destroy');
+
         Route::get('kab-kota/manajemen-user/fungsional', [KabKotaFungsionalController::class, 'index'])->name('kab-kota.manajemen-user.fungsional');
+
+
         Route::get('kab-kota/manajemen-user/umum', [KabKotaFungsionalUmumController::class, 'index'])->name('kab-kota.manajemen-user.fungsional-umum');
 
         Route::get('kab-kota/verifikasi-aparatur/pejabat-fungsional', [PejabatFungsionalController::class, 'index'])->name('kab-kota.verifikasi-aparatur.pejabat-fungsional.index');

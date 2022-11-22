@@ -17,6 +17,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use LaratrustUserTrait;
     use HasApiTokens, HasFactory, Notifiable;
 
+    const STATUS_REJECT = 2;
     const STATUS_ACTIVE = 1;
     const STATUS_INACTIVE = 0;
 
