@@ -43,6 +43,7 @@ class UserSeeder extends Seeder
             'pangkat_golongan_tmt_id' => 5,
             'tempat_lahir' => 'Jakarta',
             'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'kab_kota',
             'jenis_kelamin' => 'L',
             'pendidikan_terakhir' => 2,
             'provinsi_id' => 11,
@@ -65,6 +66,7 @@ class UserSeeder extends Seeder
                 'nomor_karpeg' => '2020020088',
                 'pangkat_golongan_tmt_id' => 5,
                 'tempat_lahir' => fake()->city(),
+                'tingkat_aparatur' => 'kab_kota',
                 'tanggal_lahir' => Carbon::now(),
                 'jenis_kelamin' => fake()->randomElement(['L', 'P']),
                 'pendidikan_terakhir' => fake()->randomElement(['1', '2', '3', '4']),
@@ -261,12 +263,13 @@ class UserSeeder extends Seeder
             'status_akun' => 1
         ])->attachRole('atasan_langsung');
         $atasanLangsung->userPejabatStruktural()->create([
-            'nama' =>  fake()->name,
+            'nama' => 'Atasan Langsung',
             'nip' => '2020020088',
             'nomor_karpeg' => '2020020088',
             'pangkat_golongan_tmt_id' => 5,
             'tempat_lahir' => 'Jakarta',
             'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'kab_kota',
             'jenis_kelamin' => 'L',
             'pendidikan_terakhir' => 2,
             'provinsi_id' => 11,
