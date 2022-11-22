@@ -133,7 +133,7 @@
                                 </div>
                                 <button class="btn btn-gray w-100 py-2 mt-3 detail-revisi"
                                     data-laporan="{{ $laporanKegiatanJabatanStatusRevisi->id }}" data-bs-toggle="modal"
-                                    data-bs-target="#revisiKegiatan{{ $laporanKegiatanJabatanStatusRevisi->id }}">Detail
+                                    data-bs-target="#riwayatKegiatan{{ $laporanKegiatanJabatanStatusRevisi->id }}">Detail
                                     Laporan</button>
                             </div>
                             @include('atasan-langsung.verifikasi-kegiatan.jabatan.riwayat', [
@@ -290,31 +290,15 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/css/pages/aparatur/laporan-kegiatan/jabatan/show.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('assets/css/pages/atasan-langsung/verifikasi-kegiatan/jabatan.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('assets/css/pages/aparatur/timeline.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/extensions/filepond/filepond.css') }}">
-    <link rel="stylesheet"
-        href="{{ asset('assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/pages/filepond.css') }}">
-    <link href="{{ asset('assets/extensions/filepond-plugin-file-poster/filepond-plugin-file-poster.css') }}"
-        rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('assets/css/shared/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/plugins/swiper/swiper-bundle.min.css') }}" />
 @endsection
 @section('js')
     <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
-    <script src="{{ asset('assets/extensions/filepond/filepond.js') }}"></script>
-    <script src="{{ asset('assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js') }}">
-    </script>
-    <script
-        src="{{ asset('assets/extensions/filepond-plugin-file-validate-type/filepond-plugin-file-validate-type.js') }}">
-    </script>
-    <script src="{{ asset('assets/extensions/filepond/filepond.jquery.js') }}"></script>
-    <script
-        src="{{ asset('assets/extensions/filepond-plugin-file-validate-size/filepond-plugin-file-validate-size.js') }}">
-    </script>
-    <script src="{{ asset('assets/extensions/filepond-plugin-file-poster/filepond-plugin-file-poster.js') }}"></script>
     <script src="{{ asset('assets/js/extensions/sweetalert2.all.min.js') }}"></script>
     <script src="{{ asset('assets/js/pages/aparatur/laporan-kegiatan/simplebar.js') }}"></script>
     <script src="{{ asset('assets/plugins/swiper/swiper-bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/js/pages/aparatur/laporan-kegiatan/jabatan/show.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/atasan-langsung/verifikasi-kegiatan/jabatan.js') }}"></script>
 @endsection

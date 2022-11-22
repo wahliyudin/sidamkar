@@ -7,9 +7,12 @@ use App\Models\Periode;
 use App\Models\Unsur;
 use App\Models\User;
 use App\Repositories\ButirKegiatanRepository;
+use App\Repositories\HistoryKegiatanJabatanRepository;
+use App\Repositories\LaporanKegiatanJabatanRepository;
 use App\Repositories\PeriodeRepository;
 use App\Repositories\UserRepository;
 use App\Services\KegiatanJabatanService;
+use Illuminate\Http\Request;
 
 class VerifikasiKegiatanService
 {
@@ -17,13 +20,23 @@ class VerifikasiKegiatanService
     private UserRepository $userRepository;
     private ButirKegiatanRepository $butirKegiatanRepository;
     private KegiatanJabatanService $kegiatanJabatanService;
+    private LaporanKegiatanJabatanRepository $laporanKegiatanJabatanRepository;
+    private HistoryKegiatanJabatanRepository $historyKegiatanJabatanRepository;
 
-    public function __construct(PeriodeRepository $periodeRepository, UserRepository $userRepository, ButirKegiatanRepository $butirKegiatanRepository, KegiatanJabatanService $kegiatanJabatanService)
-    {
+    public function __construct(
+        PeriodeRepository $periodeRepository,
+        UserRepository $userRepository,
+        ButirKegiatanRepository $butirKegiatanRepository,
+        KegiatanJabatanService $kegiatanJabatanService,
+        LaporanKegiatanJabatanRepository $laporanKegiatanJabatanRepository,
+        HistoryKegiatanJabatanRepository $historyKegiatanJabatanRepository
+    ) {
         $this->periodeRepository = $periodeRepository;
         $this->userRepository = $userRepository;
         $this->butirKegiatanRepository = $butirKegiatanRepository;
         $this->kegiatanJabatanService = $kegiatanJabatanService;
+        $this->laporanKegiatanJabatanRepository = $laporanKegiatanJabatanRepository;
+        $this->historyKegiatanJabatanRepository = $historyKegiatanJabatanRepository;
     }
 
     public function periodeActive(): Periode
@@ -77,5 +90,30 @@ class VerifikasiKegiatanService
     public function laporanKegiatanJabatanCount(ButirKegiatan $butirKegiatan, User $user): int
     {
         return $this->kegiatanJabatanService->laporanKegiatanJabatanCount($butirKegiatan, $user);
+    }
+
+    public function verifikasi($id)
+    {
+        $laporanKegiatanJabatan = $this->laporanKegiatanJabatanRepository->getById($id);
+        $this->laporanKegiatanJabatanRepository->updateStatusAndCatatan($laporanKegiatanJabatan, $laporanKegiatanJabatan::SELESAI);
+        $this->historyKegiatanJabatanRepository->storeStatusSelesai($laporanKegiatanJabatan);
+        return $laporanKegiatanJabatan;
+    }
+
+    public function revisi(Request $request, $laporan_id, $user_id)
+    {
+        $user = $this->userRepository->getUserById($user_id);
+        $laporanKegiatanJabatan = $this->laporanKegiatanJabatanRepository->getById($laporan_id);
+        $this->laporanKegiatanJabatanRepository->updateStatusAndCatatan($laporanKegiatanJabatan, $laporanKegiatanJabatan::REVISI, $request->catatan);
+        $this->historyKegiatanJabatanRepository->storeStatusRevisi($laporanKegiatanJabatan, $user, $request->catatan);
+        return $laporanKegiatanJabatan;
+    }
+
+    public function tolak(Request $request, $id)
+    {
+        $laporanKegiatanJabatan = $this->laporanKegiatanJabatanRepository->getById($id);
+        $this->laporanKegiatanJabatanRepository->updateStatusAndCatatan($laporanKegiatanJabatan, $laporanKegiatanJabatan::TOLAK, $request->catatan);
+        $this->historyKegiatanJabatanRepository->storeStatusTolak($laporanKegiatanJabatan, $request->catatan);
+        return $laporanKegiatanJabatan;
     }
 }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\AtasanLangsung;
 
 use App\DataTables\AtasanLangsung\VerifikasiKegiatanDataTable;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AtasanLangsung\VerifikasiKegiatan\RevisiAndTolakRequest;
+use App\Http\Requests\AtasanLangsung\VerifikasiKegiatan\RevisiRequest;
 use App\Services\AtasanLangsung\VerifikasiKegiatanService;
 use Illuminate\Http\Request;
 
@@ -68,5 +70,32 @@ class VerifikasiKegiatanController extends Controller
                 'unsurs' => $unsurs
             ]);
         }
+    }
+
+    public function verifikasi($id)
+    {
+        $this->verifikasiKegiatanService->verifikasi($id);
+        return response()->json([
+            'status' => 200,
+            'message' => 'Berhasil diverifikasi'
+        ]);
+    }
+
+    public function revisi(RevisiAndTolakRequest $request, $laporan_id, $user_id)
+    {
+        $this->verifikasiKegiatanService->revisi($request, $laporan_id, $user_id);
+        return response()->json([
+            'status' => 200,
+            'message' => 'Berhasil direvisi'
+        ]);
+    }
+
+    public function tolak(RevisiAndTolakRequest $request, $id)
+    {
+        $this->verifikasiKegiatanService->tolak($request, $id);
+        return response()->json([
+            'status' => 200,
+            'message' => 'Berhasil ditolak'
+        ]);
     }
 }

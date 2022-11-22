@@ -81,6 +81,13 @@ class KegiatanJabatanService
                 Storage::deleteDirectory("tmp/$tmpFile->folder");
             }
         }
+        $this->kegiatanJabatanRepository->storeHistoryKegiatanJabatan(
+            laporanKegiatanJabatan: $laporanKegiatanJabatan,
+            status: HistoryKegiatanJabatan::STATUS_VALIDASI,
+            icon: HistoryKegiatanJabatan::ICON_SPINNER,
+            keterangan: 'Sedang divalidasi oleh Atasan Langsung',
+            current_date: $laporanKegiatanJabatan->current_date
+        );
         return $laporanKegiatanJabatan;
     }
 

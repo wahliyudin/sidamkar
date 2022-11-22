@@ -200,6 +200,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('atasan-langsung/verifikasi-kegiatan/{id}/kegiatan-jabatan', [AtasanLangsungVerifikasiKegiatanController::class, 'kegiatanJabatan'])->name('atasan-langsung.verifikasi-kegiatan.kegiatan-jabatan');
         Route::post('atasan-langsung/verifikasi-kegiatan/kegiatan-jabatan/{id}/load-unsurs', [AtasanLangsungVerifikasiKegiatanController::class, 'loadUnsurs'])->name('atasan-langsung.verifikasi-kegiatan.kegiatan-jabatan.load-unsurs');
         Route::get('atasan-langsung/verifikasi-kegiatan/{user}/kegiatan-jabatan/{butir}/show', [AtasanLangsungVerifikasiKegiatanController::class, 'kegiatanJabatanShow'])->name('atasan-langsung.verifikasi-kegiatan.kegiatan-jabatan.show');
+        Route::post('atasan-langsung/verifikasi-kegiatan/{id}/kegiatan-jabatan/verifikasi', [AtasanLangsungVerifikasiKegiatanController::class, 'verifikasi'])->name('atasan-langsung.verifikasi-kegiatan.kegiatan-jabatan.verifikasi');
+        Route::post('atasan-langsung/verifikasi-kegiatan/{laporan_id}/{user_id}/kegiatan-jabatan/revisi', [AtasanLangsungVerifikasiKegiatanController::class, 'revisi'])->name('atasan-langsung.verifikasi-kegiatan.kegiatan-jabatan.revisi');
+        Route::post('atasan-langsung/verifikasi-kegiatan/{id}/kegiatan-jabatan/tolak', [AtasanLangsungVerifikasiKegiatanController::class, 'tolak'])->name('atasan-langsung.verifikasi-kegiatan.kegiatan-jabatan.tolak');
     });
 
     Route::middleware(['role:penilai_ak'])->group(function () {

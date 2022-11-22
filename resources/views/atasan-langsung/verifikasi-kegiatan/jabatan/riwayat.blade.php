@@ -124,13 +124,13 @@
                                                     @break
 
                                                     @case(4)
-                                                        <span class="btn btn-black py-1 px-3"
-                                                            style="font-size: 12px !important;">Ditolak</span>
+                                                        <span class="btn btn-green-dark py-1 px-3"
+                                                            style="font-size: 12px !important;">Selesai</span>
                                                     @break
 
                                                     @case(5)
-                                                        <span class="btn btn-green-dark py-1 px-3"
-                                                            style="font-size: 12px !important;">Selesai</span>
+                                                        <span class="btn btn-black py-1 px-3"
+                                                            style="font-size: 12px !important;">Ditolak</span>
                                                     @break
                                                 @endswitch
 
@@ -183,24 +183,27 @@
                 </div>
                 <div class="d-flex wrapper-btn justify-content-end align-items-center mt-0 pb-2">
                     <button type="button" class="btn btn-danger btn-sm px-4" data-bs-dismiss="modal">Tutup</button>
-                    <button type="button" data-id="{{ $laporanKegiatanJabatan->id }}"
-                        class="btn btn-black px-4 btn-sm tolak-kegiatan ms-2">
-                        <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
-                            style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
-                        <span>Tolak</span>
-                    </button>
-                    <button type="button" data-user="{{ $user->id }}" data-id="{{ $laporanKegiatanJabatan->id }}"
-                        class="btn btn-red-dark px-4 revisi-kegiatan ms-2">
-                        <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
-                            style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
-                        <span>Revisi</span>
-                    </button>
-                    <button type="button" data-id="{{ $laporanKegiatanJabatan->id }}"
-                        class="btn btn-green-dark px-4 btn-sm verifikasi-kegiatan ms-2">
-                        <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
-                            style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
-                        <span>Verifikasi</span>
-                    </button>
+                    @if (in_array($laporanKegiatanJabatan->status, [1, 2]))
+                        <button type="button" data-laporan="{{ $laporanKegiatanJabatan->id }}"
+                            class="btn btn-black px-4 btn-sm tolak-kegiatan ms-2">
+                            <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
+                                style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
+                            <span>Tolak</span>
+                        </button>
+                        <button type="button" data-user="{{ $laporanKegiatanJabatan->rencana->user->id }}"
+                            data-laporan="{{ $laporanKegiatanJabatan->id }}"
+                            class="btn btn-red-dark px-4 revisi-kegiatan ms-2">
+                            <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
+                                style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
+                            <span>Revisi</span>
+                        </button>
+                        <button type="button" data-laporan="{{ $laporanKegiatanJabatan->id }}"
+                            class="btn btn-green-dark px-4 btn-sm verifikasi-kegiatan ms-2">
+                            <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
+                                style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
+                            <span>Verifikasi</span>
+                        </button>
+                    @endif
                 </div>
             </div>
         </div>
