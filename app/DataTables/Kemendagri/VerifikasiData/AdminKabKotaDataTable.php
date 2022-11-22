@@ -25,8 +25,7 @@ class AdminKabKotaDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addIndexColumn()
             ->addColumn('action', function (User $user) {
-                $route = '';
-                return view('kemendagri.extensions.buttons-tolak-verif', compact('user', 'route'))->render();
+                return view('kemendagri.extensions.buttons-tolak-verif', compact('user'))->render();
             })
             ->addColumn('provinsi', function (User $user){
                 return $user->userProvKabKota->provinsi->nama;

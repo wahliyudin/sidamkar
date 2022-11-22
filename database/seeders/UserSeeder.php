@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\KabKota;
+use App\Models\Provinsi;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -192,44 +194,20 @@ class UserSeeder extends Seeder
             'kab_kota_id' => 1101,
         ]);
 
-        $kabKota1 = User::query()->create([
-            'username' => 'Kab Kota1',
-            'email' => 'admiasasn4@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 1
-        ])->attachRole('kab_kota');
-        $kabKota1->userProvKabKota()->create([
-            'nomenklatur_perangkat_daerah_id' => 1,
-            'provinsi_id' => 11,
-            'kab_kota_id' => 1106,
-        ]);
-
-        $kabKota2 = User::query()->create([
-            'username' => 'Kab Kota2',
-            'email' => 'adminasasa4@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 1
-        ])->attachRole('kab_kota');
-        $kabKota2->userProvKabKota()->create([
-            'nomenklatur_perangkat_daerah_id' => 1,
-            'provinsi_id' => 32,
-            'kab_kota_id' => 3204,
-        ]);
-
-        $kabKota3 = User::query()->create([
-            'username' => 'Kab Kota3',
-            'email' => 'admfwretin4@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 1
-        ])->attachRole('kab_kota');
-        $kabKota3->userProvKabKota()->create([
-            'nomenklatur_perangkat_daerah_id' => 1,
-            'provinsi_id' => 32,
-            'kab_kota_id' => 3276,
-        ]);
+        for ($i=0; $i < 5; $i++) {
+            $kabKota1 = User::query()->create([
+                'username' => fake()->name(),
+                'email' => fake()->email(),
+                'password' => Hash::make('123456789'),
+                'email_verified_at' => now(),
+                'status_akun' => fake()->boolean()
+            ])->attachRole('kab_kota');
+            $kabKota1->userProvKabKota()->create([
+                'nomenklatur_perangkat_daerah_id' => 1,
+                'provinsi_id' => fake()->randomElement(array_merge([11], Provinsi::query()->pluck('id')->toArray())),
+                'kab_kota_id' => fake()->randomElement(array_merge([1106], KabKota::query()->pluck('id')->toArray())),
+            ]);
+        }
 
         $provinsi = User::query()->create([
             'username' => 'Provinsi',
@@ -243,17 +221,19 @@ class UserSeeder extends Seeder
             'provinsi_id' => 11,
         ]);
 
-        $provinsi1 = User::query()->create([
-            'username' => 'Provinsi1',
-            'email' => 'provinsi1@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 1
-        ])->attachRole('provinsi');
-        $provinsi1->userProvKabKota()->create([
-            'nomenklatur_perangkat_daerah_id' => 1,
-            'provinsi_id' => 32,
-        ]);
+        for ($i=0; $i < 5; $i++) {
+            $provinsi1 = User::query()->create([
+                'username' => fake()->name(),
+                'email' => fake()->email(),
+                'password' => Hash::make('123456789'),
+                'email_verified_at' => now(),
+                'status_akun' => fake()->boolean()
+            ])->attachRole('provinsi');
+            $provinsi1->userProvKabKota()->create([
+                'nomenklatur_perangkat_daerah_id' => 1,
+                'provinsi_id' => fake()->randomElement(array_merge([11], Provinsi::query()->pluck('id')->toArray())),
+            ]);
+        }
 
         $atasanLangsung = User::query()->create([
             'username' => 'Atasan Langsung',

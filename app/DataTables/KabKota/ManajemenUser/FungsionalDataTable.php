@@ -65,7 +65,10 @@ class FungsionalDataTable extends DataTable
             ->addColumn('status', function (User $user) {
                 return $this->statusAkun($user->status_akun);
             })
-            ->rawColumns(['status'])
+            ->addColumn('action', function (User $user) {
+                return view('kabkota.manajemen-user.buttons-tolak-verif', compact('user'))->render();
+            })
+            ->rawColumns(['status', 'action'])
             ->setRowId('id');
     }
 
@@ -91,18 +94,18 @@ class FungsionalDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('User-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    ->dom('lfrtip')
-                    ->orderBy(2, 'desc')
-                    ->buttons(
-                        Button::make('create'),
-                        Button::make('export'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    );
+            ->setTableId('User-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->dom('lfrtip')
+            ->orderBy(2, 'desc')
+            ->buttons(
+                Button::make('create'),
+                Button::make('export'),
+                Button::make('print'),
+                Button::make('reset'),
+                Button::make('reload')
+            );
     }
 
     /**
@@ -122,6 +125,7 @@ class FungsionalDataTable extends DataTable
                 ->searchable(false),
             Column::computed('status')
                 ->title('Status Verifikasi'),
+            Column::computed('action'),
         ];
     }
 

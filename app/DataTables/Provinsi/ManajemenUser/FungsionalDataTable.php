@@ -65,7 +65,10 @@ class FungsionalDataTable extends DataTable
             ->addColumn('status', function (User $user) {
                 return $this->statusAkun($user->status_akun);
             })
-            ->rawColumns(['status'])
+            ->addColumn('action', function (User $user) {
+                return view('provinsi.manajemen-user.buttons-tolak-verif', compact('user'))->render();
+            })
+            ->rawColumns(['status', 'action'])
             ->setRowId('id');
     }
 
@@ -122,6 +125,7 @@ class FungsionalDataTable extends DataTable
                 ->searchable(false),
             Column::computed('status')
                 ->title('Status Verifikasi'),
+            Column::computed('action'),
         ];
     }
 
