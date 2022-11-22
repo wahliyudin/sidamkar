@@ -20,6 +20,7 @@ use App\Http\Controllers\AtasanLangsung\KegiatanLangsungController;
 use App\Http\Controllers\AtasanLangsung\KegiatanPengajuanController;
 use App\Http\Controllers\AtasanLangsung\OverviewController as AtasanLangsungOverviewController;
 use App\Http\Controllers\AtasanLangsung\PengajuanKegiatanController;
+use App\Http\Controllers\AtasanLangsung\VerifikasiKegiatanController as AtasanLangsungVerifikasiKegiatanController;
 use App\Http\Controllers\PenilaiAk\OverviewController as PenilaiAkOverviewController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CobaController;
@@ -27,6 +28,9 @@ use App\Http\Controllers\KabKota\ChatboxController;
 use App\Http\Controllers\KabKota\DataAparatur\PejabatstrukturalController as KabKotaPejabatStrukturalController;
 use App\Http\Controllers\KabKota\DataAparatur\DataAparaturController as KabKotaPejabatFungsionalController;
 use App\Http\Controllers\KabKota\DataMenteController;
+use App\Http\Controllers\KabKota\ManajemenUser\FungsionalController as KabKotaFungsionalController;
+use App\Http\Controllers\KabKota\ManajemenUser\FungsionalUmumController as KabKotaFungsionalUmumController;
+use App\Http\Controllers\KabKota\ManajemenUser\StrukturalController as KabKotaStrukturalController;
 use App\Http\Controllers\KabKota\MenteController;
 use App\Http\Controllers\KabKota\OverviewController as KabKotaOverviewController;
 use App\Http\Controllers\KabKota\VerifikasiAparatur\PejabatFungsionalController;
@@ -58,7 +62,10 @@ use App\Http\Controllers\Provinsi\DataAparaturController as ProvinsiDataAparatur
 use App\Http\Controllers\Provinsi\OverviewController as ProvinsiOverviewController;
 use App\Http\Controllers\Provinsi\PejabatStrukturalController as ProvinsiPejabatStrukturalController;
 use App\Http\Controllers\provinsi\ChatboxController as ProvinsiChatboxController;
+use App\Http\Controllers\Provinsi\ManajemenUser\FungsionalController as ProvinsiFungsionalController;
+use App\Http\Controllers\Provinsi\ManajemenUser\FungsionalUmumController as ProvinsiFungsionalUmumController;
 use App\Http\Controllers\Provinsi\ManajemenUser\StrukturalController as ProvinsiStrukturalController;
+use App\Http\Controllers\Provinsi\ManajemenUser\UserKabKotaController;
 use App\Models\KabKota;
 use App\Models\Mente;
 use App\Models\Periode;
@@ -144,6 +151,10 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['role:kab_kota'])->group(function () {
         Route::get('kab-kota/overview', [KabKotaOverviewController::class, 'index'])->name('kab-kota.overview');
 
+        Route::get('kab-kota/manajemen-user/struktural', [KabKotaStrukturalController::class, 'index'])->name('kab-kota.manajemen-user.struktural');
+        Route::get('kab-kota/manajemen-user/fungsional', [KabKotaFungsionalController::class, 'index'])->name('kab-kota.manajemen-user.fungsional');
+        Route::get('kab-kota/manajemen-user/umum', [KabKotaFungsionalUmumController::class, 'index'])->name('kab-kota.manajemen-user.fungsional-umum');
+
         Route::get('kab-kota/verifikasi-aparatur/pejabat-fungsional', [PejabatFungsionalController::class, 'index'])->name('kab-kota.verifikasi-aparatur.pejabat-fungsional.index');
         Route::get('kab-kota/verifikasi-aparatur/pejabat-fungsional/{id}/show', [PejabatFungsionalController::class, 'show'])->name('kab-kota.verifikasi-aparatur.pejabat-fungsional.show');
 
@@ -184,6 +195,14 @@ Route::middleware(['auth'])->group(function () {
         Route::post('atasan-langsung/pengajuan-kegiatan/{id}/{current_date}/verifikasi', [PengajuanKegiatanController::class, 'verifikasi'])->name('atasan-langsung.pengajuan-kegiatan.verifikasi');
         Route::get('atasan-langsung/kegiatan-selesai', [KegiatanLangsungController::class, 'index'])->name('atasan-langsung.kegiatan-selesai');
         Route::get('atasan-langsung/kegiatan-selesai/{id}/show', [KegiatanLangsungController::class, 'show'])->name('atasan-langsung.kegiatan-selesai.show');
+
+        Route::get('atasan-langsung/verifikasi-kegiatan', [AtasanLangsungVerifikasiKegiatanController::class, 'index'])->name('atasan-langsung.verifikasi-kegiatan');
+        Route::get('atasan-langsung/verifikasi-kegiatan/{id}/kegiatan-jabatan', [AtasanLangsungVerifikasiKegiatanController::class, 'kegiatanJabatan'])->name('atasan-langsung.verifikasi-kegiatan.kegiatan-jabatan');
+        Route::post('atasan-langsung/verifikasi-kegiatan/kegiatan-jabatan/{id}/load-unsurs', [AtasanLangsungVerifikasiKegiatanController::class, 'loadUnsurs'])->name('atasan-langsung.verifikasi-kegiatan.kegiatan-jabatan.load-unsurs');
+        Route::get('atasan-langsung/verifikasi-kegiatan/{user}/kegiatan-jabatan/{butir}/show', [AtasanLangsungVerifikasiKegiatanController::class, 'kegiatanJabatanShow'])->name('atasan-langsung.verifikasi-kegiatan.kegiatan-jabatan.show');
+        Route::post('atasan-langsung/verifikasi-kegiatan/{id}/kegiatan-jabatan/verifikasi', [AtasanLangsungVerifikasiKegiatanController::class, 'verifikasi'])->name('atasan-langsung.verifikasi-kegiatan.kegiatan-jabatan.verifikasi');
+        Route::post('atasan-langsung/verifikasi-kegiatan/{laporan_id}/{user_id}/kegiatan-jabatan/revisi', [AtasanLangsungVerifikasiKegiatanController::class, 'revisi'])->name('atasan-langsung.verifikasi-kegiatan.kegiatan-jabatan.revisi');
+        Route::post('atasan-langsung/verifikasi-kegiatan/{id}/kegiatan-jabatan/tolak', [AtasanLangsungVerifikasiKegiatanController::class, 'tolak'])->name('atasan-langsung.verifikasi-kegiatan.kegiatan-jabatan.tolak');
     });
 
     Route::middleware(['role:penilai_ak'])->group(function () {
@@ -223,6 +242,9 @@ Route::middleware(['auth'])->group(function () {
 
 
         Route::get('provinsi/manajemen-user/struktural', [ProvinsiStrukturalController::class, 'index'])->name('provinsi.manajemen-user.struktural');
+        Route::get('provinsi/manajemen-user/fungsional', [ProvinsiFungsionalController::class, 'index'])->name('provinsi.manajemen-user.fungsional');
+        Route::get('provinsi/manajemen-user/umum', [ProvinsiFungsionalUmumController::class, 'index'])->name('provinsi.manajemen-user.fungsional-umum');
+        Route::get('provinsi/manajemen-user/user-kab-kota', [UserKabKotaController::class, 'index'])->name('provinsi.manajemen-user.user-kab-kota');
     });
 
     Route::middleware(['role:kemendagri'])->group(function () {

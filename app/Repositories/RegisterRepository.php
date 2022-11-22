@@ -30,6 +30,7 @@ class RegisterRepository
     {
         return $user->userAparatur()->create([
             'nama' => $data['nama'],
+            'no_hp' => $data['no_hp'],
             'tingkat_aparatur' => $data['tingkat_aparatur'],
             'provinsi_id' => $data['provinsi_id'],
             'kab_kota_id' => isset($data['kab_kota_id']) ? $data['kab_kota_id'] : null
@@ -56,8 +57,9 @@ class RegisterRepository
     {
         return $user->userPejabatStruktural()->create([
             'nama' => $data['nama'],
+            'no_hp' => $data['no_hp'],
             'tingkat_aparatur' => $data['tingkat_aparatur'],
-            'jenis_eselon' => $data['jenis_eselon'],
+            'eselon' => $data['jenis_eselon'],
             'kab_kota_id' => isset($data['kab_kota_id']) ? $data['kab_kota_id'] : null,
             'provinsi_id' => $data['provinsi_id']
         ]);

@@ -233,9 +233,9 @@
                                     <label>Penilai AK</label>
                                     <select class="form-select" name="role_id">
                                         <option disabled selected>- Pilih Penilai -</option>
-                                        @foreach ($penilais as $penilai)
+                                        {{-- @foreach ($penilais as $penilai)
                                             <option>{{ $penilai->userPejabatStruktural->nama }}</option>
-                                        @endforeach
+                                        @endforeach --}}
                                     </select>
                                 </div>
                             </div>
@@ -275,9 +275,9 @@
                                     <label>Penetap AK</label>
                                     <select class="form-select" name="role_id">
                                         <option disabled selected>- Pilih Penetap -</option>
-                                        @foreach ($penetaps as $penetap)
+                                        {{-- @foreach ($penetaps as $penetap)
                                             <option>{{ $penetap->userPejabatStruktural?->nama }}</option>
-                                        @endforeach
+                                        @endforeach --}}
                                     </select>
                                 </div>
                             </div>

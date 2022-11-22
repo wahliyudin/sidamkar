@@ -3,6 +3,8 @@
 namespace App\DataTables\KabKota\ManajemenUser;
 
 use App\Models\User;
+use App\Traits\AuthTrait;
+use App\Traits\DataTableTrait;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -14,6 +16,7 @@ use Yajra\DataTables\Services\DataTable;
 
 class FungsionalDataTable extends DataTable
 {
+    use DataTableTrait, AuthTrait;
     /**
      * Build DataTable class.
      *
@@ -23,7 +26,46 @@ class FungsionalDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'User.action')
+            ->addColumn('username', function (User $user) {
+                return '<p class="username m-0" data-detail="' . $user->id . '">' . $user->userAparatur->nama . '</p>';
+            })
+            ->filterColumn('username', function ($query, $keyword) {
+                return $query->where('username', 'like', "%$keyword%");
+            })
+            ->orderColumn('username', function ($query, $order) {
+                return $query->orderBy('username', $order);
+            })
+            ->addColumn('no_hp', function (User $user) {
+                return $user->userAparatur->no_hp;
+            })
+            ->filterColumn('no_hp', function ($query, $keyword) {
+                return $query->whereHas('userAparatur', function ($query) use ($keyword) {
+                    $query->where('no_hp', 'like', "%$keyword%");
+                });
+            })
+            ->orderColumn('no_hp', function ($query, $order) {
+                return $query->whereHas('userAparatur', function ($query) use ($order) {
+                    $query->orderBy('no_hp', $order);
+                });
+            })
+            ->addColumn('jabatan', function (User $user) {
+                return $user->roles()?->first()->display_name ?? '-';
+            })
+            ->filterColumn('jabatan', function ($query, $keyword) {
+                $query->whereHas('roles', function ($query) use ($keyword) {
+                    $query->where('display_name', 'like', "%$keyword%");
+                });
+            })
+            ->addColumn('tgl_registrasi', function (User $user) {
+                return $user->created_at->translatedFormat('H:i') . ' WIB, ' . $user->created_at->translatedFormat('d F Y');
+            })
+            ->orderColumn('tgl_registrasi', function ($query, $order) {
+                $query->orderBy('created_at', $order);
+            })
+            ->addColumn('status', function (User $user) {
+                return $this->statusAkun($user->status_akun);
+            })
+            ->rawColumns(['status'])
             ->setRowId('id');
     }
 
@@ -35,7 +77,10 @@ class FungsionalDataTable extends DataTable
      */
     public function query(User $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->newQuery()->with(['roles:id,display_name'])->withWhereHas('userAparatur', function ($query) {
+            $query->where('kab_kota_id', $this->authUser()->load('userProvKabKota')->userProvKabKota->kab_kota_id)
+                ->where('tingkat_aparatur', 'kab_kota');
+        })->whereRoleIs(getAllRoleFungsional());
     }
 
     /**
@@ -49,8 +94,8 @@ class FungsionalDataTable extends DataTable
                     ->setTableId('User-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->dom('Bfrtip')
-                    ->orderBy(1)
+                    ->dom('lfrtip')
+                    ->orderBy(2, 'desc')
                     ->buttons(
                         Button::make('create'),
                         Button::make('export'),
@@ -68,15 +113,15 @@ class FungsionalDataTable extends DataTable
     protected function getColumns(): array
     {
         return [
-            Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
-            Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+            Column::make('username')
+                ->title('Nama'),
+            Column::make('no_hp'),
+            Column::make('jabatan')
+                ->orderable(false),
+            Column::make('tgl_registrasi')
+                ->searchable(false),
+            Column::computed('status')
+                ->title('Status Verifikasi'),
         ];
     }
 

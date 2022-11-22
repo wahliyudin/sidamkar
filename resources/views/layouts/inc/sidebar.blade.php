@@ -70,16 +70,17 @@
                             <span>Manajemen User</span>
                         </a>
                         <ul
-                            class="submenu {{ request()->is('kab-kota/verifikasi-aparatur/pejabat-fungsional*') || request()->is('kab-kota/verifikasi-aparatur/pejabat-struktural*') ? 'active' : '' }}">
+                            class="submenu {{ request()->is('kab-kota/manajemen-user/struktural*') || request()->is('kab-kota/manajemen-user/umum*') || request()->is('kab-kota/manajemen-user/fungsional*') || request()->is('kab-kota/verifikasi-aparatur/pejabat-struktural*') ? 'active' : '' }}">
                             <li
-                                class="submenu-item {{ request()->is('kab-kota/verifikasi-aparatur/pejabat-fungsional*') ? 'active' : '' }}">
-                                <a
-                                    href="{{ route('kab-kota.verifikasi-aparatur.pejabat-fungsional.index') }}">Fungsional</a>
+                                class="submenu-item {{ request()->is('kab-kota/manajemen-user/struktural*') ? 'active' : '' }}">
+                                <a href="{{ route('kab-kota.manajemen-user.struktural') }}">Struktural</a>
                             </li>
                             <li
-                                class="submenu-item {{ request()->is('kab-kota/verifikasi-aparatur/pejabat-struktural*') ? 'active' : '' }}">
-                                <a
-                                    href="{{ route('kab-kota.verifikasi-aparatur.pejabat-struktural.index') }}">Struktural</a>
+                                class="submenu-item {{ request()->is('kab-kota/manajemen-user/fungsional*') ? 'active' : '' }}">
+                                <a href="{{ route('kab-kota.manajemen-user.fungsional') }}">Fungsional</a>
+                            </li>
+                            <li class="submenu-item {{ request()->is('kab-kota/manajemen-user/umum*') ? 'active' : '' }}">
+                                <a href="{{ route('kab-kota.manajemen-user.fungsional-umum') }}">Umum</a>
                             </li>
                         </ul>
                     </li>
@@ -110,8 +111,8 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
-                    <li class="sidebar-item {{ request()->is('atasan-langsung/pengajuan-kegiatan*') ? 'active' : '' }}">
-                        <a href="{{ route('atasan-langsung.pengajuan-kegiatan.index') }}" class='sidebar-link'>
+                    <li class="sidebar-item {{ request()->is('atasan-langsung/verifikasi-kegiatan*') ? 'active' : '' }}">
+                        <a href="{{ route('atasan-langsung.verifikasi-kegiatan') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="fa-solid fa-clipboard"></i>
                             </div>
@@ -220,19 +221,31 @@
                             <span>Manajemen User</span>
                         </a>
                         <ul
-                            class="submenu {{ request()->is('provinsi/manajemen-user/struktural*') || request()->is('provinsi/aparatur/data-aparatur') || request()->is('provinsi/kabkota') ? 'active' : '' }}">
+                            class="submenu {{ request()->is('provinsi/manajemen-user/user-kab-kota*') || request()->is('provinsi/manajemen-user/umum*') || request()->is('provinsi/manajemen-user/fungsional*') || request()->is('provinsi/manajemen-user/struktural*') || request()->is('provinsi/aparatur/data-aparatur') || request()->is('provinsi/kabkota') ? 'active' : '' }}">
+                            <li
+                                class="submenu-item {{ request()->is('provinsi/manajemen-user/user-kab-kota*') ? 'active' : '' }}">
+                                <a href="{{ route('provinsi.manajemen-user.user-kab-kota') }}">Kabupaten/Kota</a>
+                            </li>
                             <li
                                 class="submenu-item {{ request()->is('provinsi/manajemen-user/struktural*') ? 'active' : '' }}">
                                 <a href="{{ route('provinsi.manajemen-user.struktural') }}">Struktural</a>
                             </li>
                             <li
-                                class="submenu-item {{ request()->is('provinsi/aparatur/data-aparatur') ? 'active' : '' }}">
-                                <a href="{{ route('provinsi.aparatur.data-aparatur') }}">Aparatur</a>
+                                class="submenu-item {{ request()->is('provinsi/manajemen-user/fungsional*') ? 'active' : '' }}">
+                                <a href="{{ route('provinsi.manajemen-user.fungsional') }}">Fungsional</a>
                             </li>
-                            <li class="submenu-item {{ request()->is('provinsi/kabkota') ? 'active' : '' }}">
-                                <a href="{{ route('provinsi.kabkota') }}">Kab/Kota</a>
+                            <li class="submenu-item {{ request()->is('provinsi/manajemen-user/umum*') ? 'active' : '' }}">
+                                <a href="{{ route('provinsi.manajemen-user.fungsional-umum') }}">Umum</a>
                             </li>
                         </ul>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="" class='sidebar-link'>
+                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                                <i class="fa-solid fa-clipboard-user"></i>
+                            </div>
+                            <span>Data Mentee</span>
+                        </a>
                     </li>
                     <li class="sidebar-item {{ request()->routeIs('provinsi.chatbox') ? 'active' : '' }}">
                         <a href="{{ route('provinsi.chatbox') }}" class='sidebar-link'>

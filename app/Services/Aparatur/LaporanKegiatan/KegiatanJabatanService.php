@@ -14,6 +14,7 @@ use App\Models\User;
 use App\Repositories\Aparatur\LaporanKegiatan\KegiatanJabatanRepository;
 use App\Repositories\RencanaRepository;
 use App\Repositories\TemporaryFileRepository;
+use App\Services\KegiatanJabatanService as ServicesKegiatanJabatanService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -22,12 +23,14 @@ class KegiatanJabatanService
     private KegiatanJabatanRepository $kegiatanJabatanRepository;
     private RencanaRepository $rencanaRepository;
     private TemporaryFileRepository $temporaryFileRepository;
+    private ServicesKegiatanJabatanService $kegiatanJabatanService;
 
-    public function __construct(KegiatanJabatanRepository $kegiatanJabatanRepository, RencanaRepository $rencanaRepository, TemporaryFileRepository $temporaryFileRepository)
+    public function __construct(KegiatanJabatanRepository $kegiatanJabatanRepository, RencanaRepository $rencanaRepository, TemporaryFileRepository $temporaryFileRepository, ServicesKegiatanJabatanService $kegiatanJabatanService)
     {
         $this->kegiatanJabatanRepository = $kegiatanJabatanRepository;
         $this->rencanaRepository = $rencanaRepository;
         $this->temporaryFileRepository = $temporaryFileRepository;
+        $this->kegiatanJabatanService = $kegiatanJabatanService;
     }
 
     public function loadUnsurs(Periode $periode, string $search, Role $role)
@@ -58,21 +61,6 @@ class KegiatanJabatanService
         return $unsurs;
     }
 
-    public function laporanKegiatanJabatanByUser(ButirKegiatan $butirKegiatan, User $user)
-    {
-        return [
-            $this->kegiatanJabatanRepository->laporanKegiatanJabatanStatusValidasi($butirKegiatan, $user),
-            $this->kegiatanJabatanRepository->laporanKegiatanJabatanStatusRevisi($butirKegiatan, $user),
-            $this->kegiatanJabatanRepository->laporanKegiatanJabatanStatusSelesai($butirKegiatan, $user),
-            $this->kegiatanJabatanRepository->laporanKegiatanJabatanStatusTolak($butirKegiatan, $user),
-        ];
-    }
-
-    public function laporanKegiatanJabatanCount(ButirKegiatan $butirKegiatan, User $user)
-    {
-        return $this->kegiatanJabatanRepository->laporanKegiatanJabatanCount($butirKegiatan, $user);
-    }
-
     public function rencanas(User $user)
     {
         return $this->rencanaRepository->getAllByUser($user);
@@ -93,6 +81,13 @@ class KegiatanJabatanService
                 Storage::deleteDirectory("tmp/$tmpFile->folder");
             }
         }
+        $this->kegiatanJabatanRepository->storeHistoryKegiatanJabatan(
+            laporanKegiatanJabatan: $laporanKegiatanJabatan,
+            status: HistoryKegiatanJabatan::STATUS_VALIDASI,
+            icon: HistoryKegiatanJabatan::ICON_SPINNER,
+            keterangan: 'Sedang divalidasi oleh Atasan Langsung',
+            current_date: $laporanKegiatanJabatan->current_date
+        );
         return $laporanKegiatanJabatan;
     }
 
@@ -164,5 +159,15 @@ class KegiatanJabatanService
                 ]
             ]
         ];
+    }
+
+    public function laporanKegiatanJabatanByUser($butirKegiatan, $user)
+    {
+        return $this->kegiatanJabatanService->laporanKegiatanJabatanByUser($butirKegiatan, $user);
+    }
+
+    public function laporanKegiatanJabatanCount(ButirKegiatan $butirKegiatan, User $user): int
+    {
+        return $this->kegiatanJabatanService->laporanKegiatanJabatanCount($butirKegiatan, $user);
     }
 }
