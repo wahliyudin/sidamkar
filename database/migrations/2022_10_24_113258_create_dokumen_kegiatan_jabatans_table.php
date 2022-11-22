@@ -16,7 +16,10 @@ return new class extends Migration
         Schema::create('dokumen_kegiatan_jabatans', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('laporan_kegiatan_jabatan_id');
-            $table->string('file');
+            $table->string('name');
+            $table->string('link');
+            $table->integer('size');
+            $table->string('type');
             $table->timestamps();
 
             // $table->foreign('laporan_kegiatan_jabatan_id')->on('laporan_kegiatan_jabatans')->references('id')->cascadeOnDelete();
