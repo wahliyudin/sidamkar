@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\KabKota\ManajemenUser;
+namespace App\Services;
 
 use App\Services\VerificationUserService;
 

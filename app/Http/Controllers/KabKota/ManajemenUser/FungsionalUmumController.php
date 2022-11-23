@@ -4,7 +4,7 @@ namespace App\Http\Controllers\KabKota\ManajemenUser;
 
 use App\DataTables\KabKota\ManajemenUser\FungsionalUmumDataTable;
 use App\Http\Controllers\Controller;
-use App\Services\KabKota\ManajemenUser\FungsionalUmumService;
+use App\Services\FungsionalUmumService;
 use Illuminate\Http\Request;
 
 class FungsionalUmumController extends Controller

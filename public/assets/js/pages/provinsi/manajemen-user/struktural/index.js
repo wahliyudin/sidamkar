@@ -34,7 +34,7 @@ function tolak(id) {
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             return await $.ajax({
                 type: 'POST',
-                url: url('/kab-kota/manajemen-user/struktural/' + id + '/reject'),
+                url: url('/provinsi/manajemen-user/struktural/' + id + '/reject'),
                 data: {
                     _token: CSRF_TOKEN,
                     catatan: value
@@ -72,7 +72,7 @@ function verifikasi(id) {
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             return await $.ajax({
                 type: 'POST',
-                url: url('/kab-kota/manajemen-user/struktural/' + id + '/verification'),
+                url: url('/provinsi/manajemen-user/struktural/' + id + '/verification'),
                 data: {
                     _token: CSRF_TOKEN
                 },
@@ -110,8 +110,8 @@ function hapus(id) {
         preConfirm: async () => {
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             return await $.ajax({
-                type: 'POST',
-                url: url('/kab-kota/manajemen-user/struktural/' + id + '/destroy'),
+                type: 'DELETE',
+                url: url('/provinsi/manajemen-user/struktural/' + id + '/destroy'),
                 data: {
                     _token: CSRF_TOKEN
                 },

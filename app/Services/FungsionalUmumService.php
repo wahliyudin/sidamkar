@@ -1,12 +1,8 @@
 <?php
 
-namespace App\Services\KabKota\ManajemenUser;
+namespace App\Services;
 
-use App\Notifications\UserReject;
-use App\Notifications\UserVerified;
-use App\Repositories\UserRepository;
 use App\Services\VerificationUserService;
-use Illuminate\Http\Request;
 
 class FungsionalUmumService extends VerificationUserService
 {

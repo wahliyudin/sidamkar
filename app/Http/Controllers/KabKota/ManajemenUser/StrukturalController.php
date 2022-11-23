@@ -4,7 +4,7 @@ namespace App\Http\Controllers\KabKota\ManajemenUser;
 
 use App\DataTables\KabKota\ManajemenUser\StrukturalDataTable;
 use App\Http\Controllers\Controller;
-use App\Services\KabKota\ManajemenUser\StrukturalService;
+use App\Services\StrukturalService;
 use Illuminate\Http\Request;
 
 class StrukturalController extends Controller
