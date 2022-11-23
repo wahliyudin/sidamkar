@@ -53,6 +53,7 @@ use App\Http\Controllers\PenetapAK\DataPengajuan\KabKotaInternal;
 use App\Http\Controllers\PenetapAK\DataPenetapAKController;
 use App\Http\Controllers\PenilaiAK\DataPenilaiAKController;
 use App\Http\Controllers\Kemendagri\CMS\PeriodeController;
+use App\Http\Controllers\PenilaiAk\KegiatanSelesai\ShowController;
 use App\Http\Controllers\provinsi\Chatbox;
 use App\Http\Controllers\Provinsi\DataAparaturController as ProvinsiDataAparaturController;
 use App\Http\Controllers\Provinsi\OverviewController as ProvinsiOverviewController;
@@ -199,6 +200,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('penilai-ak/kegiatan-profesi/show', [ProfesiPenunjangShowController::class, 'index'])->name('penilai-ak.kegiatan-profesi.show');
         Route::get('penilai-ak/data-penunjang/data-pengajuan', [DataPengajuanController::class, 'index'])->name('penilai-ak.data-penunjang.data-pengajuan');
         Route::get('penilai-ak/kegiatan-selesai/kegiatan-selesai', [KegiatanSelesaiController::class, 'index'])->name('penilai-ak.kegiatan-selesai.kegiatan-selesai');
+        Route::get('penilai-ak/kegiatan-selesai/show', [ShowController::class, 'index'])->name('penilai-ak.kegiatan-selesai.show');
     });
     Route::middleware(['role:penetap_ak'])->group(function () {
         Route::get('penetap-ak/overview', [OverviewPenetapAk::class, 'index'])->name('penetap-ak.overview');

@@ -157,7 +157,7 @@
                         </a>
                     </li>
                     <li
-                        class="sidebar-item {{ request()->routeIs('penilai-ak.kegiatan-selesai.kegiatan-selesai') ? 'active' : '' }}">
+                        class="sidebar-item {{ request()->routeIs('penilai-ak.kegiatan-selesai.kegiatan-selesai') || request()->routeIs('penilai-ak.kegiatan-selesai.show') ? 'active' : '' }}">
                         <a href="{{ route('penilai-ak.kegiatan-selesai.kegiatan-selesai') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="fa-solid fa-check"></i>
