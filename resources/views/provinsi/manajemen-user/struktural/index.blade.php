@@ -21,24 +21,16 @@
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/pages/provinsi/manajemen-user/struktural/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/shared/sweetalert2.min.css') }}">
 @endsection
 
 @section('js')
     <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
     {{ $dataTable->scripts() }}
+    <script src="{{ asset('assets/js/extensions/sweetalert2.all.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/js/pages/provinsi/manajemen-user/struktural/index.js') }}"></script>
-    {{-- <script>
-        $(document).ready(function() {
-            $('#pejabatstruktural-table').on('click', 'tbody > tr > td:not(:nth-child(1)):not(:nth-child(3))',
-                function() {
-                    window.location.replace(url(
-                        `/kab-kota/verifikasi-aparatur/pejabat-struktural/${$($(this.parentElement).find('.username')).data('detail')}/show`
-                    ));
-                });
-        });
-    </script> --}}
 @endsection

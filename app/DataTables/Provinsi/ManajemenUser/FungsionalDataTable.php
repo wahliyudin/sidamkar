@@ -27,13 +27,26 @@ class FungsionalDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('username', function (User $user) {
-                return '<p class="username m-0" data-detail="' . $user->id . '">' . $user->userPejabatStruktural->nama . '</p>';
+                return '<p class="username m-0" data-detail="' . $user->id . '">' . $user->userAparatur->nama . '</p>';
             })
             ->filterColumn('username', function ($query, $keyword) {
-                return $query->where('username', 'like', "%$keyword%");;
+                return $query->where('username', 'like', "%$keyword%");
             })
             ->orderColumn('username', function ($query, $order) {
                 return $query->orderBy('username', $order);
+            })
+            ->addColumn('no_hp', function (User $user) {
+                return $user->userAparatur->no_hp;
+            })
+            ->filterColumn('no_hp', function ($query, $keyword) {
+                return $query->whereHas('userAparatur', function ($query) use ($keyword) {
+                    $query->where('no_hp', 'like', "%$keyword%");
+                });
+            })
+            ->orderColumn('no_hp', function ($query, $order) {
+                return $query->whereHas('userAparatur', function ($query) use ($order) {
+                    $query->orderBy('no_hp', $order);
+                });
             })
             ->addColumn('jabatan', function (User $user) {
                 return $user->roles()?->first()->display_name ?? '-';
@@ -52,7 +65,10 @@ class FungsionalDataTable extends DataTable
             ->addColumn('status', function (User $user) {
                 return $this->statusAkun($user->status_akun);
             })
-            ->rawColumns(['status'])
+            ->addColumn('action', function (User $user) {
+                return view('provinsi.manajemen-user.buttons-tolak-verif', compact('user'))->render();
+            })
+            ->rawColumns(['status', 'action'])
             ->setRowId('id');
     }
 
@@ -64,10 +80,10 @@ class FungsionalDataTable extends DataTable
      */
     public function query(User $model): QueryBuilder
     {
-        return $model->newQuery()->with(['roles:id,display_name'])->withWhereHas('userPejabatStruktural', function ($query) {
+        return $model->newQuery()->with(['roles:id,display_name'])->withWhereHas('userAparatur', function ($query) {
             $query->where('provinsi_id', $this->authUser()->load('userProvKabKota')->userProvKabKota->provinsi_id)
                 ->where('tingkat_aparatur', 'provinsi');
-        });
+        })->whereRoleIs(getAllRoleFungsional());
     }
 
     /**
@@ -102,12 +118,14 @@ class FungsionalDataTable extends DataTable
         return [
             Column::make('username')
                 ->title('Nama'),
+            Column::make('no_hp'),
             Column::make('jabatan')
                 ->orderable(false),
             Column::make('tgl_registrasi')
                 ->searchable(false),
             Column::computed('status')
                 ->title('Status Verifikasi'),
+            Column::computed('action'),
         ];
     }
 

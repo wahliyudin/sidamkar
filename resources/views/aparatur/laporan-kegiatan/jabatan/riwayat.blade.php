@@ -124,13 +124,13 @@
                                                     @break
 
                                                     @case(4)
-                                                        <span class="btn btn-black py-1 px-3"
-                                                            style="font-size: 12px !important;">Ditolak</span>
+                                                        <span class="btn btn-green-dark py-1 px-3"
+                                                            style="font-size: 12px !important;">Selesai</span>
                                                     @break
 
                                                     @case(5)
-                                                        <span class="btn btn-green-dark py-1 px-3"
-                                                            style="font-size: 12px !important;">Selesai</span>
+                                                        <span class="btn btn-black py-1 px-3"
+                                                            style="font-size: 12px !important;">Ditolak</span>
                                                     @break
                                                 @endswitch
 

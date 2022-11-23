@@ -35,8 +35,34 @@ class StrukturalDataTable extends DataTable
             ->orderColumn('username', function ($query, $order) {
                 return $query->orderBy('username', $order);
             })
+            ->addColumn('no_hp', function (User $user) {
+                return $user->userPejabatStruktural->no_hp;
+            })
+            ->filterColumn('no_hp', function ($query, $keyword) {
+                return $query->whereHas('userPejabatStruktural', function ($query) use ($keyword) {
+                    $query->where('no_hp', 'like', "%$keyword%");
+                });
+            })
+            ->orderColumn('no_hp', function ($query, $order) {
+                return $query->whereHas('userPejabatStruktural', function ($query) use ($order) {
+                    $query->orderBy('no_hp', $order);
+                });
+            })
             ->addColumn('jabatan', function (User $user) {
                 return $user->roles()?->first()->display_name ?? '-';
+            })
+            ->addColumn('eselon', function (User $user) {
+                return 'Eselon ' . $user->userPejabatStruktural->eselon;
+            })
+            ->filterColumn('eselon', function ($query, $keyword) {
+                return $query->whereHas('userPejabatStruktural', function ($query) use ($keyword) {
+                    $query->where('eselon', 'like', "%$keyword%");
+                });
+            })
+            ->orderColumn('eselon', function ($query, $order) {
+                return $query->whereHas('userPejabatStruktural', function ($query) use ($order) {
+                    $query->orderBy('eselon', $order);
+                });
             })
             ->filterColumn('jabatan', function ($query, $keyword) {
                 $query->whereHas('roles', function ($query) use ($keyword) {
@@ -52,7 +78,10 @@ class StrukturalDataTable extends DataTable
             ->addColumn('status', function (User $user) {
                 return $this->statusAkun($user->status_akun);
             })
-            ->rawColumns(['status'])
+            ->addColumn('action', function (User $user) {
+                return view('provinsi.manajemen-user.buttons-tolak-verif', compact('user'))->render();
+            })
+            ->rawColumns(['status', 'action'])
             ->setRowId('id');
     }
 
@@ -102,12 +131,15 @@ class StrukturalDataTable extends DataTable
         return [
             Column::make('username')
                 ->title('Nama'),
+            Column::make('no_hp'),
             Column::make('jabatan')
                 ->orderable(false),
+            Column::make('eselon'),
             Column::make('tgl_registrasi')
                 ->searchable(false),
             Column::computed('status')
                 ->title('Status Verifikasi'),
+            Column::computed('action'),
         ];
     }
 

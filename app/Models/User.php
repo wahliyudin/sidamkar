@@ -17,6 +17,10 @@ class User extends Authenticatable implements MustVerifyEmail
     use LaratrustUserTrait;
     use HasApiTokens, HasFactory, Notifiable;
 
+    const STATUS_REJECT = 2;
+    const STATUS_ACTIVE = 1;
+    const STATUS_INACTIVE = 0;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -129,10 +133,6 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(LaporanKegiatanProfesi::class);
     }
 
-    // public function roles()
-    // {
-    //     return $this->belongsToMany(Role::class);
-    // }
     public function mentes()
     {
         return $this->hasMany(Mente::class, 'atasan_langsung_id', 'id');

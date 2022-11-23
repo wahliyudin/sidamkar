@@ -65,42 +65,42 @@
 
                             <div class="timeline-vertical" data-simplebar
                                 style="max-height: 74vh; overflow-y: auto; overflow-x: hidden;">
-                                @foreach ($laporanKegiatanJabatan->historyKegiatanJabatans as $historyKegiatanJabatan)
+                                @foreach ($laporanKegiatanJabatan->historyKegiatanJabatans()->orderBy('id', 'desc')->get() as $historyKegiatanJabatan)
                                     <div class="timeline-item">
                                         @switch($historyKegiatanJabatan->icon)
                                             @case(1)
                                                 <div class="timeline-icon icon-item icon-item-lg border-300">
-                                                    <i class="text-yellow fa-solid fa-spinner"></i>
+                                                    <i class="text-red-terang fa-solid fa-keyboard"></i>
                                                 </div>
                                             @break
 
                                             @case(2)
                                                 <div class="timeline-icon icon-item icon-item-lg border-300">
-                                                    <i class="text-red fa-solid fa-file-pen"></i>
+                                                    <i class="text-yellow fa-solid fa-spinner"></i>
                                                 </div>
                                             @break
 
                                             @case(3)
                                                 <div class="timeline-icon icon-item icon-item-lg border-300">
-                                                    <i class="text-black fa-solid fa-x"></i>
+                                                    <i class="text-red fa-solid fa-file-pen"></i>
                                                 </div>
                                             @break
 
                                             @case(4)
                                                 <div class="timeline-icon icon-item icon-item-lg border-300">
-                                                    <i class="text-green fa-solid fa-check"></i>
+                                                    <i class="text-red-terang fa-solid fa-paper-plane"></i>
                                                 </div>
                                             @break
 
                                             @case(5)
                                                 <div class="timeline-icon icon-item icon-item-lg border-300">
-                                                    <i class="text-red-terang fa-solid fa-paper-plane"></i>
+                                                    <i class="text-black fa-solid fa-x"></i>
                                                 </div>
                                             @break
 
                                             @case(6)
                                                 <div class="timeline-icon icon-item icon-item-lg border-300">
-                                                    <i class="text-red-terang fa-solid fa-keyboard"></i>
+                                                    <i class="text-green fa-solid fa-check"></i>
                                                 </div>
                                             @break
                                         @endswitch
@@ -109,18 +109,18 @@
                                                 <div>
                                                     @switch($historyKegiatanJabatan->status)
                                                         @case(1)
+                                                            <span class="btn btn-red-terang py-1 px-3"
+                                                                style="font-size: 12px !important;">Laporkan</span>
+                                                        @break
+
+                                                        @case(2)
                                                             <span class="btn btn-yellow py-1 px-3"
                                                                 style="font-size: 12px !important;">Validasi</span>
                                                         @break
 
-                                                        @case(2)
+                                                        @case(3)
                                                             <span class="btn btn-red-dark py-1 px-3"
                                                                 style="font-size: 12px !important;">Revisi</span>
-                                                        @break
-
-                                                        @case(3)
-                                                            <span class="btn btn-black py-1 px-3"
-                                                                style="font-size: 12px !important;">Ditolak</span>
                                                         @break
 
                                                         @case(4)
@@ -129,8 +129,8 @@
                                                         @break
 
                                                         @case(5)
-                                                            <span class="btn btn-red-terang py-1 px-3"
-                                                                style="font-size: 12px !important;">Laporkan</span>
+                                                            <span class="btn btn-black py-1 px-3"
+                                                                style="font-size: 12px !important;">Ditolak</span>
                                                         @break
                                                     @endswitch
 
@@ -138,7 +138,7 @@
                                                         {{ $historyKegiatanJabatan->keterangan }}
                                                     </p>
                                                     <p class="fs--2 text-600">
-                                                        {{ $historyKegiatanJabatan->created_at->format('H:i:s') }} WIB,
+                                                        {{ $historyKegiatanJabatan->created_at->format('H:i') }} WIB,
                                                         {{ $historyKegiatanJabatan->created_at->format('d F Y') }}
                                                     </p>
                                                 </div>

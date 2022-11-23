@@ -3,6 +3,7 @@
 namespace App\DataTables\KabKota;
 
 use App\Models\User;
+use App\Traits\AuthTrait;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\EloquentDataTable;
@@ -15,6 +16,7 @@ use Yajra\DataTables\Services\DataTable;
 
 class MenteDataTable extends DataTable
 {
+    use AuthTrait;
     /**
      * Build DataTable class.
      *
@@ -93,9 +95,13 @@ class MenteDataTable extends DataTable
      */
     public function query(User $model): QueryBuilder
     {
-        return $model->newQuery()->with('mente.atasanLangsung.userPejabatStruktural')->whereHas('userAparatur', function ($query) {
-            $query->where('kab_kota_id', auth()->user()->load('userProvKabKota')->userProvKabKota->kab_kota_id);
-        })->where('status_akun', 1)->whereRoleIs(getAllRoleFungsional());
+        return $model->newQuery()->with('mente.atasanLangsung.userPejabatStruktural')
+        ->whereHas('userAparatur', function ($query) {
+            $query->where('kab_kota_id', $this->authUser()->load('userProvKabKota')->userProvKabKota->kab_kota_id)
+                ->where('tingkat_aparatur', 'kab_kota');
+        })
+        ->where('status_akun', 1)
+        ->whereRoleIs(getAllRoleFungsional());
     }
 
     /**
