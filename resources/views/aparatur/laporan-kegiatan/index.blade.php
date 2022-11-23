@@ -49,7 +49,8 @@
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                     Periode
                                 </p>
-                                <h2 style="font-family: 'Roboto'; font-size: 20px; color: #06152B;" class="target">
+                                <h2 style="font-family: 'Roboto'; font-size: 20px; color: #06152B;"
+                                    class="target target-periode">
                                     {{ Carbon\Carbon::make($periode->awal)->translatedFormat('F Y') . ' - ' . Carbon\Carbon::make($periode->akhir)->translatedFormat('F Y') }}
                                 </h2>
                             </div>
@@ -65,10 +66,10 @@
                         <div class="col-md-4">
                             <h3>Kegiatan Jabatan</h3>
                         </div>
-                        <div class="col-md-6 text-end">
+                        <div class="col-md-4 text-end">
                             <button
                                 {{ count($user->rencanas) <= 0 || $user->rekapitulasiKegiatan?->is_send ? 'disabled' : '' }}
-                                data-bs-toggle="modal" data-bs-target="#rekap"
+                                data-bs-toggle="modal" data-bs-target="#rekap" type="button"
                                 class="btn btn-green btn-sm ps-3 pe-3 py-2 rekap">
                                 <i class="fa-solid fa-paper-plane me-1"></i>
                                 Ajukan Laporan Rekapitulasi Capaian
@@ -185,6 +186,12 @@
             justify-content: center;
             align-items: center;
             background-color: #00000075;
+        }
+
+        @media screen and (max-width: 450px) {
+            .target-periode {
+                font-size: 14px !important;
+            }
         }
     </style>
 @endsection
