@@ -27,7 +27,6 @@ use App\Http\Controllers\CobaController;
 use App\Http\Controllers\KabKota\ChatboxController;
 use App\Http\Controllers\KabKota\DataAparatur\PejabatstrukturalController as KabKotaPejabatStrukturalController;
 use App\Http\Controllers\KabKota\DataAparatur\DataAparaturController as KabKotaPejabatFungsionalController;
-use App\Http\Controllers\KabKota\DataMenteController;
 use App\Http\Controllers\KabKota\ManajemenUser\FungsionalController as KabKotaFungsionalController;
 use App\Http\Controllers\KabKota\ManajemenUser\FungsionalUmumController as KabKotaFungsionalUmumController;
 use App\Http\Controllers\KabKota\ManajemenUser\StrukturalController as KabKotaStrukturalController;
