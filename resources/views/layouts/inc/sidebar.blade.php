@@ -236,13 +236,8 @@
                                 class="submenu-item {{ request()->is('provinsi/manajemen-user/fungsional*') ? 'active' : '' }}">
                                 <a href="{{ route('provinsi.manajemen-user.fungsional') }}">Fungsional</a>
                             </li>
-<<<<<<< HEAD
-                            <li class="submenu-item {{ request()->is('provinsi/kabkota') ? 'active' : '' }}">
-                                <a href="{{ route('provinsi.kabkota') }}">Kabupaten / Kota</a>
-=======
                             <li class="submenu-item {{ request()->is('provinsi/manajemen-user/umum*') ? 'active' : '' }}">
                                 <a href="{{ route('provinsi.manajemen-user.fungsional-umum') }}">Umum</a>
->>>>>>> c63b635e2177b26481eb68b19de0886d75c07d1b
                             </li>
                         </ul>
                     </li>

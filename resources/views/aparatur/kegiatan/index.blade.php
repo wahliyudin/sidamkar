@@ -49,7 +49,7 @@
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                     Periode
                                 </p>
-                                <h2 style="font-family: 'Roboto'; font-size: 20px; color: #06152B;"
+                                <h2 style="font-family: 'Roboto'; font-size: 14px; color: #06152B;"
                                     class="target target-periode">Januari
                                     2022 - Juli 2022</h2>
                             </div>
@@ -203,6 +203,12 @@
                 justify-content: end;
                 margin-top: 1rem;
                 width: 100%;
+            }
+        }
+
+        @media screen and (max-width: 450px) {
+            .target-periode {
+                font-size: 14px !important;
             }
         }
     </style>
