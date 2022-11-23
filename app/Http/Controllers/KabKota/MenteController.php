@@ -5,8 +5,6 @@ namespace App\Http\Controllers\KabKota;
 use App\DataTables\KabKota\MenteDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Mente;
-use App\Models\PenetapAngkaKredit;
-use App\Models\PenilaiAngkaKredit;
 use App\Models\User;
 use App\Services\KabKota\MenteService;
 use App\Traits\AuthTrait;
@@ -30,8 +28,9 @@ class MenteController extends Controller
         $periode = $this->menteService->getPeriodeActive();
         $fungsionals = $this->menteService->getFungsionalKabKota();
         $atasanLangsungs = $this->menteService->getAtasanLangsungKabKota();
-        $penilai = PenilaiAngkaKredit::query()->with('penilaiAK.userPejabatStruktural')->where('kab_kota_id', $this->authUser()->load('userProvKabKota')->userProvKabKota->kab_kota_id)->first()?->penilaiAK?->userPejabatStruktural;
-        $penetap = PenetapAngkaKredit::query()->with('penetapAK.userPejabatStruktural')->where('kab_kota_id', $this->authUser()->load('userProvKabKota')->userProvKabKota->kab_kota_id)->first()?->penetapAK?->userPejabatStruktural;
+        $user = $this->authUser()->load(['userProvKabKota.kab_kota.penilaiAngkaKredit', 'userProvKabKota.kab_kota.penetapAngkaKredit']);
+        $penilai = $user->userProvKabKota?->kab_kota?->penilaiAngkaKredit?->userPejabatStruktural?->nama;
+        $penetap = $user->userProvKabKota?->kab_kota?->penetapAngkaKredit?->userPejabatStruktural?->nama;
         return $dataTable->render('kabkota.mente.index', compact('fungsionals', 'atasanLangsungs', 'penilai', 'penetap', 'periode', 'judul'));
     }
 

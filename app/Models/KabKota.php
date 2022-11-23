@@ -12,7 +12,9 @@ class KabKota extends Model
 
     protected $fillable = [
         'provinsi_id',
-        'nama'
+        'nama',
+        'penilai_ak_id',
+        'penetap_ak_id',
     ];
 
     /**
@@ -37,6 +39,11 @@ class KabKota extends Model
 
     public function penilaiAngkaKredit()
     {
-        return $this->hasOne(PenilaiAngkaKredit::class);
+        return $this->belongsTo(User::class, 'penilai_ak_id', 'id');
+    }
+
+    public function penetapAngkaKredit()
+    {
+        return $this->belongsTo(User::class, 'penetap_ak_id', 'id');
     }
 }
