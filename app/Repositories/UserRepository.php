@@ -23,6 +23,35 @@ class UserRepository
         return $this->user->query()->with('roles')->findOrFail($id);
     }
 
+    public function updateStatusAkunVerified(User $user)
+    {
+        return $user->update(['status_akun' => $user::STATUS_ACTIVE]);
+    }
+
+    public function updateStatusAkunReject(User $user)
+    {
+        return $user->update(['status_akun' => $user::STATUS_REJECT]);
+    }
+
+    public function destroyStruktural(User $user)
+    {
+        if (isset($user->userPejabatStruktural?->file_ttd)) deleteImage($user->userPejabatStruktural->file_ttd);
+        if (isset($user->userPejabatStruktural?->foto_pegawai)) deleteImage($user->userPejabatStruktural->foto_pegawai);
+        return $user->delete();
+    }
+
+    public function destroyProvKabKota(User $user)
+    {
+        if (isset($user->userProvKabKota?->file_permohonan)) deleteImage($user->userProvKabKota->file_permohonan);
+        return $user->delete();
+    }
+
+    public function destroyFungsional(User $user)
+    {
+        if (isset($user->userPejabatStruktural?->foto_pegawai)) deleteImage($user->userPejabatStruktural->foto_pegawai);
+        return $user->delete();
+    }
+
     public function getFungsionalMenteByKabKota(array $mentes): Collection
     {
         return $this->user->query()

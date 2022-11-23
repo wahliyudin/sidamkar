@@ -52,7 +52,7 @@ class StrukturalDataTable extends DataTable
                 return $user->roles()?->first()->display_name ?? '-';
             })
             ->addColumn('eselon', function (User $user) {
-                return 'Eselon '.$user->userPejabatStruktural->eselon;
+                return 'Eselon ' . $user->userPejabatStruktural->eselon;
             })
             ->filterColumn('eselon', function ($query, $keyword) {
                 return $query->whereHas('userPejabatStruktural', function ($query) use ($keyword) {
@@ -78,7 +78,10 @@ class StrukturalDataTable extends DataTable
             ->addColumn('status', function (User $user) {
                 return $this->statusAkun($user->status_akun);
             })
-            ->rawColumns(['status'])
+            ->addColumn('action', function (User $user) {
+                return view('provinsi.manajemen-user.buttons-tolak-verif', compact('user'))->render();
+            })
+            ->rawColumns(['status', 'action'])
             ->setRowId('id');
     }
 
@@ -136,6 +139,7 @@ class StrukturalDataTable extends DataTable
                 ->searchable(false),
             Column::computed('status')
                 ->title('Status Verifikasi'),
+            Column::computed('action'),
         ];
     }
 
