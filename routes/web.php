@@ -17,7 +17,6 @@ use App\Http\Controllers\Api\FilePondController;
 use App\Http\Controllers\Api\KabKotaController;
 use App\Http\Controllers\AtasanLangsung\DataAtasanLangsungController;
 use App\Http\Controllers\AtasanLangsung\KegiatanLangsungController;
-use App\Http\Controllers\AtasanLangsung\KegiatanPengajuanController;
 use App\Http\Controllers\AtasanLangsung\OverviewController as AtasanLangsungOverviewController;
 use App\Http\Controllers\AtasanLangsung\PengajuanKegiatanController;
 use App\Http\Controllers\AtasanLangsung\VerifikasiKegiatanController as AtasanLangsungVerifikasiKegiatanController;
@@ -25,8 +24,6 @@ use App\Http\Controllers\PenilaiAk\OverviewController as PenilaiAkOverviewContro
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CobaController;
 use App\Http\Controllers\KabKota\ChatboxController;
-use App\Http\Controllers\KabKota\DataAparatur\PejabatstrukturalController as KabKotaPejabatStrukturalController;
-use App\Http\Controllers\KabKota\DataAparatur\DataAparaturController as KabKotaPejabatFungsionalController;
 use App\Http\Controllers\KabKota\ManajemenUser\FungsionalController as KabKotaFungsionalController;
 use App\Http\Controllers\KabKota\ManajemenUser\FungsionalUmumController as KabKotaFungsionalUmumController;
 use App\Http\Controllers\KabKota\ManajemenUser\StrukturalController as KabKotaStrukturalController;
@@ -37,8 +34,6 @@ use App\Http\Controllers\KabKota\VerifikasiAparatur\PejabatStrukturalController;
 use App\Http\Controllers\KabKota\VerifikasiAparatur\VerifikasiAparaturController;
 use App\Http\Controllers\Kemendagri\CMS\KegiatanJabatanController;
 use App\Http\Controllers\Kemendagri\CMS\KegiatanProfesiController;
-use App\Http\Controllers\Kemendagri\DataAdminDaerah\AdminKabKotaController as DataAdminDaerahAdminKabKotaController;
-use App\Http\Controllers\Kemendagri\DataAdminDaerah\AdminProvinsiController as DataAdminDaerahAdminProvinsiController;
 use App\Http\Controllers\Kemendagri\DataProvKabKotaController;
 use App\Http\Controllers\Kemendagri\OverviewController as KemendagriOverviewController;
 use App\Http\Controllers\Kemendagri\PejabatStrukturalController as KemendagriPejabatStrukturalController;
@@ -56,24 +51,12 @@ use App\Http\Controllers\PenetapAK\DataPengajuan\KabKotaInternal;
 use App\Http\Controllers\PenetapAK\DataPenetapAKController;
 use App\Http\Controllers\PenilaiAK\DataPenilaiAKController;
 use App\Http\Controllers\Kemendagri\CMS\PeriodeController;
-use App\Http\Controllers\provinsi\Chatbox;
-use App\Http\Controllers\Provinsi\DataAparaturController as ProvinsiDataAparaturController;
 use App\Http\Controllers\Provinsi\OverviewController as ProvinsiOverviewController;
-use App\Http\Controllers\Provinsi\PejabatStrukturalController as ProvinsiPejabatStrukturalController;
 use App\Http\Controllers\provinsi\ChatboxController as ProvinsiChatboxController;
 use App\Http\Controllers\Provinsi\ManajemenUser\FungsionalController as ProvinsiFungsionalController;
 use App\Http\Controllers\Provinsi\ManajemenUser\FungsionalUmumController as ProvinsiFungsionalUmumController;
 use App\Http\Controllers\Provinsi\ManajemenUser\StrukturalController as ProvinsiStrukturalController;
 use App\Http\Controllers\Provinsi\ManajemenUser\UserKabKotaController;
-use App\Models\KabKota;
-use App\Models\Mente;
-use App\Models\Periode;
-use App\Models\Provinsi;
-use App\Models\Unsur;
-use App\Models\User;
-use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
-use Illuminate\Database\Query\Builder;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -174,11 +157,6 @@ Route::middleware(['auth'])->group(function () {
         Route::post('kab-kota/verifikasi-aparatur/{id}/verified', [VerifikasiAparaturController::class, 'verified'])->name('kab-kota.verifikasi-aparatur.verified');
         Route::post('kab-kota/verifikasi-aparatur/{id}/reject', [VerifikasiAparaturController::class, 'reject'])->name('kab-kota.verifikasi-aparatur.reject');
 
-        Route::get('kab-kota/data-aparatur/pejabat-fungsional', [KabKotaPejabatFungsionalController::class, 'index'])->name('kab-kota.data-aparatur.pejabat-fungsional.index');
-        Route::get('kab-kota/data-aparatur/pejabat-fungsional/{id}/show', [KabKotaPejabatFungsionalController::class, 'show'])->name('kab-kota.data-aparatur.pejabat-fungsional.show');
-
-        Route::get('kab-kota/data-aparatur/pejabat-struktural', [KabKotaPejabatStrukturalController::class, 'index'])->name('kab-kota.data-aparatur.pejabat-struktural.index');
-
         Route::get('kab-kota/data-mente', [MenteController::class, 'index'])->name('kab-kota.data-mente');
         Route::post('kab-kota/data-mente/store', [MenteController::class, 'store'])->name('kab-kota.data-mente.store');
         Route::get('kab-kota/data-mente/{id}/show', [MenteController::class, 'show'])->name('kab-kota.data-mente.show');
@@ -245,8 +223,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['role:provinsi'])->group(function () {
         Route::get('provinsi/overview', [ProvinsiOverviewController::class, 'index'])->name('provinsi.overview.index');
-        Route::get('provinsi/aparatur/data-aparatur', [ProvinsiDataAparaturController::class, 'index'])->name('provinsi.aparatur.data-aparatur');
-        Route::get('provinsi/kabkota', [ProvinsiPejabatStrukturalController::class, 'index'])->name('provinsi.kabkota');
         Route::get('provinsi/chatbox', [ProvinsiChatboxController::class, 'index'])->name('provinsi.chatbox');
 
 
@@ -300,16 +276,6 @@ Route::middleware(['auth'])->group(function () {
 
         Route::controller(DataProvKabKotaController::class)->group(function () {
             Route::get('kemendagri/data-prov-kab-kota', 'index')->name('kemendagri.data-prov-kab-kota.index');
-        });
-
-        Route::controller(DataAdminDaerahAdminKabKotaController::class)->group(function () {
-            Route::get('kemendagri/data-admin-daerah/admin-kabkota', 'index')->name('kemendagri.data-admin-daerah.admin-kabkota.index');
-            Route::get('kemendagri/data-admin-daerah/admin-kabkota/{id}/document', 'showDoc')->name('kemendagri.data-admin-daerah.admin-kabkota.showdoc');
-        });
-
-        Route::controller(DataAdminDaerahAdminProvinsiController::class)->group(function () {
-            Route::get('kemendagri/data-admin-daerah/admin-provinsi', 'index')->name('kemendagri.data-admin-daerah.admin-provinsi.index');
-            Route::get('kemendagri/data-admin-daerah/admin-provinsi/{id}/document', 'showDoc')->name('kemendagri.data-admin-daerah.admin-provinsi.showdoc');
         });
 
         Route::controller(KegiatanJabatanController::class)->group(function () {
