@@ -110,7 +110,7 @@ function hapus(id) {
         preConfirm: async () => {
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             return await $.ajax({
-                type: 'POST',
+                type: 'DELETE',
                 url: url('/kab-kota/manajemen-user/struktural/' + id + '/destroy'),
                 data: {
                     _token: CSRF_TOKEN
