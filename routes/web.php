@@ -165,6 +165,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('kab-kota/data-mente/{id}/show', [MenteController::class, 'show'])->name('kab-kota.data-mente.show');
         Route::get('kab-kota/data-mente/{id}/edit', [MenteController::class, 'edit'])->name('kab-kota.data-mente.edit');
         Route::put('kab-kota/data-mente/{id}/update', [MenteController::class, 'update'])->name('kab-kota.data-mente.update');
+        Route::post('kab-kota/data-mente/{kab_kota_id}/tingkat-kabkota', [MenteController::class, 'tingkatKabKota'])->name('kab-kota.data-mente.tingkat-kabkota');
+        Route::post('kab-kota/data-mente/{provinsi_id}/tingkat-provinsi', [MenteController::class, 'tingkatProvinsi'])->name('kab-kota.data-mente.tingkat-provinsi');
+        Route::post('kab-kota/data-mente/store-penilai-penetap', [MenteController::class, 'storePenilaiAndPenetap'])->name('kab-kota.data-mente.store-penilai-penetap');
 
         Route::get('kab-kota/chatbox', [ChatboxController::class, 'index'])->name('kab-kota.chatbox');
     });

@@ -4,7 +4,9 @@ namespace App\Http\Controllers\KabKota;
 
 use App\DataTables\KabKota\MenteDataTable;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StorePenilaiAndPenetapRequest;
 use App\Models\Mente;
+use App\Models\Provinsi;
 use App\Models\User;
 use App\Services\KabKota\MenteService;
 use App\Traits\AuthTrait;
@@ -28,10 +30,68 @@ class MenteController extends Controller
         $periode = $this->menteService->getPeriodeActive();
         $fungsionals = $this->menteService->getFungsionalKabKota();
         $atasanLangsungs = $this->menteService->getAtasanLangsungKabKota();
-        $user = $this->authUser()->load(['userProvKabKota.kab_kota.penilaiAngkaKredit', 'userProvKabKota.kab_kota.penetapAngkaKredit']);
-        $penilai = $user->userProvKabKota?->kab_kota?->penilaiAngkaKredit?->userPejabatStruktural?->nama;
-        $penetap = $user->userProvKabKota?->kab_kota?->penetapAngkaKredit?->userPejabatStruktural?->nama;
-        return $dataTable->render('kabkota.mente.index', compact('fungsionals', 'atasanLangsungs', 'penilai', 'penetap', 'periode', 'judul'));
+        $user = $this->authUser()->load(['userProvKabKota']);
+        $penilaiAndPenetap = $this->menteService->getCurrentPenilaiAndPenetapByKabKota($user->userProvKabKota->kab_kota_id);
+        if (!isset($penilaiAndPenetap)) {
+            $penilaiAndPenetap = $this->menteService->getCurrentPenilaiAndPenetapByProvinsi($user->userProvKabKota->provinsi_id);
+        }
+        $provinsis = Provinsi::query()->get(['id', 'nama']);
+        return $dataTable->render('kabkota.mente.index', compact('fungsionals', 'atasanLangsungs', 'penilaiAndPenetap', 'provinsis', 'periode', 'judul'));
+    }
+
+    public function tingkatKabKota($kab_kota_id)
+    {
+        $penilaiAndPenetap = $this->menteService->getCurrentPenilaiAndPenetapByKabKota($kab_kota_id);
+        if (!isset($penilaiAndPenetap?->penilaiAngkaKredit)) {
+            throw ValidationException::withMessages(['message' => 'Belum mempunyai tim penilai']);
+        }
+        return response()->json([
+            'penilaiAndPenetap' => [
+                'penilai' => [
+                    'id' => $penilaiAndPenetap?->penilai_ak_id,
+                    'nama' => $penilaiAndPenetap?->penilaiAngkaKredit?->userPejabatStruktural?->nama,
+                ],
+                'penetap' => [
+                    'id' => $penilaiAndPenetap?->penetap_ak_id,
+                    'nama' => $penilaiAndPenetap?->penetapAngkaKredit?->userPejabatStruktural?->nama,
+                ]
+            ],
+        ]);
+    }
+
+    public function tingkatProvinsi($provinsi_id)
+    {
+        $penilaiAndPenetap = $this->menteService->getCurrentPenilaiAndPenetapByProvinsi($provinsi_id);
+        if (!isset($penilaiAndPenetap?->penilaiAngkaKredit)) {
+            throw ValidationException::withMessages(['message' => 'Belum mempunyai tim penilai']);
+        }
+
+        return response()->json([
+            'penilaiAndPenetap' => [
+                'penilai' => [
+                    'id' => $penilaiAndPenetap?->penilai_ak_id,
+                    'nama' => $penilaiAndPenetap?->penilaiAngkaKredit?->userPejabatStruktural?->nama,
+                ],
+                'penetap' => [
+                    'id' => $penilaiAndPenetap?->penetap_ak_id,
+                    'nama' => $penilaiAndPenetap?->penetapAngkaKredit?->userPejabatStruktural?->nama,
+                ]
+            ],
+        ]);
+    }
+
+    public function storePenilaiAndPenetap(StorePenilaiAndPenetapRequest $request)
+    {
+        $user = $this->authUser()->load('userProvKabKota')->userProvKabKota;
+        if ($request->tingkat == 'kab_kota') {
+            $this->menteService->storePenilaiAndPenetapKabKota($request->penilai, $request->penetap, $request->kab_kota_id, $user->kab_kota);
+        } else {
+            $this->menteService->storePenilaiAndPenetapProvinsi($request->penilai, $request->penetap, $request->provinsi_id, $user->provinsi);
+        }
+        return response()->json([
+            'status' => 200,
+            'message' => 'Berhasil diterapkan'
+        ]);
     }
 
     public function store(Request $request)
