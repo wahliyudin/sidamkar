@@ -868,7 +868,7 @@ class UserSeeder extends Seeder
             'email' => 'adminrwr6@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'status_akun' => 0
+            'status_akun' => 0  
         ])->attachRole('penilai_ak');
         $penilaiAK3->userPejabatStruktural()->create([
             'nama' =>  fake()->name,
