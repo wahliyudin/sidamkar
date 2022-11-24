@@ -1027,7 +1027,6 @@
         $(document).ready(function() {
             // Swiper: Slider
             new Swiper('.swiper', {
-                loop: true,
                 slidesPerView: 3,
                 paginationClickable: true,
                 spaceBetween: 20,
