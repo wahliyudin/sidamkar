@@ -70,7 +70,7 @@
 }
 
 .container-laporan {
-    max-height: 575px;
+    max-height: 400px;
     overflow-y: auto;
 }
 
