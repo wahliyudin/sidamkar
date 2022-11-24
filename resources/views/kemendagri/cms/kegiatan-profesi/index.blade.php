@@ -24,7 +24,7 @@
                                         <div class="d-flex justify-content-between align-items-center ps-2 mb-1">
                                             <span
                                                 class="bg-green text-sm text-white font-bold py-1 px-2 rounded-md label-role">
-                                                {{ $unsur->role?->display_name }}
+                                                {{ $unsur->role?->display_name ?? 'Semua Jenjang' }}
                                             </span>
                                             <div class="d-flex align-items-center">
                                                 <i class="fa-regular fa-pen-to-square me-2 cursor-pointer text-green btn-edit-kegiatan"
