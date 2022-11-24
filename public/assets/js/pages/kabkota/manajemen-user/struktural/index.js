@@ -33,6 +33,9 @@ $(document).ready(function () {
             success: function (response) {
                 $(span).show();
                 $(spin).hide();
+                swal("Selesai!", response.message, "success").then(() => {
+                    location.reload();
+                });
             },
             error: ajaxError
         });
