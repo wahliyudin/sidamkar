@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('rencanas', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('nama')->fulltext();
+            $table->text('nama')->fulltext();
             $table->timestamps();
 
             $table->foreign('user_id')->on('users')->references('id')->cascadeOnDelete();

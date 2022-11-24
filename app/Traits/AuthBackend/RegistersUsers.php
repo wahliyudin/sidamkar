@@ -6,6 +6,7 @@ use App\Http\Requests\RegisterRequest;
 use App\Jobs\SendVerifEmailToUser;
 use App\Models\NomenKlaturPerangkatDaerah;
 use App\Models\Provinsi;
+use App\Models\Role;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -22,9 +23,11 @@ trait RegistersUsers
      */
     public function showRegistrationForm()
     {
+        // dd(ucwords('sdhsdh sdjhsdkh wah'));
         $provinsis = Provinsi::query()->get(['id', 'nama']);
         $nomenklaturs = NomenKlaturPerangkatDaerah::query()->get(['id', 'nama']);
-        return view('auth.register', compact('provinsis', 'nomenklaturs'));
+        $rolesUmum = Role::query()->whereNotIn('name', array_merge(getAllRoleFungsional(), getAllRoleStruktural(), getAllRoleProvKabKota(), ['kemendagri']))->get();
+        return view('auth.register', compact('provinsis', 'nomenklaturs', 'rolesUmum'));
     }
 
     /**

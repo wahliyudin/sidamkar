@@ -2,15 +2,25 @@
 
 namespace App\Models;
 
+use App\Enums\LaporanKegiatanStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class LaporanKegiatanJabatan extends Model
 {
     use HasFactory;
 
+    const VALIDASI = 1;
+    const REVISI = 2;
+    const SELESAI = 3;
+    const TOLAK = 4;
+
     protected $fillable = [
-        'rencana_butir_kegiatan_id',
+        'kode',
+        'rencana_id',
+        'butir_kegiatan_id',
         'detail_kegiatan',
         'current_date',
         'score',
@@ -18,18 +28,23 @@ class LaporanKegiatanJabatan extends Model
         'catatan'
     ];
 
-    public function dokumenKegiatanPokoks()
+    public function rencana(): BelongsTo
     {
-        return $this->hasMany(DokumenKegiatanPokok::class);
+        return $this->belongsTo(Rencana::class);
     }
 
-    public function rencanaButirKegiatan()
+    public function dokumenKegiatanJabatans(): HasMany
     {
-        return $this->belongsTo(RencanaButirKegiatan::class);
+        return $this->hasMany(DokumenKegiatanJabatan::class);
     }
 
-    public function historyButirKegiatans()
+    public function butirKegiatan(): BelongsTo
     {
-        return $this->hasMany(HistoryButirKegiatan::class);
+        return $this->belongsTo(ButirKegiatan::class);
+    }
+
+    public function historyKegiatanJabatans(): HasMany
+    {
+        return $this->hasMany(HistoryKegiatanJabatan::class);
     }
 }

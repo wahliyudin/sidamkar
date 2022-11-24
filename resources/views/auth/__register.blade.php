@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Daftar</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="{{ asset('assets/images/template/logo.png') }}" type="image/x-icon">
     <link rel="shortcut icon" href="{{ asset('assets/images/template/logo.png') }}" type="image/png">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet"
@@ -52,6 +53,12 @@
             .form-wrapper {
                 padding: 0 !important;
             }
+
+            .link-login {
+                position: relative !important;
+                margin-top: 1rem;
+                align-self: center;
+            }
         }
 
         .nav-tabs .nav-link {
@@ -93,6 +100,7 @@
         href="{{ asset('assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/pages/filepond.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/extensions/fontawesome/all.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/extensions/toastify-js/src/toastify.css') }}">
 </head>
 
 <body>
@@ -115,35 +123,25 @@
                         @endif
                     </div>
                     <div class="page-content login-cover" style="z-index: 99;">
-
                         <!-- Content area -->
                         <div class="form-wrapper d-flex justify-content-center align-items-center">
-
                             <!-- Login form -->
                             <div class="card mb-0 overflow-hidden" style="border-radius: 10px; position: relative;">
                                 <ul class="nav nav-tabs nav-justified bg-light rounded-top mb-0">
                                     <li class="nav-item">
                                         <a href="#login-tab1"
                                             class="h-100 nav-link border-y-0 border-left-0 active d-flex justify-content-center align-items-center"
-                                            data-toggle="tab">
-                                            <h6 class="my-1">Daftar Pejabat Fungsional</h6>
+                                            data-toggle="tab" data-id="login-tab1">
+                                            <h6 class="my-1">Daftar Aparatur</h6>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="#login-tab2"
                                             class="h-100 nav-link border-y-0 border-right-0 d-flex justify-content-center align-items-center"
-                                            data-toggle="tab">
-                                            <h6 class="my-1">Daftar Pejabat Struktural</h6>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#login-tab3"
-                                            class="h-100 nav-link border-y-0 border-right-0 d-flex justify-content-center align-items-center"
-                                            data-toggle="tab">
+                                            data-toggle="tab" data-id="login-tab2">
                                             <h6 class="my-1">Daftar Admin Prov & Kab/kota</h6>
                                         </a>
                                     </li>
-
                                 </ul>
 
                                 <div class="tab-content">
@@ -157,16 +155,32 @@
                                                 <h6>Admin Level</h6>
                                                 <fieldset>
                                                     <div class="row">
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label>Tingkat Aparatur<span
+                                                                        class="text-danger">*</span></label>
+                                                                <select name="tingkat_aparatur" required
+                                                                    class="custom-select">
+                                                                    <option selected disabled value="">- Pilih
+                                                                        Tingkat Aparatur -</option>
+                                                                    <option value="provinsi">Provinsi
+                                                                    </option>
+                                                                    <option value="kab_kota">Kabupaten/Kota
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label>Provinsi<span
                                                                         class="text-danger">*</span></label>
-                                                                <select name="provinsi_id" id="provinsi_id"
-                                                                    class="custom-select">
+                                                                <select name="provinsi_id" data-id=".provinsi1" required
+                                                                    id="provinsi_id" class="custom-select provinsi1">
                                                                     <option selected disabled>- Pilih Provinsi -
                                                                     </option>
                                                                     @foreach ($provinsis as $provinsi)
-                                                                        <option value="{{ $provinsi->id }}">
+                                                                        <option @selected(old('provinsi_id') == $provinsi->id)
+                                                                            value="{{ $provinsi->id }}">
                                                                             {{ $provinsi->nama }}</option>
                                                                     @endforeach
                                                                 </select>
@@ -177,11 +191,11 @@
                                                                 @enderror
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label>Kabupaten / Kota<span
                                                                         class="text-danger">*</span></label>
-                                                                <select name="kab_kota_id" id="kab_kota_id"
+                                                                <select name="kab_kota_id" required id="kab_kota_id"
                                                                     class="custom-select">
                                                                     <option value="">- Pilih Provinsi Terlebih
                                                                         Dahulu -</option>
@@ -193,135 +207,110 @@
                                                                 @enderror
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-3">
                                                             <div class="form-group">
-                                                                <label>Jabatan<span class="text-danger">*</span></label>
-                                                                <select name="jabatan" class="custom-select">
-                                                                    <option selected disabled>- Pilih Jabatan -</option>
-                                                                    <option value="damkar">Damkar</option>
-                                                                    <option value="analis_kebakaran">Analis Kebakaran
+                                                                <label>Jenis Aparatur<span
+                                                                        class="text-danger">*</span></label>
+                                                                <select name="jenis_aparatur" required
+                                                                    class="custom-select">
+                                                                    <option selected disabled value="">- Pilih
+                                                                        Jabatan -</option>
+                                                                    <option value="fungsional">Pejabat Fungsional
+                                                                    </option>
+                                                                    <option value="struktural">Pejabat Struktural
+                                                                    </option>
+                                                                    <option value="fungsional_umum">Pejabat Fungsional
+                                                                        Umum
                                                                     </option>
                                                                 </select>
-                                                                @error('jabatan')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
-                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </fieldset>
 
-                                                <h6>Personal data</h6>
+                                                <h6>Personal Data</h6>
                                                 <fieldset>
-                                                    <div class="row">
-                                                        <div class="col-md-4">
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-md-3">
                                                             <div class="form-group">
-                                                                <label>Nama Lengkap <span
-                                                                        class="text-danger">*</span></label>
-                                                                <input type="text" name="nama"
-                                                                    class="form-control" placeholder="Nama Lengkap">
+                                                                <label>No HP<span class="text-danger">*</span></label>
+                                                                <input type="text" required
+                                                                    value="{{ old('no_hp') }}" class="form-control"
+                                                                    name="no_hp">
+                                                                @error('no_hp')
+                                                                    <strong
+                                                                        style="color: red;">{{ $message }}</strong>
+                                                                @enderror
                                                             </div>
                                                         </div>
-
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-3">
                                                             <div class="form-group">
-                                                                <label>Tempat Lahir<span
+                                                                <label>Nama Lengkap<span
                                                                         class="text-danger">*</span></label>
-                                                                <input type="text" name="tempat_lahir"
-                                                                    class="form-control" placeholder="Tempat Lahir">
+                                                                <input type="text" required
+                                                                    value="{{ old('nama') }}" class="form-control"
+                                                                    name="nama">
+                                                                @error('nama')
+                                                                    <strong
+                                                                        style="color: red;">{{ $message }}</strong>
+                                                                @enderror
                                                             </div>
                                                         </div>
-
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-3 wrapper-select" style="display: none;">
                                                             <div class="form-group">
-                                                                <label>Tanggal Lahir<span
+                                                                <label>Jenis Jabatan<span
                                                                         class="text-danger">*</span></label>
-                                                                <input type="date" name="tanggal_lahir"
-                                                                    class="form-control" placeholder="Tanggal Lahir">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label>Jenis Kelamin<span
-                                                                        class="text-danger">*</span></label>
-                                                                <select name="jenis_kelamin" class="custom-select">
-                                                                    <option selected disabled>- Pilih Jenis Kelamin -
-                                                                    </option>
-                                                                    <option value="L">Laki - Laki</option>
-                                                                    <option value="P">Perempuan</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label>NIP / Nomor Daftar<span
-                                                                        class="text-danger">*</span></label>
-                                                                <input type="number" name="nip"
-                                                                    class="form-control"
-                                                                    placeholder="NIP / Nomor Daftar">
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label>Pangkat / Golongan / TMT<span
-                                                                        class="text-danger">*</span></label>
-                                                                <select name="pangkat_golongan_tmt"
-                                                                    class="custom-select">
+                                                                <select name="jenis_jabatan"
+                                                                    class="custom-select select-fungsional"
+                                                                    style="display: none;" required>
                                                                     <option selected disabled>- Pilih Jabatan -</option>
-                                                                    <option value="IIIA">IIIA</option>
-                                                                    <option value="IIIB">IIIB</option>
-                                                                    <option value="IIIC">IIIC</option>
-                                                                    <option value="IIID">IIID</option>
-                                                                    <option value="IVA">IVA</option>
-                                                                    <option value="IVB">IVB</option>
-                                                                    <option value="IVC">IVC</option>
-                                                                    <option value="IVD">IVD</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label>No KarPeg<span
-                                                                        class="text-danger">*</span></label>
-                                                                <input type="number" name="nomor_karpeg"
-                                                                    class="form-control">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label>Pendidikan Terakhir<span
-                                                                        class="text-danger">*</span></label>
-                                                                <select name="pendidikan_terakhir"
-                                                                    class="custom-select">
-                                                                    <option selected disabled>- Pilih Pendidikan
-                                                                        Terakhir -</option>
-                                                                    <option value="1">SMA/Sederajat</option>
-                                                                    <option value="2">D3</option>
-                                                                    <option value="3">S1/D4</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label>Jenjang<span
-                                                                        class="text-danger">*</span></label>
-                                                                <select name="jenjang" class="custom-select">
-                                                                    <option selected disabled>- Pilih Jenjang -
+                                                                    <option value="damkar_pemula">Damkar Pemula
                                                                     </option>
-                                                                    <option value="senior">Senior</option>
-                                                                    <option value="junior">Junior</option>
+                                                                    <option value="damkar_terampil">Damkar Terampil
+                                                                    </option>
+                                                                    <option value="damkar_mahir">Damkar Mahir
+                                                                    </option>
+                                                                    <option value="damkar_penyelia">Damkar Penyelia
+                                                                    </option>
+                                                                    <option value="analis_kebakaran_ahli_pertama">
+                                                                        Analis Kebakaran Ahli
+                                                                        Pertama
+                                                                    </option>
+                                                                    <option value="analis_kebakaran_ahli_muda">Analis
+                                                                        Kebakaran Ahli
+                                                                        Muda
+                                                                    </option>
+                                                                    <option value="analis_kebakaran_ahli_madya">Analis
+                                                                        Kebakaran Ahli
+                                                                        Madya
+                                                                    </option>
                                                                 </select>
+                                                                <select name="jenis_jabatan"
+                                                                    class="custom-select select-struktural"
+                                                                    style="display: none;" required>
+                                                                    <option selected disabled>- Pilih Jabatan -</option>
+                                                                    <option value="atasan_langsung">Atasan Langsung
+                                                                    </option>
+                                                                    <option value="penilai_ak">Penilai Angka Kredit
+                                                                    </option>
+                                                                    <option value="penetap_ak">Penetap Angka Kredit
+                                                                    </option>
+                                                                </select>
+                                                                @error('jenis_jabatan')
+                                                                    <strong style="color: red;">adffsdf</strong>
+                                                                @enderror
                                                             </div>
                                                         </div>
+
+                                                        {{-- Struktural --}}
+                                                        {{-- <div class="col-md-3 struktural" style="display: none;">
+                                                            <div class="form-group">
+                                                                <label>File SK<span
+                                                                        class="text-danger">*</span></label>
+                                                                <input type="file" data-max-file-size="2MB"
+                                                                    name="file_sk" required />
+                                                            </div>
+                                                        </div> --}}
                                                     </div>
                                                 </fieldset>
 
@@ -333,11 +322,10 @@
                                                                 <label>Email<span class="text-danger">*</span></label>
                                                                 <input type="email" name="email"
                                                                     placeholder="example@gmail.com"
-                                                                    class="form-control">
+                                                                    class="form-control" value="{{ old('email') }}">
                                                                 @error('email')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
+                                                                    <strong
+                                                                        style="color: red;">{{ $message }}</strong>
                                                                 @enderror
                                                             </div>
                                                         </div>
@@ -345,13 +333,11 @@
                                                             <div class="form-group">
                                                                 <label>Username<span
                                                                         class="text-danger">*</span></label>
-                                                                <input type="text" name="username"
-                                                                    class="form-control">
+                                                                <input type="text" value="{{ old('username') }}"
+                                                                    name="username" class="form-control">
                                                             </div>
                                                             @error('username')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
+                                                                <strong style="color: red;">{{ $message }}</strong>
                                                             @enderror
                                                         </div>
                                                     </div>
@@ -363,9 +349,8 @@
                                                                 <input type="password" name="password"
                                                                     placeholder="password" class="form-control">
                                                                 @error('password')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
+                                                                    <strong
+                                                                        style="color: red;">{{ $message }}</strong>
                                                                 @enderror
                                                             </div>
                                                         </div>
@@ -376,9 +361,8 @@
                                                                 <input type="password" name="password_confirmation"
                                                                     placeholder="password" class="form-control">
                                                                 @error('password_confirmation')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
+                                                                    <strong
+                                                                        style="color: red;">{{ $message }}</strong>
                                                                 @enderror
                                                             </div>
                                                         </div>
@@ -390,273 +374,24 @@
                                     </div>
 
                                     <div class="tab-pane fade" id="login-tab2">
-                                        <div class="header-wizard-form">
-                                            <form class="wizard-form steps-validation" method="POST"
-                                                action="{{ route('register') }}" enctype="multipart/form-data"
-                                                data-fouc>
-                                                @csrf
-                                                <h6>Admin Level</h6>
-                                                <fieldset>
-                                                    <div class="row">
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label>Tingkat Admin<span
-                                                                        class="text-danger">*</span></label>
-                                                                <select name="jabatan" class="custom-select">
-                                                                    <option selected disabled>- Pilih Tingkat -</option>
-                                                                    <option value="atasan_langsung">Atasan Langsung
-                                                                    </option>
-                                                                    <option value="penilai_ak">Pejabat Penilai AK
-                                                                    </option>
-                                                                    <option value="penetap_ak">Pejabat Penetap AK
-                                                                    </option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label>Provinsi<span
-                                                                        class="text-danger">*</span></label>
-                                                                <select name="provinsi_id" id="provinsi_id"
-                                                                    class="custom-select">
-                                                                    <option selected disabled>- Pilih Provinsi -
-                                                                    </option>
-                                                                    @foreach ($provinsis as $provinsi)
-                                                                        <option value="{{ $provinsi->id }}">
-                                                                            {{ $provinsi->nama }}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                                @error('provinsi_id')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label>Kabupaten / Kota<span
-                                                                        class="text-danger">*</span></label>
-                                                                <select name="kab_kota_id" id="kab_kota_id"
-                                                                    class="custom-select">
-                                                                    <option value="">- Pilih Provinsi Terlebih
-                                                                        Dahulu -</option>
-                                                                </select>
-                                                                @error('kab_kota_id')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-
-                                                    <div class="row justify-content-center">
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label for="">Tanda Tangan</label>
-                                                                <label class="input-file">
-                                                                    <div class="icon">
-                                                                        <i class="fa-solid fa-cloud-arrow-up"></i>
-                                                                        <p style="margin: 0 !important;">Pilih file
-                                                                            tanda
-                                                                            tangan</p>
-                                                                    </div>
-                                                                    <input style="display: none;" type="file"
-                                                                        name="file_ttd" id="">
-                                                                    <input style="display: none;" type="text"
-                                                                        name="value_ttd">
-                                                                    <img
-                                                                        class="file_ttd-preview img-fluid mb-3 rounded">
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </fieldset>
-
-                                                <h6>Personal data</h6>
-                                                <fieldset>
-                                                    <div class="row">
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <label>Nama Lengkap <span
-                                                                        class="text-danger">*</span></label>
-                                                                <input type="text" name="nama"
-                                                                    class="form-control" placeholder="Nama Lengkap">
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <label>Tempat Lahir<span
-                                                                        class="text-danger">*</span></label>
-                                                                <input type="text" name="tempat_lahir"
-                                                                    class="form-control" placeholder="Tempat Lahir">
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <label>Tanggal Lahir<span
-                                                                        class="text-danger">*</span></label>
-                                                                <input type="date" name="tanggal_lahir"
-                                                                    class="form-control" placeholder="Tanggal Lahir">
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <label>Jenis Kelamin<span
-                                                                        class="text-danger">*</span></label>
-                                                                <select name="jenis_kelamin" class="custom-select">
-                                                                    <option selected disabled>- Pilih Jenis Kelamin -
-                                                                    </option>
-                                                                    <option value="L">Laki - Laki</option>
-                                                                    <option value="P">Perempuan</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <label>Pendidikan Terakhir<span
-                                                                        class="text-danger">*</span></label>
-                                                                <select name="pendidikan_terakhir"
-                                                                    class="custom-select">
-                                                                    <option selected disabled>- Pilih Pendidikan
-                                                                        Terakhir -</option>
-                                                                    <option value="1">SMA/Sederajat</option>
-                                                                    <option value="2">D3</option>
-                                                                    <option value="3">S1/D4</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <label>NIP / Nomor Daftar<span
-                                                                        class="text-danger">*</span></label>
-                                                                <input type="number" name="nip"
-                                                                    class="form-control"
-                                                                    placeholder="NIP / Nomor Daftar">
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <label>Pangkat / Golongan / TMT<span
-                                                                        class="text-danger">*</span></label>
-                                                                <select name="pangkat_golongan_tmt"
-                                                                    class="custom-select">
-                                                                    <option selected disabled>- Pilih Jabatan -</option>
-                                                                    <option value="IIIA">IIIA</option>
-                                                                    <option value="IIIB">IIIB</option>
-                                                                    <option value="IIIC">IIIC</option>
-                                                                    <option value="IIID">IIID</option>
-                                                                    <option value="IVA">IVA</option>
-                                                                    <option value="IVB">IVB</option>
-                                                                    <option value="IVC">IVC</option>
-                                                                    <option value="IVD">IVD</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <label>Nomenklatur Perangkat Daerah<span
-                                                                        class="text-danger">*</span></label>
-                                                                <input type="number" class="form-control"
-                                                                    name="nomenklatur_jabatan" id="">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </fieldset>
-
-                                                <h6>Akses Login</h6>
-                                                <fieldset>
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Email<span class="text-danger">*</span></label>
-                                                                <input type="email" name="email"
-                                                                    placeholder="example@gmail.com"
-                                                                    class="form-control">
-                                                                @error('email')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Username<span
-                                                                        class="text-danger">*</span></label>
-                                                                <input type="text" name="username"
-                                                                    class="form-control">
-                                                            </div>
-                                                            @error('username')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Password<span
-                                                                        class="text-danger">*</span></label>
-                                                                <input type="password" name="password"
-                                                                    placeholder="password" class="form-control">
-                                                                @error('password')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Konfirmasi Password<span
-                                                                        class="text-danger">*</span></label>
-                                                                <input type="password" name="password_confirmation"
-                                                                    placeholder="password" class="form-control">
-                                                                @error('password_confirmation')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </fieldset>
-                                            </form>
-                                        </div>
-                                        <!-- /remote content source -->
-                                    </div>
-
-                                    <div class="tab-pane fade" id="login-tab3">
                                         <!-- Wizard with validation -->
                                         <div class="header-wizard-form">
                                             <form class="wizard-form steps-validation" method="POST"
-                                                action="{{ route('register') }}" enctype="multipart/form-data"
-                                                data-fouc>
+                                                action="{{ route('register') }}" data-fouc>
                                                 @csrf
                                                 <h6>Admin Level</h6>
                                                 <fieldset>
-                                                    <div class="row">
+                                                    <div class="row justify-content-center">
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label>Tingkat Admin<span
                                                                         class="text-danger">*</span></label>
-                                                                <select name="jabatan" class="custom-select">
+                                                                <select name="jenis_jabatan" required
+                                                                    class="custom-select jenis-jabatan-kabkota">
                                                                     <option selected disabled>- Pilih Tingkat -</option>
-                                                                    <option value="kab_kota">kab_kota
+                                                                    <option value="kab_kota">Kab Kota
                                                                     </option>
-                                                                    <option value="provinsi">provinsi
+                                                                    <option value="provinsi">Provinsi
                                                                     </option>
                                                                 </select>
                                                             </div>
@@ -665,35 +400,35 @@
                                                             <div class="form-group">
                                                                 <label>Provinsi<span
                                                                         class="text-danger">*</span></label>
-                                                                <select name="provinsi_id" id="provinsi_id"
-                                                                    class="custom-select">
+                                                                <select name="provinsi_id" data-id=".provinsi2"
+                                                                    required id="provinsi_id"
+                                                                    class="custom-select provinsi2">
                                                                     <option selected disabled>- Pilih Provinsi -
                                                                     </option>
                                                                     @foreach ($provinsis as $provinsi)
-                                                                        <option value="{{ $provinsi->id }}">
+                                                                        <option @selected(old('provinsi_id') == $provinsi->id)
+                                                                            value="{{ $provinsi->id }}">
                                                                             {{ $provinsi->nama }}</option>
                                                                     @endforeach
                                                                 </select>
                                                                 @error('provinsi_id')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
+                                                                    <strong
+                                                                        style="color: red;">{{ $message }}</strong>
                                                                 @enderror
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-3">
+                                                        <div class="col-md-3 kabkota-kabkota" style="display: none;">
                                                             <div class="form-group">
                                                                 <label>Kabupaten / Kota<span
                                                                         class="text-danger">*</span></label>
-                                                                <select name="kab_kota_id" id="kab_kota_id"
-                                                                    class="custom-select">
+                                                                <select required name="kab_kota_id" id="kab_kota_id"
+                                                                    name="kab_kota_id" class="custom-select">
                                                                     <option value="">- Pilih Provinsi Terlebih
                                                                         Dahulu -</option>
                                                                 </select>
                                                                 @error('kab_kota_id')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
+                                                                    <strong
+                                                                        style="color: red;">{{ $message }}</strong>
                                                                 @enderror
                                                             </div>
                                                         </div>
@@ -701,9 +436,21 @@
                                                             <div class="form-group">
                                                                 <label>Nomenklatur Perangkat Daerah<span
                                                                         class="text-danger">*</span></label>
-                                                                <input type="number" class="form-control"
-                                                                    name="nomenklatur_perangkat_daerah"
+                                                                <select class="custom-select"
+                                                                    name="nomenklatur_perangkat_daerah_id"
                                                                     id="">
+                                                                    <option selected disabled>- Pilih Nomenklatur -
+                                                                    </option>
+                                                                    @foreach ($nomenklaturs as $nomenklatur)
+                                                                        <option @selected(old('nomenklatur_perangkat_daerah_id') == $nomenklatur->id)
+                                                                            value="{{ $nomenklatur->id }}">
+                                                                            {{ $nomenklatur->nama }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                                @error('nomenklatur_perangkat_daerah')
+                                                                    <strong
+                                                                        style="color: red;">{{ $message }}</strong>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -711,20 +458,14 @@
                                                     <div class="row justify-content-center">
                                                         <div class="col-md-4">
                                                             <div class="form-group">
-                                                                <label for="">Surat Permohonan</label>
-                                                                <label class="input-file">
-                                                                    <div class="icon">
-                                                                        <i class="fa-solid fa-cloud-arrow-up"></i>
-                                                                        <p style="margin: 0 !important;">Pilih file
-                                                                            surat</p>
-                                                                    </div>
-                                                                    <input style="display: none;" type="file"
-                                                                        name="file_permohonan" id="">
-                                                                    <input style="display: none;" type="text"
-                                                                        name="value_permohonan">
-                                                                    <img
-                                                                        class="file_permohonan-preview img-fluid mb-3 rounded">
-                                                                </label>
+                                                                <label>Surat Permohonan<span
+                                                                        class="text-danger">*</span></label>
+                                                                <input type="file" data-max-file-size="2MB"
+                                                                    required name="file_permohonan" required />
+                                                                @error('file_permohonan')
+                                                                    <strong
+                                                                        style="color: red;">{{ $message }}</strong>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -736,13 +477,12 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label>Email<span class="text-danger">*</span></label>
-                                                                <input type="email" name="email"
-                                                                    placeholder="example@gmail.com"
+                                                                <input type="email" value="{{ old('email') }}"
+                                                                    name="email" placeholder="example@gmail.com"
                                                                     class="form-control">
                                                                 @error('email')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
+                                                                    <strong
+                                                                        style="color: red;">{{ $message }}</strong>
                                                                 @enderror
                                                             </div>
                                                         </div>
@@ -750,13 +490,11 @@
                                                             <div class="form-group">
                                                                 <label>Username<span
                                                                         class="text-danger">*</span></label>
-                                                                <input type="text" name="username"
-                                                                    class="form-control">
+                                                                <input type="text" value="{{ old('username') }}"
+                                                                    name="username" class="form-control">
                                                             </div>
                                                             @error('username')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
+                                                                <strong style="color: red;">{{ $message }}</strong>
                                                             @enderror
                                                         </div>
                                                     </div>
@@ -768,9 +506,8 @@
                                                                 <input type="password" name="password"
                                                                     placeholder="password" class="form-control">
                                                                 @error('password')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
+                                                                    <strong
+                                                                        style="color: red;">{{ $message }}</strong>
                                                                 @enderror
                                                             </div>
                                                         </div>
@@ -781,23 +518,19 @@
                                                                 <input type="password" name="password_confirmation"
                                                                     placeholder="password" class="form-control">
                                                                 @error('password_confirmation')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
+                                                                    <strong
+                                                                        style="color: red;">{{ $message }}</strong>
                                                                 @enderror
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </fieldset>
-
-
                                             </form>
                                         </div>
                                         <!-- /wizard with validation -->
                                     </div>
                                 </div>
-
-                                <div class="px-4" style="position: absolute; bottom: 1rem;">
+                                <div class="px-4 link-login" style="position: absolute; bottom: 1rem;">
                                     <p>Sudah memiliki akun?<a href="{{ route('login') }}"> Masuk </a></p>
                                 </div>
                             </div>
@@ -815,80 +548,75 @@
     <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/auth/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/auth/app.js') }}"></script>
+    <script>
+        $('.nav-link').each(function(index, element) {
+            if (localStorage.getItem('tab_active') != undefined) {
+                if (localStorage.getItem('tab_active') == $(element).data('id')) {
+                    $(element).addClass('active');
+                    $($('.tab-content').find('#' + $(element).data('id'))).addClass('show active');
+                } else {
+                    $(element).removeClass('active');
+                    $($('.tab-content').find('#' + $(element).data('id'))).removeClass('show active');
+                }
+            }
+            $(element).click(function(e) {
+                e.preventDefault();
+                window.localStorage.setItem('tab_active', $(this).data('id'))
+            });
+        });
+    </script>
     <script src="{{ asset('assets/js/auth/plugins/forms/wizards/steps.min.js') }}"></script>
     <script src="{{ asset('assets/js/auth/plugins/forms/inputs/inputmask.js') }}"></script>
     <script src="{{ asset('assets/js/auth/plugins/forms/validation/validate.min.js') }}"></script>
     <script src="{{ asset('assets/js/auth/plugins/extensions/cookie.js') }}"></script>
     <script src="{{ asset('assets/js/auth/form_wizard.js') }}"></script>
-
     <script src="{{ asset('assets/extensions/filepond/filepond.js') }}"></script>
-    <script src="{{ asset('assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js') }}">
-    </script>
     <script src="{{ asset('assets/extensions/filepond/filepond.jquery.js') }}"></script>
     <script src="{{ asset('assets/extensions/fontawesome/all.min.js') }}"></script>
+    <script src="{{ asset('assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js') }}">
+    </script>
+    <script
+        src="{{ asset('assets/extensions/filepond-plugin-file-validate-type/filepond-plugin-file-validate-type.js') }}">
+    </script>
+    <script
+        src="{{ asset('assets/extensions/filepond-plugin-file-validate-size/filepond-plugin-file-validate-size.js') }}">
+    </script>
+    <script src="{{ asset('assets/extensions/toastify-js/src/toastify.js') }}"></script>
+
     <script>
         $(function() {
-
-            // First register any plugins
             $.fn.filepond.registerPlugin(FilePondPluginImagePreview);
-
-            // Turn input element into a pond
-            // $('.with-validation-images').filepond();
-            FilePond.registerPlugin(
-                FilePondPluginImagePreview
-            );
-
-            // Select the file input and use
-            // create() to turn it into a pond
-            pond = FilePond.create(
-                document.querySelector('.with-validation-images')
-            );
-
-
-            // document.addEventListener('FilePond:addFile', (e) => {
-            //     console.log(e.getFile());
-            // });
-            document.addEventListener('FilePond:addfile', (e) => {
-                console.log('File added', e.detail.file);
+            $.fn.filepond.registerPlugin(FilePondPluginFileValidateType);
+            $.fn.filepond.registerPlugin(FilePondPluginFileValidateSize);
+            FilePond.create(document.querySelector('input[name="file_sk"]'), {
+                chunkUploads: true,
+                acceptedFileTypes: [
+                    'application/doc',
+                    'application/pdf',
+                    '.docx'
+                ]
+            });
+            FilePond.create(document.querySelector('input[name="file_permohonan"]'), {
+                chunkUploads: true,
+                acceptedFileTypes: [
+                    'application/doc',
+                    'application/pdf'
+                ]
+            });
+            FilePond.setOptions({
+                server: {
+                    process: '/register/file',
+                    revert: '/register/revert',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                },
             });
 
-            $('input[name="file_ttd"]').change(function(e) {
-                e.preventDefault();
-                const imgPreview = document.querySelector('.file_ttd-preview');
-                previewImage(this, imgPreview);
-                $('input[name="value_ttd"]').val('ada');
-            });
-            $('input[name="file_permohonan"]').change(function(e) {
-                e.preventDefault();
-                const imgPreview = document.querySelector('.file_permohonan-preview');
-                previewImage(this, imgPreview);
-                $('input[name="value_permohonan"]').val('ada');
-            });
-
-            function previewImage(image, imgPreview) {
-                imgPreview.style.display = 'block';
-
-                const oFReader = new FileReader();
-                oFReader.readAsDataURL(image.files[0]);
-
-                oFReader.onload = function(oFREvent) {
-                    imgPreview.src = oFREvent.target.result;
-                }
-                $('.input-file .icon').css('display', 'none');
-            }
-            // document.addEventListener('FilePond:loaded', (e) => {
-            //     console.log('FilePond ready for use', e.detail);
-            //     // console.log(e.getFile());
-            // });
-            // // Listen for addfile event
-
-            // Manually add a file using the addfile method
-            // $('.my-pond').first().filepond('addFile', 'index.html').then(function(file) {
-            //     console.log('file added', file);
-            // });
             $('select[name="provinsi_id"]').each(function(index, element) {
                 $(element).change(function(e) {
                     e.preventDefault();
+                    window.localStorage.setItem('provinsi', $(element).data('id'));
                     loadKabKota(this.value, $(element.parentElement.parentElement.parentElement)
                         .find('#kab_kota_id'))
                 });
@@ -911,9 +639,101 @@
                         })
                 })
             }
+
+            $('select[name="jenis_aparatur"]').change(function(e) {
+                e.preventDefault();
+                window.localStorage.setItem('jenis_aparatur', e.target.value)
+                if ($('.wrapper-select').css('display') == 'none') {
+                    $('.wrapper-select').show();
+                }
+                if (e.target.value == 'struktural') {
+                    $('.struktural').show();
+                    $('.select-struktural').show();
+                    $('.select-fungsional').hide();
+                }
+                if (e.target.value == 'fungsional') {
+                    $('.struktural').hide();
+                    $('.select-struktural').hide();
+                    $('.select-fungsional').show();
+                }
+
+            });
+
+            $('.jenis-jabatan-kabkota').change(function(e) {
+                e.preventDefault();
+                if (e.target.value == 'provinsi') {
+                    $('.kabkota-kabkota').hide();
+                }
+                if (e.target.value == 'kab_kota') {
+                    $('.kabkota-kabkota').show();
+                }
+            });
+
+            if (localStorage.getItem('jenis_aparatur') !== '') {
+                console.log(localStorage.getItem('jenis_aparatur'));
+                $('select[name="jenis_aparatur"]').val(localStorage.getItem('jenis_aparatur'));
+                if ($('.wrapper-select').css('display') == 'none') {
+                    $('.wrapper-select').show();
+                }
+                if (localStorage.getItem('jenis_aparatur') == 'struktural') {
+                    $('.struktural').show();
+                    $('.select-struktural').show();
+                    $('.select-fungsional').hide();
+                }
+                if (localStorage.getItem('jenis_aparatur') == 'fungsional') {
+                    $('.struktural').hide();
+                    $('.select-struktural').hide();
+                    $('.select-fungsional').show();
+                }
+                $('select[name="jenis_jabatan"]').each(function(index, element) {
+                    element.value = "{{ old('jenis_jabatan') }}"
+                });
+            }
         });
     </script>
-
+    @if (old('provinsi_id') === null)
+        <script>
+            localStorage.removeItem('provinsi');
+        </script>
+    @endif
+    @if (old('jenis_jabatan') !== null)
+        <script>
+            if ("{{ old('jenis_jabatan') }}" == 'provinsi') {
+                $('.kabkota-kabkota').hide();
+            }
+            if ("{{ old('jenis_jabatan') }}" == 'kab_kota') {
+                $('.kabkota-kabkota').show();
+            }
+        </script>
+    @endif
+    @if (old('provinsi_id'))
+        <script>
+            $(document).ready(function() {
+                function loadKabKota(val, kabupaten, kabupaten_id = null) {
+                    return new Promise(resolve => {
+                        $(kabupaten).html('<option value="">Memuat...</option>');
+                        fetch('/api/kab-kota/' + val)
+                            .then(res => res.json())
+                            .then(res => {
+                                $(kabupaten).html(
+                                    '<option selected disabled>- Pilih Kabupaten / Kota -</option>');
+                                res.forEach(model => {
+                                    var selected = kabupaten_id == model.id ? 'selected' : '';
+                                    $(kabupaten).append('<option value="' + model.id + '" ' +
+                                        selected + '>' +
+                                        model.nama + '</option>');
+                                })
+                                resolve()
+                            })
+                    })
+                }
+                loadKabKota("{{ old('provinsi_id') }}", $(localStorage.getItem('provinsi')).parent().parent().parent()
+                    .find(
+                        '#kab_kota_id'),
+                    "{{ old('kab_kota_id') }}")
+            });
+        </script>
+    @endif
 </body>
 
 </html>

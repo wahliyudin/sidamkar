@@ -19,81 +19,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet"
         type="text/css">
     <link href="{{ asset('assets/css/auth/fontawesome/styles.min.css') }}" rel="stylesheet" type="text/css">
-    <style>
-        .card-header {
-            border-bottom: 0;
-
-        }
-
-        .nav-tabs .nav-item.show .nav-link,
-        .nav-tabs .nav-link.active {
-            color: #fff;
-            background-color: rgba(234, 58, 61, 0.9);
-
-            border-color: #ddd #ddd #fff;
-        }
-
-        .form-wrapper {
-            padding: 0 10px !important;
-        }
-
-        @media screen and (max-width: 750px) {
-            .nav-item a h6 {
-                font-size: 14px !important;
-            }
-
-            .header-regist {
-                font-size: 30px !important;
-            }
-
-            .nav-item .nav-link {
-                padding: 7px 7px !important;
-            }
-
-            .form-wrapper {
-                padding: 0 !important;
-            }
-
-            .link-login {
-                position: relative !important;
-                margin-top: 1rem;
-                align-self: center;
-            }
-        }
-
-        .nav-tabs .nav-link {
-            background-color: rgba(234, 58, 61, 0.5);
-            color: white;
-        }
-
-        .nav-tabs .nav-link:hover {
-            color: white;
-        }
-
-        .input-file {
-            width: 100%;
-            min-height: 70px;
-            background-color: rgba(128, 128, 128, 0.205);
-            border-radius: 10px;
-            overflow: hidden;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            max-height: 300px !important;
-        }
-
-        .input-file .icon {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .file_ttd-priview {
-            width: 100% !important;
-            object-fit: cover;
-            object-position: center;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('assets/css/pages/register.css') }}">
 
     <link rel="stylesheet" href="{{ asset('assets/extensions/filepond/filepond.css') }}">
     <link rel="stylesheet"
@@ -154,8 +80,29 @@
 
                                                 <h6>Admin Level</h6>
                                                 <fieldset>
-                                                    <div class="row">
-                                                        <div class="col-md-4">
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label>Tingkat Aparatur<span
+                                                                        class="text-danger">*</span></label>
+                                                                <select name="tingkat_aparatur" required
+                                                                    class="custom-select">
+                                                                    <option selected disabled value="">- Pilih
+                                                                        Tingkat Aparatur -</option>
+                                                                    <option @selected(old('tingkat_aparatur') == 'provinsi')
+                                                                        value="provinsi">Provinsi
+                                                                    </option>
+                                                                    <option @selected(old('tingkat_aparatur') == 'kab_kota')
+                                                                        value="kab_kota">Kabupaten/Kota
+                                                                    </option>
+                                                                </select>
+                                                                @error('tingkat_aparatur')
+                                                                    <strong
+                                                                        style="color: red;">{{ $message }}</strong>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label>Provinsi<span
                                                                         class="text-danger">*</span></label>
@@ -176,7 +123,7 @@
                                                                 @enderror
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-3 kab-kota-aparatur">
                                                             <div class="form-group">
                                                                 <label>Kabupaten / Kota<span
                                                                         class="text-danger">*</span></label>
@@ -192,7 +139,7 @@
                                                                 @enderror
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label>Jenis Aparatur<span
                                                                         class="text-danger">*</span></label>
@@ -200,11 +147,18 @@
                                                                     class="custom-select">
                                                                     <option selected disabled value="">- Pilih
                                                                         Jabatan -</option>
-                                                                    <option value="fungsional">Pejabat Fungsional
+                                                                    <option value="fungsional">JF Damkar/Analis
                                                                     </option>
                                                                     <option value="struktural">Pejabat Struktural
                                                                     </option>
+                                                                    <option value="fungsional_umum">Pejabat Fungsional
+                                                                        Umum
+                                                                    </option>
                                                                 </select>
+                                                                @error('jenis_aparatur')
+                                                                    <strong
+                                                                        style="color: red;">{{ $message }}</strong>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -213,7 +167,19 @@
                                                 <h6>Personal Data</h6>
                                                 <fieldset>
                                                     <div class="row justify-content-center">
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label>No HP<span class="text-danger">*</span></label>
+                                                                <input type="number" required
+                                                                    value="{{ old('no_hp') }}" class="form-control"
+                                                                    name="no_hp">
+                                                                @error('no_hp')
+                                                                    <strong
+                                                                        style="color: red;">{{ $message }}</strong>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label>Nama Lengkap<span
                                                                         class="text-danger">*</span></label>
@@ -226,7 +192,8 @@
                                                                 @enderror
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-4 wrapper-select" style="display: none;">
+                                                        <div class="col-md-3 wrapper-select jenis-jabatan"
+                                                            style="display: none;">
                                                             <div class="form-group">
                                                                 <label>Jenis Jabatan<span
                                                                         class="text-danger">*</span></label>
@@ -267,18 +234,69 @@
                                                                     </option>
                                                                 </select>
                                                                 @error('jenis_jabatan')
-                                                                    <strong style="color: red;">adffsdf</strong>
+                                                                    <strong
+                                                                        style="color: red;">{{ $message }}</strong>
                                                                 @enderror
                                                             </div>
                                                         </div>
-
-                                                        {{-- Struktural --}}
-                                                        <div class="col-md-4 struktural" style="display: none;">
+                                                        <div class="col-md-3 jenis-eselon" style="display: none;">
                                                             <div class="form-group">
-                                                                <label>File SK<span
+                                                                <label>Jenis Eselon<span
                                                                         class="text-danger">*</span></label>
-                                                                <input type="file" data-max-file-size="2MB"
-                                                                    name="file_sk" required />
+                                                                <select name="jenis_eselon" required
+                                                                    class="custom-select">
+                                                                    <option selected disabled value="">- Pilih
+                                                                        Eselon -</option>
+                                                                    <option @selected(old('jenis_eselon') == '1')
+                                                                        value="1">Eselon 1</option>
+                                                                    <option @selected(old('jenis_eselon') == '2')
+                                                                        value="2">Eselon 2</option>
+                                                                    <option @selected(old('jenis_eselon') == '3')
+                                                                        value="3">Eselon 3</option>
+                                                                    <option @selected(old('jenis_eselon') == '4')
+                                                                        value="4">Eselon 4</option>
+                                                                </select>
+                                                                @error('jenis_eselon')
+                                                                    <strong
+                                                                        style="color: red;">{{ $message }}</strong>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3 jenis-jabatan-umum"
+                                                            style="display: none;">
+                                                            <div class="form-group">
+                                                                <label>Jenis Jabatan<span
+                                                                        class="text-danger">*</span></label>
+                                                                <select name="jenis_jabatan_umum" required
+                                                                    class="custom-select">
+                                                                    <option selected disabled value="">- Pilih
+                                                                        Jabatan -</option>
+                                                                    @foreach ($rolesUmum as $role)
+                                                                        <option @selected(old('jenis_jabatan_umum') == $role->name)
+                                                                            value="{{ $role->name }}">
+                                                                            {{ $role->display_name }}</option>
+                                                                    @endforeach
+                                                                    <option @selected(old('jenis_jabatan_umum') == 'lainnya')
+                                                                        value="lainnya">Lainnya</option>
+                                                                </select>
+                                                                @error('jenis_jabatan_umum')
+                                                                    <strong
+                                                                        style="color: red;">{{ $message }}</strong>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3 jenis-jabatan-text"
+                                                            style="display: none;">
+                                                            <div class="form-group">
+                                                                <label>Jenis Jabatan Baru<span
+                                                                        class="text-danger">*</span></label>
+                                                                <input type="text"
+                                                                    value="{{ old('jenis_jabatan_text') }}" required
+                                                                    class="form-control" name="jenis_jabatan_text">
+                                                                @error('jenis_jabatan_text')
+                                                                    <strong
+                                                                        style="color: red;">{{ $message }}</strong>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -359,7 +377,7 @@
                                                                 <select name="jenis_jabatan" required
                                                                     class="custom-select jenis-jabatan-kabkota">
                                                                     <option selected disabled>- Pilih Tingkat -</option>
-                                                                    <option value="kab_kota">Kab Kota
+                                                                    <option value="kab_kota">Kabupaten / Kota
                                                                     </option>
                                                                     <option value="provinsi">Provinsi
                                                                     </option>
@@ -391,8 +409,8 @@
                                                             <div class="form-group">
                                                                 <label>Kabupaten / Kota<span
                                                                         class="text-danger">*</span></label>
-                                                                <select required name="kab_kota_id" id="kab_kota_id" name="kab_kota_id"
-                                                                    class="custom-select">
+                                                                <select required name="kab_kota_id" id="kab_kota_id"
+                                                                    name="kab_kota_id" class="custom-select">
                                                                     <option value="">- Pilih Provinsi Terlebih
                                                                         Dahulu -</option>
                                                                 </select>
@@ -412,7 +430,9 @@
                                                                     <option selected disabled>- Pilih Nomenklatur -
                                                                     </option>
                                                                     @foreach ($nomenklaturs as $nomenklatur)
-                                                                        <option @selected(old('nomenklatur_perangkat_daerah_id') == $nomenklatur->id)
+                                                                        <option
+                                                                            class="{{ in_array($nomenklatur->id, [4, 5]) ? 'is_kab_kota' : '' }}"
+                                                                            @selected(old('nomenklatur_perangkat_daerah_id') == $nomenklatur->id)
                                                                             value="{{ $nomenklatur->id }}">
                                                                             {{ $nomenklatur->nama }}</option>
                                                                     @endforeach
@@ -518,23 +538,6 @@
     <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/auth/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/auth/app.js') }}"></script>
-    <script>
-        $('.nav-link').each(function(index, element) {
-            if (localStorage.getItem('tab_active') != undefined) {
-                if (localStorage.getItem('tab_active') == $(element).data('id')) {
-                    $(element).addClass('active');
-                    $($('.tab-content').find('#' + $(element).data('id'))).addClass('show active');
-                } else {
-                    $(element).removeClass('active');
-                    $($('.tab-content').find('#' + $(element).data('id'))).removeClass('show active');
-                }
-            }
-            $(element).click(function(e) {
-                e.preventDefault();
-                window.localStorage.setItem('tab_active', $(this).data('id'))
-            });
-        });
-    </script>
     <script src="{{ asset('assets/js/auth/plugins/forms/wizards/steps.min.js') }}"></script>
     <script src="{{ asset('assets/js/auth/plugins/forms/inputs/inputmask.js') }}"></script>
     <script src="{{ asset('assets/js/auth/plugins/forms/validation/validate.min.js') }}"></script>
@@ -552,114 +555,13 @@
         src="{{ asset('assets/extensions/filepond-plugin-file-validate-size/filepond-plugin-file-validate-size.js') }}">
     </script>
     <script src="{{ asset('assets/extensions/toastify-js/src/toastify.js') }}"></script>
-
+    <script src="{{ asset('assets/js/pages/register.js') }}"></script>
     <script>
-        $(function() {
-            $.fn.filepond.registerPlugin(FilePondPluginImagePreview);
-            $.fn.filepond.registerPlugin(FilePondPluginFileValidateType);
-            $.fn.filepond.registerPlugin(FilePondPluginFileValidateSize);
-            FilePond.create(document.querySelector('input[name="file_sk"]'), {
-                chunkUploads: true,
-                acceptedFileTypes: [
-                    'application/doc',
-                    'application/pdf',
-                    '.docx'
-                ]
+        if (localStorage.getItem('jenis_aparatur') !== '') {
+            $('select[name="jenis_jabatan"]').each(function(index, element) {
+                element.value = "{{ old('jenis_jabatan') }}"
             });
-            FilePond.create(document.querySelector('input[name="file_permohonan"]'), {
-                chunkUploads: true,
-                acceptedFileTypes: [
-                    'application/doc',
-                    'application/pdf'
-                ]
-            });
-            FilePond.setOptions({
-                server: {
-                    process: '/register/file',
-                    revert: '/register/revert',
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                },
-            });
-
-            $('select[name="provinsi_id"]').each(function(index, element) {
-                $(element).change(function(e) {
-                    e.preventDefault();
-                    window.localStorage.setItem('provinsi', $(element).data('id'));
-                    loadKabKota(this.value, $(element.parentElement.parentElement.parentElement)
-                        .find('#kab_kota_id'))
-                });
-            });
-
-            function loadKabKota(val, kabupaten, kabupaten_id = null) {
-                return new Promise(resolve => {
-                    $(kabupaten).html('<option value="">Memuat...</option>');
-                    fetch('/api/kab-kota/' + val)
-                        .then(res => res.json())
-                        .then(res => {
-                            $(kabupaten).html(
-                                '<option selected disabled>- Pilih Kabupaten / Kota -</option>');
-                            res.forEach(model => {
-                                var selected = kabupaten_id == model.id ? 'selected=""' : '';
-                                $(kabupaten).append('<option value="' + model.id + '" ' +
-                                    selected + '>' + model.nama + '</option>');
-                            })
-                            resolve()
-                        })
-                })
-            }
-
-            $('select[name="jenis_aparatur"]').change(function(e) {
-                e.preventDefault();
-                window.localStorage.setItem('jenis_aparatur', e.target.value)
-                if ($('.wrapper-select').css('display') == 'none') {
-                    $('.wrapper-select').show();
-                }
-                if (e.target.value == 'struktural') {
-                    $('.struktural').show();
-                    $('.select-struktural').show();
-                    $('.select-fungsional').hide();
-                }
-                if (e.target.value == 'fungsional') {
-                    $('.struktural').hide();
-                    $('.select-struktural').hide();
-                    $('.select-fungsional').show();
-                }
-
-            });
-
-            $('.jenis-jabatan-kabkota').change(function(e) {
-                e.preventDefault();
-                if (e.target.value == 'provinsi') {
-                    $('.kabkota-kabkota').hide();
-                }
-                if (e.target.value == 'kab_kota') {
-                    $('.kabkota-kabkota').show();
-                }
-            });
-
-            if (localStorage.getItem('jenis_aparatur') !== '') {
-                console.log(localStorage.getItem('jenis_aparatur'));
-                $('select[name="jenis_aparatur"]').val(localStorage.getItem('jenis_aparatur'));
-                if ($('.wrapper-select').css('display') == 'none') {
-                    $('.wrapper-select').show();
-                }
-                if (localStorage.getItem('jenis_aparatur') == 'struktural') {
-                    $('.struktural').show();
-                    $('.select-struktural').show();
-                    $('.select-fungsional').hide();
-                }
-                if (localStorage.getItem('jenis_aparatur') == 'fungsional') {
-                    $('.struktural').hide();
-                    $('.select-struktural').hide();
-                    $('.select-fungsional').show();
-                }
-                $('select[name="jenis_jabatan"]').each(function(index, element) {
-                    element.value = "{{ old('jenis_jabatan') }}"
-                });
-            }
-        });
+        }
     </script>
     @if (old('provinsi_id') === null)
         <script>
@@ -673,6 +575,22 @@
             }
             if ("{{ old('jenis_jabatan') }}" == 'kab_kota') {
                 $('.kabkota-kabkota').show();
+            }
+        </script>
+    @endif
+    @if (old('tingkat_aparatur') !== null)
+        <script>
+            if ("{{ old('tingkat_aparatur') }}" == 'provinsi') {
+                $('.kab-kota-aparatur').hide();
+            } else {
+                $('.kab-kota-aparatur').show();
+            }
+        </script>
+    @endif
+    @if (old('jenis_jabatan_umum') !== null)
+        <script>
+            if ("{{ old('jenis_jabatan_umum') }}" == 'lainnya') {
+                $('.jenis-jabatan-text').show();
             }
         </script>
     @endif

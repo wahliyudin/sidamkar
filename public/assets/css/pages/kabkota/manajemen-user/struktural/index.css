@@ -1,0 +1,54 @@
+/* .dataTable>thead>tr>th {
+    border: 0 !important;
+}
+
+.dataTable th {
+    color: #809FB8 !important;
+}
+
+.table-striped-columns>:not(caption)>tr>:nth-child(2n),
+.table-striped>tbody>tr:nth-of-type(odd)>* {
+    border-color: #F1F4F9 !important;
+}
+
+.table-striped>tbody>tr,
+.table-striped>tbody>tr:nth-of-type(odd)>* {
+    color: #06152B !important;
+}
+
+@media screen and (max-width:780px) {
+    .card {
+        padding: 0 !important;
+    }
+}
+
+tbody>tr>td:not(:nth-child(3)) {
+    cursor: pointer;
+}
+
+tbody>tr>td,
+tbody>tr>th {
+    white-space: nowrap;
+}
+
+tbody>tr:hover {
+    background-color: rgb(250, 250, 250);
+}
+
+.dataTables_wrapper {
+    overflow-x: auto !important;
+}
+
+.dataTables_wrapper::-webkit-scrollbar {
+    height: .6rem;
+}
+
+.dataTables_wrapper::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px !important;
+}
+
+.dataTables_wrapper::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    border-radius: 10px !important;
+} */

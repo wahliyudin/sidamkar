@@ -13,20 +13,22 @@ class UserPejabatStruktural extends Model
     protected $fillable = [
         'user_id',
         'nama',
-        'pangkat_golongan_tmt',
-        'nomenklatur_jabatan',
+        'pangkat_golongan_tmt_id',
         'nip',
+        'no_hp',
         'tempat_lahir',
         'tanggal_lahir',
         'jenis_kelamin',
         'pendidikan_terakhir',
+        'nomenklatur_jabatan',
+        'kab_kota_id',
+        'tingkat_aparatur',
+        'provinsi_id',
         'foto_pegawai',
-        'file_sk',
+        'eselon',
         'is_active',
         'catatan',
         'file_ttd',
-        'kab_kota_id',
-        'provinsi_id'
     ];
 
     /**

@@ -37,6 +37,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UnsurSeeder::class);
         $this->call(SubUnsurSeeder::class);
         $this->call(ButirKegiatanSeeder::class);
+        $this->call(KetentuanNilaiSeeder::class);
         // SubButirKegiatan::factory(5)->create();
     }
 }

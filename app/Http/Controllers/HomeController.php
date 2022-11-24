@@ -47,7 +47,10 @@ class HomeController extends Controller
         } elseif (auth()->user()->hasRole('penetap_ak')) {
             return to_route('penetap-ak.overview');
         } else {
-            return view('home');
+            // disin ada 2 kondisi kalau dia blom punya role maka pesannya tidak punya role
+            // jika punya role maka pesannya kamu tidak dapat mengakses sistem
+            Auth::logout();
+            return to_route('login');
         }
     }
 }

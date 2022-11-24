@@ -13,19 +13,20 @@ class UserAparatur extends Model
     protected $fillable = [
         'user_id',
         'nama',
-        'jenjang',
-        'nip',
-        'nomor_karpeg',
         'pangkat_golongan_tmt_id',
+        'nip',
         'tempat_lahir',
         'tanggal_lahir',
         'jenis_kelamin',
         'pendidikan_terakhir',
+        'kab_kota_id',
+        'tingkat_aparatur',
+        'provinsi_id',
         'foto_pegawai',
         'no_hp',
+        'jenjang',
+        'nomor_karpeg',
         'alamat',
-        'kab_kota_id',
-        'provinsi_id',
     ];
 
     /**
@@ -44,7 +45,7 @@ class UserAparatur extends Model
     }
     public function kabkota(): BelongsTo
     {
-        return $this->belongsTo(kabkota::class);
+        return $this->belongsTo(KabKota::class);
     }
     public function pangkatGolonganTmt(): BelongsTo
     {

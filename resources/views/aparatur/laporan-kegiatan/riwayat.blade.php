@@ -29,8 +29,6 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    {{-- <label>Detail Kegiatan</label>
-                                    <textarea class="form-control" readonly name="keterangan" rows="3">{{ $rencanaButirKegiatan->laporanKegiatanJabatan->detail_kegiatan }}</textarea> --}}
                                 </div>
                             </div>
                         </div>
@@ -43,7 +41,7 @@
 
                             @switch($rencanaButirKegiatan->laporanKegiatanJabatan->status)
                                 @case(1)
-                                    <button class="btn btn-yellow px-3 btn-sm text-sm">Prosess</button>
+                                    <button class="btn btn-yellow px-3 btn-sm text-sm">Valdasi</button>
                                 @break
 
                                 @case(2)

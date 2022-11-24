@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\KabKota;
+use App\Models\Provinsi;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -37,227 +39,53 @@ class UserSeeder extends Seeder
             'status_akun' => 1
         ])->attachRole('damkar_pemula');
         $damkarPemula->userAparatur()->create([
-            'nama' => fake()->name(),
+            'nama' => 'Damkar Pemula',
             'nip' => '2020020088',
             'nomor_karpeg' => '2020020088',
             'pangkat_golongan_tmt_id' => 5,
             'tempat_lahir' => 'Jakarta',
             'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'kab_kota',
             'jenis_kelamin' => 'L',
             'pendidikan_terakhir' => 2,
             'provinsi_id' => 11,
             'kab_kota_id' => 1101,
         ]);
 
-        $damkarPemula1 = User::query()->create([
-            'username' => 'Damkar Pemula1',
-            'email' => 'azxzdsfsfsamin2@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 0
-        ])->attachRole('damkar_pemula');
-        $damkarPemula1->userAparatur()->create([
-            'nama' => fake()->name(),
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 11,
-            'kab_kota_id' => 1101,
-        ]);
 
-        $damkarPemula2 = User::query()->create([
-            'username' => 'Damkar Pemula2',
-            'email' => 'azxzsfsafsadmin2@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 1
-        ])->attachRole('damkar_pemula');
-        $damkarPemula2->userAparatur()->create([
-            'nama' => fake()->name(),
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 11,
-            'kab_kota_id' => 1101,
-        ]);
-
-        $damkarPemula3 = User::query()->create([
-            'username' => 'Damkar Pemula3',
-            'email' => 'azxzsfsafsdmin2@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 0
-        ])->attachRole('damkar_pemula');
-        $damkarPemula3->userAparatur()->create([
-            'nama' => fake()->name(),
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 11,
-            'kab_kota_id' => 1101,
-        ]);
-
-        $damkarPemula4 = User::query()->create([
-            'username' => 'Damkar Pemula4',
-            'email' => 'azxzdmsfsfsin2@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 1
-        ])->attachRole('damkar_pemula');
-        $damkarPemula4->userAparatur()->create([
-            'nama' => fake()->name(),
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 11,
-            'kab_kota_id' => 1101,
-        ]);
-
-        $damkarPemula5 = User::query()->create([
-            'username' => 'Damkar Pemula5',
-            'email' => 'azxzdminfsafsa2@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 0
-        ])->attachRole('damkar_pemula');
-        $damkarPemula5->userAparatur()->create([
-            'nama' => fake()->name(),
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 11,
-            'kab_kota_id' => 1106,
-        ]);
-
-        $damkarPemula6 = User::query()->create([
-            'username' => 'Damkar Pemula6',
-            'email' => 'azxzdfsasamin2@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 1
-        ])->attachRole('damkar_pemula');
-        $damkarPemula6->userAparatur()->create([
-            'nama' => fake()->name(),
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 11,
-            'kab_kota_id' => 1106,
-        ]);
-
-        $damkarPemula7 = User::query()->create([
-            'username' => 'Damkar Pemula7',
-            'email' => 'azxzdmsadsavain2@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 0
-        ])->attachRole('damkar_pemula');
-        $damkarPemula7->userAparatur()->create([
-            'nama' => fake()->name(),
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 11,
-            'kab_kota_id' => 1106,
-        ]);
-
-        $damkarPemula8 = User::query()->create([
-            'username' => 'Damkar Pemula8',
-            'email' => 'azxzdmcxzcxin2@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 1
-        ])->attachRole('damkar_pemula');
-        $damkarPemula8->userAparatur()->create([
-            'nama' => fake()->name(),
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 11,
-            'kab_kota_id' => 1106,
-        ]);
-
-        $damkarPemula9 = User::query()->create([
-            'username' => 'Damkar Pemula9',
-            'email' => 'asdsdszxzdmin2@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 0
-        ])->attachRole('damkar_pemula');
-        $damkarPemula9->userAparatur()->create([
-            'nama' => fake()->name(),
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 11,
-            'kab_kota_id' => 1106,
-        ]);
-
-        $damkarPemula10 = User::query()->create([
-            'username' => fake()->name(),
-            'email' => 'azxzddsdsmin2@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 1
-        ])->attachRole('damkar_pemula');
-        $damkarPemula10->userAparatur()->create([
-            'nama' => 'Damkar Pemula10',
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 11,
-            'kab_kota_id' => 1106,
-        ]);
+        for ($i=0; $i < 10; $i++) {
+            $damkarPemula1Name = fake()->name();
+            $damkarPemula1 = User::query()->create([
+                'username' => $damkarPemula1Name,
+                'email' => fake()->email(),
+                'password' => Hash::make('123456789'),
+                'email_verified_at' => now(),
+                'status_akun' => fake()->boolean()
+            ])->attachRole('damkar_pemula');
+            $damkarPemula1->userAparatur()->create([
+                'nama' => $damkarPemula1Name,
+                'nip' => '2020020088',
+                'nomor_karpeg' => '2020020088',
+                'pangkat_golongan_tmt_id' => 5,
+                'tempat_lahir' => fake()->city(),
+                'tingkat_aparatur' => 'kab_kota',
+                'tanggal_lahir' => Carbon::now(),
+                'jenis_kelamin' => fake()->randomElement(['L', 'P']),
+                'pendidikan_terakhir' => fake()->randomElement(['1', '2', '3', '4']),
+                'provinsi_id' => 11,
+                'kab_kota_id' => 1101,
+            ]);
+        }
 
         $damkarTerampil = User::query()->create([
             'username' => 'Damkar Terampil',
             'email' => 'admia232sn2434@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'status_akun' => 0
+            'status_akun' => 1
         ])->attachRole('damkar_terampil');
         $damkarTerampil->userAparatur()->create([
-            'nama' =>  fake()->name,
+            'nama' => 'Damkar Terampil',
             'nip' => '2020020088',
             'nomor_karpeg' => '2020020088',
             'pangkat_golongan_tmt_id' => 5,
@@ -265,209 +93,33 @@ class UserSeeder extends Seeder
             'tanggal_lahir' => Carbon::now(),
             'jenis_kelamin' => 'L',
             'pendidikan_terakhir' => 2,
-            'provinsi_id' => 32,
-            'kab_kota_id' => 3204,
+            'provinsi_id' => 11,
+            'kab_kota_id' => 1101,
         ]);
 
-        $damkarTerampil1 = User::query()->create([
-            'username' => 'Damkar Terampil1',
-            'email' => 'admia23asa2sn2434@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 1
-        ])->attachRole('damkar_terampil');
-        $damkarTerampil1->userAparatur()->create([
-            'nama' =>  fake()->name,
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 32,
-            'kab_kota_id' => 3204,
-        ]);
+        for ($i=0; $i < 10; $i++) {
+            $damkarTerampil1Name = fake()->name();
+            $damkarTerampil1 = User::query()->create([
+                'username' => $damkarTerampil1Name,
+                'email' => fake()->email(),
+                'password' => Hash::make('123456789'),
+                'email_verified_at' => now(),
+                'status_akun' => fake()->boolean()
+            ])->attachRole('damkar_terampil');
+            $damkarTerampil1->userAparatur()->create([
+                'nama' => $damkarTerampil1Name,
+                'nip' => '2020020088',
+                'nomor_karpeg' => '2020020088',
+                'pangkat_golongan_tmt_id' => 5,
+                'tempat_lahir' => fake()->city(),
+                'tanggal_lahir' => Carbon::now(),
+                'jenis_kelamin' => fake()->randomElement(['L', 'P']),
+                'pendidikan_terakhir' => fake()->randomElement(['1', '2', '3', '4']),
+                'provinsi_id' => 11,
+                'kab_kota_id' => 1101,
+            ]);
+        }
 
-        $damkarTerampil2 = User::query()->create([
-            'username' => 'Damkar Terampil2',
-            'email' => 'admia232sadan2434@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 0
-        ])->attachRole('damkar_terampil');
-        $damkarTerampil2->userAparatur()->create([
-            'nama' =>  fake()->name,
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 32,
-            'kab_kota_id' => 3204,
-        ]);
-
-        $damkarTerampil3 = User::query()->create([
-            'username' => 'Damkar Terampil3',
-            'email' => 'adada23dmiasn2434@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 1
-        ])->attachRole('damkar_terampil');
-        $damkarTerampil3->userAparatur()->create([
-            'nama' => fake()->name,
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 32,
-            'kab_kota_id' => 3204,
-        ]);
-
-        $damkarTerampil4 = User::query()->create([
-            'username' => 'Damkar Terampil4',
-            'email' => 'adadadmidsdsasn2434@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 0
-        ])->attachRole('damkar_terampil');
-        $damkarTerampil4->userAparatur()->create([
-            'nama' =>  fake()->name,
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 32,
-            'kab_kota_id' => 3204,
-        ]);
-
-        $damkarTerampil5 = User::query()->create([
-            'username' => 'Damkar Terampil5',
-            'email' => 'adadadmidssdsdsfsfdsasn2434@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 1
-        ])->attachRole('damkar_terampil');
-        $damkarTerampil5->userAparatur()->create([
-            'nama' =>  fake()->name,
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 32,
-            'kab_kota_id' => 3204,
-        ]);
-
-        $damkarTerampil6 = User::query()->create([
-            'username' => 'Damkar Terampil6',
-            'email' => 'adadadmidsdsdsasn2434@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 0
-        ])->attachRole('damkar_terampil');
-        $damkarTerampil6->userAparatur()->create([
-            'nama' =>  fake()->name,
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 32,
-            'kab_kota_id' => 3276,
-        ]);
-
-        $damkarTerampil7 = User::query()->create([
-            'username' => 'Damkar Terampil7',
-            'email' => 'adasdsasn2434@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 1
-        ])->attachRole('damkar_terampil');
-        $damkarTerampil7->userAparatur()->create([
-            'nama' =>  fake()->name,
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 32,
-            'kab_kota_id' => 3276,
-        ]);
-
-        $damkarTerampil8 = User::query()->create([
-            'username' => 'Damkar Terampil8',
-            'email' => 'sn2434@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 0
-        ])->attachRole('damkar_terampil');
-        $damkarTerampil8->userAparatur()->create([
-            'nama' =>  fake()->name,
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 32,
-            'kab_kota_id' => 3276,
-        ]);
-
-        $damkarTerampil9 = User::query()->create([
-            'username' => 'Damkar Terampil9',
-            'email' => 'sn2434asaare5@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 1
-        ])->attachRole('damkar_terampil');
-        $damkarTerampil9->userAparatur()->create([
-            'nama' =>  fake()->name,
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 32,
-            'kab_kota_id' => 3276,
-        ]);
-
-        $damkarTerampil10 = User::query()->create([
-            'username' => 'Damkar Terampil10',
-            'email' => 'sn243aokksaare5@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 0
-        ])->attachRole('damkar_terampil');
-        $damkarTerampil10->userAparatur()->create([
-            'nama' =>  fake()->name,
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 32,
-            'kab_kota_id' => 3276,
-        ]);
 
         $analisKebakaranAhliPertama = User::query()->create([
             'username' => 'Analis Kebakaran Ahli Pertama',
@@ -477,7 +129,7 @@ class UserSeeder extends Seeder
             'status_akun' => 1
         ])->attachRole('analis_kebakaran_ahli_pertama');
         $analisKebakaranAhliPertama->userAparatur()->create([
-            'nama' =>  fake()->name,
+            'nama' => 'Analis Kebakaran Ahli Pertama',
             'nip' => '2020020088',
             'nomor_karpeg' => '2020020088',
             'pangkat_golongan_tmt_id' => 5,
@@ -497,7 +149,7 @@ class UserSeeder extends Seeder
             'status_akun' => 0
         ])->attachRole('analis_kebakaran_ahli_muda');
         $analisKebakaranAhliMuda->userAparatur()->create([
-            'nama' =>  fake()->name,
+            'nama' => 'Analis Kebakaran Ahli Muda',
             'nip' => '2020020088',
             'nomor_karpeg' => '2020020088',
             'pangkat_golongan_tmt_id' => 5,
@@ -517,7 +169,7 @@ class UserSeeder extends Seeder
             'status_akun' => 1
         ])->attachRole('analis_kebakaran_ahli_muda');
         $analisKebakaranAhliMadya->userAparatur()->create([
-            'nama' =>  fake()->name,
+            'nama' => 'Analis Kebakaran Ahli Madya',
             'nip' => '2020020088',
             'nomor_karpeg' => '2020020088',
             'pangkat_golongan_tmt_id' => 5,
@@ -542,44 +194,20 @@ class UserSeeder extends Seeder
             'kab_kota_id' => 1101,
         ]);
 
-        $kabKota1 = User::query()->create([
-            'username' => 'Kab Kota1',
-            'email' => 'admiasasn4@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 1
-        ])->attachRole('kab_kota');
-        $kabKota1->userProvKabKota()->create([
-            'nomenklatur_perangkat_daerah_id' => 1,
-            'provinsi_id' => 11,
-            'kab_kota_id' => 1106,
-        ]);
-
-        $kabKota2 = User::query()->create([
-            'username' => 'Kab Kota2',
-            'email' => 'adminasasa4@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 1
-        ])->attachRole('kab_kota');
-        $kabKota2->userProvKabKota()->create([
-            'nomenklatur_perangkat_daerah_id' => 1,
-            'provinsi_id' => 32,
-            'kab_kota_id' => 3204,
-        ]);
-
-        $kabKota3 = User::query()->create([
-            'username' => 'Kab Kota3',
-            'email' => 'admfwretin4@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 1
-        ])->attachRole('kab_kota');
-        $kabKota3->userProvKabKota()->create([
-            'nomenklatur_perangkat_daerah_id' => 1,
-            'provinsi_id' => 32,
-            'kab_kota_id' => 3276,
-        ]);
+        for ($i=0; $i < 5; $i++) {
+            $kabKota1 = User::query()->create([
+                'username' => fake()->name(),
+                'email' => fake()->email(),
+                'password' => Hash::make('123456789'),
+                'email_verified_at' => now(),
+                'status_akun' => fake()->boolean()
+            ])->attachRole('kab_kota');
+            $kabKota1->userProvKabKota()->create([
+                'nomenklatur_perangkat_daerah_id' => 1,
+                'provinsi_id' => fake()->randomElement(array_merge([11], Provinsi::query()->pluck('id')->toArray())),
+                'kab_kota_id' => fake()->randomElement(array_merge([1106], KabKota::query()->pluck('id')->toArray())),
+            ]);
+        }
 
         $provinsi = User::query()->create([
             'username' => 'Provinsi',
@@ -593,17 +221,19 @@ class UserSeeder extends Seeder
             'provinsi_id' => 11,
         ]);
 
-        $provinsi1 = User::query()->create([
-            'username' => 'Provinsi1',
-            'email' => 'provinsi1@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 1
-        ])->attachRole('provinsi');
-        $provinsi1->userProvKabKota()->create([
-            'nomenklatur_perangkat_daerah_id' => 1,
-            'provinsi_id' => 32,
-        ]);
+        for ($i=0; $i < 5; $i++) {
+            $provinsi1 = User::query()->create([
+                'username' => fake()->name(),
+                'email' => fake()->email(),
+                'password' => Hash::make('123456789'),
+                'email_verified_at' => now(),
+                'status_akun' => fake()->boolean()
+            ])->attachRole('provinsi');
+            $provinsi1->userProvKabKota()->create([
+                'nomenklatur_perangkat_daerah_id' => 1,
+                'provinsi_id' => fake()->randomElement(array_merge([11], Provinsi::query()->pluck('id')->toArray())),
+            ]);
+        }
 
         $atasanLangsung = User::query()->create([
             'username' => 'Atasan Langsung',
@@ -613,12 +243,13 @@ class UserSeeder extends Seeder
             'status_akun' => 1
         ])->attachRole('atasan_langsung');
         $atasanLangsung->userPejabatStruktural()->create([
-            'nama' =>  fake()->name,
+            'nama' => 'Atasan Langsung',
             'nip' => '2020020088',
             'nomor_karpeg' => '2020020088',
             'pangkat_golongan_tmt_id' => 5,
             'tempat_lahir' => 'Jakarta',
             'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'kab_kota',
             'jenis_kelamin' => 'L',
             'pendidikan_terakhir' => 2,
             'provinsi_id' => 11,

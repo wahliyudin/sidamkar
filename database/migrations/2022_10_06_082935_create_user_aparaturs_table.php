@@ -24,17 +24,18 @@ return new class extends Migration
             $table->date('tanggal_lahir')->nullable();
             $table->enum('jenjang', ['junior', 'senior'])->nullable();
             $table->enum('jenis_kelamin', ['P', 'L'])->nullable();
+            $table->enum('tingkat_aparatur', ['provinsi', 'kab_kota'])->nullable();
             $table->enum('pendidikan_terakhir', ['1', '2', '3', '4'])->nullable(); // Enum
             $table->string('foto_pegawai')->nullable();
             $table->string('no_hp')->nullable();
             $table->string('alamat')->nullable();
             $table->unsignedBigInteger('provinsi_id');
-            $table->unsignedBigInteger('kab_kota_id');
+            $table->unsignedBigInteger('kab_kota_id')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->on('users')->references('id')->cascadeOnDelete();
             $table->foreign('provinsi_id')->on('provinsis')->references('id')->cascadeOnDelete();
-            $table->foreign('kab_kota_id')->on('kab_kotas')->references('id')->cascadeOnDelete();
+            $table->foreign('kab_kota_id')->on('kab_kotas')->references('id')->nullOnDelete();
             $table->foreign('pangkat_golongan_tmt_id')->on('pangkat_golongan_tmts')->references('id')->nullOnDelete();
         });
     }

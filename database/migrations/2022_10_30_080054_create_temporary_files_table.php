@@ -16,7 +16,9 @@ return new class extends Migration
         Schema::create('temporary_files', function (Blueprint $table) {
             $table->id();
             $table->string('folder');
-            $table->string('file');
+            $table->string('name');
+            $table->integer('size');
+            $table->string('type');
             $table->timestamps();
         });
     }
