@@ -126,7 +126,7 @@ class MenteService
         if ($current_provinsi_id == $provinsi_id) $is_cross = false;
         return $provinsi->kabProvPenilaiAndPenetaps()->updateOrCreate([
             'is_cross' => $is_cross,
-            'kab_kota_id' => $provinsi->id,
+            'provinsi_id' => $provinsi->id,
         ],[
             'penilai_ak_id' => $penilai_ak_id,
             'penetap_ak_id' => $penetap_ak_id,

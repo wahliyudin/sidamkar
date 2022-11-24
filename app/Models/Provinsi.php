@@ -28,4 +28,9 @@ class Provinsi extends Model
     {
         return $this->hasMany(KabProvPenilaiAndPenetap::class);
     }
+
+    public function kabProvPenilaiAndPenetap()
+    {
+        return $this->hasOne(KabProvPenilaiAndPenetap::class);
+    }
 }

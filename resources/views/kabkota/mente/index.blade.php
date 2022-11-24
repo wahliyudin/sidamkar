@@ -443,12 +443,14 @@
                                 '/tingkat-provinsi'),
                             dataType: "JSON",
                             success: function(response) {
-                                $('input[name="penilai_ak"]').val(response.penilai
-                                    .nama);
-                                $('input[name="penetap_ak"]').val(response.penetap
-                                    .nama);
-                                $('input[name="penilai"]').val(response.penilai.id);
-                                $('input[name="penetap"]').val(response.penetap.id);
+                                $('input[name="penilai_ak"]').val(response
+                                    .penilaiAndPenetap.penilai.nama);
+                                $('input[name="penetap_ak"]').val(response
+                                    .penilaiAndPenetap.penetap.nama);
+                                $('input[name="penilai"]').val(response
+                                    .penilaiAndPenetap.penilai.id);
+                                $('input[name="penetap"]').val(response
+                                    .penilaiAndPenetap.penetap.id);
                             },
                             error: ajaxError
                         });
