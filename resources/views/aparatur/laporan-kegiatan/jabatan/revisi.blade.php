@@ -50,7 +50,7 @@
                                     @break
 
                                     @case(2)
-                                        <button class="btn btn-red px-3 btn-sm text-sm">Revisi</button>
+                                        <button class="btn btn-red-dark px-3 btn-sm text-sm">Revisi</button>
                                     @break
 
                                     @case(3)

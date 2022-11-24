@@ -8,13 +8,13 @@
                     max="{{ Carbon\Carbon::make($periode->akhir)->format('Y-m-d') }}"
                     min="{{ Carbon\Carbon::make($periode->awal)->format('Y-m-d') }}" name="tanggal">
             </div>
-            <button class="btn btn-gray" data-bs-toggle="modal" data-bs-target="#laporkan">Laporkan</button>
+            <button class="btn btn-red" data-bs-toggle="modal" data-bs-target="#laporkan">Laporkan</button>
         </div>
         <div class=" row d-flex flex-row flex-nowrap overflow-auto">
                 <div class="card col-sm-6 mx-3" >
                     <div class="card-header py-2 d-flex justify-content-between align-items-center"
                         style="border-bottom: 1px solid rgba(0, 0, 0, 0.125);">
-                        <h4 class="m-0 text-yellow text-uppercase">Validasi</h4>
+                        <h4 class="m-0 text-uppercase">Validasi</h4>
                         <p class="m-0" style="font-style: italic;">Total :
                             {{ count($laporanKegiatanJabatanStatusValidasis) }}</p>
                     </div>
@@ -82,7 +82,7 @@
                 <div class="card col-sm-6 mx-3" >
                     <div class="card-header py-2 d-flex justify-content-between align-items-center"
                         style="border-bottom: 1px solid rgba(0, 0, 0, 0.125);">
-                        <h4 class="m-0 text-red text-uppercase">Revisi</h4>
+                        <h4 class="m-0  text-uppercase">Revisi</h4>
                         <p class="m-0" style="font-style: italic;">Total :
                             {{ count($laporanKegiatanJabatanStatusRevisis) }}</p>
                     </div>
@@ -93,7 +93,7 @@
                                     <p class="m-0" style="font-weight: 600;">
                                         {{ $laporanKegiatanJabatanStatusRevisi->created_at->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanJabatanStatusRevisi->created_at->translatedFormat('d M Y') }}
                                     </p>
-                                    <button class="btn btn-red btn-sm text-sm px-3">Revisi</button>
+                                    <button class="btn btn-sm text-sm px-3" style="background-color:#884414; color:white">Revisi</button>
                                 </div>
                                 <div class="swiper mySwiper">
                                     <div class="swiper-wrapper">
@@ -151,7 +151,7 @@
                 <div class="card col-sm-6 mx-3" >
                     <div class="card-header py-2 d-flex justify-content-between align-items-center"
                         style="border-bottom: 1px solid rgba(0, 0, 0, 0.125);">
-                        <h4 class="m-0 text-green text-uppercase">Selesai</h4>
+                        <h4 class="m-0  text-uppercase">Selesai</h4>
                         <p class="m-0" style="font-style: italic;">Total :
                             {{ count($laporanKegiatanJabatanStatusSelesais) }}</p>
                     </div>
@@ -219,7 +219,7 @@
                 <div class="card col-sm-6 mx-3">
                     <div class="card-header py-2 d-flex justify-content-between align-items-center"
                         style="border-bottom: 1px solid rgba(0, 0, 0, 0.125);">
-                        <h4 class="m-0 text-black text-uppercase">Ditolak</h4>
+                        <h4 class="m-0  text-uppercase">Ditolak</h4>
                         <p class="m-0" style="font-style: italic;">Total :
                             {{ count($laporanKegiatanJabatanStatusTolaks) }}</p>
                     </div>
@@ -295,7 +295,7 @@
 
     <div class="modal fade" id="laporkan" tabindex="-1" role="dialog" data-bs-backdrop="static"
         aria-labelledby="laporkanTitle" aria-hidden="true">
-        <div class="modal-dialog modal-md modal-dialog-centered modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-md modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5>Laporan Kegiatan Jabatan</h5>
@@ -333,16 +333,16 @@
                             </div>
                         </div>
 
-                        <div class="text-center mt-4">
-                            <button type="button" class="btn btn-danger px-5" data-bs-dismiss="modal">Batal</button>
-                            <button type="button" class="btn btn-blue px-5 simpan-kegiatan btn-kirim">
-                                <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
-                                    style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
-                                <span>Kirim</span>
-                            </button>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger px-5" data-bs-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-blue px-5 simpan-kegiatan btn-kirim">
+                            <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
+                                style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
+                            <span>Kirim</span>
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
