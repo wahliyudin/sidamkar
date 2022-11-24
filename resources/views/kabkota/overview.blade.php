@@ -230,7 +230,7 @@
 
                 <div class="row">
                     <div class="col-md-12 px-2">
-                        <div class="card mb-3">
+                        <div class="card overflow-auto mb-3">
                             <div class="card-header">
                                 <h4 class="card-title" style="color: #17181A; font-family: 'Roboto';">Butir Kegiatan</h4>
                             </div>
@@ -269,10 +269,19 @@
                 </div>
             </div>
 
-            <div class="col-md-3 informasi-wrapper">
-                <div class="card mb-3" style="min-height: 68vh;">
+            <div class="col-md-3 col">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title text-center" style="color: #17181A; font-family: 'Roboto';">
+                            INFORMATION
+                        </h4>
+                    </div>
                     <div class="card-body">
-
+                        <ul>
+                            <li>
+                                <p style="margin: 0 !important;">Upacara Bendera</p>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>

@@ -218,14 +218,14 @@ class ButirKegiatanSeeder extends Seeder
                 'sub_unsur_id' => 10,
                 'nama' => 'Mengoperasikan peralatan pemadaman kebakaran',
                 'satuan_hasil' => 'Laporan mengoperasikan peralatan pemadaman kebakaran',
-                'score' => 0.002
+                'score' => 0.006
             ],
             // 30
             [
                 'sub_unsur_id' => 10,
                 'nama' => 'Melaksanakan pemadaman kebakaran',
                 'satuan_hasil' => 'Laporan pelaksanakan pemadaman kebakaran',
-                'score' => 0.002
+                'score' => 0.006
             ],
             // 31
             [
@@ -441,7 +441,7 @@ class ButirKegiatanSeeder extends Seeder
                 'sub_unsur_id' => 19,
                 'nama' => 'Melakukan Monitoring kejadian kebakaran dan penyelamatan',
                 'satuan_hasil' => 'Laporan kejadian kebakaran dan penyelamatan',
-                'score' => 0.004
+                'score' => 0.008
             ],
             // 61
             [
@@ -1486,7 +1486,7 @@ class ButirKegiatanSeeder extends Seeder
                 'sub_unsur_id' => 58,
                 'nama' => 'Melakukan evaluasi pelaksanaan latihan',
                 'satuan_hasil' => 'Laporan evaluasi pelaksanaan latihan',
-                'score' => 0.002
+                'score' => 0.004
             ],
             // 209
             [

@@ -68,7 +68,7 @@
                                         <a href=""><i class="fa-solid fa-file"></i></a>
                                     </td>
                                     <td class="d-flex justify-content-center">
-                                        <a href="{{ route('penilai-ak.kegiatan-profesi.show') }}"
+                                        <a href="{{ route('penilai-ak.kegiatan-selesai.show') }}"
                                             class="btn btn-primary ">Details</a>
                                     </td>
                                 </tr>
