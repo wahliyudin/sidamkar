@@ -17,14 +17,13 @@ class CobaController extends Controller
         return User::query()->with('mente.atasanLangsung.userPejabatStruktural')
             ->withWhereHas('userAparatur', function ($query) {
                 $query->where('kab_kota_id', $this->authUser()->load('userProvKabKota')->userProvKabKota->kab_kota_id)
-                    ->with(['kabKota.kabProvPenilaiAndPenetap' => function ($query) {
-                        $query->where('tingkat', 'kab_kota')
-                            ->with([
-                                'penilaiAngkaKredit.userPejabatStruktural',
-                                'penetapAngkaKredit.userPejabatStruktural'
-                            ]);
-                    }])
-                    ->where('tingkat_aparatur', 'kab_kota');
+                    ->where('tingkat_aparatur', 'kab_kota')
+                    ->with([
+                        'kabKota.kabProvPenilaiAndPenetap.penilaiAngkaKredit.userPejabatStruktural',
+                        'kabKota.kabProvPenilaiAndPenetap.penetapAngkaKredit.userPejabatStruktural',
+                        'kabKota.crossPenilaiAndPenetap.kabProvPenilaiAndPenetap.penilaiAngkaKredit.userPejabatStruktural',
+                        'kabKota.crossPenilaiAndPenetap.kabProvPenilaiAndPenetap.penetapAngkaKredit.userPejabatStruktural',
+                    ]);
             })
             ->where('status_akun', 1)
             ->whereRoleIs(getAllRoleFungsional())->get();

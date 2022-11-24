@@ -2,6 +2,7 @@
 
 namespace App\Services\KabKota;
 
+use App\Models\CrossPenilaiAndPenetap;
 use App\Models\KabKota;
 use App\Models\KabProvPenilaiAndPenetap;
 use App\Models\PenilaiAndPenetapAngkaKredit;
@@ -59,79 +60,84 @@ class MenteService
         return $this->userRepository->getAllAtasanLangsungByProvinsi($provinsi_id);
     }
 
-    public function getAllPenilaiAndPenetapByProvinsi($provinsi_id)
-    {
-        return KabProvPenilaiAndPenetap::query()
-            ->with(['penilaiAngkaKredit.userPejabatStruktural', 'penetapAngkaKredit.userPejabatStruktural'])
-            ->where('tingkat', 'provinsi')
-            ->where('provinsi_id', $provinsi_id)
-            ->get();
-    }
-
-    public function getAllPenilaiAndPenetapByKabKota($kab_kota_id)
-    {
-        return KabProvPenilaiAndPenetap::query()
-            ->with(['penilaiAngkaKredit.userPejabatStruktural', 'penetapAngkaKredit.userPejabatStruktural'])
-            ->where('tingkat', 'kab_kota')
-            ->where('kab_kota_id', $kab_kota_id)
-            ->get();
-    }
-
     public function getCurrentPenilaiAndPenetapByProvinsi($provinsi_id)
     {
-        return KabProvPenilaiAndPenetap::query()
+        $kabProvPenilaiAndPenetap = KabProvPenilaiAndPenetap::query()
             ->with(['penilaiAngkaKredit.userPejabatStruktural', 'penetapAngkaKredit.userPejabatStruktural'])
-            ->where('tingkat', 'provinsi')
-            ->whereNot('is_cross')
             ->where('provinsi_id', $provinsi_id)
             ->first();
+        if (!$kabProvPenilaiAndPenetap) {
+            $kabProvPenilaiAndPenetap = CrossPenilaiAndPenetap::query()
+                ->with(['kabProvPenilaiAndPenetap.penilaiAngkaKredit.userPejabatStruktural', 'kabProvPenilaiAndPenetap.penetapAngkaKredit.userPejabatStruktural'])
+                ->where('provinsi_id', $provinsi_id)
+                ->first()?->kabProvPenilaiAndPenetap;
+        }
+        return $kabProvPenilaiAndPenetap;
     }
 
     public function getCurrentPenilaiAndPenetapByKabKota($kab_kota_id)
     {
-        return KabProvPenilaiAndPenetap::query()
+        $kabProvPenilaiAndPenetap = KabProvPenilaiAndPenetap::query()
             ->with(['penilaiAngkaKredit.userPejabatStruktural', 'penetapAngkaKredit.userPejabatStruktural'])
-            ->where('tingkat', 'kab_kota')
-            ->whereNot('is_cross')
             ->where('kab_kota_id', $kab_kota_id)
             ->first();
+        if (!$kabProvPenilaiAndPenetap) {
+            $kabProvPenilaiAndPenetap = CrossPenilaiAndPenetap::query()
+                ->with(['kabProvPenilaiAndPenetap.penilaiAngkaKredit.userPejabatStruktural', 'kabProvPenilaiAndPenetap.penetapAngkaKredit.userPejabatStruktural'])
+                ->where('kab_kota_id', $kab_kota_id)
+                ->first()?->kabProvPenilaiAndPenetap;
+        }
+        return $kabProvPenilaiAndPenetap;
     }
 
-    public function storePenilaiAndPenetapKabKota($penilai_ak_id, $penetap_ak_id, $kab_kota_id, $current_kab_kota_id)
+    public function storePenilaiAndPenetapKabKota($penilai_ak_id, $penetap_ak_id, $kab_kota_id, $provinsi_id, $current_provinsi_id, $current_kab_kota_id)
     {
-        $kabKota = KabKota::query()->find($current_kab_kota_id)->first();
-        if (!$kabKota) {
-            throw ValidationException::withMessages(['message' => 'Kabupaten Kota tidak ditemukan']);
+        if ($current_kab_kota_id == $kab_kota_id) {
+            $kabProvPenilaiAndPenetap = KabProvPenilaiAndPenetap::query()->updateOrCreate([
+                'kab_kota_id' => $current_kab_kota_id,
+            ], [
+                'penilai_ak_id' => $penilai_ak_id,
+                'penetap_ak_id' => $penetap_ak_id,
+                'kab_kota_id' => $current_kab_kota_id,
+            ]);
+        } else {
+            $kabProvPenilaiAndPenetap = KabProvPenilaiAndPenetap::query()
+                ->where('kab_kota_id', $kab_kota_id)
+                ->orWhere('provinsi_id', $provinsi_id)
+                ->first();
+            CrossPenilaiAndPenetap::query()->where('kab_kota_id', $current_kab_kota_id)->first()->update([
+                'kab_kota_id' => $current_kab_kota_id,
+                'kab_prov_penilai_and_penetap_id' => $kabProvPenilaiAndPenetap->id
+            ]);
         }
-        $is_cross = true;
-        if ($current_kab_kota_id == $kab_kota_id) $is_cross = false;
-        return $kabKota->kabProvPenilaiAndPenetaps()->updateOrCreate([
-            'is_cross' => $is_cross,
-            'kab_kota_id' => $kabKota->id,
-        ],[
-            'penilai_ak_id' => $penilai_ak_id,
-            'penetap_ak_id' => $penetap_ak_id,
-            'tingkat' => 'kab_kota',
-            'is_cross' => $is_cross,
-        ]);
+        return $kabProvPenilaiAndPenetap;
     }
 
     public function storePenilaiAndPenetapProvinsi($penilai_ak_id, $penetap_ak_id, $provinsi_id, $current_provinsi_id)
     {
-        $provinsi = Provinsi::query()->find($current_provinsi_id)->first();
-        if (!$provinsi) {
-            throw ValidationException::withMessages(['message' => 'Provinsi tidak ditemukan']);
+        if ($current_provinsi_id == $provinsi_id) {
+            $kabProvPenilaiAndPenetap = KabProvPenilaiAndPenetap::query()->updateOrCreate([
+                'provinsi_id' => $current_provinsi_id,
+            ], [
+                'penilai_ak_id' => $penilai_ak_id,
+                'penetap_ak_id' => $penetap_ak_id,
+                'provinsi_id' => $current_provinsi_id,
+            ]);
+            CrossPenilaiAndPenetap::query()
+                ->where('provinsi_id', $current_provinsi_id)
+                ->first()?->delete();
+        } else {
+            $kabProvPenilaiAndPenetap = KabProvPenilaiAndPenetap::query()
+                ->where('provinsi_id', $provinsi_id)
+                ->first()->crossPenilaiAndPenetaps()->updateOrCreate([
+                    'provinsi_id' => $current_provinsi_id
+                ], [
+                    'provinsi_id' => $current_provinsi_id
+                ]);
+            KabProvPenilaiAndPenetap::query()
+                ->where('provinsi_id', $current_provinsi_id)
+                ->first()?->delete();
         }
-        $is_cross = true;
-        if ($current_provinsi_id == $provinsi_id) $is_cross = false;
-        return $provinsi->kabProvPenilaiAndPenetaps()->updateOrCreate([
-            'is_cross' => $is_cross,
-            'provinsi_id' => $provinsi->id,
-        ],[
-            'penilai_ak_id' => $penilai_ak_id,
-            'penetap_ak_id' => $penetap_ak_id,
-            'tingkat' => 'provinsi',
-            'is_cross' => $is_cross,
-        ]);
+        return $kabProvPenilaiAndPenetap;
     }
 }

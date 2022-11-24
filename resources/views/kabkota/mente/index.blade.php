@@ -501,7 +501,8 @@
                         if ($('select[name="tingkat"]').val() == 'kab_kota') {
                             kab_kota_id = $('select[name="kab_kota_id"]').val();
                         }
-                        return await $.ajax({
+                        data = null;
+                        await $.ajax({
                             type: 'POST',
                             url: url("/kab-kota/data-mente/store-penilai-penetap"),
                             data: {
@@ -511,15 +512,19 @@
                                 "kab_kota_id": kab_kota_id,
                                 "provinsi_id": $('select[name="provinsi_id"]').val(),
                             },
-                            dataType: 'JSON'
+                            dataType: 'JSON',
+                            success: function(res) {
+                                data = res;
+                            },
+                            error: function(jqXHR, xhr, textStatus, errorThrow,
+                                exception) {
+                                data = jqXHR;
+                            }
                         });
+                        return data
                     },
                 }).then(function(e) {
-                    if (e.dismiss == 'cancel') {
-                        $('#lihat' + id).modal('show');
-                        swal.close()
-                    }
-                    if (e.value.status == 200) {
+                    if (e?.value?.status == 200) {
                         swal({
                             type: 'success',
                             title: 'Berhasil',
@@ -527,8 +532,6 @@
                         }).then(() => {
                             location.reload()
                         });
-                    } else {
-                        swal("Error!", e.value.message, "error");
                     }
                 })
             });

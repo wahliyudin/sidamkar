@@ -12,8 +12,6 @@ class KabProvPenilaiAndPenetap extends Model
     protected $fillable = [
         'penilai_ak_id',
         'penetap_ak_id',
-        'tingkat',
-        'is_cross',
         'kab_kota_id',
         'provinsi_id'
     ];
@@ -26,5 +24,10 @@ class KabProvPenilaiAndPenetap extends Model
     public function penetapAngkaKredit()
     {
         return $this->belongsTo(User::class, 'penetap_ak_id', 'id');
+    }
+
+    public function crossPenilaiAndPenetaps()
+    {
+        return $this->hasMany(CrossPenilaiAndPenetap::class);
     }
 }
