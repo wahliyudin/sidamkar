@@ -9,8 +9,8 @@
                     min="{{ Carbon\Carbon::make($periode->awal)->format('Y-m-d') }}" name="tanggal">
             </div>
         </div>
-        <div class="row justify-content-evenly align-items-start gap-2">
-            <div class="col-md-5 p-0">
+        <div class="row d-flex flex-row flex-nowrap overflow-auto">
+            <div class="card col-sm-6 mx-3">
                 <div class="card">
                     <div class="card-header py-2 d-flex justify-content-between align-items-center"
                         style="border-bottom: 1px solid rgba(0, 0, 0, 0.125);">
@@ -78,7 +78,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-5 p-0">
+            <div class="card col-sm-6 mx-3">
                 <div class="card">
                     <div class="card-header py-2 d-flex justify-content-between align-items-center"
                         style="border-bottom: 1px solid rgba(0, 0, 0, 0.125);">
@@ -147,9 +147,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row justify-content-evenly align-items-start gap-2 mt-2">
-            <div class="col-md-5 p-0">
+            <div class="card col-sm-6 mx-3">
                 <div class="card">
                     <div class="card-header py-2 d-flex justify-content-between align-items-center"
                         style="border-bottom: 1px solid rgba(0, 0, 0, 0.125);">
@@ -217,7 +215,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-5 p-0">
+            <div class="card col-sm-6 mx-3">
                 <div class="card">
                     <div class="card-header py-2 d-flex justify-content-between align-items-center"
                         style="border-bottom: 1px solid rgba(0, 0, 0, 0.125);">
