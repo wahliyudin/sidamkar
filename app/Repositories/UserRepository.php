@@ -104,43 +104,25 @@ class UserRepository
             ->get();
     }
 
-    private function scopeStrukturalByProvinsi($provinsi_id): Builder
+    public function getAllPenilaiKabKota()
     {
-        return User::query()
-            ->with('userPejabatStruktural', function ($query) use ($provinsi_id) {
-                $query->where('tingkat_aparatur', 'provinsi')
-                    ->where('provinsi_id', $provinsi_id);
+        return $this->user->query()
+            ->withWhereHas('userPejabatStruktural', function ($query) {
+                $query->where('tingkat_aparatur', 'kab_kota');
             })
-            ->where('status_akun', $this->user::STATUS_ACTIVE);
+            ->where('status_akun', $this->user::STATUS_ACTIVE)
+            ->whereRoleIs('penilai_ak')
+            ->get();
     }
 
-    private function scopeStrukturalByKabKota($kab_kota_id): Builder
+    public function getAllPenetapKabKota()
     {
-        return User::query()
-            ->with('userPejabatStruktural', function ($query) use ($kab_kota_id) {
-                $query->where('tingkat_aparatur', 'kab_kota')
-                    ->where('kab_kota_id', $kab_kota_id);
+        return $this->user->query()
+            ->withWhereHas('userPejabatStruktural', function ($query) {
+                $query->where('tingkat_aparatur', 'kab_kota');
             })
-            ->where('status_akun', $this->user::STATUS_ACTIVE);
-    }
-
-    public function getPenilaiAKByProvinsi($provinsi_id): Collection
-    {
-        return $this->scopeStrukturalByProvinsi($provinsi_id)->whereRoleIs('penilai_ak')->get();
-    }
-
-    public function getPenetapAKByProvinsi($provinsi_id): Collection
-    {
-        return $this->scopeStrukturalByProvinsi($provinsi_id)->whereRoleIs('penetap_ak')->get();
-    }
-
-    public function getPenilaiAKByKabKota($kab_kota_id): Collection
-    {
-        return $this->scopeStrukturalByKabKota($kab_kota_id)->whereRoleIs('penilai_ak')->get();
-    }
-
-    public function getPenetapAKByKabKota($kab_kota_id): Collection
-    {
-        return $this->scopeStrukturalByKabKota($kab_kota_id)->whereRoleIs('penetap_ak')->get();
+            ->where('status_akun', $this->user::STATUS_ACTIVE)
+            ->whereRoleIs('penetap_ak')
+            ->get();
     }
 }
