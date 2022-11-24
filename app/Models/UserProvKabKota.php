@@ -34,6 +34,7 @@ class UserProvKabKota extends Model
     {
         return $this->belongsTo(Provinsi::class);
     }
+
     public function kab_kota()
     {
         return $this->belongsTo(KabKota::class);

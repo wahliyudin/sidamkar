@@ -10,7 +10,11 @@ class Provinsi extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nama'];
+    protected $fillable = [
+        'nama',
+        'penilai_ak_id',
+        'penetap_ak_id'
+    ];
 
     /**
      * kabKotas
@@ -20,5 +24,15 @@ class Provinsi extends Model
     public function kabKotas()
     {
         return $this->hasMany(KabKota::class);
+    }
+
+    public function penilaiAngkaKredit()
+    {
+        return $this->belongsTo(User::class, 'penilai_ak_id', 'id');
+    }
+
+    public function penetapAngkaKredit()
+    {
+        return $this->belongsTo(User::class, 'penetap_ak_id', 'id');
     }
 }
