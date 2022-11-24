@@ -183,7 +183,7 @@
                 </div>
                 <div class="d-flex wrapper-btn justify-content-end align-items-center mt-0 pb-2">
                     <button type="button" class="btn btn-danger btn-sm px-4" data-bs-dismiss="modal">Tutup</button>
-                    @if (in_array($laporanKegiatanJabatan->status, [1, 2]))
+                    @if (in_array($laporanKegiatanJabatan->status, [1]))
                         <button type="button" data-laporan="{{ $laporanKegiatanJabatan->id }}"
                             class="btn btn-black px-4 btn-sm tolak-kegiatan ms-2">
                             <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"

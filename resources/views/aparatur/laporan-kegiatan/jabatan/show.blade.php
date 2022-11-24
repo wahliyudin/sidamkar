@@ -8,8 +8,24 @@
                     max="{{ Carbon\Carbon::make($periode->akhir)->format('Y-m-d') }}"
                     min="{{ Carbon\Carbon::make($periode->awal)->format('Y-m-d') }}" name="tanggal">
             </div>
-            <button class="btn btn-gray" data-bs-toggle="modal" data-bs-target="#laporkan">Laporkan</button>
+            <button class="btn btn-red" data-bs-toggle="modal" data-bs-target="#laporkan">Laporkan</button>
         </div>
+<<<<<<< HEAD
+        <div class=" row d-flex flex-row flex-nowrap overflow-auto">
+                <div class="card col-sm-6 mx-3" >
+                    <div class="card-header py-2 d-flex justify-content-between align-items-center"
+                        style="border-bottom: 1px solid rgba(0, 0, 0, 0.125);">
+                        <h4 class="m-0 text-uppercase">Validasi</h4>
+                        <p class="m-0" style="font-style: italic;">Total :
+                            {{ count($laporanKegiatanJabatanStatusValidasis) }}</p>
+                    </div>
+                    <div class="card-body mx-0 my-2 container-laporan">
+                        @forelse ($laporanKegiatanJabatanStatusValidasis as $laporanKegiatanJabatanStatusValidasi)
+                            <div class="laporan-item pb-4">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <p class="m-0" style="font-weight: 600;">
+                                        {{ $laporanKegiatanJabatanStatusValidasi->created_at->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanJabatanStatusValidasi->created_at->translatedFormat('d M Y') }}
+=======
         <div class=" row d-flex flex-row flex-nowrap overflow-auto container-kegiatan">
             <div class="card col-sm-6 mx-3">
                 <div class="card-header py-2 d-flex justify-content-between align-items-center"
@@ -48,6 +64,7 @@
                                     <i class="fa-solid fa-user" style="font-size: 1.3rem; width: 27px;"></i>
                                     <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
                                         {{ $laporanKegiatanJabatanStatusValidasi->rencana->user->userAparatur->nama }}
+>>>>>>> 99f037c646496813a6ca5dd6c2c6f6b67f9ec1c9
                                     </p>
                                 </div>
                                 <div class="d-flex align-items-start item-attr">
@@ -95,6 +112,26 @@
                                 </p>
                                 <button class="btn btn-red btn-sm text-sm px-3">Revisi</button>
                             </div>
+<<<<<<< HEAD
+                        @endforelse
+                    </div>
+                </div>
+                <div class="card col-sm-6 mx-3" >
+                    <div class="card-header py-2 d-flex justify-content-between align-items-center"
+                        style="border-bottom: 1px solid rgba(0, 0, 0, 0.125);">
+                        <h4 class="m-0  text-uppercase">Revisi</h4>
+                        <p class="m-0" style="font-style: italic;">Total :
+                            {{ count($laporanKegiatanJabatanStatusRevisis) }}</p>
+                    </div>
+                    <div class="card-body mx-0 my-2 container-laporan">
+                        @forelse ($laporanKegiatanJabatanStatusRevisis as $laporanKegiatanJabatanStatusRevisi)
+                            <div class="laporan-item pb-4">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <p class="m-0" style="font-weight: 600;">
+                                        {{ $laporanKegiatanJabatanStatusRevisi->created_at->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanJabatanStatusRevisi->created_at->translatedFormat('d M Y') }}
+                                    </p>
+                                    <button class="btn btn-sm text-sm px-3" style="background-color:#884414; color:white">Revisi</button>
+=======
                             <div class="swiper mySwiper">
                                 <div class="swiper-wrapper">
                                     @foreach ($laporanKegiatanJabatanStatusRevisi->dokumenKegiatanJabatans as $dokumenKegiatanJabatan)
@@ -117,6 +154,7 @@
                                     <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
                                         {{ $laporanKegiatanJabatanStatusRevisi->rencana->user->userAparatur->nama }}
                                     </p>
+>>>>>>> 99f037c646496813a6ca5dd6c2c6f6b67f9ec1c9
                                 </div>
                                 <div class="d-flex align-items-start item-attr">
                                     <i class="fa-solid fa-person-running" style="font-size: 1.3rem; width: 27px;"></i>
@@ -164,6 +202,24 @@
                                 </p>
                                 <button class="btn btn-green btn-sm text-sm px-3">Selesai</button>
                             </div>
+<<<<<<< HEAD
+                        @endforelse
+                    </div>
+                </div>
+                <div class="card col-sm-6 mx-3" >
+                    <div class="card-header py-2 d-flex justify-content-between align-items-center"
+                        style="border-bottom: 1px solid rgba(0, 0, 0, 0.125);">
+                        <h4 class="m-0  text-uppercase">Selesai</h4>
+                        <p class="m-0" style="font-style: italic;">Total :
+                            {{ count($laporanKegiatanJabatanStatusSelesais) }}</p>
+                    </div>
+                    <div class="card-body mx-0 my-2 container-laporan">
+                        @forelse ($laporanKegiatanJabatanStatusSelesais as $laporanKegiatanJabatanStatusSelesai)
+                            <div class="laporan-item pb-4">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <p class="m-0" style="font-weight: 600;">
+                                        {{ $laporanKegiatanJabatanStatusSelesai->created_at->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanJabatanStatusSelesai->created_at->translatedFormat('d M Y') }}
+=======
                             <div class="swiper mySwiper">
                                 <div class="swiper-wrapper">
                                     @foreach ($laporanKegiatanJabatanStatusSelesai->dokumenKegiatanJabatans as $dokumenKegiatanJabatan)
@@ -185,6 +241,7 @@
                                     <i class="fa-solid fa-user" style="font-size: 1.3rem; width: 27px;"></i>
                                     <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
                                         {{ $laporanKegiatanJabatanStatusSelesai->rencana->user->userAparatur->nama }}
+>>>>>>> 99f037c646496813a6ca5dd6c2c6f6b67f9ec1c9
                                     </p>
                                 </div>
                                 <div class="d-flex align-items-start item-attr">
@@ -232,27 +289,22 @@
                                 </p>
                                 <button class="btn btn-black btn-sm text-sm px-3">DITOLAK</button>
                             </div>
-                            <div class="swiper mySwiper">
-                                <div class="swiper-wrapper">
-                                    @foreach ($laporanKegiatanJabatanStatusTolak->dokumenKegiatanJabatans as $dokumenKegiatanJabatan)
-                                        <div class="swiper-slide">
-                                            <img src="{{ $dokumenKegiatanJabatan->link }}" alt="">
-                                        </div>
-                                    @endforeach
-                                </div>
-                                <div class="swiper-pagination"></div>
-                            </div>
-                            <div class="d-flex flex-column mt-3">
-                                <div class="d-flex align-items-start item-attr">
-                                    <i class="fa-solid fa-address-card" style="font-size: 1.3rem; width: 27px;"></i>
-                                    <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
-                                        {{ $laporanKegiatanJabatanStatusTolak->kode }}
-                                    </p>
-                                </div>
-                                <div class="d-flex align-items-start item-attr">
-                                    <i class="fa-solid fa-user" style="font-size: 1.3rem; width: 27px;"></i>
-                                    <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
-                                        {{ $laporanKegiatanJabatanStatusTolak->rencana->user->userAparatur->nama }}
+                        @endforelse
+                    </div>
+                </div>
+                <div class="card col-sm-6 mx-3">
+                    <div class="card-header py-2 d-flex justify-content-between align-items-center"
+                        style="border-bottom: 1px solid rgba(0, 0, 0, 0.125);">
+                        <h4 class="m-0  text-uppercase">Ditolak</h4>
+                        <p class="m-0" style="font-style: italic;">Total :
+                            {{ count($laporanKegiatanJabatanStatusTolaks) }}</p>
+                    </div>
+                    <div class="card-body mx-0 my-2 container-laporan">
+                        @forelse ($laporanKegiatanJabatanStatusTolaks as $laporanKegiatanJabatanStatusTolak)
+                            <div class="laporan-item pb-4">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <p class="m-0" style="font-weight: 600;">
+                                        {{ $laporanKegiatanJabatanStatusTolak->created_at->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanJabatanStatusTolak->created_at->translatedFormat('d M Y') }}
                                     </p>
                                 </div>
                                 <div class="d-flex align-items-start item-attr">
@@ -295,7 +347,7 @@
 
     <div class="modal fade" id="laporkan" tabindex="-1" role="dialog" data-bs-backdrop="static"
         aria-labelledby="laporkanTitle" aria-hidden="true">
-        <div class="modal-dialog modal-md modal-dialog-centered modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-md modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5>Laporan Kegiatan Jabatan</h5>
@@ -333,16 +385,16 @@
                             </div>
                         </div>
 
-                        <div class="text-center mt-4">
-                            <button type="button" class="btn btn-danger px-5" data-bs-dismiss="modal">Batal</button>
-                            <button type="button" class="btn btn-blue px-5 simpan-kegiatan btn-kirim">
-                                <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
-                                    style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
-                                <span>Kirim</span>
-                            </button>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger px-5" data-bs-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-blue px-5 simpan-kegiatan btn-kirim">
+                            <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
+                                style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
+                            <span>Kirim</span>
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

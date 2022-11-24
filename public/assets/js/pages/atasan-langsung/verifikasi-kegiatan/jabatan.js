@@ -110,7 +110,7 @@ $(document).ready(function () {
                 swal.close()
             }
             if (e.value.status == 200) {
-                swal({ type: 'success', title: 'Berhasil', html: 'Laporan Perlu <b style="font-weight: bold; color:red;">DIREVISI</b>' }).then(() => {
+                swal({ type: 'success', title: 'Berhasil', html: 'Laporan Perlu <b style="font-weight: bold; color:#884414;">DIREVISI</b>' }).then(() => {
                     location.reload()
                 });
             } else {
