@@ -94,6 +94,5 @@
     <script src="{{ asset('assets/extensions/filepond/filepond.jquery.js') }}"></script>
     <script src="{{ asset('assets/js/extensions/sweetalert2.all.min.js') }}"></script>
     <script src="{{ asset('assets/js/pages/atasan-langsung/pengajuan-kegiatan/jabatan.js') }}"></script>
-    <script src="{{ asset('assets/js/pages/atasan-langsung/pengajuan-kegiatan/penunjang.js') }}"></script>
     <script src="{{ asset('assets/js/pages/aparatur/laporan-kegiatan/simplebar.js') }}"></script>
 @endsection
