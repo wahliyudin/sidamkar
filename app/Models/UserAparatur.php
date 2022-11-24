@@ -43,10 +43,12 @@ class UserAparatur extends Model
     {
         return $this->belongsTo(Provinsi::class);
     }
-    public function kabkota(): BelongsTo
+
+    public function kabKota(): BelongsTo
     {
         return $this->belongsTo(KabKota::class);
     }
+
     public function pangkatGolonganTmt(): BelongsTo
     {
         return $this->belongsTo(PangkatGolonganTmt::class);

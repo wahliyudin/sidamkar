@@ -75,15 +75,21 @@ class MenteDataTable extends DataTable
                 });
             })
             ->addColumn('penilai_ak', function (User $user) {
-                return '-';
+                if (isset($user->userAparatur?->kabKota?->kabProvPenilaiAndPenetap?->penilaiAngkaKredit)) {
+                    return $user->userAparatur?->kabKota?->kabProvPenilaiAndPenetap?->penilaiAngkaKredit?->userPejabatStruktural?->nama;
+                }
+                return $user->userAparatur?->kabKota?->crossPenilaiAndPenetap?->kabProvPenilaiAndPenetap?->penilaiAngkaKredit?->userPejabatStruktural?->nama;
             })
             ->addColumn('penetap_ak', function (User $user) {
-                return '-';
+                if (isset($user->userAparatur?->kabKota?->kabProvPenilaiAndPenetap?->penetapAngkaKredit)) {
+                    return $user->userAparatur?->kabKota?->kabProvPenilaiAndPenetap?->penetapAngkaKredit?->userPejabatStruktural?->nama;
+                }
+                return $user->userAparatur?->kabKota?->crossPenilaiAndPenetap?->kabProvPenilaiAndPenetap?->penetapAngkaKredit?->userPejabatStruktural?->nama;
             })
             ->addColumn('action', function (User $user) {
                 return '<button class="btn btn-blue btn-sm edit-mente" data-id="' . $user->id . '">edit</button>';
             })
-            ->rawColumns(['nama', 'action'])
+            ->rawColumns(['nama', 'action', 'penilai_ak'])
             ->setRowId('id');
     }
 
@@ -96,12 +102,18 @@ class MenteDataTable extends DataTable
     public function query(User $model): QueryBuilder
     {
         return $model->newQuery()->with('mente.atasanLangsung.userPejabatStruktural')
-        ->whereHas('userAparatur', function ($query) {
-            $query->where('kab_kota_id', $this->authUser()->load('userProvKabKota')->userProvKabKota->kab_kota_id)
-                ->where('tingkat_aparatur', 'kab_kota');
-        })
-        ->where('status_akun', 1)
-        ->whereRoleIs(getAllRoleFungsional());
+            ->withWhereHas('userAparatur', function ($query) {
+                $query->where('kab_kota_id', $this->authUser()->load('userProvKabKota')->userProvKabKota->kab_kota_id)
+                    ->where('tingkat_aparatur', 'kab_kota')
+                    ->with([
+                        'kabKota.kabProvPenilaiAndPenetap.penilaiAngkaKredit.userPejabatStruktural',
+                        'kabKota.kabProvPenilaiAndPenetap.penetapAngkaKredit.userPejabatStruktural',
+                        'kabKota.crossPenilaiAndPenetap.kabProvPenilaiAndPenetap.penilaiAngkaKredit.userPejabatStruktural',
+                        'kabKota.crossPenilaiAndPenetap.kabProvPenilaiAndPenetap.penetapAngkaKredit.userPejabatStruktural',
+                    ]);
+            })
+            ->where('status_akun', 1)
+            ->whereRoleIs(getAllRoleFungsional());
     }
 
     /**

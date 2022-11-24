@@ -83,11 +83,7 @@ class MenteController extends Controller
     public function storePenilaiAndPenetap(StorePenilaiAndPenetapRequest $request)
     {
         $user = $this->authUser()->load('userProvKabKota')->userProvKabKota;
-        if ($request->tingkat == 'kab_kota') {
-            $this->menteService->storePenilaiAndPenetapKabKota($request->penilai, $request->penetap, $request->kab_kota_id, $user->kab_kota);
-        } else {
-            $this->menteService->storePenilaiAndPenetapProvinsi($request->penilai, $request->penetap, $request->provinsi_id, $user->provinsi);
-        }
+        $this->menteService->storePenilaiAndPenetapKabKota($request->penilai, $request->penetap, $request->kab_kota_id, $request->provinsi_id, $user->provinsi_id, $user->kab_kota_id);
         return response()->json([
             'status' => 200,
             'message' => 'Berhasil diterapkan'
