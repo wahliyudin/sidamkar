@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('content')
+@section('content') 
     <div class="section">
         <div class="row">
             <div class="col-md-4 px-2">
@@ -40,7 +40,7 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <a href="" class="btn btn-primary px-3 py-2 mt-4 " data-bs-toggle="modal"
+                <a href="" class="btn btn-primary btn-tentukan-penetap px-3 py-2 mt-3 " data-bs-toggle="modal"
                     data-bs-target="#tentukan"><i class="fa-solid fa-right-to-bracket"></i>
                     Tentukan
                     Penilai dan Penetap</a>
@@ -176,6 +176,12 @@
         @media screen and (max-width:780px) {
             .card {
                 padding: 0 !important;
+            }
+        }
+
+        @media screen and (max-width:450px) {
+            .btn-tentukan-penetap {
+                margin-bottom: 30px;
             }
         }
     </style>
