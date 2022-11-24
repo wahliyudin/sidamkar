@@ -15,6 +15,6 @@ class CobaController extends Controller
     public function index()
     {
 
-        dd(array_key_exists('penilai_ak', ['penilai_ak', 'penetap_ak']));
+        dd(ucwords('sdj sdjhsd'));
     }
 }

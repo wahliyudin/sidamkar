@@ -10,281 +10,281 @@
             </div>
             <button class="btn btn-gray" data-bs-toggle="modal" data-bs-target="#laporkan">Laporkan</button>
         </div>
-        <div class=" row d-flex flex-row flex-nowrap overflow-auto">
-                <div class="card col-sm-6 mx-3" >
-                    <div class="card-header py-2 d-flex justify-content-between align-items-center"
-                        style="border-bottom: 1px solid rgba(0, 0, 0, 0.125);">
-                        <h4 class="m-0 text-yellow text-uppercase">Validasi</h4>
-                        <p class="m-0" style="font-style: italic;">Total :
-                            {{ count($laporanKegiatanJabatanStatusValidasis) }}</p>
-                    </div>
-                    <div class="card-body mx-0 my-2 container-laporan">
-                        @forelse ($laporanKegiatanJabatanStatusValidasis as $laporanKegiatanJabatanStatusValidasi)
-                            <div class="laporan-item pb-4">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <p class="m-0" style="font-weight: 600;">
-                                        {{ $laporanKegiatanJabatanStatusValidasi->created_at->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanJabatanStatusValidasi->created_at->translatedFormat('d M Y') }}
-                                    </p>
-                                    <button class="btn btn-yellow btn-sm text-sm px-3">Validasi</button>
-                                </div>
-                                <div class="swiper mySwiper">
-                                    <div class="swiper-wrapper">
-                                        @foreach ($laporanKegiatanJabatanStatusValidasi->dokumenKegiatanJabatans as $dokumenKegiatanJabatan)
-                                            <div class="swiper-slide">
-                                                <img src="{{ $dokumenKegiatanJabatan->link }}" alt="">
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                    <div class="swiper-pagination"></div>
-                                </div>
-                                <div class="d-flex flex-column mt-3">
-                                    <div class="d-flex align-items-start item-attr">
-                                        <i class="fa-solid fa-address-card" style="font-size: 1.3rem; width: 27px;"></i>
-                                        <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
-                                            {{ $laporanKegiatanJabatanStatusValidasi->kode }}
-                                        </p>
-                                    </div>
-                                    <div class="d-flex align-items-start item-attr">
-                                        <i class="fa-solid fa-user" style="font-size: 1.3rem; width: 27px;"></i>
-                                        <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
-                                            {{ $laporanKegiatanJabatanStatusValidasi->rencana->user->userAparatur->nama }}
-                                        </p>
-                                    </div>
-                                    <div class="d-flex align-items-start item-attr">
-                                        <i class="fa-solid fa-person-running" style="font-size: 1.3rem; width: 27px;"></i>
-                                        <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
-                                            {{ $laporanKegiatanJabatanStatusValidasi->butirKegiatan->nama }}
-                                        </p>
-                                    </div>
-                                    <div class="d-flex align-items-start item-attr">
-                                        <i class="fa-solid fa-list-ul" style="font-size: 1.3rem; width: 27px;"></i>
-                                        <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
-                                            {{ $laporanKegiatanJabatanStatusValidasi->rencana->nama }}
-                                        </p>
-                                    </div>
-                                </div>
-                                <button class="btn btn-gray w-100 py-2 mt-3" data-bs-toggle="modal"
-                                    data-bs-target="#riwayatKegiatan{{ $laporanKegiatanJabatanStatusValidasi->id }}">Detail
-                                    Laporan</button>
-                            </div>
-                            @include('aparatur.laporan-kegiatan.jabatan.riwayat', [
-                                'laporanKegiatanJabatan' => $laporanKegiatanJabatanStatusValidasi,
-                            ])
-                        @empty
-                            <div class="d-flex justify-content-center mt-3">
-                                <p class="m-0" style="font-style: italic;">Tidak ada data untuk
-                                    ditampilkan
-                                </p>
-                            </div>
-                        @endforelse
-                    </div>
+        <div class=" row d-flex flex-row flex-nowrap overflow-auto container-kegiatan">
+            <div class="card col-sm-6 mx-3">
+                <div class="card-header py-2 d-flex justify-content-between align-items-center"
+                    style="border-bottom: 1px solid rgba(0, 0, 0, 0.125);">
+                    <h4 class="m-0 text-yellow text-uppercase">Validasi</h4>
+                    <p class="m-0" style="font-style: italic;">Total :
+                        {{ count($laporanKegiatanJabatanStatusValidasis) }}</p>
                 </div>
-                <div class="card col-sm-6 mx-3" >
-                    <div class="card-header py-2 d-flex justify-content-between align-items-center"
-                        style="border-bottom: 1px solid rgba(0, 0, 0, 0.125);">
-                        <h4 class="m-0 text-red text-uppercase">Revisi</h4>
-                        <p class="m-0" style="font-style: italic;">Total :
-                            {{ count($laporanKegiatanJabatanStatusRevisis) }}</p>
-                    </div>
-                    <div class="card-body mx-0 my-2 container-laporan">
-                        @forelse ($laporanKegiatanJabatanStatusRevisis as $laporanKegiatanJabatanStatusRevisi)
-                            <div class="laporan-item pb-4">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <p class="m-0" style="font-weight: 600;">
-                                        {{ $laporanKegiatanJabatanStatusRevisi->created_at->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanJabatanStatusRevisi->created_at->translatedFormat('d M Y') }}
-                                    </p>
-                                    <button class="btn btn-red btn-sm text-sm px-3">Revisi</button>
-                                </div>
-                                <div class="swiper mySwiper">
-                                    <div class="swiper-wrapper">
-                                        @foreach ($laporanKegiatanJabatanStatusRevisi->dokumenKegiatanJabatans as $dokumenKegiatanJabatan)
-                                            <div class="swiper-slide">
-                                                <img src="{{ $dokumenKegiatanJabatan->link }}" alt="">
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                    <div class="swiper-pagination"></div>
-                                </div>
-                                <div class="d-flex flex-column mt-3">
-                                    <div class="d-flex align-items-start item-attr">
-                                        <i class="fa-solid fa-address-card" style="font-size: 1.3rem; width: 27px;"></i>
-                                        <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
-                                            {{ $laporanKegiatanJabatanStatusRevisi->kode }}
-                                        </p>
-                                    </div>
-                                    <div class="d-flex align-items-start item-attr">
-                                        <i class="fa-solid fa-user" style="font-size: 1.3rem; width: 27px;"></i>
-                                        <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
-                                            {{ $laporanKegiatanJabatanStatusRevisi->rencana->user->userAparatur->nama }}
-                                        </p>
-                                    </div>
-                                    <div class="d-flex align-items-start item-attr">
-                                        <i class="fa-solid fa-person-running" style="font-size: 1.3rem; width: 27px;"></i>
-                                        <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
-                                            {{ $laporanKegiatanJabatanStatusRevisi->butirKegiatan->nama }}
-                                        </p>
-                                    </div>
-                                    <div class="d-flex align-items-start item-attr">
-                                        <i class="fa-solid fa-list-ul" style="font-size: 1.3rem; width: 27px;"></i>
-                                        <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
-                                            {{ $laporanKegiatanJabatanStatusRevisi->rencana->nama }}
-                                        </p>
-                                    </div>
-                                </div>
-                                <button class="btn btn-gray w-100 py-2 mt-3 detail-revisi"
-                                    data-laporan="{{ $laporanKegiatanJabatanStatusRevisi->id }}" data-bs-toggle="modal"
-                                    data-bs-target="#revisiKegiatan{{ $laporanKegiatanJabatanStatusRevisi->id }}">Detail
-                                    Laporan</button>
-                            </div>
-                            @include('aparatur.laporan-kegiatan.jabatan.revisi', [
-                                'laporanKegiatanJabatan' => $laporanKegiatanJabatanStatusRevisi,
-                            ])
-                        @empty
-                            <div class="d-flex justify-content-center mt-3">
-                                <p class="m-0" style="font-style: italic;">Tidak ada data untuk
-                                    ditampilkan
+                <div class="card-body mx-0 my-2 container-laporan">
+                    @forelse ($laporanKegiatanJabatanStatusValidasis as $laporanKegiatanJabatanStatusValidasi)
+                        <div class="laporan-item pb-4">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <p class="m-0" style="font-weight: 600;">
+                                    {{ $laporanKegiatanJabatanStatusValidasi->created_at->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanJabatanStatusValidasi->created_at->translatedFormat('d M Y') }}
                                 </p>
+                                <button class="btn btn-yellow btn-sm text-sm px-3">Validasi</button>
                             </div>
-                        @endforelse
-                    </div>
-                </div>
-                <div class="card col-sm-6 mx-3" >
-                    <div class="card-header py-2 d-flex justify-content-between align-items-center"
-                        style="border-bottom: 1px solid rgba(0, 0, 0, 0.125);">
-                        <h4 class="m-0 text-green text-uppercase">Selesai</h4>
-                        <p class="m-0" style="font-style: italic;">Total :
-                            {{ count($laporanKegiatanJabatanStatusSelesais) }}</p>
-                    </div>
-                    <div class="card-body mx-0 my-2 container-laporan">
-                        @forelse ($laporanKegiatanJabatanStatusSelesais as $laporanKegiatanJabatanStatusSelesai)
-                            <div class="laporan-item pb-4">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <p class="m-0" style="font-weight: 600;">
-                                        {{ $laporanKegiatanJabatanStatusSelesai->created_at->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanJabatanStatusSelesai->created_at->translatedFormat('d M Y') }}
+                            <div class="swiper mySwiper">
+                                <div class="swiper-wrapper">
+                                    @foreach ($laporanKegiatanJabatanStatusValidasi->dokumenKegiatanJabatans as $dokumenKegiatanJabatan)
+                                        <div class="swiper-slide">
+                                            <img src="{{ $dokumenKegiatanJabatan->link }}" alt="">
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <div class="swiper-pagination"></div>
+                            </div>
+                            <div class="d-flex flex-column mt-3">
+                                <div class="d-flex align-items-start item-attr">
+                                    <i class="fa-solid fa-address-card" style="font-size: 1.3rem; width: 27px;"></i>
+                                    <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
+                                        {{ $laporanKegiatanJabatanStatusValidasi->kode }}
                                     </p>
-                                    <button class="btn btn-green btn-sm text-sm px-3">Selesai</button>
                                 </div>
-                                <div class="swiper mySwiper">
-                                    <div class="swiper-wrapper">
-                                        @foreach ($laporanKegiatanJabatanStatusSelesai->dokumenKegiatanJabatans as $dokumenKegiatanJabatan)
-                                            <div class="swiper-slide">
-                                                <img src="{{ $dokumenKegiatanJabatan->link }}" alt="">
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                    <div class="swiper-pagination"></div>
-                                </div>
-                                <div class="d-flex flex-column mt-3">
-                                    <div class="d-flex align-items-start item-attr">
-                                        <i class="fa-solid fa-address-card" style="font-size: 1.3rem; width: 27px;"></i>
-                                        <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
-                                            {{ $laporanKegiatanJabatanStatusSelesai->kode }}
-                                        </p>
-                                    </div>
-                                    <div class="d-flex align-items-start item-attr">
-                                        <i class="fa-solid fa-user" style="font-size: 1.3rem; width: 27px;"></i>
-                                        <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
-                                            {{ $laporanKegiatanJabatanStatusSelesai->rencana->user->userAparatur->nama }}
-                                        </p>
-                                    </div>
-                                    <div class="d-flex align-items-start item-attr">
-                                        <i class="fa-solid fa-person-running" style="font-size: 1.3rem; width: 27px;"></i>
-                                        <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
-                                            {{ $laporanKegiatanJabatanStatusSelesai->butirKegiatan->nama }}
-                                        </p>
-                                    </div>
-                                    <div class="d-flex align-items-start item-attr">
-                                        <i class="fa-solid fa-list-ul" style="font-size: 1.3rem; width: 27px;"></i>
-                                        <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
-                                            {{ $laporanKegiatanJabatanStatusSelesai->rencana->nama }}
-                                        </p>
-                                    </div>
-                                </div>
-                                <button class="btn btn-gray w-100 py-2 mt-3" data-bs-toggle="modal"
-                                    data-bs-target="#riwayatKegiatan{{ $laporanKegiatanJabatanStatusSelesai->id }}">Detail
-                                    Laporan</button>
-                            </div>
-                            @include('aparatur.laporan-kegiatan.jabatan.riwayat', [
-                                'laporanKegiatanJabatan' => $laporanKegiatanJabatanStatusSelesai,
-                            ])
-                        @empty
-                            <div class="d-flex justify-content-center mt-3">
-                                <p class="m-0" style="font-style: italic;">Tidak ada data untuk
-                                    ditampilkan
-                                </p>
-                            </div>
-                        @endforelse
-                    </div>
-                </div>
-                <div class="card col-sm-6 mx-3">
-                    <div class="card-header py-2 d-flex justify-content-between align-items-center"
-                        style="border-bottom: 1px solid rgba(0, 0, 0, 0.125);">
-                        <h4 class="m-0 text-black text-uppercase">Ditolak</h4>
-                        <p class="m-0" style="font-style: italic;">Total :
-                            {{ count($laporanKegiatanJabatanStatusTolaks) }}</p>
-                    </div>
-                    <div class="card-body mx-0 my-2 container-laporan">
-                        @forelse ($laporanKegiatanJabatanStatusTolaks as $laporanKegiatanJabatanStatusTolak)
-                            <div class="laporan-item pb-4">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <p class="m-0" style="font-weight: 600;">
-                                        {{ $laporanKegiatanJabatanStatusTolak->created_at->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanJabatanStatusTolak->created_at->translatedFormat('d M Y') }}
+                                <div class="d-flex align-items-start item-attr">
+                                    <i class="fa-solid fa-user" style="font-size: 1.3rem; width: 27px;"></i>
+                                    <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
+                                        {{ $laporanKegiatanJabatanStatusValidasi->rencana->user->userAparatur->nama }}
                                     </p>
-                                    <button class="btn btn-black btn-sm text-sm px-3">DITOLAK</button>
                                 </div>
-                                <div class="swiper mySwiper">
-                                    <div class="swiper-wrapper">
-                                        @foreach ($laporanKegiatanJabatanStatusTolak->dokumenKegiatanJabatans as $dokumenKegiatanJabatan)
-                                            <div class="swiper-slide">
-                                                <img src="{{ $dokumenKegiatanJabatan->link }}" alt="">
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                    <div class="swiper-pagination"></div>
+                                <div class="d-flex align-items-start item-attr">
+                                    <i class="fa-solid fa-person-running" style="font-size: 1.3rem; width: 27px;"></i>
+                                    <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
+                                        {{ $laporanKegiatanJabatanStatusValidasi->butirKegiatan->nama }}
+                                    </p>
                                 </div>
-                                <div class="d-flex flex-column mt-3">
-                                    <div class="d-flex align-items-start item-attr">
-                                        <i class="fa-solid fa-address-card" style="font-size: 1.3rem; width: 27px;"></i>
-                                        <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
-                                            {{ $laporanKegiatanJabatanStatusTolak->kode }}
-                                        </p>
-                                    </div>
-                                    <div class="d-flex align-items-start item-attr">
-                                        <i class="fa-solid fa-user" style="font-size: 1.3rem; width: 27px;"></i>
-                                        <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
-                                            {{ $laporanKegiatanJabatanStatusTolak->rencana->user->userAparatur->nama }}
-                                        </p>
-                                    </div>
-                                    <div class="d-flex align-items-start item-attr">
-                                        <i class="fa-solid fa-person-running" style="font-size: 1.3rem; width: 27px;"></i>
-                                        <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
-                                            {{ $laporanKegiatanJabatanStatusTolak->butirKegiatan->nama }}
-                                        </p>
-                                    </div>
-                                    <div class="d-flex align-items-start item-attr">
-                                        <i class="fa-solid fa-list-ul" style="font-size: 1.3rem; width: 27px;"></i>
-                                        <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
-                                            {{ $laporanKegiatanJabatanStatusTolak->rencana->nama }}
-                                        </p>
-                                    </div>
+                                <div class="d-flex align-items-start item-attr">
+                                    <i class="fa-solid fa-list-ul" style="font-size: 1.3rem; width: 27px;"></i>
+                                    <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
+                                        {{ $laporanKegiatanJabatanStatusValidasi->rencana->nama }}
+                                    </p>
                                 </div>
-                                <button class="btn btn-gray w-100 py-2 mt-3" data-bs-toggle="modal"
-                                    data-bs-target="#riwayatKegiatan{{ $laporanKegiatanJabatanStatusTolak->id }}">Detail
-                                    Laporan</button>
                             </div>
-                            @include('aparatur.laporan-kegiatan.jabatan.riwayat', [
-                                'laporanKegiatanJabatan' => $laporanKegiatanJabatanStatusTolak,
-                            ])
-                        @empty
-                            <div class="d-flex justify-content-center mt-3">
-                                <p class="m-0" style="font-style: italic;">Tidak ada data untuk
-                                    ditampilkan
-                                </p>
-                            </div>
-                        @endforelse
-                    </div>
+                            <button class="btn btn-gray w-100 py-2 mt-3" data-bs-toggle="modal"
+                                data-bs-target="#riwayatKegiatan{{ $laporanKegiatanJabatanStatusValidasi->id }}">Detail
+                                Laporan</button>
+                        </div>
+                        @include('aparatur.laporan-kegiatan.jabatan.riwayat', [
+                            'laporanKegiatanJabatan' => $laporanKegiatanJabatanStatusValidasi,
+                        ])
+                    @empty
+                        <div class="d-flex justify-content-center mt-3">
+                            <p class="m-0" style="font-style: italic;">Tidak ada data untuk
+                                ditampilkan
+                            </p>
+                        </div>
+                    @endforelse
                 </div>
-            
+            </div>
+            <div class="card col-sm-6 mx-3">
+                <div class="card-header py-2 d-flex justify-content-between align-items-center"
+                    style="border-bottom: 1px solid rgba(0, 0, 0, 0.125);">
+                    <h4 class="m-0 text-red text-uppercase">Revisi</h4>
+                    <p class="m-0" style="font-style: italic;">Total :
+                        {{ count($laporanKegiatanJabatanStatusRevisis) }}</p>
+                </div>
+                <div class="card-body mx-0 my-2 container-laporan">
+                    @forelse ($laporanKegiatanJabatanStatusRevisis as $laporanKegiatanJabatanStatusRevisi)
+                        <div class="laporan-item pb-4">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <p class="m-0" style="font-weight: 600;">
+                                    {{ $laporanKegiatanJabatanStatusRevisi->created_at->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanJabatanStatusRevisi->created_at->translatedFormat('d M Y') }}
+                                </p>
+                                <button class="btn btn-red btn-sm text-sm px-3">Revisi</button>
+                            </div>
+                            <div class="swiper mySwiper">
+                                <div class="swiper-wrapper">
+                                    @foreach ($laporanKegiatanJabatanStatusRevisi->dokumenKegiatanJabatans as $dokumenKegiatanJabatan)
+                                        <div class="swiper-slide">
+                                            <img src="{{ $dokumenKegiatanJabatan->link }}" alt="">
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <div class="swiper-pagination"></div>
+                            </div>
+                            <div class="d-flex flex-column mt-3">
+                                <div class="d-flex align-items-start item-attr">
+                                    <i class="fa-solid fa-address-card" style="font-size: 1.3rem; width: 27px;"></i>
+                                    <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
+                                        {{ $laporanKegiatanJabatanStatusRevisi->kode }}
+                                    </p>
+                                </div>
+                                <div class="d-flex align-items-start item-attr">
+                                    <i class="fa-solid fa-user" style="font-size: 1.3rem; width: 27px;"></i>
+                                    <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
+                                        {{ $laporanKegiatanJabatanStatusRevisi->rencana->user->userAparatur->nama }}
+                                    </p>
+                                </div>
+                                <div class="d-flex align-items-start item-attr">
+                                    <i class="fa-solid fa-person-running" style="font-size: 1.3rem; width: 27px;"></i>
+                                    <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
+                                        {{ $laporanKegiatanJabatanStatusRevisi->butirKegiatan->nama }}
+                                    </p>
+                                </div>
+                                <div class="d-flex align-items-start item-attr">
+                                    <i class="fa-solid fa-list-ul" style="font-size: 1.3rem; width: 27px;"></i>
+                                    <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
+                                        {{ $laporanKegiatanJabatanStatusRevisi->rencana->nama }}
+                                    </p>
+                                </div>
+                            </div>
+                            <button class="btn btn-gray w-100 py-2 mt-3 detail-revisi"
+                                data-laporan="{{ $laporanKegiatanJabatanStatusRevisi->id }}" data-bs-toggle="modal"
+                                data-bs-target="#revisiKegiatan{{ $laporanKegiatanJabatanStatusRevisi->id }}">Detail
+                                Laporan</button>
+                        </div>
+                        @include('aparatur.laporan-kegiatan.jabatan.revisi', [
+                            'laporanKegiatanJabatan' => $laporanKegiatanJabatanStatusRevisi,
+                        ])
+                    @empty
+                        <div class="d-flex justify-content-center mt-3">
+                            <p class="m-0" style="font-style: italic;">Tidak ada data untuk
+                                ditampilkan
+                            </p>
+                        </div>
+                    @endforelse
+                </div>
+            </div>
+            <div class="card col-sm-6 mx-3">
+                <div class="card-header py-2 d-flex justify-content-between align-items-center"
+                    style="border-bottom: 1px solid rgba(0, 0, 0, 0.125);">
+                    <h4 class="m-0 text-green text-uppercase">Selesai</h4>
+                    <p class="m-0" style="font-style: italic;">Total :
+                        {{ count($laporanKegiatanJabatanStatusSelesais) }}</p>
+                </div>
+                <div class="card-body mx-0 my-2 container-laporan">
+                    @forelse ($laporanKegiatanJabatanStatusSelesais as $laporanKegiatanJabatanStatusSelesai)
+                        <div class="laporan-item pb-4">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <p class="m-0" style="font-weight: 600;">
+                                    {{ $laporanKegiatanJabatanStatusSelesai->created_at->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanJabatanStatusSelesai->created_at->translatedFormat('d M Y') }}
+                                </p>
+                                <button class="btn btn-green btn-sm text-sm px-3">Selesai</button>
+                            </div>
+                            <div class="swiper mySwiper">
+                                <div class="swiper-wrapper">
+                                    @foreach ($laporanKegiatanJabatanStatusSelesai->dokumenKegiatanJabatans as $dokumenKegiatanJabatan)
+                                        <div class="swiper-slide">
+                                            <img src="{{ $dokumenKegiatanJabatan->link }}" alt="">
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <div class="swiper-pagination"></div>
+                            </div>
+                            <div class="d-flex flex-column mt-3">
+                                <div class="d-flex align-items-start item-attr">
+                                    <i class="fa-solid fa-address-card" style="font-size: 1.3rem; width: 27px;"></i>
+                                    <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
+                                        {{ $laporanKegiatanJabatanStatusSelesai->kode }}
+                                    </p>
+                                </div>
+                                <div class="d-flex align-items-start item-attr">
+                                    <i class="fa-solid fa-user" style="font-size: 1.3rem; width: 27px;"></i>
+                                    <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
+                                        {{ $laporanKegiatanJabatanStatusSelesai->rencana->user->userAparatur->nama }}
+                                    </p>
+                                </div>
+                                <div class="d-flex align-items-start item-attr">
+                                    <i class="fa-solid fa-person-running" style="font-size: 1.3rem; width: 27px;"></i>
+                                    <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
+                                        {{ $laporanKegiatanJabatanStatusSelesai->butirKegiatan->nama }}
+                                    </p>
+                                </div>
+                                <div class="d-flex align-items-start item-attr">
+                                    <i class="fa-solid fa-list-ul" style="font-size: 1.3rem; width: 27px;"></i>
+                                    <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
+                                        {{ $laporanKegiatanJabatanStatusSelesai->rencana->nama }}
+                                    </p>
+                                </div>
+                            </div>
+                            <button class="btn btn-gray w-100 py-2 mt-3" data-bs-toggle="modal"
+                                data-bs-target="#riwayatKegiatan{{ $laporanKegiatanJabatanStatusSelesai->id }}">Detail
+                                Laporan</button>
+                        </div>
+                        @include('aparatur.laporan-kegiatan.jabatan.riwayat', [
+                            'laporanKegiatanJabatan' => $laporanKegiatanJabatanStatusSelesai,
+                        ])
+                    @empty
+                        <div class="d-flex justify-content-center mt-3">
+                            <p class="m-0" style="font-style: italic;">Tidak ada data untuk
+                                ditampilkan
+                            </p>
+                        </div>
+                    @endforelse
+                </div>
+            </div>
+            <div class="card col-sm-6 mx-3">
+                <div class="card-header py-2 d-flex justify-content-between align-items-center"
+                    style="border-bottom: 1px solid rgba(0, 0, 0, 0.125);">
+                    <h4 class="m-0 text-black text-uppercase">Ditolak</h4>
+                    <p class="m-0" style="font-style: italic;">Total :
+                        {{ count($laporanKegiatanJabatanStatusTolaks) }}</p>
+                </div>
+                <div class="card-body mx-0 my-2 container-laporan">
+                    @forelse ($laporanKegiatanJabatanStatusTolaks as $laporanKegiatanJabatanStatusTolak)
+                        <div class="laporan-item pb-4">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <p class="m-0" style="font-weight: 600;">
+                                    {{ $laporanKegiatanJabatanStatusTolak->created_at->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanJabatanStatusTolak->created_at->translatedFormat('d M Y') }}
+                                </p>
+                                <button class="btn btn-black btn-sm text-sm px-3">DITOLAK</button>
+                            </div>
+                            <div class="swiper mySwiper">
+                                <div class="swiper-wrapper">
+                                    @foreach ($laporanKegiatanJabatanStatusTolak->dokumenKegiatanJabatans as $dokumenKegiatanJabatan)
+                                        <div class="swiper-slide">
+                                            <img src="{{ $dokumenKegiatanJabatan->link }}" alt="">
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <div class="swiper-pagination"></div>
+                            </div>
+                            <div class="d-flex flex-column mt-3">
+                                <div class="d-flex align-items-start item-attr">
+                                    <i class="fa-solid fa-address-card" style="font-size: 1.3rem; width: 27px;"></i>
+                                    <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
+                                        {{ $laporanKegiatanJabatanStatusTolak->kode }}
+                                    </p>
+                                </div>
+                                <div class="d-flex align-items-start item-attr">
+                                    <i class="fa-solid fa-user" style="font-size: 1.3rem; width: 27px;"></i>
+                                    <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
+                                        {{ $laporanKegiatanJabatanStatusTolak->rencana->user->userAparatur->nama }}
+                                    </p>
+                                </div>
+                                <div class="d-flex align-items-start item-attr">
+                                    <i class="fa-solid fa-person-running" style="font-size: 1.3rem; width: 27px;"></i>
+                                    <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
+                                        {{ $laporanKegiatanJabatanStatusTolak->butirKegiatan->nama }}
+                                    </p>
+                                </div>
+                                <div class="d-flex align-items-start item-attr">
+                                    <i class="fa-solid fa-list-ul" style="font-size: 1.3rem; width: 27px;"></i>
+                                    <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
+                                        {{ $laporanKegiatanJabatanStatusTolak->rencana->nama }}
+                                    </p>
+                                </div>
+                            </div>
+                            <button class="btn btn-gray w-100 py-2 mt-3" data-bs-toggle="modal"
+                                data-bs-target="#riwayatKegiatan{{ $laporanKegiatanJabatanStatusTolak->id }}">Detail
+                                Laporan</button>
+                        </div>
+                        @include('aparatur.laporan-kegiatan.jabatan.riwayat', [
+                            'laporanKegiatanJabatan' => $laporanKegiatanJabatanStatusTolak,
+                        ])
+                    @empty
+                        <div class="d-flex justify-content-center mt-3">
+                            <p class="m-0" style="font-style: italic;">Tidak ada data untuk
+                                ditampilkan
+                            </p>
+                        </div>
+                    @endforelse
+                </div>
+            </div>
+
         </div>
 
     </div>
@@ -372,6 +372,20 @@
             max-width: --px;
             width 100%;
             overflow: auto;
+        }
+
+        .container-kegiatan::-webkit-scrollbar {
+            height: .6rem;
+        }
+
+        .container-kegiatan::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+            border-radius: 10px !important;
+        }
+
+        .container-kegiatan::-webkit-scrollbar-thumb {
+            background-color: darkgrey;
+            border-radius: 10px !important;
         }
     </style>
 @endsection
