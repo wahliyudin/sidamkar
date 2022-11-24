@@ -167,17 +167,6 @@ class KegiatanProfesiController extends Controller
             'nama' => $name,
             'score' => $angka_kredit,
         ]);
-        // $rencanaSubUnsurs = RencanaSubUnsur::query()->with('rencanaButirKegiatans')->where(
-        //     'sub_unsur_id',
-        //     $subUnsur->id
-        // )->get();
-        // if ($rencanaSubUnsurs) {
-        //     foreach ($rencanaSubUnsurs as $rencanaSubUnsur) {
-        //         $rencanaSubUnsur->rencanaButirKegiatans()->create([
-        //             'butir_kegiatan_id' => $butirKegiatan->id
-        //         ]);
-        //     }
-        // }
         return $butirKegiatan;
     }
 
