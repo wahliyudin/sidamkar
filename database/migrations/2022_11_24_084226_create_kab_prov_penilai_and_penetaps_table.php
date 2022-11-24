@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('kab_prov_penilai_and_penetaps', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('penilai_ak_id');
-            $table->unsignedBigInteger('penetap_ak_id');
+            $table->unsignedBigInteger('penilai_ak_id')->nullable();
+            $table->unsignedBigInteger('penetap_ak_id')->nullable();
             $table->unsignedBigInteger('kab_kota_id')->nullable()->unique();
             $table->unsignedBigInteger('provinsi_id')->nullable()->unique();
             $table->timestamps();

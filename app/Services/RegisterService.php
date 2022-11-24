@@ -50,22 +50,8 @@ class RegisterService
             } elseif ($data['jenis_aparatur'] == 'struktural') {
                 return $this->storeStruktural($data);
             } elseif ($data['jenis_aparatur'] == 'fungsional_umum') {
-                if ($data['jenis_jabatan_umum'] == 'lainnya') {
-                    $role = Role::query()->find(str($data['jenis_jabatan_text'])->snake());
-                    if (!$role) {
-                        $role = Role::query()->create([
-                            'name' => str($data['jenis_jabatan_text'])->snake(),
-                            'display_name' => ucwords($data['jenis_jabatan_text']),
-                            'description' => ''
-                        ]);
-                    }
-                    $user = $this->storeAparatur($data);
-                    $user->attachRole($role);
-                } else {
-                    $user = $this->storeAparatur($data);
-                    $user->attachRole($data['jenis_jabatan_umum']);
-                }
-                return $user;
+                $data['jabatan'] = ucwords($data['jenis_jabatan_text']);
+                return $this->storeFungsionalUmum($data);
             }
         }
     }
@@ -80,6 +66,13 @@ class RegisterService
     {
         $user = $this->registerRepository->storeUser($data);
         $this->registerRepository->storeAparatur($user, $data);
+        return $user;
+    }
+
+    public function storeFungsionalUmum(array $data): User
+    {
+        $user = $this->registerRepository->storeUser($data);
+        $this->registerRepository->storeFungsionalUmum($user, $data);
         return $user;
     }
 
