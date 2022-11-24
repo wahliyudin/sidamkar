@@ -3,14 +3,14 @@
 @section('content')
     <section class="section">
         <div class="card py-2">
-            <div class="card-header">
+            <div class="card-header ">
                 <div class="row">
                     <div class="col-md-8 col-12">
                         <h5 style="color: #06152B; font-size: 'Roboto';">Data Admin Kabupaten Kota</h5>
                     </div>
                 </div>
             </div>
-            <div class="card-body">
+            <div class="card-body overflow-auto">
                 {{ $dataTable->table() }}
             </div>
         </div>

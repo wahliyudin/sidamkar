@@ -2,7 +2,8 @@
 
 @section('content')
     @if (!isset(Auth::user()->userPejabatStruktural?->nip))
-        <div class="alert alert-danger "><i class="fa-solid fa-circle-exclamation"></i> Harap Lengkapi Data
+        <div class="alert alert-warning style="color: white;""><i class="fa-solid fa-circle-exclamation"></i> Harap Lengkapi
+            Data
             Profile
         </div>
     @endif
@@ -80,7 +81,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-9 px-2">
+            <div class="col-md-9 px-2 col order-md-0 order-2">
                 <div class="card mb-3">
                     <div class="card-header">
                         <h4 class="card-title" style="color: #17181A; font-family: 'Roboto';">Butir Kegiatan</h4>
@@ -111,7 +112,7 @@
                                         <a href="" class="text-green">Aktif</a>
                                     </td>
                                     <td class="d-flex justify-content-center">
-                                        <a href="" class="btn btn-primary ">Details</a>
+                                        <a href="" class="btn btn-primary btn-details">Details</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -170,6 +171,14 @@
             .card {
                 padding: 0 !important;
             }
+        }
+
+        @media screen and (max-width:450px) {
+            .btn-details {
+                padding: 4px;
+                font-size: 15px
+            }
+
         }
     </style>
 @endsection

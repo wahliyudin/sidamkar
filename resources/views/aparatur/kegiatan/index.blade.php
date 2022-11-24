@@ -49,7 +49,8 @@
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                     Periode
                                 </p>
-                                <h2 style="font-family: 'Roboto'; font-size: 20px; color: #06152B;" class="target">Januari
+                                <h2 style="font-family: 'Roboto'; font-size: 14px; color: #06152B;"
+                                    class="target target-periode">Januari
                                     2022 - Juli 2022</h2>
                             </div>
                         </div>
@@ -60,15 +61,13 @@
         <div class="row">
             <div class="card">
                 <div class="card-header">
-                    <div class="row">
+                    <div class="row justify-content-between">
                         <div class="col-md-6">
                             <h3>Kegiatan Jabatan</h3>
+                            <button class="btn btn-green text-sm ps-3" data-bs-toggle="modal"
+                                data-bs-target="#tambahRencana"><i class="fa-solid fa-clipboard-list me-1"></i> Tambah
+                                Rencana</button>
                         </div>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between">
-                        <button class="btn btn-green text-sm ps-3" data-bs-toggle="modal" data-bs-target="#tambahRencana"><i
-                                class="fa-solid fa-clipboard-list me-1"></i> Tambah
-                            Rencana</button>
                         <div class="form-group col-md-4">
                             <label>Search</label>
                             <input type="text" placeholder="Search..." name="search" class="form-control">
@@ -204,6 +203,12 @@
                 justify-content: end;
                 margin-top: 1rem;
                 width: 100%;
+            }
+        }
+
+        @media screen and (max-width: 450px) {
+            .target-periode {
+                font-size: 14px !important;
             }
         }
     </style>
