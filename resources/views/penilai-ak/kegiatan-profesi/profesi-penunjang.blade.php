@@ -14,7 +14,7 @@
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                     Periode Aktif
                                 </p>
-                                <h2 style="font-family: 'Roboto';color: #06152B; font-size: 16px;" class="target">Januari
+                                <h2 style="font-family: 'Roboto';color: #06152B; font-size: 14px;" class="target">Januari
                                     2022 - Juli 2022
                                 </h2>
                             </div>
