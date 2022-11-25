@@ -7,6 +7,8 @@ use App\Http\Requests\Aparatur\LaporanKegiatan\StoreLaporanRequest;
 use App\Http\Requests\Aparatur\LaporanKegiatan\UpdateLaporanRequest;
 use App\Models\ButirKegiatan;
 use App\Models\LaporanKegiatanJabatan;
+use App\Models\RekapitulasiKegiatan;
+use App\Models\Unsur;
 use App\Models\User;
 use App\Repositories\PeriodeRepository;
 use App\Services\Aparatur\LaporanKegiatan\KegiatanJabatanService;
@@ -16,6 +18,9 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\ValidationException;
+use Barryvdh\Snappy\Facades\SnappyPdf as PDF;
 
 class KegiatanJabatanController extends Controller
 {
@@ -119,7 +124,7 @@ class KegiatanJabatanController extends Controller
      */
     public function storeLaporan(StoreLaporanRequest $request, ButirKegiatan $butirKegiatan): JsonResponse
     {
-        $this->kegiatanJabatanService->storeLaporan($request, $butirKegiatan);
+        $this->kegiatanJabatanService->storeLaporan($request, $this->authUser(), $butirKegiatan);
         return response()->json([
             'status' => 200,
             'message' => 'Berhasil dilaporkan'
@@ -179,88 +184,84 @@ class KegiatanJabatanController extends Controller
         $this->temporaryFileService->revert($request->getContent());
     }
 
-    // public function rekapitulasi()
-    // {
-    //     $periode = Periode::query()->where('is_active', true)->first();
-    //     $user = User::query()->with([
-    //         'mente.atasanLangsung.roles',
-    //         'mente.atasanLangsung.userPejabatStruktural.pangkatGolonganTmt', 'roles',
-    //         'userAparatur.pangkatGolonganTmt'
-    //     ])->find(auth()->user()->id);
-    //     if (!isset($user->userAparatur->pangkatGolonganTmt)) {
-    //         throw ValidationException::withMessages(["Maaf anda belum melengkapi data diri anda"]);
-    //     }
-    //     if (!isset($user->mente->atasanLangsung)) {
-    //         throw ValidationException::withMessages(["Maaf anda belum mempunyai atasan langsung"]);
-    //     }
-    //     if (!isset($user->mente->atasanLangsung->userPejabatStruktural->pangkatGolonganTmt)) {
-    //         throw ValidationException::withMessages(["Maaf atasan langsung anda belum melengkapi data dirinya"]);
-    //     }
-    //     $rencanas = User::query()
-    //         ->with([
-    //             'rencanas',
-    //             'rencanas.rencanaUnsurs.unsur',
-    //             'rencanas.rencanaUnsurs.rencanaSubUnsurs.subUnsur',
-    //             'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans.butirKegiatan',
-    //             'rencanas.rencanaUnsurs.rencanaSubUnsurs.rencanaButirKegiatans' => function ($query) use ($periode) {
-    //                 $query->withSum(['laporanKegiatanJabatans' => function ($query) use ($periode) {
-    //                     $query->where('status', 4)->whereBetween('current_date', [$periode->awal, $periode->akhir]);
-    //                 }], 'score')->withCount(['laporanKegiatanJabatans' => function ($query) use ($periode) {
-    //                     $query->where('status', 4)->whereBetween('current_date', [$periode->awal, $periode->akhir]);
-    //                 }]);
-    //             },
-    //         ])
-    //         ->find(auth()->user()->id)->rencanas;
-    //     $pdf = PDF::loadView('generate-pdf.surat-pernyataan', ['rencanas' => $rencanas, 'user' => $user]);
-    //     $file_name = uniqid();
-    //     Storage::put("rekapitulasi/$file_name.pdf", $pdf->output());
-    //     $url = asset("storage/rekapitulasi/$file_name.pdf");
-    //     $rekapitulasiKegiatan = RekapitulasiKegiatan::query()
-    //         ->where('fungsional_id', auth()->user()->id)
-    //         ->where('periode_id', $periode->id)->first();
-    //     if ($rekapitulasiKegiatan) {
-    //         deleteImage($rekapitulasiKegiatan->file);
+    public function rekapitulasi()
+    {
+        $periode = $this->periodeRepository->isActive();
+        $user = User::query()->with([
+            'mente.atasanLangsung.roles',
+            'mente.atasanLangsung.userPejabatStruktural.pangkatGolonganTmt', 'roles',
+            'userAparatur.pangkatGolonganTmt'
+        ])->find(auth()->user()->id);
+        if (!isset($user->userAparatur->pangkatGolonganTmt)) {
+            throw ValidationException::withMessages(["Maaf anda belum melengkapi data diri anda"]);
+        }
+        if (!isset($user->mente->atasanLangsung)) {
+            throw ValidationException::withMessages(["Maaf anda belum mempunyai atasan langsung"]);
+        }
+        if (!isset($user->mente->atasanLangsung->userPejabatStruktural->pangkatGolonganTmt)) {
+            throw ValidationException::withMessages(["Maaf atasan langsung anda belum melengkapi data dirinya"]);
+        }
+        $unsurs = Unsur::query()
+            ->kegiatanJabatan()
+            ->withWhereHas('subUnsurs', function($query){
+                $query->withWhereHas('butirKegiatans', function($query){
+                    $query->withSum('laporanKegiatanJabatans', 'score')
+                        ->withCount('laporanKegiatanJabatans')
+                        ->withWhereHas('laporanKegiatanJabatans', function($query){
+                        $query->where('user_id', $this->authUser()->id);
+                    });
+                });
+            })
+            ->get();
+        $pdf = PDF::loadView('generate-pdf.old', compact('unsurs', 'user'))->setPaper('A4');
+        $file_name = uniqid();
+        Storage::put("rekapitulasi/$file_name.pdf", $pdf->output());
+        $url = asset("storage/rekapitulasi/$file_name.pdf");
+        $rekapitulasiKegiatan = RekapitulasiKegiatan::query()
+            ->where('fungsional_id', $this->authUser()->id)
+            ->where('periode_id', $periode->id)->first();
+        if ($rekapitulasiKegiatan) {
+            deleteImage($rekapitulasiKegiatan->file);
+            $rekapitulasiKegiatan->update([
+                'file' => $url,
+                'file_name' => $file_name
+            ]);
+        } else {
+            $rekapitulasiKegiatan = RekapitulasiKegiatan::query()->create([
+                'fungsional_id' => $this->authUser()->id,
+                'file' => $url,
+                'file_name' => $file_name,
+                'periode_id' => $periode->id
+            ]);
+            $rekapitulasiKegiatan->historyRekapitulasiKegiatans()->create([
+                'struktural_id' => $user->mente->atasanLangsung->id,
+                'content' => 'Rekapitulasi diterima Atasan Langsung'
+            ]);
+        }
+        return response()->json([
+            'message' => 'Berhasil',
+            'data' => $url
+        ]);
+    }
 
-    //         $rekapitulasiKegiatan->update([
-    //             'file' => $url,
-    //             'file_name' => $file_name
-    //         ]);
-    //     } else {
-    //         $rekapitulasiKegiatan = RekapitulasiKegiatan::query()->create([
-    //             'fungsional_id' => auth()->user()->id,
-    //             'file' => $url,
-    //             'file_name' => $file_name,
-    //             'periode_id' => $periode->id
-    //         ]);
-    //         $rekapitulasiKegiatan->historyRekapitulasiKegiatans()->create([
-    //             'struktural_id' => $user->mente->atasanLangsung->id,
-    //             'content' => 'Rekapitulasi diterima Atasan Langsung'
-    //         ]);
-    //     }
-    //     return response()->json([
-    //         'message' => 'Berhasil',
-    //         'data' => $url
-    //     ]);
-    // }
-
-    // public function sendRekap()
-    // {
-    //     $periode = Periode::query()->where('is_active', true)->first();
-    //     $rekap = RekapitulasiKegiatan::query()
-    //         ->where('fungsional_id', auth()->user()->id)
-    //         ->where('periode_id', $periode->id)
-    //         ->first();
-    //     if (!$rekap) {
-    //         throw ValidationException::withMessages(['Data rekapitulasi tidak ditemukan']);
-    //     }
-    //     if ($rekap->is_send == true) {
-    //         throw ValidationException::withMessages(['Data rekapitulasi sudah dikirim']);
-    //     }
-    //     $rekap->update([
-    //         'is_send' => true
-    //     ]);
-    //     return response()->json([
-    //         'message' => 'Berhasil dikirim'
-    //     ]);
-    // }
+    public function sendRekap()
+    {
+        $periode = $this->periodeRepository->isActive();
+        $rekap = RekapitulasiKegiatan::query()
+            ->where('fungsional_id', auth()->user()->id)
+            ->where('periode_id', $periode->id)
+            ->first();
+        if (!$rekap) {
+            throw ValidationException::withMessages(['Data rekapitulasi tidak ditemukan']);
+        }
+        if ($rekap->is_send == true) {
+            throw ValidationException::withMessages(['Data rekapitulasi sudah dikirim']);
+        }
+        $rekap->update([
+            'is_send' => true
+        ]);
+        return response()->json([
+            'message' => 'Berhasil dikirim'
+        ]);
+    }
 }

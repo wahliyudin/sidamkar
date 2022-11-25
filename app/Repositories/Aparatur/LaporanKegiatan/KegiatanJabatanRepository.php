@@ -34,11 +34,12 @@ class KegiatanJabatanRepository
      * @param ButirKegiatan $butirKegiatan
      * @return LaporanKegiatanJabatan
      */
-    public function store(Request $request, Role $role, ButirKegiatan $butirKegiatan, $current_date): LaporanKegiatanJabatan
+    public function store(Request $request, Role $role, User $user, ButirKegiatan $butirKegiatan, $current_date): LaporanKegiatanJabatan
     {
         $data = [
             'kode' => $this->generateKodeButir($butirKegiatan, $this->laporanKegiatanJabatan),
             'rencana_id' => $request->rencana_id,
+            'user_id' => $user->id,
             'butir_kegiatan_id' => $butirKegiatan->id,
             'detail_kegiatan' => $request->detail_kegiatan,
             'score' => $this->getScore($this->getFirstRole()->id, $role->id, $butirKegiatan->score),

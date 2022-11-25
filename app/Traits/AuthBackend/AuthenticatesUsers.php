@@ -37,7 +37,7 @@ trait AuthenticatesUsers
         if (count($user?->roles) <= 0 && isset($user?->userPejabatStruktural)) {
             return redirect()->route('login')->with('warning', 'Anda belum diverifikasi oleh Admin');
         }
-        if (count($user?->roles)) {
+        if (count($user?->roles) <= 0) {
             return redirect()->route('login')->with('warning', 'Anda Tidak Dapat Mengakses Sistem');
         }
         if ($user) {

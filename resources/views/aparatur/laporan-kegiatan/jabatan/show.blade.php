@@ -290,9 +290,6 @@
     </div>
 
 
-
-
-
     <div class="modal fade" id="laporkan" tabindex="-1" role="dialog" data-bs-backdrop="static"
         aria-labelledby="laporkanTitle" aria-hidden="true">
         <div class="modal-dialog modal-md modal-dialog-centered modal-dialog-centered" role="document">

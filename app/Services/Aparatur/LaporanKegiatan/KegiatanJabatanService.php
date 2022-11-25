@@ -66,10 +66,10 @@ class KegiatanJabatanService
         return $this->rencanaRepository->getAllByUser($user);
     }
 
-    public function storeLaporan(Request $request, ButirKegiatan $butirKegiatan): LaporanKegiatanJabatan
+    public function storeLaporan(Request $request, User $user, ButirKegiatan $butirKegiatan): LaporanKegiatanJabatan
     {
         $role = $butirKegiatan->load('subUnsur.unsur.role')->subUnsur->unsur->role;
-        $laporanKegiatanJabatan = $this->kegiatanJabatanRepository->store($request, $role, $butirKegiatan, $request->current_date);
+        $laporanKegiatanJabatan = $this->kegiatanJabatanRepository->store($request, $role, $user, $butirKegiatan, $request->current_date);
         $historyKegiatanJabatan = $this->kegiatanJabatanRepository->storeHistoryKegiatanJabatan($laporanKegiatanJabatan, HistoryKegiatanJabatan::STATUS_LAPORKAN, HistoryKegiatanJabatan::ICON_KEYBOARD, $request->detail_kegiatan, 'Berhasil dilaporkan', $request->current_date);
         foreach ($request->doc_kegiatan_tmp as $doc_kegiatan_tmp) {
             $tmpFile = $this->temporaryFileRepository->getByFolder($doc_kegiatan_tmp);
