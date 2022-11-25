@@ -35,7 +35,7 @@ class StrukturalController extends Controller
         $requset->validate([
             'jabatans' => 'required'
         ]);
-        $this->strukturalService->verification($requset, $id);
+        $this->strukturalService->verificationStruktural($requset, $id);
         return response()->json([
             'success' => 200,
             'message' => "Akun Berhasil DIVERIFIKASI",

@@ -22,7 +22,7 @@ class VerificationUserService
         $this->userRepository = $userRepository;
     }
 
-    public function verification(Request $request, $id)
+    public function verificationStruktural(Request $request, $id)
     {
         $user = $this->userRepository->getUserById($id);
         $atasan = null;
@@ -75,6 +75,13 @@ class VerificationUserService
                 ]);
             }
         }
+        $user->notify(new UserVerified());
+    }
+
+    public function verification($id)
+    {
+        $user = User::query()->findOrFail($id);
+        $user->update(['status_akun' => 1]);
         $user->notify(new UserVerified());
     }
 
