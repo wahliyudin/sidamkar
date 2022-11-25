@@ -72,6 +72,7 @@ class KegiatanJabatanController extends Controller
     {
         $periode = $this->periodeRepository->isActive();
         $user = $this->authUser();
+        $judul = 'Laporan Kegiatan Jabatan';
         [
             $laporanKegiatanJabatanStatusValidasis,
             $laporanKegiatanJabatanStatusRevisis,
@@ -89,7 +90,8 @@ class KegiatanJabatanController extends Controller
             'user',
             'rencanas',
             'butirKegiatan',
-            'periode'
+            'periode',
+            'judul'
         ));
     }
 

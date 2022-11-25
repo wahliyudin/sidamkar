@@ -14,7 +14,7 @@
                 <div class="card">
                     <div class="card-header py-2 d-flex justify-content-between align-items-center"
                         style="border-bottom: 1px solid rgba(0, 0, 0, 0.125);">
-                        <h4 class="m-0 text-yellow text-uppercase">Validasi</h4>
+                        <h4 class="m-0  text-uppercase">Validasi</h4>
                         <p class="m-0" style="font-style: italic;">Total :
                             {{ count($laporanKegiatanJabatanStatusValidasis) }}</p>
                     </div>
@@ -82,7 +82,7 @@
                 <div class="card">
                     <div class="card-header py-2 d-flex justify-content-between align-items-center"
                         style="border-bottom: 1px solid rgba(0, 0, 0, 0.125);">
-                        <h4 class="m-0 text-red text-uppercase">Revisi</h4>
+                        <h4 class="m-0 text-uppercase">Revisi</h4>
                         <p class="m-0" style="font-style: italic;">Total :
                             {{ count($laporanKegiatanJabatanStatusRevisis) }}</p>
                     </div>
@@ -93,7 +93,7 @@
                                     <p class="m-0" style="font-weight: 600;">
                                         {{ $laporanKegiatanJabatanStatusRevisi->created_at->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanJabatanStatusRevisi->created_at->translatedFormat('d M Y') }}
                                     </p>
-                                    <button class="btn btn-red btn-sm text-sm px-3">Revisi</button>
+                                    <button class="btn btn-red-dark btn-sm text-sm px-3">Revisi</button>
                                 </div>
                                 <div class="swiper mySwiper">
                                     <div class="swiper-wrapper">
@@ -151,7 +151,7 @@
                 <div class="card">
                     <div class="card-header py-2 d-flex justify-content-between align-items-center"
                         style="border-bottom: 1px solid rgba(0, 0, 0, 0.125);">
-                        <h4 class="m-0 text-green text-uppercase">Selesai</h4>
+                        <h4 class="m-0 text-uppercase">Selesai</h4>
                         <p class="m-0" style="font-style: italic;">Total :
                             {{ count($laporanKegiatanJabatanStatusSelesais) }}</p>
                     </div>
@@ -219,7 +219,7 @@
                 <div class="card">
                     <div class="card-header py-2 d-flex justify-content-between align-items-center"
                         style="border-bottom: 1px solid rgba(0, 0, 0, 0.125);">
-                        <h4 class="m-0 text-black text-uppercase">Ditolak</h4>
+                        <h4 class="m-0 text-uppercase">Ditolak</h4>
                         <p class="m-0" style="font-style: italic;">Total :
                             {{ count($laporanKegiatanJabatanStatusTolaks) }}</p>
                     </div>

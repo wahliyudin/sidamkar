@@ -14,15 +14,16 @@ class PengajuanKegiatanController extends Controller
 {
     public function index(PengajuanKegiatanDataTable $dataTable)
     {
-        $judul = 'Pengajuan Kegiatan';
+        $judul = 'Verifikasi Kegiatan';
         return $dataTable->render('atasan-langsung.pengajuan-kegiatan.index', compact('judul'));
     }
 
     public function show($id)
-    {
+    {   
+        $judul = 'Verifikasi Kegiatan';
         $periode = Periode::query()->where('is_active', true)->first();
         $user = User::query()->findOrFail($id);
-        return view('atasan-langsung.pengajuan-kegiatan.show', compact('user', 'periode'));
+        return view('atasan-langsung.pengajuan-kegiatan.show', compact('user', 'periode', 'judul'));
     }
 
     public function loadData(Request $request, $id)
