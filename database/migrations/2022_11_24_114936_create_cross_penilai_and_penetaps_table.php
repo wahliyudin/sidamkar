@@ -13,18 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('kab_prov_penilai_and_penetaps', function (Blueprint $table) {
+        Schema::create('cross_penilai_and_penetaps', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('penilai_ak_id')->nullable();
-            $table->unsignedBigInteger('penetap_ak_id')->nullable();
             $table->unsignedBigInteger('kab_kota_id')->nullable()->unique();
             $table->unsignedBigInteger('provinsi_id')->nullable()->unique();
+            $table->unsignedBigInteger('kab_prov_penilai_and_penetap_id');
             $table->timestamps();
 
             $table->foreign('kab_kota_id')->on('kab_kotas')->references('id')->nullOnDelete();
             $table->foreign('provinsi_id')->on('provinsis')->references('id')->nullOnDelete();
-            $table->foreign('penilai_ak_id')->on('users')->references('id')->cascadeOnDelete();
-            $table->foreign('penetap_ak_id')->on('users')->references('id')->cascadeOnDelete();
+            // $table->foreign('kab_prov_penilai_penetap_id')->on('kab_prov_penilai_penetaps')->references('id')->cascadeOnDelete();
         });
     }
 
@@ -35,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kab_prov_penilai_and_penetaps');
+        Schema::dropIfExists('cross_penilai_and_penetaps');
     }
 };

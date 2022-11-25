@@ -325,3 +325,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('api/kab-kota/{provinsi_id}', [KabKotaController::class, 'byProvinsiId']);
 Route::post('filepond', [FilePondController::class, 'store'])->name('filepond.store');
 Route::delete('filepond', [FilePondController::class, 'destroy'])->name('filepond.destroy');
+
+//tess

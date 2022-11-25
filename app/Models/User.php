@@ -104,6 +104,16 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
+     * userFungsionalUmum
+     *
+     * @return HasOne
+     */
+    public function userFungsionalUmum(): HasOne
+    {
+        return $this->hasOne(UserFungsionalUmum::class);
+    }
+
+    /**
      * userPejabatStruktural
      *
      * @return HasOne

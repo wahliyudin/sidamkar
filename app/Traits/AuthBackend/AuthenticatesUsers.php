@@ -33,7 +33,10 @@ trait AuthenticatesUsers
     public function login(Request $request)
     {
         $this->validateLogin($request);
-        $user = User::query()->where('username', $request->username)->first();
+        $user = User::query()->with('roles')->where('username', $request->username)->first();
+        if (count($user->roles) <= 0) {
+            return redirect()->route('login')->with('warning', 'Anda Tidak Dapat Mengakses Sistem');
+        }
         if ($user) {
             if ($user->status_akun == 0) {
                 return redirect()->route('login')->with('warning', 'Anda belum diverifikasi oleh Admin');

@@ -32,16 +32,7 @@ class RegisterRequest extends FormRequest
             'no_hp' => ['required', 'numeric']
         ];
         if (request()->jenis_aparatur == 'fungsional_umum') {
-            $rules['jenis_jabatan_umum'] = 'required';
-            if (request()->jenis_jabatan_umum == 'lainnya') {
-                if (in_array(str(request()->jenis_jabatan_text)->snake(), array_merge(getAllRoleFungsional(), getAllRoleStruktural(), getAllRoleProvKabKota(), ['kemendagri']))) {
-                    throw ValidationException::withMessages(['jenis_jabatan_text' => 'Jenis Jabatan Baru Tidak Diizinkan']);
-                }
-                if (Role::query()->where('name', str(request()->jenis_jabatan_text)->snake())->first()) {
-                    throw ValidationException::withMessages(['jenis_jabatan_text' => 'Jenis Jabatan Baru Sudah Ada']);
-                }
-                $rules['jenis_jabatan_text'] = 'unique:roles,name|required|min:3';
-            }
+            $rules['jenis_jabatan_text'] = 'required|min:3';
         } elseif (request()->jenis_aparatur == 'struktural') {
             $rules['jenis_eselon'] = 'required';
         } else {
@@ -61,8 +52,8 @@ class RegisterRequest extends FormRequest
         $messages = [
             'jenis_jabatan.required' => 'Jenis Aparatur wajib diisi',
             'jenis_jabatan_umum.required' => 'Jenis Aparatur wajib diisi',
-            'jenis_jabatan_text.required' => 'Jenis Aparatur Baru wajib diisi',
-            'jenis_jabatan_text.min:3' => 'Jenis Aparatur Baru Minimal 3 Huruf',
+            'jenis_jabatan_text.required' => 'Jabatan wajib diisi',
+            'jenis_jabatan_text.min:3' => 'Jabatan Minimal 3 Huruf',
         ];
         return $messages;
     }

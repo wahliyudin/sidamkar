@@ -39,4 +39,14 @@ class KabKota extends Model
     {
         return $this->hasMany(KabProvPenilaiAndPenetap::class);
     }
+
+    public function kabProvPenilaiAndPenetap()
+    {
+        return $this->hasOne(KabProvPenilaiAndPenetap::class);
+    }
+
+    public function crossPenilaiAndPenetap()
+    {
+        return $this->hasOne(CrossPenilaiAndPenetap::class);
+    }
 }

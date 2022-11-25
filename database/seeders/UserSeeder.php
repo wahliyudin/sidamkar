@@ -256,193 +256,36 @@ class UserSeeder extends Seeder
             'kab_kota_id' => 1101,
         ]);
 
-        $atasanLangsung1 = User::query()->create([
-            'username' => 'Atasan Langsung1',
-            'email' => 'admi343cfgdsg4dn51@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 0
-        ])->attachRole('atasan_langsung');
-        $atasanLangsung1->userPejabatStruktural()->create([
-            'nama' =>  fake()->name(),
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 11,
-            'kab_kota_id' => 1101,
-        ]);
-
-        $atasanLangsung2 = User::query()->create([
-            'username' => 'Atasan Langsung2',
-            'email' => 'admsasdwsfdsgin51@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 1
-        ])->attachRole('atasan_langsung');
-        $atasanLangsung2->userPejabatStruktural()->create([
-            'nama' =>  fake()->name(),
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 11,
-            'kab_kota_id' => 1101,
-        ]);
-
-        $atasanLangsung3 = User::query()->create([
-            'username' => 'Atasan Langsung3',
-            'email' => 'admingfgfdgf5asas1@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 0
-        ])->attachRole('atasan_langsung');
-        $atasanLangsung3->userPejabatStruktural()->create([
-            'nama' =>  fake()->name(),
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 11,
-            'kab_kota_id' => 1101,
-        ]);
-
-        $atasanLangsung4 = User::query()->create([
-            'username' => 'Atasan Langsung4',
-            'email' => 'admdsdsdfdsfddin51@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 1
-        ])->attachRole('atasan_langsung');
-        $atasanLangsung4->userPejabatStruktural()->create([
-            'nama' =>  fake()->name(),
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 11,
-            'kab_kota_id' => 1106,
-        ]);
-
-        $atasanLangsung5 = User::query()->create([
-            'username' => 'Atasan Langsung5',
-            'email' => 'admdsdsdfdefdin51@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 1
-        ])->attachRole('atasan_langsung');
-        $atasanLangsung5->userPejabatStruktural()->create([
-            'nama' =>  fake()->name(),
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 11,
-            'kab_kota_id' => 1106,
-        ]);
-
-        $atasanLangsung6 = User::query()->create([
-            'username' => 'Atasan Langsung6',
-            'email' => 'admdsdsdinasasasdfafs51@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 1
-        ])->attachRole('atasan_langsung');
-        $atasanLangsung6->userPejabatStruktural()->create([
-            'nama' =>  fake()->name(),
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 32,
-            'kab_kota_id' => 3204,
-        ]);
-
-        $atasanLangsung7 = User::query()->create([
-            'username' => 'Atasan Langsung7',
-            'email' => 'admdsdsasadadadain51@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 0
-        ])->attachRole('atasan_langsung');
-        $atasanLangsung7->userPejabatStruktural()->create([
-            'nama' =>  fake()->name(),
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 32,
-            'kab_kota_id' => 3204,
-        ]);
-
-        $atasanLangsung8 = User::query()->create([
-            'username' => 'Atasan Langsung8',
-            'email' => 'admdsdsdhggadadain51@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 0
-        ])->attachRole('atasan_langsung');
-        $atasanLangsung8->userPejabatStruktural()->create([
-            'nama' =>  fake()->name(),
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 32,
-            'kab_kota_id' => 3276,
-        ]);
-
-        $atasanLangsung9 = User::query()->create([
-            'username' => 'Atasan Langsung9',
-            'email' => 'admdsdadsasaadasdin51@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 0
-        ])->attachRole('atasan_langsung');
-        $atasanLangsung9->userPejabatStruktural()->create([
-            'nama' =>  fake()->name(),
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 32,
-            'kab_kota_id' => 3276,
-        ]);
+        for ($i=0; $i < 5; $i++) {
+            $atasanLangsung1Name = fake()->name();
+            $atasanLangsung1 = User::query()->create([
+                'username' => $atasanLangsung1Name,
+                'email' => fake()->email(),
+                'password' => Hash::make('123456789'),
+                'email_verified_at' => now(),
+                'status_akun' => fake()->boolean()
+            ])->attachRole('atasan_langsung');
+            $atasanLangsung1->userPejabatStruktural()->create([
+                'nama' => $atasanLangsung1Name,
+                'nip' => '2020020088',
+                'nomor_karpeg' => '2020020088',
+                'pangkat_golongan_tmt_id' => 5,
+                'tempat_lahir' => fake()->city(),
+                'tanggal_lahir' => Carbon::now(),
+                'jenis_kelamin' => fake()->randomElement(['L', 'P']),
+                'pendidikan_terakhir' => 2,
+                'provinsi_id' => 11,
+                'kab_kota_id' => 1101,
+            ]);
+        }
 
         $penilaiAK = User::query()->create([
             'username' => 'Penilai AK',
             'email' => 'admin6@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'status_akun' => 1
-        ])->attachRole('penilai_ak');
+            'status_akun' => 0
+        ]);
         $penilaiAK->userPejabatStruktural()->create([
             'nama' => 'Penilai AK',
             'nip' => '2020020088',
@@ -463,8 +306,8 @@ class UserSeeder extends Seeder
                 'email' => fake()->email(),
                 'password' => Hash::make('123456789'),
                 'email_verified_at' => now(),
-                'status_akun' => fake()->boolean()
-            ])->attachRole('penilai_ak');
+                'status_akun' => 0
+            ]);
             $penilaiAK1->userPejabatStruktural()->create([
                 'nama' => $penilaiAK1Name,
                 'nip' => '2020020088',
@@ -485,8 +328,8 @@ class UserSeeder extends Seeder
             'email' => 'admin0099@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'status_akun' => 1
-        ])->attachRole('penetap_ak');
+            'status_akun' => 0
+        ]);
         $penetapAK->userPejabatStruktural()->create([
             'nama' => 'Penetap AK',
             'nip' => '2020020088',
@@ -507,8 +350,8 @@ class UserSeeder extends Seeder
                 'email' => fake()->email(),
                 'password' => Hash::make('123456789'),
                 'email_verified_at' => now(),
-                'status_akun' => fake()->boolean()
-            ])->attachRole('penetap_ak');
+                'status_akun' => 0
+            ]);
             $penetapAK->userPejabatStruktural()->create([
                 'nama' => $penetapAKName,
                 'nip' => '2020020088',

@@ -50,7 +50,7 @@
                                 @break
 
                                 @case(2)
-                                    <button class="btn btn-red px-3 btn-sm text-sm">Revisi</button>
+                                    <button class="btn btn-red-dark px-3 btn-sm text-sm">Revisi</button>
                                 @break
 
                                 @case(3)
@@ -181,7 +181,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="text-end mb-4 mt-0">
+                <div class="modal-footer text-end">
                     <button type="button" class="btn btn-danger btn-sm px-5" data-bs-dismiss="modal">Tutup</button>
                 </div>
             </div>
