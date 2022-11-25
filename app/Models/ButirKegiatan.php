@@ -25,4 +25,9 @@ class ButirKegiatan extends Model
     {
         return $this->hasMany(SubButirKegiatan::class);
     }
+
+    public function laporanKegiatanJabatans()
+    {
+        return $this->hasMany(LaporanKegiatanJabatan::class);
+    }
 }

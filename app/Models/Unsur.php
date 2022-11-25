@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,6 +16,11 @@ class Unsur extends Model
         'periode_id',
         'nama'
     ];
+
+    public function scopeKegiatanJabatan(Builder $query): Builder
+    {
+        return $query->where('jenis_kegiatan_id', 1);
+    }
 
     public function jenisKegiatan()
     {

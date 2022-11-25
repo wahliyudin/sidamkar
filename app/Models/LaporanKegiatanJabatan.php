@@ -20,6 +20,7 @@ class LaporanKegiatanJabatan extends Model
     protected $fillable = [
         'kode',
         'rencana_id',
+        'user_id',
         'butir_kegiatan_id',
         'detail_kegiatan',
         'current_date',
@@ -46,5 +47,10 @@ class LaporanKegiatanJabatan extends Model
     public function historyKegiatanJabatans(): HasMany
     {
         return $this->hasMany(HistoryKegiatanJabatan::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

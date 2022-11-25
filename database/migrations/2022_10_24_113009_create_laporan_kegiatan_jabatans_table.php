@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('kode');
             $table->unsignedBigInteger('rencana_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('butir_kegiatan_id');
             $table->text('detail_kegiatan');
             $table->dateTime('current_date');
@@ -27,6 +28,7 @@ return new class extends Migration
 
             // $table->foreign('rencana_butir_kegiatan_id')->on('rencana_butir_kegiatans')->references('id')->cascadeOnDelete();
             // $table->foreign('butir_kegiatan_id')->on('butir_kegiatans')->references('id')->cascadeOnDelete();
+            $table->foreign('user_id')->on('users')->references('id')->nullOnDelete();
         });
     }
 
