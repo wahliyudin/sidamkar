@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\KabKota;
+namespace App\Http\Controllers\Provinsi;
 
-use App\DataTables\KabKota\MenteDataTable;
+use App\DataTables\Provinsi\MenteDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePenilaiAndPenetapRequest;
 use App\Models\KabProvPenilaiAndPenetap;
@@ -29,12 +29,12 @@ class MenteController extends Controller
     {
         $judul = 'Data Mentee';
         $periode = $this->menteService->getPeriodeActive();
-        $fungsionals = $this->menteService->getFungsionalKabKota();
-        $atasanLangsungs = $this->menteService->getAtasanLangsungKabKota();
+        $fungsionals = $this->menteService->getFungsionalProvinsi();
+        $atasanLangsungs = $this->menteService->getAtasanLangsungProvinsi();
         $user = $this->authUser()->load(['userProvKabKota']);
-        $penilaiAndPenetaps = $this->menteService->getCurrentPenilaiAndPenetapByKabKota($user->userProvKabKota->kab_kota_id, ['damkar', 'analis']);
+        $penilaiAndPenetaps = $this->menteService->getCurrentPenilaiAndPenetapByProvinsi($user->userProvKabKota->provinsi_id, ['damkar', 'analis']);
         if (!isset($penilaiAndPenetaps)) {
-            $penilaiAndPenetaps = $this->menteService->getCurrentPenilaiAndPenetapByProvinsi($user->userProvKabKota->provinsi_id, ['damkar', 'analis']);
+            $penilaiAndPenetaps = $this->menteService->getCurrentPenilaiAndPenetapByKabKota($user->userProvKabKota->kab_kota_id, ['damkar', 'analis']);
         }
         $penilaiPenetapDamkar = null;
         $penilaiPenetapAnalis = null;
@@ -46,7 +46,7 @@ class MenteController extends Controller
             }
         });
         $provinsis = Provinsi::query()->get(['id', 'nama']);
-        return $dataTable->render('kabkota.mente.index', compact('fungsionals', 'atasanLangsungs', 'penilaiPenetapDamkar', 'penilaiPenetapAnalis', 'provinsis', 'periode', 'judul'));
+        return $dataTable->render('provinsi.mente.index', compact('fungsionals', 'atasanLangsungs', 'penilaiPenetapDamkar', 'penilaiPenetapAnalis', 'provinsis', 'periode', 'judul'));
     }
 
     public function tingkatKabKota($kab_kota_id, $tingkat_aparatur)
@@ -93,7 +93,7 @@ class MenteController extends Controller
     public function storePenilaiAndPenetap(StorePenilaiAndPenetapRequest $request)
     {
         $user = $this->authUser()->load('userProvKabKota')->userProvKabKota;
-        $this->menteService->storePenilaiAndPenetapKabKota($request->penilai, $request->penetap, $request->tingkat_aparatur, $request->kab_kota_id, $request->provinsi_id, $user->kab_kota_id, $user->provinsi_id);
+        $this->menteService->storePenilaiAndPenetapProvinsi($request->penilai, $request->penetap, $request->tingkat_aparatur, $request->kab_kota_id, $request->provinsi_id, $user->kab_kota_id, $user->provinsi_id);
         return response()->json([
             'status' => 200,
             'message' => 'Berhasil diterapkan'
@@ -122,7 +122,7 @@ class MenteController extends Controller
     public function show($id)
     {
         $mentes = User::query()->withWhereHas('mentes.fungsional.roles')->find($id)->mentes;
-        return view('kabkota.mente.show', compact('mentes'));
+        return view('provinsi.mente.show', compact('mentes'));
     }
 
     public function edit($id)

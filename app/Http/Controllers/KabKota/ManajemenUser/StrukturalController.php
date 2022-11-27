@@ -6,7 +6,7 @@ use App\DataTables\KabKota\ManajemenUser\StrukturalDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RejectRequest;
 use App\Http\Requests\VerifStrukturalRequest;
-use App\Services\StrukturalService;
+use App\Services\KabKota\StrukturalService;
 use Illuminate\Http\Request;
 
 class StrukturalController extends Controller

@@ -39,4 +39,30 @@ class CrossPenilaiAndPenetapRepository
             ->first();
         return isset($result) && $penetap;
     }
+
+    public function checkPenilaiByProvinsi($provinsi_id, $jenis_aparatur)
+    {
+        $penilai = false;
+        $result = $this->crossPenilaiAndPenetap->query()
+            ->whereHas('kabProvPenilaiAndPenetap', function(Builder $query) use (&$penilai) {
+                $penilai = isset($query->penilai_ak_id);
+            })
+            ->where('provinsi_id', $provinsi_id)
+            ->jenisAparaturIs($jenis_aparatur)
+            ->first();
+        return isset($result) || $penilai;
+    }
+
+    public function checkPenetapByProvinsi($provinsi_id, $jenis_aparatur)
+    {
+        $penetap = false;
+        $result = $this->crossPenilaiAndPenetap->query()
+            ->whereHas('kabProvPenilaiAndPenetap', function(Builder $query) use (&$penetap) {
+                $penetap = isset($query->penetap_ak_id);
+            })
+            ->where('provinsi_id', $provinsi_id)
+            ->jenisAparaturIs($jenis_aparatur)
+            ->first();
+        return isset($result) && $penetap;
+    }
 }

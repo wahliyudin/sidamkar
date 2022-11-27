@@ -11,7 +11,59 @@ $(document).ready(function () {
         event.preventDefault();
         $('.table.dataTable').css('width', scrollContainer.offsetWidth);
     });
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 
+    $(document).on('click', '.verifikasi', function (e) {
+        e.preventDefault();
+        var postData = new FormData($(this.parentElement.parentElement).find('.form-verifikasi')[0]);
+        span = $(this).find('span');
+        spin = $(this).find('.spin');
+        $(span).hide();
+        $(spin).show();
+        $.ajax({
+            type: 'POST',
+            url: url('/provinsi/manajemen-user/struktural/' + $(this).data('user') + '/verification'),
+            processData: false,
+            contentType: false,
+            data: postData,
+            success: function (response) {
+                $(span).show();
+                $(spin).hide();
+                swal("Selesai!", response.message, "success").then(() => {
+                    location.reload();
+                });
+            },
+            error: ajaxError
+        });
+    });
+
+    var ajaxError = function (jqXHR, xhr, textStatus, errorThrow, exception) {
+        if (jqXHR.status === 0) {
+            swal("Error!", 'Not connect.\n Verify Network.', "error");
+        } else if (jqXHR.status == 400) {
+            swal("Peringatan!", jqXHR['responseJSON'].message, "warning");
+        } else if (jqXHR.status == 404) {
+            swal('Error!', 'Requested page not found. [404]', "error");
+        } else if (jqXHR.status == 500) {
+            swal('Error!', 'Internal Server Error [500].' + jqXHR['responseJSON'].message, "error");
+        } else if (exception === 'parsererror') {
+            swal('Error!', 'Requested JSON parse failed.', "error");
+        } else if (exception === 'timeout') {
+            swal('Error!', 'Time out error.', "error");
+        } else if (exception === 'abort') {
+            swal('Error!', 'Ajax request aborted.', "error");
+        } else if (jqXHR.status == 422) {
+            swal('Warning!', JSON.parse(jqXHR.responseText).message, "warning");
+        } else {
+            swal('Error!', jqXHR.responseText, "error");
+        }
+        $('.verifikasi span').show();
+        $('.verifikasi .spin').hide();
+    };
 });
 function tolak(id) {
     swal({

@@ -40,4 +40,30 @@ class KabProvPenilaiAndPenetapRepository
         }
         return $isExist;
     }
+
+    public function provinsiJenisAparatur($provinsi_id, $jenis_aparatur)
+    {
+        return $this->kabProvPenilaiAndPenetap->query()
+            ->where('provinsi_id', $provinsi_id)
+            ->jenisAparaturIs($jenis_aparatur)
+            ->first();
+    }
+
+    public function checkPenilaiAngkaKreditByProvinsi($provinsi_id, $jenis_aparatur)
+    {
+        $isExist = isset($this->provinsiJenisAparatur($provinsi_id, $jenis_aparatur)?->penilai_ak_id);
+        if (!$isExist) {
+            $isExist = $this->crossPenilaiAndPenetapRepository->checkPenilaiByProvinsi($provinsi_id, $jenis_aparatur);
+        }
+        return $isExist;
+    }
+
+    public function checkPenetapAngkaKreditByProvinsi($provinsi_id, $jenis_aparatur)
+    {
+        $isExist = isset($this->provinsiJenisAparatur($provinsi_id, $jenis_aparatur)?->penetap_ak_id);
+        if (!$isExist) {
+            $isExist = $this->crossPenilaiAndPenetapRepository->checkPenetapByProvinsi($provinsi_id, $jenis_aparatur);
+        }
+        return $isExist;
+    }
 }

@@ -241,8 +241,8 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="sidebar-item">
-                        <a href="" class='sidebar-link'>
+                    <li class="sidebar-item {{ request()->is('provinsi/data-mente*') ? 'active' : '' }}">
+                        <a href="{{ route('provinsi.data-mente') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="fa-solid fa-clipboard-user"></i>
                             </div>

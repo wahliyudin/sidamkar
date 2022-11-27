@@ -1,14 +1,9 @@
 <?php
 
-namespace App\Services\KabKota;
+namespace App\Services;
 
 use App\Models\CrossPenilaiAndPenetap;
-use App\Models\KabKota;
 use App\Models\KabProvPenilaiAndPenetap;
-use App\Models\PenilaiAndPenetapAngkaKredit;
-use App\Models\Periode;
-use App\Models\Provinsi;
-use App\Models\User;
 use App\Repositories\MenteRepository;
 use App\Repositories\PeriodeRepository;
 use App\Repositories\UserRepository;
