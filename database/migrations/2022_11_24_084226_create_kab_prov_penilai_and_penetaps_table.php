@@ -14,12 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('kab_prov_penilai_and_penetaps', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('penilai_ak_id')->nullable();
-            $table->unsignedBigInteger('penetap_ak_id')->nullable();
+            $table->uuid('id')->primary();
+            $table->foreignUuid('penilai_ak_id')->nullable();
+            $table->foreignUuid('penetap_ak_id')->nullable();
             $table->enum('jenis_aparatur', ['damkar', 'analis']);
-            $table->unsignedBigInteger('kab_kota_id')->nullable();
-            $table->unsignedBigInteger('provinsi_id')->nullable();
+            $table->foreignUuid('kab_kota_id')->nullable();
+            $table->foreignUuid('provinsi_id')->nullable();
             $table->timestamps();
 
             $table->foreign('kab_kota_id')->on('kab_kotas')->references('id')->nullOnDelete();

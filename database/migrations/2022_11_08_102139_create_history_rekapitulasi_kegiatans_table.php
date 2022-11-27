@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('history_rekapitulasi_kegiatans', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('struktural_id');
-            $table->unsignedBigInteger('rekapitulasi_kegiatan_id');
+            $table->uuid('id')->primary();
+            $table->foreignUuid('struktural_id');
+            $table->foreignUuid('rekapitulasi_kegiatan_id');
             $table->string('content');
             $table->timestamps();
 

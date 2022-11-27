@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('rekapitulasi_kegiatans', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('fungsional_id');
+            $table->uuid('id')->primary();
+            $table->foreignUuid('fungsional_id');
             $table->unsignedBigInteger('periode_id');
             $table->boolean('is_send')->default(false);
             $table->string('file');

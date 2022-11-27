@@ -14,10 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('laporan_kegiatan_jabatans', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('kode');
             $table->unsignedBigInteger('rencana_id');
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreignUuid('user_id')->nullable();
             $table->unsignedBigInteger('butir_kegiatan_id');
             $table->text('detail_kegiatan');
             $table->dateTime('current_date');

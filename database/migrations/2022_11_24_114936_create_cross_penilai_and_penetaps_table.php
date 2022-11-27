@@ -14,11 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('cross_penilai_and_penetaps', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('kab_kota_id')->nullable();
-            $table->unsignedBigInteger('provinsi_id')->nullable();
+            $table->uuid('id')->primary();
+            $table->foreignUuid('kab_kota_id')->nullable();
+            $table->foreignUuid('provinsi_id')->nullable();
             $table->enum('jenis_aparatur', ['damkar', 'analis']);
-            $table->unsignedBigInteger('kab_prov_penilai_and_penetap_id');
+            $table->foreignUuid('kab_prov_penilai_and_penetap_id');
             $table->timestamps();
 
             $table->foreign('kab_kota_id')->on('kab_kotas')->references('id')->nullOnDelete();
