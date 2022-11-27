@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorePenilaiAndPenetapRequest extends FormRequest
+class VerifStrukturalRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,16 +23,8 @@ class StorePenilaiAndPenetapRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = [
-            'tingkat' => 'required',
-            'penilai' => 'required',
-            'penetap' => 'required',
-            'provinsi_id' => 'required',
-            'tingkat_aparatur' => 'required'
+        return [
+            'jabatans' => 'required|array'
         ];
-        if (request()->tingat == 'kab_kota') {
-            $rules['kab_kota_id'] = 'required';
-        }
-        return $rules;
     }
 }

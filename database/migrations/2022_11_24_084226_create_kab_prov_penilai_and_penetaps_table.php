@@ -17,8 +17,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('penilai_ak_id')->nullable();
             $table->unsignedBigInteger('penetap_ak_id')->nullable();
-            $table->unsignedBigInteger('kab_kota_id')->nullable()->unique();
-            $table->unsignedBigInteger('provinsi_id')->nullable()->unique();
+            $table->enum('jenis_aparatur', ['damkar', 'analis']);
+            $table->unsignedBigInteger('kab_kota_id')->nullable();
+            $table->unsignedBigInteger('provinsi_id')->nullable();
             $table->timestamps();
 
             $table->foreign('kab_kota_id')->on('kab_kotas')->references('id')->nullOnDelete();

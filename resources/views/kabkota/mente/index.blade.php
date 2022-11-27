@@ -7,36 +7,16 @@
                 <div class="card">
                     <div class="card-body py-3 px-3" style="height: 80px;">
                         <div class="d-flex align-items-center h-100">
-                            <div class="circle circle-green">
-                                <i class="fa-solid
-                                fa-stopwatch"></i>
-                            </div>
-                            <div class="d-flex flex-column ms-2">
-                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                    Periode
-                                </p>
-                                <h2 style="font-family: 'Roboto'; font-size: 16px; color: #06152B;" class="target">
-                                    {{ Carbon\Carbon::make($periode->awal)->translatedFormat('F Y') . ' - ' . Carbon\Carbon::make($periode->akhir)->translatedFormat('F Y') }}
-                                </h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 px-2">
-                <div class="card">
-                    <div class="card-body py-3 px-3" style="height: 80px;">
-                        <div class="d-flex align-items-center h-100">
                             <div class="circle circle-blue">
                                 <i class="fa-solid fa-user"></i>
                             </div>
                             <div class="d-flex flex-column ms-2" style="flex-grow: 1;">
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                    Penilai AK
+                                    Penilai Angka Kredit Damkar
                                 </p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h2 style="font-family: 'Roboto';color: #06152B; font-size: 16px" class="target">
-                                        {{ $penilaiAndPenetap?->penilaiAngkaKredit?->userPejabatStruktural?->nama ?? '-' }}
+                                        {{ $penilaiPenetapDamkar?->penilaiAngkaKredit?->userPejabatStruktural?->nama ?? '-' }}
                                     </h2>
                                     <button class="tambah-penilai" data-bs-toggle="modal" data-bs-target="#tambahPenilai">
                                         <i class="fa-solid fa-plus"></i>
@@ -56,11 +36,81 @@
                             </div>
                             <div class="d-flex flex-column ms-2" style="flex-grow: 1;">
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                    Penetap AK
+                                    Penetap Angka Kredit Damkar
                                 </p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h2 style="font-family: 'Roboto';color: #06152B; font-size: 16px" class="target">
-                                        {{ $penilaiAndPenetap?->penetapAngkaKredit?->userPejabatStruktural?->nama ?? '-' }}
+                                        {{ $penilaiPenetapDamkar?->penetapAngkaKredit?->userPejabatStruktural?->nama ?? '-' }}
+                                    </h2>
+                                    <button class="tambah-penetap" data-bs-toggle="modal" data-bs-target="#tambahPenetap">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 px-2">
+                <div class="card">
+                    <div class="card-body py-3 px-3" style="height: 80px;">
+                        <div class="d-flex align-items-center h-100">
+                            <div class="circle circle-green">
+                                <i class="fa-solid
+                                fa-stopwatch"></i>
+                            </div>
+                            <div class="d-flex flex-column ms-2">
+                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
+                                    Periode
+                                </p>
+                                <h2 style="font-family: 'Roboto'; font-size: 16px; color: #06152B;" class="target">
+                                    {{ Carbon\Carbon::make($periode->awal)->translatedFormat('F Y') . ' - ' . Carbon\Carbon::make($periode->akhir)->translatedFormat('F Y') }}
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 px-2">
+                <div class="card">
+                    <div class="card-body py-3 px-3" style="height: 80px;">
+                        <div class="d-flex align-items-center h-100">
+                            <div class="circle circle-blue">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div class="d-flex flex-column ms-2" style="flex-grow: 1;">
+                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
+                                    Penilai Angka Kredit Analis
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h2 style="font-family: 'Roboto';color: #06152B; font-size: 16px" class="target">
+                                        {{ $penilaiPenetapAnalis?->penilaiAngkaKredit?->userPejabatStruktural?->nama ?? '-' }}
+                                    </h2>
+                                    <button class="tambah-penilai" data-bs-toggle="modal" data-bs-target="#tambahPenilai">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 px-2">
+                <div class="card">
+                    <div class="card-body py-3 px-3" style="height: 80px;">
+                        <div class="d-flex align-items-center h-100">
+                            <div class="circle circle-purple">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div class="d-flex flex-column ms-2" style="flex-grow: 1;">
+                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
+                                    Penetap Angka Kredit Analis
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h2 style="font-family: 'Roboto';color: #06152B; font-size: 16px" class="target">
+                                        {{ $penilaiPenetapAnalis?->penetapAngkaKredit?->userPejabatStruktural?->nama ?? '-' }}
                                     </h2>
                                     <button class="tambah-penetap" data-bs-toggle="modal" data-bs-target="#tambahPenetap">
                                         <i class="fa-solid fa-plus"></i>
@@ -135,7 +185,8 @@
                                     </div>
                                     <div class="card-body">
                                         <table class="table table-striped w-100" id="table-fungsional">
-                                            <thead style="position: sticky; top: 0; color: black; background-color: white;">
+                                            <thead
+                                                style="position: sticky; top: 0; color: black; background-color: white;">
                                                 <tr>
                                                     <th>Pilih</th>
                                                     <th>Nama</th>
@@ -219,14 +270,14 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="tambahPenilaiTitle">
-                        Penilai AK
+                        Penilai & Penetap Angka Kredit
                     </h5>
                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <i data-feather="x"></i>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" enctype="multipart/form-data" class="container-unsur">
+                    <form method="post">
                         <div class="row justify-content-center">
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -304,7 +355,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" enctype="multipart/form-data" class="container-unsur">
+                    <form method="post">
                         <div class="row justify-content-center">
                             <div class="col-md-12">
                                 <div class="form-group">
