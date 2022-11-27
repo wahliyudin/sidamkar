@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('dokumen_kegiatan_jabatans', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->unsignedBigInteger('laporan_kegiatan_jabatan_id');
+            $table->foreignUuid('laporan_kegiatan_jabatan_id');
             $table->string('name');
             $table->string('link');
             $table->integer('size');

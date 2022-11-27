@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('role_informasis', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->id();
             $table->unsignedBigInteger('role_id');
             $table->foreignUuid('informasi_id');
             $table->timestamps();

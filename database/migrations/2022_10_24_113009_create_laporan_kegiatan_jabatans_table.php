@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('laporan_kegiatan_jabatans', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('kode');
-            $table->unsignedBigInteger('rencana_id');
+            $table->foreignUuid('rencana_id');
             $table->foreignUuid('user_id')->nullable();
             $table->unsignedBigInteger('butir_kegiatan_id');
             $table->text('detail_kegiatan');
