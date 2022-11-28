@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('informasis', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('judul');
             $table->string('deskripsi');
             $table->string('file')->nullable();

@@ -27,7 +27,8 @@ class StorePenilaiAndPenetapRequest extends FormRequest
             'tingkat' => 'required',
             'penilai' => 'required',
             'penetap' => 'required',
-            'provinsi_id' => 'required'
+            'provinsi_id' => 'required',
+            'tingkat_aparatur' => 'required'
         ];
         if (request()->tingat == 'kab_kota') {
             $rules['kab_kota_id'] = 'required';

@@ -79,7 +79,7 @@ class StrukturalDataTable extends DataTable
                 return $this->statusAkun($user->status_akun);
             })
             ->addColumn('action', function (User $user) {
-                return view('provinsi.manajemen-user.buttons-tolak-verif', compact('user'))->render();
+                return view('provinsi.manajemen-user.struktural.buttons-tolak-verif', compact('user'))->render();
             })
             ->rawColumns(['status', 'action'])
             ->setRowId('id');

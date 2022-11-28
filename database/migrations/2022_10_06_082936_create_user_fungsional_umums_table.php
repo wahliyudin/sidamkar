@@ -14,14 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('user_fungsional_umums', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->uuid('id')->primary();
+            $table->foreignUuid('user_id');
             $table->string('nama');
             $table->enum('tingkat_aparatur', ['provinsi', 'kab_kota']);
             $table->string('no_hp');
             $table->string('jabatan');
-            $table->unsignedBigInteger('provinsi_id');
-            $table->unsignedBigInteger('kab_kota_id')->nullable();
+            $table->foreignUuid('provinsi_id');
+            $table->foreignUuid('kab_kota_id')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->on('users')->references('id')->cascadeOnDelete();

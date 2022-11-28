@@ -27,11 +27,8 @@ use App\Http\Controllers\KabKota\ChatboxController;
 use App\Http\Controllers\KabKota\ManajemenUser\FungsionalController as KabKotaFungsionalController;
 use App\Http\Controllers\KabKota\ManajemenUser\FungsionalUmumController as KabKotaFungsionalUmumController;
 use App\Http\Controllers\KabKota\ManajemenUser\StrukturalController as KabKotaStrukturalController;
-use App\Http\Controllers\KabKota\MenteController;
+use App\Http\Controllers\KabKota\MenteController as KabKotaMenteController;
 use App\Http\Controllers\KabKota\OverviewController as KabKotaOverviewController;
-use App\Http\Controllers\KabKota\VerifikasiAparatur\PejabatFungsionalController;
-use App\Http\Controllers\KabKota\VerifikasiAparatur\PejabatStrukturalController;
-use App\Http\Controllers\KabKota\VerifikasiAparatur\VerifikasiAparaturController;
 use App\Http\Controllers\Kemendagri\CMS\KegiatanJabatanController;
 use App\Http\Controllers\Kemendagri\CMS\KegiatanProfesiController;
 use App\Http\Controllers\Kemendagri\DataProvKabKotaController;
@@ -60,6 +57,7 @@ use App\Http\Controllers\Provinsi\ManajemenUser\FungsionalController as Provinsi
 use App\Http\Controllers\Provinsi\ManajemenUser\FungsionalUmumController as ProvinsiFungsionalUmumController;
 use App\Http\Controllers\Provinsi\ManajemenUser\StrukturalController as ProvinsiStrukturalController;
 use App\Http\Controllers\Provinsi\ManajemenUser\UserKabKotaController;
+use App\Http\Controllers\Provinsi\MenteController as ProvinsiMenteController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -151,23 +149,14 @@ Route::middleware(['auth'])->group(function () {
         Route::post('kab-kota/manajemen-user/umum/{id}/verification', [KabKotaFungsionalUmumController::class, 'verification'])->name('kab-kota.manajemen-user.fungsional-umum.verification');
         Route::delete('kab-kota/manajemen-user/umum/{id}/destroy', [KabKotaFungsionalUmumController::class, 'destroy'])->name('kab-kota.manajemen-user.fungsional-umum.destroy');
 
-        Route::get('kab-kota/verifikasi-aparatur/pejabat-fungsional', [PejabatFungsionalController::class, 'index'])->name('kab-kota.verifikasi-aparatur.pejabat-fungsional.index');
-        Route::get('kab-kota/verifikasi-aparatur/pejabat-fungsional/{id}/show', [PejabatFungsionalController::class, 'show'])->name('kab-kota.verifikasi-aparatur.pejabat-fungsional.show');
-
-        Route::get('kab-kota/verifikasi-aparatur/pejabat-struktural', [PejabatStrukturalController::class, 'index'])->name('kab-kota.verifikasi-aparatur.pejabat-struktural.index');
-        Route::get('kab-kota/verifikasi-aparatur/pejabat-struktural/{id}/show', [PejabatStrukturalController::class, 'show'])->name('kab-kota.verifikasi-aparatur.pejabat-struktural.show');
-
-        Route::post('kab-kota/verifikasi-aparatur/{id}/verified', [VerifikasiAparaturController::class, 'verified'])->name('kab-kota.verifikasi-aparatur.verified');
-        Route::post('kab-kota/verifikasi-aparatur/{id}/reject', [VerifikasiAparaturController::class, 'reject'])->name('kab-kota.verifikasi-aparatur.reject');
-
-        Route::get('kab-kota/data-mente', [MenteController::class, 'index'])->name('kab-kota.data-mente');
-        Route::post('kab-kota/data-mente/store', [MenteController::class, 'store'])->name('kab-kota.data-mente.store');
-        Route::get('kab-kota/data-mente/{id}/show', [MenteController::class, 'show'])->name('kab-kota.data-mente.show');
-        Route::get('kab-kota/data-mente/{id}/edit', [MenteController::class, 'edit'])->name('kab-kota.data-mente.edit');
-        Route::put('kab-kota/data-mente/{id}/update', [MenteController::class, 'update'])->name('kab-kota.data-mente.update');
-        Route::post('kab-kota/data-mente/{kab_kota_id}/tingkat-kabkota', [MenteController::class, 'tingkatKabKota'])->name('kab-kota.data-mente.tingkat-kabkota');
-        Route::post('kab-kota/data-mente/{provinsi_id}/tingkat-provinsi', [MenteController::class, 'tingkatProvinsi'])->name('kab-kota.data-mente.tingkat-provinsi');
-        Route::post('kab-kota/data-mente/store-penilai-penetap', [MenteController::class, 'storePenilaiAndPenetap'])->name('kab-kota.data-mente.store-penilai-penetap');
+        Route::get('kab-kota/data-mente', [KabKotaMenteController::class, 'index'])->name('kab-kota.data-mente');
+        Route::post('kab-kota/data-mente/store', [KabKotaMenteController::class, 'store'])->name('kab-kota.data-mente.store');
+        Route::get('kab-kota/data-mente/{id}/show', [KabKotaMenteController::class, 'show'])->name('kab-kota.data-mente.show');
+        Route::get('kab-kota/data-mente/{id}/edit', [KabKotaMenteController::class, 'edit'])->name('kab-kota.data-mente.edit');
+        Route::put('kab-kota/data-mente/{id}/update', [KabKotaMenteController::class, 'update'])->name('kab-kota.data-mente.update');
+        Route::post('kab-kota/data-mente/{kab_kota_id}/{tingkat_aparatur}/tingkat-kabkota', [KabKotaMenteController::class, 'tingkatKabKota'])->name('kab-kota.data-mente.tingkat-kabkota');
+        Route::post('kab-kota/data-mente/{provinsi_id}/{tingkat_aparatur}/tingkat-provinsi', [KabKotaMenteController::class, 'tingkatProvinsi'])->name('kab-kota.data-mente.tingkat-provinsi');
+        Route::post('kab-kota/data-mente/store-penilai-penetap', [KabKotaMenteController::class, 'storePenilaiAndPenetap'])->name('kab-kota.data-mente.store-penilai-penetap');
 
         Route::get('kab-kota/chatbox', [ChatboxController::class, 'index'])->name('kab-kota.chatbox');
     });
@@ -249,6 +238,15 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('provinsi/manajemen-user/umum/{id}/destroy', [ProvinsiFungsionalUmumController::class, 'destroy'])->name('kab-kota.manajemen-user.fungsional-umum.destroy');
 
         Route::get('provinsi/manajemen-user/user-kab-kota', [UserKabKotaController::class, 'index'])->name('provinsi.manajemen-user.user-kab-kota');
+
+        Route::get('provinsi/data-mente', [ProvinsiMenteController::class, 'index'])->name('provinsi.data-mente');
+        Route::post('provinsi/data-mente/store', [ProvinsiMenteController::class, 'store'])->name('provinsi.data-mente.store');
+        Route::get('provinsi/data-mente/{id}/show', [ProvinsiMenteController::class, 'show'])->name('provinsi.data-mente.show');
+        Route::get('provinsi/data-mente/{id}/edit', [ProvinsiMenteController::class, 'edit'])->name('provinsi.data-mente.edit');
+        Route::put('provinsi/data-mente/{id}/update', [ProvinsiMenteController::class, 'update'])->name('provinsi.data-mente.update');
+        Route::post('provinsi/data-mente/{kab_kota_id}/{tingkat_aparatur}/tingkat-kabkota', [ProvinsiMenteController::class, 'tingkatKabKota'])->name('provinsi.data-mente.tingkat-kabkota');
+        Route::post('provinsi/data-mente/{provinsi_id}/{tingkat_aparatur}/tingkat-provinsi', [ProvinsiMenteController::class, 'tingkatProvinsi'])->name('provinsi.data-mente.tingkat-provinsi');
+        Route::post('provinsi/data-mente/store-penilai-penetap', [ProvinsiMenteController::class, 'storePenilaiAndPenetap'])->name('provinsi.data-mente.store-penilai-penetap');
     });
 
     Route::middleware(['role:kemendagri'])->group(function () {
