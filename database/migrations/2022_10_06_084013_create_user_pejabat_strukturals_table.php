@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('user_pejabat_strukturals', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id');
+            $table->uuid('id')->primary();
+            $table->foreignUuid('user_id');
             $table->string('nama');
             $table->unsignedBigInteger('pangkat_golongan_tmt_id')->nullable();
             $table->enum('nomenklatur_jabatan', ['1', '2', '3', '4'])->nullable();
@@ -32,8 +32,8 @@ return new class extends Migration
             $table->string('file_ttd')->nullable();
             $table->boolean('is_active')->default(true);
             $table->string('catatan')->nullable();
-            $table->unsignedBigInteger('kab_kota_id')->nullable();
-            $table->unsignedBigInteger('provinsi_id');
+            $table->foreignUuid('kab_kota_id')->nullable();
+            $table->foreignUuid('provinsi_id');
             $table->timestamps();
 
             $table->foreign('user_id')->on('users')->references('id')->cascadeOnDelete();

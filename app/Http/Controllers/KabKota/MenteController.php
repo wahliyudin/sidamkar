@@ -5,10 +5,11 @@ namespace App\Http\Controllers\KabKota;
 use App\DataTables\KabKota\MenteDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePenilaiAndPenetapRequest;
+use App\Models\KabProvPenilaiAndPenetap;
 use App\Models\Mente;
 use App\Models\Provinsi;
 use App\Models\User;
-use App\Services\KabKota\MenteService;
+use App\Services\MenteService;
 use App\Traits\AuthTrait;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
@@ -31,17 +32,26 @@ class MenteController extends Controller
         $fungsionals = $this->menteService->getFungsionalKabKota();
         $atasanLangsungs = $this->menteService->getAtasanLangsungKabKota();
         $user = $this->authUser()->load(['userProvKabKota']);
-        $penilaiAndPenetap = $this->menteService->getCurrentPenilaiAndPenetapByKabKota($user->userProvKabKota->kab_kota_id);
-        if (!isset($penilaiAndPenetap)) {
-            $penilaiAndPenetap = $this->menteService->getCurrentPenilaiAndPenetapByProvinsi($user->userProvKabKota->provinsi_id);
+        $penilaiAndPenetaps = $this->menteService->getCurrentPenilaiAndPenetapByKabKota($user->userProvKabKota->kab_kota_id, ['damkar', 'analis']);
+        if (!isset($penilaiAndPenetaps)) {
+            $penilaiAndPenetaps = $this->menteService->getCurrentPenilaiAndPenetapByProvinsi($user->userProvKabKota->provinsi_id, ['damkar', 'analis']);
         }
+        $penilaiPenetapDamkar = null;
+        $penilaiPenetapAnalis = null;
+        $penilaiAndPenetaps->map(function(KabProvPenilaiAndPenetap $kabProvPenilaiAndPenetap) use (&$penilaiPenetapDamkar, &$penilaiPenetapAnalis){
+            if ($kabProvPenilaiAndPenetap->jenis_aparatur == 'damkar') {
+                $penilaiPenetapDamkar = $kabProvPenilaiAndPenetap;
+            } else {
+                $penilaiPenetapAnalis = $kabProvPenilaiAndPenetap;
+            }
+        });
         $provinsis = Provinsi::query()->get(['id', 'nama']);
-        return $dataTable->render('kabkota.mente.index', compact('fungsionals', 'atasanLangsungs', 'penilaiAndPenetap', 'provinsis', 'periode', 'judul'));
+        return $dataTable->render('kabkota.mente.index', compact('fungsionals', 'atasanLangsungs', 'penilaiPenetapDamkar', 'penilaiPenetapAnalis', 'provinsis', 'periode', 'judul'));
     }
 
-    public function tingkatKabKota($kab_kota_id)
+    public function tingkatKabKota($kab_kota_id, $tingkat_aparatur)
     {
-        $penilaiAndPenetap = $this->menteService->getCurrentPenilaiAndPenetapByKabKota($kab_kota_id);
+        $penilaiAndPenetap = $this->menteService->getCurrentPenilaiAndPenetapByKabKota($kab_kota_id, $tingkat_aparatur);
         if (!isset($penilaiAndPenetap?->penilaiAngkaKredit)) {
             throw ValidationException::withMessages(['message' => 'Belum mempunyai tim penilai']);
         }
@@ -59,9 +69,9 @@ class MenteController extends Controller
         ]);
     }
 
-    public function tingkatProvinsi($provinsi_id)
+    public function tingkatProvinsi($provinsi_id, $tingkat_aparatur)
     {
-        $penilaiAndPenetap = $this->menteService->getCurrentPenilaiAndPenetapByProvinsi($provinsi_id);
+        $penilaiAndPenetap = $this->menteService->getCurrentPenilaiAndPenetapByProvinsi($provinsi_id, $tingkat_aparatur);
         if (!isset($penilaiAndPenetap?->penilaiAngkaKredit)) {
             throw ValidationException::withMessages(['message' => 'Belum mempunyai tim penilai']);
         }
@@ -83,7 +93,7 @@ class MenteController extends Controller
     public function storePenilaiAndPenetap(StorePenilaiAndPenetapRequest $request)
     {
         $user = $this->authUser()->load('userProvKabKota')->userProvKabKota;
-        $this->menteService->storePenilaiAndPenetapKabKota($request->penilai, $request->penetap, $request->kab_kota_id, $request->provinsi_id, $user->provinsi_id, $user->kab_kota_id);
+        $this->menteService->storePenilaiAndPenetapKabKota($request->penilai, $request->penetap, $request->tingkat_aparatur, $request->kab_kota_id, $request->provinsi_id, $user->kab_kota_id, $user->provinsi_id);
         return response()->json([
             'status' => 200,
             'message' => 'Berhasil diterapkan'

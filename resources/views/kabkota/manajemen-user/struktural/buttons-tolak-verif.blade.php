@@ -34,14 +34,24 @@
                                 Atasan Langsung
                             </label>
                             <label class="mt-1">
-                                <input type="checkbox" class="form-check-input" name="jabatans[]" value="penilai_ak"
-                                    id="">
-                                Penilai Angka Kredit
+                                <input type="checkbox" class="form-check-input" name="jabatans[]"
+                                    value="penilai_ak_damkar" id="">
+                                Penilai Angka Kredit Damkar
                             </label>
                             <label class="mt-1">
-                                <input type="checkbox" class="form-check-input" name="jabatans[]" value="penetap_ak"
-                                    id="">
-                                Penetap Angka Kredit
+                                <input type="checkbox" class="form-check-input" name="jabatans[]"
+                                    value="penilai_ak_analis" id="">
+                                Penilai Angka Kredit Analis
+                            </label>
+                            <label class="mt-1">
+                                <input type="checkbox" class="form-check-input" name="jabatans[]"
+                                    value="penetap_ak_damkar" id="">
+                                Penetap Angka Kredit Damkar
+                            </label>
+                            <label class="mt-1">
+                                <input type="checkbox" class="form-check-input" name="jabatans[]"
+                                    value="penetap_ak_analis" id="">
+                                Penetap Angka Kredit Analis
                             </label>
                         </form>
                         <div class="text-center mt-4">

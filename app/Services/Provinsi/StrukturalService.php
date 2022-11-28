@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Provinsi;
 
-use App\Services\VerificationUserService;
+use App\Services\Provinsi\VerificationUserService;
 
 class StrukturalService extends VerificationUserService
 {

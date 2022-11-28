@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CrossPenilaiAndPenetap;
+use App\Models\KabProvPenilaiAndPenetap;
+use App\Models\Provinsi;
 use App\Models\Unsur;
 use App\Models\User;
 use App\Traits\AuthTrait;
@@ -15,20 +18,8 @@ class CobaController extends Controller
 
     public function index()
     {
-        return Unsur::query()
-            ->kegiatanJabatan()
-            ->withWhereHas('subUnsurs', function($query){
-                $query->withWhereHas('butirKegiatans', function($query){
-                    $query->withSum('laporanKegiatanJabatans', 'score')
-                        ->withCount('laporanKegiatanJabatans')
-                        ->withWhereHas('laporanKegiatanJabatans', function($query){
-                        $query->where('user_id', $this->authUser()->id);
-                    });
-                });
-            })
-            ->get();
-        return PDF::loadView('generate-pdf.old')
-            ->setPaper('a4')
-            ->inline('123.pdf');
+        dd(Provinsi::query()->create([
+        'nama' => 'Coba Provinsi'
+        ]));
     }
 }

@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Provinsi\ManajemenUser;
 
 use App\DataTables\Provinsi\ManajemenUser\StrukturalDataTable;
 use App\Http\Controllers\Controller;
-use App\Services\StrukturalService;
+use App\Http\Requests\VerifStrukturalRequest;
+use App\Services\Provinsi\StrukturalService;
 use Illuminate\Http\Request;
 
 class StrukturalController extends Controller
@@ -31,9 +32,9 @@ class StrukturalController extends Controller
         ]);
     }
 
-    public function verification($id)
+    public function verification(VerifStrukturalRequest $requset, $id)
     {
-        $this->strukturalService->verification($id);
+        $this->strukturalService->verificationStruktural($requset, $id);
         return response()->json([
             'success' => 200,
             'message' => "Akun Berhasil DIVERIFIKASI",

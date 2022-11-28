@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('rencanas', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->uuid('id')->primary();
+            $table->foreignUuid('user_id');
             $table->text('nama')->fulltext();
             $table->timestamps();
 
