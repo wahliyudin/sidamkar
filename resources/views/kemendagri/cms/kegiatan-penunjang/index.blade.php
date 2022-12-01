@@ -101,7 +101,8 @@
     </div>
     <div class="modal fade" id="tambahDataModal" tabindex="-1" role="dialog" aria-labelledby="tambahDataModalTitle"
         aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-centered modal-dialog-scrollable"
+            role="document">
             <div class="modal-content relative">
                 <div class="bg-spin" style="display: none;">
                     <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
@@ -171,7 +172,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="importExcelModal" tabindex="-1" role="dialog" aria-labelledby="importExcelModalTitle"
+    {{-- <div class="modal fade" id="importExcelModal" tabindex="-1" role="dialog" aria-labelledby="importExcelModalTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
             <div class="modal-content">
@@ -203,7 +204,7 @@
                         </div>
                         <div class="form-group d-flex flex-column align-items-start">
                             <label>Download Template</label>
-                            <a href="{{ route('kemendagri.cms.kegiatan-profesi.download') }}"
+                            <a href="{{ route('kemendagri.cms.kegiatan-jabatan.download') }}"
                                 class="btn btn-blue btn-sm px-3"><i class="fa-solid fa-download me-2"></i>Download</a>
                         </div>
                     </form>
@@ -220,7 +221,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 @endsection
 
 @section('css')
@@ -246,5 +247,5 @@
     </script>
     <script src="{{ asset('assets/extensions/filepond/filepond.jquery.js') }}"></script>
     <script src="{{ asset('assets/js/extensions/sweetalert2.all.min.js') }}"></script>
-    <script src="{{ asset('assets/js/pages/cms/kegiatan-profesi/index.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/cms/kegiatan-penunjang/index.js') }}"></script>
 @endsection

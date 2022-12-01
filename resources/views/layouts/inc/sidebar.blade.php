@@ -48,6 +48,9 @@
                             <li class="submenu-item {{ request()->routeIs('laporan-kegiatan.profesi') ? 'active' : '' }}">
                                 <a href="{{ route('laporan-kegiatan.profesi') }}">Profesi</a>
                             </li>
+                            <li class="submenu-item {{ request()->routeIs('laporan-kegiatan.profesi') ? 'active' : '' }}">
+                                <a href="{{ route('laporan-kegiatan.profesi') }}">Penunjang</a>
+                            </li>
                         </ul>
                     </li>
                 @endrole
@@ -342,7 +345,7 @@
                             <span>CMS</span>
                         </a>
                         <ul
-                            class="submenu {{ request()->is('kemendagri/cms/kegiatan-profesi*') || request()->is('kemendagri/cms/informasi*') || request()->is('kemendagri/cms/kegiatan-jabatan*') || request()->is('kemendagri/cms/periode*') ? 'active' : '' }}">
+                            class="submenu {{ request()->is('kemendagri/cms/kegiatan-penunjang*') || request()->is('kemendagri/cms/kegiatan-profesi*') || request()->is('kemendagri/cms/informasi*') || request()->is('kemendagri/cms/kegiatan-jabatan*') || request()->is('kemendagri/cms/periode*') ? 'active' : '' }}">
                             <li class="submenu-item {{ request()->is('kemendagri/cms/periode*') ? 'active' : '' }}">
                                 <a href="{{ route('kemendagri.cms.periode.index') }}">Periode</a>
                             </li>
@@ -353,6 +356,11 @@
                             <li
                                 class="submenu-item {{ request()->is('kemendagri/cms/kegiatan-profesi*') ? 'active' : '' }}">
                                 <a href="{{ route('kemendagri.cms.kegiatan-profesi.index') }}">Kegiatan Profesi</a>
+                            </li>
+                            <li
+                                class="submenu-item {{ request()->is('kemendagri/cms/kegiatan-penunjang*') ? 'active' : '' }}">
+                                <a href="{{ route('kemendagri.cms.kegiatan-penunjang.index') }}">Kegiatan Penunjang
+                                </a>
                             </li>
                             <li class="submenu-item {{ request()->is('kemendagri/cms/informasi*') ? 'active' : '' }}">
                                 <a href="{{ route('kemendagri.cms.informasi.index') }}">Informasi</a>

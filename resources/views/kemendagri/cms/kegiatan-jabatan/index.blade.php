@@ -17,7 +17,7 @@
                 <div class="card-body px-0">
                     <div class="card-body accordion-container">
                         <div class="accordion" id="accordion-parent">
-                            @foreach ($kegiatan->unsurs as $unsur)
+                            @forelse ($kegiatan?->unsurs as $unsur)
                                 <div class="accordion-item">
                                     <div class="d-flex flex-column accordion-header py-3 px-2"
                                         id="unsur{{ $unsur->id }}">
@@ -90,7 +90,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
+                            @empty
+                                <h5 class="text-center" style="font-style: italic;">Data tidak tersedia</h5>
+                            @endforelse
                         </div>
                     </div>
                 </div>
