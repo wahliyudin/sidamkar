@@ -107,16 +107,24 @@ $(function () {
     $('.container-unsur').on('click', '.tambah-butir', function () {
         $(this.parentElement.parentElement.parentElement.querySelector('.container-butir')).append(`
             <div class="row align-items-center justify-content-end">
-                <div class="col-md-7 input-butir-kegiatan">
+                <div class="col-md-6 input-butir-kegiatan">
                     <div class="form-group">
                         <label>Butir Kegiatan</label>
                         <input class="form-control w-100" type="text" name="butir_kegiatan[]">
                     </div>
                 </div>
-                <div class="col-md-2 angka-kredit-butir">
-                    <div class="form-group">
-                        <label>Nilai Kredit</label>
-                        <input class="form-control w-100" step="0.01" type="number" name="angka_kredit[]">
+                <div class="col-md-3 d-flex gap-2 justify-content-between ps-0 pe-3 angka-kredit-butir">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Nilai Kredit</label>
+                            <input class="form-control w-100" step="0.01" min="0" type="number" name="angka_kredit[]">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Nilai Kredit(%)</label>
+                            <input class="form-control w-100" min="0" type="number" name="percent[]">
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-1 d-flex align-items-center">
@@ -140,7 +148,7 @@ $(function () {
             $($(this.parentElement.parentElement).find('.input-butir-kegiatan')).addClass(
                 'col-md-9');
             $($(this.parentElement.parentElement).find('.input-butir-kegiatan')).removeClass(
-                'col-md-7');
+                'col-md-6');
         }
         $($(this.parentElement.parentElement).find('.container-sub-butir'))
             .append(`
@@ -151,10 +159,18 @@ $(function () {
                         <input class="form-control w-100" type="text" name="sub_butir_kegiatan[]">
                     </div>
                 </div>
-                <div class="col-md-2">
-                    <div class="form-group">
-                        <label>Nilai Kredit</label>
-                        <input class="form-control w-100" step="0.01" type="number" name="angka_kredit[]">
+                <div class="col-md-3 d-flex gap-2 justify-content-between ps-0 pe-3">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Nilai Kredit</label>
+                            <input class="form-control w-100" step="0.01" min="0" type="number" name="angka_kredit[]">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Nilai Kredit(%)</label>
+                            <input class="form-control w-100" min="0" type="number" name="percent[]">
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-1 d-flex align-items-center">
@@ -171,14 +187,22 @@ $(function () {
                 if ($(this.parentElement.parentElement.parentElement).children().length == 1) {
                     el = $(this.parentElement.parentElement.parentElement.parentElement).find('.input-butir-kegiatan');
                     console.log(el);
-                    $(el).addClass('col-md-7');
+                    $(el).addClass('col-md-6');
                     $(el).removeClass('col-md-9');
-                    el.after(`<div class="col-md-2 angka-kredit-butir">
-                                <div class="form-group">
-                                    <label>Nilai Kredit</label>
-                                    <input class="form-control w-100" step="0.01" type="number" name="angka_kredit[]">
-                                </div>
-                            </div>`)
+                    el.after(`<div class="col-md-3 d-flex gap-2 justify-content-between ps-0 pe-3 angka-kredit-butir">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Nilai Kredit</label>
+                            <input class="form-control w-100" step="0.01" min="0" type="number" name="angka_kredit[]">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Nilai Kredit(%)</label>
+                            <input class="form-control w-100" min="0" type="number" name="percent[]">
+                        </div>
+                    </div>
+                </div>`)
                 }
             }
         });
@@ -377,11 +401,19 @@ $(function () {
     function mapGetButirKegiatan(subUnsur) {
         return $.map($(subUnsur.parentElement.parentElement.parentElement.parentElement).find('input[name="butir_kegiatan[]"]'), function (butirKegiatan, indexOrKey) {
             var_angka_kredit = $($(butirKegiatan.parentElement.parentElement.parentElement).find('.angka-kredit-butir input[name="angka_kredit[]"]')).val();
-            if (var_angka_kredit !== undefined) {
+            var_percent = $($(butirKegiatan.parentElement.parentElement.parentElement).find('.angka-kredit-butir input[name="percent[]"]')).val();
+            if (var_angka_kredit || var_percent) {
+                if (var_angka_kredit) {
+                    return {
+                        id: $(butirKegiatan).data('id'),
+                        name: $(butirKegiatan).val(),
+                        angka_kredit: var_angka_kredit
+                    }
+                }
                 return {
                     id: $(butirKegiatan).data('id'),
                     name: $(butirKegiatan).val(),
-                    angka_kredit: var_angka_kredit
+                    percent: var_percent
                 }
             } else {
                 return {
@@ -395,10 +427,19 @@ $(function () {
 
     function mapGetSubButirKegiatan(butirKegiatan) {
         return $.map($(butirKegiatan.parentElement.parentElement.parentElement).find('input[name="sub_butir_kegiatan[]"]'), function (subButirKegiatan, indexOrKey) {
+            var_angka_kredit = $($(subButirKegiatan.parentElement.parentElement.parentElement).find('input[name="angka_kredit[]"]')).val();
+            var_percent = $($(subButirKegiatan.parentElement.parentElement.parentElement).find('input[name="percent[]"]')).val();
+            if (var_angka_kredit) {
+                return {
+                    id: $(butirKegiatan).data('id'),
+                    name: $(butirKegiatan).val(),
+                    angka_kredit: var_angka_kredit
+                }
+            }
             return {
-                id: $(subButirKegiatan).data('id'),
-                name: $(subButirKegiatan).val(),
-                angka_kredit: $($(subButirKegiatan.parentElement.parentElement.parentElement).find('input[name="angka_kredit[]"]')).val()
+                id: $(butirKegiatan).data('id'),
+                name: $(butirKegiatan).val(),
+                percent: var_percent
             }
         })
     }
@@ -450,16 +491,24 @@ $(function () {
                 </div>`
             }
             return `<div class="row align-items-center justify-content-end">
-                <div class="col-md-7 input-butir-kegiatan">
+                <div class="col-md-6 input-butir-kegiatan">
                     <div class="form-group">
                         <label>Butir Kegiatan</label>
                         <input class="form-control w-100" type="text" data-id="${butirKegiatan.id}" value="${butirKegiatan.nama}" name="butir_kegiatan[]">
                     </div>
                 </div>
-                <div class="col-md-2 angka-kredit-butir">
-                    <div class="form-group">
-                        <label>Nilai Kredit</label>
-                        <input class="form-control w-100" step="0.01" value="${butirKegiatan.score}" type="number" name="angka_kredit[]">
+                <div class="col-md-3 d-flex gap-2 justify-content-between ps-0 pe-3 angka-kredit-butir">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Nilai Kredit</label>
+                            <input class="form-control w-100" step="0.01" min="0" value="${butirKegiatan.score}" type="number" name="angka_kredit[]">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Nilai Kredit(%)</label>
+                            <input class="form-control w-100" min="0" type="number" name="percent[]">
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-1 d-flex">
@@ -489,7 +538,7 @@ $(function () {
                 <div class="col-md-2">
                     <div class="form-group">
                         <label>Nilai Kredit</label>
-                        <input class="form-control w-100" step="0.01" value="${subButirKegiatan.score}" type="number" name="angka_kredit[]">
+                        <input class="form-control w-100" step="0.01" min="0" value="${subButirKegiatan.score}" type="number" name="angka_kredit[]">
                     </div>
                 </div>
                 <div class="col-md-1 d-flex align-items-center">
