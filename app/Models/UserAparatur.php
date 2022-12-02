@@ -28,6 +28,7 @@ class UserAparatur extends Model
         'jenjang',
         'nomor_karpeg',
         'alamat',
+        'mekanisme_pengangkatan_id'
     ];
 
     /**
@@ -53,5 +54,10 @@ class UserAparatur extends Model
     public function pangkatGolonganTmt(): BelongsTo
     {
         return $this->belongsTo(PangkatGolonganTmt::class);
+    }
+
+    public function mekanismePengangkatan()
+    {
+        return $this->belongsTo(MekanismePengangkatan::class);
     }
 }

@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Kemendagri\CMS;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\KegiatanProfesiRequest;
+use App\Http\Requests\KegiatanPenunjangRequest;
 use App\Imports\UnsurPenunjangImport;
-use App\Imports\UnsursImport;
 use App\Models\ButirKegiatan;
 use App\Models\JenisKegiatan;
 use App\Models\Periode;
@@ -16,7 +15,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
-class KegiatanProfesiController extends Controller
+class KegiatanPenunjangController extends Controller
 {
     public function index()
     {
@@ -30,11 +29,11 @@ class KegiatanProfesiController extends Controller
                 'unsurs.role',
                 'unsurs.subUnsurs.butirKegiatans.subButirKegiatans',
             ])
-            ->findOrFail(3);
-        return view('kemendagri.cms.kegiatan-profesi.index', compact('roles', 'kegiatan', 'periodes'));
+            ->findOrFail(2);
+        return view('kemendagri.cms.kegiatan-penunjang.index', compact('roles', 'kegiatan', 'periodes'));
     }
 
-    public function store(KegiatanProfesiRequest $request)
+    public function store(KegiatanPenunjangRequest $request)
     {
         try {
             $this->storeKegiatan($request);
@@ -60,7 +59,7 @@ class KegiatanProfesiController extends Controller
         ]);
     }
 
-    public function update(KegiatanProfesiRequest $request, $id)
+    public function update(KegiatanPenunjangRequest $request, $id)
     {
         $unsur = Unsur::query()->with('subUnsurs')->findOrFail($id);
         $unsur->update([
@@ -201,7 +200,7 @@ class KegiatanProfesiController extends Controller
     {
         $unsur = Unsur::query()->create([
             'role_id' => $request->role_id ?? null,
-            'jenis_kegiatan_id' => 3,
+            'jenis_kegiatan_id' => 2,
             'periode_id' => $request->periode_id,
             'nama' => $request->unsur
         ]);

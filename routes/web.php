@@ -42,6 +42,7 @@ use App\Http\Controllers\PenilaiAk\KegiatanSelesai\KegiatanSelesaiController;
 use App\Http\Controllers\PenilaiAk\ProfesiPenunjangController;
 use App\Http\Controllers\PenilaiAk\ProfesiPenunjangShowController;
 use App\Http\Controllers\Kemendagri\CMS\InformasiController;
+use App\Http\Controllers\Kemendagri\CMS\KegiatanPenunjangController;
 use App\Http\Controllers\PenetapAK\OverviewPenetapAk;
 use App\Http\Controllers\PenetapAK\DataPengajuan\KabKotaExternal;
 use App\Http\Controllers\PenetapAK\DataPengajuan\KabKotaInternal;
@@ -302,6 +303,17 @@ Route::middleware(['auth'])->group(function () {
             Route::get('kemendagri/cms/kegiatan-profesi/download', 'downloadTemplate')->name('kemendagri.cms.kegiatan-profesi.download');
             Route::delete('kemendagri/cms/kegiatan-profesi/{id}/destroy', 'destroy')->name('kemendagri.cms.kegiatan-profesi.destroy');
         });
+
+        Route::controller(KegiatanPenunjangController::class)->group(function () {
+            Route::get('kemendagri/cms/kegiatan-penunjang', 'index')->name('kemendagri.cms.kegiatan-penunjang.index');
+            Route::post('kemendagri/cms/kegiatan-penunjang', 'store')->name('kemendagri.cms.kegiatan-penunjang.store');
+            Route::get('kemendagri/cms/kegiatan-penunjang/{id}/edit', 'edit')->name('kemendagri.cms.kegiatan-penunjang.edit');
+            Route::put('kemendagri/cms/kegiatan-penunjang/{id}/update', 'update')->name('kemendagri.cms.kegiatan-penunjang.update');
+            Route::post('kemendagri/cms/kegiatan-penunjang/import', 'import')->name('kemendagri.cms.kegiatan-penunjang.import');
+            Route::get('kemendagri/cms/kegiatan-penunjang/download', 'downloadTemplate')->name('kemendagri.cms.kegiatan-penunjang.download');
+            Route::delete('kemendagri/cms/kegiatan-penunjang/{id}/destroy', 'destroy')->name('kemendagri.cms.kegiatan-penunjang.destroy');
+        });
+
         Route::controller(InformasiController::class)->group(function () {
             Route::get('kemendagri/cms/informasi', 'index')->name('kemendagri.cms.informasi.index');
             Route::post('kemendagri/cms/informasi', 'store')->name('kemendagri.cms.informasi.store');

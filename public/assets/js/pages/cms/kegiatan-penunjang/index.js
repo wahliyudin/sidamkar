@@ -57,7 +57,7 @@ $(function () {
         $('.btn-simpan-file-import .spin').show();
         $.ajax({
             type: 'POST',
-            url: url("/kemendagri/cms/kegiatan-profesi/import"),
+            url: url("/kemendagri/cms/kegiatan-penunjang/import"),
             processData: false,
             contentType: false,
             data: postData,
@@ -266,7 +266,7 @@ $(function () {
         $('.simpan-kegiatan .spin').show();
         $.ajax({
             type: "POST",
-            url: url("/kemendagri/cms/kegiatan-profesi"),
+            url: url("/kemendagri/cms/kegiatan-penunjang"),
             data: {
                 role_id: role_id,
                 periode_id: periode_id,
@@ -307,7 +307,7 @@ $(function () {
 
         $.ajax({
             type: "GET",
-            url: url('/kemendagri/cms/kegiatan-profesi/' + $(this).data('id') + '/edit'),
+            url: url('/kemendagri/cms/kegiatan-penunjang/' + $(this).data('id') + '/edit'),
             success: function (response) {
                 $('#tambahDataModal .bg-spin').hide();
                 if (response.data.role != null) {
@@ -341,7 +341,7 @@ $(function () {
         $('.simpan-kegiatan .spin').show();
         $.ajax({
             type: "PUT",
-            url: url('/kemendagri/cms/kegiatan-profesi/' + $(this).data('id') + '/update'),
+            url: url('/kemendagri/cms/kegiatan-penunjang/' + $(this).data('id') + '/update'),
             data: {
                 role_id: role_id,
                 periode_id: periode_id,
@@ -381,7 +381,7 @@ $(function () {
             preConfirm: async () => {
                 return await $.ajax({
                     type: 'DELETE',
-                    url: url("/kemendagri/cms/kegiatan-profesi/" + $(this).data('id') + '/destroy'),
+                    url: url("/kemendagri/cms/kegiatan-penunjang/" + $(this).data('id') + '/destroy'),
                     dataType: 'JSON'
                 });
             },

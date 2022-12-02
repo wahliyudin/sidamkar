@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class KegiatanProfesiRequest extends FormRequest
+class KegiatanPenunjangRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

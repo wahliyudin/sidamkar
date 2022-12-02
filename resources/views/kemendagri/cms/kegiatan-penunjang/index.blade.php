@@ -292,5 +292,5 @@
     </script>
     <script src="{{ asset('assets/extensions/filepond/filepond.jquery.js') }}"></script>
     <script src="{{ asset('assets/js/extensions/sweetalert2.all.min.js') }}"></script>
-    <script src="{{ asset('assets/js/pages/cms/kegiatan-profesi/index.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/cms/kegiatan-penunjang/index.js') }}"></script>
 @endsection

@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Auth;
 
 // use Requests Data Aparatur
 use App\Http\Requests\DataAparatur\StoreDataAparatur;
+use App\Models\MekanismePengangkatan;
 use App\Models\PangkatGolonganTmt;
 use Carbon\Carbon;
 
@@ -31,8 +32,9 @@ class DataSayaController extends Controller
         $provinsis = Provinsi::query()->get();
         $kab_kota = KabKota::query()->get();
         $pangkats = PangkatGolonganTmt::query()->get();
+        $mekanismePengangkatans = MekanismePengangkatan::query()->get();
         $judul = 'Data Saya';
-        return view('aparatur.data-saya.index', compact('user', 'provinsis', 'kab_kota', 'pangkats', 'judul'));
+        return view('aparatur.data-saya.index', compact('user', 'provinsis', 'kab_kota', 'pangkats', 'judul', 'mekanismePengangkatans'));
     }
 
     public function store(Request $request)
@@ -47,7 +49,8 @@ class DataSayaController extends Controller
             'tanggal_lahir' => 'required',
             'jenis_kelamin' => 'required',
             'kab_kota_id' => 'required',
-            'provinsi_id' => 'required'
+            'provinsi_id' => 'required',
+            'mekanisme_pengangkatan_id' => 'required',
         ]);
         $data = [
             'nama' => $request->nama,
@@ -60,6 +63,7 @@ class DataSayaController extends Controller
             'jenis_kelamin' => $request->jenis_kelamin,
             'kab_kota_id' => $request->kab_kota_id,
             'provinsi_id' => $request->provinsi_id,
+            'mekanisme_pengangkatan_id' => $request->mekanisme_pengangkatan_id,
         ];
         if ($request->hasFile('avatar')) {
             $data['foto_pegawai'] = $this->storeImage($request->file('avatar'), 'aparatur');
