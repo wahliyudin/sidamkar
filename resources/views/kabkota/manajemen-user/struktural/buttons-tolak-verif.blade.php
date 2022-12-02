@@ -1,15 +1,24 @@
 <div class="d-flex align-items-center">
     @if ($user->status_akun == 2)
-        <button class="btn btn-red text-sm px-3" style="width: 102px;" onclick="hapus({{ $user->id }})">Hapus</button>
+    <button class="btn btn-red-reverse me-2" onclick="hapus('{{ $user->id }}')">
+        <i class="fas fa-trash"></i>
+    </button>
     @elseif ($user->status_akun == 1)
-        <button class="btn btn-blue text-sm px-3" style="width: 102px;">Edit</button>
-        <button class="btn btn-red text-sm px-3 ms-2" style="width: 102px;"
-            onclick="hapus({{ $user->id }})">Hapus</button>
+    <button class="btn btn-blue-reverse me-2">
+        <i class="fas fa-edit"></i>
+    </button>
+        <button class="btn btn-red-reverse me-2" onclick="hapus('{{ $user->id }}')">
+            <i class="fas fa-trash"></i>
+        </button>
     @else
-        <button class="btn btn-black text-sm px-3" style="width: 102px;"
-            onclick="tolak({{ $user->id }})">Tolak</button>
-        <button class="btn btn-green text-sm px-3 ms-2" style="width: 102px;" data-bs-toggle="modal"
-            data-bs-target="#verifikasi{{ $user->id }}">Verfikasi</button>
+    <button class="btn btn-dark-reverse me-2"  onclick="tolak('{{ $user->id }}')">
+        <i class="fas fa-xmark"></i>
+    </button>
+    <button class="btn btn-green-reverse me-2" data-bs-toggle="modal"
+    data-bs-target="#verifikasi{{ $user->id }}">
+        <i class="fas fa-check"></i>
+    </button>
+
         <div class="modal fade" id="verifikasi{{ $user->id }}" tabindex="-1" role="dialog"
             aria-labelledby="verifikasiTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-centered" role="document">
