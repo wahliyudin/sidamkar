@@ -214,7 +214,9 @@ class KegiatanJabatanController extends Controller
                     });
                 });
             })
-            ->get();
+            ->get()->groupBy(function(Unsur $unsur){
+                dd($unsur);
+            });
         $pdf = PDF::loadView('generate-pdf.old', compact('unsurs', 'user'))->setPaper('A4');
         $file_name = uniqid();
         Storage::put("rekapitulasi/$file_name.pdf", $pdf->output());

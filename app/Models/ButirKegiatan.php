@@ -13,7 +13,8 @@ class ButirKegiatan extends Model
         'sub_unsur_id',
         'nama',
         'satuan_hasil',
-        'score'
+        'score',
+        'percent'
     ];
 
     public function subUnsur()
