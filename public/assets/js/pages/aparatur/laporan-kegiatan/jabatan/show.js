@@ -19,9 +19,6 @@ $(document).ready(function () {
     var pond = FilePond.create(document.querySelector('#laporkan input[name="doc_kegiatan_tmp[]"]'));
     pond.setOptions({
         acceptedFileTypes: [
-            'application/doc',
-            'application/pdf',
-            '.docx',
             'image/*'
         ],
         server: {
