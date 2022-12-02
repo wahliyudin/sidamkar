@@ -2,6 +2,8 @@
 
 namespace App\Services\Provinsi;
 
+use App\Jobs\SendRejectToUser;
+use App\Jobs\SendVerifToUser;
 use App\Models\KabProvPenilaiAndPenetap;
 use App\Models\User;
 use App\Notifications\UserReject;
@@ -73,21 +75,21 @@ class VerificationUserService
         array_push($roles, $atasan);
         $user->attachRoles(array_unique($roles));
         $this->userRepository->updateStatusAkunVerified($user);
-        // $user->notify(new UserVerified());
+        SendVerifToUser::dispatch($user);
     }
 
     public function verification($id)
     {
         $user = User::query()->findOrFail($id);
         $user->update(['status_akun' => 1]);
-        $user->notify(new UserVerified());
+        SendVerifToUser::dispatch($user);
     }
 
     public function reject(Request $request, $id)
     {
         $user = $this->userRepository->getUserById($id);
         $this->userRepository->updateStatusAkunReject($user);
-        $user->notify(new UserReject($request->catatan));
+        SendRejectToUser::dispatch($user, $request->catatan);
     }
 
     public function destructJabatans(array $jabatans)
