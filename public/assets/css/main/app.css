@@ -22960,6 +22960,17 @@ a {
     border: 1px solid #ff1e1e !important;
 }
 
+.btn-dark-reverse {
+    border: 1px solid #000;
+    color: #000 !important;
+}
+
+.btn-dark-reverse:hover {
+    background-color: #000;
+    color: white !important;
+    border: 1px solid #000 !important;
+}
+
 .text-status {
     text-transform: uppercase;
     font-weight: 700;
