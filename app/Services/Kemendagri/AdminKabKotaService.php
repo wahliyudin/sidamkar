@@ -2,6 +2,8 @@
 
 namespace App\Services\Kemendagri;
 
+use App\Jobs\SendRejectToUser;
+use App\Jobs\SendVerifToUser;
 use App\Notifications\UserReject;
 use App\Notifications\UserVerified;
 use App\Repositories\UserRepository;
@@ -22,7 +24,7 @@ class AdminKabKotaService
         $user = $this->userRepository->getUserById($id);
         if (!$user) throw ValidationException::withMessages(['message' => 'Data Tidak Ditemukan']);
         $this->userRepository->updateStatusAkunVerified($user);
-        // $user->notify(new UserVerified());
+        SendVerifToUser::dispatch($user);
     }
 
     public function reject(Request $request, $id)
@@ -30,7 +32,7 @@ class AdminKabKotaService
         $user = $this->userRepository->getUserById($id);
         if (!$user) throw ValidationException::withMessages(['message' => 'Data Tidak Ditemukan']);
         $this->userRepository->updateStatusAkunReject($user);
-        $user->notify(new UserReject($request->catatan));
+        SendRejectToUser::dispatch($user, $request->catatan);
     }
 
     public function destroy($id)
