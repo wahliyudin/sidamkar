@@ -214,11 +214,11 @@
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="bi bi-grid-fill"></i>
                             </div>
-                            <span>Overview</span>
+                            <span>Dashboard</span>
                         </a>
                     </li>
                     <li
-                        class="sidebar-item has-sub {{ request()->is('provinsi/aparatur/data-aparatur') || request()->is('provinsi/kabkota') ? 'active' : '' }}">
+                        class="sidebar-item has-sub {{ request()->is('provinsi/manajemen-user/user-kab-kota*') || request()->is('provinsi/manajemen-user/struktural*') || request()->is('provinsi/manajemen-user/fungsional*') || request()->is('provinsi/manajemen-user/umum*') ? 'active' : '' }}">
                         <a href="javascript(0)" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="fa-solid fa-copy"></i>
@@ -226,7 +226,7 @@
                             <span>Manajemen User</span>
                         </a>
                         <ul
-                            class="submenu {{ request()->is('provinsi/manajemen-user/user-kab-kota*') || request()->is('provinsi/manajemen-user/umum*') || request()->is('provinsi/manajemen-user/fungsional*') || request()->is('provinsi/manajemen-user/struktural*') || request()->is('provinsi/aparatur/data-aparatur') || request()->is('provinsi/kabkota') ? 'active' : '' }}">
+                        class="submenu {{ request()->is('provinsi/manajemen-user/user-kab-kota*') || request()->is('provinsi/manajemen-user/struktural*') || request()->is('provinsi/manajemen-user/fungsional*') || request()->is('provinsi/manajemen-user/umum*') ? 'active' : '' }}">
                             <li
                                 class="submenu-item {{ request()->is('provinsi/manajemen-user/user-kab-kota*') ? 'active' : '' }}">
                                 <a href="{{ route('provinsi.manajemen-user.user-kab-kota') }}">Kabupaten/Kota</a>
