@@ -12,6 +12,7 @@ use App\Models\Unsur;
 use App\Models\User;
 use App\Repositories\PeriodeRepository;
 use App\Services\Aparatur\LaporanKegiatan\KegiatanJabatanService;
+use App\Services\GeneratePdfService;
 use App\Services\TemporaryFileService;
 use App\Traits\AuthTrait;
 use Illuminate\Contracts\View\Factory;
@@ -29,6 +30,7 @@ class KegiatanJabatanController extends Controller
     private PeriodeRepository $periodeRepository;
     private KegiatanJabatanService $kegiatanJabatanService;
     private TemporaryFileService $temporaryFileService;
+    private GeneratePdfService $generatePdfService;
 
     /**
      * __construct
@@ -39,11 +41,12 @@ class KegiatanJabatanController extends Controller
      * @param TemporaryFileService $temporaryFileService
      * @return void
      */
-    public function __construct(PeriodeRepository $periodeRepository, KegiatanJabatanService $kegiatanJabatanService, TemporaryFileService $temporaryFileService)
+    public function __construct(PeriodeRepository $periodeRepository, KegiatanJabatanService $kegiatanJabatanService, TemporaryFileService $temporaryFileService, GeneratePdfService $generatePdfService)
     {
         $this->periodeRepository = $periodeRepository;
         $this->kegiatanJabatanService = $kegiatanJabatanService;
         $this->temporaryFileService = $temporaryFileService;
+        $this->generatePdfService = $generatePdfService;
     }
 
     /**
@@ -188,63 +191,10 @@ class KegiatanJabatanController extends Controller
 
     public function rekapitulasi()
     {
-        $periode = $this->periodeRepository->isActive();
-        $user = User::query()->with([
-            'mente.atasanLangsung.roles',
-            'mente.atasanLangsung.userPejabatStruktural.pangkatGolonganTmt', 'roles',
-            'userAparatur.pangkatGolonganTmt'
-        ])->find(auth()->user()->id);
-        if (!isset($user->userAparatur->pangkatGolonganTmt)) {
-            throw ValidationException::withMessages(["Maaf anda belum melengkapi data diri anda"]);
-        }
-        if (!isset($user->mente->atasanLangsung)) {
-            throw ValidationException::withMessages(["Maaf anda belum mempunyai atasan langsung"]);
-        }
-        if (!isset($user->mente->atasanLangsung->userPejabatStruktural->pangkatGolonganTmt)) {
-            throw ValidationException::withMessages(["Maaf atasan langsung anda belum melengkapi data dirinya"]);
-        }
-        $unsurs = Unsur::query()
-            ->kegiatanJabatan()
-            ->withWhereHas('subUnsurs', function($query){
-                $query->withWhereHas('butirKegiatans', function($query){
-                    $query->withSum('laporanKegiatanJabatans', 'score')
-                        ->withCount('laporanKegiatanJabatans')
-                        ->withWhereHas('laporanKegiatanJabatans', function($query){
-                        $query->where('user_id', $this->authUser()->id);
-                    });
-                });
-            })
-            ->get()->groupBy(function(Unsur $unsur){
-                dd($unsur);
-            });
-        $pdf = PDF::loadView('generate-pdf.old', compact('unsurs', 'user'))->setPaper('A4');
-        $file_name = uniqid();
-        Storage::put("rekapitulasi/$file_name.pdf", $pdf->output());
-        $url = asset("storage/rekapitulasi/$file_name.pdf");
-        $rekapitulasiKegiatan = RekapitulasiKegiatan::query()
-            ->where('fungsional_id', $this->authUser()->id)
-            ->where('periode_id', $periode->id)->first();
-        if ($rekapitulasiKegiatan) {
-            deleteImage($rekapitulasiKegiatan->file);
-            $rekapitulasiKegiatan->update([
-                'file' => $url,
-                'file_name' => $file_name
-            ]);
-        } else {
-            $rekapitulasiKegiatan = RekapitulasiKegiatan::query()->create([
-                'fungsional_id' => $this->authUser()->id,
-                'file' => $url,
-                'file_name' => $file_name,
-                'periode_id' => $periode->id
-            ]);
-            $rekapitulasiKegiatan->historyRekapitulasiKegiatans()->create([
-                'struktural_id' => $user->mente->atasanLangsung->id,
-                'content' => 'Rekapitulasi diterima Atasan Langsung'
-            ]);
-        }
+        $rekapitulasiKegiatan = $this->generatePdfService->generateRekapitulasi($this->authUser(), 'Rekapitulasi diterima Atasan Langsung');
         return response()->json([
             'message' => 'Berhasil',
-            'data' => $url
+            'data' => $rekapitulasiKegiatan?->file
         ]);
     }
 

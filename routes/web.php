@@ -180,6 +180,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('atasan-langsung/pengajuan-kegiatan/{id}/{current_date}/verifikasi', [PengajuanKegiatanController::class, 'verifikasi'])->name('atasan-langsung.pengajuan-kegiatan.verifikasi');
         Route::get('atasan-langsung/kegiatan-selesai', [AtasanLangsungKegiatanSelesaiController::class, 'index'])->name('atasan-langsung.kegiatan-selesai');
         Route::get('atasan-langsung/kegiatan-selesai/{id}/show', [AtasanLangsungKegiatanSelesaiController::class, 'show'])->name('atasan-langsung.kegiatan-selesai.show');
+        Route::post('atasan-langsung/kegiatan-selesai/{id}/ttd', [AtasanLangsungKegiatanSelesaiController::class, 'ttd'])->name('atasan-langsung.kegiatan-selesai.ttd');
 
         Route::get('atasan-langsung/verifikasi-kegiatan', [AtasanLangsungVerifikasiKegiatanController::class, 'index'])->name('atasan-langsung.verifikasi-kegiatan');
         Route::get('atasan-langsung/verifikasi-kegiatan/{id}/kegiatan-jabatan', [AtasanLangsungVerifikasiKegiatanController::class, 'kegiatanJabatan'])->name('atasan-langsung.verifikasi-kegiatan.kegiatan-jabatan');

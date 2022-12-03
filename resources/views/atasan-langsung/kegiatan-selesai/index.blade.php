@@ -138,64 +138,28 @@
                                         <td style="text-align: center;">
                                             {{ $fungsional->userAparatur->pangkatGolonganTmt?->nama }}
                                         </td>
-                                        <td style="text-align: center;"><i class="fa-solid fa-file-lines "></i></td>
+                                        <td style="text-align: center;">
+                                            <div data-bs-toggle="modal" data-bs-target="#filerekap{{ $fungsional->id }}"
+                                                style="cursor: pointer; display: flex; align-items: center;">
+                                                <img src="{{ asset('assets/images/template/lihat-doc.png') }}"
+                                                    style="width: 26px;" alt="">
+                                                <span style="color: #0090FF; font-weight: 600;">Lihat</span>
+                                                @include('atasan-langsung.kegiatan-selesai.document',
+                                                    compact('fungsional'))
+                                            </div>
+                                        </td>
                                         <td
                                             style="color: green !important; text-align: center; font-weight: 700 !important;">
                                             {{ $fungsional->laporan_kegiatan_jabatans_sum_score }}
                                         </td>
                                         <td>
-                                            <button class="btn btn-primary btn-status px-3 text-sm">Kirim</button>
+                                            <a href="{{ route('atasan-langsung.kegiatan-selesai.show', $fungsional->id) }}"
+                                                class="btn btn-primary btn-status px-3 text-sm">Detail</a>
                                         </td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="modal fade" id="tentukan" tabindex="-1" role="dialog" aria-labelledby="tindakLanjutTitle"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5>Tentukan Penetap & Penilai</h5>
-                </div>
-                <div class="modal-body">
-                    <div class="d-flex flex-column">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="">Pilih Atasan Langsung</label>
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>Open this select menu</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                    </select>
-                                </div>
-
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="">Pilih Penetap AK</label>
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>Open this select menu</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="text-center mt-4">
-                            <button class="btn btn-danger px-5" data-bs-dismiss="modal">Batal</button>
-                            <a class="btn btn-blue px-5">Kirim</a>
-                        </div>
                     </div>
                 </div>
             </div>

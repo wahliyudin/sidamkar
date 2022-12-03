@@ -113,6 +113,9 @@ class VerificationUserService
                 array_push($results, 'penetap_ak');
                 array_push($jenis_aparaturs, 'analis');
             }
+            if (str($jabatan)->contains('atasan_langsung')) {
+                array_push($results, 'atasan_langsung');
+            }
         }
         return [
             $results,

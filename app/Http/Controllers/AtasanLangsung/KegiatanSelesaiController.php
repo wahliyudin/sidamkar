@@ -5,8 +5,10 @@ namespace App\Http\Controllers\AtasanLangsung;
 use App\Http\Controllers\Controller;
 use App\Models\KabProvPenilaiAndPenetap;
 use App\Models\LaporanKegiatanJabatan;
+use App\Models\RekapitulasiKegiatan;
 use App\Models\User;
 use App\Repositories\PeriodeRepository;
+use App\Services\GeneratePdfService;
 use App\Services\MenteService;
 use App\Traits\AuthTrait;
 use Illuminate\Http\Request;
@@ -17,11 +19,13 @@ class KegiatanSelesaiController extends Controller
 
     private PeriodeRepository $periodeRepository;
     private MenteService $menteService;
+    private GeneratePdfService $generatePdfService;
 
-    public function __construct(PeriodeRepository $periodeRepository, MenteService $menteService)
+    public function __construct(PeriodeRepository $periodeRepository, MenteService $menteService, GeneratePdfService $generatePdfService)
     {
         $this->periodeRepository = $periodeRepository;
         $this->menteService = $menteService;
+        $this->generatePdfService = $generatePdfService;
     }
 
     public function index()
@@ -38,7 +42,7 @@ class KegiatanSelesaiController extends Controller
                     ->where('kab_kota_id', $user?->userPejabatStruktural?->kab_kota_id)
                     ->with(['pangkatGolonganTmt']);
             })
-            ->whereHas('rekapitulasiKegiatan', function($query){
+            ->withWhereHas('rekapitulasiKegiatan', function($query){
                 $query->where('is_send', true);
             })
             ->withSum(['laporanKegiatanJabatans' => function ($query) use ($periode) {
@@ -68,8 +72,22 @@ class KegiatanSelesaiController extends Controller
         return view('atasan-langsung.kegiatan-selesai.index', compact('fungsionals', 'penilaiPenetapDamkar', 'penilaiPenetapAnalis', 'judul'));
     }
 
-    public function show()
+    public function show($id)
     {
+        $periode = $this->periodeRepository->isActive();
+        $rekapitulasiKegiatan = RekapitulasiKegiatan::query()
+            ->where('fungsional_id', $id)
+            ->where('periode_id', $periode->id)->first();
+        $user = User::query()->findOrFail($id);
+        return view('atasan-langsung.kegiatan-selesai.show', compact('rekapitulasiKegiatan', 'user'));
+    }
 
+    public function ttd($id)
+    {
+        $user = User::query()->where('id', $id)->first();
+        $this->generatePdfService->ttdRekapitulasi($user, 'Rekapitulasi Ditanda Tangani Oleh Atasan Langsung', public_path('storage/ttd.png'));
+        return response()->json([
+            'message' => 'Berhasil'
+        ]);
     }
 }
