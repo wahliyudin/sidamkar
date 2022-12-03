@@ -3,6 +3,7 @@
 namespace App\Services\AtasanLangsung;
 
 use App\Models\ButirKegiatan;
+use App\Models\LaporanKegiatanJabatan;
 use App\Models\Periode;
 use App\Models\Unsur;
 use App\Models\User;
@@ -61,7 +62,14 @@ class VerifikasiKegiatanService
             ->where('periode_id', $periode->id)
             ->with(['role' => function ($query) use ($role_id) {
                 $query->whereIn('id', [$role_id + 1, $role_id - 1, $role_id]);
-            }, 'subUnsurs.butirKegiatans'])
+            }])
+            ->withWhereHas('subUnsurs', function($query){
+                $query->withWhereHas('butirKegiatans', function($query){
+                    $query->withWhereHas('laporanKegiatanJabatans', function($query){
+                        $query->whereIn('status', [LaporanKegiatanJabatan::VALIDASI, LaporanKegiatanJabatan::REVISI]);
+                    });
+                });
+            })
             ->whereHas('role', function ($query) use ($search) {
                 $query->where(
                     'nama',
