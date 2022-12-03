@@ -21,6 +21,7 @@ class LaporanKegiatanJabatan extends Model
     protected $fillable = [
         'kode',
         'rencana_id',
+        'periode_id',
         'user_id',
         'butir_kegiatan_id',
         'detail_kegiatan',

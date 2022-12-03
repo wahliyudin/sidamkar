@@ -17,6 +17,7 @@ use App\Http\Controllers\Api\FilePondController;
 use App\Http\Controllers\Api\KabKotaController;
 use App\Http\Controllers\AtasanLangsung\DataAtasanLangsungController;
 use App\Http\Controllers\AtasanLangsung\KegiatanLangsungController;
+use App\Http\Controllers\AtasanLangsung\KegiatanSelesaiController as AtasanLangsungKegiatanSelesaiController;
 use App\Http\Controllers\AtasanLangsung\OverviewController as AtasanLangsungOverviewController;
 use App\Http\Controllers\AtasanLangsung\PengajuanKegiatanController;
 use App\Http\Controllers\AtasanLangsung\VerifikasiKegiatanController as AtasanLangsungVerifikasiKegiatanController;
@@ -177,8 +178,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('atasan-langsung/pengajuan-kegiatan/{id}/{current_date}/tolak', [PengajuanKegiatanController::class, 'tolak'])->name('atasan-langsung.pengajuan-kegiatan.tolak');
         Route::post('atasan-langsung/pengajuan-kegiatan/{id}/{current_date}/revisi', [PengajuanKegiatanController::class, 'revisi'])->name('atasan-langsung.pengajuan-kegiatan.revisi');
         Route::post('atasan-langsung/pengajuan-kegiatan/{id}/{current_date}/verifikasi', [PengajuanKegiatanController::class, 'verifikasi'])->name('atasan-langsung.pengajuan-kegiatan.verifikasi');
-        Route::get('atasan-langsung/kegiatan-selesai', [KegiatanLangsungController::class, 'index'])->name('atasan-langsung.kegiatan-selesai');
-        Route::get('atasan-langsung/kegiatan-selesai/{id}/show', [KegiatanLangsungController::class, 'show'])->name('atasan-langsung.kegiatan-selesai.show');
+        Route::get('atasan-langsung/kegiatan-selesai', [AtasanLangsungKegiatanSelesaiController::class, 'index'])->name('atasan-langsung.kegiatan-selesai');
+        Route::get('atasan-langsung/kegiatan-selesai/{id}/show', [AtasanLangsungKegiatanSelesaiController::class, 'show'])->name('atasan-langsung.kegiatan-selesai.show');
 
         Route::get('atasan-langsung/verifikasi-kegiatan', [AtasanLangsungVerifikasiKegiatanController::class, 'index'])->name('atasan-langsung.verifikasi-kegiatan');
         Route::get('atasan-langsung/verifikasi-kegiatan/{id}/kegiatan-jabatan', [AtasanLangsungVerifikasiKegiatanController::class, 'kegiatanJabatan'])->name('atasan-langsung.verifikasi-kegiatan.kegiatan-jabatan');
