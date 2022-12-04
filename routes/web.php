@@ -50,7 +50,10 @@ use App\Http\Controllers\PenetapAK\DataPengajuan\KabKotaInternal;
 use App\Http\Controllers\PenetapAK\DataPenetapAKController;
 use App\Http\Controllers\PenilaiAK\DataPenilaiAKController;
 use App\Http\Controllers\Kemendagri\CMS\PeriodeController;
+use App\Http\Controllers\PenilaiAk\DataPengajuan\ExternalController;
+use App\Http\Controllers\PenilaiAk\DataPengajuan\InternalController;
 use App\Http\Controllers\PenilaiAk\KegiatanSelesai\ShowController;
+use App\Http\Controllers\PenilaiAk\KegiatanSelesaiController as PenilaiAkKegiatanSelesaiController;
 use App\Http\Controllers\provinsi\Chatbox;
 use App\Http\Controllers\Provinsi\DataAparaturController as ProvinsiDataAparaturController;
 use App\Http\Controllers\Provinsi\OverviewController as ProvinsiOverviewController;
@@ -200,11 +203,10 @@ Route::middleware(['auth'])->group(function () {
         Route::post('data-penilai-ak/store-dockom', [DataAtasanLangsungController::class, 'storeDocKom'])->name('data-penilai-ak.store-doc-kom');
         Route::delete('data-penilai-ak/destroy-dockepeg/{id}', [DataAtasanLangsungController::class, 'destroyDocKepeg'])->name('data-penilai-ak.destroy-doc-kepeg');
         Route::delete('data-penilai-ak/destroy-dockom/{id}', [DataAtasanLangsungController::class, 'destroyDocKom'])->name('data-penilai-ak.destroy-doc-kom');
-        Route::get('penilai-ak/kegiatan-profesi/profesi-penunjang', [ProfesiPenunjangController::class, 'index'])->name('penilai-ak.kegiatan-profesi.profesi-penunjang');
-        Route::get('penilai-ak/kegiatan-profesi/show', [ProfesiPenunjangShowController::class, 'index'])->name('penilai-ak.kegiatan-profesi.show');
-        Route::get('penilai-ak/data-penunjang/data-pengajuan', [DataPengajuanController::class, 'index'])->name('penilai-ak.data-penunjang.data-pengajuan');
-        Route::get('penilai-ak/kegiatan-selesai/kegiatan-selesai', [KegiatanSelesaiController::class, 'index'])->name('penilai-ak.kegiatan-selesai.kegiatan-selesai');
-        Route::get('penilai-ak/kegiatan-selesai/show', [ShowController::class, 'index'])->name('penilai-ak.kegiatan-selesai.show');
+
+        Route::get('penilai-ak/data-pengajuan/internal', [InternalController::class, 'index'])->name('penilai-ak.data-pengajuan.internal');
+        Route::get('penilai-ak/data-pengajuan/external', [ExternalController::class, 'index'])->name('penilai-ak.data-pengajuan.external');
+        Route::get('penilai-ak/kegiatan-selesai', [PenilaiAkKegiatanSelesaiController::class, 'index'])->name('penilai-ak.kegiatan-selesai');
     });
     Route::middleware(['role:penetap_ak'])->group(function () {
         Route::get('penetap-ak/overview', [OverviewPenetapAk::class, 'index'])->name('penetap-ak.overview');
