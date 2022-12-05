@@ -12,14 +12,8 @@ class HistoryRekapitulasiKegiatan extends Model
 
     protected $fillable = [
         'rekapitulasi_kegiatan_id',
-        'struktural_id',
         'content'
     ];
-
-    public function struktural()
-    {
-        return $this->belongsTo(User::class, 'struktural_id', 'id');
-    }
 
     public function rekapitulasiKegiatan()
     {

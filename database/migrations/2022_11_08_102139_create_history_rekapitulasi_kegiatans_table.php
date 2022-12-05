@@ -15,12 +15,10 @@ return new class extends Migration
     {
         Schema::create('history_rekapitulasi_kegiatans', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('struktural_id');
             $table->foreignUuid('rekapitulasi_kegiatan_id');
             $table->string('content');
             $table->timestamps();
 
-            $table->foreign('struktural_id')->on('users')->references('id')->cascadeOnDelete();
             $table->foreign('rekapitulasi_kegiatan_id')->on('rekapitulasi_kegiatans')->references('id')->cascadeOnDelete();
         });
     }

@@ -230,7 +230,9 @@
             </tr>
             <tr>
                 <td class="bd right" colspan="8" height="100px">
-                    <img src="{{ public_path('storage\ttd.png') }}" style="width: 150px;" alt="">
+                    @if (isset($ttd))
+                        <img src="{{ $ttd }}" style="width: 150px;" alt="">
+                    @endif
                 </td>
             </tr>
             <tr>

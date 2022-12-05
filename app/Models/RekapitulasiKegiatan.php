@@ -15,7 +15,8 @@ class RekapitulasiKegiatan extends Model
         'periode_id',
         'file',
         'file_name',
-        'is_send'
+        'is_send',
+        'is_ttd'
     ];
 
     public function fungsional()
