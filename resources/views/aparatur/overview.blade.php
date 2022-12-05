@@ -19,10 +19,11 @@
                                 <i class="fa-solid fa-circle-exclamation"></i>
                             </div>
                             <div class="d-flex flex-column ms-2">
-                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
+                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;"
+                                    class="target-h1">
                                     Angka Kredit Sebelumnya
                                 </p>
-                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target">44</h2>
+                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target target-h2">44</h2>
                             </div>
                         </div>
                     </div>
@@ -36,10 +37,11 @@
                                 <i class="fa-solid fa-bullseye"></i>
                             </div>
                             <div class="d-flex flex-column ms-2">
-                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
+                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;"
+                                    class="target-h1">
                                     Target Angka Kredit
                                 </p>
-                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target">100</h2>
+                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target target-h2">100</h2>
                             </div>
                         </div>
                     </div>
@@ -53,10 +55,11 @@
                                 <i class="fa-solid fa-sliders"></i>
                             </div>
                             <div class="d-flex flex-column ms-2">
-                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
+                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;"
+                                    class="target-h1">
                                     Capaian Angka Kredit
                                 </p>
-                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target">56</h2>
+                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target target-h2">56</h2>
                             </div>
                         </div>
                     </div>
@@ -70,7 +73,8 @@
                                 <i class="fa-solid fa-calendar-days"></i>
                             </div>
                             <div class="d-flex flex-column ms-2">
-                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
+                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;"
+                                    class="target-h1">
                                     Periode Aktif
                                 </p>
                                 <h2 style="font-family: 'Roboto';color: #06152B; font-size: 14px;"
@@ -198,6 +202,17 @@
             .target-periode {
                 font-size: 14px !important;
             }
+        }
+
+        @media screen and (min-width: 750px) and (max-width: 1000px) {
+            .target-h2 {
+                font-size: 14px;
+            }
+
+            .target-periode {
+                font-size: 11px !important;
+            }
+
         }
     </style>
 @endsection

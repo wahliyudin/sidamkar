@@ -412,7 +412,14 @@
     <script>
         $(document).ready(function() {
             // Swiper: Slider
-            new Swiper(".mySwiper", {
+            new Swiper('.swiper', {
+                slidesPerView: 3,
+                paginationClickable: true,
+                spaceBetween: 20,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
                 pagination: {
                     el: ".swiper-pagination",
                 },
