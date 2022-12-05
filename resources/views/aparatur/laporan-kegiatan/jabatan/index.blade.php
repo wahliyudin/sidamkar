@@ -37,7 +37,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 px-2">
+            <div class="col-md-6 px-2">
                 <div class="card">
                     <div class="card-body py-3 px-3" style="height: 100px;">
                         <div class="d-flex align-items-center h-100">
@@ -49,7 +49,7 @@
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                     Periode
                                 </p>
-                                <h2 style="font-family: 'Roboto'; font-size: 14px; color: #06152B;" class="target">
+                                <h2 style="font-family: 'Roboto'; font-size: 18px; color: #06152B;" class="target">
                                     {{ Carbon\Carbon::make($periode->awal)->translatedFormat('F Y') . ' - ' . Carbon\Carbon::make($periode->akhir)->translatedFormat('F Y') }}
                                 </h2>
                             </div>
@@ -66,10 +66,8 @@
                             <h3>Kegiatan Jabatan</h3>
                         </div>
                         <div class="col-md-6 text-end">
-                            <button
-                                {{ count($user->rencanas) <= 0 || $user->rekapitulasiKegiatan?->is_send ? 'disabled' : '' }}
-                                data-bs-toggle="modal" data-bs-target="#rekap"
-                                class="btn btn-green btn-sm ps-3 pe-3 py-2 rekap">
+                            <button {{ $user->rekapitulasiKegiatan?->is_send ? 'disabled' : '' }} data-bs-toggle="modal"
+                                data-bs-target="#rekap" class="btn btn-green btn-sm ps-3 pe-3 py-2 rekap">
                                 <i class="fa-solid fa-paper-plane me-1"></i>
                                 Ajukan Laporan Rekapitulasi Capaian
                             </button>
@@ -91,6 +89,30 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="rekap" tabindex="-1" role="dialog" aria-labelledby="rekapTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-centered" role="document">
+            <div class="modal-content relative">
+                <div class="bg-spin" style="display: none;">
+                    <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
+                        style="height: 3rem; object-fit: cover;" alt="" srcset="">
+                </div>
+                <div class="modal-header">
+                    <h5 class="text-red uppercase">Surat Pernyataan Melakukan Kegiatan</h5>
+                </div>
+                <div class="modal-body">
+                    <iframe class="review-rekap" src="" width="100%" height="450px"></iframe>
+                    <div class="text-center mt-4">
+                        <button class="btn btn-danger px-5" data-bs-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-blue px-5 send-rekap">
+                            <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
+                                style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
+                            <span>Kirim</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('css')
@@ -102,6 +124,16 @@
     <style>
         .link-butir:hover {
             text-decoration: underline;
+        }
+
+        .bg-spin {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #00000056;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     </style>
 @endsection

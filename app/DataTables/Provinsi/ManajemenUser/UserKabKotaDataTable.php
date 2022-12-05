@@ -61,7 +61,7 @@ class UserKabKotaDataTable extends DataTable
             ->addColumn('status', function (User $user) {
                 return $this->statusAkun($user->status_akun);
             })
-            ->rawColumns(['status'])
+            ->rawColumns(['status', 'nama'])
             ->setRowId('id');
     }
 

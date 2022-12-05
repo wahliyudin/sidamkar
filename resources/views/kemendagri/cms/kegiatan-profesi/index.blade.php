@@ -17,14 +17,14 @@
                 <div class="card-body px-0">
                     <div class="card-body accordion-container">
                         <div class="accordion" id="accordion-parent">
-                            @foreach ($kegiatan->unsurs as $unsur)
+                            @forelse ($kegiatan?->unsurs as $unsur)
                                 <div class="accordion-item">
                                     <div class="d-flex flex-column accordion-header py-3 px-2"
                                         id="unsur{{ $unsur->id }}">
                                         <div class="d-flex justify-content-between align-items-center ps-2 mb-1">
                                             <span
                                                 class="bg-green text-sm text-white font-bold py-1 px-2 rounded-md label-role">
-                                                {{ $unsur->role?->display_name ?? 'Semua Jenjang' }}
+                                                {{ $unsur->role?->display_name ?? 'Semu Jenjang' }}
                                             </span>
                                             <div class="d-flex align-items-center">
                                                 <i class="fa-regular fa-pen-to-square me-2 cursor-pointer text-green btn-edit-kegiatan"
@@ -66,66 +66,68 @@
                                                             class="accordion-collapse collapse"
                                                             aria-labelledby="subUnsur{{ $sub_unsur->id }}" style="">
                                                             <div class="accordion-body">
-                                                                <div class="accordion" id="accordion-child">
-                                                                    @foreach ($sub_unsur->butirKegiatans as $butir_kegiatan)
-                                                                        @if (count($butir_kegiatan->subButirKegiatans) > 0)
-                                                                            <div class="accordion-item">
-                                                                                <div class="d-flex justify-content-between accordion-header py-1 px-2"
-                                                                                    id="ButirKegiatan{{ $butir_kegiatan->id }}">
-                                                                                    <div class="d-flex align-items-center"
-                                                                                        style="color: #000000;width: calc(100% - 4rem);">
+                                                                @foreach ($sub_unsur->butirKegiatans as $butir_kegiatan)
+                                                                    @if (count($butir_kegiatan->subButirKegiatans) > 0)
+                                                                        <div class="accordion-item">
+                                                                            <div class="d-flex justify-content-between accordion-header py-1 px-2"
+                                                                                id="butirKegiatan{{ $butir_kegiatan->id }}">
+                                                                                <div class="d-flex align-items-center"
+                                                                                    style="color: #000000;">
+                                                                                    <h6 class="accordian-title">
+                                                                                        {{ $butir_kegiatan->nama }}
+                                                                                    </h6>
+                                                                                </div>
+                                                                                <button class="accordion-button collapsed"
+                                                                                    type="button" data-bs-toggle="collapse"
+                                                                                    data-bs-target="#contentchildButirKegiatan{{ $butir_kegiatan->id }}"
+                                                                                    aria-expanded="false"
+                                                                                    aria-controls="contentchildButirKegiatan{{ $butir_kegiatan->id }}">
+                                                                                </button>
+                                                                            </div>
+                                                                            <div id="contentchildButirKegiatan{{ $butir_kegiatan->id }}"
+                                                                                class="accordion-collapse collapse"
+                                                                                aria-labelledby="butirKegiatan{{ $butir_kegiatan->id }}"
+                                                                                style="">
+                                                                                <div class="accordion-body">
+                                                                                    <ul class="ms-0">
+                                                                                        @foreach ($butir_kegiatan->subButirkegiatans as $subButirKegiatan)
+                                                                                            <li class="accordian-list">
+                                                                                                <div
+                                                                                                    class="d-flex align-items-center justify-content-between">
+                                                                                                    <h6
+                                                                                                        class="accordian-title">
+                                                                                                        {{ $subButirKegiatan->nama }}
+                                                                                                    </h6>
+                                                                                                    <h6 class="accordian-title"
+                                                                                                        style="color: #1AD598;">
+                                                                                                        {{ $subButirKegiatan?->score ?? $subButirKegiatan?->percent . '%' }}
+                                                                                                    </h6>
+                                                                                                </div>
+                                                                                            </li>
+                                                                                        @endforeach
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    @else
+                                                                        <ul class="ms-0">
+                                                                            @foreach ($sub_unsur->butirKegiatans as $butir_kegiatan)
+                                                                                <li class="accordian-list">
+                                                                                    <div
+                                                                                        class="d-flex align-items-center justify-content-between">
                                                                                         <h6 class="accordian-title">
                                                                                             {{ $butir_kegiatan->nama }}
                                                                                         </h6>
+                                                                                        <h6 class="accordian-title"
+                                                                                            style="color: #1AD598;">
+                                                                                            {{ $butir_kegiatan?->score ?? $butir_kegiatan?->percent . '%' }}
+                                                                                        </h6>
                                                                                     </div>
-                                                                                    <button
-                                                                                        class="accordion-button collapsed"
-                                                                                        type="button"
-                                                                                        data-bs-toggle="collapse"
-                                                                                        data-bs-target="#contentchildButirKegiatan{{ $butir_kegiatan->id }}"
-                                                                                        aria-expanded="false"
-                                                                                        aria-controls="contentchildButirKegiatan{{ $butir_kegiatan->id }}">
-                                                                                    </button>
-                                                                                </div>
-                                                                                <div id="contentchildButirKegiatan{{ $butir_kegiatan->id }}"
-                                                                                    class="accordion-collapse collapse"
-                                                                                    aria-labelledby="ButirKegiatan{{ $butir_kegiatan->id }}"
-                                                                                    style="">
-                                                                                    <div class="accordion-body">
-                                                                                        <ul class="ms-0">
-                                                                                            @foreach ($butir_kegiatan->subButirKegiatans as $sub_butir_kegiatan)
-                                                                                                <li class="accordian-list">
-                                                                                                    <div
-                                                                                                        class="d-flex align-items-center justify-content-between">
-                                                                                                        <h6
-                                                                                                            class="accordian-title">
-                                                                                                            {{ $sub_butir_kegiatan->nama }}
-                                                                                                        </h6>
-                                                                                                        <h6 class="accordian-title"
-                                                                                                            style="color: #1AD598;">
-                                                                                                            {{ !isset($sub_butir_kegiatan->score) ? $sub_butir_kegiatan->percent . '%' : $sub_butir_kegiatan->score }}
-                                                                                                        </h6>
-                                                                                                    </div>
-                                                                                                </li>
-                                                                                            @endforeach
-                                                                                        </ul>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        @else
-                                                                            <div class="d-flex ms-2 align-items-center justify-content-between"
-                                                                                style="width: calc(100% - 4rem);">
-                                                                                <h6 class="accordian-title">
-                                                                                    {{ $butir_kegiatan->nama }}
-                                                                                </h6>
-                                                                                <h6 class="accordian-title d-flex align-items-center justify-content-center"
-                                                                                    style="color: #1AD598; width: 2rem; height: 1rem;">
-                                                                                    {{ $butir_kegiatan->score }}
-                                                                                </h6>
-                                                                            </div>
-                                                                        @endif
-                                                                    @endforeach
-                                                                </div>
+                                                                                </li>
+                                                                            @endforeach
+                                                                        </ul>
+                                                                    @endif
+                                                                @endforeach
                                                             </div>
                                                         </div>
                                                     </div>
@@ -134,7 +136,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
+                            @empty
+                                <h5 class="text-center" style="font-style: italic;">Data tidak tersedia</h5>
+                            @endforelse
                         </div>
                     </div>
                 </div>
@@ -143,7 +147,7 @@
     </div>
     <div class="modal fade" id="tambahDataModal" tabindex="-1" role="dialog" aria-labelledby="tambahDataModalTitle"
         aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
             <div class="modal-content relative">
                 <div class="bg-spin" style="display: none;">
                     <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"

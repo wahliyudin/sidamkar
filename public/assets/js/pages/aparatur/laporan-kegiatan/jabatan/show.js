@@ -18,6 +18,9 @@ $(document).ready(function () {
     });
     var pond = FilePond.create(document.querySelector('#laporkan input[name="doc_kegiatan_tmp[]"]'));
     pond.setOptions({
+        acceptedFileTypes: [
+            'image/*'
+        ],
         server: {
             process: '/laporan-kegiatan/jabatan/tmp-file',
             revert: '/laporan-kegiatan/jabatan/revert',

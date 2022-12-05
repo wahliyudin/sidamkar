@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('kab_kotas', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('provinsi_id');
+            $table->uuid('id')->primary();
+            $table->foreignUuid('provinsi_id');
             $table->string('nama');
             $table->timestamps();
 

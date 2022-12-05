@@ -21,7 +21,5 @@ function url(path) {
     return origin + path;
 }
 $(document).ready(function () {
-    setTimeout(() => {
-        $('#app .loading-master').fadeOut();
-    }, 1000);
+    $('#app .loading-master').fadeOut();
 });

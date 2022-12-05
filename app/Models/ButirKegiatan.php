@@ -13,7 +13,8 @@ class ButirKegiatan extends Model
         'sub_unsur_id',
         'nama',
         'satuan_hasil',
-        'score'
+        'score',
+        'percent'
     ];
 
     public function subUnsur()
@@ -24,5 +25,10 @@ class ButirKegiatan extends Model
     public function subButirKegiatans()
     {
         return $this->hasMany(SubButirKegiatan::class);
+    }
+
+    public function laporanKegiatanJabatans()
+    {
+        return $this->hasMany(LaporanKegiatanJabatan::class);
     }
 }

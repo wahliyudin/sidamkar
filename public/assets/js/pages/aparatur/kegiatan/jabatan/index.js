@@ -25,6 +25,41 @@ $(document).ready(function () {
         });
     }
 
+    $('.rekap').click(function (e) {
+        e.preventDefault();
+        $('.bg-spin').show();
+        $.ajax({
+            type: "POST",
+            url: url('/laporan-kegiatan/jabatan/rekapitulasi'),
+            dataType: "JSON",
+            success: function (response) {
+                $('.review-rekap').attr('src', response.data);
+                $('.bg-spin').hide();
+            },
+            error: ajaxError
+        });
+    });
+
+    $('.send-rekap').click(function (e) {
+        e.preventDefault();
+        $('.send-rekap span').hide();
+        $('.send-rekap .spin').show();
+        $.ajax({
+            type: "POST",
+            url: url('/laporan-kegiatan/jabatan/rekapitulasi/send-rekap'),
+            dataType: "JSON",
+            success: function (response) {
+                $('.send-rekap span').show();
+                $('.send-rekap .spin').hide();
+                swal({ type: 'success', title: 'Berhasil', html: 'Berhasil Direkapitulasi' }).then(
+                    () => {
+                        location.reload();
+                    });
+            },
+            error: ajaxError
+        });
+    });
+
     function unsurs(unsurs) {
         return $.map(unsurs, function (unsur, indexOrKey) {
             if (unsur.role) {
@@ -135,5 +170,8 @@ $(document).ready(function () {
         } else {
             swal('Error!', jqXHR.responseText, "error");
         }
+        $('.bg-spin').hide();
+        $('.send-rekap span').show();
+        $('.send-rekap .spin').hide();
     };
 });

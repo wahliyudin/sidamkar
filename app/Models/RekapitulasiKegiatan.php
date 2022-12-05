@@ -2,19 +2,21 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class RekapitulasiKegiatan extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
 
     protected $fillable = [
         'fungsional_id',
         'periode_id',
         'file',
         'file_name',
-        'is_send'
+        'is_send',
+        'is_ttd'
     ];
 
     public function fungsional()

@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('mentes', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('atasan_langsung_id');
-            $table->unsignedBigInteger('fungsional_id');
+            $table->uuid('id')->primary();
+            $table->foreignUuid('atasan_langsung_id');
+            $table->foreignUuid('fungsional_id');
             $table->timestamps();
 
             $table->foreign('atasan_langsung_id')->on('users')->references('id')->cascadeOnDelete();

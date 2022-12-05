@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('user_aparaturs', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id');
+            $table->uuid('id')->primary();
+            $table->foreignUuid('user_id');
             $table->string('nama');
             $table->unsignedBigInteger('pangkat_golongan_tmt_id')->nullable();
             $table->bigInteger('nip')->nullable();
@@ -29,14 +29,16 @@ return new class extends Migration
             $table->string('foto_pegawai')->nullable();
             $table->string('no_hp')->nullable();
             $table->string('alamat')->nullable();
-            $table->unsignedBigInteger('provinsi_id');
-            $table->unsignedBigInteger('kab_kota_id')->nullable();
+            $table->foreignUuid('provinsi_id');
+            $table->foreignUuid('kab_kota_id')->nullable();
+            $table->foreignUuid('mekanisme_pengangkatan_id')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->on('users')->references('id')->cascadeOnDelete();
             $table->foreign('provinsi_id')->on('provinsis')->references('id')->cascadeOnDelete();
             $table->foreign('kab_kota_id')->on('kab_kotas')->references('id')->nullOnDelete();
             $table->foreign('pangkat_golongan_tmt_id')->on('pangkat_golongan_tmts')->references('id')->nullOnDelete();
+            $table->foreign('mekanisme_pengangkatan_id')->on('mekanisme_pengangkatans')->references('id')->nullOnDelete();
         });
     }
 

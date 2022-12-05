@@ -4,7 +4,9 @@ namespace App\Http\Controllers\KabKota\ManajemenUser;
 
 use App\DataTables\KabKota\ManajemenUser\StrukturalDataTable;
 use App\Http\Controllers\Controller;
-use App\Services\StrukturalService;
+use App\Http\Requests\RejectRequest;
+use App\Http\Requests\VerifStrukturalRequest;
+use App\Services\KabKota\StrukturalService;
 use Illuminate\Http\Request;
 
 class StrukturalController extends Controller
@@ -21,7 +23,7 @@ class StrukturalController extends Controller
         return $dataTable->render('kabkota.manajemen-user.struktural.index');
     }
 
-    public function reject(Request $request, $id)
+    public function reject(RejectRequest $request, $id)
     {
         $this->strukturalService->reject($request, $id);
         return response()->json([
@@ -30,12 +32,9 @@ class StrukturalController extends Controller
         ]);
     }
 
-    public function verification(Request $requset, $id)
+    public function verification(VerifStrukturalRequest $requset, $id)
     {
-        $requset->validate([
-            'jabatans' => 'required'
-        ]);
-        $this->strukturalService->verification($requset, $id);
+        $this->strukturalService->verificationStruktural($requset, $id);
         return response()->json([
             'success' => 200,
             'message' => "Akun Berhasil DIVERIFIKASI",

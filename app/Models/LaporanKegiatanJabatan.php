@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\LaporanKegiatanStatus;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class LaporanKegiatanJabatan extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
 
     const VALIDASI = 1;
     const REVISI = 2;
@@ -20,6 +21,8 @@ class LaporanKegiatanJabatan extends Model
     protected $fillable = [
         'kode',
         'rencana_id',
+        'periode_id',
+        'user_id',
         'butir_kegiatan_id',
         'detail_kegiatan',
         'current_date',
@@ -46,5 +49,10 @@ class LaporanKegiatanJabatan extends Model
     public function historyKegiatanJabatans(): HasMany
     {
         return $this->hasMany(HistoryKegiatanJabatan::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
