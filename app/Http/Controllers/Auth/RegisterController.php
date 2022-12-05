@@ -92,7 +92,9 @@ class RegisterController extends Controller
         $file->storeAs("tmp/$folder", $file_name);
         TemporaryFile::query()->create([
             'folder' => $folder,
-            'file' => $file_name
+            'name' => $file_name,
+            'size' => $file->getSize(),
+            'type' => $file->getMimeType()
         ]);
         return $folder;
     }
