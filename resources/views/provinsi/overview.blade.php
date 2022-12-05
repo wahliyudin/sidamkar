@@ -8,15 +8,35 @@
                         <div class="card mb-3">
                             <div class="card-body py-2 px-3">
                                 <div class="d-flex align-items-center h-100">
-                                    <div class="circle circle-blue">
+                                    <div class="circle circle-green">
+                                        <i style="font-size: 20px;" class="fa-solid
+                                        fa-stopwatch"></i>
+                                    </div>
+                                    <div class="d-flex flex-column ms-2">
+                                        <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
+                                            Periode
+                                        </p>
+                                        <h2 style="font-family: 'Roboto'; font-size: 16px; color: #06152B;" class="target">
+                                            {{ $periode != null ? Carbon\Carbon::make($periode->awal)->translatedFormat('F Y') . ' - ' . Carbon\Carbon::make($periode->akhir)->translatedFormat('F Y') : '-' }}
+                                        </h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 px-2">
+                        <div class="card mb-3">
+                            <div class="card-body py-2 px-3">
+                                <div class="d-flex align-items-center h-100">
+                                    <div class="circle circle-green">
                                         <i style="font-size: 20px;" class="fa-solid fa-user-group"></i>
                                     </div>
                                     <div class="d-flex flex-column ms-3">
                                         <p
                                             style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                            Target Angka Kredit
+                                            Jumlah Aparatur
                                         </p>
-                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">100</h4>
+                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">{{$total['aparatur']}}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -26,53 +46,53 @@
                         <div class="card mb-3">
                             <div class="card-body py-2 px-3">
                                 <div class="d-flex align-items-center h-100">
-                                    <div class="circle circle-green">
+                                    <div class="circle circle-yellow">
+                                        <i style="font-size: 20px;" class="fa-solid fa-user-large"></i>
+                                    </div>
+                                    <div class="d-flex flex-column ms-3">
+                                        <p
+                                            style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
+                                            Pejabat Struktural
+                                        </p>
+                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">{{$total['struktural']}}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 px-2">
+                        <div class="card mb-3">
+                            <div class="card-body py-2 px-3">
+                                <div class="d-flex align-items-center h-100">
+                                    <div class="circle circle-yellow">
+                                        <i style="font-size: 20px;" class="fa-regular fa-user"></i>
+                                    </div>
+                                    <div class="d-flex flex-column ms-3">
+                                        <p
+                                            style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
+                                            Pejabat Fungsional
+                                        </p>
+                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">{{$total['fungsional']}}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 px-2">
+                        <div class="card mb-3">
+                            <div class="card-body py-2 px-3">
+                                <div class="d-flex align-items-center h-100">
+                                    <div class="circle circle-blue">
                                         <i style="font-size: 20px;" class="fa-solid fa-user-tie"></i>
                                     </div>
                                     <div class="d-flex flex-column ms-3">
                                         <p
                                             style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                            Target Angka Kredit
+                                            Fungsional Damkar
                                         </p>
-                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">100</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 px-2">
-                        <div class="card mb-3">
-                            <div class="card-body py-2 px-3">
-                                <div class="d-flex align-items-center h-100">
-                                    <div class="circle circle-yellow">
-                                        <i style="font-size: 20px;" class="fa-solid fa-person-dress"></i>
-                                    </div>
-                                    <div class="d-flex flex-column ms-3">
-                                        <p
-                                            style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                            Target Angka Kredit
-                                        </p>
-                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">100</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4 px-2">
-                        <div class="card mb-3">
-                            <div class="card-body py-2 px-3">
-                                <div class="d-flex align-items-center h-100">
-                                    <div class="circle circle-yellow">
-                                        <i style="font-size: 20px;" class="fa-solid fa-person"></i>
-                                    </div>
-                                    <div class="d-flex flex-column ms-3">
-                                        <p
-                                            style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                            Target Angka Kredit
-                                        </p>
-                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">100</h4>
+                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">{{$total['damkar']}}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -83,144 +103,14 @@
                             <div class="card-body py-2 px-3">
                                 <div class="d-flex align-items-center h-100">
                                     <div class="circle circle-blue">
-                                        <i style="font-size: 20px;" class="fa-solid fa-book-open"></i>
+                                        <i style="font-size: 20px;" class="fa-solid fa-user-tie"></i>
                                     </div>
                                     <div class="d-flex flex-column ms-3">
                                         <p
                                             style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                            Target Angka Kredit
+                                            Fungsional Analis
                                         </p>
-                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">100</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 px-2">
-                        <div class="card mb-3">
-                            <div class="card-body py-2 px-3">
-                                <div class="d-flex align-items-center h-100">
-                                    <div class="circle circle-green">
-                                        <i style="font-size: 20px;" class="fa-solid fa-user-graduate"></i>
-                                    </div>
-                                    <div class="d-flex flex-column ms-3">
-                                        <p
-                                            style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                            Target Angka Kredit
-                                        </p>
-                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">100</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4 px-2">
-                        <div class="card mb-3">
-                            <div class="card-body py-2 px-3">
-                                <div class="d-flex align-items-center h-100">
-                                    <div class="circle circle-green">
-                                        <i style="font-size: 20px;" class="fa-solid fa-user-graduate"></i>
-                                    </div>
-                                    <div class="d-flex flex-column ms-3">
-                                        <p
-                                            style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                            Target Angka Kredit
-                                        </p>
-                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">100</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 px-2">
-                        <div class="card mb-3">
-                            <div class="card-body py-2 px-3">
-                                <div class="d-flex align-items-center h-100">
-                                    <div class="circle circle-yellow">
-                                        <i style="font-size: 20px;" class="fa-solid fa-user-graduate"></i>
-                                    </div>
-                                    <div class="d-flex flex-column ms-3">
-                                        <p
-                                            style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                            Target Angka Kredit
-                                        </p>
-                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">100</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 px-2">
-                        <div class="card mb-3">
-                            <div class="card-body py-2 px-3">
-                                <div class="d-flex align-items-center h-100">
-                                    <div class="circle circle-blue">
-                                        <i style="font-size: 20px;" class="fa-solid fa-star"></i>
-                                    </div>
-                                    <div class="d-flex flex-column ms-3">
-                                        <p
-                                            style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                            Target Angka Kredit
-                                        </p>
-                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">100</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4 px-2">
-                        <div class="card mb-3">
-                            <div class="card-body py-2 px-3">
-                                <div class="d-flex align-items-center h-100">
-                                    <div class="circle circle-blue">
-                                        <i style="font-size: 20px;" class="fa-solid fa-star"></i>
-                                    </div>
-                                    <div class="d-flex flex-column ms-3">
-                                        <p
-                                            style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                            Target Angka Kredit
-                                        </p>
-                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">100</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 px-2">
-                        <div class="card mb-3">
-                            <div class="card-body py-2 px-3">
-                                <div class="d-flex align-items-center h-100">
-                                    <div class="circle circle-green">
-                                        <i style="font-size: 20px;" class="fa-solid fa-star"></i>
-                                    </div>
-                                    <div class="d-flex flex-column ms-3">
-                                        <p
-                                            style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                            Target Angka Kredit
-                                        </p>
-                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">100</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 px-2">
-                        <div class="card mb-3">
-                            <div class="card-body py-2 px-3">
-                                <div class="d-flex align-items-center h-100">
-                                    <div class="circle circle-yellow">
-                                        <i style="font-size: 20px;" class="fa-solid fa-star"></i>
-                                    </div>
-                                    <div class="d-flex flex-column ms-3">
-                                        <p
-                                            style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                            Target Angka Kredit
-                                        </p>
-                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">100</h4>
+                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">{{$total['analis']}}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -230,39 +120,35 @@
 
                 <div class="row">
                     <div class="col-md-12 px-2">
-                        <div class="card mb-3">
+                        <div class="card overflow-auto mb-3">
                             <div class="card-header">
                                 <h4 class="card-title" style="color: #17181A; font-family: 'Roboto';">Butir Kegiatan</h4>
                             </div>
-                            <div class="card-body" style="overflow: auto;">
+                            <div class="card-body">
                                 <table class="table table-striped" id="table1">
                                     <thead>
                                         <tr>
-                                            <th>Nama</th>
-                                            <th>Jenis Kelamin</th>
-                                            <th>Pangkat</th>
-                                            <th>Golongan</th>
-                                            <th>Kompentensi</th>
-                                            <th>Score Kredit</th>
+                                            <th>Atasan Langsung</th>
+                                            <th>Penilai AK</th>
+                                            <th>Penetap AK</th>
+                                            <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td>
-                                                <a href="" style="color: #06152B;">Bayu</a>
+                                                <a href="" style="color: #06152B;">Iqbal Imran</a>
                                             </td>
                                             <td>
-                                                Laki - Laki
+                                                <a href="" style="color: #06152B;">Okan Bihaqi</a>
                                             </td>
                                             <td>
-                                                Pangkat I
+                                                <a href="" style="color: #06152B;">Budi S</a>
                                             </td>
                                             <td>
-                                                III
-                                            </td>
-                                            <td>Sertifikat Penyelamantan & pengawasan</td>
-                                            <td>
-                                                <p style="color: rgb(54, 228, 38);">+100</p>
+                                                <div class="periode border border-primary " style="text-align: center;">
+                                                    Januari 2020 - Juli 2020
+                                                </div>
                                             </td>
                                         </tr>
                                     </tbody>
