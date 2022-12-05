@@ -152,6 +152,9 @@ class GeneratePdfService
             $rekapitulasiKegiatan->update([
                 'is_ttd' => true
             ]);
+            $rekapitulasiKegiatan->historyRekapitulasiKegiatans()->create([
+                'content' => 'Rekapitulasi ditanda tangani Atasan Langsung'
+            ]);
         }
     }
 }
