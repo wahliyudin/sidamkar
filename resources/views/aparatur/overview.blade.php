@@ -143,7 +143,7 @@
                 </div>
             </div>
             <div class="col-md-3 col">
-                <div class="card">
+                <div class="card" style="overflow: auto; height: 550px">
                     <div class="card-header">
                         <h4 class="card-title text-center" style="color: #17181A; font-family: 'Roboto';">
                             INFORMATION
@@ -152,7 +152,28 @@
                     <div class="card-body">
                         <ul>
                             <li>
-                                <p style="margin: 0 !important;">Upacara Bendera</p>
+                                <p style="margin: 0 !important;">Upacara Bendera ( <a href="" data-bs-toggle="modal"
+                                        data-bs-target="#informasi">Klik Disini</a> )
+                                </p>
+                                <div class="footer-information">
+                                    <p style="font-size: 9px; margin-top: 10px; color: red;"> 11/2/2022</p>
+                                </div>
+                            </li>
+                            <li>
+                                <p style="margin: 0 !important;">Upacara Bendera ( <a href="" data-bs-toggle="modal"
+                                        data-bs-target="#informasi">Klik Disini</a> )
+                                </p>
+                                <div class="footer-information">
+                                    <p style="font-size: 9px; margin-top: 10px; color: red;"> 11/2/2022</p>
+                                </div>
+                            </li>
+                            <li>
+                                <p style="margin: 0 !important;">Upacara Bendera ( <a href=""
+                                        data-bs-toggle="modal" data-bs-target="#informasi">Klik Disini</a> )
+                                </p>
+                                <div class="footer-information">
+                                    <p style="font-size: 9px; margin-top: 10px; color: red;"> 11/2/2022</p>
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -160,6 +181,49 @@
             </div>
         </div>
     </section>
+
+    <div class="modal fade" id="informasi" tabindex="-1" role="dialog" aria-labelledby="informasiTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="informasiTitle">
+                        INFORMASI
+                    </h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <i data-feather="x"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" enctype="multipart/form-data" class="container-unsur">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                        <span>Tutup</span>
+                    </button>
+                    {{--  <button class="btn btn-green ml-1 simpan-kegiatan">
+                        <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
+                            style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
+                        <span>Simpan</span>
+                    </button>  --}}
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 @section('css')
     <style>

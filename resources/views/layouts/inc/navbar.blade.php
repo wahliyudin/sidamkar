@@ -1,9 +1,12 @@
 <style>
-    .navbar-diam{
-        position: fixed; z-index:9;
+    .navbar-diam {
+        position: fixed;
+        z-index: 9;
         width: 100%;
-        width: -moz-available;          /* WebKit-based browsers will ignore this. */
-        width: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+        width: -moz-available;
+        /* WebKit-based browsers will ignore this. */
+        width: -webkit-fill-available;
+        /* Mozilla-based browsers will ignore this. */
         width: fill-available;
     }
 </style>
@@ -19,7 +22,7 @@
             </button>
             <h6 class=" ms-3" style="margin-top:12px">
                 @isset($judul)
-                {{$judul}}
+                    {{ $judul }}
                 @endisset
             </h6>
             <div class="collapse navbar-collapse " id="navbarSupportedContent">
@@ -230,6 +233,4 @@
     </nav>
 </header>
 
-<script>
-
-</script>
+<script></script>
