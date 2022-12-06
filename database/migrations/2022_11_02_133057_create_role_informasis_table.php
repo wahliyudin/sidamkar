@@ -16,8 +16,10 @@ return new class extends Migration
         Schema::create('role_informasis', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('role_id');
-            $table->unsignedBigInteger('informasi_id');
+            $table->foreignUuid('informasi_id');
             $table->timestamps();
+
+            $table->foreign('informasi_id')->on('informasis')->references('id')->cascadeOnDelete();
         });
     }
 

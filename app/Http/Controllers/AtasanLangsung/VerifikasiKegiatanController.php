@@ -20,26 +20,29 @@ class VerifikasiKegiatanController extends Controller
 
     public function index(VerifikasiKegiatanDataTable $dataTable)
     {
-        $judul = 'Pengajuan Kegiatan';
+        $judul = 'Verifikasi Kegiatan';
         return $dataTable->render('atasan-langsung.verifikasi-kegiatan.index', compact('judul'));
     }
 
     public function kegiatanJabatan($id)
-    {
+    {   
+        $judul = 'Verifikasi Kegiatan';
         $periode = $this->verifikasiKegiatanService->periodeActive();
         $user = $this->verifikasiKegiatanService->getUserById($id);
-        return view('atasan-langsung.verifikasi-kegiatan.jabatan.index', compact('user', 'periode'));
+        return view('atasan-langsung.verifikasi-kegiatan.jabatan.index', compact('user', 'periode', 'judul'));
     }
 
     public function kegiatanProfesi($id)
-    {
+    {   
+        $judul = 'Verifikasi Kegiatan';
         $periode = $this->verifikasiKegiatanService->periodeActive();
         $user = $this->verifikasiKegiatanService->getUserById($id);
-        return view('atasan-langsung.verifikasi-kegiatan.profesi.index', compact('user', 'periode'));
+        return view('atasan-langsung.verifikasi-kegiatan.profesi.index', compact('user', 'periode','judul'));
     }
 
     public function kegiatanJabatanShow($user, $butir)
-    {
+    {   
+        $judul = 'Verifikasi Kegiatan';
         $user = $this->verifikasiKegiatanService->getUserById($user);
         $butirKegiatan = $this->verifikasiKegiatanService->getButirKegiatanById($butir);
         $periode = $this->verifikasiKegiatanService->periodeActive();
@@ -56,7 +59,8 @@ class VerifikasiKegiatanController extends Controller
             'laporanKegiatanJabatanStatusTolaks',
             'user',
             'butirKegiatan',
-            'periode'
+            'periode',
+            'judul'
         ));
     }
 

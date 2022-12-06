@@ -14,14 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('user_prov_kab_kotas', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id');
+            $table->uuid('id')->primary();
+            $table->foreignUuid('user_id');
             $table->unsignedBigInteger('nomenklatur_perangkat_daerah_id');
             $table->string('file_permohonan')->nullable();
             $table->boolean('is_active')->default(true);
             $table->string('catatan')->nullable();
-            $table->unsignedBigInteger('kab_kota_id')->nullable();
-            $table->unsignedBigInteger('provinsi_id')->nullable();
+            $table->foreignUuid('kab_kota_id')->nullable();
+            $table->foreignUuid('provinsi_id')->nullable();
+            $table->string('no_hp')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->on('users')->references('id')->cascadeOnDelete();

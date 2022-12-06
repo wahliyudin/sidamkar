@@ -148,7 +148,7 @@
                                             style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                             Pengajuan Akun Kab/Kota
                                         </p>
-                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">100</h4>
+                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">{{$total['pengajuan_kab_kota']}}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -166,7 +166,7 @@
                                             style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                             Pengajuan Akun Provinsi
                                         </p>
-                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">100</h4>
+                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">{{$total['pengajuan_provinsi']}}</h4>
                                     </div>
                                 </div>
                             </div>

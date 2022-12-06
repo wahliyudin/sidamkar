@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class UserProvKabKota extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
 
     protected $fillable = [
         'user_id',
@@ -17,7 +18,8 @@ class UserProvKabKota extends Model
         'is_active',
         'catatan',
         'kab_kota_id',
-        'provinsi_id'
+        'provinsi_id',
+        'no_hp'
     ];
 
     /**

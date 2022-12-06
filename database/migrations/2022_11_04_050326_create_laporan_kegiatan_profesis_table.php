@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('laporan_kegiatan_profesis', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->uuid('id')->primary();
+            $table->foreignUuid('user_id');
             $table->unsignedBigInteger('butir_kegiatan_id')->nullable();
             $table->unsignedBigInteger('sub_butir_kegiatan_id')->nullable();
             $table->text('detail_kegiatan');

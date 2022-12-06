@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class UserAparatur extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
 
     protected $fillable = [
         'user_id',
@@ -27,6 +28,7 @@ class UserAparatur extends Model
         'jenjang',
         'nomor_karpeg',
         'alamat',
+        'mekanisme_pengangkatan_id'
     ];
 
     /**
@@ -52,5 +54,10 @@ class UserAparatur extends Model
     public function pangkatGolonganTmt(): BelongsTo
     {
         return $this->belongsTo(PangkatGolonganTmt::class);
+    }
+
+    public function mekanismePengangkatan()
+    {
+        return $this->belongsTo(MekanismePengangkatan::class);
     }
 }

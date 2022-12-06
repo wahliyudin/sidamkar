@@ -23,6 +23,30 @@ if (!function_exists('getAllRoleFungsional')) {
         ];
     }
 }
+
+if (!function_exists('getAllRoleFungsionalDamkar')) {
+    function getAllRoleFungsionalDamkar(): array
+    {
+        return [
+            "damkar_pemula",
+            "damkar_terampil",
+            "damkar_mahir",
+            "damkar_penyelia"
+        ];
+    }
+}
+
+if (!function_exists('getAllRoleFungsionalAnalis')) {
+    function getAllRoleFungsionalAnalis(): array
+    {
+        return [
+            "analis_kebakaran_ahli_pertama",
+            "analis_kebakaran_ahli_muda",
+            "analis_kebakaran_ahli_madya"
+        ];
+    }
+}
+
 if (!function_exists('getAllRoleStruktural')) {
     function getAllRoleStruktural(): array
     {

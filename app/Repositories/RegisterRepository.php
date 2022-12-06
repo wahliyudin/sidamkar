@@ -37,6 +37,18 @@ class RegisterRepository
         ]);
     }
 
+    public function storeFungsionalUmum(User $user, array $data)
+    {
+        return $user->userFungsionalUmum()->create([
+            'nama' => $data['nama'],
+            'no_hp' => $data['no_hp'],
+            'tingkat_aparatur' => $data['tingkat_aparatur'],
+            'jabatan' => $data['jabatan'],
+            'provinsi_id' => $data['provinsi_id'],
+            'kab_kota_id' => isset($data['kab_kota_id']) ? $data['kab_kota_id'] : null
+        ]);
+    }
+
     public function storeProvKabKota(User $user, array $data)
     {
         $tmp_file = TemporaryFile::query()->where('folder', $data['file_permohonan'])->first();
@@ -49,7 +61,8 @@ class RegisterRepository
             'nomenklatur_perangkat_daerah_id' => $data['nomenklatur_perangkat_daerah_id'],
             'file_permohonan' => url("storage/provkabkota/$tmp_file->file"),
             'kab_kota_id' => isset($data['kab_kota_id']) ? $data['kab_kota_id'] : null,
-            'provinsi_id' => isset($data['provinsi_id']) ? $data['provinsi_id'] : null
+            'provinsi_id' => isset($data['provinsi_id']) ? $data['provinsi_id'] : null,
+            'no_hp' => $data['no_hp']
         ]);
     }
 

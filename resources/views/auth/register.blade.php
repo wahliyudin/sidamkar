@@ -262,33 +262,9 @@
                                                                 @enderror
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-3 jenis-jabatan-umum"
-                                                            style="display: none;">
+                                                        <div class="col-md-3 jenis-jabatan-umum">
                                                             <div class="form-group">
-                                                                <label>Jenis Jabatan<span
-                                                                        class="text-danger">*</span></label>
-                                                                <select name="jenis_jabatan_umum" required
-                                                                    class="custom-select">
-                                                                    <option selected disabled value="">- Pilih
-                                                                        Jabatan -</option>
-                                                                    @foreach ($rolesUmum as $role)
-                                                                        <option @selected(old('jenis_jabatan_umum') == $role->name)
-                                                                            value="{{ $role->name }}">
-                                                                            {{ $role->display_name }}</option>
-                                                                    @endforeach
-                                                                    <option @selected(old('jenis_jabatan_umum') == 'lainnya')
-                                                                        value="lainnya">Lainnya</option>
-                                                                </select>
-                                                                @error('jenis_jabatan_umum')
-                                                                    <strong
-                                                                        style="color: red;">{{ $message }}</strong>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-3 jenis-jabatan-text"
-                                                            style="display: none;">
-                                                            <div class="form-group">
-                                                                <label>Jenis Jabatan Baru<span
+                                                                <label>Jabatan<span
                                                                         class="text-danger">*</span></label>
                                                                 <input type="text"
                                                                     value="{{ old('jenis_jabatan_text') }}" required
@@ -438,6 +414,18 @@
                                                                     @endforeach
                                                                 </select>
                                                                 @error('nomenklatur_perangkat_daerah')
+                                                                    <strong
+                                                                        style="color: red;">{{ $message }}</strong>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label>No HP<span class="text-danger">*</span></label>
+                                                                <input type="number" required
+                                                                    value="{{ old('no_hp') }}" class="form-control"
+                                                                    name="no_hp">
+                                                                @error('no_hp')
                                                                     <strong
                                                                         style="color: red;">{{ $message }}</strong>
                                                                 @enderror

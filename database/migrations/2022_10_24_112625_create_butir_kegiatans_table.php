@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('nama')->fulltext();
             $table->string('satuan_hasil')->nullable();
             $table->float('score', places: 3)->nullable();
+            $table->integer('percent')->nullable();
             $table->timestamps();
 
             $table->foreign('sub_unsur_id')->on('sub_unsurs')->references('id')->cascadeOnDelete();

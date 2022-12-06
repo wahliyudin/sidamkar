@@ -18,6 +18,9 @@ $(document).ready(function () {
     });
     var pond = FilePond.create(document.querySelector('#laporkan input[name="doc_kegiatan_tmp[]"]'));
     pond.setOptions({
+        acceptedFileTypes: [
+            'image/*'
+        ],
         server: {
             process: '/laporan-kegiatan/jabatan/tmp-file',
             revert: '/laporan-kegiatan/jabatan/revert',
@@ -91,7 +94,7 @@ $(document).ready(function () {
             success: function (response) {
                 $('.revisi-kegiatan span').show();
                 $('.revisi-kegiatan .spin').hide();
-                swal({ type: 'success', title: 'Berhasil', html: 'Revisi Berhasil <b style="font-weight: bold; color:#d40004;">DILAPORKAN</b>' }).then(
+                swal({ type: 'success', title: 'Berhasil', html: 'Revisi Berhasil <b style="font-weight: bold; color:#884414;">DILAPORKAN</b>' }).then(
                     () => {
                         location.reload();
                     });

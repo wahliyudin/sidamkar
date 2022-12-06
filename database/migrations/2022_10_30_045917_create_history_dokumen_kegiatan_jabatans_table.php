@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('history_dokumen_kegiatan_jabatans', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('history_kegiatan_jabatan_id');
+            $table->uuid('id')->primary();
+            $table->foreignUuid('history_kegiatan_jabatan_id');
             $table->string('name');
             $table->string('link');
             $table->integer('size');
