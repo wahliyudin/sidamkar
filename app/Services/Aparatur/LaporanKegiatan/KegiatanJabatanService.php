@@ -71,6 +71,7 @@ class KegiatanJabatanService
 
     public function storeLaporan(Request $request, User $user, ButirKegiatan $butirKegiatan): LaporanKegiatanJabatan
     {
+
         $role = $butirKegiatan->load('subUnsur.unsur.role')->subUnsur->unsur->role;
         $periode = $this->periodeRepository->isActive();
         $laporanKegiatanJabatan = $this->kegiatanJabatanRepository->store($request, $role, $user, $butirKegiatan, $request->current_date, $periode->id);
@@ -90,6 +91,7 @@ class KegiatanJabatanService
             status: HistoryKegiatanJabatan::STATUS_VALIDASI,
             icon: HistoryKegiatanJabatan::ICON_SPINNER,
             keterangan: 'Sedang divalidasi oleh Atasan Langsung',
+            detail_kegiatan: $request->detail_kegiatan,
             current_date: $laporanKegiatanJabatan->current_date
         );
         return $laporanKegiatanJabatan;

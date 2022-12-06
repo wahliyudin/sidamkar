@@ -291,7 +291,8 @@
 
     <div class="modal fade" id="laporkan" tabindex="-1" role="dialog" data-bs-backdrop="static"
         aria-labelledby="laporkanTitle" aria-hidden="true">
-        <div class="modal-dialog modal-md modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-dialog modal-md modal-dialog-centered modal-dialog-centered modal-dialog-scrollable"
+            role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5>Laporan Kegiatan Jabatan</h5>
@@ -329,15 +330,15 @@
                             </div>
                         </div>
 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger px-5" data-bs-dismiss="modal">Batal</button>
-                        <button type="button" class="btn btn-blue px-5 simpan-kegiatan btn-kirim">
-                            <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
-                                style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
-                            <span>Kirim</span>
-                        </button>
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger px-5" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-blue px-5 simpan-kegiatan btn-kirim">
+                        <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
+                            style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
+                        <span>Kirim</span>
+                    </button>
+                </div>
                 </form>
             </div>
         </div>
