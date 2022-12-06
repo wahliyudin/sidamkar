@@ -66,11 +66,18 @@
                             <h3>Kegiatan Jabatan</h3>
                         </div>
                         <div class="col-md-6 text-end">
-                            <button {{ $user->rekapitulasiKegiatan?->is_send ? 'disabled' : '' }} data-bs-toggle="modal"
-                                data-bs-target="#rekap" class="btn btn-green btn-sm ps-3 pe-3 py-2 rekap">
-                                <i class="fa-solid fa-paper-plane me-1"></i>
-                                Ajukan Laporan Rekapitulasi Capaian
-                            </button>
+                            @if ($user->rekapitulasiKegiatan?->is_send == true)
+                                <button data-bs-toggle="modal" data-bs-target="#historyRekap"
+                                    class="btn btn-blue btn-sm ps-3 pe-3 py-2">
+                                    History Laporan Rekapitulasi Capaian
+                                </button>
+                            @else
+                                <button data-bs-toggle="modal" data-bs-target="#rekap"
+                                    class="btn btn-green btn-sm ps-3 pe-3 py-2 rekap">
+                                    <i class="fa-solid fa-paper-plane me-1"></i>
+                                    Ajukan Laporan Rekapitulasi Capaian
+                                </button>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -108,6 +115,26 @@
                                 style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
                             <span>Kirim</span>
                         </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="historyRekap" tabindex="-1" role="dialog" aria-labelledby="historyRekapTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="text-red uppercase">Surat Pernyataan Melakukan Kegiatan</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="timeline-vertical" data-simplebar
+                        style="max-height: 74vh; overflow-y: auto; overflow-x: hidden;">
+                        @include('aparatur.laporan-kegiatan.jabatan.history_rekapitulasi',
+                            compact('historyRekapitulasiKegiatans'))
+                    </div>
+                    <div class="text-center mt-4">
+                        <button class="btn btn-danger px-5" data-bs-dismiss="modal">Tutup</button>
                     </div>
                 </div>
             </div>

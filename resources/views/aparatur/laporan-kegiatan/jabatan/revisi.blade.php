@@ -65,6 +65,8 @@
 
                             <div class="timeline-vertical" data-simplebar
                                 style="max-height: 74vh; overflow-y: auto; overflow-x: hidden;">
+                                @include('aparatur.laporan-kegiatan.jabatan.history_rekapitulasi',
+                                    compact('historyRekapitulasiKegiatans'))
                                 @foreach ($laporanKegiatanJabatan->historyKegiatanJabatans()->orderBy('id', 'desc')->get() as $historyKegiatanJabatan)
                                     <div class="timeline-item">
                                         @switch($historyKegiatanJabatan->icon)
