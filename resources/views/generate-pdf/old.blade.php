@@ -56,7 +56,7 @@
 </head>
 
 <body>
-    <table width="100%" class="table table-light-none table-striped page-break">
+    <table width="99%" class="table table-light-none table-striped page-break">
         <thead>
             <tr>
                 <th class="bd center letter" colspan="8">SURAT PERNYATAAN</th>
@@ -76,7 +76,7 @@
             </tr>
         </thead>
     </table>
-    <table width="100%" class="table table-light-none table-striped page-break">
+    <table width="99%" class="table table-light-none table-striped page-break">
         <tbody>
             <tr>
                 <td class="bd letter" colspan="8">Bertanda tangan di bawah ini:</td>
@@ -115,7 +115,7 @@
             </tr>
         </tbody>
     </table>
-    <table width="100%" class="table table-light-none table-striped page-break">
+    <table width="99%" class="table table-light-none table-striped page-break">
         <tbody>
             <tr>
                 <td class="bd letter" colspan="8">Menyatakan bahwa:</td>
@@ -147,7 +147,7 @@
             </tr>
         </tbody>
     </table>
-    <table width="100%" class="table table-light-none table-striped page-break">
+    <table width="99%" class="table table-light-none table-striped page-break">
         <tbody>
             <tr>
                 <td class="bd" colspan="8"><br></td>
@@ -163,7 +163,7 @@
         </tbody>
     </table>
     <br>
-    <table width="100%" class="table table-light">
+    <table width="99%" class="table table-light">
         <tbody>
             <tr>
                 <th class="center letter" width="30px">No</th>
@@ -215,7 +215,7 @@
         </tbody>
     </table>
     <br>
-    <table width="100%" class="table table-light-none table-striped page-break">
+    <table width="99%" class="table table-light-none table-striped page-break">
         <tbody>
             <tr>
                 <td class="bd center letter" colspan="8">Demikian pernyataan ini dibuat untuk dapat dipergunakan

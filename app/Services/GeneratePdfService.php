@@ -24,14 +24,14 @@ class GeneratePdfService
         $this->unsurRepository = $unsurRepository;
     }
 
-    public function generateRekapitulasi(User $user, $content, $ttd = null)
+    public function generateRekapitulasi(User $userAuth, $content, $ttd = null)
     {
         $periode = $this->periodeRepository->isActive();
         $user = User::query()->with([
             'mente.atasanLangsung.roles',
             'mente.atasanLangsung.userPejabatStruktural.pangkatGolonganTmt', 'roles',
             'userAparatur.pangkatGolonganTmt'
-        ])->find($user->id);
+        ])->find($userAuth->id);
         if (!isset($user->userAparatur->pangkatGolonganTmt)) {
             throw ValidationException::withMessages(["Maaf anda belum melengkapi data diri anda"]);
         }
@@ -42,17 +42,23 @@ class GeneratePdfService
             throw ValidationException::withMessages(["Maaf atasan langsung anda belum melengkapi data dirinya"]);
         }
         $unsurs = $this->unsurRepository->getRekapUnsurs($user);
-        $pdf = PDF::loadView('generate-pdf.old', compact('unsurs', 'user', 'ttd'))->setPaper('A4');
+        $pdf_rekap = PDF::loadView('generate-pdf.old', compact('unsurs', 'user', 'ttd'))->setPaper('A4');
         $file_name = uniqid();
-        Storage::put("rekapitulasi/$file_name.pdf", $pdf->output());
+        Storage::put("rekapitulasi/$file_name.pdf", $pdf_rekap->output());
         $url = asset("storage/rekapitulasi/$file_name.pdf");
-        $rekapitulasiKegiatan = $this->updateOrCreateRekapitulasi($user, $periode, $url, $file_name, $content);
+
+        [$file_capaian, $file_name_capaian] = $this->generateCapaian($userAuth, $ttd);
+        $rekapitulasiKegiatan = $this->updateOrCreateRekapitulasi($user, $periode, $url, $file_name, $content, $file_capaian, $file_name_capaian);
         return $rekapitulasiKegiatan;
     }
 
-    public function generateCapaian(User $user)
+    public function generateCapaian(User $user, $ttd = null)
     {
-        $user = $user->load('roles');
+        $periode = $this->periodeRepository->isActive();
+        $user = $user->load(['roles', 'userAparatur.pangkatGolonganTmt']);
+        $atasan_langsung = User::query()->whereRoleIs('atasan_langsung')->with(['userPejabatStruktural' => function ($query) use ($user) {
+            $query->with('pangkatGolonganTmt')->where('kab_kota_id', $user->userAparatur->kab_kota_id);
+        }])->first();
         $rencanas = Rencana::query()
             ->where('user_id', $user->id)
             ->withWhereHas('laporanKegiatanJabatans', function ($query) {
@@ -77,7 +83,13 @@ class GeneratePdfService
                 unset($rencana->laporanKegiatanJabatans);
                 return $rencana;
             });
-        return $rencanas;
+        $pdf_rekap = PDF::loadView('generate-pdf.rekapitulasi-capaian', compact('rencanas', 'ttd', 'user', 'atasan_langsung', 'periode'))->setPaper('A4');
+        $file_name = uniqid();
+        Storage::put("rekapitulasi/$file_name.pdf", $pdf_rekap->output());
+        return [
+            asset("storage/rekapitulasi/$file_name.pdf"),
+            $file_name
+        ];
     }
 
     private function current($data)
@@ -104,7 +116,7 @@ class GeneratePdfService
         return $current;
     }
 
-    public function updateOrCreateRekapitulasi($user, $periode, $url, $file_name, $content)
+    public function updateOrCreateRekapitulasi($user, $periode, $url, $file_name, $content, $file_capaian, $file_name_capaian)
     {
         $rekapitulasiKegiatan = RekapitulasiKegiatan::query()
             ->where('fungsional_id', $user->id)
@@ -113,14 +125,18 @@ class GeneratePdfService
             deleteImage($rekapitulasiKegiatan->file);
             $rekapitulasiKegiatan->update([
                 'file' => $url,
-                'file_name' => $file_name
+                'file_name' => $file_name,
+                'file_capaian' => $file_capaian,
+                'file_name_capaian' => $file_name_capaian
             ]);
         } else {
             $rekapitulasiKegiatan = RekapitulasiKegiatan::query()->create([
                 'fungsional_id' => $user->id,
                 'file' => $url,
                 'file_name' => $file_name,
-                'periode_id' => $periode->id
+                'periode_id' => $periode->id,
+                'file_capaian' => $file_capaian,
+                'file_name_capaian' => $file_name_capaian
             ]);
             $rekapitulasiKegiatan->historyRekapitulasiKegiatans()->create([
                 'content' => $content
@@ -135,6 +151,9 @@ class GeneratePdfService
         if ($rekapitulasiKegiatan instanceof RekapitulasiKegiatan) {
             $rekapitulasiKegiatan->update([
                 'is_ttd' => true
+            ]);
+            $rekapitulasiKegiatan->historyRekapitulasiKegiatans()->create([
+                'content' => 'Rekapitulasi ditanda tangani Atasan Langsung'
             ]);
         }
     }

@@ -50,7 +50,7 @@
                                                                 style="height: 3rem; object-fit: cover;" alt=""
                                                                 srcset="">
                                                         </div>
-                                                        <iframe src="{{ $rekapitulasiKegiatan?->file }}"
+                                                        <iframe src="{{ $rekapitulasiKegiatan?->file_capaian }}"
                                                             style="border-radius: 10px; overflow: hidden;" width="100%"
                                                             height="500px"></iframe>
                                                         @if ($rekapitulasiKegiatan?->is_ttd != true)
