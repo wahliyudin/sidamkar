@@ -18,7 +18,8 @@ class UserProvKabKota extends Model
         'is_active',
         'catatan',
         'kab_kota_id',
-        'provinsi_id'
+        'provinsi_id',
+        'no_hp'
     ];
 
     /**

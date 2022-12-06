@@ -60,9 +60,12 @@ class KegiatanJabatanController extends Controller
     public function index(): View|Factory
     {
         $periode = $this->periodeRepository->isActive();
-        $user = $this->authUser()->load(['rencanas', 'rekapitulasiKegiatan']);
+        $user = $this->authUser()->load(['rencanas', 'rekapitulasiKegiatan.historyRekapitulasiKegiatans' => function($query){
+            $query->orderBy('id', 'desc');
+        }]);
         $judul = 'Laporan Kegiatan Jabatan';
-        return view('aparatur.laporan-kegiatan.jabatan.index', compact('periode', 'user', 'judul'));
+        $historyRekapitulasiKegiatans = $user?->rekapitulasiKegiatan?->historyRekapitulasiKegiatans ?? [];
+        return view('aparatur.laporan-kegiatan.jabatan.index', compact('periode', 'user', 'judul', 'historyRekapitulasiKegiatans'));
     }
 
     /**
@@ -74,7 +77,9 @@ class KegiatanJabatanController extends Controller
     public function show(ButirKegiatan $butirKegiatan): View|Factory
     {
         $periode = $this->periodeRepository->isActive();
-        $user = $this->authUser();
+        $user = $this->authUser()->load(['rekapitulasiKegiatan.historyRekapitulasiKegiatans' => function($query){
+            $query->orderBy('id', 'desc');
+        }]);
         $judul = 'Laporan Kegiatan Jabatan';
         [
             $laporanKegiatanJabatanStatusValidasis,
@@ -84,6 +89,7 @@ class KegiatanJabatanController extends Controller
         ] = $this->kegiatanJabatanService->laporanKegiatanJabatanByUser($butirKegiatan, $user);
         $laporanKegiatanJabatanCount = $this->kegiatanJabatanService->laporanKegiatanJabatanCount($butirKegiatan, $user);
         $rencanas = $this->kegiatanJabatanService->rencanas($user);
+        $historyRekapitulasiKegiatans = $user?->rekapitulasiKegiatan?->historyRekapitulasiKegiatans ?? [];
         return view('aparatur.laporan-kegiatan.jabatan.show', compact(
             'laporanKegiatanJabatanStatusValidasis',
             'laporanKegiatanJabatanStatusRevisis',
@@ -94,7 +100,8 @@ class KegiatanJabatanController extends Controller
             'rencanas',
             'butirKegiatan',
             'periode',
-            'judul'
+            'judul',
+            'historyRekapitulasiKegiatans'
         ));
     }
 

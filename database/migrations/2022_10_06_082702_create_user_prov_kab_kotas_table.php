@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('catatan')->nullable();
             $table->foreignUuid('kab_kota_id')->nullable();
             $table->foreignUuid('provinsi_id')->nullable();
+            $table->string('no_hp')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->on('users')->references('id')->cascadeOnDelete();
