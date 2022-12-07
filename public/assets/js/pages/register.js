@@ -59,8 +59,10 @@ $(function () {
     FilePond.create(document.querySelector('input[name="file_permohonan"]'), {
         chunkUploads: true,
         acceptedFileTypes: [
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
             'application/doc',
-            'application/pdf'
+            'application/pdf',
+            '.docx'
         ]
     });
     FilePond.setOptions({
