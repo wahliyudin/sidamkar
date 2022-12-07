@@ -31,7 +31,9 @@ return new class extends Migration
             $table->string('alamat')->nullable();
             $table->foreignUuid('provinsi_id');
             $table->foreignUuid('kab_kota_id')->nullable();
-            $table->foreignUuid('mekanisme_pengangkatan_id')->nullable();
+            $table->unsignedBigInteger('mekanisme_pengangkatan_id')->nullable();
+            $table->float('angka_mekanisme', places: 4, unsigned: true)->nullable();
+            $table->enum('status_mekanisme', [1, 2, 3, 4])->nullable(); // Menunggu, revisi, terverifikasi, tolak
             $table->timestamps();
 
             $table->foreign('user_id')->on('users')->references('id')->cascadeOnDelete();
