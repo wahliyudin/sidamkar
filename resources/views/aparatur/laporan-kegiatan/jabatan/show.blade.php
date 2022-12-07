@@ -2,13 +2,18 @@
 
 @section('content')
     <div class="section">
+        <div class="row">
+            <div class="d-flex px-4 mb-4 container-control justify-content-between align-items-center">
+                <h5>{{ $butirKegiatan->nama }}</h5>
+                <button class="btn btn-red" data-bs-toggle="modal" data-bs-target="#laporkan">Laporkan</button>
+            </div>
+        </div>
         <div class="d-flex px-4 mb-4 container-control justify-content-between align-items-center">
             <div class="form-group mb-0">
                 <input class="form-control" type="date" value="{{ now()->format('Y-m-d') }}"
                     max="{{ Carbon\Carbon::make($periode->akhir)->format('Y-m-d') }}"
                     min="{{ Carbon\Carbon::make($periode->awal)->format('Y-m-d') }}" name="tanggal">
             </div>
-            <button class="btn btn-red" data-bs-toggle="modal" data-bs-target="#laporkan">Laporkan</button>
         </div>
         <div class=" row d-flex flex-row flex-nowrap overflow-auto container-kegiatan">
             <div class="card col-sm-6 mx-3">
@@ -321,6 +326,13 @@
                     <form class="d-flex flex-column form-kegiatan" enctype="multipart/form-data">
                         <input type="hidden" name="butir_kegiatan" value="{{ $butirKegiatan->id }}">
                         <input type="hidden" name="rencana_count" value="{{ $laporanKegiatanJabatanCount }}">
+                        <div class="row ps-5">
+                            <ul>
+                                <li>
+                                    <p>{{ $butirKegiatan->nama }}</p>
+                                </li>
+                            </ul>
+                        </div>
                         <div class="row">
                             <div class="form-group col-md-6">
                                 <label>Tanggal</label>
@@ -340,7 +352,8 @@
                                     class="form-select">
                                     <option selected disabled>- Pilih Rencana -</option>
                                     @foreach ($rencanas as $rencana)
-                                        <option value="{{ $rencana->id }}">{{ $rencana->nama }}</option>
+                                        <option @selected($laporanKegiatanJabatanLast?->rencana_id == $rencana->id) value="{{ $rencana->id }}">
+                                            {{ $rencana->nama }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -408,6 +421,11 @@
         .container-kegiatan::-webkit-scrollbar-thumb {
             background-color: darkgrey;
             border-radius: 10px !important;
+        }
+
+        li::marker {
+            font-size: 25px !important;
+            color: black;
         }
     </style>
 @endsection

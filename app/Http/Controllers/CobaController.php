@@ -33,6 +33,6 @@ class CobaController extends Controller
 
     public function index()
     {
-        dd(str('coba.png')->contains(['.pdf', '.docx']));
+        return User::query()->paginate(10);
     }
 }

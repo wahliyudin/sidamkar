@@ -50,7 +50,8 @@ class DataSayaController extends Controller
             'jenis_kelamin' => 'required',
             'kab_kota_id' => 'required',
             'provinsi_id' => 'required',
-            'mekanisme_pengangkatan_id' => 'required',
+            'mekanisme_pengangkatan_id' => 'nullable',
+            'angka_mekanisme' => 'nullable',
         ]);
         $data = [
             'nama' => $request->nama,
@@ -63,8 +64,15 @@ class DataSayaController extends Controller
             'jenis_kelamin' => $request->jenis_kelamin,
             'kab_kota_id' => $request->kab_kota_id,
             'provinsi_id' => $request->provinsi_id,
-            'mekanisme_pengangkatan_id' => $request->mekanisme_pengangkatan_id,
+
         ];
+        if (isset($request->mekanisme_pengangkatan_id)) {
+            $data = array_merge($data, [
+                'mekanisme_pengangkatan_id' => $request->mekanisme_pengangkatan_id,
+                'angka_mekanisme' => $request->angka_mekanisme,
+                'status_mekanisme' => 1
+            ]);
+        }
         if ($request->hasFile('avatar')) {
             $data['foto_pegawai'] = $this->storeImage($request->file('avatar'), 'aparatur');
         }
