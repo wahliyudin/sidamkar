@@ -148,10 +148,44 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-12">
+                            </div>
+                            <div class="row col-md-12"
+                                style="border: 2px solid #E5E5E5;border-radius: 6px;padding: 4px;margin-top: 19px;">
+                                <div class="col-md-12 my-1"
+                                    style="display: flex; justify-content: end; align-items: center;">
+                                    @switch($user?->userAparatur?->status_mekanisme)
+                                        @case(1)
+                                            <button style="width: 200px; font-style: italic; cursor: default;"
+                                                class="btn btn-yellow-reverse px-2 py-1 text-sm">Menunggu</button>
+                                        @break
+
+                                        @case(2)
+                                            <button style="width: 200px; font-style: italic; cursor: default;"
+                                                class="btn btn-red-reverse px-2 py-1 text-sm">Revisi</button>
+                                        @break
+
+                                        @case(3)
+                                            <button style="width: 200px; font-style: italic; cursor: default;"
+                                                class="btn btn-green-reverse px-2 py-1 text-sm">Terverifikasi</button>
+                                        @break
+
+                                        @case(4)
+                                            <button style="width: 200px; font-style: italic; cursor: default;"
+                                                class="btn btn-black-reverse px-2 py-1 text-sm">Ditolak</button>
+                                        @break
+
+                                        @default
+                                            <button style="width: 200px; font-style: italic; cursor: default;"
+                                                class="btn btn-gray-reverse px-2 py-1 text-sm">Belum</button>
+                                    @endswitch
+
+                                </div>
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Mekanisme Pengangkatan</label>
-                                        <select class="form-select" name="mekanisme_pengangkatan_id">
+                                        <select class="form-select"
+                                            {{ in_array($user?->userAparatur?->status_mekanisme, [1, 3, 4]) ? 'disabled' : '' }}
+                                            name="mekanisme_pengangkatan_id">
                                             <option selected disabled>- Pilih Mekanisme -</option>
                                             @foreach ($mekanismePengangkatans as $mekanismePengangkatan)
                                                 <option @selected($user?->userAparatur?->mekanismePengangkatan?->id == $mekanismePengangkatan->id)
@@ -161,6 +195,17 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="col-md-6 mekanisme-angka"
+                                    style="{{ !isset($user?->userAparatur->angka_mekanisme) ? 'display: none;' : '' }}">
+                                    <div class="form-group">
+                                        <label>Angka Kredit Mekanisme</label>
+                                        <input type="number"
+                                            {{ in_array($user?->userAparatur?->status_mekanisme, [1, 3, 4]) ? 'disabled' : '' }}
+                                            name="angka_mekanisme" class="form-control"
+                                            value="{{ $user?->userAparatur->angka_mekanisme }}">
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>

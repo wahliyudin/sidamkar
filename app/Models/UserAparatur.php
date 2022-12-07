@@ -28,7 +28,9 @@ class UserAparatur extends Model
         'jenjang',
         'nomor_karpeg',
         'alamat',
-        'mekanisme_pengangkatan_id'
+        'mekanisme_pengangkatan_id',
+        'angka_mekanisme',
+        'status_mekanisme'
     ];
 
     /**

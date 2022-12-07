@@ -19,7 +19,11 @@ $(document).ready(function () {
     var pond = FilePond.create(document.querySelector('#laporkan input[name="doc_kegiatan_tmp[]"]'));
     pond.setOptions({
         acceptedFileTypes: [
-            'image/*'
+            'image/*',
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+            'application/doc',
+            'application/pdf',
+            '.docx'
         ],
         server: {
             process: '/laporan-kegiatan/jabatan/tmp-file',

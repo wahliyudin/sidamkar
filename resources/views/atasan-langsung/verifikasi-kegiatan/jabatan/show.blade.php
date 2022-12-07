@@ -27,16 +27,21 @@
                                     </p>
                                     <button class="btn btn-yellow btn-sm text-sm px-3">Validasi</button>
                                 </div>
-                                <div class="swiper mySwiper">
-                                    <div class="swiper-wrapper">
-                                        @foreach ($laporanKegiatanJabatanStatusValidasi->dokumenKegiatanJabatans as $dokumenKegiatanJabatan)
-                                            <div class="swiper-slide">
-                                                <img src="{{ $dokumenKegiatanJabatan->link }}" alt="">
-                                            </div>
-                                        @endforeach
+                                @if (count($laporanKegiatanJabatanStatusValidasi->dokumenKegiatanJabatans) > 0 &&
+                                    !str($laporanKegiatanJabatanStatusValidasi?->dokumenKegiatanJabatans[0]?->link ?? '')->contains(['.pdf', '.docx']))
+                                    <div class="swiper mySwiper">
+                                        <div class="swiper-wrapper">
+                                            @foreach ($laporanKegiatanJabatanStatusValidasi->dokumenKegiatanJabatans as $dokumenKegiatanJabatan)
+                                                @if (!str($dokumenKegiatanJabatan->link)->contains(['.pdf', '.docx']))
+                                                    <div class="swiper-slide">
+                                                        <img src="{{ $dokumenKegiatanJabatan->link }}" alt="">
+                                                    </div>
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                        <div class="swiper-pagination"></div>
                                     </div>
-                                    <div class="swiper-pagination"></div>
-                                </div>
+                                @endif
                                 <div class="d-flex flex-column mt-3">
                                     <div class="d-flex align-items-start item-attr">
                                         <i class="fa-solid fa-address-card" style="font-size: 1.3rem; width: 27px;"></i>
@@ -95,16 +100,21 @@
                                     </p>
                                     <button class="btn btn-red-dark btn-sm text-sm px-3">Revisi</button>
                                 </div>
-                                <div class="swiper mySwiper">
-                                    <div class="swiper-wrapper">
-                                        @foreach ($laporanKegiatanJabatanStatusRevisi->dokumenKegiatanJabatans as $dokumenKegiatanJabatan)
-                                            <div class="swiper-slide">
-                                                <img src="{{ $dokumenKegiatanJabatan->link }}" alt="">
-                                            </div>
-                                        @endforeach
+                                @if (count($laporanKegiatanJabatanStatusRevisi->dokumenKegiatanJabatans) > 0 &&
+                                    !str($laporanKegiatanJabatanStatusRevisi?->dokumenKegiatanJabatans[0]?->link ?? '')->contains(['.pdf', '.docx']))
+                                    <div class="swiper mySwiper">
+                                        <div class="swiper-wrapper">
+                                            @foreach ($laporanKegiatanJabatanStatusRevisi->dokumenKegiatanJabatans as $dokumenKegiatanJabatan)
+                                                @if (!str($dokumenKegiatanJabatan->link)->contains(['.pdf', '.docx']))
+                                                    <div class="swiper-slide">
+                                                        <img src="{{ $dokumenKegiatanJabatan->link }}" alt="">
+                                                    </div>
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                        <div class="swiper-pagination"></div>
                                     </div>
-                                    <div class="swiper-pagination"></div>
-                                </div>
+                                @endif
                                 <div class="d-flex flex-column mt-3">
                                     <div class="d-flex align-items-start item-attr">
                                         <i class="fa-solid fa-address-card" style="font-size: 1.3rem; width: 27px;"></i>
@@ -164,16 +174,21 @@
                                     </p>
                                     <button class="btn btn-green btn-sm text-sm px-3">Selesai</button>
                                 </div>
-                                <div class="swiper mySwiper">
-                                    <div class="swiper-wrapper">
-                                        @foreach ($laporanKegiatanJabatanStatusSelesai->dokumenKegiatanJabatans as $dokumenKegiatanJabatan)
-                                            <div class="swiper-slide">
-                                                <img src="{{ $dokumenKegiatanJabatan->link }}" alt="">
-                                            </div>
-                                        @endforeach
+                                @if (count($laporanKegiatanJabatanStatusSelesai->dokumenKegiatanJabatans) > 0 &&
+                                    !str($laporanKegiatanJabatanStatusSelesai?->dokumenKegiatanJabatans[0]?->link ?? '')->contains(['.pdf', '.docx']))
+                                    <div class="swiper mySwiper">
+                                        <div class="swiper-wrapper">
+                                            @foreach ($laporanKegiatanJabatanStatusSelesai->dokumenKegiatanJabatans as $dokumenKegiatanJabatan)
+                                                @if (!str($dokumenKegiatanJabatan->link)->contains(['.pdf', '.docx']))
+                                                    <div class="swiper-slide">
+                                                        <img src="{{ $dokumenKegiatanJabatan->link }}" alt="">
+                                                    </div>
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                        <div class="swiper-pagination"></div>
                                     </div>
-                                    <div class="swiper-pagination"></div>
-                                </div>
+                                @endif
                                 <div class="d-flex flex-column mt-3">
                                     <div class="d-flex align-items-start item-attr">
                                         <i class="fa-solid fa-address-card" style="font-size: 1.3rem; width: 27px;"></i>
@@ -232,16 +247,21 @@
                                     </p>
                                     <button class="btn btn-black btn-sm text-sm px-3">DITOLAK</button>
                                 </div>
-                                <div class="swiper mySwiper">
-                                    <div class="swiper-wrapper">
-                                        @foreach ($laporanKegiatanJabatanStatusTolak->dokumenKegiatanJabatans as $dokumenKegiatanJabatan)
-                                            <div class="swiper-slide">
-                                                <img src="{{ $dokumenKegiatanJabatan->link }}" alt="">
-                                            </div>
-                                        @endforeach
+                                @if (count($laporanKegiatanJabatanStatusTolak->dokumenKegiatanJabatans) > 0 &&
+                                    !str($laporanKegiatanJabatanStatusTolak?->dokumenKegiatanJabatans[0]?->link ?? '')->contains(['.pdf', '.docx']))
+                                    <div class="swiper mySwiper">
+                                        <div class="swiper-wrapper">
+                                            @foreach ($laporanKegiatanJabatanStatusTolak->dokumenKegiatanJabatans as $dokumenKegiatanJabatan)
+                                                @if (!str($dokumenKegiatanJabatan->link)->contains(['.pdf', '.docx']))
+                                                    <div class="swiper-slide">
+                                                        <img src="{{ $dokumenKegiatanJabatan->link }}" alt="">
+                                                    </div>
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                        <div class="swiper-pagination"></div>
                                     </div>
-                                    <div class="swiper-pagination"></div>
-                                </div>
+                                @endif
                                 <div class="d-flex flex-column mt-3">
                                     <div class="d-flex align-items-start item-attr">
                                         <i class="fa-solid fa-address-card" style="font-size: 1.3rem; width: 27px;"></i>
