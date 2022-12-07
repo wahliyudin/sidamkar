@@ -12,14 +12,17 @@
                 <div class="card">
                     <div class="card-body py-3 px-3" style="height: 100px;">
                         <div class="d-flex align-items-center h-100">
-                            <div class="circle circle-red-light">
-                                <i class="fa-solid fa-circle-exclamation"></i>
+                            <div class="circle circle-green">
+                                <i class="fa-solid
+                                fa-stopwatch"></i>
                             </div>
                             <div class="d-flex flex-column ms-2">
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                    Angka Kredit Sebelumnya
+                                    Periode
                                 </p>
-                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target">44</h2>
+                                <h2 style="font-family: 'Roboto'; font-size: 16px; color: #06152B;" class="target">
+                                    {{ $periode != null ? Carbon\Carbon::make($periode->awal)->translatedFormat('F Y') . ' - ' . Carbon\Carbon::make($periode->akhir)->translatedFormat('F Y') : '-' }}
+                                </h2>
                             </div>
                         </div>
                     </div>
@@ -33,10 +36,11 @@
                                 <i class="fa-solid fa-bullseye"></i>
                             </div>
                             <div class="d-flex flex-column ms-2">
-                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
+                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;"
+                                    class="target-h1">
                                     Target Angka Kredit
                                 </p>
-                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target">100</h2>
+                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target target-h2">100</h2>
                             </div>
                         </div>
                     </div>
@@ -50,10 +54,11 @@
                                 <i class="fa-solid fa-sliders"></i>
                             </div>
                             <div class="d-flex flex-column ms-2">
-                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
+                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;"
+                                    class="target-h1">
                                     Capaian Angka Kredit
                                 </p>
-                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target">56</h2>
+                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target target-h2">56</h2>
                             </div>
                         </div>
                     </div>
@@ -67,7 +72,8 @@
                                 <i class="fa-solid fa-calendar-days"></i>
                             </div>
                             <div class="d-flex flex-column ms-2">
-                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
+                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;"
+                                    class="target-h1">
                                     Periode Aktif
                                 </p>
                                 <h2 style="font-family: 'Roboto';color: #06152B; font-size: 14px;"
@@ -139,7 +145,7 @@
                 </div>
             </div>
             <div class="col-md-3 col">
-                <div class="card">
+                <div class="card" style="overflow: auto; height: 550px">
                     <div class="card-header">
                         <h4 class="card-title text-center" style="color: #17181A; font-family: 'Roboto';">
                             INFORMATION
@@ -147,15 +153,65 @@
                     </div>
                     <div class="card-body">
                         <ul>
+                            @foreach ($informasi as $informasis )
                             <li>
-                                <p style="margin: 0 !important;">Upacara Bendera</p>
+                                <p style="margin: 0 !important;"> {{ $informasis->judul}} ( <a href="" data-bs-toggle="modal"
+                                        data-bs-target="#informasi">Klik Disini</a> )
+                                </p>
+                                <div class="footer-information">
+                                    <p style="font-size: 9px; margin-top: 10px; color: red;"> 11/2/2022</p>
+                                </div>
                             </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <div class="modal fade" id="informasi" tabindex="-1" role="dialog" aria-labelledby="informasiTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="informasiTitle">
+                        INFORMASI
+                    </h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <i data-feather="x"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" enctype="multipart/form-data" class="container-unsur">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                        <span>Tutup</span>
+                    </button>
+                    {{--  <button class="btn btn-green ml-1 simpan-kegiatan">
+                        <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
+                            style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
+                        <span>Simpan</span>
+                    </button>  --}}
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 @section('css')
     <style>
@@ -195,6 +251,17 @@
             .target-periode {
                 font-size: 14px !important;
             }
+        }
+
+        @media screen and (min-width: 750px) and (max-width: 1000px) {
+            .target-h2 {
+                font-size: 14px;
+            }
+
+            .target-periode {
+                font-size: 11px !important;
+            }
+
         }
     </style>
 @endsection

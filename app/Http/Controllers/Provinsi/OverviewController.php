@@ -29,6 +29,10 @@ class OverviewController extends Controller
             'damkar' => $total_damkar,
             'analis' => $total_analis,
         ];
-        return view('provinsi.overview', compact('judul', 'total','periode'));
+
+        $role = DB::table('users')->join('role_user', 'role_user.user_id', '=', 'users.id')->where('users.id', '=', Auth::user()->id)->select('*')->get();
+
+        $informasi = DB::table('informasis')->join('role_informasis', 'role_informasis.informasi_id', '=', 'informasis.id')->where('role_informasis.role_id', $role[0]->role_id)->get();
+        return view('provinsi.overview', compact('judul', 'total','periode', 'informasi'));
     }
 }

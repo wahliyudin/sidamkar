@@ -160,7 +160,7 @@
             </div>
 
             <div class="col-md-3 col">
-                <div class="card">
+                <div class="card" style="overflow: auto; height: 550px">
                     <div class="card-header">
                         <h4 class="card-title text-center" style="color: #17181A; font-family: 'Roboto';">
                             INFORMATION
@@ -168,9 +168,16 @@
                     </div>
                     <div class="card-body">
                         <ul>
+                            @foreach ($informasi as $informasis )
                             <li>
-                                <p style="margin: 0 !important;">Upacara Bendera</p>
+                                <p style="margin: 0 !important;"> {{ $informasis->judul}} ( <a href="" data-bs-toggle="modal"
+                                        data-bs-target="#informasi">Klik Disini</a> )
+                                </p>
+                                <div class="footer-information">
+                                    <p style="font-size: 9px; margin-top: 10px; color: red;"> 11/2/2022</p>
+                                </div>
                             </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
