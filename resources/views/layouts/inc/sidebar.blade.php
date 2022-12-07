@@ -65,7 +65,7 @@
                         </a>
                     </li>
                     <li
-                        class="sidebar-item has-sub {{ request()->is('kab-kota/data-aparatur/pejabat-fungsional*') || request()->is('kab-kota/verifikasi-aparatur/pejabat-struktural*') ? 'active' : '' }}">
+                        class="sidebar-item has-sub {{ request()->is('kab-kota/manajemen-user/struktural*') || request()->is('kab-kota/manajemen-user/umum*') || request()->is('kab-kota/manajemen-user/fungsional*') || request()->is('kab-kota/verifikasi-aparatur/pejabat-struktural*') ? 'active' : '' }}">
                         <a href="javascript(0)" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="fa-solid fa-copy"></i>
