@@ -75,14 +75,16 @@ class KegiatanJabatanService
         $periode = $this->periodeRepository->isActive();
         $laporanKegiatanJabatan = $this->kegiatanJabatanRepository->store($request, $role, $user, $butirKegiatan, $request->current_date, $periode->id);
         $historyKegiatanJabatan = $this->kegiatanJabatanRepository->storeHistoryKegiatanJabatan($laporanKegiatanJabatan, HistoryKegiatanJabatan::STATUS_LAPORKAN, HistoryKegiatanJabatan::ICON_KEYBOARD, $request->detail_kegiatan, 'Berhasil dilaporkan', $request->current_date);
-        foreach ($request->doc_kegiatan_tmp as $doc_kegiatan_tmp) {
-            $tmpFile = $this->temporaryFileRepository->getByFolder($doc_kegiatan_tmp);
-            if ($tmpFile) {
-                Storage::copy("tmp/$tmpFile->folder/$tmpFile->name", "kegiatan/$tmpFile->name");
-                $this->kegiatanJabatanRepository->storeDokumenKegiatanJabatan($laporanKegiatanJabatan, $tmpFile);
-                $this->kegiatanJabatanRepository->storeHistoryDokumenKegiatanJabatan($historyKegiatanJabatan, $tmpFile);
-                $this->temporaryFileRepository->destroy($tmpFile);
-                Storage::deleteDirectory("tmp/$tmpFile->folder");
+        if (isset($request->doc_kegiatan_tmp[0]) && $request->doc_kegiatan_tmp[0] !== null) {
+            foreach ($request->doc_kegiatan_tmp as $doc_kegiatan_tmp) {
+                $tmpFile = $this->temporaryFileRepository->getByFolder($doc_kegiatan_tmp);
+                if ($tmpFile) {
+                    Storage::copy("tmp/$tmpFile->folder/$tmpFile->name", "kegiatan/$tmpFile->name");
+                    $this->kegiatanJabatanRepository->storeDokumenKegiatanJabatan($laporanKegiatanJabatan, $tmpFile);
+                    $this->kegiatanJabatanRepository->storeHistoryDokumenKegiatanJabatan($historyKegiatanJabatan, $tmpFile);
+                    $this->temporaryFileRepository->destroy($tmpFile);
+                    Storage::deleteDirectory("tmp/$tmpFile->folder");
+                }
             }
         }
         $this->kegiatanJabatanRepository->storeHistoryKegiatanJabatan(
@@ -90,6 +92,7 @@ class KegiatanJabatanService
             status: HistoryKegiatanJabatan::STATUS_VALIDASI,
             icon: HistoryKegiatanJabatan::ICON_SPINNER,
             keterangan: 'Sedang divalidasi oleh Atasan Langsung',
+            detail_kegiatan: null,
             current_date: $laporanKegiatanJabatan->current_date
         );
         return $laporanKegiatanJabatan;
@@ -173,5 +176,10 @@ class KegiatanJabatanService
     public function laporanKegiatanJabatanCount(ButirKegiatan $butirKegiatan, User $user): int
     {
         return $this->kegiatanJabatanService->laporanKegiatanJabatanCount($butirKegiatan, $user);
+    }
+
+    public function laporanLast(ButirKegiatan $butirKegiatan, User $user)
+    {
+        return $this->kegiatanJabatanService->laporanLast($butirKegiatan, $user);
     }
 }

@@ -50,7 +50,7 @@ class KegiatanJabatanRepository
         return $this->laporanKegiatanJabatan->query()->create($data);
     }
 
-    public function storeHistoryKegiatanJabatan(LaporanKegiatanJabatan $laporanKegiatanJabatan, int $status, int $icon, string $detail_kegiatan = null, string $keterangan, $current_date): HistoryKegiatanJabatan
+    public function storeHistoryKegiatanJabatan(LaporanKegiatanJabatan $laporanKegiatanJabatan, int $status, int $icon, ?string $detail_kegiatan = null, string $keterangan, $current_date): HistoryKegiatanJabatan
     {
         return $laporanKegiatanJabatan->historyKegiatanJabatans()->create([
             'status' => $status,

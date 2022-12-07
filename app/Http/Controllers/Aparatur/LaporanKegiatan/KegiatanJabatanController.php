@@ -72,9 +72,8 @@ class KegiatanJabatanController extends Controller
      * show
      *
      * @param ButirKegiatan $butirKegiatan
-     * @return View
      */
-    public function show(ButirKegiatan $butirKegiatan): View|Factory
+    public function show(ButirKegiatan $butirKegiatan)
     {
         $periode = $this->periodeRepository->isActive();
         $user = $this->authUser()->load(['rekapitulasiKegiatan.historyRekapitulasiKegiatans' => function($query){
@@ -87,6 +86,7 @@ class KegiatanJabatanController extends Controller
             $laporanKegiatanJabatanStatusSelesais,
             $laporanKegiatanJabatanStatusTolaks,
         ] = $this->kegiatanJabatanService->laporanKegiatanJabatanByUser($butirKegiatan, $user);
+        $laporanKegiatanJabatanLast = $this->kegiatanJabatanService->laporanLast($butirKegiatan, $user);
         $laporanKegiatanJabatanCount = $this->kegiatanJabatanService->laporanKegiatanJabatanCount($butirKegiatan, $user);
         $rencanas = $this->kegiatanJabatanService->rencanas($user);
         $historyRekapitulasiKegiatans = $user?->rekapitulasiKegiatan?->historyRekapitulasiKegiatans ?? [];
@@ -96,6 +96,7 @@ class KegiatanJabatanController extends Controller
             'laporanKegiatanJabatanStatusSelesais',
             'laporanKegiatanJabatanStatusTolaks',
             'laporanKegiatanJabatanCount',
+            'laporanKegiatanJabatanLast',
             'user',
             'rencanas',
             'butirKegiatan',

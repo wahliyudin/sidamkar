@@ -18,7 +18,7 @@ class KegiatanJabatanRepository
     private function laporanKegiatanJabatanByUser(ButirKegiatan $butirKegiatan, User $user)
     {
         return $this->laporanKegiatanJabatan->query()
-            ->with(['rencana', 'dokumenKegiatanJabatans', 'butirKegiatan.subUnsur.unsur'])
+            ->with(['rencana', 'dokumenKegiatanJabatans', 'butirKegiatan.subUnsur.unsur', 'historyKegiatanJabatans.historyDokumenKegiatanJabatans'])
             ->whereHas('rencana', function ($query) use ($user) {
                 $query->where('user_id', $user->id)->with(['user.roles', 'user.userAparatur']);
             })
@@ -50,5 +50,10 @@ class KegiatanJabatanRepository
     public function laporanKegiatanJabatanStatusTolak(ButirKegiatan $butirKegiatan, User $user)
     {
         return $this->laporanKegiatanJabatanByUser($butirKegiatan, $user)->where('status', LaporanKegiatanJabatan::TOLAK);
+    }
+
+    public function laporanLast(ButirKegiatan $butirKegiatan, User $user)
+    {
+        return $this->laporanKegiatanJabatanByUser($butirKegiatan, $user)->first();
     }
 }

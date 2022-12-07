@@ -28,7 +28,7 @@ class StoreLaporanRequest extends FormRequest
             'rencana_count' => 'required',
             'butir_kegiatan' => 'required',
             'current_date' => 'required',
-            'doc_kegiatan_tmp' => 'required',
+            'doc_kegiatan_tmp' => 'nullable',
         ];
         if (request()->rencana_count <= 0) {
             $rules['rencana_id'] = 'required';
