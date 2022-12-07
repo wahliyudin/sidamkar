@@ -16,36 +16,43 @@ class RoleSeeder extends Seeder
     public function run()
     {
         $roles = [
+            //role id 1
             [
                 'name' => "damkar_pemula",
                 'display_name' => 'Damkar Pemula',
                 'description' => ''
             ],
+            //role id 2
             [
                 'name' => "damkar_terampil",
                 'display_name' => 'Damkar Terampil',
                 'description' => ''
             ],
+            //role id 3
             [
                 'name' => "damkar_mahir",
                 'display_name' => 'Damkar Mahir',
                 'description' => ''
             ],
+            //role id 4
             [
                 'name' => "damkar_penyelia",
                 'display_name' => 'Damkar Penyelia',
                 'description' => ''
             ],
+            //role id 5
             [
                 'name' => "analis_kebakaran_ahli_pertama",
                 'display_name' => 'Analis Kebakaran Ahli Pertama',
                 'description' => ''
             ],
+            //role id 6
             [
                 'name' => "analis_kebakaran_ahli_muda",
                 'display_name' => 'Analis Kebakaran Ahli Muda',
                 'description' => ''
             ],
+            //role id 7
             [
                 'name' => "analis_kebakaran_ahli_madya",
                 'display_name' => 'Analis Kebakaran Ahli Madya',

@@ -397,6 +397,20 @@ class SubUnsurSeeder extends Seeder
             ],
         ];
         SubUnsur::query()->upsert($penyelia, 'id');
+
+        // $allRole = [
+        //     [
+        //         // 74
+        //         'unsur_id' => 19,
+        //         'nama' => 'Perolehan ijazah/gelar pendidikan formal sesuai dengan bidang tugas Jabatan Fungsional Pemadam Kebakakaran'
+        //     ],
+        //     [
+        //         // 75
+        //         'unsur_id' => 19,
+        //         'nama' => 'Pembuatan Karya Tulis / Karya Ilmiah di bidang Jabatan Fungsional Pemadam Kebakaran'
+        //     ],
+        // ];
+        // SubUnsur::query()->upsert($allRole, 'id');
         //end Sub Unsur dengan id 1 sampai dengan 73 adalah milik dari kegiatan pokok JABATAN FUNGSIONAL PEMADAM KEBAKARAN 
 
         // Sub unsur ini untuk kegiatan pokok dar JABATAN FUNGSIONAL ANALIS KEBAKARAN DAN ANGKA KREDITNYA

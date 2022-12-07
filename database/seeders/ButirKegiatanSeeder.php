@@ -19,6 +19,7 @@ class ButirKegiatanSeeder extends Seeder
         $damkarPemula = [
             // 1
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 1,
                 'nama' => 'Mempersiapkan kelengkapan pemadaman',
                 'satuan_hasil' => 'Dokumen kelengkapan',
@@ -26,6 +27,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 2
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 1,
                 'nama' => 'Melaksanakan Apel Pagi',
                 'satuan_hasil' => 'Laporan Apel Pagi',
@@ -33,6 +35,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 3
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 1,
                 'nama' => 'Melaksanakan serah terima tugas jaga',
                 'satuan_hasil' => 'Laporan serah terima tugas jaga',
@@ -40,6 +43,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 4
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 1,
                 'nama' => 'Melaksanakan pemeriksaan jumlah peralatan operasional',
                 'satuan_hasil' => 'Laporan pemeriksaan jumlah peralatan operasional',
@@ -47,6 +51,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 5
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 1,
                 'nama' => 'Melaksanakan pengecekan fungsi peralatan operasional',
                 'satuan_hasil' => 'Laporan pengecekan fungsi peralatan operasional',
@@ -54,6 +59,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 6
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 1,
                 'nama' => 'Membuat laporan sesuai dengan form check list',
                 'satuan_hasil' => 'Dokumen sesuai dengan form check list',
@@ -61,6 +67,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 7
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 2,
                 'nama' => 'Melaksanakan piket sesuai dengan consignus jaga (tata kelola)',
                 'satuan_hasil' => 'Laporan piket sesuai dengan consignus jaga (tata kelola)',
@@ -68,6 +75,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 8
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 2,
                 'nama' => 'Melakukan Monitoring kejadian kebakaran dan penyelamatan',
                 'satuan_hasil' => 'Laporan Monitoring kejadian kebakaran dan penyelamatan',
@@ -75,6 +83,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 9
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 3,
                 'nama' => 'Mempersiapkan kelengkapan operasional pemadaman dan penyelamatan',
                 'satuan_hasil' => 'Laporan kelengkapan',
@@ -82,6 +91,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 10
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 3,
                 'nama' => 'Melaksanakan apel malam',
                 'satuan_hasil' => 'Laporan apel malam',
@@ -89,6 +99,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 11
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 3,
                 'nama' => 'Melaksanakan pemeriksaan jumlah peralatan operasional',
                 'satuan_hasil' => 'Laporan pemeriksaan jumlah peralatan operasional',
@@ -96,6 +107,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 12
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 3,
                 'nama' => 'Melaksanakan pengecekan fungsi peralatan operasional',
                 'satuan_hasil' => 'Laporan pengecekan fungsi peralatan operasional',
@@ -103,6 +115,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 13
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 3,
                 'nama' => 'Membuat laporan sesuai dengan form check list',
                 'satuan_hasil' => 'Dokumen sesuai dengan form check list',
@@ -110,6 +123,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 14
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 4,
                 'nama' => 'Mempersiapkan peralatan latihan',
                 'satuan_hasil' => 'Laporan peralatan latihan ',
@@ -117,6 +131,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 15
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 4,
                 'nama' => 'Melakukan latihan penggunaan peralatan',
                 'satuan_hasil' => 'Laporan latihan penggunaan peralatan',
@@ -124,6 +139,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 16
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 4,
                 'nama' => 'Merapikan kembali peralatan yang digunakan',
                 'satuan_hasil' => 'Laporan kembali peralatan yang digunakan',
@@ -131,6 +147,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 17
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 5,
                 'nama' => 'Melaksanakan kegiatan pembinaan fisik',
                 'satuan_hasil' => 'Laporan kegiatan pembinaan fisik',
@@ -138,6 +155,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 18
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 6,
                 'nama' => 'Melaksanakan korve di lingkungan kerja',
                 'satuan_hasil' => 'Laporan korve di lingkungan kerja',
@@ -145,6 +163,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 19
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 6,
                 'nama' => 'Melaksanakan pembersihan unit mobil',
                 'satuan_hasil' => 'Laporan pembersihan unit mobil',
@@ -152,6 +171,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             //20
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 7,
                 'nama' => 'Mencatat informasi kejadian kebakaran',
                 'satuan_hasil' => 'Laporan informasi kejadian kebakaran',
@@ -159,6 +179,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 21
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 7,
                 'nama' => 'Melaporkan informasi kejadian kebakaran',
                 'satuan_hasil' => 'Laporan informasi kejadian kebakaran',
@@ -166,6 +187,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 22
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 8,
                 'nama' => 'Menerima perintah dari Kepala Regu pasca Informasi kejadian kebakaran',
                 'satuan_hasil' => 'Laporan saat diperintah oleh Kepala Regu pasca Informasi kejadian kebakaran',
@@ -173,6 +195,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 23
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 8,
                 'nama' => 'Melaksanakan perintah dari Kepala Regu pasca Informasi kejadian kebakaran',
                 'satuan_hasil' => 'Laporan dalam melaksanakan perintah dari Kepala Regu pasca Informasi kejadian kebakaran',
@@ -180,6 +203,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 24
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 8,
                 'nama' => 'Melakukan koordinasi dengan tim atau dengan anggota tim lain',
                 'satuan_hasil' => 'Laporan koordinasi dengan tim atau dengan anggota tim lain',
@@ -187,6 +211,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 25
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 9,
                 'nama' => 'Memakai alat pelindung diri',
                 'satuan_hasil' => 'Laporan alat pelindung diri',
@@ -194,6 +219,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 26
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 9,
                 'nama' => 'Menempati posisi duduk sesuai dengan formasi unit',
                 'satuan_hasil' => 'Laporan posisi duduk sesuai dengan formasi unit',
@@ -201,6 +227,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 27
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 9,
                 'nama' => 'Melakukan koordinasi internal unit',
                 'satuan_hasil' => 'Laporan koordinasi internal unit',
@@ -208,6 +235,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 28
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 10,
                 'nama' => 'Mengeluarkan peralatan pemadaman kebakaran dari unit mobil',
                 'satuan_hasil' => 'Laporan peralatan pemadaman kebakaran dari unit mobil',
@@ -215,6 +243,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 29
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 10,
                 'nama' => 'Mengoperasikan peralatan pemadaman kebakaran',
                 'satuan_hasil' => 'Laporan mengoperasikan peralatan pemadaman kebakaran',
@@ -222,6 +251,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 30
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 10,
                 'nama' => 'Melaksanakan pemadaman kebakaran',
                 'satuan_hasil' => 'Laporan pelaksanakan pemadaman kebakaran',
@@ -229,6 +259,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 31
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 11,
                 'nama' => 'Melakukan penyiraman untuk pendinginan',
                 'satuan_hasil' => 'Laporan penyiraman untuk pendinginan',
@@ -236,6 +267,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 32
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 11,
                 'nama' => 'Melakukan penyisiran titik api yang tersisa',
                 'satuan_hasil' => 'Laporan penyisiran titik api yang tersisa',
@@ -243,6 +275,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 33
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 11,
                 'nama' => 'Melaporkan kepada kepala regu',
                 'satuan_hasil' => 'Laporan kepada kepala regu',
@@ -250,6 +283,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 34
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 12,
                 'nama' => 'Mengemas peralatan yang telah digunakan',
                 'satuan_hasil' => 'Laporan pengemasan peralatan yang telah digunakan',
@@ -257,6 +291,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 35
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 12,
                 'nama' => 'Mengecek kelengkapan peralatan',
                 'satuan_hasil' => 'Laporan kelengkapan peralatan',
@@ -264,6 +299,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 36
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 12,
                 'nama' => 'mengikuti apel pengecekan personil',
                 'satuan_hasil' => 'Laporan apel pengecekan personil',
@@ -271,6 +307,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 37
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 13,
                 'nama' => 'Membersihkan unit, APD dan peralatan',
                 'satuan_hasil' => 'Laporan pembersihan unit, APD dan peralatan',
@@ -278,6 +315,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 38
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 13,
                 'nama' => 'Menempatkan kembali peralatan yang telah digunakan',
                 'satuan_hasil' => 'Laporan penempatan kembali peralatan yang telah digunakan',
@@ -285,6 +323,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 39
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 14,
                 'nama' => 'Menerima informasi evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan informasi evakuasi dan penyelamatan',
@@ -292,6 +331,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 40
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 14,
                 'nama' => 'Mencatat informasi evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Dokumen informasi evakuasi dan penyelamatan',
@@ -299,6 +339,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 41
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 15,
                 'nama' => 'Melaporkan kejadian evakuasi dan penyelamatan kepada kepala regu',
                 'satuan_hasil' => 'Laporan kejadian evakuasi dan penyelamatan kepada kepala regu',
@@ -306,6 +347,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 42
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 15,
                 'nama' => 'Melaksanakan perintah dari Kepala Reguu',
                 'satuan_hasil' => 'Laporan menerima perintah dari kepala regu',
@@ -313,6 +355,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 43
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 15,
                 'nama' => 'Melakukan koordinasi dengan anggota Tim',
                 'satuan_hasil' => 'Laporan koordinasi dengan anggota Tim',
@@ -320,6 +363,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 44
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 16,
                 'nama' => 'menggunakan APD dan berangkat menuju TKP',
                 'satuan_hasil' => 'Laporan menggunakan APD dan berangkat menuju TKP',
@@ -327,6 +371,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 45
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 16,
                 'nama' => 'Melaksanakan Evakuasi dan Penyelamatan',
                 'satuan_hasil' => 'Laporan Evakuasi dan Penyelamatan',
@@ -334,6 +379,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 46
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 17,
                 'nama' => 'Menghimpun data evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan data evakuasi dan penyelamatan',
@@ -341,6 +387,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 47
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 17,
                 'nama' => 'Menyusun laporan kejadian evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Menyusun laporan kejadian evakuasi dan penyelamatan',
@@ -348,6 +395,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 48
             [
+                'role_id' => 1,
                 'sub_unsur_id' => 17,
                 'nama' => 'Mendokumentasikan dan melaporkan kejadian evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan kejadian evakuasi dan penyelamatan',
@@ -361,6 +409,7 @@ class ButirKegiatanSeeder extends Seeder
         $terampil = [
             // 49
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 18,
                 'nama' => 'Mempersiapkan personil',
                 'satuan_hasil' => 'Laporan kesiapan personil',
@@ -368,6 +417,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 50
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 18,
                 'nama' => 'Mengkoordinir Apel Tingkat Regu',
                 'satuan_hasil' => 'Laporan Apel Tingkat Regu',
@@ -375,6 +425,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 51
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 18,
                 'nama' => 'Memeriksa kondisi volume air tangki unit',
                 'satuan_hasil' => 'Laporan kondisi volume air tangki unit',
@@ -382,6 +433,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 52
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 18,
                 'nama' => 'Melaksanakan pengecekan peralatan unit mobil',
                 'satuan_hasil' => 'Laporan pengecekan peralatan unit mobil',
@@ -389,6 +441,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 53
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 18,
                 'nama' => 'Memeriksa fungsi Pompa/ PTO, rem, level bahan bakar, Oli, Radiator, Accu, Minyak Kopling, tekanan angin roda',
                 'satuan_hasil' => 'Laporan fungsi Pompa/ PTO, rem, level bahan bakar, Oli, Radiator, Accu,Minyak Kopling, tekanan angin roda',
@@ -396,6 +449,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 54
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 18,
                 'nama' => 'Memanaskan mesin kendaraan',
                 'satuan_hasil' => 'Laporan mesin kendaraan',
@@ -403,6 +457,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 55
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 18,
                 'nama' => 'Memeriksa fungsi lampu rotary, sirine, dan lampu kendaraan',
                 'satuan_hasil' => 'Memeriksa fungsi lampu rotary, sirine,dan lampu kendaraan',
@@ -410,6 +465,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 56
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 18,
                 'nama' => 'Memeriksa fungsi alat komunikasi Rig dan HT',
                 'satuan_hasil' => 'Memeriksa fungsi alat komunikasi Rig dan HT',
@@ -417,6 +473,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 57
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 18,
                 'nama' => 'Melaksanakan serah terima unit mobil',
                 'satuan_hasil' => 'Laporan serah terima unit mobil',
@@ -424,6 +481,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 58
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 18,
                 'nama' => 'Membuat laporan sesuai dengan form check list',
                 'satuan_hasil' => 'Dokumen sesuai dengan form check list',
@@ -431,6 +489,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 59
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 19,
                 'nama' => 'Melaksanakan piket sesuai dengan consignus jaga (tata kelola)',
                 'satuan_hasil' => 'Laporan piket sesuai dengan consignus jaga (tata kelola)',
@@ -438,6 +497,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 60
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 19,
                 'nama' => 'Melakukan Monitoring kejadian kebakaran dan penyelamatan',
                 'satuan_hasil' => 'Laporan kejadian kebakaran dan penyelamatan',
@@ -445,6 +505,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 61
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 20,
                 'nama' => 'Mempersiapkan kelengkapan unit mobil',
                 'satuan_hasil' => 'Laporan kelengkapan unit mobil',
@@ -452,6 +513,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 62
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 20,
                 'nama' => 'Melaksanakan apel malam',
                 'satuan_hasil' => 'Laporan apel malam',
@@ -459,6 +521,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 63
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 20,
                 'nama' => 'Melaksanakan pengecekan fungsi peralatan unit mobil',
                 'satuan_hasil' => 'Laporan pengecekan fungsi peralatan unit mobil',
@@ -466,6 +529,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 64
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 20,
                 'nama' => 'Memanaskan mesin unit mobil',
                 'satuan_hasil' => 'Laporan mesin unit mobil',
@@ -473,6 +537,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 65
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 20,
                 'nama' => 'Memeriksa fungsi lampu rotary, sirine, dan lampu kendaraan',
                 'satuan_hasil' => 'Laporan fungsi lampu rotary, sirine, dan lampu kendaraan',
@@ -480,6 +545,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 66
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 20,
                 'nama' => 'Memeriksa fungsi alat komunikasi Rig dan HT',
                 'satuan_hasil' => 'Laporan fungsi alat komunikasi Rig dan HT',
@@ -487,6 +553,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 67
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 20,
                 'nama' => 'Memeriksa kondisi volume air tangki unit mobil',
                 'satuan_hasil' => 'Laporan kondisi volume air tangki unit mobil',
@@ -494,6 +561,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 68
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 20,
                 'nama' => 'Membuat laporan sesuai dengan form check list.',
                 'satuan_hasil' => 'Dokumen sesuai dengan form check list.',
@@ -501,6 +569,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 69
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 21,
                 'nama' => 'Mempersiapkan peralatan latihan',
                 'satuan_hasil' => 'Laporan peralatan latihan',
@@ -508,6 +577,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 70
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 21,
                 'nama' => 'Melakukan latihan penggunaan peralatan khusus',
                 'satuan_hasil' => 'Laporan latihan penggunaan peralatan khusus',
@@ -515,6 +585,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 71
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 21,
                 'nama' => 'Merapikan kembali peralatan yang',
                 'satuan_hasil' => 'Laporan peralatan yang digunakan',
@@ -522,6 +593,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 72
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 22,
                 'nama' => 'Melaksanakan kegiatan pembinaan fisik',
                 'satuan_hasil' => 'Laporan kegiatan pembinaan fisik',
@@ -529,6 +601,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 73
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 23,
                 'nama' => 'Melaksanakan korve di lingkungan kerja',
                 'satuan_hasil' => 'Laporan korve di lingkungan kerja',
@@ -536,6 +609,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 74
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 23,
                 'nama' => 'Melaksanakan kebersihan unit',
                 'satuan_hasil' => 'Laporan kebersihan unit',
@@ -543,6 +617,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 75
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 24,
                 'nama' => 'Mencatat kondisi sistem pengendalian komunikasi penanggulangan kebakaran',
                 'satuan_hasil' => 'Dokumen kondisi sistem pengendalian komunikasi penanggulangan kebakaran',
@@ -550,6 +625,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 76
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 25,
                 'nama' => 'Menyiapkan kelengkapan Poskotis (Pos Komando Taktis) penanggulangan kebakaran',
                 'satuan_hasil' => 'Laporan kelengkapan Poskotis (Pos Komando Taktis) penanggulangan kebakaran',
@@ -557,6 +633,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 77
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 25,
                 'nama' => 'Mengumpulkan data untuk kebutuhan poskotis penanggulangan kebakaran',
                 'satuan_hasil' => 'Dokumen data untuk kebutuhan poskotis penanggulangan kebakaran',
@@ -564,6 +641,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 78
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 25,
                 'nama' => 'Melaporkan data dan informasi penanggulangan kebakaran',
                 'satuan_hasil' => 'Dokumen data dan informasi penanggulangan kebakaran',
@@ -571,6 +649,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 79
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 26,
                 'nama' => 'Melaksanakan inventarisasi sarana prasarana komunikasi penanggulangan kebakaran',
                 'satuan_hasil' => 'Laporan inventarisasi sarana prasarana komunikasi penanggulangan kebakaran',
@@ -578,6 +657,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 80
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 26,
                 'nama' => 'Melaksanakan pengecekan sarana prasarana komunikasi penanggulangan kebakaran',
                 'satuan_hasil' => 'Laporan pengecekan sarana prasarana komunikasi penanggulangan kebakaran',
@@ -585,6 +665,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 81
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 26,
                 'nama' => 'Melakukan pemeliharaan peralatan komunikasi penanggulangan kebakaran',
                 'satuan_hasil' => 'Laporan pemeliharaan peralatan komunikasi penanggulangan kebakaran',
@@ -592,6 +673,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 82
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 26,
                 'nama' => 'Memakai alat pelindung diri pengemudi',
                 'satuan_hasil' => 'Laporan alat pelindung diri pengemudi',
@@ -599,6 +681,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 83
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 27,
                 'nama' => 'Menyiapkan peralatan komunikasi pengemudi',
                 'satuan_hasil' => 'Laporan peralatan komunikasi pengemudi',
@@ -606,6 +689,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 84
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 27,
                 'nama' => 'Mengemudikan Mobil Pemadam Kebakaran menuju TKP',
                 'satuan_hasil' => 'Laporan Mobil Pemadam Kebakaran menuju TKP',
@@ -613,6 +697,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 85
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 27,
                 'nama' => 'Mengatur posisi Unit Mobil Pemadam Kebakaran di TKP',
                 'satuan_hasil' => 'Laporan posisi Unit Mobil Pemadam Kebakaran di TKP',
@@ -620,6 +705,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 86
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 27,
                 'nama' => 'Melakukan koordinasi internal unit',
                 'satuan_hasil' => 'Laporan koordinasi internal unit',
@@ -627,6 +713,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 87
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 28,
                 'nama' => 'Mempersiapkan sistem pompa/PTO unit',
                 'satuan_hasil' => 'Laporan sistem pompa/PTO unit ',
@@ -634,6 +721,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 88
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 28,
                 'nama' => 'Mengoperasikan pompa / PTO unit',
                 'satuan_hasil' => 'Laporan pompa / PTO unit',
@@ -641,6 +729,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 89
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 28,
                 'nama' => 'Menyambung kopling selang ke kopling unit',
                 'satuan_hasil' => 'Laporan kopling selang ke kopling unit ',
@@ -648,6 +737,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 90
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 28,
                 'nama' => 'Melayani kebutuhan air dan tekanan pompa yang diperlukan',
                 'satuan_hasil' => 'Laporan kebutuhan air dan tekanan pompa yang diperlukan',
@@ -655,6 +745,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 91
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 28,
                 'nama' => 'Melaksanakan pengisian tangki air',
                 'satuan_hasil' => 'Laporan pengisian tangki air',
@@ -662,6 +753,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 92
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 28,
                 'nama' => 'Melaksanakan suplai air',
                 'satuan_hasil' => 'Laporan suplai air',
@@ -669,6 +761,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 93
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 29,
                 'nama' => 'Mengemas peralatan yang digunakan',
                 'satuan_hasil' => 'Laporan peralatan yang digunakan',
@@ -676,6 +769,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 94
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 29,
                 'nama' => 'Mengecek kelengkapan peralatan',
                 'satuan_hasil' => 'Laporan kelengkapan peralatan',
@@ -683,6 +777,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 95
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 29,
                 'nama' => 'Mengikuti apel pengecekan personil',
                 'satuan_hasil' => 'Laporan apel pengecekan personil',
@@ -690,6 +785,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 96
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 29,
                 'nama' => 'Melakukan pengisian tangki air unit',
                 'satuan_hasil' => 'Laporan pengisian tangki air unit',
@@ -697,6 +793,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 97
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 29,
                 'nama' => 'Mengemudikan unit menuju pos pemadam kebakaran',
                 'satuan_hasil' => 'Laporan unit menuju pos pemadam kebakaran',
@@ -704,6 +801,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 98
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 30,
                 'nama' => 'Membersihkan unit, APD dan peralatan',
                 'satuan_hasil' => 'Laporan unit, APD dan peralatan',
@@ -711,6 +809,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 99
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 30,
                 'nama' => 'Menguras dan mengisi tangki air mobil pemadam kebakaran',
                 'satuan_hasil' => 'Laporan tangki air mobil pemadam kebakaran',
@@ -718,6 +817,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 100
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 30,
                 'nama' => 'Memeriksa kondisi mobil pemadam kebakaran',
                 'satuan_hasil' => 'Laporan kondisi mobil pemadam kebakaran',
@@ -725,6 +825,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 101
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 30,
                 'nama' => 'Menempatkan kembali mobil pemada kebakaran pada posisi yang telah ditentukan',
                 'satuan_hasil' => 'Laporan mobil pemadam kebakaran pada posisi yang telah ditentukan',
@@ -732,6 +833,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 102
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 31,
                 'nama' => 'mencatat data informasi kejadian evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Dokumen data informasi kejadian evakuasi dan penyelamatan',
@@ -739,6 +841,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 103
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 32,
                 'nama' => 'Membuat poskotis evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan poskotis evakuasi dan penyelamatan',
@@ -746,6 +849,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 104
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 32,
                 'nama' => 'Mengumpulkan dan mengolah data untuk kebutuhan poskotis evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Dokumen data untuk kebutuhan poskotis evakuasi dan penyelamatan',
@@ -753,6 +857,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 105
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 32,
                 'nama' => 'Melaporkan data dan informasi evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan data dan informasi evakuasi dan penyelamatan',
@@ -760,6 +865,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 106
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 33,
                 'nama' => 'Melaksanakan inventarisasi sarana prasarana komunikasi evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Dokumen inventarisasi sarana prasarana komunikasi evakuasi dan penyelamatan',
@@ -767,6 +873,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 107
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 33,
                 'nama' => 'Melaksanakan pengecekan sarana prasarana komunikasi evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Dokumen pengecekan sarana prasarana komunikasi evakuasi dan penyelamatan',
@@ -774,6 +881,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 108
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 33,
                 'nama' => 'Melakukan pemeliharaan peralatan komunikasi evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan pemeliharaan peralatan komunikasi evakuasi dan penyelamatan',
@@ -781,6 +889,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 109
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 34,
                 'nama' => 'Memakai alat pelindung diri pengemudi',
                 'satuan_hasil' => 'Laporan alat pelindung diri pengemudi',
@@ -788,6 +897,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 110
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 34,
                 'nama' => 'Menyiapkan peralatan komunikasi pengemudi',
                 'satuan_hasil' => 'Laporan peralatan komunikasi pengemudi',
@@ -795,6 +905,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 111
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 34,
                 'nama' => 'Mengemudikan Unit Evakuasi dan Penyelamatan menuju TKP',
                 'satuan_hasil' => 'Laporan Unit Evakuasi dan Penyelamatan menuju TKP',
@@ -802,6 +913,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 112
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 34,
                 'nama' => 'Mengatur posisi Unit Evakuasi dan Penyelamatan di TKP',
                 'satuan_hasil' => 'Laporan posisi Unit Evakuasi dan Penyelamatan di TKP',
@@ -809,6 +921,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 113
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 34,
                 'nama' => 'Melakukan koordinasi internal unit Evakuasi dan Penyelamatan',
                 'satuan_hasil' => 'Laporan koordinasi internal unit Evakuasi dan Penyelamatan',
@@ -816,6 +929,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 114
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 35,
                 'nama' => 'Mempersiapkan peralatan Evakuasi dan Penyelamatan',
                 'satuan_hasil' => 'Laporan peralatan Evakuasi dan Penyelamatan',
@@ -823,6 +937,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 115
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 35,
                 'nama' => 'Menentukan peralatan Evakuasi dan Penyelamatan yang akan digunakan',
                 'satuan_hasil' => 'Laporan peralatan Evakuasi dan Penyelamatan yang akan digunakan',
@@ -830,6 +945,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 116
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 35,
                 'nama' => 'Mengoperasikan peralatan Evakuasi dan Penyelamatan',
                 'satuan_hasil' => 'Laporan peralatan Evakuasi dan Penyelamatan',
@@ -837,6 +953,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 117
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 35,
                 'nama' => 'Mengevakuasi dan Penyelamatan korban',
                 'satuan_hasil' => 'Laporan evakuasi dan Penyelamatan korban',
@@ -844,6 +961,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 118
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 36,
                 'nama' => 'Mengemas peralatan Evakuasi dan Penyelamatan yang digunakan',
                 'satuan_hasil' => 'Laporan peralatan Evakuasi dan Penyelamatan yang digunakan',
@@ -851,6 +969,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 119
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 36,
                 'nama' => 'Mengecek kelengkapan peralatan Evakuasi dan Penyelamatan',
                 'satuan_hasil' => 'Laporan kelengkapan peralatan Evakuasi dan Penyelamatan',
@@ -858,6 +977,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 120
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 36,
                 'nama' => 'Mengembalikan Peralatan Evakuasi dan Penyelamatan pada unit yang telah ditentukan',
                 'satuan_hasil' => 'Laporan Peralatan Evakuasi dan Penyelamatan pada unit yang telah ditentukan',
@@ -865,6 +985,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 121
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 36,
                 'nama' => 'Mengikuti apel pengecekan personil dalam operasi Evakuasi dan Penyelamatan',
                 'satuan_hasil' => 'Laporan apel pengecekan personil dalam operasi Evakuasi dan Penyelamatan',
@@ -872,6 +993,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 122
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 37,
                 'nama' => 'Mengemudikan unit menuju pos pemadam kebakaran dan penyelamatan',
                 'satuan_hasil' => 'Laporan unit menuju pos pemadam kebakaran dan penyelamatan',
@@ -879,6 +1001,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 123
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 37,
                 'nama' => 'Membersihkan unit, APD dan peralatan evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan unit, APD dan peralatan evakuasi dan penyelamatan',
@@ -886,6 +1009,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 124
             [
+                'role_id' => 2,
                 'sub_unsur_id' => 37,
                 'nama' => 'Mengembalikan unit mobil evakuasi dan penyelamatan pada posisi yang telah ditentukan',
                 'satuan_hasil' => 'Laporan unit mobil evakuasi dan penyelamatan pada posisi yang telah ditentukan',
@@ -897,6 +1021,7 @@ class ButirKegiatanSeeder extends Seeder
         $mahir = [
             // 125
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 38,
                 'nama' => 'Melakukan verifikasi kelengkapan',
                 'satuan_hasil' => 'Laporan verifikasi kelengkapan',
@@ -904,6 +1029,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 126
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 38,
                 'nama' => 'Memimpin Apel Pagi',
                 'satuan_hasil' => 'Laporan Apel Pagi',
@@ -911,6 +1037,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 127
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 38,
                 'nama' => 'Memimpin serah terima tugas jaga',
                 'satuan_hasil' => 'Laporan serah terima tugas jaga',
@@ -918,6 +1045,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 128
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 38,
                 'nama' => 'Memimpin pemeriksaan jumlah peralatan operasional',
                 'satuan_hasil' => 'Laporan pemeriksaan jumlah peralatan operasional',
@@ -925,6 +1053,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 129
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 38,
                 'nama' => 'Memimpin pengecekan fungsi peralatan operasional',
                 'satuan_hasil' => 'Laporan pengecekan fungsi peralatan operasional',
@@ -932,6 +1061,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 130
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 38,
                 'nama' => 'Memeriksa laporan sesuai dengan form check list',
                 'satuan_hasil' => 'Dokumen sesuai dengan form check list',
@@ -939,6 +1069,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 131
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 38,
                 'nama' => 'Melakukan verifikasi fungsi alat komunikasi Rig dan HT',
                 'satuan_hasil' => 'Dokumen verifikasi fungsi alat komunikasi Rig dan HT',
@@ -946,6 +1077,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 132
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 39,
                 'nama' => 'Melakukan verifikasi kondisi volume air tangki unit mobil',
                 'satuan_hasil' => 'Dokumen verifikasi kondisi volume air tangki unit mobil',
@@ -953,6 +1085,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 133
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 39,
                 'nama' => 'Memvalidasi laporan sesuai dengan form check list',
                 'satuan_hasil' => 'Dokumen validasi sesuai dengan form check list',
@@ -960,6 +1093,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 134
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 40,
                 'nama' => 'Melakukan verifikasi kelengkapan personil dalam regu',
                 'satuan_hasil' => 'Laporan verifikasi kelengkapan personil dalam regu',
@@ -967,6 +1101,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 135
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 40,
                 'nama' => 'Mengatur anggota regu pada pelaksanaan apel malam',
                 'satuan_hasil' => 'Laporan pelaksanaan apel malam',
@@ -974,6 +1109,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 136
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 40,
                 'nama' => 'Mengatur anggota regu pada pemeriksaan peralatan unit mobil',
                 'satuan_hasil' => 'Laporan pelaksanaan apel malam',
@@ -981,6 +1117,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 137
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 40,
                 'nama' => 'Mengatur anggota regu pada pengecekan peralatan unit mobil',
                 'satuan_hasil' => 'Laporan pengecekan peralatan unit mobil',
@@ -988,6 +1125,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 138
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 40,
                 'nama' => 'Mengatur anggota regu pada pemeriksaan kondisi unit',
                 'satuan_hasil' => 'Laporan pemeriksaan kondisi unit',
@@ -995,6 +1133,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 139
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 41,
                 'nama' => 'Mengatur anggota regu pada Memimpin persiapan peralatan latihan',
                 'satuan_hasil' => 'Laporan persiapan peralatan latihan',
@@ -1002,6 +1141,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 140
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 41,
                 'nama' => 'Mengatur anggota regu pada latihan penggunaan peralatan',
                 'satuan_hasil' => 'Laporan latihan penggunaan peralatan',
@@ -1009,6 +1149,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 141
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 41,
                 'nama' => 'Mengatur anggota regu pada proses pengemasan peralatan yang telah digunakan',
                 'satuan_hasil' => 'Laporan proses pengemasan peralatan yang telah digunakan',
@@ -1016,6 +1157,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 142
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 42,
                 'nama' => 'Mengatur anggota regu pada kegiatan',
                 'satuan_hasil' => 'Laporan kegiatan pembinaan fisik',
@@ -1023,6 +1165,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 143
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 43,
                 'nama' => 'Mengatur anggota regu pada korve di lingkungan kerja',
                 'satuan_hasil' => 'Laporan korve di lingkungan kerja',
@@ -1030,6 +1173,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 144
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 43,
                 'nama' => 'Mengatur anggota regu pada kebersihan unit',
                 'satuan_hasil' => 'Laporan kebersihan unit',
@@ -1037,6 +1181,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 145
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 44,
                 'nama' => 'Melakukan validasi informasi kejadian kebakaran',
                 'satuan_hasil' => 'Laporan validasi informasi kejadian kebakaran',
@@ -1044,6 +1189,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 146
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 44,
                 'nama' => 'Menginformasikan kejadian kebakaran',
                 'satuan_hasil' => 'Laporan informasi kejadian kebakaran',
@@ -1051,6 +1197,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 147
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 45,
                 'nama' => 'Melaporkan tindak lanjut informasi kejadian kebakaran',
                 'satuan_hasil' => 'Laporan tindak lanjut informasi kejadian kebakaran',
@@ -1058,6 +1205,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 148
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 45,
                 'nama' => 'Melakukan koordinasi dengan regu lainnya',
                 'satuan_hasil' => 'Laporan koordinasi dengan regu lainnya',
@@ -1065,6 +1213,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 149
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 45,
                 'nama' => 'Melakukan Koordinasi dengan instansi lainnya',
                 'satuan_hasil' => 'Laporan Koordinasi dengan instansi lainnya',
@@ -1072,6 +1221,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 150
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 46,
                 'nama' => 'Memakai alat pelindung diri dan mengawasi pemakaian APD',
                 'satuan_hasil' => 'Laporan alat pelindung diri dan mengawasi pemakaian APD',
@@ -1079,6 +1229,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 151
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 46,
                 'nama' => 'Mengatur anggota regu pada penempatanposisi duduk anggota regu sesuai dengan formasi unit',
                 'satuan_hasil' => 'Laporan penempatan posisi duduk anggota regu sesuai dengan formasi unit ',
@@ -1086,6 +1237,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 152
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 46,
                 'nama' => 'Memerintahkan regu menuju ke tempat kejadian kebakaran',
                 'satuan_hasil' => 'Laporan regu menuju ke tempat kejadian kebakaran',
@@ -1093,6 +1245,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 153
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 46,
                 'nama' => 'Mengatur anggota regu pada Memimpin koordinasi internal unit',
                 'satuan_hasil' => 'Laporan koordinasi internal unit',
@@ -1100,6 +1253,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 154
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 46,
                 'nama' => 'Mengatur anggota regu pada size up (penilaian awal) pada saat di perjalanan',
                 'satuan_hasil' => 'Laporan size up (penilaian awal) pada saat di perjalanan',
@@ -1107,6 +1261,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 155
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 47,
                 'nama' => 'Mengatur anggota regu pada size up (penilaian awal) situasi kondisi kejadian kebakaran',
                 'satuan_hasil' => 'Laporan size up (penilaian awal) situasi kondisi kejadian kebakaran',
@@ -1114,6 +1269,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 156
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 47,
                 'nama' => 'Mengatur anggota regu pada teknik taktik strategi operasional pemadaman',
                 'satuan_hasil' => 'Laporan teknik taktik strategi operasional pemadaman',
@@ -1121,6 +1277,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 157
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 47,
                 'nama' => 'Mengatur prosedur pemadaman dari sumber air ke titik api',
                 'satuan_hasil' => 'Laporan prosedur pemadaman dari sumber air ke titik api',
@@ -1128,6 +1285,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 158
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 47,
                 'nama' => 'Mengatur anggota regu untuk peran dan tugas anggota regu',
                 'satuan_hasil' => 'Laporan peran dan tugas anggota regu',
@@ -1135,6 +1293,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 159
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 47,
                 'nama' => 'Mengatur anggota regu pada kebutuhan penggunaan peralatan operasional kebakaran',
                 'satuan_hasil' => 'Laporan kebutuhan penggunaan peralatan operasional kebakaran',
@@ -1142,6 +1301,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 160
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 47,
                 'nama' => 'Mengendalikan prosedur dan keselamatan kerja anggota regu',
                 'satuan_hasil' => 'Laporan prosedur dan keselamatan kerja anggota regu',
@@ -1149,6 +1309,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 161
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 47,
                 'nama' => 'Memantau dan melaporkan perkembangan situasi kondisi kejadian kebakaran',
                 'satuan_hasil' => 'Laporan perkembangan situasi kondisi kejadian kebakaran',
@@ -1156,6 +1317,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 162
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 47,
                 'nama' => 'Mengatur anggota regu pada pendataan awal di tempat kejadian kebakaran',
                 'satuan_hasil' => 'Laporan pendataan awal di tempat kejadian kebakaran',
@@ -1163,6 +1325,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 163
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 48,
                 'nama' => 'Mengatur anggota regu pada proses pendinginan',
                 'satuan_hasil' => 'Laporan proses pendinginan',
@@ -1170,6 +1333,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 164
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 48,
                 'nama' => 'Mengatur anggota regu pada pelaksanaan Over Houl (pemeriksaan titik api yang tersisa)',
                 'satuan_hasil' => 'Laporan pelaksanaan Over Houl (pemeriksaan titik api yang tersisa)',
@@ -1177,6 +1341,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 165
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 48,
                 'nama' => 'Melaporkan hasil over houl kepada atasan',
                 'satuan_hasil' => 'Laporan hasil over houl kepada atasan',
@@ -1184,6 +1349,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 166
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 48,
                 'nama' => 'Melaporkan situasi akhir kondisi kebakaran',
                 'satuan_hasil' => 'Laporan situasi akhir kondisi kebakaran',
@@ -1191,6 +1357,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 167
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 49,
                 'nama' => 'Mengatur anggota regu pada proses pengemasan peralatan yang digunakan',
                 'satuan_hasil' => 'Laporan proses pengemasan peralatan yang digunakan',
@@ -1198,6 +1365,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 168
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 49,
                 'nama' => 'Mengatur anggota regu pada pengecekan kelengkapan peralatan',
                 'satuan_hasil' => 'Laporan pengecekan kelengkapan peralatan',
@@ -1205,6 +1373,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 169
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 49,
                 'nama' => 'Mengatur anggota regu pada apel pengecekan personil',
                 'satuan_hasil' => 'Laporan apel pengecekan personil',
@@ -1212,6 +1381,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 170
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 50,
                 'nama' => 'Mengatur anggota regu pada proses kebersihan unit, APD dan peralatan',
                 'satuan_hasil' => 'Laporan proses kebersihan unit, APD dan peralatan',
@@ -1219,6 +1389,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 171
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 50,
                 'nama' => 'Mengatur anggota regu pada proses pengurasan dan pengisi tangki air unit',
                 'satuan_hasil' => 'Laporan proses pengurasan dan pengisi tangki air unit',
@@ -1226,6 +1397,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 172
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 50,
                 'nama' => 'Mengatur anggota regu pada penempatan kembali peralatan yang telah digunakan',
                 'satuan_hasil' => 'Laporan penempatan kembali peralatan yang telah digunakan',
@@ -1233,6 +1405,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 173
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 50,
                 'nama' => 'Mengolah laporan kejadian kebakaran',
                 'satuan_hasil' => 'Laporan kejadian kebakaran',
@@ -1240,6 +1413,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 174
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 51,
                 'nama' => 'Memakai dan mengawasi pemakaian alat pelindung diri evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan pemakaian alat pelindung diri evakuasi dan penyelamatan',
@@ -1247,6 +1421,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 175
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 51,
                 'nama' => 'Mengatur anggota regu pada penempatan posisi duduk anggota regu sesuai dengan formasi unit',
                 'satuan_hasil' => 'Laporan penempatan posisi duduk anggota regu sesuai dengan formasi unit',
@@ -1254,6 +1429,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 176
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 51,
                 'nama' => 'Memerintahkan regu menuju ke tempat kejadian evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan regu menuju ke tempat kejadian evakuasi dan penyelamatan',
@@ -1261,6 +1437,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 177
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 51,
                 'nama' => 'Mengatur anggota regu pada koordinasi internal unit',
                 'satuan_hasil' => 'Laporan koordinasi internal unit',
@@ -1268,6 +1445,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 178
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 51,
                 'nama' => 'Menyusun pra size up (penilaian situasi awal ) pada saat di perjalan',
                 'satuan_hasil' => 'Laporan pra size up (penilaian situasi awal ) pada saat di perjalan',
@@ -1275,6 +1453,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 179
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 52,
                 'nama' => 'Memimpin size up (penilaian situasi) kondisi evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan size up (penilaian situasi) kondisi evakuasi dan penyelamatan',
@@ -1282,6 +1461,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 180
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 52,
                 'nama' => 'Mengatur teknik taktik strategi operasional evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan teknik taktik strategi operasional evakuasi dan penyelamatan',
@@ -1289,6 +1469,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 181
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 52,
                 'nama' => 'Mengatur prosedur evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan prosedur evakuasi dan penyelamatan',
@@ -1296,6 +1477,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 182
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 52,
                 'nama' => 'Mengatur peran dan tugas anggota regu evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan peran dan tugas anggota regu evakuasi dan penyelamatan',
@@ -1303,6 +1485,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 183
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 52,
                 'nama' => 'Mengatur kebutuhan penggunaan peralatan operasional evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan kebutuhan penggunaan peralatan operasional evakuasi dan penyelamatan',
@@ -1310,6 +1493,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 184
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 52,
                 'nama' => 'Mengendalikan prosedur kerja dan keselamatan anggota regu evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan prosedur kerja dan keselamatan anggota regu evakuasi dan penyelamatan',
@@ -1317,6 +1501,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 185
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 52,
                 'nama' => 'Melaporkan perkembangan situasi kondisi kejadian evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan perkembangan situasi kondisi kejadian evakuasi dan penyelamatan',
@@ -1324,6 +1509,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 186
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 52,
                 'nama' => 'Mengatur anggota regu pada pelaksanaan Over Houl (pemeriksaan dengan seksama) terhadap evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan pelaksanaan Over Houl (pemeriksaan dengan seksama) terhadap evakuasi dan penyelamatan',
@@ -1331,6 +1517,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 187
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 52,
                 'nama' => 'Mengatur anggota regu pada pendataan awal di tempat kejadian evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan pendataan awal di tempat kejadian evakuasi dan penyelamatan',
@@ -1338,6 +1525,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 188
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 53,
                 'nama' => 'Mengatur anggota regu pada proses pengemasan peralatan yang digunakan untuk evakuasi dan penyelamata',
                 'satuan_hasil' => 'Laporan proses pengemasan peralatan yang digunakan untuk evakuasi dan penyelamatan',
@@ -1345,6 +1533,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 189
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 53,
                 'nama' => 'Mengatur anggota regu pada pengecekan kelengkapan peralatan evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan pengecekan kelengkapan peralatan evakuasi dan penyelamatan',
@@ -1352,6 +1541,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 190
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 53,
                 'nama' => 'Mengatur anggota regu pada apel pengecekan personil evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan apel pengecekan personil evakuasi dan penyelamatan',
@@ -1359,6 +1549,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 191
             [
+                'role_id' => 3,
                 'sub_unsur_id' => 54,
                 'nama' => 'Mengatur anggota regu pada proses kebersihan unit, APD dan peralatan evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan proses kebersihan unit, APD dan peralatan evakuasi dan penyelamatan',
@@ -1371,6 +1562,7 @@ class ButirKegiatanSeeder extends Seeder
 
             // 192
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 55,
                 'nama' => 'Memverifikasi hasil pemeriksaan kelengkapan personil antar regu',
                 'satuan_hasil' => 'Laporan pemeriksaan kelengkapan personil antar regu',
@@ -1378,6 +1570,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 193
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 55,
                 'nama' => 'Mengarahkan personil pada pelaksanaan apel pagi tingkat peleton',
                 'satuan_hasil' => 'Laporan pelaksanaan apel pagi tingkat peleton',
@@ -1385,6 +1578,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 194
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 55,
                 'nama' => 'Mengarahkan personil pada serah terima tugas jaga tingkat peleton',
                 'satuan_hasil' => 'Laporan pada serah terima tugas jaga tingkat peleton',
@@ -1392,6 +1586,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 195
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 55,
                 'nama' => 'Mengarahkan personil pada pemeriksaan peralatan unit mobil tingkat peleton',
                 'satuan_hasil' => 'Laporan pemeriksaan peralatan unit mobil tingkat peleton',
@@ -1399,6 +1594,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 196
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 55,
                 'nama' => 'Mengarahkan personil pada pengecekan peralatan unit mobil tingkat peleton',
                 'satuan_hasil' => 'Laporan pengecekan peralatan unit mobil tingkat peleton',
@@ -1406,6 +1602,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 197
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 55,
                 'nama' => 'Memverifikasi pemeriksaan kondisi unit tingkat peleton',
                 'satuan_hasil' => 'Laporan pemeriksaan kondisi unit tingkat peleton',
@@ -1413,6 +1610,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 198
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 55,
                 'nama' => 'Menanda tangani laporan sesuai dengan form check list tingkat peleton',
                 'satuan_hasil' => 'Dokumen sesuai dengan form check list tingkat peleton',
@@ -1420,6 +1618,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 199
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 56,
                 'nama' => 'Mengarahkan personil pada pelaksanaan piket sesuai dengan consignus jaga (tata kelola) tingkat peleton',
                 'satuan_hasil' => 'Laporan pelaksanaan piket sesuai dengan consignus jaga ( tata kelola) tingkat pleton',
@@ -1427,6 +1626,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 200
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 56,
                 'nama' => 'Mengarahkan personil pada monitoring kekuatan personil dan unit dalam peleton',
                 'satuan_hasil' => 'Laporan Monitoring kekuatan personil dan unit dalam peleton',
@@ -1434,6 +1634,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 201
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 57,
                 'nama' => 'Mengarahkan personil pada pemeriksaan kelengkapan personil dalam peleton',
                 'satuan_hasil' => 'Laporan pemeriksaan kelengkapan personil dalam peleton',
@@ -1441,6 +1642,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 202
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 57,
                 'nama' => 'Mengarahkan personil pada pelaksanaan apel malam tingkat peleton',
                 'satuan_hasil' => 'Laporan pelaksanaan apel malam tingkat peleton',
@@ -1448,6 +1650,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 203
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 57,
                 'nama' => 'Mengarahkan personil pada pemeriksaan peralatan unit mobil',
                 'satuan_hasil' => 'Laporan pemeriksaan peralatan unit mobil',
@@ -1455,6 +1658,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 204
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 57,
                 'nama' => 'Mengarahkan personil pada pengecekan peralatan unit mobil',
                 'satuan_hasil' => 'Laporan pengecekan peralatan unit mobil',
@@ -1462,6 +1666,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 205
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 57,
                 'nama' => 'Mengarahkan personil pada pemeriksaan kondisi unit',
                 'satuan_hasil' => 'Laporan pemeriksaan kondisi unit',
@@ -1469,6 +1674,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 206
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 58,
                 'nama' => 'Mengarahkan personil pada pelaksanaan latihan',
                 'satuan_hasil' => 'Laporan pelaksanaan latihan',
@@ -1476,6 +1682,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 207
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 58,
                 'nama' => 'Mengarahkan pelaksanaan latihan',
                 'satuan_hasil' => 'Laporan latihan',
@@ -1483,6 +1690,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 208
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 58,
                 'nama' => 'Melakukan evaluasi pelaksanaan latihan',
                 'satuan_hasil' => 'Laporan evaluasi pelaksanaan latihan',
@@ -1490,6 +1698,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 209
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 59,
                 'nama' => 'Mengarahkan personil pada pelaksanaan kegiatan pembinaan fisik',
                 'satuan_hasil' => 'Laporan pelaksanaan kegiatan pembinaan fisik',
@@ -1497,6 +1706,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 210
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 59,
                 'nama' => 'Mengarahkan pelaksanaan kegiatan pembinaan fisik',
                 'satuan_hasil' => 'Laporan kegiatan pembinaan fisik',
@@ -1504,6 +1714,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 211
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 59,
                 'nama' => 'Melakukan evaluasi pelaksanaan pembinaan fisik',
                 'satuan_hasil' => 'Laporan evaluasi pelaksanaan pembinaan fisik',
@@ -1511,6 +1722,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 212
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 60,
                 'nama' => 'Mengarahkan personil pada pelaksanaan kegiatan kebersihan lingkungan kerja',
                 'satuan_hasil' => 'Laporan pelaksanaan kegiatan kebersihan lingkungan kerja',
@@ -1518,6 +1730,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 213
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 60,
                 'nama' => 'Mengarahkan pelaksanaan kegiatan kebersihan lingkungan kerja',
                 'satuan_hasil' => 'Laporan kegiatan kebersihan lingkungan kerja',
@@ -1525,6 +1738,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 214
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 60,
                 'nama' => 'Melakukan evaluasi pelaksanaan kebersihan lingkungan kerja',
                 'satuan_hasil' => 'Laporan evaluasi pelaksanaan kebersihan lingkungan kerja',
@@ -1532,6 +1746,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 215
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 61,
                 'nama' => 'Menerima hasil validasi informasi kejadian kebakaran',
                 'satuan_hasil' => 'Laporan validasi informasi kejadian kebakaran',
@@ -1539,6 +1754,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 216
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 61,
                 'nama' => 'Memverifikasi hasil validasi informasi kejadian kebakaran kepada atasan',
                 'satuan_hasil' => 'Dokumen validasi informasi kejadian kebakaran kepada atasan',
@@ -1546,6 +1762,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 217
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 62,
                 'nama' => 'Mengarahkan personil pada tindak lanjut informasi kejadian kebakaran',
                 'satuan_hasil' => 'Laporan tindak lanjut informasi kejadian kebakaran',
@@ -1553,6 +1770,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 218
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 62,
                 'nama' => 'Mengarahkan personil pada koordinasi antar regu lainnya',
                 'satuan_hasil' => 'Laporan koordinasi antar regu lainnya',
@@ -1560,6 +1778,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 219
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 62,
                 'nama' => 'Bertanggungjawab pada koordinasi dengan instansi terkait',
                 'satuan_hasil' => 'Laporan koordinasi dengan instansi terkait',
@@ -1567,6 +1786,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 220
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 63,
                 'nama' => 'Memeriksa penggunaan APD',
                 'satuan_hasil' => 'Laporan penggunaan APD',
@@ -1574,6 +1794,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 221
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 63,
                 'nama' => 'Memerintahkan peleton menuju ke tempat kejadian kebakaran',
                 'satuan_hasil' => 'Laporan peleton menuju ke tempat kejadian kebakaran',
@@ -1581,6 +1802,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 222
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 63,
                 'nama' => 'Mengarahkan personil pada koordinasi internal tingkat peleton',
                 'satuan_hasil' => 'Laporan koordinasi internal tingkat peleton',
@@ -1588,6 +1810,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 223
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 63,
                 'nama' => 'Mengarahkan personil pra size up (penilaian awal situasi) pada saat di perjalanan',
                 'satuan_hasil' => 'Laporan pra size up (penilaian awal situasi) pada saat di perjalanan',
@@ -1595,6 +1818,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 224
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 64,
                 'nama' => 'Mengarahkan personil size up (penilaian situasi) kondisi kejadian kebakaran',
                 'satuan_hasil' => 'Mengarahkan personil size up (penilaian situasi) kondisi kejadian kebakaran',
@@ -1602,6 +1826,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 225
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 64,
                 'nama' => 'Mengendalikan teknik taktik strategi operasional pemadaman',
                 'satuan_hasil' => 'Laporan teknik taktik strategi operasional pemadaman',
@@ -1609,6 +1834,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 226
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 64,
                 'nama' => 'Mengendalikan prosedur pemadaman dari sumber air ke titik api',
                 'satuan_hasil' => 'Laporan prosedur pemadaman dari sumber air ke titik api',
@@ -1616,6 +1842,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 227
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 64,
                 'nama' => 'Mengendalikan peran dan tugas antar regu',
                 'satuan_hasil' => 'Laporan peran dan tugas antar regu',
@@ -1623,6 +1850,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 228
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 64,
                 'nama' => 'Mengendalikan penyerangan ke sumber api/penyalur suplai air antar unit/pengelolaan sumber air/logistik operasional kebakaran',
                 'satuan_hasil' => 'Laporan penyerangan ke sumber api/penyalur suplai air antar unit/pengelolaan sumber air/logistik operasional kebakaran',
@@ -1630,6 +1858,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 229
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 64,
                 'nama' => 'Mengendalikan pengerahan unit operasional dan personil tambahan',
                 'satuan_hasil' => 'Laporan kebutuhan unit operasional dan personil',
@@ -1637,6 +1866,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 230
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 64,
                 'nama' => 'Mengendalikan pengerahan unit perasional dan personil tambahan',
                 'satuan_hasil' => 'Laporan pengerahan unit operasional dan personil tambahan',
@@ -1644,6 +1874,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 231
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 64,
                 'nama' => 'melakukan koordinasi dengan instansi terkait',
                 'satuan_hasil' => 'Laporan koordinasi dengan instansi terkait',
@@ -1651,6 +1882,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 232
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 64,
                 'nama' => 'Mengendalikan penerapan prosedur kerja dan keselamatan seluruh anggota',
                 'satuan_hasil' => 'Laporan penerapan prosedur kerja dan keselamatan seluruh anggota',
@@ -1658,6 +1890,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 233
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 64,
                 'nama' => 'Mengendalikan perkembangan situasi kondisi kejadian kebakaran kepada atasan',
                 'satuan_hasil' => 'Dokumen perkembangan situasi kondisi kejadian kebakaran kepada atasan',
@@ -1665,6 +1898,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 234
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 64,
                 'nama' => 'Mengendalikan laporan pendataan di tempat kejadian kebakaran',
                 'satuan_hasil' => 'Dokumen pendataan di tempat kejadian kebakaran',
@@ -1672,6 +1906,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 235
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 65,
                 'nama' => 'Mengendalikan proses pendinginan',
                 'satuan_hasil' => 'Laporan proses pendinginan',
@@ -1679,6 +1914,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 236
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 65,
                 'nama' => 'Mengendalikan pelaksanaan Over Houl (pemeriksaan dengan seksama) terhadap titik api yang tersisa',
                 'satuan_hasil' => 'Laporan pelaksanaan Over Houl (pemeriksaan dengan seksama) terhadap titik api yang tersisa',
@@ -1686,6 +1922,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 237
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 65,
                 'nama' => 'Memvalidasi hasil over houl kepada atasan',
                 'satuan_hasil' => 'Dokumen validasi hasil over houl kepada atasan',
@@ -1693,6 +1930,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 238
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 65,
                 'nama' => 'Memvalidasi laporan situasi akhir kondisi kebakaran',
                 'satuan_hasil' => 'Dokumen situasi akhir kondisi kebakaran',
@@ -1700,6 +1938,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 239
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 66,
                 'nama' => 'Mengendalikan proses pengemasan peralatan yang digunakan tingkat peleton',
                 'satuan_hasil' => 'Laporan proses pengemasan peralatan yang digunakan tingkat peleton',
@@ -1707,6 +1946,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 240
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 66,
                 'nama' => 'Mengendalikan pengecekan kelengkapan peralatan tingkat peleton',
                 'satuan_hasil' => 'Laporan pengecekan kelengkapan peralatan tingkat peleton',
@@ -1714,6 +1954,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 241
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 67,
                 'nama' => 'Mengendalikan pelaksanaan kebersihan unit, APD dan peralatan tingkat peleton',
                 'satuan_hasil' => 'Laporan pelaksanaankebersihan unit, APD dan peralatan tingkat peleton',
@@ -1721,6 +1962,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 242
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 67,
                 'nama' => 'Mengendalikan pengaturan penempatan kembali peralatan yang telah digunakan',
                 'satuan_hasil' => 'Laporan pengaturan penempatan kembali peralatan yang telah digunakan',
@@ -1728,6 +1970,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 243
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 67,
                 'nama' => 'Mengevaluasi pasca kebakaran',
                 'satuan_hasil' => 'Dokumen evaluasi pasca kebakaran',
@@ -1735,6 +1978,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 244
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 67,
                 'nama' => 'Memvalidasi laporan kejadian kebakaran',
                 'satuan_hasil' => 'Dokumen validasi laporan kejadian kebakaran',
@@ -1742,6 +1986,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 245
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 68,
                 'nama' => 'Menerima hasil validasi informasi kejadian evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Dokumen hasil validasi informasi kejadian evakuasi dan penyelamatan',
@@ -1749,6 +1994,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 246
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 68,
                 'nama' => 'Melaporkan hasil validasi informasi kejadian evakuasi dan penyelamatan kepada atasan',
                 'satuan_hasil' => 'Dokumen hasil validasi informasi kejadian evakuasi dan penyelamatan kepada atasan',
@@ -1756,6 +2002,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 247
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 69,
                 'nama' => 'Memverifikasi tindak lanjut informasi kejadian evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan tindak lanjut informasi kejadian evakuasi dan penyelamatan',
@@ -1763,6 +2010,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 248
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 69,
                 'nama' => 'Mengendalikan koordinasi antar regu dan peleton lainnya',
                 'satuan_hasil' => 'Laporan koordinasi antar regu dan pleton lainnya',
@@ -1770,6 +2018,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 249
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 69,
                 'nama' => 'Mengendalikan koordinasi dengan instansi terkait',
                 'satuan_hasil' => 'Laporan koordinasi dengan instansi terkait',
@@ -1777,6 +2026,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 250
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 70,
                 'nama' => 'Mengawasi pemakaian APD Evakuasi dan Penyelamatan',
                 'satuan_hasil' => 'Laporan pemakaian APD Evakuasi dan Penyelamatan',
@@ -1784,6 +2034,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 251
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 70,
                 'nama' => 'Mengontrol peleton menuju ke tempat evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan peleton menuju ke tempat evakuasi dan penyelamatan',
@@ -1791,6 +2042,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 252
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 70,
                 'nama' => 'Mengendalikan koordinasi internal tingkat peleton',
                 'satuan_hasil' => 'Laporan internal tingkat peleton',
@@ -1798,6 +2050,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 253
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 70,
                 'nama' => 'Mengendalikan pra size up (penilaian awal situasi) pada saat di perjalanan evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan pra size up (penilaian awal situasi) pada saat di perjalanan evakuasi dan penyelamatan',
@@ -1805,6 +2058,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 254
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 71,
                 'nama' => 'Mengendalikan size up (penilaian situasi) kondisi kejadian evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan size up (penilaian situasi) kondisi kejadian evakuasi dan penyelamatan',
@@ -1812,6 +2066,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 255
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 71,
                 'nama' => 'Mengendalikan teknik taktik strategi operasional evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan teknik taktik strategi operasional evakuasi dan penyelamatan',
@@ -1819,6 +2074,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 256
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 71,
                 'nama' => 'Mengendalikan prosedur evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan prosedur evakuasi dan penyelamatan',
@@ -1826,6 +2082,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 257
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 71,
                 'nama' => 'Mengendalikan peran dan tugas antar regu',
                 'satuan_hasil' => 'Laporan peran dan tugas antar regu',
@@ -1833,6 +2090,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 258
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 71,
                 'nama' => 'Menganalisa kebutuhan unit operasional dan personil evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan analisa kebutuhan unit operasional dan personil evakuasi dan penyelamatan',
@@ -1840,6 +2098,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 259
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 71,
                 'nama' => 'Melakukan koordinasi pengerahan unit operasional dan personil tambahan evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan pengerahan unit operasional dan personil tambahan evakuasi dan penyelamatan',
@@ -1847,6 +2106,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 260
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 71,
                 'nama' => 'Melakukan koordinasi dengan instansi terkait',
                 'satuan_hasil' => 'Laporan dengan instansi terkait',
@@ -1854,6 +2114,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 261
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 71,
                 'nama' => 'Mengendalikan penerapan prosedur kerja dan keselamatan seluruh anggota',
                 'satuan_hasil' => 'Laporan prosedur kerja dan keselamatan seluruh anggota',
@@ -1861,6 +2122,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 262
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 71,
                 'nama' => 'Mengendalikan perkembangan situasi kondisi evakuasi dan penyelamatan kepada atasan',
                 'satuan_hasil' => 'Laporan perkembangan situasi kondisi evakuasi dan penyelamatan kepada atasan',
@@ -1868,6 +2130,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 263
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 71,
                 'nama' => 'Mengendalikan pelaksanaan Over Houl (pemeriksaan dengan seksama) terhadap evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan pelaksanaan Over Houl (pemeriksaan dengan seksama) terhadap evakuasi dan penyelamatan',
@@ -1875,6 +2138,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 264
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 71,
                 'nama' => 'Memvalidasi laporan pendataan di tempat kejadian evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan validasi laporan pendataan di tempat kejadian evakuasi dan penyelamatan',
@@ -1882,6 +2146,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 265
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 72,
                 'nama' => 'Mengendalikan proses pengemasan peralatan yang digunakan',
                 'satuan_hasil' => 'Laporan proses pengemasan peralatan yang digunakan',
@@ -1889,6 +2154,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 266
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 72,
                 'nama' => 'Mengendalikan pengecekan kelengkapan peralatan evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan pengecekan kelengkapan peralatan evakuasi dan penyelamatan',
@@ -1896,6 +2162,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 267
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 72,
                 'nama' => 'Mengendalikan apel pengecekan personil tingkat peleton',
                 'satuan_hasil' => 'Dokumen apel pengecekan personil tingkat peleton',
@@ -1903,6 +2170,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 268
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 73,
                 'nama' => 'Mengendalikan proses kebersihan unit, APD dan peralatan tingkat peleton',
                 'satuan_hasil' => 'Laporan kebersihan unit, APD dan peralatan tingkat peleton',
@@ -1910,6 +2178,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 269
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 73,
                 'nama' => 'Mengendalikan pengaturan penempatan kembali peralatan yang telah digunakan',
                 'satuan_hasil' => 'Laporan pengaturan penempatan kembali peralatan yang telah digunakan',
@@ -1917,6 +2186,7 @@ class ButirKegiatanSeeder extends Seeder
             ],
             // 270
             [
+                'role_id' => 4,
                 'sub_unsur_id' => 73,
                 'nama' => 'Memvalidasi laporan evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Dokumen evakuasi dan penyelamatan',
@@ -1924,6 +2194,24 @@ class ButirKegiatanSeeder extends Seeder
             ],
         ];
         ButirKegiatan::query()->upsert($penyelia, 'id');
+
+        // $allRole = [
+        //     [
+        //         // 271
+        //         'sub_unsur_id' => 74,
+        //         'nama' => 'Memperoleh ijasah sesuai dengan bidang tugas Jabatan Fungsional Pemadam Kebakaran',
+        //         'satuan_hasil' => 'Ijazah/Gelar',
+        //         'score' => 0.02
+        //     ],
+        //     [
+        //         // 272
+        //         'sub_unsur_id' => 74,
+        //         'nama' => 'Membuat karya tulis/karya ilmiah hasil penelitian/pengkajian/ survei/evaluasi di bidang pemadaman kebakaran dan penyelamatan yang dipublikasikan:',
+        //         'satuan_hasil' => null,
+        //         'score' => null,
+        //     ],
+        // ];
+        // ButirKegiatan::query()->upsert($allRole, 'id');
         // end Bagian Butir Kegiatan Pokok dengan id 1 sampai dengan 270 adalah bagian dari tugas kegiatan pokok JABATAN FUNGSIONAL PEMADAM KEBAKARAN
 
         //     // 271

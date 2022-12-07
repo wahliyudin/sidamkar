@@ -36,7 +36,7 @@ class KegiatanProfesiController extends Controller
                     });
                 }
             ])->get();
-        return $unsurs;
+        // return $unsurs;
         return view('aparatur.laporan-kegiatan.profesi.index', compact('periode'));
     }
 

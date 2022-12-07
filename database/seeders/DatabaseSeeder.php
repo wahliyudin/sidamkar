@@ -9,6 +9,8 @@ use App\Models\Mente;
 use App\Models\SubButirKegiatan;
 use App\Models\SubUnsur;
 use App\Models\Unsur;
+use App\Models\UnsurKegiatanProfesi;
+use App\Models\SubUnsurKegiatanProfesi;
 use App\Models\User;
 use App\Models\UserAparatur;
 use App\Models\UserPejabatStruktural;
@@ -39,6 +41,10 @@ class DatabaseSeeder extends Seeder
         $this->call(ButirKegiatanSeeder::class);
         $this->call(KetentuanNilaiSeeder::class);
         $this->call(MekanismePengangkatanSeeder::class);
+        $this->call(UnsurKegiatanProfesiSeeder::class);
+        $this->call(SubUnsurKegiatanProfesiSeeder::class);
+        $this->call(ButirKegiatanProfesiSeeder::class);
+        // $this->call(SubButirKegiatanProfesiSeeder::class);
         // SubButirKegiatan::factory(5)->create();
     }
 }

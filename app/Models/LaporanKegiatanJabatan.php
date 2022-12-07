@@ -46,6 +46,11 @@ class LaporanKegiatanJabatan extends Model
         return $this->belongsTo(ButirKegiatan::class);
     }
 
+    public function butirKegiatanKegiatanProfesi(): BelongsTo
+    {
+        return $this->belongsTo(ButirKegiatanKegiatanProfesi::class);
+    }
+
     public function historyKegiatanJabatans(): HasMany
     {
         return $this->hasMany(HistoryKegiatanJabatan::class);
