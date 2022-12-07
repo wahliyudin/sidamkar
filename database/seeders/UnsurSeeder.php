@@ -16,7 +16,6 @@ class UnsurSeeder extends Seeder
     public function run()
     {
         // unsur no 1 sampai dengan 18 adalah RINCIAN KEGIATAN TUGAS JABATAN UNTUK JABATAN FUNGSIONAL PEMADAM KEBAKARAN
-        // Sub Unsur dengan id 1 sampai dengan 73 adalah milik dari kegiatan pokok JABATAN FUNGSIONAL PEMADAM KEBAKARAN 
         $damkarPemula = [
             // 1
             [
@@ -143,7 +142,7 @@ class UnsurSeeder extends Seeder
         //end unsur no 1 sampai dengan 18 adalah RINCIAN KEGIATAN TUGAS JABATAN UNTUK JABATAN FUNGSIONAL PEMADAM KEBAKARAN
         
 
-        //unsur no .. sampai dengan .. adalah RINCIAN KEGIATAN JABATAN FUNGSIONAL ANALIS KEBAKARAN DAN ANGKA KREDITNYA
+        //unsur no 19 sampai dengan 28 adalah RINCIAN KEGIATAN JABATAN FUNGSIONAL ANALIS KEBAKARAN DAN ANGKA KREDITNYA
         $ahli_pratama = [
         // 19
         [
@@ -163,43 +162,43 @@ class UnsurSeeder extends Seeder
             'periode_id' => 1,
             'nama' => 'Penyusunan laporan hasil pemeriksaan bangunan gedung'
         ],
-        // 21
+        // 22
         [
             'jenis_kegiatan_id' => 1,
             'periode_id' => 1,
             'nama' => 'Pemberdayaan dan pembinaan masyarakat'
         ],
-        // 22
+        // 23
         [
             'jenis_kegiatan_id' => 1,
             'periode_id' => 1,
             'nama' => 'Evaluasi pemberdayaan dan pembinaan masyarakat'
         ],
-        // 22
+        // 24
         [
             'jenis_kegiatan_id' => 1,
             'periode_id' => 1,
             'nama' => 'Perencanaan pelaksanaan dan evaluasi pendidikan dan pelatihan',
         ],
-        // 23
+        // 25
         [
             'jenis_kegiatan_id' => 1,
             'periode_id' => 1,
             'nama' => 'Penyusunan rencana Induk Sistem Proteksi Kebakaran (RISPK)',
         ],
-        // 24
+        // 26
         [
             'jenis_kegiatan_id' => 1,
             'periode_id' => 1,
-            'nama' => 'Penanganan Resiko Kebakaran B3 (bahan beracun dan berbahaya',
+            'nama' => 'Penanganan Resiko Kebakaran B3 (bahan beracun dan berbahaya)',
         ],
-        // 25
+        // 27
         [
             'jenis_kegiatan_id' => 1,
             'periode_id' => 1,
             'nama' => 'Penindakan terhadap penyimpangan standar keselamatan kebakaran',
         ],
-        // 26
+        // 28
         [
             'jenis_kegiatan_id' => 1,
             'periode_id' => 1,
@@ -208,5 +207,6 @@ class UnsurSeeder extends Seeder
         ];
         Unsur::query()->upsert($ahli_pratama,'id');
 
+         // End unsur no 19 sampai dengan 28 adalah RINCIAN KEGIATAN JABATAN FUNGSIONAL ANALIS KEBAKARAN DAN ANGKA KREDITNYA
     }
 }

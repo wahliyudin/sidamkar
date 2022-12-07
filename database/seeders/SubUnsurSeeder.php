@@ -398,79 +398,125 @@ class SubUnsurSeeder extends Seeder
         ];
         SubUnsur::query()->upsert($penyelia, 'id');
 
-        // $allRole = [
-        //     [
-        //         // 74
-        //         'unsur_id' => 19,
-        //         'nama' => 'Perolehan ijazah/gelar pendidikan formal sesuai dengan bidang tugas Jabatan Fungsional Pemadam Kebakakaran'
-        //     ],
-        //     [
-        //         // 75
-        //         'unsur_id' => 19,
-        //         'nama' => 'Pembuatan Karya Tulis / Karya Ilmiah di bidang Jabatan Fungsional Pemadam Kebakaran'
-        //     ],
-        // ];
-        // SubUnsur::query()->upsert($allRole, 'id');
-        //end Sub Unsur dengan id 1 sampai dengan 73 adalah milik dari kegiatan pokok JABATAN FUNGSIONAL PEMADAM KEBAKARAN 
+        // End Sub Unsur dengan id 1 sampai dengan 73 adalah milik dari kegiatan pokok JABATAN FUNGSIONAL PEMADAM KEBAKARAN 
 
-        // Sub unsur ini untuk kegiatan pokok dar JABATAN FUNGSIONAL ANALIS KEBAKARAN DAN ANGKA KREDITNYA
-
-        //     [
-        //         // 74
-        //         'unsur_id' => 19,
-        //         'nama' => 'Pengetahuan regulasi dalam bidang proteksi kebakaran'
-        //     ],
-        //     [
-        //         // 75
-        //         'unsur_id' => 20,
-        //         'nama' => 'Pengetahuan regulasi dalam bidang proteksi kebakaran'
-        //     ],
-        //     [
-        //         // 76
-        //         'unsur_id' => 19,
-        //         'nama' => 'Persiapan dan pemyusunan kebutuhan dokumen dan peralatan pemeriksaan gedung'
-        //     ],
-        //     [
-        //         // 77
-        //         'unsur_id' => 20,
-        //         'nama' => 'Persiapan dan pemyusunan kebutuhan dokumen dan peralatan pemeriksaan gedung'
-        //     ],
-        //     [
-        //         // 78
-        //         'unsur_id' => 19,
-        //         'nama' => 'Pengetahuan teknis prosedur pemeriksaan dan pengujian'
-        //     ],
-        //     [
-        //         // 79
-        //         'unsur_id' => 20,
-        //         'nama' => 'Pengetahuan teknis prosedur pemeriksaan dan pengujian'
-        //     ],
-        //     [
-        //         // 80
-        //         'unsur_id' => 21,
-        //         'nama' => 'Verifikasi dokumen pemeriksaan'
-        //     ],
-        //     [
-        //         // 81
-        //         'unsur_id' => 22,
-        //         'nama' => 'Verifikasi dokumen pemeriksaan'
-        //     ],
-        //     [
-        //         // 82
-        //         'unsur_id' => 21,
-        //         'nama' => 'Pemeriksaan dan pengujian sistem proteksi kebakaran, sarana penyelamatan jiwa dan akses pemadam kebakaran'
-        //     ],
-        //     [
-        //         // 84
-        //         'unsur_id' => 23,
-        //         'nama' => 'Pengetahuan teknik pelaporan hasil pemeriksaan dan pengujian'
-        //     ],
-        //     [
-        //         // 85
-        //         'unsur_id' => 24,
-        //         'nama' => 'Pengetahuan teknik pelaporan hasil pemeriksaan dan pengujian'
-        //     ],
-        // ];
-        // SubUnsur::query()->upsert($terampil, 'id');
+        $analis_kebakaran_ahli_pertama = [
+            [
+                //74
+                'unsur_id' => 19,
+                'nama' => 'Pengetahuan regulasi dalam bidang proteksi kebakaran'
+            ],
+            [
+                //75
+                'unsur_id' => 19,
+                'nama' => 'Persiapan dan pemyusunan kebutuhan dokumen dan peralatan pemeriksaan gedung'
+            ],
+            [
+                //76
+                'unsur_id' => 19,
+                'nama' => 'Pengetahuan teknis prosedur pemeriksaan dan pengujian'
+            ],
+            [
+                //77
+                'unsur_id' => 20,
+                'nama' => 'Verifikasi dokumen pemeriksaan'
+            ],
+            [
+                //78
+                'unsur_id' => 20,
+                'nama' => 'Pemeriksaan dan pengujian sistem proteksi kebakaran, sarana penyelamatan jiwa dan akses pemadam kebakaran'
+            ],
+            [
+                //79
+                'unsur_id' => 21,
+                'nama' => 'Pengetahuan teknik pelaporan hasil pemeriksaan dan pengujian'
+            ],
+            [
+                //80
+                'unsur_id' => 21,
+                'nama' => 'Penguasaan teknik pelaporan hasil pemeriksaan dan pengujian'
+            ],
+            [
+                //81
+                'unsur_id' => 22,
+                'nama' => 'Pengetahuan materi tentang penyuluhan dan pemberdayaan masyarakat'
+            ],
+            [
+                //82
+                'unsur_id' => 22,
+                'nama' => 'Koordinasi pelaksanaan penyuluhan'
+            ],
+            [
+                //83
+                'unsur_id' => 22,
+                'nama' => 'Pengetahuan teknik penyuluhan'
+            ],
+            [
+                //84
+                'unsur_id' => 22,
+                'nama' => 'Pelaksanaan penyuluhan dan sosialisas'
+            ],
+            [
+                //85
+                'unsur_id' => 22,
+                'nama' => 'Penyusunan dan penyampaian materi penyuluhan dan sosialisasi pencegahan kebakaran'
+            ],
+            [
+                //86
+                'unsur_id' => 22,
+                'nama' => 'Penyusunan dan penyampaian materi penyuluhan dan sosialisasi penanggulangan kebakaran'
+            ],
+            [
+                //87
+                'unsur_id' => 23,
+                'nama' => 'Pelaksanaan evaluasi kegiatan penyuluhan dan pemberdayaan masyarakat'
+            ],
+            [
+                //88
+                'unsur_id' => 24,
+                'nama' => 'Persiapan kegiatan pendidikan dan pelatihan'
+            ],
+            [
+                //89
+                'unsur_id' => 24,
+                'nama' => 'Pemahaman metode pembelajaran'
+            ],
+            [
+                //90
+                'unsur_id' => 24,
+                'nama' => 'Pembuatan model bahan ajar sesuai dengan perkembangan IPTEK'
+            ],
+            [
+                //91
+                'unsur_id' => 24,
+                'nama' => 'Pelaksanaan pendidikan dan pelatihan'
+            ],
+            [
+                //92
+                'unsur_id' => 24,
+                'nama' => 'Melaksanakan evaluasi kegiatan pendidikan dan pelatihan'
+            ],
+            [
+                //93
+                'unsur_id' => 25,
+                'nama' => 'Penyusunan RISPK'
+            ],
+            [
+                //94
+                'unsur_id' => 26,
+                'nama' => 'Pengawasan pengelolaan B3'
+            ],
+            [
+                //95
+                'unsur_id' => 27,
+                'nama' => 'Tindak lanjut hasil pemeriksaan keselamatan kebakaran'
+            ],
+            [
+                //96
+                'unsur_id' => 28,
+                'nama' => 'Penerapan prosedur dan metode investigasi'
+            ],
+        ];
+        SubUnsur::query()->upsert($analis_kebakaran_ahli_pertama, 'id');
     }
 }

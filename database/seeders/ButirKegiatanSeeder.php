@@ -2194,574 +2194,108 @@ class ButirKegiatanSeeder extends Seeder
             ],
         ];
         ButirKegiatan::query()->upsert($penyelia, 'id');
+        // End Bagian Butir Kegiatan Pokok dengan id 1 sampai dengan 270 adalah bagian dari tugas kegiatan pokok JABATAN FUNGSIONAL PEMADAM KEBAKARAN
 
-        // $allRole = [
-        //     [
-        //         // 271
-        //         'sub_unsur_id' => 74,
-        //         'nama' => 'Memperoleh ijasah sesuai dengan bidang tugas Jabatan Fungsional Pemadam Kebakaran',
-        //         'satuan_hasil' => 'Ijazah/Gelar',
-        //         'score' => 0.02
-        //     ],
-        //     [
-        //         // 272
-        //         'sub_unsur_id' => 74,
-        //         'nama' => 'Membuat karya tulis/karya ilmiah hasil penelitian/pengkajian/ survei/evaluasi di bidang pemadaman kebakaran dan penyelamatan yang dipublikasikan:',
-        //         'satuan_hasil' => null,
-        //         'score' => null,
-        //     ],
-        // ];
-        // ButirKegiatan::query()->upsert($allRole, 'id');
-        // end Bagian Butir Kegiatan Pokok dengan id 1 sampai dengan 270 adalah bagian dari tugas kegiatan pokok JABATAN FUNGSIONAL PEMADAM KEBAKARAN
+        // Bagian Butir Kegiatan Pokok dengan id .. sampai dengan ..adalah bagian dari tugas kegiatan pokok RINCIAN KEGIATAN JABATAN FUNGSIONAL ANALIS KEBAKARAN DAN ANGKA KREDITNYA
+        $analis_kebakaran_ahli_pertama_dan_analis_kebakaran_ahli_muda1= [
+            //271
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 74,
+                'nama' => 'Mengkaji UU yang terkait tentang kebakaran pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'satuan_hasil' => 'Dokumen UU terkait tentang kebakaran',
+                'score' => 0.01
+            ],
+            //272
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 74,
+                'nama' => 'Mengkaji PP yang terkait tentang kebakaran pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'satuan_hasil' => 'Dokumen PP yang terkait tentang kebakaran',
+                'score' => 0.01
+            ],
+            //273
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 74,
+                'nama' => 'Mengkaji PERMEN yang terkait tentang kebakaran pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'satuan_hasil' => 'Dokumen Permen yang terkait tentang kebarakan',
+                'score' => 0.01
+            ],
+            //274
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 74,
+                'nama' => 'Mengkaji PERDA yang terkait tentang kebakaran pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'satuan_hasil' => 'Dokumen Perda yang terkait tentang kebarakan',
+                'score' => 0.01
+            ],
+            //275
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 74,
+                'nama' => 'Mengkaji PERGUB/PERBUP/PERWAL yang terkait tentang kebakaran pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'satuan_hasil' => 'Dokumen Pergub/Perbup/Perwali yang terkait tentang kebarakan',
+                'score' => 0.01
+            ],
+            //276
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 74,
+                'nama' => 'Mengkaji standar lainnya yang terkait tentang kebakaran pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'satuan_hasil' => 'Dokumen standar lainnya yang terkait tentang kebarakan',
+                'score' => 0.01
+            ],
+            //277
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 74,
+                'nama' => 'Menganalisis UU yang terkait tentang kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'satuan_hasil' => 'Laporan analisis UU yang terkait tentang kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'score' => 0.02
+            ],
+            //278
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 74,
+                'nama' => 'Menganalisis PP yang terkait tentang kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'satuan_hasil' => 'Laporan analisis PP yang terkait tentang kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'score' => 0.02
+            ],
+            //279
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 74,
+                'nama' => 'Menganalisis PERMEN yang terkait tentang kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'satuan_hasil' => 'Laporan analisis PERMEN yang terkait tentang kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'score' => 0.02
+            ],
+            //280
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 74,
+                'nama' => 'Menganalisis PERDA yang terkait tentang kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'satuan_hasil' => 'Laporan analisis PERDA yang terkait tentang kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'score' => 0.02
+            ],
+            //281
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 74,
+                'nama' => 'Menganalisis PERGUB/PERBUP/PERWAL yang terkait tentang kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'satuan_hasil' => 'Laporan analisis PERGUB/PERBUP/PERWAL yang terkait tentang kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'score' => 0.02
+            ],
+            //282
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 74,
+                'nama' => 'Menganalisis standar lainnya yang terkait tentang kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'satuan_hasil' => 'Laporan analisis standar lainnya yang terkait tentang kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'score' => 0.02
+            ],
+        ];
+        ButirKegiatan::query()->upsert($analis_kebakaran_ahli_pertama_dan_analis_kebakaran_ahli_muda1, 'id');
 
-        //     // 271
-        //     [
-        //         'sub_unsur_id' => 74,
-        //         'nama' => 'Mengkaji UU yang terkait tentang kebakaran pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'satuan_hasil' => 'Dokumen UU terkait tentang kebakaran',
-        //         'score' => 0.001
-        //     ],
-        //     // 272
-        //     [
-        //         'sub_unsur_id' => 74,
-        //         'nama' => 'Mengkaji PP yang terkait tentang kebakaran pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'satuan_hasil' => 'Dokumen PP yang terkait tentang kebakaran',
-        //         'score' => 0.001
-        //     ],
-        //     // 273
-        //     [
-        //         'sub_unsur_id' => 74,
-        //         'nama' => 'Mengkaji PERMEN yang terkait tentang kebakaran pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'satuan_hasil' => 'Dokumen Permen yang terkait tentang kebarakan',
-        //         'score' => 0.001
-        //     ],
-        //     // 274
-        //     [
-        //         'sub_unsur_id' => 74,
-        //         'nama' => 'Mengkaji PERDA yang terkait tentang kebakaran pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'satuan_hasil' => 'Dokumen Perda yang terkait tentang kebarakan',
-        //         'score' => 0.001
-        //     ],
-        //     // 275
-        //     [
-        //         'sub_unsur_id' => 74,
-        //         'nama' => 'Mengkaji PERGUB/PERBUP/PERWAL yang terkait tentang kebakaran pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'satuan_hasil' => 'Dokumen Pergub/Perbup/Perwali yang terkait tentang kebarakan',
-        //         'score' => 0.001
-        //     ],
-        //     // 276
-        //     [
-        //         'sub_unsur_id' => 74,
-        //         'nama' => 'Mengkaji standar lainnya yang terkait tentang kebakaran pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'satuan_hasil' => 'Dokumen standar lainnya yang terkait tentang kebarakan',
-        //         'score' => 0.001
-        //     ],
-        //     // 277
-        //     [
-        //         'sub_unsur_id' => 75,
-        //         'nama' => 'Menganalisis UU yang terkait tentang kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'satuan_hasil' => 'Dokumen standar lainnya yang terkait tentang kebarakan',
-        //         'score' => 0.02
-        //     ],
-        //     // 278
-        //     [
-        //         'sub_unsur_id' => 75,
-        //         'nama' => 'Menganalisis PP yang terkait tentang kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'satuan_hasil' => 'Laporan analisis PP yang terkait tentang kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'score' => 0.02
-        //     ],
-        //     // 279
-        //     [
-        //         'sub_unsur_id' => 75,
-        //         'nama' => 'Menganalisis PERMEN yang terkait tentang kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'satuan_hasil' => 'Laporan analisis PERMEN yang terkait tentang kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'score' => 0.02
-        //     ],
-        //     // 280
-        //     [
-        //         'sub_unsur_id' => 75,
-        //         'nama' => 'Menganalisis PERDA yang terkait tentang kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'satuan_hasil' => 'Laporan analisis PERDA yang terkait tentang kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'score' => 0.02
-        //     ],
-        //     // 281
-        //     [
-        //         'sub_unsur_id' => 75,
-        //         'nama' => 'Menganalisis PERGUB/PERBUP/PERWAL yang terkait tentang kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'satuan_hasil' => 'Laporan analisis PERGUB/PERBUP/PERWAL yang terkait tentang kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'score' => 0.02
-        //     ],
-        //     // 282
-        //     [
-        //         'sub_unsur_id' => 75,
-        //         'nama' => 'Menganalisis standar lainnya yang terkait tentang kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'satuan_hasil' => 'Laporan analisis standar lainnya yang terkait tentang kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'score' => 0.02
-        //     ],
-        //     // 283
-        //     [
-        //         'sub_unsur_id' => 76,
-        //         'nama' => 'Menyusun surat pemberitahuan pemeriksaan pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'satuan_hasil' => 'Dokumen surat pemberitahuan pemeriksaan pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'score' => 0.001
-        //     ],
-        //     // 284
-        //     [
-        //         'sub_unsur_id' => 76,
-        //         'nama' => 'Menyusun surat tugas tim pemeriksa pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'satuan_hasil' => 'Dokumen surat tugas tim pemeriksa pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'score' => 0.001
-        //     ],
-        //     // 285
-        //     [
-        //         'sub_unsur_id' => 76,
-        //         'nama' => 'Menyusun form check list pemeriksaan pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'satuan_hasil' => 'Dokumen pemeriksaan pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'score' => 0.001
-        //     ],
-        //     // 286
-        //     [
-        //         'sub_unsur_id' => 76,
-        //         'nama' => 'Menyusun dan memahami dokumen pendukung lainnya pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'satuan_hasil' => 'Dokumen pendukung lainnya pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'score' => 0.001
-        //     ],
-        //     // 287
-        //     [
-        //         'sub_unsur_id' => 76,
-        //         'nama' => 'Menginventarisasi kendaraan, peralatan untuk pemeriksaan dan pengujian pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'satuan_hasil' => 'Dokumen kendaraan, peralatan untuk pemeriksaan dan pengujian pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'score' => 0.001
-        //     ],
-        //     // 288
-        //     [
-        //         'sub_unsur_id' => 76,
-        //         'nama' => 'Melakukan komunikasi dengan pihak pengelola bangunan gedung pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'satuan_hasil' => 'Laporan hasil komunikasi dengan pihak pengelola bangunan gedung pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'score' => 0.001
-        //     ],
-        //     // 289?
-        //     [
-        //         'sub_unsur_id' => 77,
-        //         'nama' => 'Mengkaji surat pemberitahuan pemeriksaan pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'satuan_hasil' => 'Dokumen surat pemberitahuan pemeriksaan pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'score' => 0.001
-        //     ],
-        //     // 290
-        //     [
-        //         'sub_unsur_id' => 77,
-        //         'nama' => 'Mengkaji surat tugas tim pemeriksa pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'satuan_hasil' => 'Dokumen surat tugas tim pemeriksa pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'score' => 0.001
-        //     ],
-        //     // 291
-        //     [
-        //         'sub_unsur_id' => 77,
-        //         'nama' => 'Mengkaji form check list pemeriksaan pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'satuan_hasil' => 'Dokumen check list pemeriksaan pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'score' => 0.02
-        //     ],
-        //     // 292
-        //     [
-        //         'sub_unsur_id' => 77,
-        //         'nama' => 'Mengkaji dan memahami dokumen pendukung lainnya pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'satuan_hasil' => 'Laporan pendukung lainnya pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'score' => 0.02
-        //     ],
-        //     // 293
-        //     [
-        //         'sub_unsur_id' => 77,
-        //         'nama' => 'Menginventarisasi kendaraan, peralatan untuk pemeriksaan dan pengujian pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'satuan_hasil' => 'Laporan kendaraan, peralatan untuk pemeriksaan dan pengujian pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'score' => 0.02
-        //     ],
-        //     // 294
-        //     [
-        //         'sub_unsur_id' => 77,
-        //         'nama' => 'Melakukan komunikasi dengan pihak pengelola bangunan gedung pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'satuan_hasil' => 'Laporan komunikasi dengan pihak pengelola bangunan gedung pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'score' => 0.02
-        //     ],
-        //     // 295
-        //     [
-        //         'sub_unsur_id' => 78,
-        //         'nama' => 'Menyusun dokumen-dokumen perijinan pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'satuan_hasil' => 'Laporan perijinan pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'score' => 0.001
-        //     ],
-        //     // 295
-        //     [
-        //         'sub_unsur_id' => 78,
-        //         'nama' => 'Menyusun gambar bangunan pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'satuan_hasil' => 'Laporan hasil gambar bangunan pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'score' => 0.001
-        //     ],
-        //     // 296
-        //     [
-        //         'sub_unsur_id' => 78,
-        //         'nama' => 'Menginventarisasi spesifikasi proteksi kebakaran pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'satuan_hasil' => 'Laporan hasil gambar bangunan pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'score' => 0.001
-        //     ],
-        //     // 297
-        //     [
-        //         'sub_unsur_id' => 78,
-        //         'nama' => 'Mengindentifikasi sistem proteksi aktif pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'satuan_hasil' => 'Laporan sistem proteksi aktif pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'score' => 0.001
-        //     ],
-        //     // 298
-        //     [
-        //         'sub_unsur_id' => 78,
-        //         'nama' => 'Mengidentifikasi sistem proteksi pasif pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'satuan_hasil' => 'Kegiatan sistem proteksi pasif pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'score' => 0.001
-        //     ],
-        //     // 299
-        //     [
-        //         'sub_unsur_id' => 78,
-        //         'nama' => 'Mengevaluasi tentang manajemen keselamatan kebakaran gedung (MKKG) pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'satuan_hasil' => 'Laporan manajemen keselamatan kebakaran gedung (MKKG) pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'score' => 0.001
-        //     ],
-        //     // 300
-        //     [
-        //         'sub_unsur_id' => 78,
-        //         'nama' => 'Mengindentifikasi akses pemadam kebakaran pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'satuan_hasil' => 'Laporan akses pemadam kebakaran pada bangunan rendah dan menengah, tidak termasuk bangunan',
-        //         'score' => 0.001
-        //     ],
-        //     // 301
-        //     [
-        //         'sub_unsur_id' => 78,
-        //         'nama' => 'Mengindetifikasi sarana penyelamatan jiwa pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'satuan_hasil' => 'Laporan indentifikasi sarana penyelamatan jiwa pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'score' => 0.001
-        //     ],
-        //     // 302
-        //     [
-        //         'sub_unsur_id' => 79,
-        //         'nama' => 'Melakukan kajian terhadap dokumen-dokumen perijinan pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'satuan_hasil' => 'Laporan perijinan pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'score' => 0.02
-        //     ],
-        //     // 303
-        //     [
-        //         'sub_unsur_id' => 79,
-        //         'nama' => 'Melakukan kajian terhadap gambar bangunan pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'satuan_hasil' => 'Laporan gambar bangunan pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'score' => 0.02
-        //     ],
-        //     // 303
-        //     [
-        //         'sub_unsur_id' => 79,
-        //         'nama' => 'melakukan kajian spesifikasi proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'satuan_hasil' => 'Laporan spesifikasi proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'score' => 0.02
-        //     ],
-        //     // 304
-        //     [
-        //         'sub_unsur_id' => 79,
-        //         'nama' => 'Melakukan kajian sistem proteksi aktif pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'satuan_hasil' => 'Laporan sistem proteksi aktif pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'score' => 0.02
-        //     ],
-        //     // 305
-        //     [
-        //         'sub_unsur_id' => 79,
-        //         'nama' => 'Melakukan kajian sistem proteksi pasif pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'satuan_hasil' => 'Laporan sistem proteksi pasif pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'score' => 0.02
-        //     ],
-        //     // 306
-        //     [
-        //         'sub_unsur_id' => 79,
-        //         'nama' => 'Melakukan kajian tentang manajemen keselamatan kebakaran gedung (MKKG) pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'satuan_hasil' => 'Laporan kajian tentang manajemen keselamatan kebakaran gedung (MKKG) pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'score' => 0.02
-        //     ],
-        //     // 307
-        //     [
-        //         'sub_unsur_id' => 79,
-        //         'nama' => 'Melakukan kajian akses pemadam kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'satuan_hasil' => 'Laporan kajian akses pemadam kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'score' => 0.02
-        //     ],
-        //     // 308
-        //     [
-        //         'sub_unsur_id' => 79,
-        //         'nama' => 'Melakukan kajian sarana penyelamatan jiwa pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'satuan_hasil' => 'Laporan kajian sarana penyelamatan jiwa pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'score' => 0.02
-        //     ],
-        //     // 309
-        //     [
-        //         'sub_unsur_id' => 80,
-        //         'nama' => 'Melaksanakan rapat koordinasi dengan pengelola gedung pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'satuan_hasil' => 'Laporan rapat koordinasi dengan pengelola gedung pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'score' => 0.001
-        //     ],
-        //     // 310
-        //     [
-        //         'sub_unsur_id' => 80,
-        //         'nama' => 'Mengkaji dokumen-dokumen perijinan pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'satuan_hasil' => 'Laporan dokumen-dokumen perijinan pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'score' => 0.001
-        //     ],
-        //     // 311
-        //     [
-        //         'sub_unsur_id' => 80,
-        //         'nama' => 'Mengkaji gambar bangunan pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'satuan_hasil' => 'Laporan olahan gambar bangunan pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'score' => 0.001
-        //     ],
-        //     // 312
-        //     [
-        //         'sub_unsur_id' => 80,
-        //         'nama' => 'Mengevaluasi tentang manajemen keselamatan kebakaran gedung (MKKG) pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'satuan_hasil' => 'Dokumen manajemen keselamatan kebakaran gedung (MKKG) pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'score' => 0.001
-        //     ],
-        //     // 313
-        //     [
-        //         'sub_unsur_id' => 81,
-        //         'nama' => 'Mengkoordinir rapat koordinasi dengan pengelola gedung bangunan tinggi, bangunan industri dan obyek vital',
-        //         'satuan_hasil' => 'Laporan rapat koordinasi dengan pengelola gedung bangunan tinggi, bangunan industri dan obyek vital',
-        //         'score' => 0.02
-        //     ],
-        //     // 314
-        //     [
-        //         'sub_unsur_id' => 81,
-        //         'nama' => 'Memverifikasi dokumen-dokumen perijinan pada bangunan tinggi, bangunan industri dan obyek vital proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'satuan_hasil' => 'Laporan perijinan pada bangunan tinggi, bangunan industri dan obyek vitalproteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'score' => 0.02
-        //     ],
-        //     // 315
-        //     [
-        //         'sub_unsur_id' => 81,
-        //         'nama' => 'Memeriksa tentang manajemen keselamatan kebakaran gedung (MKKG) pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'satuan_hasil' => 'Dokumen tentang manajemen keselamatan kebakaran gedung (MKKG) pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'score' => 0.02
-        //     ],
-        //     // 316
-        //     [
-        //         'sub_unsur_id' => 82,
-        //         'nama' => 'Memeriksa dan menguji spesifikasi proteksi kebakaran pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'satuan_hasil' => 'Laporan spesifikasi proteksi kebakaran pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'score' => 0.001
-        //     ],
-        //     // 317
-        //     [
-        //         'sub_unsur_id' => 82,
-        //         'nama' => 'Memeriksa akses pemadam kebakaran pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'satuan_hasil' => 'Kegiatan akses pemadam kebakaran pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'score' => 0.001
-        //     ],
-        //     // 318
-        //     [
-        //         'sub_unsur_id' => 82,
-        //         'nama' => 'Memeriksa sarana penyelamatan jiwa (tangga kebakaran, lampu darurat, penunjuk arah darurat ,kipas penekan asap, lift kebakaran) pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'satuan_hasil' => 'Laporan sarana penyelamatan jiwa (tangga kebakaran, lampu darurat, penunjuk arah darurat ,kipas penekan asap, lift kebakaran) pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'score' => 0.001
-        //     ],
-        //     // 319
-        //     [
-        //         'sub_unsur_id' => 82,
-        //         'nama' => 'Memeriksa dan menguji sistem hidran kebakaran pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'satuan_hasil' => 'Laporan sistem hidran kebakaran pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'score' => 0.001
-        //     ],
-        //     // 320
-        //     [
-        //         'sub_unsur_id' => 82,
-        //         'nama' => 'Memeriksa dan menguji sistem springkler otomatis pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'satuan_hasil' => 'Laporan Memeriksa dan menguji sistem springkler otomatis pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'score' => 0.001
-        //     ],
-        //     // 321
-        //     [
-        //         'sub_unsur_id' => 82,
-        //         'nama' => 'Memeriksa dan menguji sistem deteksi dan alarm kebakaran pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'satuan_hasil' => 'Kegiatan emeriksa dan menguji sistem deteksi dan alarm kebakaran pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'score' => 0.001
-        //     ],
-        //     // 322
-        //     [
-        //         'sub_unsur_id' => 82,
-        //         'nama' => 'Memeriksa Alat Pemadam Api Ringan (APAR) pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'satuan_hasil' => 'Laporan Memeriksa Alat Pemadam Api Ringan (APAR) pada bangunan rendah dan menengah, tidak termasuk bangunan industri, tidak termasuk bangunan industri',
-        //         'score' => 0.001
-        //     ],
-        //     // 322
-        //     [
-        //         'sub_unsur_id' => 82,
-        //         'nama' => 'Memeriksa sistem proteksi pasif (fire stopping , saf, bukaan, kompartemenisasi dll ) pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'satuan_hasil' => 'Memeriksa sistem proteksi pasif (fire stopping , saf, bukaan, kompartemenisasi dll ) pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'score' => 0.001
-        //     ],
-        //     // 323
-        //     [
-        //         'sub_unsur_id' => 83,
-        //         'nama' => 'Memeriksa dan menguji spesifikasi proteksi kebakaran proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'satuan_hasil' => 'Laporan proteksi kebakaran proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'score' => 0.02
-        //     ],
-        //     // 324
-        //     [
-        //         'sub_unsur_id' => 83,
-        //         'nama' => 'Memeriksa akses pemadam kebakaran proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vita',
-        //         'satuan_hasil' => 'Laporan proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'score' => 0.02
-        //     ],
-        //     // 325
-        //     [
-        //         'sub_unsur_id' => 83,
-        //         'nama' => 'Memeriksa sarana penyelamatan jiwa (tangga kebakaran, lampu darurat, penunjuk arah darurat ,kipas penekan asap, lift kebakaran) proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'satuan_hasil' => 'Laporan sarana penyelamatan jiwa (tangga kebakaran, lampu darurat, penunjuk arah darurat ,kipas penekan asap, lift kebakaran) proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'score' => 0.02
-        //     ],
-        //     // 326
-        //     [
-        //         'sub_unsur_id' => 83,
-        //         'nama' => 'Memeriksa dan menguji sistem hidran kebakaran proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'satuan_hasil' => 'Laporan pemeriksaan dan pengujian sistem hidran kebakaran proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'score' => 0.02
-        //     ],
-        //     // 327
-        //     [
-        //         'sub_unsur_id' => 83,
-        //         'nama' => 'Memeriksa dan menguji sistem springkler otomatis proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'satuan_hasil' => 'Laporan sistem springkler otomatis proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'score' => 0.02
-        //     ],
-        //     // 328
-        //     [
-        //         'sub_unsur_id' => 83,
-        //         'nama' => 'Memeriksa dan menguji sistem deteksi dan alarm kebakaran proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'satuan_hasil' => 'Laporan sistem deteksi dan alarm kebakaran proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'score' => 0.02
-        //     ],
-        //     // 329
-        //     [
-        //         'sub_unsur_id' => 83,
-        //         'nama' => 'Memeriksa Alat Pemadam Api Ringan (APAR) proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'satuan_hasil' => 'Laporan Alat Pemadam Api Ringan (APAR) proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'score' => 0.02
-        //     ],
-        //     // 330
-        //     [
-        //         'sub_unsur_id' => 83,
-        //         'nama' => 'Memeriksa sistem proteksi pasif (fire stopping , saf, bukaan, kompartemenisasi dll ) proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'satuan_hasil' => 'Laporan sistem proteksi pasif (fire stopping , saf, bukaan, kompartemenisasi dll ) proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'score' => 0.02
-        //     ],
-        //     // 331
-        //     [
-        //         'sub_unsur_id' => 83,
-        //         'nama' => 'Memberikan rekomendasi tindak lanjut atas hasil pemeriksaan dan pengujian proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'satuan_hasil' => 'Laporan rekomendasi tindak lanjut atas hasil pemeriksaan dan pengujian proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'score' => 0.02
-        //     ],
-        //     // 332
-        //     [
-        //         'sub_unsur_id' => 84,
-        //         'nama' => 'Mengkaji hasil pemeriksaan dan pengujian pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'satuan_hasil' => 'Dokumen pemeriksaan dan pengujian pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'score' => 0.001
-        //     ],
-        //     // 333
-        //     [
-        //         'sub_unsur_id' => 84,
-        //         'nama' => 'Mengkaji hasil pemeriksaan dan pengujian pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'satuan_hasil' => 'Laporan pemeriksaan dan pengujian pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'score' => 0.001
-        //     ],
-        //     // 334
-        //     [
-        //         'sub_unsur_id' => 84,
-        //         'nama' => 'Mengkaji berita acara pemeriksaan pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'satuan_hasil' => 'Dokumen berita acara pemeriksaan pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'score' => 0.001
-        //     ],
-        //     // 335
-        //     [
-        //         'sub_unsur_id' => 84,
-        //         'nama' => 'Memberi masukan dan saran kepada pengelola gedung dari hasil pemeriksaan pada bangunan rendah dan menengah,tidak termasuk bangunan industri',
-        //         'satuan_hasil' => 'Dokumen masukan dan saran kepada pengelola gedung dari hasil pemeriksaan pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'score' => 0.001
-        //     ],
-        //     // 336
-        //     [
-        //         'sub_unsur_id' => 84,
-        //         'nama' => 'Mengkaji hasil pemeriksaan dan pengujian pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'satuan_hasil' => 'Dokumen hasil pemeriksaan dan pengujian pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'score' => 0.001
-        //     ],
-        //     // 337
-        //     [
-        //         'sub_unsur_id' => 84,
-        //         'nama' => 'Mengkaji hasil pemeriksaan dan pengujian kepada atasan pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'satuan_hasil' => 'Laporan hasil pemeriksaan dan pengujian kepada atasan pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
-        //         'score' => 0.001
-        //     ],
-        //     // 338
-        //     [
-        //         'sub_unsur_id' => 84,
-        //         'nama' => 'Menginvetarisasi jumlah nilai retribusi hasil pemeriksaan dan pengujian',
-        //         'satuan_hasil' => 'Dokumen jumlah nilai retribusi hasil pemeriksaan dan pengujian ',
-        //         'score' => 0.001
-        //     ],
-        //     // 339
-        //     [
-        //         'sub_unsur_id' => 85,
-        //         'nama' => 'Menelaah hasil pemeriksaan dan pengujian proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'satuan_hasil' => 'Dokumen jumlah nilai retribusi hasil pemeriksaan dan pengujian',
-        //         'score' => 0.001
-        //     ],
-        //     // 340
-        //     [
-        //         'sub_unsur_id' => 85,
-        //         'nama' => 'Menelaah hasil pemeriksaan dan pengujian proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'satuan_hasil' => 'Laporan hasil pemeriksaan dan pengujian proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'score' => 0.001
-        //     ],
-        //     // 341
-        //     [
-        //         'sub_unsur_id' => 85,
-        //         'nama' => 'Menyusun berita acara pemeriksaan proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'satuan_hasil' => 'Dokumen berita acara pemeriksaan proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'score' => 0.001
-        //     ],
-        //     // 342
-        //     [
-        //         'sub_unsur_id' => 85,
-        //         'nama' => 'Memberikan masukan dan saran kepada pengelola gedung dari hasil pemeriksaan proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'satuan_hasil' => 'Dokumen masukan dan saran kepada pengelola gedung dari hasil pemeriksaan proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'score' => 0.001
-        //     ],
-        //     // 343
-        //     [
-        //         'sub_unsur_id' => 85,
-        //         'nama' => 'Memvalidasi hasil pemeriksaan dan pengujian proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'satuan_hasil' => 'Dokumen hasil pemeriksaan dan pengujian proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
-        //         'score' => 0.001
-        //     ],
-        //     // 344
-        //     [
-        //         'sub_unsur_id' => 85,
-        //         'nama' => 'Memvalidasi hasil pemeriksaan dan pengujian proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital kepada atasan',
-        //         'satuan_hasil' => 'Laporan hasil pemeriksaan dan pengujian proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital kepada atasan',
-        //         'score' => 0.001
-        //     ],
-        //     // 345
-        //     [
-        //         'sub_unsur_id' => 85,
-        //         'nama' => 'Menginvetarisasi jumlah nilai retribusi hasil pemeriksaan dan pengujian',
-        //         'satuan_hasil' => 'Dokumen nilai retribusi hasil pemeriksaan dan pengujian ',
-        //         'score' => 0.001
-        //     ],
-
-        // ];
-        // ButirKegiatan::query()->upsert($terampil, 'id');
     }
 }
