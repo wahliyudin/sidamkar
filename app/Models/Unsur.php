@@ -11,7 +11,6 @@ class Unsur extends Model
     use HasFactory;
 
     protected $fillable = [
-        'role_id',
         'jenis_kegiatan_id',
         'periode_id',
         'nama'
@@ -27,10 +26,6 @@ class Unsur extends Model
         return $this->belongsTo(JenisKegiatan::class);
     }
 
-    public function role()
-    {
-        return $this->belongsTo(Role::class);
-    }
 
     public function subUnsurs()
     {
