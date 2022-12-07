@@ -94,23 +94,7 @@
                                     </div>
                                 </div>
                             @endrole
-                            @role('atasan_langsung')
-                                <div class="user-img d-flex align-items-center">
-                                    <div class="avatar avatar-md">
-                                        <img
-                                            src="{{ isset($user->userPejabatStruktural?->foto_pegawai) ? $user->userPejabatStruktural?->foto_pegawai : asset('assets/images/faces/3.jpg') }}">
-                                    </div>
-                                </div>
-                            @endrole
-                            @role('penilai_ak')
-                                <div class="user-img d-flex align-items-center">
-                                    <div class="avatar avatar-md">
-                                        <img
-                                            src="{{ isset($user->userPejabatStruktural?->foto_pegawai) ? $user->userPejabatStruktural?->foto_pegawai : asset('assets/images/faces/3.jpg') }}">
-                                    </div>
-                                </div>
-                            @endrole
-                            @role('penetap_ak')
+                            @role(['atasan_langsung','penilai_ak','penetap_ak'])
                                 <div class="user-img d-flex align-items-center">
                                     <div class="avatar avatar-md">
                                         <img
@@ -165,7 +149,7 @@
                                 </a>
                             </li>
                         @endrole
-                        @role('atasan_langsung')
+                        @role(['atasan_langsung','penilai_ak','penetap_ak'])
                             <li>
                                 <a class="dropdown-item" href="{{ route('data-atasan-langsung') }}">
                                     <i class="icon-mid bi bi-person me-2"></i>
@@ -173,7 +157,7 @@
                                 </a>
                             </li>
                         @endrole
-                        @role('atasan_langsung')
+                        @role(['atasan_langsung','penilai_ak','penetap_ak'])
                             <li>
                                 <a class="dropdown-item" href="{{ route('ubah-password') }}">
                                     <i class="fa-solid fa-lock me-2"></i>
@@ -181,41 +165,6 @@
                                 </a>
                             </li>
                         @endrole
-                        @role('penilai_ak')
-                            <li>
-                                <a class="dropdown-item" href="{{ route('data-penilai-ak') }}">
-                                    <i class="icon-mid bi bi-person me-2"></i>
-                                    Data Saya
-                                </a>
-                            </li>
-                        @endrole
-                        @role('penilai_ak')
-                            <li>
-                                <a class="dropdown-item" href="{{ route('ubah-password') }}">
-                                    <i class="fa-solid fa-lock me-2"></i>
-                                    Ubah Password
-                                </a>
-                            </li>
-                        @endrole
-                        @role('penetap_ak')
-                            <li>
-                                <a class="dropdown-item" href="{{ route('data-penetap-ak') }}">
-                                    <i class="icon-mid bi bi-person me-2"></i>
-                                    Data Saya
-                                </a>
-                            </li>
-                        @endrole
-                        @role('penetap_ak')
-                            <li>
-                                <a class="dropdown-item" href="{{ route('ubah-password') }}">
-                                    <i class="fa-solid fa-lock me-2"></i>
-                                    Ubah Password
-                                </a>
-                            </li>
-                        @endrole
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
                         <li>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
