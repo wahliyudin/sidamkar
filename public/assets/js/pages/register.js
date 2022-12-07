@@ -48,12 +48,11 @@ $(function () {
     $.fn.filepond.registerPlugin(FilePondPluginImagePreview);
     $.fn.filepond.registerPlugin(FilePondPluginFileValidateType);
     $.fn.filepond.registerPlugin(FilePondPluginFileValidateSize);
-    FilePond.create(document.querySelector('input[name="file_sk"]'), {
+    FilePond.create(document.querySelector('input[name="file_ttd"]'), {
         chunkUploads: true,
         acceptedFileTypes: [
-            'application/doc',
-            'application/pdf',
-            '.docx'
+            'image/png',
+            'image/jpeg'
         ]
     });
     FilePond.create(document.querySelector('input[name="file_permohonan"]'), {
@@ -163,4 +162,3 @@ $(function () {
         }
     }
 });
-
