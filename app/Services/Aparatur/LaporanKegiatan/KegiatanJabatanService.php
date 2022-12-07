@@ -41,22 +41,22 @@ class KegiatanJabatanService
         $unsurs = Unsur::query()
             ->where('jenis_kegiatan_id', 1)
             ->where('periode_id', $periode->id)
-            ->with(['role' => function ($query) use ($role) {
+            ->with(['subUnsurs.butirKegiatans.role' => function ($query) use ($role) {
                 $query->whereIn('id', [$role->id + 1, $role->id - 1, $role->id]);
-            }, 'subUnsurs.butirKegiatans'])
-            ->whereHas('role', function ($query) use ($search, $role) {
-                $query->where(
-                    'nama',
-                    'like',
-                    "%$search%"
-                );
-            })
-            ->when($search, function ($query) use ($search) {
+            }])
+            ->when($search, function ($query) use ($search, $role) {
                 $query->where('nama', 'like', "%$search%")
-                    ->orWhereHas('subUnsurs', function ($query) use ($search) {
+                    ->orWhereHas('subUnsurs', function ($query) use ($search, $role) {
                         $query->where('nama', 'like', "%$search%")
-                            ->orWhereHas('butirKegiatans', function ($query) use ($search) {
-                                $query->where('nama', 'like', "%$search%");
+                            ->orWhereHas('butirKegiatans', function ($query) use ($search, $role) {
+                                $query->where('nama', 'like', "%$search%")
+                                    ->whereHas('role', function ($query) use ($search, $role) {
+                                    $query->where(
+                                        'nama',
+                                        'like',
+                                        "%$search%"
+                                    );
+                                });
                             });
                     });
             })
@@ -71,19 +71,20 @@ class KegiatanJabatanService
 
     public function storeLaporan(Request $request, User $user, ButirKegiatan $butirKegiatan): LaporanKegiatanJabatan
     {
-
-        $role = $butirKegiatan->load('subUnsur.unsur.role')->subUnsur->unsur->role;
+        $role = $butirKegiatan->load('role')->role;
         $periode = $this->periodeRepository->isActive();
         $laporanKegiatanJabatan = $this->kegiatanJabatanRepository->store($request, $role, $user, $butirKegiatan, $request->current_date, $periode->id);
         $historyKegiatanJabatan = $this->kegiatanJabatanRepository->storeHistoryKegiatanJabatan($laporanKegiatanJabatan, HistoryKegiatanJabatan::STATUS_LAPORKAN, HistoryKegiatanJabatan::ICON_KEYBOARD, $request->detail_kegiatan, 'Berhasil dilaporkan', $request->current_date);
-        foreach ($request->doc_kegiatan_tmp as $doc_kegiatan_tmp) {
-            $tmpFile = $this->temporaryFileRepository->getByFolder($doc_kegiatan_tmp);
-            if ($tmpFile) {
-                Storage::copy("tmp/$tmpFile->folder/$tmpFile->name", "kegiatan/$tmpFile->name");
-                $this->kegiatanJabatanRepository->storeDokumenKegiatanJabatan($laporanKegiatanJabatan, $tmpFile);
-                $this->kegiatanJabatanRepository->storeHistoryDokumenKegiatanJabatan($historyKegiatanJabatan, $tmpFile);
-                $this->temporaryFileRepository->destroy($tmpFile);
-                Storage::deleteDirectory("tmp/$tmpFile->folder");
+        if (isset($request->doc_kegiatan_tmp[0]) && $request->doc_kegiatan_tmp[0] !== null) {
+            foreach ($request->doc_kegiatan_tmp as $doc_kegiatan_tmp) {
+                $tmpFile = $this->temporaryFileRepository->getByFolder($doc_kegiatan_tmp);
+                if ($tmpFile) {
+                    Storage::copy("tmp/$tmpFile->folder/$tmpFile->name", "kegiatan/$tmpFile->name");
+                    $this->kegiatanJabatanRepository->storeDokumenKegiatanJabatan($laporanKegiatanJabatan, $tmpFile);
+                    $this->kegiatanJabatanRepository->storeHistoryDokumenKegiatanJabatan($historyKegiatanJabatan, $tmpFile);
+                    $this->temporaryFileRepository->destroy($tmpFile);
+                    Storage::deleteDirectory("tmp/$tmpFile->folder");
+                }
             }
         }
         $this->kegiatanJabatanRepository->storeHistoryKegiatanJabatan(
@@ -91,7 +92,7 @@ class KegiatanJabatanService
             status: HistoryKegiatanJabatan::STATUS_VALIDASI,
             icon: HistoryKegiatanJabatan::ICON_SPINNER,
             keterangan: 'Sedang divalidasi oleh Atasan Langsung',
-            detail_kegiatan: $request->detail_kegiatan,
+            detail_kegiatan: null,
             current_date: $laporanKegiatanJabatan->current_date
         );
         return $laporanKegiatanJabatan;
@@ -175,5 +176,10 @@ class KegiatanJabatanService
     public function laporanKegiatanJabatanCount(ButirKegiatan $butirKegiatan, User $user): int
     {
         return $this->kegiatanJabatanService->laporanKegiatanJabatanCount($butirKegiatan, $user);
+    }
+
+    public function laporanLast(ButirKegiatan $butirKegiatan, User $user)
+    {
+        return $this->kegiatanJabatanService->laporanLast($butirKegiatan, $user);
     }
 }

@@ -13,9 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('mekanisme_pengangkatans', function (Blueprint $table) {
+        Schema::create('ketentuan_skps', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
+            $table->integer('nilai');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mekanisme_pengangkatans');
+        Schema::dropIfExists('ketentuan_skps');
     }
 };

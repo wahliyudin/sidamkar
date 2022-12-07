@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class MekanismePengangkatan extends Model
+class KetentuanSkp extends Model
 {
     use HasFactory;
-
     protected $fillable = [
-        'nama'
+        'nama',
+        'nilai'
     ];
 }

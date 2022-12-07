@@ -276,6 +276,20 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label>Tanda Tangan<span
+                                                                        class="text-danger">*</span></label>
+                                                                <input type="file" data-max-file-size="2MB"
+                                                                    required name="file_ttd" required />
+                                                                @error('file_ttd')
+                                                                    <strong
+                                                                        style="color: red;">{{ $message }}</strong>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </fieldset>
 
                                                 <h6>Akses Login</h6>
@@ -414,6 +428,18 @@
                                                                     @endforeach
                                                                 </select>
                                                                 @error('nomenklatur_perangkat_daerah')
+                                                                    <strong
+                                                                        style="color: red;">{{ $message }}</strong>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label>No HP<span class="text-danger">*</span></label>
+                                                                <input type="number" required
+                                                                    value="{{ old('no_hp') }}" class="form-control"
+                                                                    name="no_hp">
+                                                                @error('no_hp')
                                                                     <strong
                                                                         style="color: red;">{{ $message }}</strong>
                                                                 @enderror

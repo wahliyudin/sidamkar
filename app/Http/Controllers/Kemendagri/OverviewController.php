@@ -21,12 +21,17 @@ class OverviewController extends Controller
 
         $total_provinsi = DB::table('user_prov_kab_kotas')->where('kab_kota_id', null)->count();
         $total_kab_kota = DB::table('user_prov_kab_kotas')->whereNotNull('kab_kota_id')->count();
+
+        $total_pengajuan_kab_kota = DB::table('users')->join('user_prov_kab_kotas', 'user_prov_kab_kotas.user_id', '=','users.id' )->where([ ['users.status_akun', '=', 0],['user_prov_kab_kotas.kab_kota_id', '!=', null] ])->count();
+        $total_pengajuan_provinsi = DB::table('users')->join('user_prov_kab_kotas', 'user_prov_kab_kotas.user_id', '=','users.id' )->where([ ['users.status_akun', '=', 0],['user_prov_kab_kotas.kab_kota_id', '=', null] ])->count();
         $total = [
             'kab_kota' => $total_kab_kota,
             'provinsi' => $total_provinsi,
             'damkar' => $total_damkar,
             'analisis' => $total_analisis,
             'aparatur' => $total_aparatur,
+            'pengajuan_kab_kota' => $total_pengajuan_kab_kota,
+            'pengajuan_provinsi' => $total_pengajuan_provinsi,
             'struktural' => UserPejabatStruktural::count()
         ];
         return view('kemendagri.overview',compact('judul', 'periode', 'total'));

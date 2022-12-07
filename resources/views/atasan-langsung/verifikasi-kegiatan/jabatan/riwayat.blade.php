@@ -12,16 +12,22 @@
                                 style="max-height: 74vh; overflow-y: auto; overflow-x: hidden;">
                                 <h6>File Dokumen</h6>
                                 <div class="d-flex flex-wrap gap-3 justify-content-center">
-                                    <div class="swiper mySwiper">
-                                        <div class="swiper-wrapper">
-                                            @foreach ($laporanKegiatanJabatan->dokumenKegiatanJabatans as $dokumenKegiatanJabatan)
-                                                <div class="swiper-slide">
-                                                    <img src="{{ $dokumenKegiatanJabatan->link }}" alt="">
-                                                </div>
-                                            @endforeach
+                                    @if (count($laporanKegiatanJabatan->dokumenKegiatanJabatans) > 0 &&
+                                        !str($laporanKegiatanJabatan?->dokumenKegiatanJabatans[0]?->link ?? '')->contains(['.pdf', '.docx']))
+                                        <div class="swiper mySwiper">
+                                            <div class="swiper-wrapper">
+                                                @foreach ($laporanKegiatanJabatan->dokumenKegiatanJabatans as $dokumenKegiatanJabatan)
+                                                    @if (!str($dokumenKegiatanJabatan->link)->contains(['.pdf', '.docx']))
+                                                        <div class="swiper-slide">
+                                                            <img src="{{ $dokumenKegiatanJabatan->link }}"
+                                                                alt="">
+                                                        </div>
+                                                    @endif
+                                                @endforeach
+                                            </div>
+                                            <div class="swiper-pagination"></div>
                                         </div>
-                                        <div class="swiper-pagination"></div>
-                                    </div>
+                                    @endif
                                 </div>
                                 <div class="form-group">
                                     <div class="d-flex flex-column mt-3">
@@ -164,7 +170,18 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                        @elseif (count($historyKegiatanJabatan->historyDokumenKegiatanJabatans) <= 0 &&
+                                            isset($historyKegiatanJabatan->detail_kegiatan))
+                                            <div class="col-lg-12">
+                                                <div class="timeline-item-content">
+                                                    <div class="timeline-item-card">
+                                                        <p class="fs--1 mb-0 text-gray">
+                                                            {{ $laporanKegiatanJabatan->detail_kegiatan }}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         @endif
+
                                         @if (isset($historyKegiatanJabatan?->catatan))
                                             <div class="col-lg-12">
                                                 <div class="timeline-item-content">

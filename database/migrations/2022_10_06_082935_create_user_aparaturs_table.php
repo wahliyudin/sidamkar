@@ -27,11 +27,14 @@ return new class extends Migration
             $table->enum('tingkat_aparatur', ['provinsi', 'kab_kota'])->nullable();
             $table->enum('pendidikan_terakhir', ['1', '2', '3', '4'])->nullable(); // Enum
             $table->string('foto_pegawai')->nullable();
+            $table->string('file_ttd')->nullable();
             $table->string('no_hp')->nullable();
             $table->string('alamat')->nullable();
             $table->foreignUuid('provinsi_id');
             $table->foreignUuid('kab_kota_id')->nullable();
-            $table->foreignUuid('mekanisme_pengangkatan_id')->nullable();
+            $table->unsignedBigInteger('mekanisme_pengangkatan_id')->nullable();
+            $table->float('angka_mekanisme', places: 4, unsigned: true)->nullable();
+            $table->enum('status_mekanisme', [1, 2, 3, 4])->nullable(); // Menunggu, revisi, terverifikasi, tolak
             $table->timestamps();
 
             $table->foreign('user_id')->on('users')->references('id')->cascadeOnDelete();

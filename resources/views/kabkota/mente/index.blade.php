@@ -146,7 +146,8 @@
 
     <div class="modal fade" id="tambahMentee" tabindex="-1" role="dialog" aria-labelledby="tambahMenteeTitle"
         aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-centered modal-dialog-scrollable"
+            role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 style="color: #06152B;" class="modal-title" id="tambahMenteeTitle">

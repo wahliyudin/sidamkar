@@ -40,8 +40,8 @@ trait RegistersUsers
     {
         // $this->validator($request->all())->validate();
         $user = $this->create($request->all());
-        event(new Registered($user));
-        // dispatch(new SendVerifEmailToUser($user));
+        // event(new Registered($user));
+        SendVerifEmailToUser::dispatch($user);
 
         // $this->guard()->login($user);
         if ($response = $this->registered($request, $user)) {

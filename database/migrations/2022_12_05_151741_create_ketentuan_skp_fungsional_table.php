@@ -13,9 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('mekanisme_pengangkatans', function (Blueprint $table) {
+        Schema::create('ketentuan_skp_fungsional', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
+            $table->unsignedBigInteger('ketentuan_skp_id')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->integer('nilai_skp')->nullable();
+            $table->string('status')->nullable();
+            $table->string('file')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mekanisme_pengangkatans');
+        Schema::dropIfExists('ketentuan_skp_fungsional');
     }
 };

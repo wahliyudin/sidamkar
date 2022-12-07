@@ -29,4 +29,9 @@ class KegiatanJabatanService
     {
         return $this->kegiatanJabatanRepository->laporanKegiatanJabatanCount($butirKegiatan, $user);
     }
+
+    public function laporanLast(ButirKegiatan $butirKegiatan, User $user)
+    {
+        return $this->kegiatanJabatanRepository->laporanLast($butirKegiatan, $user);
+    }
 }

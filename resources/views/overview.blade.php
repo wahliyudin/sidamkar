@@ -9,11 +9,13 @@
                             <div class="card-body py-2 px-3">
                                 <div class="d-flex align-items-center h-100">
                                     <div class="circle circle-green">
-                                        <i style="font-size: 20px;" class="fa-solid
+                                        <i style="font-size: 20px;"
+                                            class="fa-solid
                                         fa-stopwatch"></i>
                                     </div>
                                     <div class="d-flex flex-column ms-2">
-                                        <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
+                                        <p
+                                            style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                             Periode
                                         </p>
                                         <h2 style="font-family: 'Roboto'; font-size: 16px; color: #06152B;" class="target">
@@ -36,7 +38,8 @@
                                             style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                             Jumlah Aparatur
                                         </p>
-                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">{{$total['aparatur']}}</h4>
+                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">
+                                            {{ $total['aparatur'] }}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -54,7 +57,8 @@
                                             style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                             Pejabat Struktural
                                         </p>
-                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">{{$total['struktural']}}</h4>
+                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">
+                                            {{ $total['struktural'] }}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -74,7 +78,8 @@
                                             style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                             Pejabat Fungsional
                                         </p>
-                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">{{$total['fungsional']}}</h4>
+                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">
+                                            {{ $total['fungsional'] }}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -92,7 +97,8 @@
                                             style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                             Fungsional Damkar
                                         </p>
-                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">{{$total['damkar']}}</h4>
+                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">
+                                            {{ $total['damkar'] }}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -110,7 +116,8 @@
                                             style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                             Fungsional Analis
                                         </p>
-                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">{{$total['analis']}}</h4>
+                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">
+                                            {{ $total['analis'] }}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -160,7 +167,7 @@
             </div>
 
             <div class="col-md-3 col">
-                <div class="card" style="overflow: auto; height: 550px">
+                <div class="card">
                     <div class="card-header">
                         <h4 class="card-title text-center" style="color: #17181A; font-family: 'Roboto';">
                             INFORMATION
@@ -168,16 +175,9 @@
                     </div>
                     <div class="card-body">
                         <ul>
-                            @foreach ($informasi as $informasis )
                             <li>
-                                <p style="margin: 0 !important;"> {{ $informasis->judul}} ( <a href="" data-bs-toggle="modal"
-                                        data-bs-target="#informasi">Klik Disini</a> )
-                                </p>
-                                <div class="footer-information">
-                                    <p style="font-size: 9px; margin-top: 10px; color: red;"> 11/2/2022</p>
-                                </div>
+                                <p style="margin: 0 !important;">Upacara Bendera</p>
                             </li>
-                            @endforeach
                         </ul>
                     </div>
                 </div>

@@ -60,21 +60,25 @@ class KegiatanJabatanController extends Controller
     public function index(): View|Factory
     {
         $periode = $this->periodeRepository->isActive();
-        $user = $this->authUser()->load(['rencanas', 'rekapitulasiKegiatan']);
+        $user = $this->authUser()->load(['rencanas', 'rekapitulasiKegiatan.historyRekapitulasiKegiatans' => function($query){
+            $query->orderBy('id', 'desc');
+        }]);
         $judul = 'Laporan Kegiatan Jabatan';
-        return view('aparatur.laporan-kegiatan.jabatan.index', compact('periode', 'user', 'judul'));
+        $historyRekapitulasiKegiatans = $user?->rekapitulasiKegiatan?->historyRekapitulasiKegiatans ?? [];
+        return view('aparatur.laporan-kegiatan.jabatan.index', compact('periode', 'user', 'judul', 'historyRekapitulasiKegiatans'));
     }
 
     /**
      * show
      *
      * @param ButirKegiatan $butirKegiatan
-     * @return View
      */
-    public function show(ButirKegiatan $butirKegiatan): View|Factory
+    public function show(ButirKegiatan $butirKegiatan)
     {
         $periode = $this->periodeRepository->isActive();
-        $user = $this->authUser();
+        $user = $this->authUser()->load(['rekapitulasiKegiatan.historyRekapitulasiKegiatans' => function($query){
+            $query->orderBy('id', 'desc');
+        }]);
         $judul = 'Laporan Kegiatan Jabatan';
         [
             $laporanKegiatanJabatanStatusValidasis,
@@ -82,19 +86,23 @@ class KegiatanJabatanController extends Controller
             $laporanKegiatanJabatanStatusSelesais,
             $laporanKegiatanJabatanStatusTolaks,
         ] = $this->kegiatanJabatanService->laporanKegiatanJabatanByUser($butirKegiatan, $user);
+        $laporanKegiatanJabatanLast = $this->kegiatanJabatanService->laporanLast($butirKegiatan, $user);
         $laporanKegiatanJabatanCount = $this->kegiatanJabatanService->laporanKegiatanJabatanCount($butirKegiatan, $user);
         $rencanas = $this->kegiatanJabatanService->rencanas($user);
+        $historyRekapitulasiKegiatans = $user?->rekapitulasiKegiatan?->historyRekapitulasiKegiatans ?? [];
         return view('aparatur.laporan-kegiatan.jabatan.show', compact(
             'laporanKegiatanJabatanStatusValidasis',
             'laporanKegiatanJabatanStatusRevisis',
             'laporanKegiatanJabatanStatusSelesais',
             'laporanKegiatanJabatanStatusTolaks',
             'laporanKegiatanJabatanCount',
+            'laporanKegiatanJabatanLast',
             'user',
             'rencanas',
             'butirKegiatan',
             'periode',
-            'judul'
+            'judul',
+            'historyRekapitulasiKegiatans'
         ));
     }
 

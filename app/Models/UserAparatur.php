@@ -24,11 +24,14 @@ class UserAparatur extends Model
         'tingkat_aparatur',
         'provinsi_id',
         'foto_pegawai',
+        'file_ttd',
         'no_hp',
         'jenjang',
         'nomor_karpeg',
         'alamat',
-        'mekanisme_pengangkatan_id'
+        'mekanisme_pengangkatan_id',
+        'angka_mekanisme',
+        'status_mekanisme'
     ];
 
     /**

@@ -48,19 +48,20 @@ $(function () {
     $.fn.filepond.registerPlugin(FilePondPluginImagePreview);
     $.fn.filepond.registerPlugin(FilePondPluginFileValidateType);
     $.fn.filepond.registerPlugin(FilePondPluginFileValidateSize);
-    FilePond.create(document.querySelector('input[name="file_sk"]'), {
+    FilePond.create(document.querySelector('input[name="file_ttd"]'), {
         chunkUploads: true,
         acceptedFileTypes: [
-            'application/doc',
-            'application/pdf',
-            '.docx'
+            'image/png',
+            'image/jpeg'
         ]
     });
     FilePond.create(document.querySelector('input[name="file_permohonan"]'), {
         chunkUploads: true,
         acceptedFileTypes: [
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
             'application/doc',
-            'application/pdf'
+            'application/pdf',
+            '.docx'
         ]
     });
     FilePond.setOptions({
@@ -161,4 +162,3 @@ $(function () {
         }
     }
 });
-

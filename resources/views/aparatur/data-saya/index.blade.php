@@ -7,7 +7,8 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="container">
-                                <input id="avatar" type="file" style="display: none;" name="avatar" id="">
+                                <input id="avatar" type="file" accept="image/png, image/jpeg" style="display: none;"
+                                    name="avatar" id="">
                                 <label for="avatar">
                                     <img src="{{ isset($user->userAparatur?->foto_pegawai) ? $user->userAparatur?->foto_pegawai : asset('assets/images/faces/3.jpg') }}"
                                         alt="Avatar" class="image preview-avatar"
@@ -63,6 +64,20 @@
                                             <span class="text-danger text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
+                                    <div class="form-group">
+                                        <label for="basicInput">Privinsi</label>
+                                        <select class="form-select provinsi2" data-id=".provinsi2" name="provinsi_id">
+                                            <option disabled selected>- Pilih Privinsi -</option>
+                                            @foreach ($provinsis as $prov)
+                                                <option value="{{ $prov->id }}" @selected(old('provinsi_id', $user->userAparatur?->provinsi_id) == $prov->id)>
+                                                    {{ $prov->nama }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('provinsi_id')
+                                            <span class="text-danger text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -79,19 +94,6 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="basicInput">Privinsi</label>
-                                        <select class="form-select provinsi2" data-id=".provinsi2" name="provinsi_id">
-                                            <option disabled selected>- Pilih Privinsi -</option>
-                                            @foreach ($provinsis as $prov)
-                                                <option value="{{ $prov->id }}" @selected(old('provinsi_id', $user->userAparatur?->provinsi_id) == $prov->id)>
-                                                    {{ $prov->nama }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('provinsi_id')
-                                            <span class="text-danger text-sm">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
                                         <label for="basicInput">Kabupaten / Kota</label>
                                         <select class="kab_kota_id form-select" name="kab_kota_id" id="kab_kota_id">
                                             <option disabled selected>- Pilih Kabupaten / Kota -</option>
@@ -103,6 +105,24 @@
                                         @error('kab_kota_id')
                                             <span class="text-danger text-sm">{{ $message }}</span>
                                         @enderror
+                                    </div>
+                                    <div class="row justify-content-center">
+                                        <div class="form-group">
+                                            <div class="container d-flex justify-content-center">
+                                                <input id="ttd" type="file" accept="image/png, image/jpeg"
+                                                    style="display: none;" name="ttd" id="">
+                                                <label for="ttd">
+                                                    <img src="{{ isset($user->userAparatur?->file_ttd) ? $user->userAparatur?->file_ttd : asset('assets/images/faces/3.jpg') }}"
+                                                        alt="ttd" class="image preview-ttd"
+                                                        style="min-width:145px; min-height: 145px; max-width:145px; max-height: 145px; object-fit: cover; border-radius: 10px;">
+                                                    <span class="middle">
+                                                        <div class="text" style="cursor: pointer;"><i
+                                                                class="fa-regular fa-pen-to-square fa-xl"></i>
+                                                        </div>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -119,8 +139,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="basicInput">Jabatan</label>
-                                        <input type="text" name="jabatan" disabled class="form-control" placeholder=""
-                                            value="{{ Auth::user()->roles()->first()->display_name }}">
+                                        <input type="text" name="jabatan" disabled class="form-control"
+                                            placeholder="" value="{{ Auth::user()->roles()->first()->display_name }}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -148,10 +168,12 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Mekanisme Pengangkatan</label>
-                                        <select class="form-select" name="mekanisme_pengangkatan_id">
+                                        <select class="form-select"
+                                            {{ in_array($user?->userAparatur?->status_mekanisme, [1, 3, 4]) ? 'disabled' : '' }}
+                                            name="mekanisme_pengangkatan_id">
                                             <option selected disabled>- Pilih Mekanisme -</option>
                                             @foreach ($mekanismePengangkatans as $mekanismePengangkatan)
                                                 <option @selected($user?->userAparatur?->mekanismePengangkatan?->id == $mekanismePengangkatan->id)
@@ -160,6 +182,44 @@
                                             @endforeach
                                         </select>
                                     </div>
+                                </div>
+                                <div class="col-md-4 mekanisme-angka"
+                                    style="{{ !isset($user?->userAparatur->angka_mekanisme) ? 'display: none;' : '' }}">
+                                    <div class="form-group">
+                                        <label>Angka Kredit Mekanisme</label>
+                                        <input type="number"
+                                            {{ in_array($user?->userAparatur?->status_mekanisme, [1, 3, 4]) ? 'disabled' : '' }}
+                                            name="angka_mekanisme" class="form-control"
+                                            value="{{ $user?->userAparatur->angka_mekanisme }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-2 my-1 mekanisme-status"
+                                    style="display: flex; justify-content: end; align-items: center;{{ !isset($user?->userAparatur->angka_mekanisme) ? 'display: none;' : '' }}">
+                                    @switch($user?->userAparatur?->status_mekanisme)
+                                        @case(1)
+                                            <button style="width: 200px; font-style: italic; cursor: default;"
+                                                class="btn btn-yellow-reverse px-2 py-1 text-sm">Menunggu</button>
+                                        @break
+
+                                        @case(2)
+                                            <button style="width: 200px; font-style: italic; cursor: default;"
+                                                class="btn btn-red-reverse px-2 py-1 text-sm">Revisi</button>
+                                        @break
+
+                                        @case(3)
+                                            <button style="width: 200px; font-style: italic; cursor: default;"
+                                                class="btn btn-green-reverse px-2 py-1 text-sm">Terverifikasi</button>
+                                        @break
+
+                                        @case(4)
+                                            <button style="width: 200px; font-style: italic; cursor: default;"
+                                                class="btn btn-black-reverse px-2 py-1 text-sm">Ditolak</button>
+                                        @break
+
+                                        @default
+                                            <button style="width: 200px; font-style: italic; cursor: default;"
+                                                class="btn btn-gray-reverse px-2 py-1 text-sm">Belum</button>
+                                    @endswitch
                                 </div>
                             </div>
                         </div>
@@ -633,6 +693,10 @@
         $('#avatar').change(function(e) {
             e.preventDefault();
             previewImage(this, document.querySelector('.preview-avatar'))
+        });
+        $('#ttd').change(function(e) {
+            e.preventDefault();
+            previewImage(this, document.querySelector('.preview-ttd'))
         });
 
         function previewImage(image, imgPreview) {
