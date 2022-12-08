@@ -7,6 +7,9 @@
                 `\Lengkapi `\Data \Profile
             </div>
         @endif
+        <style>
+           
+        </style>
         <div class="row">
             <div class="col-md-3 px-2">
                 <div class="card">

@@ -27,6 +27,7 @@ class MenteController extends Controller
 
     public function index(MenteDataTable $dataTable)
     {
+        $this->menteService->getCurrentPenilaiAndPenetapByKabKota('1101', 'damkar');
         $judul = 'Data Mentee';
         $periode = $this->menteService->getPeriodeActive();
         $fungsionals = $this->menteService->getFungsionalKabKota();
@@ -49,9 +50,9 @@ class MenteController extends Controller
         return $dataTable->render('kabkota.mente.index', compact('fungsionals', 'atasanLangsungs', 'penilaiPenetapDamkar', 'penilaiPenetapAnalis', 'provinsis', 'periode', 'judul'));
     }
 
-    public function tingkatKabKota($kab_kota_id, $tingkat_aparatur)
+    public function tingkatKabKota($kab_kota_id, $jenis_aparatur)
     {
-        $penilaiAndPenetap = $this->menteService->getCurrentPenilaiAndPenetapByKabKota($kab_kota_id, $tingkat_aparatur);
+        $penilaiAndPenetap = $this->menteService->getCurrentPenilaiAndPenetapByKabKota($kab_kota_id, $jenis_aparatur);
         if (!isset($penilaiAndPenetap?->penilaiAngkaKredit)) {
             throw ValidationException::withMessages(['message' => 'Belum mempunyai tim penilai']);
         }
@@ -69,9 +70,9 @@ class MenteController extends Controller
         ]);
     }
 
-    public function tingkatProvinsi($provinsi_id, $tingkat_aparatur)
+    public function tingkatProvinsi($provinsi_id, $jenis_aparatur)
     {
-        $penilaiAndPenetap = $this->menteService->getCurrentPenilaiAndPenetapByProvinsi($provinsi_id, $tingkat_aparatur);
+        $penilaiAndPenetap = $this->menteService->getCurrentPenilaiAndPenetapByProvinsi($provinsi_id, $jenis_aparatur);
         if (!isset($penilaiAndPenetap?->penilaiAngkaKredit)) {
             throw ValidationException::withMessages(['message' => 'Belum mempunyai tim penilai']);
         }

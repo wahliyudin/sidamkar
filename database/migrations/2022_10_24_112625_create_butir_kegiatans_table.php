@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('butir_kegiatans', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('sub_unsur_id');
+            $table->unsignedBigInteger('role_id')->nullable()->default(null);
             $table->string('nama')->fulltext();
             $table->string('satuan_hasil')->nullable();
             $table->float('score', places: 3)->nullable();
@@ -23,6 +24,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('sub_unsur_id')->on('sub_unsurs')->references('id')->cascadeOnDelete();
+            $table->foreign('role_id')->on('roles')->references('id')->nullOnDelete();
         });
     }
 

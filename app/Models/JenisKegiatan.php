@@ -17,4 +17,9 @@ class JenisKegiatan extends Model
     {
         return $this->hasMany(Unsur::class);
     }
+
+    public function unsurKegiatanProfesi()
+    {
+        return $this->hasMany(UnsurKegiatanProfesi::class);
+    }
 }

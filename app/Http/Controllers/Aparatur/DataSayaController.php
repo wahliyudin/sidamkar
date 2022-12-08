@@ -76,11 +76,17 @@ class DataSayaController extends Controller
         if ($request->hasFile('avatar')) {
             $data['foto_pegawai'] = $this->storeImage($request->file('avatar'), 'aparatur');
         }
+        if ($request->hasFile('ttd')) {
+            $data['file_ttd'] = $this->storeImage($request->file('ttd'), 'aparatur');
+        }
         $user = User::query()->with('userAparatur')->find(auth()->user()->id);
         if (isset($user->userAparatur)) {
             $user->userAparatur()->update($data);
             if (isset($data['foto_pegawai'])) {
                 deleteImage($user->userAparatur->foto_pegawai);
+            }
+            if (isset($data['file_ttd'])) {
+                deleteImage($user->userAparatur->file_ttd);
             }
         } else {
             $user->userAparatur()->create($data);

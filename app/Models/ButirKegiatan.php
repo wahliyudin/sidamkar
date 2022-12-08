@@ -11,6 +11,7 @@ class ButirKegiatan extends Model
 
     protected $fillable = [
         'sub_unsur_id',
+        'role_id',
         'nama',
         'satuan_hasil',
         'score',
@@ -30,5 +31,10 @@ class ButirKegiatan extends Model
     public function laporanKegiatanJabatans()
     {
         return $this->hasMany(LaporanKegiatanJabatan::class);
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
     }
 }
