@@ -454,7 +454,7 @@ class SubUnsurSeeder extends Seeder
             [
                 //84
                 'unsur_id' => 22,
-                'nama' => 'Pelaksanaan penyuluhan dan sosialisas'
+                'nama' => 'Pelaksanaan penyuluhan dan sosialisasi'
             ],
             [
                 //85

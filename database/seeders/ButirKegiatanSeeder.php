@@ -2197,7 +2197,7 @@ class ButirKegiatanSeeder extends Seeder
         // End Bagian Butir Kegiatan Pokok dengan id 1 sampai dengan 270 adalah bagian dari tugas kegiatan pokok JABATAN FUNGSIONAL PEMADAM KEBAKARAN
 
         // Bagian Butir Kegiatan Pokok dengan id .. sampai dengan ..adalah bagian dari tugas kegiatan pokok RINCIAN KEGIATAN JABATAN FUNGSIONAL ANALIS KEBAKARAN DAN ANGKA KREDITNYA
-        $analis_kebakaran_ahli_pertama_dan_analis_kebakaran_ahli_muda1= [
+        $analis_kebakaran_ahli_pertama_dan_analis_kebakaran_ahli_muda1 = [
             //271
             [
                 'role_id' => 5,
@@ -2294,8 +2294,771 @@ class ButirKegiatanSeeder extends Seeder
                 'satuan_hasil' => 'Laporan analisis standar lainnya yang terkait tentang kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
                 'score' => 0.02
             ],
+
+            //
+
+            //283
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 75,
+                'nama' => 'Menyusun surat pemberitahuan pemeriksaan pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'satuan_hasil' => 'Dokumen surat pemberitahuan pemeriksaan pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'score' => 0.01
+            ],
+            //284
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 75,
+                'nama' => 'Menyusun surat tugas tim pemeriksa pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'satuan_hasil' => 'Dokumen surat tugas tim pemeriksa pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'score' => 0.01
+            ],
+            //285
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 75,
+                'nama' => 'Menyusun form check list pemeriksaan pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'satuan_hasil' => 'Dokumen pemeriksaan pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'score' => 0.01
+            ],
+            //286
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 75,
+                'nama' => 'Menyusun dan memahami dokumen pendukung lainnya pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'satuan_hasil' => 'Dokumen pendukung lainnya pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'score' => 0.01
+            ],
+            //287
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 75,
+                'nama' => 'Menginventarisasi kendaraan, peralatan untuk pemeriksaan dan pengujian pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'satuan_hasil' => 'Dokumen kendaraan, peralatan untuk pemeriksaan dan pengujian pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'score' => 0.01
+            ],
+            //288
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 75,
+                'nama' => 'Melakukan komunikasi dengan pihak pengelola bangunan gedung pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'satuan_hasil' => 'Laporan hasil komunikasi dengan pihak pengelola bangunan gedung pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'score' => 0.01
+            ],
+            //289
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 75,
+                'nama' => 'Mengkaji surat pemberitahuan pemeriksaan pada bangunan tinggi, bangunan industri dan obyek vital',
+                'satuan_hasil' => 'Dokumen surat pemberitahuan pemeriksaan pada bangunan tinggi, bangunan industri dan obyek vital',
+                'score' => 0.02
+            ],
+            //290
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 75,
+                'nama' => 'Mengkaji surat tugas tim pemeriksa pada bangunan tinggi,bangunan industri dan obyek vital',
+                'satuan_hasil' => 'Dokumen surat tugas tim pemeriksa pada bangunan tinggi, bangunan industri dan obyek vital',
+                'score' => 0.02
+            ],
+            //291
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 75,
+                'nama' => 'Mengkaji form check list pemeriksaan pada bangunan tinggi,bangunan industri dan obyek vital',
+                'satuan_hasil' => 'Dokumen check list pemeriksaan pada bangunan tinggi, bangunan industri dan obyek vital',
+                'score' => 0.02
+            ],
+            //292
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 75,
+                'nama' => 'Mengkaji dan memahami dokumen pendukung lainnya pada bangunan tinggi, bangunan industri dan obyek vital',
+                'satuan_hasil' => 'Laporan pendukung lainnya pada bangunan tinggi, bangunan industri dan obyek vital',
+                'score' => 0.02
+            ],
+            //293
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 75,
+                'nama' => 'Menginventarisasi kendaraan, peralatan untuk pemeriksaan dan pengujian pada bangunan tinggi, bangunan industri dan obyek vital',
+                'satuan_hasil' => 'Laporan kendaraan, peralatan untuk pemeriksaan dan pengujian pada bangunan tinggi, bangunan industri dan obyek vital',
+                'score' => 0.02
+            ],
+            //294
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 75,
+                'nama' => 'Melakukan komunikasi dengan pihak pengelola bangunan gedung pada bangunan tinggi, bangunan industri dan obyek vital',
+                'satuan_hasil' => 'Laporan komunikasi dengan pihak pengelola bangunan gedung pada bangunan tinggi, bangunan industri dan obyek vital',
+                'score' => 0.02
+            ],
+
+            //
+
+            //295
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 76,
+                'nama' => 'Menyusun dokumen-dokumen perijinan pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'satuan_hasil' => 'Laporan perijinan pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'score' => 0.01
+            ],
+            //296
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 76,
+                'nama' => 'Menyusun gambar bangunan pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'satuan_hasil' => 'Laporan hasil gambar bangunan pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'score' => 0.01
+            ],
+            //297
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 76,
+                'nama' => 'Menginventarisasi spesifikasi proteksi kebakaran pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'satuan_hasil' => 'Laporan spesifikasi proteksi kebakaran pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'score' => 0.01
+            ],
+            //298
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 76,
+                'nama' => 'Mengindentifikasi sistem proteksi aktif pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'satuan_hasil' => 'Laporan sistem proteksi aktif pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'score' => 0.01
+            ],
+            //299
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 76,
+                'nama' => 'Mengidentifikasi sistem proteksi pasif pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'satuan_hasil' => 'Kegiatan sistem proteksi pasif pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'score' => 0.01
+            ],
+            //300
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 76,
+                'nama' => 'Mengevaluasi tentang manajemen keselamatan kebakaran gedung (MKKG) pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'satuan_hasil' => 'Laporan manajemen keselamatan kebakaran gedung (MKKG) pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'score' => 0.01
+            ],
+            //301
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 76,
+                'nama' => 'Mengindentifikasi akses pemadam kebakaran pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'satuan_hasil' => 'Laporan akses pemadam kebakaran pada bangunan rendah dan menengah, tidak termasuk bangunan',
+                'score' => 0.01
+            ],
+            //302
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 76,
+                'nama' => 'Mengindetifikasi sarana penyelamatan jiwa pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'satuan_hasil' => 'Laporan indentifikasi sarana penyelamatan jiwa pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'score' => 0.01
+            ],
+            //303
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 76,
+                'nama' => 'Melakukan kajian terhadap dokumen-dokumen perijinan pada bangunan tinggi, bangunan industri dan obyek vital',
+                'satuan_hasil' => 'Laporan perijinan pada bangunan tinggi, bangunan industri dan obyek vital',
+                'score' => 0.02
+            ],
+            //304
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 76,
+                'nama' => 'Melakukan kajian terhadap gambar bangunan pada bangunan tinggi, bangunan industri dan obyek vital',
+                'satuan_hasil' => 'Laporan gambar bangunan pada bangunan tinggi, bangunan industri dan obyek vital',
+                'score' => 0.02
+            ],
+            //305
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 76,
+                'nama' => 'Melakukan kajian spesifikasi proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'satuan_hasil' => 'Laporan spesifikasi proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'score' => 0.02
+            ],
+            //306
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 76,
+                'nama' => 'Melakukan kajian sistem proteksi aktif pada bangunan tinggi, bangunan industri dan obyek vital',
+                'satuan_hasil' => 'Laporan sistem proteksi aktif pada bangunan tinggi, bangunan industri dan obyek vital',
+                'score' => 0.02
+            ],
+            //307
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 76,
+                'nama' => 'Melakukan kajian sistem proteksi pasif pada bangunan tinggi, bangunan industri dan obyek vital',
+                'satuan_hasil' => 'Laporan sistem proteksi pasif pada bangunan tinggi, bangunan industri dan obyek vital',
+                'score' => 0.02
+            ],
+            //308
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 76,
+                'nama' => 'Melakukan kajian tentang manajemen keselamatan kebakaran gedung (MKKG) pada bangunan tinggi, bangunan industri dan obyek vital',
+                'satuan_hasil' => 'Laporan kajian tentang manajemen keselamatan kebakaran gedung (MKKG) pada bangunan tinggi, bangunan industri dan obyek vital',
+                'score' => 0.02
+            ],
+            //309
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 76,
+                'nama' => 'Melakukan kajian akses pemadam kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'satuan_hasil' => 'Laporan kajian akses pemadam kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'score' => 0.02
+            ],
+            //310
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 76,
+                'nama' => 'Melakukan kajian sarana penyelamatan jiwa pada bangunan tinggi, bangunan industri dan obyek vital',
+                'satuan_hasil' => 'Laporan kajian sarana penyelamatan jiwa pada bangunan tinggi, bangunan industri dan obyek vital',
+                'score' => 0.02
+            ],
+
+            //
+
+            //311
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 77,
+                'nama' => 'Melaksanakan rapat koordinasi dengan pengelola gedung pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'satuan_hasil' => 'Laporan rapat koordinasi dengan pengelola gedung pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'score' => 0.01
+            ],
+            //312
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 77,
+                'nama' => 'Mengkaji dokumen-dokumen perijinan pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'satuan_hasil' => 'Laporan dokumen-dokumen perijinan pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'score' => 0.01
+            ],
+            //313
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 77,
+                'nama' => 'Mengkaji gambar bangunan pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'satuan_hasil' => 'Laporan olahan gambar bangunan pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'score' => 0.01
+            ],
+            //314
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 77,
+                'nama' => 'Mengevaluasi tentang manajemen keselamatan kebakaran gedung (MKKG) pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'satuan_hasil' => 'Dokumen manajemen keselamatan kebakaran gedung (MKKG) pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'score' => 0.01
+            ],
+            //315
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 77,
+                'nama' => 'Mengkoordinir rapat koordinasi dengan pengelola gedung bangunan tinggi, bangunan industri dan obyek vital',
+                'satuan_hasil' => 'Laporan rapat koordinasi dengan pengelola gedung bangunan tinggi, bangunan industri dan obyek vital',
+                'score' => 0.02
+            ],
+            //316
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 77,
+                'nama' => 'Memverifikasi dokumen-dokumen perijinan pada bangunan tinggi, bangunan industri dan obyek vital proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'satuan_hasil' => 'Laporan perijinan pada bangunan tinggi, bangunan industri dan obyek vitalproteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'score' => 0.02
+            ],
+            //317
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 77,
+                'nama' => 'Memeriksa tentang manajemen keselamatan kebakaran gedung (MKKG) pada bangunan tinggi, bangunan industri dan obyek vital',
+                'satuan_hasil' => 'Dokumen tentang manajemen keselamatan kebakaran gedung (MKKG) pada bangunan tinggi, bangunan industri dan obyek vital',
+                'score' => 0.02
+            ],
+
+            //
+
+            //318
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 78,
+                'nama' => 'Memeriksa dan menguji spesifikasi proteksi kebakaran pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'satuan_hasil' => 'Laporan spesifikasi proteksi kebakaran pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'score' => 0.01
+            ],
+            //319
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 78,
+                'nama' => 'Memeriksa akses pemadam kebakaran pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'satuan_hasil' => 'Kegiatan akses pemadam kebakaran pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'score' => 0.01
+            ],
+            //320
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 78,
+                'nama' => 'Memeriksa sarana penyelamatan jiwa (tangga kebakaran, lampu darurat, penunjuk arah darurat ,kipas penekan asap, lift kebakaran) pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'satuan_hasil' => 'Laporan sarana penyelamatan jiwa (tangga kebakaran, lampu darurat, penunjuk arah darurat ,kipas penekan asap, lift kebakaran) pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'score' => 0.01
+            ],
+            //321
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 78,
+                'nama' => 'Memeriksa dan menguji sistem hidran kebakaran pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'satuan_hasil' => 'Laporan sistem hidran kebakaran pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'score' => 0.01
+            ],
+            //322
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 78,
+                'nama' => 'Memeriksa dan menguji sistem springkler otomatis pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'satuan_hasil' => 'Laporan Memeriksa dan menguji sistem springkler otomatis pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'score' => 0.01
+            ],
+            //323
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 78,
+                'nama' => 'Memeriksa dan menguji sistem deteksi dan alarm kebakaran pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'satuan_hasil' => 'Kegiatan emeriksa dan menguji sistem deteksi dan alarm kebakaran pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'score' => 0.01
+            ],
+            //324
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 78,
+                'nama' => 'Memeriksa dan menguji sistem deteksi dan alarm kebakaran pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'satuan_hasil' => 'Kegiatan memeriksa dan menguji sistem deteksi dan alarm kebakaran pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'score' => 0.01
+            ],
+            //325
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 78,
+                'nama' => 'Memeriksa Alat Pemadam Api Ringan (APAR) pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'satuan_hasil' => 'Laporan Memeriksa Alat Pemadam Api Ringan (APAR) pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'score' => 0.01
+            ],
+            //326
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 78,
+                'nama' => 'Memeriksa sistem proteksi pasif (fire stopping , saf, bukaan, kompartemenisasi dll ) pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'satuan_hasil' => 'Laporan Memeriksa sistem proteksi pasif (fire stopping, saf, bukaan, kompartemenisasi dll ) pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'score' => 0.01
+            ],
+            //327
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 78,
+                'nama' => 'Memeriksa dan menguji spesifikasi proteksi kebakaran proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'satuan_hasil' => 'Laporan proteksi kebakaran proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'score' => 0.02
+            ],
+            //328
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 78,
+                'nama' => 'Memeriksa akses pemadam kebakaran proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'satuan_hasil' => 'Laporan proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'score' => 0.02
+            ],
+            //329
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 78,
+                'nama' => 'Memeriksa sarana penyelamatan jiwa (tangga kebakaran, lampu darurat, penunjuk arah darurat ,kipas penekan asap, lift kebakaran) proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'satuan_hasil' => 'Laporan sarana penyelamatan jiwa (tangga kebakaran, lampu darurat, penunjuk arah darurat ,kipas penekan asap, lift kebakaran) proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'score' => 0.02
+            ],
+            //330
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 78,
+                'nama' => 'Memeriksa dan menguji sistem hidran kebakaran proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'satuan_hasil' => 'Laporan pemeriksaan dan pengujian sistem hidran kebakaran proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'score' => 0.02
+            ],
+            //331
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 78,
+                'nama' => 'Memeriksa dan menguji sistem springkler otomatis proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'satuan_hasil' => 'Laporan sistem springkler otomatis proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'score' => 0.02
+            ],
+            //332
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 78,
+                'nama' => 'Memeriksa dan menguji sistem deteksi dan alarm kebakaran proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'satuan_hasil' => 'Laporan sistem deteksi dan alarm kebakaran proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'score' => 0.02
+            ],
+            //333
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 78,
+                'nama' => 'Memeriksa Alat Pemadam Api Ringan (APAR) proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'satuan_hasil' => 'Laporan Alat Pemadam Api Ringan (APAR) proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'score' => 0.02
+            ],
+            //334
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 78,
+                'nama' => 'Memeriksa sistem proteksi pasif (fire stopping , saf, bukaan, kompartemenisasi dll ) proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'satuan_hasil' => 'Laporan sistem proteksi pasif (fire stopping , saf, bukaan, kompartemenisasi dll ) proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'score' => 0.02
+            ],
+            //335
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 78,
+                'nama' => 'Memberikan rekomendasi tindak lanjut atas hasil pemeriksaan dan pengujian proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'satuan_hasil' => 'Laporan rekomendasi tindak lanjut atas hasil pemeriksaan dan pengujian proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'score' => 0.02
+            ],
+
+            //
+
+            //336
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 79,
+                'nama' => 'Mengkaji hasil pemeriksaan dan pengujian pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'satuan_hasil' => 'Dokumen pemeriksaan dan pengujian pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'score' => 0.01
+            ],
+            //337
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 79,
+                'nama' => 'Mengkaji hasil pemeriksaan dan pengujian pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'satuan_hasil' => 'Laporan pemeriksaan dan pengujian pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'score' => 0.01
+            ],
+            //338
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 79,
+                'nama' => 'Mengkaji berita acara pemeriksaan pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'satuan_hasil' => 'Dokumen berita acara pemeriksaan pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'score' => 0.01
+            ],
+            //339
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 79,
+                'nama' => 'Memberi masukan dan saran kepada pengelola gedung dari hasil pemeriksaan pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'satuan_hasil' => 'Dokumen masukan dan saran kepada pengelola gedung dari hasil pemeriksaan pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'score' => 0.01
+            ],
+            //340
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 79,
+                'nama' => 'Mengkaji hasil pemeriksaan dan pengujian pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'satuan_hasil' => 'Dokumen hasil pemeriksaan dan pengujian pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'score' => 0.01
+            ],
+            //341
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 79,
+                'nama' => 'Mengkaji hasil pemeriksaan dan pengujian kepada atasan pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'satuan_hasil' => 'Laporan hasil pemeriksaan dan pengujian kepada atasan pada bangunan rendah dan menengah, tidak termasuk bangunan industri',
+                'score' => 0.01
+            ],
+            //342
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 79,
+                'nama' => 'Menginvetarisasi jumlah nilai retribusi hasil pemeriksaan dan pengujian',
+                'satuan_hasil' => 'Dokumen jumlah nilai retribusi hasil pemeriksaan dan pengujian',
+                'score' => 0.01
+            ],
+
+            //
+
+            //343
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 80,
+                'nama' => 'Menelaah hasil pemeriksaan dan pengujian proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'satuan_hasil' => 'Dokumen hasil pemeriksaan dan pengujian proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'score' => 0.02
+            ],
+            //344
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 80,
+                'nama' => 'Menelaah hasil pemeriksaan dan pengujian proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'satuan_hasil' => 'Laporan hasil pemeriksaan dan pengujian proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'score' => 0.02
+            ],
+            //345
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 80,
+                'nama' => 'Menyusun berita acara pemeriksaan proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'satuan_hasil' => 'Dokumen berita acara pemeriksaan proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'score' => 0.02
+            ],
+            //346
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 80,
+                'nama' => 'Memberikan masukan dan saran kepada pengelola gedung dari hasil pemeriksaan proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'satuan_hasil' => 'Dokumen masukan dan saran kepada pengelola gedung dari hasil pemeriksaan proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'score' => 0.02
+            ],
+            //347
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 80,
+                'nama' => 'Memvalidasi hasil pemeriksaan dan pengujian proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'satuan_hasil' => 'Dokumen hasil pemeriksaan dan pengujian proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital',
+                'score' => 0.02
+            ],
+            //348
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 80,
+                'nama' => 'Memvalidasi hasil pemeriksaan dan pengujian proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital kepada atasan',
+                'satuan_hasil' => 'Laporan hasil pemeriksaan dan pengujian proteksi kebakaran pada bangunan tinggi, bangunan industri dan obyek vital kepada atasan',
+                'score' => 0.02
+            ],
+            //349
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 80,
+                'nama' => 'Menginvetarisasi jumlah nilai retribusi hasil pemeriksaan dan pengujian',
+                'satuan_hasil' => 'Dokumen nilai retribusi hasil pemeriksaan dan pengujian',
+                'score' => 0.02
+            ],
+
+            //
+
+            //350
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 81,
+                'nama' => 'Menyusun materi tentang peraturan dan perundangan pencegahan kebakaran',
+                'satuan_hasil' => 'Laporan penyusunan materi tentang peraturan dan perundangan pencegahan kebakaran',
+                'score' => 0.01
+            ],
+            //351
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 81,
+                'nama' => 'Menyusun materi pencegahan kebakaran',
+                'satuan_hasil' => 'Laporan penyusunan materi pencegahan kebakaran',
+                'score' => 0.01
+            ],
+            //352
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 81,
+                'nama' => 'Menyusun materi penanggulangan kebakaran',
+                'satuan_hasil' => 'Laporan penyusunan materi penanggulangan kebakaran',
+                'score' => 0.01
+            ],
+            //353
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 81,
+                'nama' => 'Menyusun materi praktek pemadaman secara tradisional',
+                'satuan_hasil' => 'Laporan Penyusunan materi praktek pemadaman secara tradisional',
+                'score' => 0.01
+            ],
+            //354
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 81,
+                'nama' => 'Menyusun materi praktek penggunaan APAR',
+                'satuan_hasil' => 'Laporan Penyusunan materi praktek penggunaan APAR',
+                'score' => 0.01
+            ],
+            //355
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 81,
+                'nama' => 'Menyusun materi praktek pompa portable',
+                'satuan_hasil' => 'Laporan Penyusunan materi praktek pompa portable',
+                'score' => 0.01
+            ],
+
+            //
+
+            //356
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 82,
+                'nama' => 'Mengidentifikasi lokasi dan waktu penyuluhan',
+                'satuan_hasil' => 'Laporan lokasi dan waktu penyuluhan',
+                'score' => 0.01
+            ],
+            //357
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 82,
+                'nama' => 'Mengidentifikasi peserta penyuluhan',
+                'satuan_hasil' => 'Dokumen identifikasi peserta penyuluhan',
+                'score' => 0.01
+            ],
+            //358
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 82,
+                'nama' => 'Melakukan koordinasi dengan pihak terkait',
+                'satuan_hasil' => 'Laporan koordinasi dengan pihak terkait',
+                'score' => 0.01
+            ],
+            //359
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 82,
+                'nama' => 'Mengidentifikasi kebutuhan penyuluhan',
+                'satuan_hasil' => 'Laporan identifikasi kebutuhan penyuluhan',
+                'score' => 0.01
+            ],
+            //360
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 82,
+                'nama' => 'menelaah aspek sosial budaya peserta',
+                'satuan_hasil' => 'menelaah aspek sosial budaya peserta',
+                'score' => 0.01
+            ],
+            //361
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 82,
+                'nama' => 'menelaah aspek sosial budaya peserta',
+                'satuan_hasil' => 'Laporan sasaran tujuan penyuluhan',
+                'score' => 0.01
+            ],
+            //362
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 82,
+                'nama' => 'Menyusun dokumen administrasi surat pemberitahuan, surat undangan, surat tugas',
+                'satuan_hasil' => 'Dokumen administrasi surat pemberitahuan, surat undangan, surat tugas',
+                'score' => 0.01
+            ],
+
+            //
+
+            //363
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 83,
+                'nama' => 'Mengolah cara memberikan instruksi',
+                'satuan_hasil' => 'Laporan cara memberikan instruksi',
+                'score' => 0.01
+            ],
+            //364
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 83,
+                'nama' => 'Mengolah metode penyuluhan',
+                'satuan_hasil' => 'Laporan metode penyuluhan',
+                'score' => 0.01
+            ],
+            //365
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 83,
+                'nama' => 'Mengolah cara menggunakan alat bantu penyuluhan',
+                'satuan_hasil' => 'Laporan cara menggunakan alat bantu penyuluhan',
+                'score' => 0.01
+            ],
+            //366
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 83,
+                'nama' => 'Mengolah cara menyampaikan materi',
+                'satuan_hasil' => 'Laporan cara menyampaikan materi',
+                'score' => 0.01
+            ],
+
+            //
+
+            //367
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 84,
+                'nama' => 'Menginventarisasi sarana dan prasarana penunjang',
+                'satuan_hasil' => 'Laporan sarana dan prasarana penunjang',
+                'score' => 0.01
+            ],
+            //368
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 84,
+                'nama' => 'Melaksanakan registrasi peserta',
+                'satuan_hasil' => 'Dokumen registrasi peserta',
+                'score' => 0.01
+            ],
+            //369
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 84,
+                'nama' => 'Mendistribusikan kebutuhan peserta',
+                'satuan_hasil' => 'Laporan kebutuhan peserta',
+                'score' => 0.01
+            ],
+            //370
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 84,
+                'nama' => 'Mengarahkan maksud dan tujuan penyuluhan',
+                'satuan_hasil' => 'Laporan maksud dan tujuan penyuluhan',
+                'score' => 0.01
+            ],
+            //371
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 84,
+                'nama' => 'Mengarahkan pengarahan kepada Tim penyuluh',
+                'satuan_hasil' => 'Laporan pengarahan kepada Tim penyuluh',
+                'score' => 0.01
+            ],
+
+            //
+
+            //372
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 85,
+                'nama' => 'Memberi petunjuk tentang peraturan dan perundangan pencegahan kebakaran',
+                'satuan_hasil' => 'Laporan pemberian petunjuk peraturan dan perundangan pencegahan kebakaran',
+                'score' => 0.01
+            ],
+            //373
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 85,
+                'nama' => 'Memberi petunjuk tentang upaya pencegahan kebakaran dan teori api',
+                'satuan_hasil' => 'Laporan pemberian petunjuk peraturan dan perundangan pencegahan kebakaran',
+                'score' => 0.01
+            ],
+
+
+
         ];
         ButirKegiatan::query()->upsert($analis_kebakaran_ahli_pertama_dan_analis_kebakaran_ahli_muda1, 'id');
-
     }
 }
