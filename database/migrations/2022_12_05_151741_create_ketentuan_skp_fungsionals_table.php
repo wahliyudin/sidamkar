@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ketentuan_skp_fungsional', function (Blueprint $table) {
+        Schema::create('ketentuan_skp_fungsionals', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('ketentuan_skp_id')->nullable();
-            $table->unsignedBigInteger('user_id');
+            $table->foreignUuid('user_id');
             $table->integer('nilai_skp')->nullable();
             $table->string('status')->nullable();
             $table->string('file')->nullable();
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ketentuan_skp_fungsional');
+        Schema::dropIfExists('ketentuan_skp_fungsionals');
     }
 };

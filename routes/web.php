@@ -121,6 +121,8 @@ Route::middleware(['auth'])->group(function () {
 
             Route::post('laporan-kegiatan/jabatan/rekapitulasi', 'rekapitulasi')->name('laporan-kegiatan.jabatan.rekapitulasi');
             Route::post('laporan-kegiatan/jabatan/rekapitulasi/send-rekap', 'sendRekap')->name('laporan-kegiatan.jabatan.rekapitulasi.send-rekap');
+
+            Route::post('laporan-kegiatan/jabatan/send-skp', 'sendSKP')->name('laporan-kegiatan.jabatan.send-skp');
         });
 
         Route::controller(LaporanKegiatanKegiatanProfesiController::class)->group(function () {
