@@ -84,10 +84,10 @@ class RegisterController extends Controller
     {
         if ($request->has('file_permohonan')) {
             $file = $request->file('file_permohonan');
-        } elseif ($request->has('file_sk')) {
-            $file = $request->file('file_sk');
+        } elseif ($request->has('file_ttd')) {
+            $file = $request->file('file_ttd');
         }
-        $file_name = $file->getClientOriginalName();
+        $file_name = uniqid(). '.'.$file->getClientOriginalExtension();
         $folder = uniqid('register', true);
         $file->storeAs("tmp/$folder", $file_name);
         TemporaryFile::query()->create([
