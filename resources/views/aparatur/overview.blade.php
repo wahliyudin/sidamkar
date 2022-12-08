@@ -43,9 +43,7 @@
                                     Angka Kredit Minimal
                                 </p>
                                 <h2 style="font-family: 'Roboto';color: #06152B;" class="target">
-                                    @isset($ketentuan_ak)
-                                        {{ $ketentuan_ak[0]->ak_min }}
-                                    @endisset
+                                    {{ isset($ketentuan_ak[0]) ? $ketentuan_ak[0]->ak_min : '0' }}
                                 </h2>
                             </div>
                         </div>
@@ -64,9 +62,7 @@
                                     Angka Kredit diterima
                                 </p>
                                 <h2 style="font-family: 'Roboto';color: #06152B;" class="target">
-                                    @isset($ketentuan_ak)
-                                        {{ $ketentuan_ak[0]->ak_min }}
-                                    @endisset
+                                    100
                                 </h2>
                             </div>
                         </div>
