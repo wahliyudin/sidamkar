@@ -390,29 +390,17 @@ class UserSeeder extends Seeder
 
 
         //ini adalah seeder user yang dari request client
-        $adminProvinsiDkiJakarta1 = User::query()->create([
-            'username' => 'Admin Provinsi DKI Jakarta1',
+        $adminProvinsiDkiJakarta = User::query()->create([
+            'username' => 'Admin Provinsi DKI Jakarta',
             'email' => 'adminprovdkijakarta1@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 1
         ])->attachRole('provinsi');
-        $adminProvinsiDkiJakarta1->userProvKabKota()->create([
+        $adminProvinsiDkiJakarta->userProvKabKota()->create([
             'nomenklatur_perangkat_daerah_id' => 1,
             'provinsi_id' => 31,
         ]);
-
-        // $adminProvinsiDkiJakarta2 = User::query()->create([
-        //     'username' => 'Admin Provinsi DKI Jakarta2',
-        //     'email' => 'adminprovdkijakarta2@gmail.com',
-        //     'password' => Hash::make('123456789'),
-        //     'email_verified_at' => now(),
-        //     'status_akun' => 1
-        // ])->attachRole('provinsi');
-        // $adminProvinsiDkiJakarta2->userProvKabKota()->create([
-        //     'nomenklatur_perangkat_daerah_id' => 1,
-        //     'provinsi_id' => 31,
-        // ]);
 
         $adminProvinsiBanten = User::query()->create([
             'username' => 'Admin Provinsi Banten',
@@ -452,7 +440,7 @@ class UserSeeder extends Seeder
         ]);
 
         $KabKotBekasi1 = User::query()->create([
-            'username' => 'Admin Kabupaten Bekasi1',
+            'username' => 'Admin Kota Bekasi1',
             'email' => 'adminkotaBekasi1@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
@@ -461,11 +449,11 @@ class UserSeeder extends Seeder
         $KabKotBekasi1->userProvKabKota()->create([
             'nomenklatur_perangkat_daerah_id' => 1,
             'provinsi_id' => 32,
-            'kab_kota_id' => 3216,
+            'kab_kota_id' => 3275,
         ]);
 
         $KabKotBekasi2 = User::query()->create([
-            'username' => 'Admin Kabupaten Bekasi2',
+            'username' => 'Admin Kota Bekasi2',
             'email' => 'adminkotaBekasi2@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
@@ -474,7 +462,7 @@ class UserSeeder extends Seeder
         $KabKotBekasi2->userProvKabKota()->create([
             'nomenklatur_perangkat_daerah_id' => 1,
             'provinsi_id' => 32,
-            'kab_kota_id' => 3216,
+            'kab_kota_id' => 3275,
         ]);
 
         $KabKotBogor = User::query()->create([
@@ -542,7 +530,7 @@ class UserSeeder extends Seeder
             'jenis_kelamin' => 'L',
             'pendidikan_terakhir' => 2,
             'provinsi_id' => 32,
-            'kab_kota_id' => 3216,
+            'kab_kota_id' => 3275,
         ]);
         
         $atasanLangsungKotaBogor = User::query()->create([
