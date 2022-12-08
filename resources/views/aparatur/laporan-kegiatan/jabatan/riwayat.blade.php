@@ -11,9 +11,21 @@
                             <div class="d-flex flex-column pe-3 ps-1" data-simplebar
                                 style="max-height: 74vh; overflow-y: auto; overflow-x: hidden;">
                                 <h6>File Dokumen</h6>
-                                <div class="d-flex flex-wrap gap-3 justify-content-center">
+                                <ul>
                                     @if (count($laporanKegiatanJabatan->dokumenKegiatanJabatans) > 0 &&
-                                        !str($laporanKegiatanJabatan?->dokumenKegiatanJabatans[0]?->link ?? '')->contains(['.pdf', '.docx']))
+                                        str($laporanKegiatanJabatan?->dokumenKegiatanJabatans[0]?->link ?? '')->contains(['.pdf', '.docx']))
+                                        @foreach ($laporanKegiatanJabatan->dokumenKegiatanJabatans as $dokumenKegiatanJabatan)
+                                            @if (str($dokumenKegiatanJabatan->link)->contains(['.pdf', '.docx']))
+                                                <li>
+                                                    <a
+                                                        href="{{ $dokumenKegiatanJabatan->link }}">{{ $dokumenKegiatanJabatan->name }}</a>
+                                                </li>
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                </ul>
+                                <div class="d-flex flex-wrap gap-3 justify-content-center">
+                                    @if (count($laporanKegiatanJabatan->dokumenKegiatanJabatans) > 0)
                                         <div class="swiper mySwiper">
                                             <div class="swiper-wrapper">
                                                 @foreach ($laporanKegiatanJabatan->dokumenKegiatanJabatans as $dokumenKegiatanJabatan)
@@ -154,10 +166,22 @@
                                         @if (isset($historyKegiatanJabatan->historyDokumenKegiatanJabatans) &&
                                             count($historyKegiatanJabatan->historyDokumenKegiatanJabatans) > 0)
                                             <div class="col-lg-12">
+                                                <ul>
+                                                    @if (count($historyKegiatanJabatan->historyDokumenKegiatanJabatans) > 0 &&
+                                                        str($historyKegiatanJabatan?->historyDokumenKegiatanJabatans[0]?->link ?? '')->contains(['.pdf', '.docx']))
+                                                        @foreach ($historyKegiatanJabatan->historyDokumenKegiatanJabatans as $historyDokumenKegiatanJabatan)
+                                                            @if (str($historyDokumenKegiatanJabatan->link)->contains(['.pdf', '.docx']))
+                                                                <li>
+                                                                    <a
+                                                                        href="{{ $historyDokumenKegiatanJabatan->link }}">{{ $historyDokumenKegiatanJabatan->name }}</a>
+                                                                </li>
+                                                            @endif
+                                                        @endforeach
+                                                    @endif
+                                                </ul>
                                                 <div class="timeline-item-content">
                                                     <div class="timeline-item-card">
-                                                        @if (count($historyKegiatanJabatan->historyDokumenKegiatanJabatans) > 0 &&
-                                                            !str($historyKegiatanJabatan?->historyDokumenKegiatanJabatans[0]?->link ?? '')->contains(['.pdf', '.docx']))
+                                                        @if (count($historyKegiatanJabatan->historyDokumenKegiatanJabatans) > 0)
                                                             <div class="swiper mySwiper">
                                                                 <div class="swiper-wrapper">
                                                                     @foreach ($historyKegiatanJabatan->historyDokumenKegiatanJabatans as $historyDokumenKegiatanJabatan)

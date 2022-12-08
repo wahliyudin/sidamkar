@@ -12,8 +12,7 @@
                                 style="max-height: 74vh; overflow-y: auto; overflow-x: hidden;">
                                 <h6>File Dokumen</h6>
                                 <div class="d-flex flex-wrap gap-3 justify-content-center">
-                                    @if (count($laporanKegiatanJabatan->dokumenKegiatanJabatans) > 0 &&
-                                        !str($laporanKegiatanJabatan?->dokumenKegiatanJabatans[0]?->link ?? '')->contains(['.pdf', '.docx']))
+                                    @if (count($laporanKegiatanJabatan->dokumenKegiatanJabatans) > 0)
                                         <div class="swiper mySwiper">
                                             <div class="swiper-wrapper">
                                                 @foreach ($laporanKegiatanJabatan->dokumenKegiatanJabatans as $dokumenKegiatanJabatan)
@@ -152,19 +151,36 @@
                                         @if (isset($historyKegiatanJabatan->historyDokumenKegiatanJabatans) &&
                                             count($historyKegiatanJabatan->historyDokumenKegiatanJabatans) > 0)
                                             <div class="col-lg-12">
+                                                <ul>
+                                                    @if (count($historyKegiatanJabatan->historyDokumenKegiatanJabatans) > 0 &&
+                                                        str($historyKegiatanJabatan?->historyDokumenKegiatanJabatans[0]?->link ?? '')->contains(['.pdf', '.docx']))
+                                                        @foreach ($historyKegiatanJabatan->historyDokumenKegiatanJabatans as $historyDokumenKegiatanJabatan)
+                                                            @if (str($historyDokumenKegiatanJabatan->link)->contains(['.pdf', '.docx']))
+                                                                <li>
+                                                                    <a
+                                                                        href="{{ $historyDokumenKegiatanJabatan->link }}">{{ $historyDokumenKegiatanJabatan->name }}</a>
+                                                                </li>
+                                                            @endif
+                                                        @endforeach
+                                                    @endif
+                                                </ul>
                                                 <div class="timeline-item-content">
                                                     <div class="timeline-item-card">
-                                                        <div class="swiper mySwiper">
-                                                            <div class="swiper-wrapper">
-                                                                @foreach ($historyKegiatanJabatan->historyDokumenKegiatanJabatans as $historyDokumenKegiatanJabatan)
-                                                                    <div class="swiper-slide">
-                                                                        <img src="{{ $historyDokumenKegiatanJabatan->link }}"
-                                                                            alt="">
-                                                                    </div>
-                                                                @endforeach
+                                                        @if (count($historyKegiatanJabatan->historyDokumenKegiatanJabatans) > 0)
+                                                            <div class="swiper mySwiper">
+                                                                <div class="swiper-wrapper">
+                                                                    @foreach ($historyKegiatanJabatan->historyDokumenKegiatanJabatans as $historyDokumenKegiatanJabatan)
+                                                                        @if (!str($historyDokumenKegiatanJabatan->link)->contains(['.pdf', '.docx']))
+                                                                            <div class="swiper-slide">
+                                                                                <img src="{{ $historyDokumenKegiatanJabatan->link }}"
+                                                                                    alt="">
+                                                                            </div>
+                                                                        @endif
+                                                                    @endforeach
+                                                                </div>
+                                                                <div class="swiper-pagination"></div>
                                                             </div>
-                                                            <div class="swiper-pagination"></div>
-                                                        </div>
+                                                        @endif
                                                         <p class="fs--1 mb-0 text-gray mt-2">
                                                             {{ $historyKegiatanJabatan->detail_kegiatan }}</p>
                                                     </div>

@@ -27,8 +27,7 @@
                                     </p>
                                     <button class="btn btn-yellow btn-sm text-sm px-3">Validasi</button>
                                 </div>
-                                @if (count($laporanKegiatanJabatanStatusValidasi->dokumenKegiatanJabatans) > 0 &&
-                                    !str($laporanKegiatanJabatanStatusValidasi?->dokumenKegiatanJabatans[0]?->link ?? '')->contains(['.pdf', '.docx']))
+                                @if (count($laporanKegiatanJabatanStatusValidasi->dokumenKegiatanJabatans) > 0)
                                     <div class="swiper mySwiper">
                                         <div class="swiper-wrapper">
                                             @foreach ($laporanKegiatanJabatanStatusValidasi->dokumenKegiatanJabatans as $dokumenKegiatanJabatan)
@@ -100,8 +99,7 @@
                                     </p>
                                     <button class="btn btn-red-dark btn-sm text-sm px-3">Revisi</button>
                                 </div>
-                                @if (count($laporanKegiatanJabatanStatusRevisi->dokumenKegiatanJabatans) > 0 &&
-                                    !str($laporanKegiatanJabatanStatusRevisi?->dokumenKegiatanJabatans[0]?->link ?? '')->contains(['.pdf', '.docx']))
+                                @if (count($laporanKegiatanJabatanStatusRevisi->dokumenKegiatanJabatans) > 0)
                                     <div class="swiper mySwiper">
                                         <div class="swiper-wrapper">
                                             @foreach ($laporanKegiatanJabatanStatusRevisi->dokumenKegiatanJabatans as $dokumenKegiatanJabatan)
@@ -174,8 +172,7 @@
                                     </p>
                                     <button class="btn btn-green btn-sm text-sm px-3">Selesai</button>
                                 </div>
-                                @if (count($laporanKegiatanJabatanStatusSelesai->dokumenKegiatanJabatans) > 0 &&
-                                    !str($laporanKegiatanJabatanStatusSelesai?->dokumenKegiatanJabatans[0]?->link ?? '')->contains(['.pdf', '.docx']))
+                                @if (count($laporanKegiatanJabatanStatusSelesai->dokumenKegiatanJabatans) > 0)
                                     <div class="swiper mySwiper">
                                         <div class="swiper-wrapper">
                                             @foreach ($laporanKegiatanJabatanStatusSelesai->dokumenKegiatanJabatans as $dokumenKegiatanJabatan)
@@ -247,8 +244,7 @@
                                     </p>
                                     <button class="btn btn-black btn-sm text-sm px-3">DITOLAK</button>
                                 </div>
-                                @if (count($laporanKegiatanJabatanStatusTolak->dokumenKegiatanJabatans) > 0 &&
-                                    !str($laporanKegiatanJabatanStatusTolak?->dokumenKegiatanJabatans[0]?->link ?? '')->contains(['.pdf', '.docx']))
+                                @if (count($laporanKegiatanJabatanStatusTolak->dokumenKegiatanJabatans) > 0)
                                     <div class="swiper mySwiper">
                                         <div class="swiper-wrapper">
                                             @foreach ($laporanKegiatanJabatanStatusTolak->dokumenKegiatanJabatans as $dokumenKegiatanJabatan)

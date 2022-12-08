@@ -135,6 +135,7 @@ class UserSeeder extends Seeder
             'tempat_lahir' => 'Jakarta',
             'tanggal_lahir' => Carbon::now(),
             'jenis_kelamin' => 'L',
+            'tingkat_aparatur' => 'kab_kota',
             'pendidikan_terakhir' => 2,
             'provinsi_id' => 11,
             'kab_kota_id' => 1101,
