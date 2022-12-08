@@ -66,6 +66,11 @@
                             <h3>Kegiatan Jabatan</h3>
                         </div>
                         <div class="col-md-6 text-end">
+                            <button data-bs-toggle="modal" data-bs-target="#skp"
+                                class="btn btn-warning btn-sm ps-3 pe-3 py-2 ">
+                                <i class="fa-solid fa-file-lines"></i>
+                                Input SKP
+                            </button>
                             @if ($user->rekapitulasiKegiatan?->is_send == true)
                                 <button data-bs-toggle="modal" data-bs-target="#historyRekap"
                                     class="btn btn-blue btn-sm ps-3 pe-3 py-2">
@@ -120,6 +125,90 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="skp" tabindex="-1" role="dialog" aria-labelledby="skpTitle" aria-hidden="true">
+        <div class="modal-dialog modal-md modal-dialog-centered modal-dialog-centered" role="document">
+            <div class="modal-content relative">
+                <div class="modal-header">
+                    <h5 class=" uppercase">Input SKP</h5>
+                </div>
+                <div class="modal-body">
+                    @if ($skp)
+                        <form id="form-skp" method="post" enctype="multipart/form-data">
+                            <p>Status SKP : <strong class="text-red"> Menunggu Verifikasi</strong>
+                            </p>
+                            <div class="form-group">
+                                <label>Jenis SKP</label>
+                                <select disabled class="form-select skp">
+                                    @if ($skp->ketentuan_skp_id)
+                                        <option selected disabled>Huruf</option>
+                                    @else
+                                        <option selected disabled>Angka</option>
+                                    @endif
+
+                                </select>
+                            </div>
+                            <div class="form-group jenis-skp">
+                                @if ($skp->ketentuan_skp_id)
+                                    <label>Nilai SKP</label>
+                                    <select disabled class="form-select nilai-skp">
+                                        <option value="{{ $skp->ketentuan_skp_id }}">{{ $skp->ketentuanSkp->nama }}
+                                        </option>
+                                    </select>
+                                @else
+                                    <label>Nilai SKP </label>
+                                    <input disabled class="form-control nilai-skp" type="number"
+                                        placeholder="Masukan Nilai" value="{{ $skp->nilai_skp }}" />
+                                @endif
+                            </div>
+                            {{-- <div class="form-group">
+                        <label>File SKP<span class="text-danger">*</span></label>
+                        <input type="file" data-max-file-size="2MB" required name="file_skp" required />
+                        @error('file_permohonan')
+                            <strong style="color: red;">{{ $message }}</strong>
+                        @enderror
+                    </div> --}}
+                        </form>
+                        <div class="text-center mt-4">
+                            <button class="btn btn-danger px-5" data-bs-dismiss="modal">Batal</button>
+                        </div>
+                    @else
+                        <form id="form-skp" method="post" enctype="multipart/form-data">
+                            <p>Status SKP : <strong class="text-black"> Menunggu Input</strong>
+                            </p>
+                            <div class="form-group">
+                                <label>Jenis SKP</label>
+                                <select class="form-select skp">
+                                    <option selected disabled>- Pilih Jenis SKP -</option>
+                                    <option value="huruf">Huruf</option>
+                                    <option value="angka">Angka</option>
+                                </select>
+                            </div>
+                            <div class="form-group jenis-skp">
+
+                            </div>
+                            {{-- <div class="form-group">
+                            <label>File SKP<span class="text-danger">*</span></label>
+                            <input type="file" data-max-file-size="2MB" required name="file_skp" required />
+                            @error('file_permohonan')
+                                <strong style="color: red;">{{ $message }}</strong>
+                            @enderror
+                        </div> --}}
+                        </form>
+                        <div class="text-center mt-4">
+                            <button class="btn btn-danger px-5" data-bs-dismiss="modal">Batal</button>
+                            <button type="button" class="btn btn-blue px-5 send-skp">
+                                <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
+                                    style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
+                                <span>Kirim</span>
+                            </button>
+                        </div>
+                    @endif
+
+
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="modal fade" id="historyRekap" tabindex="-1" role="dialog" aria-labelledby="historyRekapTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-centered" role="document">
@@ -143,6 +232,10 @@
 @endsection
 
 @section('css')
+    <link rel="stylesheet" href="{{ asset('assets/extensions/filepond/filepond.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/pages/filepond.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/extensions/toastify-js/src/toastify.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/shared/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/pages/kemendagri.css') }}">
@@ -165,6 +258,17 @@
     </style>
 @endsection
 @section('js')
+    <script src="{{ asset('assets/extensions/filepond/filepond.js') }}"></script>
+    <script src="{{ asset('assets/extensions/filepond/filepond.jquery.js') }}"></script>
+    <script src="{{ asset('assets/extensions/fontawesome/all.min.js') }}"></script>
+    <script src="{{ asset('assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js') }}">
+    </script>
+    <script
+        src="{{ asset('assets/extensions/filepond-plugin-file-validate-type/filepond-plugin-file-validate-type.js') }}">
+    </script>
+    <script
+        src="{{ asset('assets/extensions/filepond-plugin-file-validate-size/filepond-plugin-file-validate-size.js') }}">
+    </script>
     <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/extensions/toastify-js/src/toastify.js') }}"></script>
     <script src="{{ asset('assets/js/extensions/sweetalert2.all.min.js') }}"></script>
