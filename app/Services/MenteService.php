@@ -55,6 +55,78 @@ class MenteService
         return $this->userRepository->getAllAtasanLangsungByProvinsi($provinsi_id);
     }
 
+    public function getCurrentPenilaiByProvinsi($provinsi_id, $jenis_aparatur)
+    {
+        $kabProvPenilaiAndPenetap = KabProvPenilaiAndPenetap::query()
+            ->with(['penilaiAngkaKredit.userPejabatStruktural'])
+            ->where('provinsi_id', $provinsi_id)
+            ->jenisAparaturIs($jenis_aparatur)
+            ->first();
+        if (!isset($kabProvPenilaiAndPenetap)) {
+            $kabProvPenilaiAndPenetap = CrossPenilaiAndPenetap::query()
+                ->with(['kabProvPenilaiAndPenetap.penilaiAngkaKredit.userPejabatStruktural'])
+                ->where('provinsi_id', $provinsi_id)
+                ->jenisAparaturIs($jenis_aparatur)
+                ->first();
+            $kabProvPenilaiAndPenetap = $kabProvPenilaiAndPenetap?->kabProvPenilaiAndPenetap;
+        }
+        return $kabProvPenilaiAndPenetap;
+    }
+
+    public function getCurrentPenetapByProvinsi($provinsi_id, $jenis_aparatur)
+    {
+        $kabProvPenilaiAndPenetap = KabProvPenilaiAndPenetap::query()
+            ->with(['penetapAngkaKredit.userPejabatStruktural'])
+            ->where('provinsi_id', $provinsi_id)
+            ->jenisAparaturIs($jenis_aparatur)
+            ->first();
+        if (!isset($kabProvPenilaiAndPenetap)) {
+            $kabProvPenilaiAndPenetap = CrossPenilaiAndPenetap::query()
+                ->with(['kabProvPenilaiAndPenetap.penetapAngkaKredit.userPejabatStruktural'])
+                ->where('provinsi_id', $provinsi_id)
+                ->jenisAparaturIs($jenis_aparatur)
+                ->first();
+            $kabProvPenilaiAndPenetap = $kabProvPenilaiAndPenetap?->kabProvPenilaiAndPenetap;
+        }
+        return $kabProvPenilaiAndPenetap;
+    }
+
+    public function getCurrentPenilaiByKabKota($kab_kota_id, $jenis_aparatur)
+    {
+        $kabProvPenilaiAndPenetap = KabProvPenilaiAndPenetap::query()
+            ->with(['penilaiAngkaKredit.userPejabatStruktural'])
+            ->where('kab_kota_id', $kab_kota_id)
+            ->jenisAparaturIs($jenis_aparatur)
+            ->first();
+        if (!isset($kabProvPenilaiAndPenetap)) {
+            $kabProvPenilaiAndPenetap = CrossPenilaiAndPenetap::query()
+                ->with(['kabProvPenilaiAndPenetap.penilaiAngkaKredit.userPejabatStruktural'])
+                ->where('kab_kota_id', $kab_kota_id)
+                ->jenisAparaturIs($jenis_aparatur)
+                ->first();
+            $kabProvPenilaiAndPenetap = $kabProvPenilaiAndPenetap?->kabProvPenilaiAndPenetap;
+        }
+        return $kabProvPenilaiAndPenetap;
+    }
+
+    public function getCurrentPenetapByKabKota($kab_kota_id, $jenis_aparatur)
+    {
+        $kabProvPenilaiAndPenetap = KabProvPenilaiAndPenetap::query()
+            ->with(['penetapAngkaKredit.userPejabatStruktural'])
+            ->where('kab_kota_id', $kab_kota_id)
+            ->jenisAparaturIs($jenis_aparatur)
+            ->first();
+        if (!isset($kabProvPenilaiAndPenetap)) {
+            $kabProvPenilaiAndPenetap = CrossPenilaiAndPenetap::query()
+                ->with(['kabProvPenilaiAndPenetap.penetapAngkaKredit.userPejabatStruktural'])
+                ->where('kab_kota_id', $kab_kota_id)
+                ->jenisAparaturIs($jenis_aparatur)
+                ->first();
+            $kabProvPenilaiAndPenetap = $kabProvPenilaiAndPenetap?->kabProvPenilaiAndPenetap;
+        }
+        return $kabProvPenilaiAndPenetap;
+    }
+
     public function getCurrentPenilaiAndPenetapByProvinsi($provinsi_id, $jenis_aparatur)
     {
         $menthod = is_array($jenis_aparatur) ? 'get' : 'first';
@@ -70,7 +142,7 @@ class MenteService
                 ->jenisAparaturIs($jenis_aparatur)
                 ->$menthod();
             if ($menthod == 'get') {
-                $kabProvPenilaiAndPenetap = $kabProvPenilaiAndPenetap->map(function(CrossPenilaiAndPenetap $crossPenilaiAndPenetap){
+                $kabProvPenilaiAndPenetap = $kabProvPenilaiAndPenetap->map(function (CrossPenilaiAndPenetap $crossPenilaiAndPenetap) {
                     return $crossPenilaiAndPenetap->kabProvPenilaiAndPenetap;
                 });
             } else {
@@ -95,7 +167,7 @@ class MenteService
                 ->jenisAparaturIs($jenis_aparatur)
                 ->$menthod();
             if ($menthod == 'get') {
-                $kabProvPenilaiAndPenetap = $kabProvPenilaiAndPenetap->map(function(CrossPenilaiAndPenetap $crossPenilaiAndPenetap){
+                $kabProvPenilaiAndPenetap = $kabProvPenilaiAndPenetap->map(function (CrossPenilaiAndPenetap $crossPenilaiAndPenetap) {
                     return $crossPenilaiAndPenetap->kabProvPenilaiAndPenetap;
                 });
             } else {
