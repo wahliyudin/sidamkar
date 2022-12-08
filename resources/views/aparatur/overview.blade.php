@@ -43,7 +43,7 @@
                                     Angka Kredit Minimal
                                 </p>
                                 <h2 style="font-family: 'Roboto';color: #06152B;" class="target">
-                                    {{ $ketentuan_ak[0]->ak_min }}</h2>
+                                    {{ isset($ketentuan_ak[0]) ? $ketentuan_ak[0]->ak_min : '0' }}</h2>
                             </div>
                         </div>
                     </div>
