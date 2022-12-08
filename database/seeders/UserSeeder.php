@@ -120,6 +120,27 @@ class UserSeeder extends Seeder
             ]);
         }
 
+        $damkarPenyelia = User::query()->create([
+            'username' => 'Damkar Penyelia',
+            'email' => 'penyeliasjd@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('damkar_penyelia');
+        $damkarPenyelia->userAparatur()->create([
+            'nama' => 'Damkar Penyelia',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'jenis_kelamin' => 'L',
+            'tingkat_aparatur' => 'kab_kota',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 11,
+            'kab_kota_id' => 1101,
+        ]);
+
 
         $analisKebakaranAhliPertama = User::query()->create([
             'username' => 'Analis Kebakaran Ahli Pertama',

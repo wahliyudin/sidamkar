@@ -48,12 +48,11 @@ $(function () {
     $.fn.filepond.registerPlugin(FilePondPluginImagePreview);
     $.fn.filepond.registerPlugin(FilePondPluginFileValidateType);
     $.fn.filepond.registerPlugin(FilePondPluginFileValidateSize);
-    FilePond.create(document.querySelector('input[name="file_sk"]'), {
+    FilePond.create(document.querySelector('input[name="file_ttd"]'), {
         chunkUploads: true,
         acceptedFileTypes: [
-            'application/doc',
-            'application/pdf',
-            '.docx'
+            'image/png',
+            'image/jpeg'
         ]
     });
     FilePond.create(document.querySelector('input[name="file_permohonan"]'), {
@@ -113,18 +112,21 @@ $(function () {
         if (e.target.value == 'struktural') {
             $('.jenis-jabatan').hide();
             $('.jenis-eselon').show();
+            $('.ttd').show();
             $('.jenis-jabatan-umum').hide();
         }
         if (e.target.value == 'fungsional') {
             $('.struktural').hide();
             $('.select-struktural').hide();
             $('.select-fungsional').show();
+            $('.ttd').show();
             $('.jenis-eselon').hide();
             $('.jenis-jabatan-umum').hide();
         }
         if (e.target.value == 'fungsional_umum') {
             $('.jenis-jabatan-umum').show();
             $('.jenis-jabatan').hide();
+            $('.ttd').hide();
         }
     });
 
@@ -148,6 +150,7 @@ $(function () {
         if (localStorage.getItem('jenis_aparatur') == 'struktural') {
             $('.jenis-jabatan').hide();
             $('.jenis-eselon').show();
+            $('.ttd').show();
             $('.jenis-jabatan-umum').hide();
         }
         if (localStorage.getItem('jenis_aparatur') == 'fungsional') {
@@ -155,12 +158,13 @@ $(function () {
             $('.jenis-eselon').hide();
             $('.select-struktural').hide();
             $('.select-fungsional').show();
+            $('.ttd').show();
             $('.jenis-jabatan-umum').hide();
         }
         if (localStorage.getItem('jenis_aparatur') == 'fungsional_umum') {
             $('.jenis-jabatan-umum').show();
             $('.jenis-jabatan').hide();
+            $('.ttd').hide();
         }
     }
 });
-

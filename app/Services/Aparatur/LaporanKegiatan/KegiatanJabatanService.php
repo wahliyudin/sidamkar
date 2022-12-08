@@ -16,11 +16,14 @@ use App\Repositories\PeriodeRepository;
 use App\Repositories\RencanaRepository;
 use App\Repositories\TemporaryFileRepository;
 use App\Services\KegiatanJabatanService as ServicesKegiatanJabatanService;
+use App\Traits\ScoringTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class KegiatanJabatanService
 {
+    use ScoringTrait;
+
     private KegiatanJabatanRepository $kegiatanJabatanRepository;
     private RencanaRepository $rencanaRepository;
     private TemporaryFileRepository $temporaryFileRepository;
@@ -41,28 +44,33 @@ class KegiatanJabatanService
         $unsurs = Unsur::query()
             ->where('jenis_kegiatan_id', 1)
             ->where('periode_id', $periode->id)
-            ->with(['role' => function ($query) use ($role) {
-                $query->whereIn('id', [$role->id + 1, $role->id - 1, $role->id]);
-            }, 'subUnsurs.butirKegiatans'])
-            ->whereHas('role', function ($query) use ($search, $role) {
-                $query->where(
-                    'nama',
-                    'like',
-                    "%$search%"
-                );
+            ->withWhereHas('subUnsurs', function($query) use ($role){
+                $query->withWhereHas('butirKegiatans', function($query) use ($role){
+                    $query->withWhereHas('role', function ($query) use ($role) {
+                        $query->whereIn('id', $this->limiRole($role->id));
+                    });
+                });
             })
-            ->when($search, function ($query) use ($search) {
+            ->when($search, function ($query) use ($search, $role) {
                 $query->where('nama', 'like', "%$search%")
-                    ->orWhereHas('subUnsurs', function ($query) use ($search) {
+                    ->orWhereHas('subUnsurs', function ($query) use ($search, $role) {
                         $query->where('nama', 'like', "%$search%")
-                            ->orWhereHas('butirKegiatans', function ($query) use ($search) {
-                                $query->where('nama', 'like', "%$search%");
+                            ->orWhereHas('butirKegiatans', function ($query) use ($search, $role) {
+                                $query->where('nama', 'like', "%$search%")
+                                    ->whereHas('role', function ($query) use ($search, $role) {
+                                    $query->where(
+                                        'nama',
+                                        'like',
+                                        "%$search%"
+                                    );
+                                });
                             });
                     });
             })
             ->get();
         return $unsurs;
     }
+
 
     public function rencanas(User $user)
     {
@@ -71,8 +79,7 @@ class KegiatanJabatanService
 
     public function storeLaporan(Request $request, User $user, ButirKegiatan $butirKegiatan): LaporanKegiatanJabatan
     {
-
-        $role = $butirKegiatan->load('subUnsur.unsur.role')->subUnsur->unsur->role;
+        $role = $butirKegiatan->load('role')->role;
         $periode = $this->periodeRepository->isActive();
         $laporanKegiatanJabatan = $this->kegiatanJabatanRepository->store($request, $role, $user, $butirKegiatan, $request->current_date, $periode->id);
         $historyKegiatanJabatan = $this->kegiatanJabatanRepository->storeHistoryKegiatanJabatan($laporanKegiatanJabatan, HistoryKegiatanJabatan::STATUS_LAPORKAN, HistoryKegiatanJabatan::ICON_KEYBOARD, $request->detail_kegiatan, 'Berhasil dilaporkan', $request->current_date);
@@ -127,6 +134,7 @@ class KegiatanJabatanService
             laporanKegiatanJabatan: $laporanKegiatanJabatan,
             status: HistoryKegiatanJabatan::STATUS_VALIDASI,
             icon: HistoryKegiatanJabatan::ICON_SPINNER,
+            detail_kegiatan: null,
             keterangan: 'Sedang divalidasi oleh Atasan Langsung',
             current_date: $laporanKegiatanJabatan->current_date
         );

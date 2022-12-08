@@ -82,24 +82,18 @@
 
             function unsurs(unsurs) {
                 return $.map(unsurs, function(unsur, indexOrKey) {
-                    if (unsur.role) {
-                        return `
+                    return `
                         <div class="accordion-item">
-                            <div class="d-flex flex-column accordion-header py-3 px-2" id="unsur${unsur.id}">
-                                <div class="d-flex justify-content-between align-items-center ps-2 mb-1">
-                                    <span class="bg-green text-sm text-white font-bold py-1 px-2 rounded-md label-role">
-                                        ${unsur.role?.display_name}
-                                    </span>
-                                    <div class="d-flex align-items-center">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse"
-                                            data-bs-target="#contentUnsur${unsur.id}" aria-expanded="false"
-                                            aria-controls="contentUnsur${unsur.id}">
-                                        </button>
-                                    </div>
-                                </div>
+                            <div class="d-flex justify-content-between align-items-center accordion-header py-3 px-2" id="unsur${unsur.id}">
                                 <div class="ps-2 pt-2">
                                     <h6 class="accordian-title" style="color: #000000;">${unsur.nama}</h6>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <button class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#contentUnsur${unsur.id}" aria-expanded="false"
+                                        aria-controls="contentUnsur${unsur.id}">
+                                    </button>
                                 </div>
                             </div>
                             <div id="contentUnsur${unsur.id}" class="accordion-collapse collapse"
@@ -113,7 +107,6 @@
                             </div>
                         </div>
                     `;
-                    }
                 }).join('')
             }
 
@@ -154,15 +147,19 @@
             function butirKegiatans(butirKegiatans) {
                 return $.map(butirKegiatans, function(butirKegiatan, indexOrKey) {
                     return `
-                    <li class="accordian-list">
-                        <a href="${url('/atasan-langsung/verifikasi-kegiatan/'+$('input[name="user"]').val()+'/kegiatan-jabatan/'+butirKegiatan.id+'/show')}" class="d-flex align-items-center justify-content-between link-butir">
-                            <h6 class="accordian-title">
-                                ${butirKegiatan.nama}
-                            </h6>
+                    <li class="accordian-list ">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <a href="${url('/atasan-langsung/verifikasi-kegiatan/'+$('input[name="user"]').val()+'/kegiatan-jabatan/'+butirKegiatan.id+'/show')}" class="link-butir">
+                                <h6 class="accordian-title">
+                                    ${butirKegiatan.nama}
+                                </h6>
+                            </a>
                             <div class="d-flex align-items-center">
-
+                                <span class="bg-green text-sm text-white font-bold py-1 px-2 rounded-md label-role">
+                                    ${butirKegiatan.role?.display_name}
+                                </span>
                             </div>
-                        </a>
+                        </div>
                     </li>
                 `;
                 }).join('')

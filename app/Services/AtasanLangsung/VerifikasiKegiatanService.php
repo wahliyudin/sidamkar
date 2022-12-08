@@ -60,22 +60,18 @@ class VerifikasiKegiatanService
         $unsurs = Unsur::query()
             ->where('jenis_kegiatan_id', 1)
             ->where('periode_id', $periode->id)
-            ->with(['role' => function ($query) use ($role_id) {
-                $query->whereIn('id', [$role_id + 1, $role_id - 1, $role_id]);
-            }])
-            ->withWhereHas('subUnsurs', function($query){
-                $query->withWhereHas('butirKegiatans', function($query){
-                    $query->withWhereHas('laporanKegiatanJabatans', function($query){
+            ->withWhereHas('subUnsurs', function ($query)  use ($role_id, $search) {
+                $query->withWhereHas('butirKegiatans', function ($query) use ($role_id, $search) {
+                    $query->withWhereHas('laporanKegiatanJabatans', function ($query) {
                         $query->whereIn('status', [LaporanKegiatanJabatan::VALIDASI, LaporanKegiatanJabatan::REVISI]);
+                    })->withWhereHas('role', function ($query) use ($search, $role_id) {
+                        $query->whereIn('id', [$role_id + 1, $role_id - 1, $role_id])->where(
+                            'name',
+                            'like',
+                            "%$search%"
+                        );
                     });
                 });
-            })
-            ->whereHas('role', function ($query) use ($search) {
-                $query->where(
-                    'nama',
-                    'like',
-                    "%$search%"
-                );
             })
             ->when($search, function ($query) use ($search) {
                 $query->where('nama', 'like', "%$search%")

@@ -24,6 +24,7 @@ class UserAparatur extends Model
         'tingkat_aparatur',
         'provinsi_id',
         'foto_pegawai',
+        'file_ttd',
         'no_hp',
         'jenjang',
         'nomor_karpeg',
