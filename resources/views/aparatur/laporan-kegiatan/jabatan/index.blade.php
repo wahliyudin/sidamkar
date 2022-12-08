@@ -108,7 +108,7 @@
     <div class="modal fade" id="rekap" tabindex="-1" role="dialog" aria-labelledby="rekapTitle" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-centered" role="document">
             <div class="modal-content relative">
-                <div class="bg-spin" style="display: none; z-index: 99;">
+                <div class="bg-spin" style="display: none;">
                     <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
                         style="height: 3rem; object-fit: cover;" alt="" srcset="">
                 </div>
