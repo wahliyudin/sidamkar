@@ -126,6 +126,7 @@ class KegiatanJabatanService
             laporanKegiatanJabatan: $laporanKegiatanJabatan,
             status: HistoryKegiatanJabatan::STATUS_VALIDASI,
             icon: HistoryKegiatanJabatan::ICON_SPINNER,
+            detail_kegiatan: null,
             keterangan: 'Sedang divalidasi oleh Atasan Langsung',
             current_date: $laporanKegiatanJabatan->current_date
         );

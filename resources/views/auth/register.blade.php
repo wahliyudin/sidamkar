@@ -276,7 +276,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="row justify-content-center">
+                                                    <div class="row justify-content-center ttd">
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label>Tanda Tangan<span
