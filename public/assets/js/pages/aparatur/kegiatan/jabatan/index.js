@@ -1,4 +1,33 @@
 $(document).ready(function () {
+    // $.fn.filepond.registerPlugin(FilePondPluginImagePreview);
+    // $.fn.filepond.registerPlugin(FilePondPluginFileValidateType);
+    // $.fn.filepond.registerPlugin(FilePondPluginFileValidateSize);
+    // FilePond.create(document.querySelector('input[name="file_sk"]'), {
+    //     chunkUploads: true,
+    //     acceptedFileTypes: [
+    //         'application/doc',
+    //         'application/pdf',
+    //         '.docx'
+    //     ]
+    // });
+    FilePond.create(document.querySelector('input[name="file_skp"]'), {
+        chunkUploads: true,
+        acceptedFileTypes: [
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+            'application/doc',
+            'application/pdf',
+            '.docx'
+        ]
+    });
+    // FilePond.setOptions({
+    //     server: {
+    //         process: '/register/file',
+    //         revert: '/register/revert',
+    //         headers: {
+    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //         }
+    //     },
+    // });
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -174,4 +203,75 @@ $(document).ready(function () {
         $('.send-rekap span').show();
         $('.send-rekap .spin').hide();
     };
+    $('.skp').on('change', function(){
+        var skp = $('.skp').val()
+        if(skp == 'angka'){
+            var label = "<label>Nilai SKP </label>";
+            var newDropList = '<input class="form-control nilai-skp" type="number" placeholder="Masukan Nilai"> </input>';
+            var html = '';
+            $(".jenis-skp").html('');
+            html += label;
+            html += newDropList
+        }else{
+            var label = "<label>Nilai SKP </label>";
+            var newDropList ='<select class="form-select nilai-skp"><option value="1">Sangat Baik</option><option value="2">Baik</option><option value="3">Kurang</option><option value="4">Butuh Perbaikan</option><option value="5">Sangat Kurang</option></select>';
+            var html = '';
+            $(".jenis-skp").html('');
+            html += label;
+            html += newDropList
+        }
+        
+
+    $(".jenis-skp").html(html);
+    })
+    $('.send-skp').on('click',function(){
+        var jenis_skp = $('.skp').val()
+        var nilai_skp = $('.nilai-skp').val()
+        const data = {
+            'jenis_skp' : jenis_skp,
+            'nilai_skp' : nilai_skp
+            
+        }
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        if(jenis_skp == null){
+            swal('Error!', 'Ada Data Yang Belum Di Input', "error",);
+        }
+        if(nilai_skp == undefined){
+            swal('Error!', 'Ada Data Yang Belum Di Input', "error",);
+        }else if (nilai_skp == ''){
+            swal('Error!', 'Ada Data Yang Belum Di Input', "error",);
+        }else{
+            $.ajax({
+                type: "POST",
+                url: url("/laporan-kegiatan/jabatan/send-skp"),
+                data: data,
+                success: function (response) {
+                    if (response.status == 200) {
+                        Toastify({
+                            text: response.message,
+                            duration: 5000,
+                            close: true,
+                            gravity: "top",
+                            position: "right",
+                            backgroundColor: "#18b882",
+                        }).showToast()
+                        location.reload();
+                    } else {
+                        swal('Error!', response.message, "error",);
+                        $('.swal2-confirm').click(function(){
+                            $('.simpan-informasi span').show();
+                            $('.simpan-informasi .spin').hide();
+                        });
+                    }
+                },
+            });
+        }
+
+            
+        
+    })
 });

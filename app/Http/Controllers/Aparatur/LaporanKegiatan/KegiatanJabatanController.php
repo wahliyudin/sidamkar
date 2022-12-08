@@ -22,6 +22,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 use Barryvdh\Snappy\Facades\SnappyPdf as PDF;
+use Illuminate\Support\Facades\DB;
+use App\Models\KetentuanSkpFungsional;
 
 class KegiatanJabatanController extends Controller
 {
@@ -60,12 +62,14 @@ class KegiatanJabatanController extends Controller
     public function index(): View|Factory
     {
         $periode = $this->periodeRepository->isActive();
-        $user = $this->authUser()->load(['rencanas', 'rekapitulasiKegiatan.historyRekapitulasiKegiatans' => function($query){
+        $user = $this->authUser()->load(['rencanas', 'rekapitulasiKegiatan.historyRekapitulasiKegiatans' => function ($query) {
             $query->orderBy('id', 'desc');
         }]);
         $judul = 'Laporan Kegiatan Jabatan';
+
+        $skp = KetentuanSkpFungsional::with('ketentuanSkp')->where('user_id', auth()->user()->id)->first();
         $historyRekapitulasiKegiatans = $user?->rekapitulasiKegiatan?->historyRekapitulasiKegiatans ?? [];
-        return view('aparatur.laporan-kegiatan.jabatan.index', compact('periode', 'user', 'judul', 'historyRekapitulasiKegiatans'));
+        return view('aparatur.laporan-kegiatan.jabatan.index', compact('periode', 'user', 'judul', 'historyRekapitulasiKegiatans', 'skp'));
     }
 
     /**
@@ -76,7 +80,7 @@ class KegiatanJabatanController extends Controller
     public function show(ButirKegiatan $butirKegiatan)
     {
         $periode = $this->periodeRepository->isActive();
-        $user = $this->authUser()->load(['rekapitulasiKegiatan.historyRekapitulasiKegiatans' => function($query){
+        $user = $this->authUser()->load(['rekapitulasiKegiatan.historyRekapitulasiKegiatans' => function ($query) {
             $query->orderBy('id', 'desc');
         }]);
         $judul = 'Laporan Kegiatan Jabatan';
@@ -225,5 +229,43 @@ class KegiatanJabatanController extends Controller
         return response()->json([
             'message' => 'Berhasil dikirim'
         ]);
+    }
+
+    public function sendSKP(Request $request)
+    {
+        try {
+            $data = [
+                'jenis_skp' => $request->jenis_skp,
+                'nilai_skp' => $request->nilai_skp
+            ];
+
+            if ($request->jenis_skp == 'huruf') {
+                KetentuanSkpFungsional::create([
+                    'ketentuan_skp_id' => $data['nilai_skp'],
+                    'user_id' => auth()->user()->id,
+                    'nilai_skp' => null,
+                    'status' => 0,
+                    'file' => null
+                ]);
+            } else {
+                KetentuanSkpFungsional::create([
+                    'ketentuan_skp_id' => null,
+                    'user_id' => auth()->user()->id,
+                    'nilai_skp' => $request->nilai_skp,
+                    'status' => 0,
+                    'file' => null
+                ]);
+            }
+            return response()->json([
+                'status' => 200,
+                'message' => 'Berhasil Ditambahkan',
+                $data
+            ]);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'status' => $e->getCode(),
+                'message' => $e->getMessage()
+            ]);
+        }
     }
 }
