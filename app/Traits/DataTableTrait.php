@@ -18,4 +18,16 @@ trait DataTableTrait
                 break;
         }
     }
+
+    public function getRoles($jenisAparaturs)
+    {
+        $roles = [];
+        if (in_array('analis', $jenisAparaturs)) {
+            $roles = array_merge($roles, getAllRoleFungsionalAnalis());
+        }
+        if (in_array('damkar', $jenisAparaturs)) {
+            $roles = array_merge($roles, getAllRoleFungsionalDamkar());
+        }
+        return $roles;
+    }
 }
