@@ -167,18 +167,7 @@
                                                 <h6>Personal Data</h6>
                                                 <fieldset>
                                                     <div class="row justify-content-center">
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <label>No HP<span class="text-danger">*</span></label>
-                                                                <input type="number" required
-                                                                    value="{{ old('no_hp') }}" class="form-control"
-                                                                    name="no_hp">
-                                                                @error('no_hp')
-                                                                    <strong
-                                                                        style="color: red;">{{ $message }}</strong>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
+
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label>Nama Lengkap<span
@@ -270,6 +259,18 @@
                                                                     value="{{ old('jenis_jabatan_text') }}" required
                                                                     class="form-control" name="jenis_jabatan_text">
                                                                 @error('jenis_jabatan_text')
+                                                                    <strong
+                                                                        style="color: red;">{{ $message }}</strong>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label>No HP<span class="text-danger">*</span></label>
+                                                                <input type="number" required
+                                                                    value="{{ old('no_hp') }}" class="form-control"
+                                                                    name="no_hp">
+                                                                @error('no_hp')
                                                                     <strong
                                                                         style="color: red;">{{ $message }}</strong>
                                                                 @enderror

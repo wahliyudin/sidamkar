@@ -3055,8 +3055,641 @@ class ButirKegiatanSeeder extends Seeder
                 'satuan_hasil' => 'Laporan pemberian petunjuk peraturan dan perundangan pencegahan kebakaran',
                 'score' => 0.01
             ],
+            //374
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 85,
+                'nama' => 'Memberi petunjuk tentang alat pemadam api tradisional',
+                'satuan_hasil' => 'Laporan tentang alat pemadam api tradisional',
+                'score' => 0.01
+            ],
+            //375
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 85,
+                'nama' => 'Memberi petunjuk tentang alat pemadam api ringan (APAR)',
+                'satuan_hasil' => 'Laporan tentang alat pemadam api ringan (APAR)',
+                'score' => 0.01
+            ],
+            //376
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 85,
+                'nama' => 'Memberi petunjuk tentang pompa portable',
+                'satuan_hasil' => 'Laporan tentang pompa portable',
+                'score' => 0.01
+            ],
+            //377
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 85,
+                'nama' => 'Memberi petunjuk tentang prosedur pelaporan kejadian kebakaran',
+                'satuan_hasil' => 'Laporan tentang prosedur pelaporan kejadian kebakaran',
+                'score' => 0.01
+            ],
 
+            //
 
+            //378
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 86,
+                'nama' => 'Memberi petunjuk tentang metoda pemadaman',
+                'satuan_hasil' => 'Laporan tentang prosedur pelaporan kejadian kebakaran',
+                'score' => 0.01
+            ],
+            //379
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 86,
+                'nama' => 'Memberi petunjuk tentang praktek penggunaan alat pemadam api tradisional',
+                'satuan_hasil' => 'Memberi petunjuk tentang praktek penggunaan alat pemadam api tradisional',
+                'score' => 0.01
+            ],
+            //380
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 86,
+                'nama' => 'Memberi petunjuk tentang praktek alat pemadam api ringan (APAR)',
+                'satuan_hasil' => 'Laporan tentang praktek alat pemadam api ringan (APAR)',
+                'score' => 0.01
+            ],
+            //381
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 86,
+                'nama' => 'Memberi petunjuk tentang praktek penggunaan pompa portable',
+                'satuan_hasil' => 'Memberi petunjuk tentang praktek penggunaan pompa portable',
+                'score' => 0.01
+            ],
+            //382
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 86,
+                'nama' => 'Mengevaluasi materi penyuluhan',
+                'satuan_hasil' => 'Laporan evaluasi materi penyuluhan',
+                'score' => 0.01
+            ],
+
+            //
+
+            //383
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 87,
+                'nama' => 'Mengevaluasi penyelenggaran penyuluhan',
+                'satuan_hasil' => 'Laporan evaluasi penyelenggaran penyuluhan',
+                'score' => 0.01
+            ],
+            //384
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 87,
+                'nama' => 'Menghimpun hasil isian form evaluasi penyelenggaraan penyuluhan',
+                'satuan_hasil' => 'Laporan hasil isian form evaluasi penyelenggaraan penyuluhan',
+                'score' => 0.01
+            ],
+            //385
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 87,
+                'nama' => 'Melakukan rekapitulasi hasil isian formulir evaluasi penyelenggaraan penyuluhan',
+                'satuan_hasil' => 'Laporan rekapitulasi hasil isian form evaluasi penyelenggaraan penyuluhan',
+                'score' => 0.01
+            ],
+            //386
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 87,
+                'nama' => 'Menyusun laporan evaluasi kegiatan penyuluhan',
+                'satuan_hasil' => 'Dokumen evaluasi kegiatan penyuluhan',
+                'score' => 0.01
+            ],
+            //387
+            [
+                'role_id' => 5,
+                'sub_unsur_id' => 87,
+                'nama' => 'Melaporkan hasil pelaksanaan kegiatan penyuluhan kepada atasan',
+                'satuan_hasil' => 'Dokumen hasil pelaksanaan kegiatan penyuluhan kepada atasan',
+                'score' => 0.01
+            ],
+
+            //  
+
+            //388
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 88,
+                'nama' => 'Mengevaluasi kerangka acuan kerja',
+                'satuan_hasil' => 'Laporan evaluasi kerangka acuan kerja',
+                'score' => 0.02
+            ],
+            //389
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 88,
+                'nama' => 'Mengevaluasi program pendidikan dan pelatihan',
+                'satuan_hasil' => 'Laporan evaluasi program pendidikan dan pelatihan',
+                'score' => 0.02
+            ],
+            //390
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 88,
+                'nama' => 'Mengidentifkasi calon peserta pendidikan dan pelatihan',
+                'satuan_hasil' => 'Laporan identifkasi calon peserta pendidikan dan pelatihan',
+                'score' => 0.02
+            ],
+            //391
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 88,
+                'nama' => 'Mengevaluasi bahan ajar',
+                'satuan_hasil' => 'Laporan evaluasi bahan ajar',
+                'score' => 0.02
+            ],
+            //392
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 88,
+                'nama' => 'Mengevaluasi calon tenaga pengajar',
+                'satuan_hasil' => 'Laporan evaluasi calon tenaga pengajar',
+                'score' => 0.02
+            ],
+            //393
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 88,
+                'nama' => 'Mengevaluasi waktu dan jadwal pembelajaran',
+                'satuan_hasil' => 'Laporan evaluasi calon tenaga pengajar',
+                'score' => 0.02
+            ],
+            //394
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 88,
+                'nama' => 'Mengidentifikasi sarana dan prasarana pendukung',
+                'satuan_hasil' => 'Laporan identifikasi sarana dan prasarana pendukung',
+                'score' => 0.02
+            ],
+            //395
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 88,
+                'nama' => 'Mengevaluasi materi pencegahan kebakaran',
+                'satuan_hasil' => 'Laporan evaluasi materi pencegahan kebakaran',
+                'score' => 0.02
+            ],
+            //396
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 88,
+                'nama' => 'Mengevaluasi materi penanggulangan kebakaran',
+                'satuan_hasil' => 'Laporan evaluasi materi',
+                'score' => 0.02
+            ],
+            //397
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 88,
+                'nama' => 'Mengevaluasi materi penyelamatan',
+                'satuan_hasil' => 'Laporan evaluasi materi',
+                'score' => 0.02
+            ],
+            //398
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 88,
+                'nama' => 'Mengevaluasi materi tentang B3 (Bahan berbahaya dan beracun)',
+                'satuan_hasil' => 'Laporan evaluasi materi tentang B3 (Bahan berbahaya dan beracun)',
+                'score' => 0.02
+            ],
+
+            //
+
+            //399
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 89,
+                'nama' => 'Mengevaluasi cara memberikan instruksi',
+                'satuan_hasil' => 'Laporan evaluasi cara memberikan instruksi',
+                'score' => 0.02
+            ],
+            //400
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 89,
+                'nama' => 'Mengkaji metode pembelajaran',
+                'satuan_hasil' => 'Laporan kajian metode pembelajaran',
+                'score' => 0.02
+            ],
+            //401
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 89,
+                'nama' => 'Mengidentifikasi cara menggunakan alat bantu latihan',
+                'satuan_hasil' => 'Laporan cara menggunakan alat bantu latihan',
+                'score' => 0.02
+            ],
+            //402
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 89,
+                'nama' => 'Menganalisis cara menyampaikan materi',
+                'satuan_hasil' => 'Laporan cara menyampaikan materi',
+                'score' => 0.02
+            ],
+
+            //
+
+            //403
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 90,
+                'nama' => 'Menganalisis studi literatur',
+                'satuan_hasil' => 'Laporan studi literatur',
+                'score' => 0.02
+            ],
+            //404
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 90,
+                'nama' => 'Menganalisis literatur sebagai bahan ajar',
+                'satuan_hasil' => 'Laporan analisis literatur sebagai bahan ajar',
+                'score' => 0.02
+            ],
+            //405
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 90,
+                'nama' => 'Menganalisis aplikasi software untuk bahan ajar',
+                'satuan_hasil' => 'Laporan analisis aplikasi software untuk bahan ajar',
+                'score' => 0.02
+            ],
+            //406
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 90,
+                'nama' => 'Mengidentifikasi alat simulasi peraga pembelajaran',
+                'satuan_hasil' => 'Laporan identifikasi alat simulasi peraga pembelajaran',
+                'score' => 0.02
+            ],
+
+            //
+
+            //407
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 91,
+                'nama' => 'Mengevaluasi pre test',
+                'satuan_hasil' => 'Laporan evaluasi pre test',
+                'score' => 0.1
+            ],
+            //408
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 91,
+                'nama' => 'Menginventrisasi literatur sebagai bahan ajar',
+                'satuan_hasil' => 'Laporan literatur sebagai bahan ajar',
+                'score' => 0.1
+            ],
+            //409
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 91,
+                'nama' => 'Mengolah bahan ajar dengan aplikasi perangkat lunak',
+                'satuan_hasil' => 'Laporan aplikasi software untuk bahan ajar',
+                'score' => 0.1
+            ],
+            //410
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 91,
+                'nama' => 'Menginventrisasi alat simulasi peraga pembelajaran',
+                'satuan_hasil' => 'Laporan alat simulasi peraga pembelajaran',
+                'score' => 0.1
+            ],
+            //411
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 91,
+                'nama' => 'Mengajar materi pencegahan kebakaran',
+                'satuan_hasil' => 'Laporan materi pencegahan kebakaran',
+                'score' => 0.1
+            ],
+            //412
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 91,
+                'nama' => 'Mengajar materi penanggulangan kebakaran',
+                'satuan_hasil' => 'Laporan materi penanggulangan kebakaran',
+                'score' => 0.1
+            ],
+            //413
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 91,
+                'nama' => 'Mengajar materi penyelamatan',
+                'satuan_hasil' => 'Laporan materi penyelamatan',
+                'score' => 0.1
+            ],
+            //414
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 91,
+                'nama' => 'Mengajar materi tentang B3',
+                'satuan_hasil' => 'Laporan materi tentang B3',
+                'score' => 0.1
+            ],
+            //415
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 91,
+                'nama' => 'Mengajar materi penunjang lainnya',
+                'satuan_hasil' => 'Laporan materi penunjang lainnya',
+                'score' => 0.1
+            ],
+            //416
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 91,
+                'nama' => 'mengevaluasi post test',
+                'satuan_hasil' => 'Laporan post test',
+                'score' => 0.1
+            ],
+
+            //
+
+            //417
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 92,
+                'nama' => 'Mengevaluasi terhadap pengajar',
+                'satuan_hasil' => 'Dokumen evaluasi terhadap pengajar',
+                'score' => 0.02
+            ],
+            //418
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 92,
+                'nama' => 'Mengevaluasi terhadap penyelenggaraan pendidikan dan pelatihan',
+                'satuan_hasil' => 'Dokumen evaluasi terhadap penyelenggaraan pendidikan dan pelatihan',
+                'score' => 0.02
+            ],
+            //419
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 92,
+                'nama' => 'Mengkaji hasil isian form evaluasi pengajar dan penyelenggaraan pendidikan dan pelatihan',
+                'satuan_hasil' => 'Dokumen hasil isian form evaluasi pengajar dan penyelenggaraan pendidikan dan pelatihan',
+                'score' => 0.02
+            ],
+            //420
+            [
+                'role_id' => 6,
+                'sub_unsur_id' => 92,
+                'nama' => 'Memverifikasi rekapitulasi hasil isian form evaluasi pengajar penyelenggaraan pendidikan dan pelatihan',
+                'satuan_hasil' => 'Dokumen rekapitulasi hasil isian form evaluasi pengajar penyelenggaraan pendidikan dan pelatihan',
+                'score' => 0.02
+            ],
+
+            //
+
+            //421
+            [
+                'role_id' => 7,
+                'sub_unsur_id' => 93,
+                'nama' => 'Menelaah Peraturan Perundang undangan tentang pencegahan kebakaran',
+                'satuan_hasil' => 'Laporan hasil telaahan Peraturan Perundang undangan tentang pencegahan kebakaran',
+                'score' => 1.98
+            ],
+            //422
+            [
+                'role_id' => 7,
+                'sub_unsur_id' => 93,
+                'nama' => 'Mengindetifikasi data potensi ancaman kebakaran',
+                'satuan_hasil' => 'Dokumen indetifikasi data potensi ancaman kebakaran',
+                'score' => 1.98
+            ],
+            //423
+            [
+                'role_id' => 7,
+                'sub_unsur_id' => 93,
+                'nama' => 'mengindefikasi data pemetaan wilayah rawan kebakaran',
+                'satuan_hasil' => 'Dokumen indefikasi data pemetaan wilayah rawan kebakaran',
+                'score' => 1.98
+            ],
+            //424
+            [
+                'role_id' => 7,
+                'sub_unsur_id' => 93,
+                'nama' => 'Mengkaji kebutuhan data WMK (wilayah manajamen kebakaran)',
+                'satuan_hasil' => 'Laporan kebutuhan data WMK (wilayah manajamen kebakaran)',
+                'score' => 1.98
+            ],
+            //425
+            [
+                'role_id' => 7,
+                'sub_unsur_id' => 93,
+                'nama' => 'Mengkaji data kebutuhan Pos Pemadam Kebakaran',
+                'satuan_hasil' => 'Laporan data kebutuhan Pos Pemadam Kebakaran',
+                'score' => 1.98
+            ],
+            //426
+            [
+                'role_id' => 7,
+                'sub_unsur_id' => 93,
+                'nama' => 'Menganalisis data kebutuhan Sarana prasarana Unit Pemadam Kebakaran',
+                'satuan_hasil' => 'Laporan analisis data kebutuhan Sarana prasarana Unit Pemadam Kebakaran',
+                'score' => 1.98
+            ],
+            //427
+            [
+                'role_id' => 7,
+                'sub_unsur_id' => 93,
+                'nama' => 'Menganalisis kebutuhan data sumber daya manusia pemadam kebakaran',
+                'satuan_hasil' => 'Laporan analisis kebutuhan data sumber daya manusia pemadam kebakaran',
+                'score' => 1.98
+            ],
+            //428
+            [
+                'role_id' => 7,
+                'sub_unsur_id' => 93,
+                'nama' => 'Mengkaji data program dan kegiatan pencegahan dan penanggulangan kebakaran',
+                'satuan_hasil' => 'Dokumen data program dan kegiatan pencegahan dan penanggulangan kebakaran',
+                'score' => 1.98
+            ],
+            //429
+            [
+                'role_id' => 7,
+                'sub_unsur_id' => 93,
+                'nama' => 'Mengkaji data produk hukum perundangan tentang pencegahan dan penanggulangan kebakaran',
+                'satuan_hasil' => 'Dokumen data produk hukum perundangan tentang pencegahan dan penanggulangan kebakaran',
+                'score' => 1.98
+            ],
+
+            //
+
+            //430
+            [
+                'role_id' => 7,
+                'sub_unsur_id' => 94,
+                'nama' => 'mengidentifikasi jumlah, jenis dan lokasi keberadaan B3',
+                'satuan_hasil' => 'Laporan identifikasi jumlah, jenis dan lokasi keberadaan B3',
+                'score' => 0.6
+            ],
+            //431
+            [
+                'role_id' => 7,
+                'sub_unsur_id' => 94,
+                'nama' => 'mengklasifikasi jenis B3',
+                'satuan_hasil' => 'mengklasifikasi jenis B3',
+                'score' => 0.6
+            ],
+            //432
+            [
+                'role_id' => 7,
+                'sub_unsur_id' => 94,
+                'nama' => 'mengkaji MSDS (material safety data sheet) jenis B3',
+                'satuan_hasil' => 'Dokumen MSDS (material safety data sheet) jenis B3',
+                'score' => 0.6
+            ],
+            //433
+            [
+                'role_id' => 7,
+                'sub_unsur_id' => 94,
+                'nama' => 'mengevaluasi SOP penanganan B3',
+                'satuan_hasil' => 'Dokumen SOP penanganan B3',
+                'score' => 0.6
+            ],
+            //434
+            [
+                'role_id' => 7,
+                'sub_unsur_id' => 94,
+                'nama' => 'menganalisis kebutuhan APD dalam penanganan B3',
+                'satuan_hasil' => 'Dokumen kebutuhan APD dalam penanganan B3',
+                'score' => 0.6
+            ],
+            //435
+            [
+                'role_id' => 7,
+                'sub_unsur_id' => 94,
+                'nama' => 'mengkaji pengendalian B3 kepada masing-masing perusahaan',
+                'satuan_hasil' => 'Laporan pengendalian B3 kepada masing-masing perusahaan',
+                'score' => 0.6
+            ],
+            //436
+            [
+                'role_id' => 7,
+                'sub_unsur_id' => 94,
+                'nama' => 'mengkaji pengawasan pola angkut dan penempatan B3',
+                'satuan_hasil' => 'Laporan pengawasan pola angkut dan penempatan B3',
+                'score' => 0.6
+            ],
+            //437
+            [
+                'role_id' => 7,
+                'sub_unsur_id' => 94,
+                'nama' => 'mengindetifikasi data sosialisasi bahaya B',
+                'satuan_hasil' => 'Laporan indetifikasi data sosialisasi bahaya B',
+                'score' => 0.6
+            ],
+
+            //
+
+            //438
+            [
+                'role_id' => 7,
+                'sub_unsur_id' => 95,
+                'nama' => 'memverifikasi data hasil pemeriksaan',
+                'satuan_hasil' => 'Laporan verifikasi data hasil pemeriksaan',
+                'score' => 0.6
+            ],
+            //439
+            [
+                'role_id' => 7,
+                'sub_unsur_id' => 95,
+                'nama' => 'memverifikasi data hasil pemeriksaan ke lapangan',
+                'satuan_hasil' => 'Laporan verifikasi data hasil pemeriksaan ke lapangan',
+                'score' => 0.6
+            ],
+            //440
+            [
+                'role_id' => 7,
+                'sub_unsur_id' => 95,
+                'nama' => 'mengevaluasi hasil pemeriksaan keselamatan kebakaran dengan instansi terkait',
+                'satuan_hasil' => 'Laporan evaluasi dengan instansi terkait',
+                'score' => 0.6
+            ],
+            //441
+            [
+                'role_id' => 7,
+                'sub_unsur_id' => 95,
+                'nama' => 'melaksanakan rapat koordinasi tentang tindak lanjut hasil verifikasi',
+                'satuan_hasil' => 'Laporan rapat koordinasi tentang tindak lanjut hasil verifikasi',
+                'score' => 0.6
+            ],
+            //442
+            [
+                'role_id' => 7,
+                'sub_unsur_id' => 95,
+                'nama' => 'memberikan tindakan sanksi terhadap pelanggaran keselamatan gedung.',
+                'satuan_hasil' => 'Laporan tindakan sanksi terhadap pelanggaran keselamatan gedung.',
+                'score' => 0.6
+            ],
+
+            //
+
+            //443
+            [
+                'role_id' => 7,
+                'sub_unsur_id' => 96,
+                'nama' => 'mengkaji prosedur dan metode teknik investigasi',
+                'satuan_hasil' => 'Laporan prosedur dan metode teknik investigasi.',
+                'score' => 2.25
+            ],
+            //444
+            [
+                'role_id' => 7,
+                'sub_unsur_id' => 96,
+                'nama' => 'Mengindentifikasi penggunaan alat bantu investigasi',
+                'satuan_hasil' => 'Laporan indetifikasi penggunaan alat bantu investigasi',
+                'score' => 2.25
+            ],
+            //445
+            [
+                'role_id' => 7,
+                'sub_unsur_id' => 96,
+                'nama' => 'Mengkoordinasikan hasil investigasi dengan Puslabforpolri/instansi terkait',
+                'satuan_hasil' => 'Laporan koordinasi hasil investigasi dengan Puslabforpolri/instansi terkait',
+                'score' => 2.25
+            ],
+            //446
+            [
+                'role_id' => 7,
+                'sub_unsur_id' => 96,
+                'nama' => 'Menganalisis teori dasar penyelidikan kebakaran',
+                'satuan_hasil' => 'Laporan teori dasar penyelidikan kebakaran',
+                'score' => 2.25
+            ],
+            //447
+            [
+                'role_id' => 7,
+                'sub_unsur_id' => 96,
+                'nama' => 'Mengkaji pengaturan standar teknis proteksi kebakaran',
+                'satuan_hasil' => 'Dokumen pengaturan standar teknis proteksi kebakaran',
+                'score' => 2.25
+            ],
+            //448
+            [
+                'role_id' => 7,
+                'sub_unsur_id' => 96,
+                'nama' => 'Mengindetifikasi data laporan investigasi',
+                'satuan_hasil' => 'Dokumen indetifikasi data laporan investigasi',
+                'score' => 2.25
+            ],
+
+            //
 
         ];
         ButirKegiatan::query()->upsert($analis_kebakaran_ahli_pertama_dan_analis_kebakaran_ahli_muda1, 'id');

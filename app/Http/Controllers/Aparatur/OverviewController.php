@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Periode;
 use Illuminate\Support\Facades\DB;
+
 class OverviewController extends Controller
 {
     public function index()
@@ -19,6 +20,9 @@ class OverviewController extends Controller
         $role = DB::table('users')->join('role_user', 'role_user.user_id', '=', 'users.id')->where('users.id', '=', Auth::user()->id)->select('*')->get();
 
         $informasi = DB::table('informasis')->join('role_informasis', 'role_informasis.informasi_id', '=', 'informasis.id')->where('role_informasis.role_id', $role[0]->role_id)->get();
-        return view('aparatur.overview', compact('user', 'judul', 'periode', 'informasi') );
+
+        $ketentuan_ak = DB::table('ketentuan_nilais')->where('role_id', $role[0]->role_id)->where('pangkat_golongan_tmt_id', $user->userAparatur->pangkat_golongan_tmt_id)->get();
+
+        return view('aparatur.overview', compact('user', 'judul', 'periode', 'informasi', 'ketentuan_ak'));
     }
 }

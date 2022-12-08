@@ -8,7 +8,7 @@
             </div>
         @endif
         <style>
-           
+
         </style>
         <div class="row">
             <div class="col-md-3 px-2">
@@ -35,15 +35,15 @@
                 <div class="card">
                     <div class="card-body py-3 px-3" style="height: 100px;">
                         <div class="d-flex align-items-center h-100">
-                            <div class="circle circle-green-light">
-                                <i class="fa-solid fa-bullseye"></i>
+                            <div class="circle circle-blue">
+                                <i class="fa-solid fa-copy"></i>
                             </div>
                             <div class="d-flex flex-column ms-2">
-                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;"
-                                    class="target-h1">
-                                    Target Angka Kredit
+                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
+                                    Angka Kredit Minimal
                                 </p>
-                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target target-h2">100</h2>
+                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target">
+                                    {{ $ketentuan_ak[0]->ak_min }}</h2>
                             </div>
                         </div>
                     </div>
@@ -53,15 +53,15 @@
                 <div class="card">
                     <div class="card-body py-3 px-3" style="height: 100px;">
                         <div class="d-flex align-items-center h-100">
-                            <div class="circle circle-purple-light">
-                                <i class="fa-solid fa-sliders"></i>
+                            <div class="circle circle-purple">
+                                <i class="fa-solid fa-copy"></i>
                             </div>
                             <div class="d-flex flex-column ms-2">
-                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;"
-                                    class="target-h1">
-                                    Capaian Angka Kredit
+                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
+                                    Angka Kredit diterima
                                 </p>
-                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target target-h2">56</h2>
+                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target">
+                                    100</h2>
                             </div>
                         </div>
                     </div>
@@ -156,15 +156,15 @@
                     </div>
                     <div class="card-body">
                         <ul>
-                            @foreach ($informasi as $informasis )
-                            <li>
-                                <p style="margin: 0 !important;"> {{ $informasis->judul}} ( <a href="" data-bs-toggle="modal"
-                                        data-bs-target="#informasi">Klik Disini</a> )
-                                </p>
-                                <div class="footer-information">
-                                    <p style="font-size: 9px; margin-top: 10px; color: red;"> 11/2/2022</p>
-                                </div>
-                            </li>
+                            @foreach ($informasi as $informasis)
+                                <li>
+                                    <p style="margin: 0 !important;"> {{ $informasis->judul }} ( <a href=""
+                                            data-bs-toggle="modal" data-bs-target="#informasi">Klik Disini</a> )
+                                    </p>
+                                    <div class="footer-information">
+                                        <p style="font-size: 9px; margin-top: 10px; color: red;"> 11/2/2022</p>
+                                    </div>
+                                </li>
                             @endforeach
                         </ul>
                     </div>
