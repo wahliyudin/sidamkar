@@ -15,7 +15,12 @@
                                     Angka Kredit Minimal
                                 </p>
                                 <h2 style="font-family: 'Roboto';color: #06152B;" class="target">
+<<<<<<< HEAD
                                     {{ isset($ketentuan_ak[0]) ? $ketentuan_ak[0]->ak_min : '0' }}</h2>
+=======
+                                    {{ isset($ketentuan_ak[0]) ? $ketentuan_ak[0]->ak_min : '0' }}
+                                </h2>
+>>>>>>> 0ac382531fedf6a802849ca6b81bd6b417ab828a
                             </div>
                         </div>
                     </div>
