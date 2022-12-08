@@ -39,12 +39,12 @@ class VerificationUserService
             for ($j=0; $j < count($jenis_aparaturs); $j++) {
                 if (in_array($jabatans[$i], ['penilai_ak', 'penetap_ak'])) array_push($penilaiPenetap, ['jabatan'=>$jabatans[$i], 'jenis_aparatur' => $jenis_aparaturs[$j]]);
                 if (in_array($jabatans[$i], ['penilai_ak'])) {
-                    $isExist = $this->kabProvPenilaiAndPenetapRepository->checkPenilaiAngkaKreditByProvinsi($provinsi_id, $jenis_aparaturs[$j]);
-                    if ($isExist) throw ValidationException::withMessages(['message' => 'Maaf Provinsi sudah mempunyai penilai ak']);
+                    $isExist = $this->kabProvPenilaiAndPenetapRepository->checkPenilaiAngkaKreditByKabKota($provinsi_id, $jenis_aparaturs[$j]);
+                    if ($isExist) throw ValidationException::withMessages(['message' => 'Maaf Kabupaten Kota sudah mempunyai penilai ak']);
                 }
                 if (in_array($jabatans[$i], ['penetap_ak'])) {
-                    $isExist = $this->kabProvPenilaiAndPenetapRepository->checkPenetapAngkaKreditByProvinsi($provinsi_id, $jenis_aparaturs[$j]);
-                    if ($isExist) throw ValidationException::withMessages(['message' => 'Maaf Provinsi sudah mempunyai penetap ak']);
+                    $isExist = $this->kabProvPenilaiAndPenetapRepository->checkPenetapAngkaKreditByKabKota($provinsi_id, $jenis_aparaturs[$j]);
+                    if ($isExist) throw ValidationException::withMessages(['message' => 'Maaf Kabupaten Kota sudah mempunyai penetap ak']);
                 }
             }
         }
@@ -112,6 +112,9 @@ class VerificationUserService
             if (str($jabatan)->contains('penetap_ak_analis')) {
                 array_push($results, 'penetap_ak');
                 array_push($jenis_aparaturs, 'analis');
+            }
+            if (str($jabatan)->contains('atasan_langsung')) {
+                array_push($results, 'atasan_langsung');
             }
         }
         return [
