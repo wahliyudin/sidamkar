@@ -88,6 +88,30 @@ $(document).ready(function () {
         });
     });
 
+    $('.penilai-damkar').click(function (e) {
+        e.preventDefault();
+        $('#tambahPenilai input[name="jenis_aparatur"]').val('damkar');
+        $('#tambahPenilai input[name="penilai_penetap"]').val('penilai');
+    });
+
+    $('.penilai-analis').click(function (e) {
+        e.preventDefault();
+        $('#tambahPenilai input[name="jenis_aparatur"]').val('analis');
+        $('#tambahPenilai input[name="penilai_penetap"]').val('penilai');
+    });
+
+    $('.penetap-damkar').click(function (e) {
+        e.preventDefault();
+        $('#tambahPenetap input[name="jenis_aparatur"]').val('damkar');
+        $('#tambahPenetap input[name="penilai_penetap"]').val('penetap');
+    });
+
+    $('.penetap-analis').click(function (e) {
+        e.preventDefault();
+        $('#tambahPenetap input[name="jenis_aparatur"]').val('analis');
+        $('#tambahPenetap input[name="penilai_penetap"]').val('penetap');
+    });
+
     var ajaxError = function (jqXHR, xhr, textStatus, errorThrow, exception) {
         if (jqXHR.status === 0) {
             swal("Error!", 'Not connect.\n Verify Network.', "error");
