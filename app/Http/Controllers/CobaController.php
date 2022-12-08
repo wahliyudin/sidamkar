@@ -33,6 +33,10 @@ class CobaController extends Controller
 
     public function index()
     {
-        return User::query()->paginate(10);
+        // kab_kota_id
+        return KabProvPenilaiAndPenetap::query()
+            ->where('jenis_aparatur', 'damkar')
+            ->where('kab_kota_id', 1101)
+            ->first();
     }
 }
