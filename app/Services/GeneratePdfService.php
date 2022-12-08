@@ -41,8 +41,11 @@ class GeneratePdfService
         if (!isset($user->mente->atasanLangsung->userPejabatStruktural->pangkatGolonganTmt)) {
             throw ValidationException::withMessages(["Maaf atasan langsung anda belum melengkapi data dirinya"]);
         }
-        $unsurs = $this->unsurRepository->getRekapUnsurs($user);
-        $pdf_rekap = PDF::loadView('generate-pdf.old', compact('unsurs', 'user', 'ttd'))->setPaper('A4');
+        $pdf_rekap = PDF::loadView('generate-pdf.old', [
+            'unsurs' => $this->unsurRepository->getRekapUnsurs($user),
+            'user' => $user,
+            'ttd' => $ttd
+        ])->setPaper('A4');
         $file_name = uniqid();
         Storage::put("rekapitulasi/$file_name.pdf", $pdf_rekap->output());
         $url = asset("storage/rekapitulasi/$file_name.pdf");

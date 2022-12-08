@@ -60,7 +60,7 @@
             <tr>
                 <th class="bd center letter" colspan="7" style="font-size: 14px; text-transform: uppercase;">JABATAN
                     FUNGSIONAL
-                    {{ $user->roles()->first()->display_name }}</th>
+                    {{ $user?->roles()?->first()->display_name }}</th>
             </tr>
             <tr>
                 <th colspan="7" class="bd"><br></th>
@@ -87,34 +87,34 @@
             <tr>
                 <td width="70px">Nama</td>
                 <td width="5px">:</td>
-                <td width="200px">{{ $user->userAparatur->nama }}</td>
+                <td width="200px">{{ $user?->userAparatur?->nama }}</td>
                 <td width="70px">Nama</td>
                 <td width="5px">:</td>
-                <td width="200px">{{ $atasan_langsung->userPejabatStruktural->nama }}</td>
+                <td width="200px">{{ $atasan_langsung?->userPejabatStruktural?->nama }}</td>
             </tr>
             <tr>
                 <td width="70px">NIP</td>
                 <td width="5px">:</td>
-                <td width="200px">{{ $user->userAparatur->nip }}</td>
+                <td width="200px">{{ $user?->userAparatur?->nip }}</td>
                 <td width="70px">NIP</td>
                 <td width="5px">:</td>
-                <td width="200px">{{ $atasan_langsung->userPejabatStruktural->nip }}</td>
+                <td width="200px">{{ $atasan_langsung?->userPejabatStruktural?->nip }}</td>
             </tr>
             <tr>
                 <td width="70px">Pangkat/Gol Ruang</td>
                 <td width="5px">:</td>
-                <td width="200px">{{ $user->userAparatur->pangkatGolonganTmt->nama }}</td>
+                <td width="200px">{{ $user?->userAparatur?->pangkatGolonganTmt?->nama }}</td>
                 <td width="70px">Pangkat/Gol Ruang</td>
                 <td width="5px">:</td>
-                <td width="200px">{{ $atasan_langsung->userPejabatStruktural->pangkatGolonganTmt->nama }}</td>
+                <td width="200px">{{ $atasan_langsung?->userPejabatStruktural?->pangkatGolonganTmt?->nama }}</td>
             </tr>
             <tr>
                 <td width="70px">Jabatan</td>
                 <td width="5px">:</td>
-                <td width="200px">{{ $user->roles()->first()->display_name }}</td>
+                <td width="200px">{{ $user?->roles()?->first()?->display_name }}</td>
                 <td width="70px">Jabatan</td>
                 <td width="5px">:</td>
-                <td width="200px">{{ $atasan_langsung->roles()->first()->display_name }}</td>
+                <td width="200px">{{ $atasan_langsung?->roles()?->first()?->display_name }}</td>
             </tr>
             <tr>
                 <td width="70px" style="padding-bottom: 10px;">Unit Kerja</td>

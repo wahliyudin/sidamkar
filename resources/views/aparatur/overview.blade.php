@@ -4,7 +4,7 @@
     <section class="section">
         @if (!isset(Auth::user()->userAparatur?->nip))
             <div class="alert alert-danger" style="color: white;"><i class="fa-solid fa-circle-exclamation"></i> Harap
-                `\Lengkapi `\Data \Profile
+                Lengkapi Data Profile
             </div>
         @endif
         <style>
@@ -43,7 +43,7 @@
                                     Angka Kredit Minimal
                                 </p>
                                 <h2 style="font-family: 'Roboto';color: #06152B;" class="target">
-                                    {{ $ketentuan_ak[0]->ak_min }}</h2>
+                                    {{ isset($ketentuan_ak[0]) ? $ketentuan_ak[0]->ak_min : '0' }}</h2>
                             </div>
                         </div>
                     </div>
@@ -61,7 +61,8 @@
                                     Angka Kredit diterima
                                 </p>
                                 <h2 style="font-family: 'Roboto';color: #06152B;" class="target">
-                                    100</h2>
+                                    100
+                                </h2>
                             </div>
                         </div>
                     </div>
