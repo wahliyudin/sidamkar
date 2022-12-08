@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 use Barryvdh\Snappy\Facades\SnappyPdf as PDF;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Models\KetentuanSkpFungsional;
 
 class KegiatanJabatanController extends Controller
@@ -66,10 +67,15 @@ class KegiatanJabatanController extends Controller
             $query->orderBy('id', 'desc');
         }]);
         $judul = 'Laporan Kegiatan Jabatan';
-
+        $user1 = User::query()->with(['userAparatur.provinsi.kabkotas', 'dokKepegawaians', 'dokKompetensis'])->find(Auth::user()->id);
         $skp = KetentuanSkpFungsional::with('ketentuanSkp')->where('user_id', auth()->user()->id)->first();
+
+        $role = DB::table('users')->join('role_user', 'role_user.user_id', '=', 'users.id')->where('users.id', '=', Auth::user()->id)->select('*')->get();
+
+        $ketentuan_ak = DB::table('ketentuan_nilais')->where('role_id', $role[0]->role_id)->where('pangkat_golongan_tmt_id', $user1->userAparatur->pangkat_golongan_tmt_id)->get();
+
         $historyRekapitulasiKegiatans = $user?->rekapitulasiKegiatan?->historyRekapitulasiKegiatans ?? [];
-        return view('aparatur.laporan-kegiatan.jabatan.index', compact('periode', 'user', 'judul', 'historyRekapitulasiKegiatans', 'skp'));
+        return view('aparatur.laporan-kegiatan.jabatan.index', compact('periode', 'user', 'judul', 'historyRekapitulasiKegiatans', 'skp', 'ketentuan_ak'));
     }
 
     /**
