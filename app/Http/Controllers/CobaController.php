@@ -33,6 +33,28 @@ class CobaController extends Controller
 
     public function index()
     {
-        return ;
+        $user = User::query()->with(['kabProvPenilais', 'userPejabatStruktural:id,user_id,tingkat_aparatur'])->where('username', 'Penilai AK')->first();
+        $kabKotas = $user->kabProvPenilais()->pluck('kab_kota_id')->toArray();
+        $jenisAparaturs = $user->kabProvPenilais()->pluck('jenis_aparatur')->toArray();
+        return User::query()
+            ->where('status_akun', User::STATUS_ACTIVE)
+            ->withWhereHas('userAparatur', function ($query) use ($user, $kabKotas) {
+                $query->with(['kabKota'])->whereIn('kab_kota_id', $kabKotas)
+                    ->where('tingkat_aparatur', $user->userPejabatStruktural->tingkat_aparatur);
+            })
+            ->whereRoleIs($this->getRoles($jenisAparaturs))
+            ->get();
+    }
+
+    public function getRoles($jenisAparaturs)
+    {
+        $roles = [];
+        if (in_array('analis', $jenisAparaturs)) {
+            $roles = array_merge($roles, getAllRoleFungsionalAnalis());
+        }
+        if (in_array('damkar', $jenisAparaturs)) {
+            $roles = array_merge($roles, getAllRoleFungsionalDamkar());
+        }
+        return $roles;
     }
 }
