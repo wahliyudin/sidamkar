@@ -139,7 +139,7 @@ $(document).ready(function () {
                             </h6>
                         </a>
                         <div class="d-flex align-items-center">
-                            <span class="bg-green text-sm text-white font-bold py-1 px-2 rounded-md label-role">
+                            <span class="bg-green text-sm text-center text-white font-bold py-1 px-2 rounded-md label-role" style="white-space: nowrap;">
                                 ${butirKegiatan.role?.display_name}
                             </span>
                         </div>

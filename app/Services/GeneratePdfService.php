@@ -69,11 +69,11 @@ class GeneratePdfService
                 $jenjang_bawah = [];
                 $jenjang_atas = [];
                 foreach ($rencana->laporanKegiatanJabatans as $laporan) {
-                    if ($laporan->butirKegiatan->subUnsur->unsur->role_id == $user->roles()->whereIn('name', getAllRoleFungsional())->first()->id) {
+                    if ($laporan->butirKegiatan->role_id == $user->roles()->whereIn('name', getAllRoleFungsional())->first()->id) {
                         array_push($sesuai_jenjang, $laporan);
-                    } elseif ($laporan->butirKegiatan->subUnsur->unsur->role_id == $user->roles()->whereIn('name', getAllRoleFungsional())->first()->id + 1) {
+                    } elseif ($laporan->butirKegiatan->role_id == $user->roles()->whereIn('name', getAllRoleFungsional())->first()->id + 1) {
                         array_push($jenjang_atas, $laporan);
-                    } elseif ($laporan->butirKegiatan->subUnsur->unsur->role_id == $user->roles()->whereIn('name', getAllRoleFungsional())->first()->id - 1) {
+                    } elseif ($laporan->butirKegiatan->role_id == $user->roles()->whereIn('name', getAllRoleFungsional())->first()->id - 1) {
                         array_push($jenjang_bawah, $laporan);
                     }
                 }

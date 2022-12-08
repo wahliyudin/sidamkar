@@ -16,11 +16,14 @@ use App\Repositories\PeriodeRepository;
 use App\Repositories\RencanaRepository;
 use App\Repositories\TemporaryFileRepository;
 use App\Services\KegiatanJabatanService as ServicesKegiatanJabatanService;
+use App\Traits\ScoringTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class KegiatanJabatanService
 {
+    use ScoringTrait;
+
     private KegiatanJabatanRepository $kegiatanJabatanRepository;
     private RencanaRepository $rencanaRepository;
     private TemporaryFileRepository $temporaryFileRepository;
@@ -41,9 +44,13 @@ class KegiatanJabatanService
         $unsurs = Unsur::query()
             ->where('jenis_kegiatan_id', 1)
             ->where('periode_id', $periode->id)
-            ->with(['subUnsurs.butirKegiatans.role' => function ($query) use ($role) {
-                $query->whereIn('id', [$role->id + 1, $role->id - 1, $role->id]);
-            }])
+            ->withWhereHas('subUnsurs', function($query) use ($role){
+                $query->withWhereHas('butirKegiatans', function($query) use ($role){
+                    $query->withWhereHas('role', function ($query) use ($role) {
+                        $query->whereIn('id', $this->limiRole($role->id));
+                    });
+                });
+            })
             ->when($search, function ($query) use ($search, $role) {
                 $query->where('nama', 'like', "%$search%")
                     ->orWhereHas('subUnsurs', function ($query) use ($search, $role) {
@@ -63,6 +70,7 @@ class KegiatanJabatanService
             ->get();
         return $unsurs;
     }
+
 
     public function rencanas(User $user)
     {

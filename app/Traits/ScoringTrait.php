@@ -14,4 +14,18 @@ trait ScoringTrait
         if ($role + 1 == $authRole) return $score;
         return null;
     }
+
+    public function limiRole($role)
+    {
+        if ($role >= 1 && $role <= 4) {
+            if ($role == 4) return [$role - 1, $role];
+            if ($role == 1) return [$role + 1, $role];
+            return [$role + 1, $role - 1, $role];
+        }
+        if ($role >= 5 && $role <= 7) {
+            if ($role == 7) return [$role - 1, $role];
+            if ($role == 5) return [$role + 1, $role];
+            return [$role + 1, $role - 1, $role];
+        }
+    }
 }
