@@ -19,11 +19,12 @@ use Illuminate\Support\Facades\Auth;
 // use Requests Data Aparatur
 use App\Http\Requests\DataAparatur\StoreDataAparatur;
 use App\Models\PangkatGolonganTmt;
+use App\Traits\AuthTrait;
 use Carbon\Carbon;
 
 class DataAtasanLangsungController extends Controller
 {
-    use ImageTrait;
+    use ImageTrait, AuthTrait;
 
     public function index()
     {   
@@ -37,7 +38,7 @@ class DataAtasanLangsungController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $rules = [
             'nama' => 'required',
             'nip' => 'required',
             'pangkat_golongan_tmt_id' => 'required',
@@ -46,9 +47,12 @@ class DataAtasanLangsungController extends Controller
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
             'jenis_kelamin' => 'required',
-            'kab_kota_id' => 'required',
             'provinsi_id' => 'required'
-        ]);
+        ];
+        if ($this->authUser()->tingkat_aparatur == 'kab_kota') {
+            $rules['kab_kota_id'] = 'required';
+        }
+        $request->validate($rules);
         $data = [
             'nama' => $request->nama,
             'nip' => $request->nip,
@@ -58,7 +62,7 @@ class DataAtasanLangsungController extends Controller
             'tempat_lahir' => $request->tempat_lahir,
             'tanggal_lahir' => Carbon::make($request->tanggal_lahir)->format('Y-m-d'),
             'jenis_kelamin' => $request->jenis_kelamin,
-            'kab_kota_id' => $request->kab_kota_id,
+            'kab_kota_id' => $request?->kab_kota_id ?? null,
             'provinsi_id' => $request->provinsi_id,
         ];
         if ($request->hasFile('avatar')) {
