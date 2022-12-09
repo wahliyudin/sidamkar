@@ -31,6 +31,9 @@ class RegisterRequest extends FormRequest
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'no_hp' => ['required', 'numeric']
         ];
+        if (request()->jenis_aparatur == 'fungsional' || request()->jenis_aparatur == 'struktural') {
+            $rules['file_ttd'] = 'required';
+        }
         if (request()->jenis_aparatur == 'fungsional_umum') {
             $rules['jenis_jabatan_text'] = 'required|min:3';
         } elseif (request()->jenis_aparatur == 'struktural') {
