@@ -427,7 +427,7 @@ class UserSeeder extends Seeder
         ]);
 
         $KabKotTanggerangSelatan = User::query()->create([
-            'username' => 'Admin Kabupaten Tanggerang Selatan',
+            'username' => 'Admin Kota Tanggerang Selatan',
             'email' => 'adminkotatanggerangselatan@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
@@ -439,27 +439,15 @@ class UserSeeder extends Seeder
             'kab_kota_id' => 3674,
         ]);
 
-        $KabKotBekasi1 = User::query()->create([
-            'username' => 'Admin Kota Bekasi1',
-            'email' => 'adminkotaBekasi1@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 1
-        ])->attachRole('kab_kota');
-        $KabKotBekasi1->userProvKabKota()->create([
-            'nomenklatur_perangkat_daerah_id' => 1,
-            'provinsi_id' => 32,
-            'kab_kota_id' => 3275,
-        ]);
 
-        $KabKotBekasi2 = User::query()->create([
-            'username' => 'Admin Kota Bekasi2',
+        $KabKotBekasi = User::query()->create([
+            'username' => 'Admin Kota Bekasi',
             'email' => 'adminkotaBekasi2@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 1
         ])->attachRole('kab_kota');
-        $KabKotBekasi2->userProvKabKota()->create([
+        $KabKotBekasi->userProvKabKota()->create([
             'nomenklatur_perangkat_daerah_id' => 1,
             'provinsi_id' => 32,
             'kab_kota_id' => 3275,
@@ -475,7 +463,7 @@ class UserSeeder extends Seeder
         $KabKotBogor->userProvKabKota()->create([
             'nomenklatur_perangkat_daerah_id' => 1,
             'provinsi_id' => 32,
-            'kab_kota_id' => 3271,
+            'kab_kota_id' => 3201,
         ]);
 
         $KabKotSukabumi = User::query()->create([
@@ -488,7 +476,7 @@ class UserSeeder extends Seeder
         $KabKotSukabumi->userProvKabKota()->create([
             'nomenklatur_perangkat_daerah_id' => 1,
             'provinsi_id' => 32,
-            'kab_kota_id' => 3272,
+            'kab_kota_id' => 3202,
         ]);
 
         $atasanLangsungKotaTanggerangSelatan = User::query()->create([
@@ -533,14 +521,14 @@ class UserSeeder extends Seeder
             'kab_kota_id' => 3275,
         ]);
         
-        $atasanLangsungKotaBogor = User::query()->create([
-            'username' => 'Atasan Langsung Kota Bogor',
+        $atasanLangsungKabBogor = User::query()->create([
+            'username' => 'Atasan Langsung Kabupaten Bogor',
             'email' => 'atasanKotaBogor@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 1
         ])->attachRole('atasan_langsung');
-        $atasanLangsungKotaBogor->userPejabatStruktural()->create([
+        $atasanLangsungKabBogor->userPejabatStruktural()->create([
             'nama' => 'Atasan Langsung Kota Bogor',
             'nip' => '2020020088',
             'nomor_karpeg' => '2020020088',
@@ -551,18 +539,18 @@ class UserSeeder extends Seeder
             'jenis_kelamin' => 'L',
             'pendidikan_terakhir' => 2,
             'provinsi_id' => 32,
-            'kab_kota_id' => 3271,
+            'kab_kota_id' => 3201,
         ]);
 
         $atasanLangsungKotaSukabumi = User::query()->create([
-            'username' => 'Atasan Langsung Kota Sukabumi',
+            'username' => 'Atasan Langsung Kabupaten Sukabumi',
             'email' => 'atasanKotasukabumi@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 1
         ])->attachRole('atasan_langsung');
         $atasanLangsungKotaSukabumi->userPejabatStruktural()->create([
-            'nama' => 'Atasan Langsung Kota Sukabumi',
+            'nama' => 'Atasan Langsung Kabupaten Sukabumi',
             'nip' => '2020020088',
             'nomor_karpeg' => '2020020088',
             'pangkat_golongan_tmt_id' => 5,
@@ -572,7 +560,7 @@ class UserSeeder extends Seeder
             'jenis_kelamin' => 'L',
             'pendidikan_terakhir' => 2,
             'provinsi_id' => 32,
-            'kab_kota_id' => 3272,
+            'kab_kota_id' => 3202,
         ]);
 
         $atasanLangsungProvDKI = User::query()->create([
@@ -593,6 +581,46 @@ class UserSeeder extends Seeder
             'jenis_kelamin' => 'L',
             'pendidikan_terakhir' => 2,
             'provinsi_id' => 31,
+        ]);
+
+        $atasanLangsungProvBanten = User::query()->create([
+            'username' => 'Atasan Langsung Banten',
+            'email' => 'atasanprovbanten.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('atasan_langsung');
+        $atasanLangsungProvBanten->userPejabatStruktural()->create([
+            'nama' => 'Atasan Langsung Banten',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Banten',
+            'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'provinsi',
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 36,
+        ]);
+
+        $atasanLangsungProvJawaBarat = User::query()->create([
+            'username' => 'Atasan Langsung Jawa Barat',
+            'email' => 'atasanprovjawabarat.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('atasan_langsung');
+        $atasanLangsungProvJawaBarat->userPejabatStruktural()->create([
+            'nama' => 'Atasan Langsung Jawa Barat',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Banten',
+            'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'provinsi',
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 32,
         ]);
 
 
