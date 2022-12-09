@@ -19,27 +19,16 @@
                         <div class="accordion" id="accordion-parent">
                             @forelse ($kegiatan?->unsurs as $unsur)
                                 <div class="accordion-item">
-                                    <div class="d-flex flex-column accordion-header py-3 px-2"
+                                    <div class="d-flex justify-content-between align-items-center accordion-header py-3 px-2"
                                         id="unsur{{ $unsur->id }}">
-                                        <div class="d-flex justify-content-between align-items-center ps-2 mb-1">
-                                            <span
-                                                class="bg-green text-sm text-white font-bold py-1 px-2 rounded-md label-role">
-                                                {{ $unsur->role?->display_name ?? 'Semu Jenjang' }}
-                                            </span>
-                                            <div class="d-flex align-items-center">
-                                                <i class="fa-regular fa-pen-to-square me-2 cursor-pointer text-green btn-edit-kegiatan"
-                                                    data-id="{{ $unsur->id }}"></i>
-                                                <i class="fa-solid fa-trash-can me-2 cursor-pointer text-red btn-hapus-kegiatan"
-                                                    data-id="{{ $unsur->id }}"></i>
-                                                <button class="accordion-button collapsed" type="button"
-                                                    data-bs-toggle="collapse"
-                                                    data-bs-target="#contentUnsur{{ $unsur->id }}" aria-expanded="false"
-                                                    aria-controls="contentUnsur{{ $unsur->id }}">
-                                                </button>
-                                            </div>
-                                        </div>
                                         <div class="ps-2 pt-2">
                                             <h6 class="accordian-title" style="color: #000000;">{{ $unsur->nama }}</h6>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#contentUnsur{{ $unsur->id }}"
+                                                aria-expanded="false" aria-controls="contentUnsur{{ $unsur->id }}">
+                                            </button>
                                         </div>
                                     </div>
                                     <div id="contentUnsur{{ $unsur->id }}" class="accordion-collapse collapse"
@@ -68,16 +57,19 @@
                                                             <div class="accordion-body">
                                                                 <ul class="ms-0">
                                                                     @foreach ($sub_unsur->butirKegiatans as $butir_kegiatan)
-                                                                        <li class="accordian-list">
+                                                                        <li class="accordian-list ">
                                                                             <div
                                                                                 class="d-flex align-items-center justify-content-between">
                                                                                 <h6 class="accordian-title">
                                                                                     {{ $butir_kegiatan->nama }}
                                                                                 </h6>
-                                                                                <h6 class="accordian-title"
-                                                                                    style="color: #1AD598;">
-                                                                                    {{ $butir_kegiatan->score }}
-                                                                                </h6>
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <span
+                                                                                        class="bg-green text-sm text-center text-white font-bold py-1 px-2 rounded-md label-role"
+                                                                                        style="white-space: nowrap;">
+                                                                                        {{ $butir_kegiatan->role?->display_name }}
+                                                                                    </span>
+                                                                                </div>
                                                                             </div>
                                                                         </li>
                                                                     @endforeach
