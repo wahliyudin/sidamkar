@@ -209,6 +209,10 @@ class KegiatanJabatanController extends Controller
 
     public function rekapitulasi()
     {
+        $user = $this->authUser()->load('ketentuanSkpFungsional');
+        if (!isset($user?->ketentuanSkpFungsional)) {
+            throw ValidationException::withMessages(['Maaf Anda Belum Menginput SKP']);
+        }
         $rekapitulasiKegiatan = $this->generatePdfService->generateRekapitulasi($this->authUser(), 'Rekapitulasi diterima Atasan Langsung');
         return response()->json([
             'message' => 'Berhasil',

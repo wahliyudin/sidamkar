@@ -49,7 +49,7 @@ class InternalDataTable extends DataTable
                 return $user?->userAparatur?->pangkatGolonganTmt?->nama;
             })
             ->addColumn('action', function (User $user) {
-                return '<button type="button" class="btn btn-blue btn-sm detail" data-id="' . $user->id . '">Detail</button>';
+                return '<a href="'.route('penilai-ak.data-pengajuan.internal.show', $user->id).'" class="btn btn-blue btn-sm">Detail</a>';
             })
             ->rawColumns(['action'])
             ->setRowId('id');
