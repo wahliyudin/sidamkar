@@ -52,7 +52,8 @@ $(function () {
         chunkUploads: true,
         acceptedFileTypes: [
             'image/png',
-            'image/jpeg'
+            'image/jpeg',
+            'image/jpg'
         ]
     });
     FilePond.create(document.querySelector('input[name="file_permohonan"]'), {

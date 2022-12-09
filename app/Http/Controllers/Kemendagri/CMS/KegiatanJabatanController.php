@@ -28,8 +28,8 @@ class KegiatanJabatanController extends Controller
         });
         $kegiatan = JenisKegiatan::query()
             ->with([
-                'unsurs.role',
-                'unsurs.subUnsurs.butirKegiatans',
+                'unsurs',
+                'unsurs.subUnsurs.butirKegiatans.role',
             ])
             ->findOrFail(1);
         return view('kemendagri.cms.kegiatan-jabatan.index', compact('roles', 'kegiatan', 'periodes', 'judul'));
