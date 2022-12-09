@@ -62,9 +62,6 @@ class FungsionalUmumDataTable extends DataTable
             ->orderColumn('tgl_registrasi', function ($query, $order) {
                 $query->orderBy('created_at', $order);
             })
-            ->addColumn('status', function (User $user) {
-                return $this->statusAkun($user->status_akun);
-            })
             ->addColumn('action', function (User $user) {
                 return view('kabkota.manajemen-user.fungsional-umum.buttons-tolak-verif', compact('user'))->render();
             })
@@ -123,8 +120,6 @@ class FungsionalUmumDataTable extends DataTable
                 ->orderable(false),
             Column::make('tgl_registrasi')
                 ->searchable(false),
-            Column::computed('status')
-                ->title('Status Verifikasi'),
             Column::computed('action'),
         ];
     }
