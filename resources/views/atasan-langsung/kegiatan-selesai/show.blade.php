@@ -5,16 +5,15 @@
         <div class="row">
             <div class="col-md-12 px-2">
                 <div class="card mb-3">
-                    <div class="card-header">
-                        <h4>Laporan/Dokumen Iqbal Ramadhan</h4>
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h4>Laporan/Dokumen {{ $user?->userAparatur->nama }}</h4>
+                        <button class="btn btn-green btn-sm text-sm">Kirim Dokumen Ke Penetap</button>
                     </div>
                     <div class="card-body">
                         <div class="page-content">
                             <div class="content-wrapper">
                                 <div class="content-inner">
                                     <div class="content pt-0">
-                                        <!-- Content area -->
-                                        <!-- Login form -->
                                         <div class="card mb-0 overflow-hidden"
                                             style="border-radius: 10px; position: relative;">
                                             <ul class="nav nav-tabs nav-justified bg-light rounded-top mb-0">
@@ -63,8 +62,7 @@
                                                 <div class="tab-pane fade" id="surat-tab2">
                                                     <div class="card">
                                                         <div class="card-body px-0">
-                                                            <iframe
-                                                                src="{{ asset('storage/rekapitulasi/638a9b4d9b42f.pdf') }}"
+                                                            <iframe src=""
                                                                 style="border-radius: 10px; overflow: hidden;"
                                                                 width="100%" height="500px"></iframe>
                                                         </div>
@@ -74,8 +72,7 @@
                                                 <div class="tab-pane fade" id="surat-tab3">
                                                     <div class="card">
                                                         <div class="card-body px-0">
-                                                            <iframe
-                                                                src="{{ asset('storage/rekapitulasi/638a9b4d9b42f.pdf') }}"
+                                                            <iframe src=""
                                                                 style="border-radius: 10px; overflow: hidden;"
                                                                 width="100%" height="500px"></iframe>
                                                         </div>

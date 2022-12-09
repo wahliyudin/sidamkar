@@ -33,17 +33,18 @@ class CobaController extends Controller
 
     public function index()
     {
-        $user = User::query()->with(['kabProvPenilais', 'userPejabatStruktural:id,user_id,tingkat_aparatur'])->where('username', 'Penilai AK')->first();
-        $kabKotas = $user->kabProvPenilais()->pluck('kab_kota_id')->toArray();
-        $jenisAparaturs = $user->kabProvPenilais()->pluck('jenis_aparatur')->toArray();
-        return User::query()
-            ->where('status_akun', User::STATUS_ACTIVE)
-            ->withWhereHas('userAparatur', function ($query) use ($user, $kabKotas) {
-                $query->with(['kabKota'])->whereIn('kab_kota_id', $kabKotas)
-                    ->where('tingkat_aparatur', $user->userPejabatStruktural->tingkat_aparatur);
-            })
-            ->whereRoleIs($this->getRoles($jenisAparaturs))
-            ->get();
+        return str('http://127.0.0.1:8000/storage/user-struktural/639217054cd06.jpeg')->replace(env('APP_URL')."/storage/user-struktural/", '');
+        // $user = User::query()->with(['kabProvPenilais', 'userPejabatStruktural:id,user_id,tingkat_aparatur'])->where('username', 'Penilai AK')->first();
+        // $kabKotas = $user->kabProvPenilais()->pluck('kab_kota_id')->toArray();
+        // $jenisAparaturs = $user->kabProvPenilais()->pluck('jenis_aparatur')->toArray();
+        // return User::query()
+        //     ->where('status_akun', User::STATUS_ACTIVE)
+        //     ->withWhereHas('userAparatur', function ($query) use ($user, $kabKotas) {
+        //         $query->with(['kabKota'])->whereIn('kab_kota_id', $kabKotas)
+        //             ->where('tingkat_aparatur', $user->userPejabatStruktural->tingkat_aparatur);
+        //     })
+        //     ->whereRoleIs($this->getRoles($jenisAparaturs))
+        //     ->get();
     }
 
     public function getRoles($jenisAparaturs)

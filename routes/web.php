@@ -207,6 +207,7 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('data-penilai-ak/destroy-dockom/{id}', [DataAtasanLangsungController::class, 'destroyDocKom'])->name('data-penilai-ak.destroy-doc-kom');
 
         Route::get('penilai-ak/data-pengajuan/internal', [InternalController::class, 'index'])->name('penilai-ak.data-pengajuan.internal');
+        Route::get('penilai-ak/data-pengajuan/internal/{id}/show', [InternalController::class, 'show'])->name('penilai-ak.data-pengajuan.internal.show');
         Route::get('penilai-ak/data-pengajuan/external', [ExternalController::class, 'index'])->name('penilai-ak.data-pengajuan.external');
         Route::get('penilai-ak/kegiatan-selesai', [PenilaiAkKegiatanSelesaiController::class, 'index'])->name('penilai-ak.kegiatan-selesai');
     });
