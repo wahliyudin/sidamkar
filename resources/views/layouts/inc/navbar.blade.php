@@ -94,7 +94,7 @@
                                     </div>
                                 </div>
                             @endrole
-                            @role(['atasan_langsung','penilai_ak','penetap_ak'])
+                            @role(['atasan_langsung', 'penilai_ak', 'penetap_ak'])
                                 <div class="user-img d-flex align-items-center">
                                     <div class="avatar avatar-md">
                                         <img
@@ -149,7 +149,7 @@
                                 </a>
                             </li>
                         @endrole
-                        @role(['atasan_langsung','penilai_ak','penetap_ak'])
+                        @role(['atasan_langsung', 'penilai_ak', 'penetap_ak'])
                             <li>
                                 <a class="dropdown-item" href="{{ route('data-atasan-langsung') }}">
                                     <i class="icon-mid bi bi-person me-2"></i>
@@ -157,7 +157,7 @@
                                 </a>
                             </li>
                         @endrole
-                        @role(['atasan_langsung','penilai_ak','penetap_ak'])
+                        @role(['atasan_langsung', 'penilai_ak', 'penetap_ak'])
                             <li>
                                 <a class="dropdown-item" href="{{ route('ubah-password') }}">
                                     <i class="fa-solid fa-lock me-2"></i>

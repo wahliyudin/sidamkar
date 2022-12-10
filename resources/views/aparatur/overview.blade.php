@@ -8,7 +8,7 @@
             </div>
         @endif
         <style>
-           
+
         </style>
         <div class="row">
             <div class="col-md-3 px-2">
@@ -99,7 +99,7 @@
                         <canvas id="line"></canvas>
                     </div>
                 </div>
-                <div class="card">
+                {{--  <div class="card overflow-auto">
                     <div class="card-header">
                         <h4 class="card-title" style="color: #17181A; font-family: 'Roboto';">Butir Kegiatan</h4>
                     </div>
@@ -145,7 +145,7 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
+                </div>  --}}
             </div>
             <div class="col-md-3 col">
                 <div class="card" style="overflow: auto; height: 550px">
@@ -156,15 +156,15 @@
                     </div>
                     <div class="card-body">
                         <ul>
-                            @foreach ($informasi as $informasis )
-                            <li>
-                                <p style="margin: 0 !important;"> {{ $informasis->judul}} ( <a href="" data-bs-toggle="modal"
-                                        data-bs-target="#informasi">Klik Disini</a> )
-                                </p>
-                                <div class="footer-information">
-                                    <p style="font-size: 9px; margin-top: 10px; color: red;"> 11/2/2022</p>
-                                </div>
-                            </li>
+                            @foreach ($informasi as $informasis)
+                                <li>
+                                    <p style="margin: 0 !important;"> {{ $informasis->judul }} ( <a href=""
+                                            data-bs-toggle="modal" data-bs-target="#informasi">Klik Disini</a> )
+                                    </p>
+                                    <div class="footer-information">
+                                        <p style="font-size: 9px; margin-top: 10px; color: red;"> 11/2/2022</p>
+                                    </div>
+                                </li>
                             @endforeach
                         </ul>
                     </div>

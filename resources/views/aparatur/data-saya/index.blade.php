@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('content')
     <section class="section">
-        <div class="card mt-4">
+        <div class="card mt-4 overflow-auto">
             <div class="card-body" style="padding-top: 3rem;">
                 <form action="" method="post" class="form-data">
                     <div class="row">
