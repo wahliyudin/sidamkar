@@ -110,7 +110,7 @@ class MenteDataTable extends DataTable
                 }
             })
             ->addColumn('action', function (User $user) {
-                return '<button class="btn btn-blue btn-sm edit-mente" data-id="' . $user->id . '">edit</button>';
+                return '<button type="button" class="btn btn-blue btn-sm edit-mente" data-id="' . $user->id . '">edit</button>';
             })
             ->rawColumns(['nama', 'action'])
             ->setRowId('id');

@@ -175,42 +175,52 @@
                 <th class="center letter" style="padding-left: 0.5rem; padding-right: 0.5rem;">Jumlah Angka Kredit
                 </th>
             </tr>
+            @php
+                $unsur_tmp = null;
+                $sub_unsur = null;
+                $no = 1;
+            @endphp
             @foreach ($unsurs as $unsur)
-                <tr>
-                    <td style="text-align: center;">{{ $loop->iteration }}</td>
-                    <td colspan="8" class="letter" style="padding-left: 0.5rem; padding-right: 0.5rem;">
-                        {{ $unsur->nama }}
-                    </td>
-                </tr>
-                @foreach ($unsur->subUnsurs as $subUnsur)
+                @if ($unsur_tmp != $unsur->unsur_id)
+                    <tr>
+                        <td style="text-align: center;">{{ $no }}</td>
+                        <td colspan="8" class="letter" style="padding-left: 0.5rem; padding-right: 0.5rem;">
+                            {{ $unsur->unsur }}
+                        </td>
+                    </tr>
+                @endif
+                @if ($sub_unsur != $unsur->sub_unsur_id)
                     <tr>
                         <td><br></td>
                         <td colspan="8" class="letter" style="padding-left: 0.5rem; padding-right: 0.5rem;">-
-                            {{ $subUnsur->nama }}
+                            {{ $unsur->sub_unsur }}
                         </td>
                     </tr>
-                    @foreach ($subUnsur->butirKegiatans as $butirKegiatan)
-                        <tr>
-                            <td></td>
-                            <td class="letter" style="padding-left: 0.5rem; padding-right: 0.5rem;">
-                                {{ $loop->iteration }}. {{ $butirKegiatan->nama }}
-                            </td>
-                            <td class="letter" style="padding-left: 0.5rem; padding-right: 0.5rem;">
-                                {{ $butirKegiatan->laporanKegiatanJabatans->first()->created_at->format('Y-m-d') }}
-                            </td>
-                            <td class="letter" style="padding-left: 0.5rem; padding-right: 0.5rem;">
-                                {{ $butirKegiatan->satuan_hasil }}
-                            </td>
-                            <td class="center">
-                                {{ $butirKegiatan->laporan_kegiatan_jabatans_count }}
-                            </td>
-                            <td class="center">{{ $butirKegiatan->score }}</td>
-                            <td class="center">
-                                {{ $butirKegiatan->laporan_kegiatan_jabatans_sum_score }}
-                            </td>
-                        </tr>
-                    @endforeach
-                @endforeach
+                @endif
+                <tr>
+                    <td></td>
+                    <td class="letter" style="padding-left: 0.5rem; padding-right: 0.5rem;">
+                        {{ $unsur->butir }}
+                    </td>
+                    <td class="letter" style="padding-left: 0.5rem; padding-right: 0.5rem;">
+                        {{ $unsur->tanggal }}
+                    </td>
+                    <td class="letter" style="padding-left: 0.5rem; padding-right: 0.5rem;">
+                        {{ $unsur->satuan_hasil }}
+                    </td>
+                    <td class="center">
+                        {{ $unsur->volume }}
+                    </td>
+                    <td class="center">{{ $unsur->score }}</td>
+                    <td class="center">
+                        {{ $unsur->jumlah_angka_kredit }}
+                    </td>
+                </tr>
+                @php
+                    $unsur_tmp = $unsur->unsur_id;
+                    $sub_unsur = $unsur->sub_unsur_id;
+                    $no++;
+                @endphp
             @endforeach
         </tbody>
     </table>

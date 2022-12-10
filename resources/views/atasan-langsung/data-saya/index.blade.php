@@ -92,7 +92,8 @@
                                             <span class="text-danger text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
-                                    <div class="form-group">
+                                    @if ($user->userPejabatStruktural?->tingkat_aparatur == 'kab_kota')
+                                        <div class="form-group">
                                         <label for="basicInput">Kabupaten / Kota</label>
                                          <select class="kab_kota_id form-select" name="kab_kota_id" id="kab_kota_id">
                                             <option disabled selected>- Pilih Kabupaten / Kota -</option>
@@ -105,6 +106,7 @@
                                             <span class="text-danger text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
+                                    @endif
                                 </div>
                             </div>
                             <div class="row col-md-12" style="border: 2px solid #E5E5E5;border-radius: 6px;padding: 4px;margin-top: 19px;">

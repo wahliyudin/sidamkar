@@ -14,7 +14,8 @@
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                     Angka Kredit Minimal
                                 </p>
-                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target">100</h2>
+                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target">
+                                    {{ isset($ketentuan_ak[0]) ? $ketentuan_ak[0]->ak_min : '0' }}</h2>
                             </div>
                         </div>
                     </div>
@@ -104,7 +105,7 @@
     <div class="modal fade" id="rekap" tabindex="-1" role="dialog" aria-labelledby="rekapTitle" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-centered" role="document">
             <div class="modal-content relative">
-                <div class="bg-spin" style="display: none;">
+                <div class="bg-spin" style="display: none; z-index: 99;">
                     <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
                         style="height: 3rem; object-fit: cover;" alt="" srcset="">
                 </div>

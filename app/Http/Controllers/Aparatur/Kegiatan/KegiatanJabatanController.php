@@ -9,14 +9,19 @@ use App\Models\Unsur;
 use App\Models\User;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class KegiatanJabatanController extends Controller
 {
     public function index()
     {
+        $user = User::query()->with(['userAparatur.provinsi.kabkotas', 'dokKepegawaians', 'dokKompetensis'])->find(Auth::user()->id);
         $rencanas = Rencana::query()->get();
         $judul = 'Rencana Kinerja';
-        return view('aparatur.kegiatan.index', compact('rencanas', 'judul'));
+        $role = DB::table('users')->join('role_user', 'role_user.user_id', '=', 'users.id')->where('users.id', '=', Auth::user()->id)->select('*')->get();
+        $ketentuan_ak = DB::table('ketentuan_nilais')->where('role_id', $role[0]->role_id)->where('pangkat_golongan_tmt_id', $user->userAparatur->pangkat_golongan_tmt_id)->get();
+        return view('aparatur.kegiatan.index', compact('rencanas', 'judul', 'ketentuan_ak'));
     }
 
     public function search(Request $request)
