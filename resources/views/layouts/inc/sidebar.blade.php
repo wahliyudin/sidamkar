@@ -104,19 +104,18 @@
                         </a>
                     </li>
                 @endrole
-                @role(['penilai_ak', 'atasan_langsung','penetap_ak'])
-                <li class="sidebar-item {{ request()->routeIs('atasan-langsung.overview.index') ? 'active' : '' }}">
-                    <a href="{{ route('atasan-langsung.overview.index') }}" class='sidebar-link'>
-                        <div style="width: 16px; height: 16px; display: flex; align-items: center;">
-                            <i class="bi bi-grid-fill"></i>
-                        </div>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
+                @role(['penilai_ak', 'atasan_langsung', 'penetap_ak'])
+                    <li class="sidebar-item {{ request()->routeIs('atasan-langsung.overview.index') ? 'active' : '' }}">
+                        <a href="{{ route('atasan-langsung.overview.index') }}" class='sidebar-link'>
+                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                                <i class="bi bi-grid-fill"></i>
+                            </div>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
                 @endrole
                 @role(['atasan_langsung'])
-                    <li
-                        class="sidebar-item has-sub ">
+                    <li class="sidebar-item has-sub ">
                         <a href="javascript(0)" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="fa-solid fa-user"></i>
@@ -124,14 +123,15 @@
                             <span>Atasan Langsung</span>
                         </a>
                         <ul
-                                class="submenu {{ request()->is('atasan-langsung/verifikasi-kegiatan*') || request()->is('atasan-langsung/kegiatan-selesai*') ? 'active' : '' }}">
+                            class="submenu {{ request()->is('atasan-langsung/verifikasi-kegiatan*') || request()->is('atasan-langsung/kegiatan-selesai*') ? 'active' : '' }}">
                             <li
-                                class="sidebar-item has-sub {{  request()->is('atasan-langsung/verifikasi-kegiatan*') ? 'active' : '' }}">
+                                class="sidebar-item has-sub {{ request()->is('atasan-langsung/verifikasi-kegiatan*') ? 'active' : '' }}">
                                 <a href="javascript(0)" class='sidebar-link'>
                                     <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                         <i class="fa-solid fa-clipboard"></i>
                                     </div>
-                                    <span>Verifikasi Kegiatan</span>
+                                    <span style="font-size: 14px !important; margin-left: .5rem !important;">Verifikasi
+                                        Kegiatan</span>
                                 </a>
                                 <ul
                                     class="submenu {{ request()->is('atasan-langsung/verifikasi-kegiatan*') ? 'active' : '' }}">
@@ -149,12 +149,14 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="sidebar-item {{ request()->is('atasan-langsung/kegiatan-selesai*') ? 'active' : '' }}">
-                                <a href="{{ route('atasan-langsung.kegiatan-selesai') }}" class='sidebar-link'>
+                            <li
+                                class="sidebar-item {{ request()->is('atasan-langsung/kegiatan-selesai*') ? 'active' : '' }}">
+                                <a href="{{ route('atasan-langsung.kegiatan-selesai') }}" class='sidebar-link no-arrow'>
                                     <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                         <i class="fa-solid fa-clipboard-check"></i>
                                     </div>
-                                    <span>Kegiatan Selesai</span>
+                                    <span style="font-size: 14px !important; margin-left: .5rem !important;">Kegiatan
+                                        Selesai</span>
                                 </a>
                             </li>
                         </ul>
@@ -162,8 +164,7 @@
                 @endrole
 
                 @role('penilai_ak')
-                    <li
-                        class="sidebar-item has-sub ">
+                    <li class="sidebar-item has-sub ">
                         <a href="javascript(0)" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="fa-solid fa-user"></i>
@@ -200,40 +201,35 @@
 
 
                 @role('penetap_ak')
-                <li
-                class="sidebar-item has-sub ">
-                <a href="javascript(0)" class='sidebar-link'>
-                    <div style="width: 16px; height: 16px; display: flex; align-items: center;">
-                        <i class="fa-solid fa-user"></i>
-                    </div>
-                    <span>Penetap AK</span>
-                </a>
-                <ul
-                    class="submenu ">
-                    <li
-                        class="sidebar-item has-sub ">
+                    <li class="sidebar-item has-sub ">
                         <a href="javascript(0)" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
-                                <i class="fa-solid fa-square-poll-vertical"></i>
+                                <i class="fa-solid fa-user"></i>
                             </div>
-                            <span>Data Pengajuan</span>
+                            <span>Penetap AK</span>
                         </a>
-                        <ul
-                            class="submenu ">
-                            <li
-                                class="submenu-item ">
-                                <a href="#">
-                                    Internal</a>
-                            </li>
-                            <li
-                                class="submenu-item {{ request()->is('penilai-ak/data-pengajuan/external*') ? 'active' : '' }}">
-                                <a href="#">
-                                    External</a>
+                        <ul class="submenu ">
+                            <li class="sidebar-item has-sub ">
+                                <a href="javascript(0)" class='sidebar-link'>
+                                    <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                                        <i class="fa-solid fa-square-poll-vertical"></i>
+                                    </div>
+                                    <span>Data Pengajuan</span>
+                                </a>
+                                <ul class="submenu ">
+                                    <li class="submenu-item ">
+                                        <a href="#">
+                                            Internal</a>
+                                    </li>
+                                    <li
+                                        class="submenu-item {{ request()->is('penilai-ak/data-pengajuan/external*') ? 'active' : '' }}">
+                                        <a href="#">
+                                            External</a>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
                     </li>
-                </ul>
-            </li>
                 @endrole
 
                 @role('provinsi')

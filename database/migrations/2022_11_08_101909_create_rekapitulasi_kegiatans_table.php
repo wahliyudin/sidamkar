@@ -19,10 +19,10 @@ return new class extends Migration
             $table->unsignedBigInteger('periode_id');
             $table->boolean('is_send')->default(false);
             $table->boolean('is_ttd')->default(false);
-            $table->string('file');
-            $table->string('file_name');
-            $table->string('file_capaian')->nullable();
-            $table->string('file_name_capaian')->nullable();
+            $table->string('url_rekap')->nullable();
+            $table->string('name_rekap')->nullable();
+            $table->string('url_capaian')->nullable();
+            $table->string('name__capaian')->nullable();
             $table->timestamps();
 
             $table->foreign('fungsional_id')->on('users')->references('id')->cascadeOnDelete();

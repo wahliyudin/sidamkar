@@ -114,7 +114,7 @@
                 <td width="200px">{{ $user?->roles()?->first()?->display_name }}</td>
                 <td width="70px">Jabatan</td>
                 <td width="5px">:</td>
-                <td width="200px">{{ $atasan_langsung?->roles()?->first()?->display_name }}</td>
+                <td width="200px">{{ $role_atasan_langsung?->display_name }}</td>
             </tr>
             <tr>
                 <td width="70px" style="padding-bottom: 10px;">Unit Kerja</td>
