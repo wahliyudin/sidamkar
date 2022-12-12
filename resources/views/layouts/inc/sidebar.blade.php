@@ -12,8 +12,12 @@
                     <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
                 </div>
             </div>
-            <p style="font-size: 14px; color: white;" class="d-flex justify-content-center align-items-center">Atasan
-                Langsung</p>
+            @foreach (Auth::user()->roles as $role)
+                <p style="font-size: 14px; color: white;" class="d-flex justify-content-center align-items-center">
+                    {{ $role->display_name }}
+                </p>
+            @endforeach
+
         </div>
         <div class="sidebar-menu">
             <ul class="menu">
