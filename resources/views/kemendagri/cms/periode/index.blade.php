@@ -24,7 +24,7 @@
                 </div>
             </div>
         </div>
-        <div class="card py-2">
+        <div class="card py-2 overflow-auto">
             <div class="card-header">
                 <div class="row">
                     <div class="col-md-8 col-12">

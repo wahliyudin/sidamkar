@@ -3,7 +3,7 @@
     <section class="section">
         <div class="card">
             <div class="card-body" style="padding-top: 3rem;">
-                 <form action="" method="post" class="form-data">
+                <form action="" method="post" class="form-data">
                     @csrf
                     <div class="row">
                         <div class="col-md-4">
@@ -21,7 +21,7 @@
                                 </label>
                             </div>
                         </div>
-                         <div class="row col-md-8 justify-content-center">
+                        <div class="row col-md-8 justify-content-center">
                             <div class="row col-md-12" style="border: 2px solid #E5E5E5;border-radius: 6px;padding: 4px;">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -64,7 +64,7 @@
                                             <span class="text-danger text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
-                                    </div>
+                                </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="basicInput">Pendidikan Terakhir</label>
@@ -94,22 +94,23 @@
                                     </div>
                                     @if ($user->userPejabatStruktural?->tingkat_aparatur == 'kab_kota')
                                         <div class="form-group">
-                                        <label for="basicInput">Kabupaten / Kota</label>
-                                         <select class="kab_kota_id form-select" name="kab_kota_id" id="kab_kota_id">
-                                            <option disabled selected>- Pilih Kabupaten / Kota -</option>
-                                            @foreach ($kab_kota as $kabkota)
-                                                <option value="{{ $kabkota->id }}" @selected(old('kab_kota_id', $user->userPejabatStruktural?->kab_kota_id) == $kabkota->id)>
-                                                    {{ $kabkota->nama }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('kab_kota_id')
-                                            <span class="text-danger text-sm">{{ $message }}</span>
-                                        @enderror
-                                    </div>
+                                            <label for="basicInput">Kabupaten / Kota</label>
+                                            <select class="kab_kota_id form-select" name="kab_kota_id" id="kab_kota_id">
+                                                <option disabled selected>- Pilih Kabupaten / Kota -</option>
+                                                @foreach ($kab_kota as $kabkota)
+                                                    <option value="{{ $kabkota->id }}" @selected(old('kab_kota_id', $user->userPejabatStruktural?->kab_kota_id) == $kabkota->id)>
+                                                        {{ $kabkota->nama }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('kab_kota_id')
+                                                <span class="text-danger text-sm">{{ $message }}</span>
+                                            @enderror
+                                        </div>
                                     @endif
                                 </div>
                             </div>
-                            <div class="row col-md-12" style="border: 2px solid #E5E5E5;border-radius: 6px;padding: 4px;margin-top: 19px;">
+                            <div class="row col-md-12"
+                                style="border: 2px solid #E5E5E5;border-radius: 6px;padding: 4px;margin-top: 19px;">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="basicInput">NIP</label>
@@ -121,7 +122,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="basicInput">Jabatan</label>
-                                        <input type="text" name="jabatan" disabled class="form-control" placeholder="" value="{{ Auth::user()->roles()->first()->display_name }}">
+                                        <input type="text" name="jabatan" disabled class="form-control" placeholder=""
+                                            value="{{ Auth::user()->roles()->first()->display_name }}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -152,9 +154,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="d-flex justify-content-end mt-2">
-                        <button type="reset" class="btn btn-gray text-sm px-5" id="reset">Reset</button>
-                        <button class="btn btn-blue text-sm ms-3 px-5 simpan-data" id="simpan" >Simpan</button>
+                    <div class="mt-2 text-end btn-bwh">
+                        <button type="reset" class="btn btn-gray text-sm px-5 reset-data" id="reset">Reset</button>
+                        <button class="btn btn-blue text-sm ms-3 px-5 simpan-data" id="simpan">Simpan</button>
                     </div>
                 </form>
             </div>
@@ -312,6 +314,18 @@
 
     <link rel="stylesheet" href="{{ asset('assets/plugins/select2/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
+    <style>
+        @media screen and (max-width: 422px) {
+            .simpan-data {
+                margin-top: 10px;
+            }
+        }
+
+        .simpan-data {
+            width: 140px;
+            text-align: center;
+        }
+    </style>
 @endsection
 @section('js')
     <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
@@ -327,65 +341,66 @@
     <script src="{{ asset('assets/extensions/filepond/filepond.jquery.js') }}"></script>
     <script src="{{ asset('assets/js/extensions/sweetalert2.all.min.js') }}"></script>
     <script>
-        $('#reset').click(function (e) { 
+        $('#reset').click(function(e) {
             e.preventDefault();
             location.reload()
         });
         $('#simpan').click(function(e) {
-        e.preventDefault();
-        var postData = new FormData($(".form-data")[0]);
-        swal({
-            title: "Apakah Data Yang Anda Masukkan Sudah Benar?",
-            type: "warning",
-            showCancelButton: !0,
-            confirmButtonText: "Ya, Sudah Benar!",
-            cancelButtonText: "Batal",
-            reverseButtons: !0,
-            showLoaderOnConfirm: true,
-            preConfirm: async () => {
-                return await $.ajax({
-                    type: 'POST',
-                    url: url("/data-atasan-langsung-store"),
-                    processData: false,
-                    contentType: false,
-                    data: postData,
-                });
-            },
-        }).then(function(e) {
-            if (e.value.status == 200) {
-                swal("Selesai!", e.value.message, "success").then(() => {
-                    location.reload();
-                });
-            } else {
-                swal("Error!", e.value.message, "error");
-            }
-        }, function(dismiss) {
-            return false;
-        })
-    });
-    $('select[name="provinsi_id"]').each(function(index, element) {
-        $(element).change(function(e) {
             e.preventDefault();
-            window.localStorage.setItem('provinsi', $(element).data('id'));
-            loadKabKota(this.value, $(element.parentElement.parentElement.parentElement)
-                .find('#kab_kota_id'))
+            var postData = new FormData($(".form-data")[0]);
+            swal({
+                title: "Apakah Data Yang Anda Masukkan Sudah Benar?",
+                type: "warning",
+                showCancelButton: !0,
+                confirmButtonText: "Ya, Sudah Benar!",
+                cancelButtonText: "Batal",
+                reverseButtons: !0,
+                showLoaderOnConfirm: true,
+                preConfirm: async () => {
+                    return await $.ajax({
+                        type: 'POST',
+                        url: url("/data-atasan-langsung-store"),
+                        processData: false,
+                        contentType: false,
+                        data: postData,
+                    });
+                },
+            }).then(function(e) {
+                if (e.value.status == 200) {
+                    swal("Selesai!", e.value.message, "success").then(() => {
+                        location.reload();
+                    });
+                } else {
+                    swal("Error!", e.value.message, "error");
+                }
+            }, function(dismiss) {
+                return false;
+            })
         });
-    });
-    function loadKabKota(val, kabupaten, kabupaten_id = null) {
-        return new Promise(resolve => {
-            $(kabupaten).html('<option value="">Memuat...</option>');
-            fetch('/api/kab-kota/' + val)
-                .then(res => res.json())
-                .then(res => {
-                    $(kabupaten).html(
-                        '<option selected disabled>- Pilih Kabupaten / Kota -</option>');
-                    res.forEach(model => {
-                        var selected = kabupaten_id == model.id ? 'selected=""' : '';
-                        $(kabupaten).append('<option value="' + model.id + '" ' +
-                            selected + '>' + model.nama + '</option>');
+        $('select[name="provinsi_id"]').each(function(index, element) {
+            $(element).change(function(e) {
+                e.preventDefault();
+                window.localStorage.setItem('provinsi', $(element).data('id'));
+                loadKabKota(this.value, $(element.parentElement.parentElement.parentElement)
+                    .find('#kab_kota_id'))
+            });
+        });
+
+        function loadKabKota(val, kabupaten, kabupaten_id = null) {
+            return new Promise(resolve => {
+                $(kabupaten).html('<option value="">Memuat...</option>');
+                fetch('/api/kab-kota/' + val)
+                    .then(res => res.json())
+                    .then(res => {
+                        $(kabupaten).html(
+                            '<option selected disabled>- Pilih Kabupaten / Kota -</option>');
+                        res.forEach(model => {
+                            var selected = kabupaten_id == model.id ? 'selected=""' : '';
+                            $(kabupaten).append('<option value="' + model.id + '" ' +
+                                selected + '>' + model.nama + '</option>');
+                        })
+                        resolve()
                     })
-                    resolve()
-                })
             })
         }
         $(function() {
@@ -568,7 +583,8 @@
                     preConfirm: async () => {
                         return await $.ajax({
                             type: 'DELETE',
-                            url: "{{ url('data-atasan-langsung/destroy-dockepeg') }}/" + $(this)
+                            url: "{{ url('data-atasan-langsung/destroy-dockepeg') }}/" +
+                                $(this)
                                 .data('id'),
                             dataType: 'JSON'
                         });
@@ -598,7 +614,8 @@
                     preConfirm: async () => {
                         return await $.ajax({
                             type: 'DELETE',
-                            url: "{{ url('data-atasan-langsung/destroy-dockom') }}/" + $(this)
+                            url: "{{ url('data-atasan-langsung/destroy-dockom') }}/" +
+                                $(this)
                                 .data('id'),
                             dataType: 'JSON'
                         });

@@ -211,6 +211,14 @@
             .target-periode {
                 font-size: 14px !important;
             }
+
+            .update-rencana {
+                margin-top: 10px;
+            }
+
+            .simpan-rencana {
+                margin-top: 10px;
+            }
         }
     </style>
 @endsection

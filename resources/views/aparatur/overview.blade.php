@@ -149,7 +149,7 @@
                 </div>  --}}
             </div>
             <div class="col-md-3 col">
-                <div class="card" style="overflow: auto; height: 550px">
+                <div class="card overflow-auto" style="overflow: auto; height: 550px">
                     <div class="card-header">
                         <h4 class="card-title text-center" style="color: #17181A; font-family: 'Roboto';">
                             INFORMATION
