@@ -82,7 +82,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-body px-0">
+                    <div class="card-body px-0 overflow-auto">
                         <div class="card-body accordion-container">
                             <div class="accordion" id="accordion-parent">
                                 @foreach ($kegiatan->unsurs as $unsur)
