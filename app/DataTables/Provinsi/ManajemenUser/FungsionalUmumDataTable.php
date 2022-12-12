@@ -27,7 +27,7 @@ class FungsionalUmumDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('username', function (User $user) {
-                return '<p class="username m-0" data-detail="' . $user->id . '">' . $user->userAparatur->nama . '</p>';
+                return '<p class="username m-0" data-detail="' . $user->id . '">' . $user->userFungsionalUmum->nama . '</p>';
             })
             ->filterColumn('username', function ($query, $keyword) {
                 return $query->where('username', 'like', "%$keyword%");;
@@ -36,24 +36,24 @@ class FungsionalUmumDataTable extends DataTable
                 return $query->orderBy('username', $order);
             })
             ->addColumn('no_hp', function (User $user) {
-                return $user->userAparatur->no_hp;
+                return $user?->userFungsionalUmum?->no_hp;
             })
             ->filterColumn('no_hp', function ($query, $keyword) {
-                return $query->whereHas('userAparatur', function ($query) use ($keyword) {
+                return $query->whereHas('userFungsionalUmum', function ($query) use ($keyword) {
                     $query->where('no_hp', 'like', "%$keyword%");
                 });
             })
             ->orderColumn('no_hp', function ($query, $order) {
-                return $query->whereHas('userAparatur', function ($query) use ($order) {
+                return $query->whereHas('userFungsionalUmum', function ($query) use ($order) {
                     $query->orderBy('no_hp', $order);
                 });
             })
             ->addColumn('jabatan', function (User $user) {
-                return $user->roles()?->first()->display_name ?? '-';
+                return $user?->userFungsionalUmum?->jabatan;
             })
             ->filterColumn('jabatan', function ($query, $keyword) {
-                $query->whereHas('roles', function ($query) use ($keyword) {
-                    $query->where('display_name', 'like', "%$keyword%");
+                $query->whereHas('userFungsionalUmum', function ($query) use ($keyword) {
+                    $query->where('jabatan', 'like', "%$keyword%");
                 });
             })
             ->addColumn('tgl_registrasi', function (User $user) {
@@ -62,11 +62,8 @@ class FungsionalUmumDataTable extends DataTable
             ->orderColumn('tgl_registrasi', function ($query, $order) {
                 $query->orderBy('created_at', $order);
             })
-            ->addColumn('status', function (User $user) {
-                return $this->statusAkun($user->status_akun);
-            })
             ->addColumn('action', function (User $user) {
-                return view('provinsi.manajemen-user.buttons-tolak-verif', compact('user'))->render();
+                return view('kabkota.manajemen-user.fungsional-umum.buttons-tolak-verif', compact('user'))->render();
             })
             ->rawColumns(['status', 'action'])
             ->setRowId('id');
@@ -80,11 +77,9 @@ class FungsionalUmumDataTable extends DataTable
      */
     public function query(User $model): QueryBuilder
     {
-        return $model->newQuery()->with(['roles:id,display_name'])->withWhereHas('userAparatur', function ($query) {
+        return $model->newQuery()->withWhereHas('userFungsionalUmum', function ($query) {
             $query->where('provinsi_id', $this->authUser()->load('userProvKabKota')->userProvKabKota->provinsi_id)
                 ->where('tingkat_aparatur', 'provinsi');
-        })->whereHas('roles', function ($query) {
-            $query->whereNot('name', array_merge(getAllRoleFungsional(), [getAllRoleStruktural(), getAllRoleProvKabKota(), 'kemendagri']));
         });
     }
 
@@ -125,8 +120,6 @@ class FungsionalUmumDataTable extends DataTable
                 ->orderable(false),
             Column::make('tgl_registrasi')
                 ->searchable(false),
-            Column::computed('status')
-                ->title('Status Verifikasi'),
             Column::computed('action'),
         ];
     }
