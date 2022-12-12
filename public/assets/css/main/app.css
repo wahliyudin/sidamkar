@@ -836,7 +836,9 @@ select:disabled {
     opacity: 1;
 }
 
-[list]:not([type="date"]):not([type="datetime-local"]):not([type="month"]):not([type="week"]):not([type="time"])::-webkit-calendar-picker-indicator {
+[list]:not([type="date"]):not([type="datetime-local"]):not([type="month"]):not(
+        [type="week"]
+    ):not([type="time"])::-webkit-calendar-picker-indicator {
     display: none !important;
 }
 
@@ -3439,8 +3441,9 @@ textarea.form-control-lg {
     > .form-floating:nth-last-child(n + 3)
     > .form-select,
 .input-group.has-validation
-    > :nth-last-child(n
-        + 3):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating),
+    > :nth-last-child(n + 3):not(.dropdown-toggle):not(.dropdown-menu):not(
+        .form-floating
+    ),
 .input-group:not(.has-validation) > .dropdown-toggle:nth-last-child(n + 3),
 .input-group:not(.has-validation)
     > .form-floating:not(:last-child)
@@ -3449,7 +3452,9 @@ textarea.form-control-lg {
     > .form-floating:not(:last-child)
     > .form-select,
 .input-group:not(.has-validation)
-    > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating) {
+    > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(
+        .form-floating
+    ) {
     border-bottom-right-radius: 0;
     border-top-right-radius: 0;
 }
@@ -3457,7 +3462,9 @@ textarea.form-control-lg {
 .input-group > .form-floating:not(:first-child) > .form-control,
 .input-group > .form-floating:not(:first-child) > .form-select,
 .input-group
-    > :not(:first-child):not(.dropdown-menu):not(.form-floating):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+    > :not(:first-child):not(.dropdown-menu):not(.form-floating):not(
+        .valid-tooltip
+    ):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
     border-bottom-left-radius: 0;
     border-top-left-radius: 0;
     margin-left: -1px;
@@ -22911,7 +22918,7 @@ a {
 .btn-red-dark,
 .btn-red-dark:active {
     color: #fff !important;
-    background-color: #884414!important;
+    background-color: #884414 !important;
 }
 
 .btn-red-dark:hover {
@@ -23007,6 +23014,18 @@ a {
 }
 
 @media screen and (min-width: 768px) and (max-width: 1100px) {
+    .circle {
+        border-radius: 100%;
+        font-size: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 1.85rem;
+        height: 1.85rem;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 360px) {
     .circle {
         border-radius: 100%;
         font-size: 25px;

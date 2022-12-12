@@ -31,6 +31,11 @@
             @include('layouts.inc.navbar')
             <div id="main-content" style="padding-top:120px">
                 <div class="page-heading">
+                    <h5>
+                        @isset($judul)
+                            {{ $judul }}
+                        @endisset
+                    </h5>
                     @yield('breadcrumbs')
                     @yield('content')
                 </div>

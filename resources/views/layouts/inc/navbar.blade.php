@@ -20,11 +20,11 @@
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <h6 class=" ms-3" style="margin-top:12px">
+            {{--  <h5 class=" ms-3" style="margin-top:12px">
                 @isset($judul)
                     {{ $judul }}
                 @endisset
-            </h6>
+            </h5>  --}}
             <div class="collapse navbar-collapse " id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-lg-0">
                     <li class="nav-item dropdown me-1">
@@ -83,9 +83,9 @@
                 <div class="dropdown">
                     <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
                         <div class="user-menu d-flex align-items-center">
-                            <div class="user-name text-end me-3">
+                            {{--  <div class="user-name text-end me-3">
                                 <h6 class="mb-0 text-gray-600">{{ Auth::user()->username }}</h6>
-                            </div>
+                            </div>  --}}
                             @role(getAllRoleFungsional())
                                 <div class="user-img d-flex align-items-center">
                                     <div class="avatar avatar-md">
@@ -94,7 +94,7 @@
                                     </div>
                                 </div>
                             @endrole
-                            @role(['atasan_langsung','penilai_ak','penetap_ak'])
+                            @role(['atasan_langsung', 'penilai_ak', 'penetap_ak'])
                                 <div class="user-img d-flex align-items-center">
                                     <div class="avatar avatar-md">
                                         <img
@@ -149,7 +149,7 @@
                                 </a>
                             </li>
                         @endrole
-                        @role(['atasan_langsung','penilai_ak','penetap_ak'])
+                        @role(['atasan_langsung', 'penilai_ak', 'penetap_ak'])
                             <li>
                                 <a class="dropdown-item" href="{{ route('data-atasan-langsung') }}">
                                     <i class="icon-mid bi bi-person me-2"></i>
@@ -157,7 +157,7 @@
                                 </a>
                             </li>
                         @endrole
-                        @role(['atasan_langsung','penilai_ak','penetap_ak'])
+                        @role(['atasan_langsung', 'penilai_ak', 'penetap_ak'])
                             <li>
                                 <a class="dropdown-item" href="{{ route('ubah-password') }}">
                                     <i class="fa-solid fa-lock me-2"></i>
