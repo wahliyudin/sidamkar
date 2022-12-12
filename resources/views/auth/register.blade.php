@@ -78,7 +78,7 @@
                                                 action="{{ route('register') }}" data-fouc>
                                                 @csrf
 
-                                                <h6>Admin Level</h6>
+                                                <h6>Tingkat Aparatur</h6>
                                                 <fieldset>
                                                     <div class="row justify-content-center">
                                                         <div class="col-md-3">
@@ -358,7 +358,7 @@
                                             <form class="wizard-form steps-validation" method="POST"
                                                 action="{{ route('register') }}" data-fouc>
                                                 @csrf
-                                                <h6>Admin Level</h6>
+                                                <h6>Tingkat Admin</h6>
                                                 <fieldset>
                                                     <div class="row justify-content-center">
                                                         <div class="col-md-3">

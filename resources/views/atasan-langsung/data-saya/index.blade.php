@@ -122,8 +122,13 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="basicInput">Jabatan</label>
-                                        <input type="text" name="jabatan" disabled class="form-control" placeholder=""
-                                            value="{{ Auth::user()->roles()->first()->display_name }}">
+                                        <ul>
+                                            <li>Atasan Langsung</li>
+                                            <li>Penilai AK</li>
+                                            <li>Penetap AK</li>
+                                        </ul>
+                                        {{--  <input type="text" name="jabatan" disabled class="form-control" placeholder=""
+                                            value="{{ Auth::user()->roles()->first()->display_name }}">  --}}
                                     </div>
                                 </div>
                                 <div class="col-md-6">
