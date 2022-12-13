@@ -90,7 +90,7 @@
                 <hr>
                 <div class="row align-items-center justify-content-between">
                     <div class="form-group col-md-3 ms-3">
-                        <button class="btn btn-gray btn-sm ps-3 pe-3 py-2">
+                        <button class="btn btn-gray-reverse btn-sm ps-3 pe-3 py-2">
                             <i class="fa-solid fa-clock-rotate-left me-1"></i> Riwayat Laporan
                         </button>
                     </div>
