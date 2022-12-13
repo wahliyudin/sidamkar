@@ -37,8 +37,13 @@ class DatabaseSeeder extends Seeder
         $this->call(JenisKegiaranSeeder::class);
         $this->call(NomenKlaturPerangkatDaerahSeeder::class);
         $this->call(UnsurSeeder::class);
+        $this->call(UnsurProfesiSeeder::class);
+        $this->call(UnsurProfesiSeeder::class);
         $this->call(SubUnsurSeeder::class);
+        $this->call(SubUnsurProfesiSeeder::class);
         $this->call(ButirKegiatanSeeder::class);
+        $this->call(ButirKegiatanProfesiSeeder::class);
+        $this->call(SubButirKegiatanProfesiSeeder::class);
         $this->call(KetentuanNilaiSeeder::class);
         $this->call(KetentuanSkpSeeder::class);
         $this->call(MekanismePengangkatanSeeder::class);
