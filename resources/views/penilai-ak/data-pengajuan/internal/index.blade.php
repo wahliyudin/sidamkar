@@ -11,7 +11,18 @@
                 </div>
             </div>
             <div class="card-body">
-                {{ $dataTable->table() }}
+                <table id="internal" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nama</th>
+                            <th>NIP</th>
+                            <th>Jabatan</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
             </div>
         </div>
     </section>
@@ -26,10 +37,49 @@
 
 @section('js')
     <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
-    {{ $dataTable->scripts() }}
+    {{-- {{ $dataTable->scripts() }} --}}
     <script src="{{ asset('assets/js/extensions/sweetalert2.all.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+    <script>
+        $('#internal').dataTable().fnDestroy();
+        table = $('#internal').DataTable({
+            responsive: true,
+            serverSide: true,
+            processing: true,
+            ajax: {
+                url: url('/penilai-ak/datatable'),
+                type: "POST",
+                data: {
+                    "_token": "{{ csrf_token() }}"
+                }
+            },
+            columns: [{
+                    data: 'nama',
+                    name: 'nama'
+                },
+                {
+                    data: 'nip',
+                    name: 'nip'
+                },
+                {
+                    data: 'display_name',
+                    name: 'jabatan'
+                },
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: true,
+                    searchable: true
+                },
+            ],
+            pageLength: 10,
+            lengthMenu: [
+                [10, 20, 50, -1],
+                [10, 20, 50, 'All']
+            ]
+        });
+    </script>
 @endsection

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\DataTables\PenilaiAk\DataPengajuan;
+namespace App\DataTables\PenilaiAK\DataPengajuan;
 
 use App\Models\User;
 use App\Traits\AuthTrait;
@@ -49,7 +49,7 @@ class ExternalDataTable extends DataTable
                 return $user?->userAparatur?->pangkatGolonganTmt?->nama;
             })
             ->addColumn('action', function (User $user) {
-                return '<a href="'.route('penilai-ak.data-pengajuan.external.show', $user->id).'" class="btn btn-blue btn-sm">Detail</a>';
+                return '<a href="' . route('penilai-ak.data-pengajuan.external.show', $user->id) . '" class="btn btn-blue btn-sm">Detail</a>';
             })
             ->rawColumns(['action'])
             ->setRowId('id');

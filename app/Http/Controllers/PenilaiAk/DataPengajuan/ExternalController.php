@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\PenilaiAk\DataPengajuan;
+namespace App\Http\Controllers\PenilaiAK\DataPengajuan;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;

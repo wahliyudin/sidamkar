@@ -25,14 +25,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if (auth()->user()->hasRole('damkar_pemula') ||
+        if (
+            auth()->user()->hasRole('damkar_pemula') ||
             auth()->user()->hasRole('damkar_terampil') ||
             auth()->user()->hasRole('damkar_mahir') ||
             auth()->user()->hasRole('damkar_penyelia') ||
             auth()->user()->hasRole('analis_kebakaran_ahli_pertama') ||
             auth()->user()->hasRole('analis_kebakaran_ahli_muda') ||
             auth()->user()->hasRole('analis_kebakaran_ahli_madya')
-            ) {
+        ) {
             return to_route('overview');
         } elseif (auth()->user()->hasRole('kab_kota')) {
             return to_route('kab-kota.overview');
@@ -40,11 +41,11 @@ class HomeController extends Controller
             return to_route('provinsi.overview.index');
         } elseif (auth()->user()->hasRole('atasan_langsung')) {
             return to_route('atasan-langsung.overview.index');
-        }elseif (auth()->user()->hasRole('penilai_ak')) {
+        } elseif (auth()->user()->hasRole('penilai_ak_damkar') || auth()->user()->hasRole('penilai_ak_analis')) {
             return to_route('penilai-ak.overview');
         } elseif (auth()->user()->hasRole('kemendagri')) {
             return to_route('kemendagri.overview.index');
-        } elseif (auth()->user()->hasRole('penetap_ak')) {
+        } elseif (auth()->user()->hasRole('penetap_ak_damkar') || auth()->user()->hasRole('penetap_ak_analis')) {
             return to_route('penetap-ak.overview');
         } else {
             return to_route('login')->with('warning', 'Kamu Tidak Dapat Mengakses Sistem');

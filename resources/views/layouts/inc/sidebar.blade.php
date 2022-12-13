@@ -12,11 +12,13 @@
                     <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
                 </div>
             </div>
-            @foreach (Auth::user()->roles as $role)
-                <p style="font-size: 14px; color: white;" class="d-flex justify-content-center align-items-center">
-                    {{ $role->display_name }}
-                </p>
-            @endforeach
+            @if (count(Auth::user()->roles) == 1)
+                @foreach (Auth::user()->roles as $role)
+                    <p style="font-size: 14px; color: white;" class="d-flex justify-content-center align-items-center">
+                        {{ $role->display_name }}
+                    </p>
+                @endforeach
+            @endif
 
         </div>
         <div class="sidebar-menu">
@@ -110,7 +112,8 @@
                         </a>
                     </li>
                 @endrole
-                @role(['penilai_ak', 'atasan_langsung', 'penetap_ak'])
+                @role(['penilai_ak_damkar', 'penilai_ak_analis', 'atasan_langsung', 'penetap_ak_damkar',
+                    'penetap_ak_analis'])
                     <li class="sidebar-item {{ request()->routeIs('atasan-langsung.overview.index') ? 'active' : '' }}">
                         <a href="{{ route('atasan-langsung.overview.index') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
@@ -169,7 +172,7 @@
                     </li>
                 @endrole
 
-                @role('penilai_ak')
+                @role(['penilai_ak_damkar', 'penilai_ak_analis'])
                     <li class="sidebar-item has-sub ">
                         <a href="javascript(0)" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
@@ -206,7 +209,7 @@
                 @endrole
 
 
-                @role('penetap_ak')
+                @role(['penetap_ak_damkar', 'penetap_ak_analis'])
                     <li class="sidebar-item has-sub ">
                         <a href="javascript(0)" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
