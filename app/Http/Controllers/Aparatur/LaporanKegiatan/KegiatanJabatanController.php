@@ -73,9 +73,9 @@ class KegiatanJabatanController extends Controller
         $role = DB::table('users')->join('role_user', 'role_user.user_id', '=', 'users.id')->where('users.id', '=', Auth::user()->id)->select('*')->get();
 
         $ketentuan_ak = DB::table('ketentuan_nilais')->where('role_id', $role[0]->role_id)->where('pangkat_golongan_tmt_id', $user1->userAparatur->pangkat_golongan_tmt_id)->get();
-
+        $ak_diterima = DB::table('laporan_kegiatan_jabatans')->where('user_id', Auth::user()->id)->where('status', 3)->sum('score');
         $historyRekapitulasiKegiatans = $user?->rekapitulasiKegiatan?->historyRekapitulasiKegiatans ?? [];
-        return view('aparatur.laporan-kegiatan.jabatan.index', compact('periode', 'user', 'judul', 'historyRekapitulasiKegiatans', 'skp', 'ketentuan_ak'));
+        return view('aparatur.laporan-kegiatan.jabatan.index', compact('periode', 'user', 'judul', 'historyRekapitulasiKegiatans', 'skp', 'ketentuan_ak', 'ak_diterima'));
     }
 
     /**
