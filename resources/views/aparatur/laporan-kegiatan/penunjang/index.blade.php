@@ -62,7 +62,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="row">
-                        <h4>Kegiatan Profesi</h4>
+                        <h4>Kegiatan Penunjang</h4>
                     </div>
                     <hr>
                     <div class="row align-items-center justify-content-between">
