@@ -173,4 +173,19 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(KetentuanSkpFungsional::class);
     }
+
+    public function suratPernyataanKegiatans()
+    {
+        return $this->hasMany(SuratPernyataanKegiatan::class, 'fungsional_id', 'id');
+    }
+
+    public function rekapitulasiCapaians()
+    {
+        return $this->hasMany(RekapitulasiCapaian::class, 'fungsional_id', 'id');
+    }
+
+    public function penilaianCapaians()
+    {
+        return $this->hasMany(PenilaianCapaian::class, 'fungsional_id', 'id');
+    }
 }

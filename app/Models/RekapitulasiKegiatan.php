@@ -13,12 +13,8 @@ class RekapitulasiKegiatan extends Model
     protected $fillable = [
         'fungsional_id',
         'periode_id',
-        'file',
-        'file_name',
         'is_send',
-        'is_ttd',
-        'file_capaian',
-        'file_name_capaian'
+        'is_ttd'
     ];
 
     public function fungsional()

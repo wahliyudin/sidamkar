@@ -48,14 +48,6 @@ class StrukturalDataTable extends DataTable
                     $query->orderBy('no_hp', $order);
                 });
             })
-            // ->addColumn('jabatan', function (User $user) {
-            //     return $user->roles()?->first()->display_name ?? '-';
-            // })
-            // ->filterColumn('jabatan', function ($query, $keyword) {
-            //     $query->whereHas('roles', function ($query) use ($keyword) {
-            //         $query->where('display_name', 'like', "%$keyword%");
-            //     });
-            // })
             ->addColumn('eselon', function (User $user) {
                 return 'Eselon '.$user->userPejabatStruktural->eselon;
             })
@@ -132,8 +124,6 @@ class StrukturalDataTable extends DataTable
             Column::make('username')
                 ->title('Nama'),
             Column::make('no_hp'),
-            // Column::make('jabatan')
-            //     ->orderable(false),
             Column::make('eselon'),
             Column::make('tgl_registrasi')
                 ->searchable(false),

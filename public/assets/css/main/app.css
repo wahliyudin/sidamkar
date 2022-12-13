@@ -21784,7 +21784,9 @@ body .bi:before {
     right: 15px;
     top: 12px;
 }
-
+.sidebar-wrapper .menu .sidebar-item.has-sub .sidebar-link.no-arrow:after{
+    content: '';
+}
 .sidebar-wrapper .menu .sidebar-item.has-sub .sidebar-link:hover:after {
     color: #25396f !important;
 }

@@ -209,14 +209,10 @@ class KegiatanJabatanController extends Controller
 
     public function rekapitulasi()
     {
-        $user = $this->authUser()->load('ketentuanSkpFungsional');
-        if (!isset($user?->ketentuanSkpFungsional)) {
-            throw ValidationException::withMessages(['Maaf Anda Belum Menginput SKP']);
-        }
-        $rekapitulasiKegiatan = $this->generatePdfService->generateRekapitulasi($this->authUser(), 'Rekapitulasi diterima Atasan Langsung');
+        $rekapitulasiKegiatan = $this->kegiatanJabatanService->generateDocuments($this->authUser());
         return response()->json([
             'message' => 'Berhasil',
-            'data' => $rekapitulasiKegiatan?->file
+            'data' => $rekapitulasiKegiatan?->url_rekap
         ]);
     }
 
@@ -228,7 +224,7 @@ class KegiatanJabatanController extends Controller
             ->where('periode_id', $periode->id)
             ->first();
         if (!$rekap) {
-            throw ValidationException::withMessages(['Data rekapitulasi tidak ditemukan']);
+            throw ValidationException::withMessages(['Data Rekapitulasi Belum Dibuat']);
         }
         if ($rekap->is_send == true) {
             throw ValidationException::withMessages(['Data rekapitulasi sudah dikirim']);
