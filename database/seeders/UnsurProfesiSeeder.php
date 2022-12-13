@@ -30,5 +30,21 @@ class UnsurProfesiSeeder extends Seeder
             ],
         ];
         UnsurProfesi::query()->upsert($kegiatanProfesiFungsionalDamkar, 'id');
+
+        $kegiatanProfesiAnalisDamkar = [
+            //3
+            [
+                'jenis_kegiatan_id' => 3,
+                'periode_id' => 1,
+                'nama' => 'Pengembangan Profesi Analis Kebakaran'
+            ],
+            //4
+            [
+                'jenis_kegiatan_id' => 3,
+                'periode_id' => 1,
+                'nama' => 'Penunjang Tugas Analis Kebakaran'
+            ],
+        ];
+        UnsurProfesi::query()->upsert($kegiatanProfesiAnalisDamkar, 'id');
     }
 }
