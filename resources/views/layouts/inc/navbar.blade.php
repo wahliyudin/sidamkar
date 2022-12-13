@@ -94,7 +94,8 @@
                                     </div>
                                 </div>
                             @endrole
-                            @role(['atasan_langsung', 'penilai_ak', 'penetap_ak'])
+                            @role(['atasan_langsung', 'penilai_ak_damkar', 'penilai_ak_analis', 'penetap_ak_damkar',
+                                'penetap_ak_analis'])
                                 <div class="user-img d-flex align-items-center">
                                     <div class="avatar avatar-md">
                                         <img
