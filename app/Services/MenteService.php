@@ -4,6 +4,8 @@ namespace App\Services;
 
 use App\Models\CrossPenilaiAndPenetap;
 use App\Models\KabProvPenilaiAndPenetap;
+use App\Repositories\CrossPenilaiAndPenetapRepository;
+use App\Repositories\KabProvPenilaiAndPenetapRepository;
 use App\Repositories\MenteRepository;
 use App\Repositories\PeriodeRepository;
 use App\Repositories\UserRepository;
@@ -18,12 +20,16 @@ class MenteService
     protected PeriodeRepository $periodeRepository;
     protected MenteRepository $menteRepository;
     protected UserRepository $userRepository;
+    protected KabProvPenilaiAndPenetapRepository $kabProvPenilaiAndPenetapRepository;
+    protected CrossPenilaiAndPenetapRepository $crossPenilaiAndPenetapRepository;
 
-    public function __construct(PeriodeRepository $periodeRepository, MenteRepository $menteRepository, UserRepository $userRepository)
+    public function __construct(PeriodeRepository $periodeRepository, MenteRepository $menteRepository, UserRepository $userRepository, KabProvPenilaiAndPenetapRepository $kabProvPenilaiAndPenetapRepository, CrossPenilaiAndPenetapRepository $crossPenilaiAndPenetapRepository)
     {
         $this->periodeRepository = $periodeRepository;
         $this->menteRepository = $menteRepository;
         $this->userRepository = $userRepository;
+        $this->kabProvPenilaiAndPenetapRepository = $kabProvPenilaiAndPenetapRepository;
+        $this->crossPenilaiAndPenetapRepository = $crossPenilaiAndPenetapRepository;
     }
 
     public function getPeriodeActive()
@@ -127,52 +133,22 @@ class MenteService
         return $kabProvPenilaiAndPenetap;
     }
 
-    public function getCurrentPenilaiAndPenetapByProvinsi($provinsi_id, $jenis_aparatur)
+    public function getCurrentPenilaiAndPenetapByProvinsi($provinsi_id)
     {
-        $menthod = is_array($jenis_aparatur) ? 'get' : 'first';
-        $kabProvPenilaiAndPenetap = KabProvPenilaiAndPenetap::query()
-            ->with(['penilaiAngkaKredit.userPejabatStruktural', 'penetapAngkaKredit.userPejabatStruktural'])
-            ->where('provinsi_id', $provinsi_id)
-            ->jenisAparaturIs($jenis_aparatur)
-            ->$menthod();
+        $kabProvPenilaiAndPenetap = $this->kabProvPenilaiAndPenetapRepository->getPenilaiAndPenetapByProvinsi($provinsi_id);
         if (!isset($kabProvPenilaiAndPenetap)) {
-            $kabProvPenilaiAndPenetap = CrossPenilaiAndPenetap::query()
-                ->with(['kabProvPenilaiAndPenetap.penilaiAngkaKredit.userPejabatStruktural', 'kabProvPenilaiAndPenetap.penetapAngkaKredit.userPejabatStruktural'])
-                ->where('provinsi_id', $provinsi_id)
-                ->jenisAparaturIs($jenis_aparatur)
-                ->$menthod();
-            if ($menthod == 'get') {
-                $kabProvPenilaiAndPenetap = $kabProvPenilaiAndPenetap->map(function (CrossPenilaiAndPenetap $crossPenilaiAndPenetap) {
-                    return $crossPenilaiAndPenetap->kabProvPenilaiAndPenetap;
-                });
-            } else {
-                $kabProvPenilaiAndPenetap = $kabProvPenilaiAndPenetap?->kabProvPenilaiAndPenetap;
-            }
+            $kabProvPenilaiAndPenetap = $this->crossPenilaiAndPenetapRepository->getPenilaiAndPenetapByProvinsi($provinsi_id);
+            $kabProvPenilaiAndPenetap = $kabProvPenilaiAndPenetap?->kabProvPenilaiAndPenetap;
         }
         return $kabProvPenilaiAndPenetap;
     }
 
-    public function getCurrentPenilaiAndPenetapByKabKota($kab_kota_id, $jenis_aparatur)
+    public function getCurrentPenilaiAndPenetapByKabKota($kab_kota_id)
     {
-        $menthod = is_array($jenis_aparatur) ? 'get' : 'first';
-        $kabProvPenilaiAndPenetap = KabProvPenilaiAndPenetap::query()
-            ->with(['penilaiAngkaKredit.userPejabatStruktural', 'penetapAngkaKredit.userPejabatStruktural'])
-            ->where('kab_kota_id', $kab_kota_id)
-            ->jenisAparaturIs($jenis_aparatur)
-            ->$menthod();
+        $kabProvPenilaiAndPenetap = $this->kabProvPenilaiAndPenetapRepository->getPenilaiAndPenetapByKabKota($kab_kota_id);
         if (!isset($kabProvPenilaiAndPenetap)) {
-            $kabProvPenilaiAndPenetap = CrossPenilaiAndPenetap::query()
-                ->with(['kabProvPenilaiAndPenetap.penilaiAngkaKredit.userPejabatStruktural', 'kabProvPenilaiAndPenetap.penetapAngkaKredit.userPejabatStruktural'])
-                ->where('kab_kota_id', $kab_kota_id)
-                ->jenisAparaturIs($jenis_aparatur)
-                ->$menthod();
-            if ($menthod == 'get') {
-                $kabProvPenilaiAndPenetap = $kabProvPenilaiAndPenetap->map(function (CrossPenilaiAndPenetap $crossPenilaiAndPenetap) {
-                    return $crossPenilaiAndPenetap->kabProvPenilaiAndPenetap;
-                });
-            } else {
-                $kabProvPenilaiAndPenetap = $kabProvPenilaiAndPenetap?->kabProvPenilaiAndPenetap;
-            }
+            $kabProvPenilaiAndPenetap = $this->crossPenilaiAndPenetapRepository->getPenilaiAndPenetapByKabKota($kab_kota_id);
+            $kabProvPenilaiAndPenetap = $kabProvPenilaiAndPenetap?->kabProvPenilaiAndPenetap;
         }
         return $kabProvPenilaiAndPenetap;
     }

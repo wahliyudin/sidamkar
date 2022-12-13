@@ -17,7 +17,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->foreignUuid('kab_kota_id')->nullable();
             $table->foreignUuid('provinsi_id')->nullable();
-            $table->enum('jenis_aparatur', ['damkar', 'analis']);
+            $table->enum('tingkat_aparatur', ['provinsi', 'kab_kota']);
             $table->foreignUuid('kab_prov_penilai_and_penetap_id');
             $table->timestamps();
 
