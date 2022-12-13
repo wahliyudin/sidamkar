@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\Repositories\RekapitulasiKegiatanFacade;
 use App\Models\CrossPenilaiAndPenetap;
 use App\Models\KabProvPenilaiAndPenetap;
 use App\Models\LaporanKegiatanJabatan;
@@ -33,29 +34,10 @@ class CobaController extends Controller
 
     public function index()
     {
-        return str('http://127.0.0.1:8000/storage/user-struktural/639217054cd06.jpeg')->replace(env('APP_URL')."/storage/user-struktural/", '');
-        // $user = User::query()->with(['kabProvPenilais', 'userPejabatStruktural:id,user_id,tingkat_aparatur'])->where('username', 'Penilai AK')->first();
-        // $kabKotas = $user->kabProvPenilais()->pluck('kab_kota_id')->toArray();
-        // $jenisAparaturs = $user->kabProvPenilais()->pluck('jenis_aparatur')->toArray();
-        // return User::query()
-        //     ->where('status_akun', User::STATUS_ACTIVE)
-        //     ->withWhereHas('userAparatur', function ($query) use ($user, $kabKotas) {
-        //         $query->with(['kabKota'])->whereIn('kab_kota_id', $kabKotas)
-        //             ->where('tingkat_aparatur', $user->userPejabatStruktural->tingkat_aparatur);
-        //     })
-        //     ->whereRoleIs($this->getRoles($jenisAparaturs))
-        //     ->get();
-    }
-
-    public function getRoles($jenisAparaturs)
-    {
-        $roles = [];
-        if (in_array('analis', $jenisAparaturs)) {
-            $roles = array_merge($roles, getAllRoleFungsionalAnalis());
-        }
-        if (in_array('damkar', $jenisAparaturs)) {
-            $roles = array_merge($roles, getAllRoleFungsionalDamkar());
-        }
-        return $roles;
+        return KabProvPenilaiAndPenetap::query()
+            ->with('penilaiAngkaKreditDamkar')
+            ->where('tingkat_aparatur', 'kab_kota')
+            ->where('kab_kota_id', 1101)
+            ->first();
     }
 }

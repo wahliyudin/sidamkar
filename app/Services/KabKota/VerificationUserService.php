@@ -29,51 +29,68 @@ class VerificationUserService
 
     public function verificationStruktural(Request $request, $id)
     {
-        [$jabatans, $jenis_aparaturs] = $this->destructJabatans($request->jabatans);
         $user = $this->userRepository->getUserById($id);
-        $atasan = null;
-        $penilaiPenetap = [];
         $kab_kota_id = $this->authUser()->load('userProvKabKota')?->userProvKabKota->kab_kota_id;
-        for ($i=0; $i < count($jabatans); $i++) {
-            if ($jabatans[$i] == 'atasan_langsung') $atasan = $jabatans[$i];
-            for ($j=0; $j < count($jenis_aparaturs); $j++) {
-                if (in_array($jabatans[$i], ['penilai_ak', 'penetap_ak'])) array_push($penilaiPenetap, ['jabatan'=>$jabatans[$i], 'jenis_aparatur' => $jenis_aparaturs[$j]]);
-                if (in_array($jabatans[$i], ['penilai_ak'])) {
-                    $isExist = $this->kabProvPenilaiAndPenetapRepository->checkPenilaiAngkaKreditByKabKota($kab_kota_id, $jenis_aparaturs[$j]);
-                    if ($isExist) throw ValidationException::withMessages(['message' => 'Maaf Kabupaten Kota sudah mempunyai penilai ak']);
+        $kabProvPenilaiAndPenetap = $this->kabProvPenilaiAndPenetapRepository->getPenilaiAndPenetapByKabKota($kab_kota_id);
+        if (isset($kabProvPenilaiAndPenetap)) {
+            foreach ($request->jabatans as $jabatan) {
+                if ($jabatan == 'penilai_ak_damkar' && isset($kabProvPenilaiAndPenetap->penilai_ak_damkar_id)) {
+                    throw ValidationException::withMessages(['message' => 'Maaf Kabupaten Kota sudah mempunyai penilai ak damkar']);
                 }
-                if (in_array($jabatans[$i], ['penetap_ak'])) {
-                    $isExist = $this->kabProvPenilaiAndPenetapRepository->checkPenetapAngkaKreditByKabKota($kab_kota_id, $jenis_aparaturs[$j]);
-                    if ($isExist) throw ValidationException::withMessages(['message' => 'Maaf Kabupaten Kota sudah mempunyai penetap ak']);
+                if ($jabatan == 'penilai_ak_analis' && isset($kabProvPenilaiAndPenetap->penilai_ak_analis_id)) {
+                    throw ValidationException::withMessages(['message' => 'Maaf Kabupaten Kota sudah mempunyai penilai ak analis']);
+                }
+                if ($jabatan == 'penetap_ak_damkar' && isset($kabProvPenilaiAndPenetap->penetap_ak_damkar_id)) {
+                    throw ValidationException::withMessages(['message' => 'Maaf Kabupaten Kota sudah mempunyai penetap ak damkar']);
+                }
+                if ($jabatan == 'penetap_ak_analis' && isset($kabProvPenilaiAndPenetap->penetap_ak_analis_id)) {
+                    throw ValidationException::withMessages(['message' => 'Maaf Kabupaten Kota sudah mempunyai penetap ak analis']);
                 }
             }
         }
-        $roles = [];
-        for ($i=0; $i < count($penilaiPenetap); $i++) {
-            array_push($roles, $penilaiPenetap[$i]['jabatan']);
-            if (in_array($penilaiPenetap[$i]['jabatan'], ['penilai_ak'])) {
+        foreach ($request->jabatans as $jabatan) {
+            if ($jabatan == 'penilai_ak_damkar') {
                 KabProvPenilaiAndPenetap::query()->updateOrCreate([
                     'kab_kota_id' => $kab_kota_id,
-                    'jenis_aparatur' => $penilaiPenetap[$i]['jenis_aparatur']
+                    'tingkat_aparatur' => 'kab_kota'
                 ], [
-                    'jenis_aparatur' => $penilaiPenetap[$i]['jenis_aparatur'],
-                    'penilai_ak_id' => $user->id,
+                    'penilai_ak_damkar_id' => $user->id,
                     'kab_kota_id' => $kab_kota_id,
+                    'tingkat_aparatur' => 'kab_kota'
                 ]);
             }
-            if (in_array($penilaiPenetap[$i]['jabatan'], ['penetap_ak'])) {
+            if ($jabatan == 'penilai_ak_analis') {
                 KabProvPenilaiAndPenetap::query()->updateOrCreate([
                     'kab_kota_id' => $kab_kota_id,
-                    'jenis_aparatur' => $penilaiPenetap[$i]['jenis_aparatur']
+                    'tingkat_aparatur' => 'kab_kota'
                 ], [
-                    'jenis_aparatur' => $penilaiPenetap[$i]['jenis_aparatur'],
-                    'penetap_ak_id' => $user->id,
+                    'penilai_ak_analis_id' => $user->id,
                     'kab_kota_id' => $kab_kota_id,
+                    'tingkat_aparatur' => 'kab_kota'
+                ]);
+            }
+            if ($jabatan == 'penetap_ak_damkar') {
+                KabProvPenilaiAndPenetap::query()->updateOrCreate([
+                    'kab_kota_id' => $kab_kota_id,
+                    'tingkat_aparatur' => 'kab_kota'
+                ], [
+                    'penetap_ak_damkar_id' => $user->id,
+                    'kab_kota_id' => $kab_kota_id,
+                    'tingkat_aparatur' => 'kab_kota'
+                ]);
+            }
+            if ($jabatan == 'penetap_ak_analis') {
+                KabProvPenilaiAndPenetap::query()->updateOrCreate([
+                    'kab_kota_id' => $kab_kota_id,
+                    'tingkat_aparatur' => 'kab_kota'
+                ], [
+                    'penetap_ak_analis_id' => $user->id,
+                    'kab_kota_id' => $kab_kota_id,
+                    'tingkat_aparatur' => 'kab_kota'
                 ]);
             }
         }
-        array_push($roles, $atasan);
-        $user->attachRoles(array_unique($roles));
+        $user->attachRoles($request->jabatans);
         $this->userRepository->updateStatusAkunVerified($user);
         SendVerifToUser::dispatch($user);
     }

@@ -79,13 +79,23 @@ class RoleSeeder extends Seeder
                 'description' => ''
             ],
             [
-                'name' => 'penilai_ak',
-                'display_name' => 'Penilai AK',
+                'name' => 'penilai_ak_damkar',
+                'display_name' => 'Penilai AK Damkar',
                 'description' => ''
             ],
             [
-                'name' => 'penetap_ak',
-                'display_name' => 'Penetap AK',
+                'name' => 'penetap_ak_damkar',
+                'display_name' => 'Penetap AK Damkar',
+                'description' => ''
+            ],
+            [
+                'name' => 'penilai_ak_analis',
+                'display_name' => 'Penilai AK Analis',
+                'description' => ''
+            ],
+            [
+                'name' => 'penetap_ak_analis',
+                'display_name' => 'Penetap AK Analis',
                 'description' => ''
             ]
         ];

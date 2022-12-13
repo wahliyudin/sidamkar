@@ -20,18 +20,19 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\DataAparatur\StoreDataAparatur;
 use App\Models\MekanismePengangkatan;
 use App\Models\PangkatGolonganTmt;
+use App\Traits\RoleTrait;
 use Carbon\Carbon;
 
 class DataSayaController extends Controller
 {
-    use ImageTrait;
+    use ImageTrait, RoleTrait;
 
     public function index()
     {
-        $user = User::query()->with(['userAparatur.provinsi.kabkotas', 'dokKepegawaians', 'dokKompetensis'])->find(Auth::user()->id);
+        $user = User::query()->with(['roles', 'userAparatur.provinsi.kabkotas', 'dokKepegawaians', 'dokKompetensis'])->find(Auth::user()->id);
         $provinsis = Provinsi::query()->get();
         $kab_kota = KabKota::query()->get();
-        $pangkats = PangkatGolonganTmt::query()->get();
+        $pangkats = PangkatGolonganTmt::query()->whereIn('nama', $this->getPangkatByRole($user->roles()->first()->name))->get();
         $mekanismePengangkatans = MekanismePengangkatan::query()->get();
         $judul = 'Data Saya';
         return view('aparatur.data-saya.index', compact('user', 'provinsis', 'kab_kota', 'pangkats', 'judul', 'mekanismePengangkatans'));
@@ -48,8 +49,8 @@ class DataSayaController extends Controller
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
             'jenis_kelamin' => 'required',
-            'kab_kota_id' => 'required',
-            'provinsi_id' => 'required',
+            // 'kab_kota_id' => 'required',
+            // 'provinsi_id' => 'required',
             'mekanisme_pengangkatan_id' => 'nullable',
             'angka_mekanisme' => 'nullable',
         ]);
@@ -62,8 +63,8 @@ class DataSayaController extends Controller
             'tempat_lahir' => $request->tempat_lahir,
             'tanggal_lahir' => Carbon::make($request->tanggal_lahir)->format('Y-m-d'),
             'jenis_kelamin' => $request->jenis_kelamin,
-            'kab_kota_id' => $request->kab_kota_id,
-            'provinsi_id' => $request->provinsi_id,
+            // 'kab_kota_id' => $request->kab_kota_id,
+            // 'provinsi_id' => $request->provinsi_id,
 
         ];
         if (isset($request->mekanisme_pengangkatan_id)) {

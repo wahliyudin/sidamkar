@@ -13,14 +13,14 @@ class CrossPenilaiAndPenetap extends Model
     protected $fillable = [
         'kab_kota_id',
         'provinsi_id',
-        'jenis_aparatur',
+        'tingkat_aparatur',
         'kab_prov_penilai_and_penetap_id'
     ];
 
-    public function scopeJenisAparaturIs(Builder $query, $jenis_aparatur): Builder
+    public function scopeTingkatAparaturIs(Builder $query, $tingkat_aparatur): Builder
     {
-        $method = is_array($jenis_aparatur) ? 'whereIn' : 'where';
-        return $query->$method('jenis_aparatur', $jenis_aparatur);
+        $method = is_array($tingkat_aparatur) ? 'whereIn' : 'where';
+        return $query->$method('tingkat_aparatur', $tingkat_aparatur);
     }
 
     public function kabProvPenilaiAndPenetap()

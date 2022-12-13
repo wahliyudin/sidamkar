@@ -54,19 +54,9 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="basicInput">Jenis Kelamin</label>
-                                        <select class="jenis_kelamin form-select" name="jenis_kelamin">
-                                            <option disabled selected>- Pilih Jenis Kelamin -</option>
-                                            <option @selected(old('jenis_kelamin', $user->userAparatur?->jenis_kelamin) == 'L') value="L">Laki - Laki</option>
-                                            <option @selected(old('jenis_kelamin', $user->userAparatur?->jenis_kelamin) == 'P') value="P">Perempuan</option>
-                                        </select>
-                                        @error('jenis_kelamin')
-                                            <span class="text-danger text-sm">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
                                         <label for="basicInput">Privinsi</label>
-                                        <select class="form-select provinsi2" data-id=".provinsi2" name="provinsi_id">
+                                        <select class="form-select provinsi2" disabled data-id=".provinsi2"
+                                            name="provinsi_id">
                                             <option disabled selected>- Pilih Privinsi -</option>
                                             @foreach ($provinsis as $prov)
                                                 <option value="{{ $prov->id }}" @selected(old('provinsi_id', $user->userAparatur?->provinsi_id) == $prov->id)>
@@ -77,7 +67,20 @@
                                             <span class="text-danger text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
-
+                                    <div class="form-group">
+                                        <label for="basicInput">Kabupaten / Kota</label>
+                                        <select class="kab_kota_id form-select" disabled name="kab_kota_id"
+                                            id="kab_kota_id">
+                                            <option disabled selected>- Pilih Kabupaten / Kota -</option>
+                                            @foreach ($kab_kota as $kabkota)
+                                                <option value="{{ $kabkota->id }}" @selected(old('kab_kota_id', $user->userAparatur?->kab_kota_id) == $kabkota->id)>
+                                                    {{ $kabkota->nama }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('kab_kota_id')
+                                            <span class="text-danger text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -94,18 +97,17 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="basicInput">Kabupaten / Kota</label>
-                                        <select class="kab_kota_id form-select" name="kab_kota_id" id="kab_kota_id">
-                                            <option disabled selected>- Pilih Kabupaten / Kota -</option>
-                                            @foreach ($kab_kota as $kabkota)
-                                                <option value="{{ $kabkota->id }}" @selected(old('kab_kota_id', $user->userAparatur?->kab_kota_id) == $kabkota->id)>
-                                                    {{ $kabkota->nama }}</option>
-                                            @endforeach
+                                        <label for="basicInput">Jenis Kelamin</label>
+                                        <select class="jenis_kelamin form-select" name="jenis_kelamin">
+                                            <option disabled selected>- Pilih Jenis Kelamin -</option>
+                                            <option @selected(old('jenis_kelamin', $user->userAparatur?->jenis_kelamin) == 'L') value="L">Laki - Laki</option>
+                                            <option @selected(old('jenis_kelamin', $user->userAparatur?->jenis_kelamin) == 'P') value="P">Perempuan</option>
                                         </select>
-                                        @error('kab_kota_id')
+                                        @error('jenis_kelamin')
                                             <span class="text-danger text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
+
                                     <div class="row justify-content-center">
                                         <div class="form-group">
                                             <div class="container d-flex justify-content-center">

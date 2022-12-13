@@ -78,7 +78,8 @@
                                     Atasan Langsung
                                 </p>
                                 <h2 style="font-family: 'Roboto';color: #06152B; font-size: 20px;"
-                                    class="target target-periode">Muhammad Runggu
+                                    class="target target-periode">
+                                    {{ isset($atasan_langsung[0]) ? $atasan_langsung[0]->nama : '-' }}
                                 </h2>
                             </div>
                         </div>
@@ -148,7 +149,7 @@
                 <div class="card overflow-auto" style="overflow: auto; height: 550px">
                     <div class="card-header">
                         <h4 class="card-title text-center" style="color: #17181A; font-family: 'Roboto';">
-                            INFORMATION
+                            INFORMASI
                         </h4>
                     </div>
                     <div class="card-body">

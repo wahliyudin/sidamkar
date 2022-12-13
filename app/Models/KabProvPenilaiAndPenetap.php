@@ -12,34 +12,46 @@ class KabProvPenilaiAndPenetap extends Model
     use HasFactory, HasUuids;
 
     protected $fillable = [
-        'penilai_ak_id',
-        'penetap_ak_id',
-        'jenis_aparatur',
+        'penilai_ak_damkar_id',
+        'penilai_ak_analis_id',
+        'penetap_ak_damkar_id',
+        'penetap_ak_analis_id',
+        'tingkat_aparatur',
         'kab_kota_id',
         'provinsi_id'
     ];
 
     /**
-     * scopeJenisAparaturIs
+     * scopeTingkatAparaturIs
      *
      * @param Builder $query
-     * @param  array|string $jenis_aparatur // analis dan damkar
+     * @param  array|string $tingkat_aparatur // analis dan damkar
      * @return Builder
      */
-    public function scopeJenisAparaturIs(Builder $query, $jenis_aparatur): Builder
+    public function scopeTingkatAparaturIs(Builder $query, $tingkat_aparatur): Builder
     {
-        $method = is_array($jenis_aparatur) ? 'whereIn' : 'where';
-        return $query->$method('jenis_aparatur', $jenis_aparatur);
+        $method = is_array($tingkat_aparatur) ? 'whereIn' : 'where';
+        return $query->$method('tingkat_aparatur', $tingkat_aparatur);
     }
 
-    public function penilaiAngkaKredit()
+    public function penilaiAngkaKreditDamkar()
     {
-        return $this->belongsTo(User::class, 'penilai_ak_id', 'id');
+        return $this->belongsTo(User::class, 'penilai_ak_damkar_id', 'id');
     }
 
-    public function penetapAngkaKredit()
+    public function penetapAngkaKreditDamkar()
     {
-        return $this->belongsTo(User::class, 'penetap_ak_id', 'id');
+        return $this->belongsTo(User::class, 'penetap_ak_damkar_id', 'id');
+    }
+
+    public function penilaiAngkaKreditAnalis()
+    {
+        return $this->belongsTo(User::class, 'penilai_ak_analis_id', 'id');
+    }
+
+    public function penetapAngkaKreditAnalis()
+    {
+        return $this->belongsTo(User::class, 'penetap_ak_analis_id', 'id');
     }
 
     public function crossPenilaiAndPenetaps()
