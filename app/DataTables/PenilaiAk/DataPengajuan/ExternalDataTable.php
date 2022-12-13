@@ -3,6 +3,8 @@
 namespace App\DataTables\PenilaiAk\DataPengajuan;
 
 use App\Models\User;
+use App\Traits\AuthTrait;
+use App\Traits\DataTableTrait;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -14,6 +16,7 @@ use Yajra\DataTables\Services\DataTable;
 
 class ExternalDataTable extends DataTable
 {
+    use DataTableTrait, AuthTrait;
     /**
      * Build DataTable class.
      *
@@ -23,7 +26,32 @@ class ExternalDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'external.action')
+            ->addColumn('nama', function (User $user) {
+                return $user?->userAparatur?->nama;
+            })
+            ->filterColumn('nama', function ($query, $keyword) {
+                $query->whereHas('userAparatur', function ($query) use ($keyword) {
+                    $query->where('nama', 'like', "%$keyword%");
+                });
+            })
+            ->orderColumn('nama', function ($query, $order) {
+                $query->whereHas('userAparatur', function ($query) use ($order) {
+                    $query->orderBy('nama', $order);
+                });
+            })
+            ->addColumn('jenis_kelamin', function (User $user) {
+                return $user?->userAparatur?->jenis_kelamin == 'P' ? 'Perempuan' : 'Laki-Laki';
+            })
+            ->addColumn('jabatan', function (User $user) {
+                return $user?->roles()?->first()?->display_name;
+            })
+            ->addColumn('golongan', function (User $user) {
+                return $user?->userAparatur?->pangkatGolonganTmt?->nama;
+            })
+            ->addColumn('action', function (User $user) {
+                return '<a href="'.route('penilai-ak.data-pengajuan.external.show', $user->id).'" class="btn btn-blue btn-sm">Detail</a>';
+            })
+            ->rawColumns(['action'])
             ->setRowId('id');
     }
 
@@ -35,7 +63,16 @@ class ExternalDataTable extends DataTable
      */
     public function query(User $model): QueryBuilder
     {
-        return $model->newQuery();
+        $user = $this->authUser()->load(['kabProvPenilais.crossPenilaiAndPenetaps', 'userPejabatStruktural:id,user_id,tingkat_aparatur']);
+        $kabKotas = $user->kabProvPenilais()->pluck('kab_kota_id')->toArray();
+        $jenisAparaturs = $user->kabProvPenilais()->pluck('jenis_aparatur')->toArray();
+        return $model->newQuery()
+            ->where('status_akun', User::STATUS_ACTIVE)
+            ->withWhereHas('userAparatur', function ($query) use ($user, $kabKotas) {
+                $query->with(['kabKota', 'pangkatGolonganTmt'])->whereIn('kab_kota_id', $kabKotas)
+                    ->where('tingkat_aparatur', $user->userPejabatStruktural->tingkat_aparatur);
+            })
+            ->whereRoleIs($this->getRoles($jenisAparaturs));
     }
 
     /**
@@ -71,17 +108,14 @@ class ExternalDataTable extends DataTable
     {
         return [
             Column::make('nama'),
-            Column::make('jenis_kelamin'),
-            Column::make('jenis_kelamin'),
-            Column::make('kab_kota')
-                ->title('Kabupaten/Kota'),
-            Column::make('jabatan'),
-            Column::make('golongan'),
+            Column::computed('jenis_kelamin'),
+            Column::computed('jabatan'),
+            Column::computed('golongan'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
                 ->width(60)
-                ->addClass('text-center')
+                ->addClass('text-center'),
         ];
     }
 
