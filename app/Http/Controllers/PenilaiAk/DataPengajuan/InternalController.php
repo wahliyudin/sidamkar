@@ -54,12 +54,12 @@ class InternalController extends Controller
                     JOIN user_aparaturs ON user_aparaturs.user_id = users.id
                     JOIN role_user ON role_user.user_id = users.id
                     JOIN roles ON role_user.role_id = roles.id
-                    JOIN rekapitulasi_kegiatans ON rekapitulasi_kegiatans.fungsional_id = users.id
                     LEFT JOIN pangkat_golongan_tmts ON pangkat_golongan_tmts.id = user_aparaturs.pangkat_golongan_tmt_id
                     WHERE user_aparaturs.kab_kota_id = kab_prov_penilai_and_penetaps.kab_kota_id
                         AND users.status_akun = 1
                         AND roles.name IN (' . join(',', $this->getRoles($this->authUser()->roles()->pluck('name')->toArray())) . ')
                         AND user_aparaturs.tingkat_aparatur = "kab_kota"
+                        AND EXISTS (SELECT * FROM rekapitulasi_kegiatans WHERE rekapitulasi_kegiatans.fungsional_id = users.id)
                         ORDER BY roles.display_name ' . $role_order);
             return DataTables::of($data)
                 ->addIndexColumn()

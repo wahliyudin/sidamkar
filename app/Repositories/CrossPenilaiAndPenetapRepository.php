@@ -38,7 +38,7 @@ class CrossPenilaiAndPenetapRepository
                 'kabProvPenilaiAndPenetap.penetapAngkaKreditAnalis.userPejabatStruktural'
             ])
             ->where('tingkat_aparatur', 'provinsi')
-            ->where('provinsi', $provinsi)
+            ->where('provinsi_id', $provinsi)
             ->first();
     }
 

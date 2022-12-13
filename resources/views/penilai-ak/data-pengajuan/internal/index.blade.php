@@ -50,7 +50,7 @@
             serverSide: true,
             processing: true,
             ajax: {
-                url: url('/penilai-ak/datatable'),
+                url: url('/penilai-ak/data-pengajuan/internal/datatable'),
                 type: "POST",
                 data: {
                     "_token": "{{ csrf_token() }}"

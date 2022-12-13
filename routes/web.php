@@ -196,7 +196,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('atasan-langsung/verifikasi-kegiatan/{id}/kegiatan-jabatan/tolak', [AtasanLangsungVerifikasiKegiatanController::class, 'tolak'])->name('atasan-langsung.verifikasi-kegiatan.kegiatan-jabatan.tolak');
     });
 
-    Route::middleware(['role:penilai_ak_damkar,penilai_ak_analis'])->group(function () {
+    Route::middleware(['role:penilai_ak_damkar|penilai_ak_analis'])->group(function () {
         Route::get('penilai-ak/overview', [PenilaiAkOverviewController::class, 'index'])->name('penilai-ak.overview');
         Route::get('data-penilai-ak', [DataPenilaiAKController::class, 'index'])->name('data-penilai-ak');
         Route::post('/data-penilai-ak-store', [DataPenilaiAKController::class, 'store'])->name('data-penilai-ak-store');
@@ -209,10 +209,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('penilai-ak/data-pengajuan/internal', [InternalController::class, 'index'])->name('penilai-ak.data-pengajuan.internal');
         Route::get('penilai-ak/data-pengajuan/internal/{id}/show', [InternalController::class, 'show'])->name('penilai-ak.data-pengajuan.internal.show');
         Route::get('penilai-ak/data-pengajuan/external', [ExternalController::class, 'index'])->name('penilai-ak.data-pengajuan.external');
+        Route::get('penilai-ak/data-pengajuan/external/{id}/show', [ExternalController::class, 'show'])->name('penilai-ak.data-pengajuan.external.show');
         Route::get('penilai-ak/kegiatan-selesai', [PenilaiAkKegiatanSelesaiController::class, 'index'])->name('penilai-ak.kegiatan-selesai');
-        Route::post('penilai-ak/datatable', [InternalController::class, 'datatable'])->name('penilai-ak.datatable');
+        Route::post('penilai-ak/data-pengajuan/internal/datatable', [InternalController::class, 'datatable'])->name('penilai-ak.data-pengajuan.internal.datatable');
+        Route::post('penilai-ak/data-pengajuan/external/datatable', [ExternalController::class, 'datatable'])->name('penilai-ak.data-pengajuan.external.datatable');
     });
-    Route::middleware(['role:penetap_ak_damkar,penetap_ak_analis'])->group(function () {
+    Route::middleware(['role:penetap_ak_damkar|penetap_ak_analis'])->group(function () {
         Route::get('penetap-ak/overview', [OverviewPenetapAk::class, 'index'])->name('penetap-ak.overview');
         Route::get('penetap-ak/data-pengajuan/kabkota-external/kabKota-external', [KabKotaExternal::class, 'index'])->name('penetap-ak.data-pengajuan.kabkota-external.kabKota-external');
         Route::get('penetap-ak/data-pengajuan/kabkota-internal/kabKota-internal', [KabKotaInternal::class, 'index'])->name('penetap-ak.data-pengajuan.kabkota-internal.kabKota-internal');
