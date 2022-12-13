@@ -86,14 +86,14 @@
                 <td class="bd letter" style="padding-left: 2rem; white-space: nowrap;" width="30%">Nama </td>
                 <td class="bd" style="padding-left: 1rem; padding-right: .5rem;" width="2%">:</td>
                 <td class="bd letter" style="wihite-space: nowrap;">
-                    {{ $user->mente->atasanLangsung->userPejabatStruktural->nama }}</td>
+                    {{ $atasan_langsung?->userPejabatStruktural?->nama }}</td>
             </tr>
             <tr>
                 <td class="bd"><br></td>
                 <td class="bd letter" style="padding-left: 2rem; white-space: nowrap;" width="30%">NIP </td>
                 <td class="bd" style="padding-left: 1rem; padding-right: .5rem;" width="2%">:</td>
                 <td class="bd letter" style="wihite-space: nowrap;">
-                    {{ $user->mente->atasanLangsung->userPejabatStruktural->nip }}</td>
+                    {{ $atasan_langsung?->userPejabatStruktural?->nip }}</td>
             </tr>
             <tr>
                 <td class="bd"><br></td>
@@ -102,7 +102,7 @@
                 </td>
                 <td class="bd" style="padding-left: 1rem; padding-right: .5rem;" width="2%">:</td>
                 <td class="bd letter" style="wihite-space: nowrap;">
-                    {{ $user->mente->atasanLangsung->userPejabatStruktural->pangkatGolonganTmt->nama }}
+                    {{ $atasan_langsung?->userPejabatStruktural?->pangkatGolonganTmt->nama }}
                 </td>
             </tr>
             <tr>
@@ -110,7 +110,7 @@
                 <td class="bd letter" style="padding-left: 2rem; white-space: nowrap;" width="30%">Jabatan </td>
                 <td class="bd" style="padding-left: 1rem; padding-right: .5rem;" width="2%">:</td>
                 <td class="bd letter" style="wihite-space: nowrap;">
-                    {{ $user->mente->atasanLangsung->roles()->first()->display_name }}
+                    {{ $role_atasan_langsung?->display_name }}
                 </td>
             </tr>
         </tbody>

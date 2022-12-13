@@ -7,36 +7,52 @@ use App\Models\DokumenKegiatanJabatan;
 use App\Models\HistoryKegiatanJabatan;
 use App\Models\LaporanKegiatanJabatan;
 use App\Models\Periode;
+use App\Models\RekapitulasiCapaian;
 use App\Models\Role;
+use App\Models\SuratPernyataanKegiatan;
 use App\Models\TemporaryFile;
 use App\Models\Unsur;
 use App\Models\User;
 use App\Repositories\Aparatur\LaporanKegiatan\KegiatanJabatanRepository;
 use App\Repositories\PeriodeRepository;
+use App\Repositories\RekapitulasiKegiatanRepository;
 use App\Repositories\RencanaRepository;
 use App\Repositories\TemporaryFileRepository;
+use App\Services\GeneratePdfService;
 use App\Services\KegiatanJabatanService as ServicesKegiatanJabatanService;
 use App\Traits\ScoringTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\ValidationException;
 
 class KegiatanJabatanService
 {
     use ScoringTrait;
 
-    private KegiatanJabatanRepository $kegiatanJabatanRepository;
-    private RencanaRepository $rencanaRepository;
-    private TemporaryFileRepository $temporaryFileRepository;
-    private ServicesKegiatanJabatanService $kegiatanJabatanService;
-    private PeriodeRepository $periodeRepository;
+    protected KegiatanJabatanRepository $kegiatanJabatanRepository;
+    protected RencanaRepository $rencanaRepository;
+    protected TemporaryFileRepository $temporaryFileRepository;
+    protected ServicesKegiatanJabatanService $kegiatanJabatanService;
+    protected PeriodeRepository $periodeRepository;
+    protected RekapitulasiKegiatanRepository $rekapitulasiKegiatanRepository;
+    protected GeneratePdfService $generatePdfService;
 
-    public function __construct(KegiatanJabatanRepository $kegiatanJabatanRepository, RencanaRepository $rencanaRepository, TemporaryFileRepository $temporaryFileRepository, ServicesKegiatanJabatanService $kegiatanJabatanService, PeriodeRepository $periodeRepository)
-    {
+    public function __construct(
+        KegiatanJabatanRepository $kegiatanJabatanRepository,
+        RencanaRepository $rencanaRepository,
+        TemporaryFileRepository $temporaryFileRepository,
+        ServicesKegiatanJabatanService $kegiatanJabatanService,
+        PeriodeRepository $periodeRepository,
+        RekapitulasiKegiatanRepository $rekapitulasiKegiatanRepository,
+        GeneratePdfService $generatePdfService,
+    ) {
         $this->kegiatanJabatanRepository = $kegiatanJabatanRepository;
         $this->rencanaRepository = $rencanaRepository;
         $this->temporaryFileRepository = $temporaryFileRepository;
         $this->kegiatanJabatanService = $kegiatanJabatanService;
         $this->periodeRepository = $periodeRepository;
+        $this->rekapitulasiKegiatanRepository = $rekapitulasiKegiatanRepository;
+        $this->generatePdfService = $generatePdfService;
     }
 
     public function loadUnsurs(Periode $periode, string $search, Role $role)
@@ -44,8 +60,8 @@ class KegiatanJabatanService
         $unsurs = Unsur::query()
             ->where('jenis_kegiatan_id', 1)
             ->where('periode_id', $periode->id)
-            ->withWhereHas('subUnsurs', function($query) use ($role){
-                $query->withWhereHas('butirKegiatans', function($query) use ($role){
+            ->withWhereHas('subUnsurs', function ($query) use ($role) {
+                $query->withWhereHas('butirKegiatans', function ($query) use ($role) {
                     $query->withWhereHas('role', function ($query) use ($role) {
                         $query->whereIn('id', $this->limiRole($role->id));
                     });
@@ -58,12 +74,12 @@ class KegiatanJabatanService
                             ->orWhereHas('butirKegiatans', function ($query) use ($search, $role) {
                                 $query->where('nama', 'like', "%$search%")
                                     ->whereHas('role', function ($query) use ($search, $role) {
-                                    $query->where(
-                                        'nama',
-                                        'like',
-                                        "%$search%"
-                                    );
-                                });
+                                        $query->where(
+                                            'nama',
+                                            'like',
+                                            "%$search%"
+                                        );
+                                    });
                             });
                     });
             })
@@ -190,5 +206,94 @@ class KegiatanJabatanService
     public function laporanLast(ButirKegiatan $butirKegiatan, User $user)
     {
         return $this->kegiatanJabatanService->laporanLast($butirKegiatan, $user);
+    }
+
+    public function generateDocuments(User $userAuth)
+    {
+        $periode = $this->periodeRepository->isActive();
+        [$user, $atasan_langsung] = $this->validateDocument($userAuth);
+        [$capaian_url, $capaian_name] = $this->generatePdfService->generateCapaian($user, $atasan_langsung, $periode);
+        [$pernyataan_url, $pernyataan_name] = $this->generatePdfService->generatePernyataan($user, $atasan_langsung);
+        return $this->updateOrCreateRekapitulasi($user, $periode, $pernyataan_url, $pernyataan_name, 'Rekapitulasi Diterima Oleh Atasan Langsung', $capaian_url, $capaian_name);
+    }
+
+    public function generateRekapitulasiCapaian(User $userAuth)
+    {
+        $periode = $this->periodeRepository->isActive();
+        [$user, $atasan_langsung] = $this->validateDocument($userAuth);
+        return $this->generatePdfService->generateCapaian($user, $atasan_langsung, $periode);
+    }
+
+    public function generatePernyataan(User $userAuth)
+    {
+        [$user, $atasan_langsung] = $this->validateDocument($userAuth);
+        return $this->generatePdfService->generatePernyataan($user, $atasan_langsung);
+    }
+
+    private function validateDocument(User $user)
+    {
+        $user = $user->load([
+            'ketentuanSkpFungsional',
+            'mente.atasanLangsung.roles',
+            'mente.atasanLangsung.userPejabatStruktural.pangkatGolonganTmt',
+            'roles',
+            'userAparatur.pangkatGolonganTmt'
+        ]);
+        if (!isset($user?->ketentuanSkpFungsional)) {
+            throw ValidationException::withMessages(['Maaf Anda Belum Menginput SKP']);
+        }
+        if (!isset($user->userAparatur->pangkatGolonganTmt)) {
+            throw ValidationException::withMessages(["Maaf anda belum melengkapi data diri anda"]);
+        }
+        if (!isset($user->mente->atasanLangsung)) {
+            throw ValidationException::withMessages(["Maaf anda belum mempunyai atasan langsung"]);
+        }
+        if (!isset($user->mente->atasanLangsung->userPejabatStruktural->pangkatGolonganTmt)) {
+            throw ValidationException::withMessages(["Maaf atasan langsung anda belum melengkapi data dirinya"]);
+        }
+        return [
+            $user,
+            $user->mente->atasanLangsung
+        ];
+    }
+
+    public function updateOrCreateRekapitulasi(User $user, Periode $periode, $url, $file_name, $content, $file_capaian, $file_name_capaian)
+    {
+        // $rekapitulasiCapaian = RekapitulasiCapaian::query()->updateOrCreate([
+        //     'fungsional_id' => $user->id,
+        //     'periode_id' => $periode->id
+        // ], [
+        //     'fungsional_id' => $user->id,
+        //     'periode_id' => $periode->id,
+        //     'total_capaian' => 100,
+        //     'link' => '',
+        //     'name' => ''
+        // ]);
+        // if ($rekapitulasiCapaian instanceof RekapitulasiCapaian) {
+        //     deleteImage($rekapitulasiCapaian->link);
+        // }
+        // $suratPernyataan = SuratPernyataanKegiatan::query()->updateOrCreate([
+        //     'fungsional_id' => $user->id,
+        //     'periode_id' => $periode->id
+        // ], [
+        //     'fungsional_id' => $user->id,
+        //     'periode_id' => $periode->id,
+        //     'link' => '',
+        //     'name' => ''
+        // ]);
+        // if ($suratPernyataan instanceof SuratPernyataanKegiatan) {
+        //     deleteImage($suratPernyataan->link);
+        // }
+        $rekapitulasiKegiatan = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode);
+        if ($rekapitulasiKegiatan) {
+            deleteImage($rekapitulasiKegiatan->file);
+            $this->rekapitulasiKegiatanRepository->update($rekapitulasiKegiatan, $user->id, $periode->id, $url, $file_name, $file_capaian, $file_name_capaian);
+        } else {
+            $rekapitulasiKegiatan = $this->rekapitulasiKegiatanRepository->store($user->id, $periode->id, $url, $file_name, $file_capaian, $file_name_capaian);
+            $rekapitulasiKegiatan->historyRekapitulasiKegiatans()->create([
+                'content' => $content
+            ]);
+        }
+        return $rekapitulasiKegiatan;
     }
 }

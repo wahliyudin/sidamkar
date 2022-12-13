@@ -32,7 +32,7 @@
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                     Angka Kredit diterima
                                 </p>
-                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target">100</h2>
+                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target">{{ $ak_diterima }}</h2>
                             </div>
                         </div>
                     </div>

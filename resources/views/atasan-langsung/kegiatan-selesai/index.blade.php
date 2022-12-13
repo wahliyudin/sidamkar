@@ -17,7 +17,6 @@
                                     <th>Nomor Karpeg</th>
                                     <th>Jabatan</th>
                                     <th>Golongan</th>
-                                    <th>File Pernyataan</th>
                                     <th>Angka Kredit</th>
                                     <th>Action</th>
                                 </tr>
@@ -37,16 +36,6 @@
                                         </td>
                                         <td style="text-align: center;">
                                             {{ $fungsional->userAparatur->pangkatGolonganTmt?->nama }}
-                                        </td>
-                                        <td style="text-align: center;">
-                                            <div data-bs-toggle="modal" data-bs-target="#filerekap{{ $fungsional->id }}"
-                                                style="cursor: pointer; display: flex; align-items: center;">
-                                                <img src="{{ asset('assets/images/template/lihat-doc.png') }}"
-                                                    style="width: 26px;" alt="">
-                                                <span style="color: #0090FF; font-weight: 600;">Lihat</span>
-                                                @include('atasan-langsung.kegiatan-selesai.document',
-                                                    compact('fungsional'))
-                                            </div>
                                         </td>
                                         <td
                                             style="color: green !important; text-align: center; font-weight: 700 !important;">

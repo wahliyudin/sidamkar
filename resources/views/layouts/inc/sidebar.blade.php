@@ -12,8 +12,12 @@
                     <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
                 </div>
             </div>
-            <p style="font-size: 14px; color: white;" class="d-flex justify-content-center align-items-center">Atasan
-                Langsung</p>
+            @foreach (Auth::user()->roles as $role)
+                <p style="font-size: 14px; color: white;" class="d-flex justify-content-center align-items-center">
+                    {{ $role->display_name }}
+                </p>
+            @endforeach
+
         </div>
         <div class="sidebar-menu">
             <ul class="menu">
@@ -107,8 +111,8 @@
                     </li>
                 @endrole
                 @role(['penilai_ak', 'atasan_langsung', 'penetap_ak'])
-                    <li class="sidebar-item {{ request()->routeIs('atasan-langsung.overview.index') ? 'active' : '' }}">
-                        <a href="{{ route('atasan-langsung.overview.index') }}" class='sidebar-link'>
+                    <li class="sidebar-item {{ request()->routeIs('struktural.dashboard.index') ? 'active' : '' }}">
+                        <a href="{{ route('struktural.dashboard.index') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="bi bi-grid-fill"></i>
                             </div>
@@ -132,7 +136,8 @@
                                     <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                         <i class="fa-solid fa-clipboard"></i>
                                     </div>
-                                    <span>Verifikasi Kegiatan</span>
+                                    <span style="font-size: 14px !important; margin-left: .5rem !important;">Verifikasi
+                                        Kegiatan</span>
                                 </a>
                                 <ul
                                     class="submenu {{ request()->is('atasan-langsung/verifikasi-kegiatan*') ? 'active' : '' }}">
@@ -152,11 +157,12 @@
                             </li>
                             <li
                                 class="sidebar-item {{ request()->is('atasan-langsung/kegiatan-selesai*') ? 'active' : '' }}">
-                                <a href="{{ route('atasan-langsung.kegiatan-selesai') }}" class='sidebar-link'>
+                                <a href="{{ route('atasan-langsung.kegiatan-selesai') }}" class='sidebar-link no-arrow'>
                                     <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                         <i class="fa-solid fa-clipboard-check"></i>
                                     </div>
-                                    <span>Kegiatan Selesai</span>
+                                    <span style="font-size: 14px !important; margin-left: .5rem !important;">Kegiatan
+                                        Selesai</span>
                                 </a>
                             </li>
                         </ul>

@@ -16,7 +16,7 @@
                                 </p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h2 style="font-family: 'Roboto';color: #06152B; font-size: 16px" class="target">
-                                        {{ $penilaiPenetapDamkar?->penilaiAngkaKredit?->userPejabatStruktural?->nama ?? '-' }}
+                                        {{ $penilaiAndPenetap?->penilaiAngkaKreditDamkar?->userPejabatStruktural?->nama ?? '-' }}
                                     </h2>
                                     <button class="penilai-damkar" data-bs-toggle="modal" data-bs-target="#tambahPenilai">
                                         <i class="fa-solid fa-plus"></i>
@@ -40,7 +40,7 @@
                                 </p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h2 style="font-family: 'Roboto';color: #06152B; font-size: 16px" class="target">
-                                        {{ $penilaiPenetapDamkar?->penetapAngkaKredit?->userPejabatStruktural?->nama ?? '-' }}
+                                        {{ $penilaiAndPenetap?->penetapAngkaKreditDamkar?->userPejabatStruktural?->nama ?? '-' }}
                                     </h2>
                                     <button class="penetap-damkar" data-bs-toggle="modal" data-bs-target="#tambahPenetap">
                                         <i class="fa-solid fa-plus"></i>
@@ -86,7 +86,7 @@
                                 </p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h2 style="font-family: 'Roboto';color: #06152B; font-size: 16px" class="target">
-                                        {{ $penilaiPenetapAnalis?->penilaiAngkaKredit?->userPejabatStruktural?->nama ?? '-' }}
+                                        {{ $penilaiAndPenetap?->penilaiAngkaKreditAnalis?->userPejabatStruktural?->nama ?? '-' }}
                                     </h2>
                                     <button class="penilai-analis" data-bs-toggle="modal" data-bs-target="#tambahPenilai">
                                         <i class="fa-solid fa-plus"></i>
@@ -110,7 +110,7 @@
                                 </p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h2 style="font-family: 'Roboto';color: #06152B; font-size: 16px" class="target">
-                                        {{ $penilaiPenetapAnalis?->penetapAngkaKredit?->userPejabatStruktural?->nama ?? '-' }}
+                                        {{ $penilaiAndPenetap?->penetapAngkaKreditAnalis?->userPejabatStruktural?->nama ?? '-' }}
                                     </h2>
                                     <button class="penetap-analis" data-bs-toggle="modal" data-bs-target="#tambahPenetap">
                                         <i class="fa-solid fa-plus"></i>

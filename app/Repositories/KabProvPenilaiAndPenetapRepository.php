@@ -23,6 +23,32 @@ class KabProvPenilaiAndPenetapRepository
             ->first();
     }
 
+    public function getPenilaiAndPenetapByKabKota($kab_kota_id)
+    {
+        return $this->kabProvPenilaiAndPenetap->with([
+            'penilaiAngkaKreditDamkar.userPejabatStruktural',
+            'penetapAngkaKreditDamkar.userPejabatStruktural',
+            'penilaiAngkaKreditAnalis.userPejabatStruktural',
+            'penetapAngkaKreditAnalis.userPejabatStruktural'
+        ])
+            ->where('kab_kota_id', $kab_kota_id)
+            ->where('tingkat_aparatur', 'kab_kota')
+            ->first();
+    }
+
+    public function getPenilaiAndPenetapByProvinsi($provinsi)
+    {
+        return $this->kabProvPenilaiAndPenetap->with([
+            'penilaiAngkaKreditDamkar.userPejabatStruktural',
+            'penetapAngkaKreditDamkar.userPejabatStruktural',
+            'penilaiAngkaKreditAnalis.userPejabatStruktural',
+            'penetapAngkaKreditAnalis.userPejabatStruktural'
+        ])
+            ->where('provinsi', $provinsi)
+            ->where('tingkat_aparatur', 'provinsi')
+            ->first();
+    }
+
     public function checkPenilaiAngkaKreditByKabKota($kab_kota_id, $jenis_aparatur)
     {
         $isExist = isset($this->kabKotaJenisAparatur($kab_kota_id, $jenis_aparatur)?->penilai_ak_id);

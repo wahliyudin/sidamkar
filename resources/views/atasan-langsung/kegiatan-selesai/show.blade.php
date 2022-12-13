@@ -28,7 +28,7 @@
                                                     <a href="#surat-tab2"
                                                         class="h-100 nav-link border-y-0 border-right-0 d-flex justify-content-center align-items-center"
                                                         data-toggle="tab" data-id="surat-tab2">
-                                                        <h6 class="my-1">Penilaian Capaian</h6>
+                                                        <h6 class="my-1">Pernyataan</h6>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item">
@@ -49,7 +49,7 @@
                                                                 style="height: 3rem; object-fit: cover;" alt=""
                                                                 srcset="">
                                                         </div>
-                                                        <iframe src="{{ $rekapitulasiKegiatan?->file_capaian }}"
+                                                        <iframe src="{{ $rekapitulasiKegiatan?->url_capaian }}"
                                                             style="border-radius: 10px; overflow: hidden;" width="100%"
                                                             height="500px"></iframe>
                                                         @if ($rekapitulasiKegiatan?->is_ttd != true)
@@ -62,7 +62,7 @@
                                                 <div class="tab-pane fade" id="surat-tab2">
                                                     <div class="card">
                                                         <div class="card-body px-0">
-                                                            <iframe src=""
+                                                            <iframe src="{{ $rekapitulasiKegiatan?->url_rekap }}"
                                                                 style="border-radius: 10px; overflow: hidden;"
                                                                 width="100%" height="500px"></iframe>
                                                         </div>

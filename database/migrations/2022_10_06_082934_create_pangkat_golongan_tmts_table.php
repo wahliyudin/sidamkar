@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('pangkat_golongan_tmts', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
+            $table->string('nama')->fulltext();
             $table->timestamps();
         });
     }

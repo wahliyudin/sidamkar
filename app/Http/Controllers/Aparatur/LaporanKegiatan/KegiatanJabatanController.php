@@ -73,9 +73,9 @@ class KegiatanJabatanController extends Controller
         $role = DB::table('users')->join('role_user', 'role_user.user_id', '=', 'users.id')->where('users.id', '=', Auth::user()->id)->select('*')->get();
 
         $ketentuan_ak = DB::table('ketentuan_nilais')->where('role_id', $role[0]->role_id)->where('pangkat_golongan_tmt_id', $user1->userAparatur->pangkat_golongan_tmt_id)->get();
-
+        $ak_diterima = DB::table('laporan_kegiatan_jabatans')->where('user_id', Auth::user()->id)->where('status', 3)->sum('score');
         $historyRekapitulasiKegiatans = $user?->rekapitulasiKegiatan?->historyRekapitulasiKegiatans ?? [];
-        return view('aparatur.laporan-kegiatan.jabatan.index', compact('periode', 'user', 'judul', 'historyRekapitulasiKegiatans', 'skp', 'ketentuan_ak'));
+        return view('aparatur.laporan-kegiatan.jabatan.index', compact('periode', 'user', 'judul', 'historyRekapitulasiKegiatans', 'skp', 'ketentuan_ak', 'ak_diterima'));
     }
 
     /**
@@ -209,14 +209,10 @@ class KegiatanJabatanController extends Controller
 
     public function rekapitulasi()
     {
-        $user = $this->authUser()->load('ketentuanSkpFungsional');
-        if (!isset($user?->ketentuanSkpFungsional)) {
-            throw ValidationException::withMessages(['Maaf Anda Belum Menginput SKP']);
-        }
-        $rekapitulasiKegiatan = $this->generatePdfService->generateRekapitulasi($this->authUser(), 'Rekapitulasi diterima Atasan Langsung');
+        $rekapitulasiKegiatan = $this->kegiatanJabatanService->generateDocuments($this->authUser());
         return response()->json([
             'message' => 'Berhasil',
-            'data' => $rekapitulasiKegiatan?->file
+            'data' => $rekapitulasiKegiatan?->url_rekap
         ]);
     }
 
@@ -228,7 +224,7 @@ class KegiatanJabatanController extends Controller
             ->where('periode_id', $periode->id)
             ->first();
         if (!$rekap) {
-            throw ValidationException::withMessages(['Data rekapitulasi tidak ditemukan']);
+            throw ValidationException::withMessages(['Data Rekapitulasi Belum Dibuat']);
         }
         if ($rekap->is_send == true) {
             throw ValidationException::withMessages(['Data rekapitulasi sudah dikirim']);
