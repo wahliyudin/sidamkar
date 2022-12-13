@@ -34,6 +34,6 @@ class CobaController extends Controller
 
     public function index()
     {
-        // return RekapitulasiKegiatanFacade::;
+        return view('welcome');
     }
 }
