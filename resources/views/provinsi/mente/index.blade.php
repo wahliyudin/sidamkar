@@ -124,7 +124,7 @@
         </div>
         <div class="row">
             <div class="col">
-                <div class="card">
+                <div class="card overflow-auto">
                     <div class="card-header">
                         <div class="row justify-content-between align-items-center">
                             <div class="col-md-7">
@@ -175,7 +175,7 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <div class="card mt-3 mb-0"
+                                <div class="card mt-3 mb-0 overflow-auto"
                                     style="border: var(--bs-modal-header-border-width) solid var(--bs-modal-header-border-color); overflow: hidden;">
                                     <div class="card-header py-3">
                                         <div class="row justify-content-between">

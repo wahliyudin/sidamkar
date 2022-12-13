@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="section">
-        <div class="card py-2">
+        <div class="card py-2 overflow-auto">
             <div class="card-header">
                 <div class="row">
                     <div class="col-md-8 col-12">
@@ -88,7 +88,11 @@
                 },
             }).then(function(e) {
                 if (e.value.success == true) {
-                    swal({type: 'success', title:'Berhasil', html:'Akun Dinyatakan <b style="font-weight: bold; color:red;">DITOLAK</b>'}).then(() => {
+                    swal({
+                        type: 'success',
+                        title: 'Berhasil',
+                        html: 'Akun Dinyatakan <b style="font-weight: bold; color:red;">DITOLAK</b>'
+                    }).then(() => {
                         $('#adminprovinsi-table').DataTable().ajax
                             .reload()
                     });
@@ -122,7 +126,11 @@
                 },
             }).then(function(e) {
                 if (e.value.success == true) {
-                    swal({type: 'success', title:'Berhasil', html:'Akun Berhasil <b style="font-weight: bold; color:green;">DIVERIFIKASI</b>'}).then(() => {
+                    swal({
+                        type: 'success',
+                        title: 'Berhasil',
+                        html: 'Akun Berhasil <b style="font-weight: bold; color:green;">DIVERIFIKASI</b>'
+                    }).then(() => {
                         $('#adminprovinsi-table').DataTable().ajax
                             .reload()
                     });

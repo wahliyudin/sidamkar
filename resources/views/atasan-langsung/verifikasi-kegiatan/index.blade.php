@@ -23,7 +23,7 @@
         </div>
         <div class="row">
             <div class="col">
-                <div class="card">
+                <div class="card overflow-auto">
                     <div class="card-header">
                         <h4 class="card-title" style="color: #17181A; font-family: 'Roboto';">Table Data Aparatur Fungsional
                         </h4>
