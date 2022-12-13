@@ -31,7 +31,7 @@
             @include('layouts.inc.navbar')
             <div id="main-content" style="padding-top:120px">
                 <div class="page-heading">
-                    <h5>
+                    <h5 class="mb-4">
                         @isset($judul)
                             {{ $judul }}
                         @endisset

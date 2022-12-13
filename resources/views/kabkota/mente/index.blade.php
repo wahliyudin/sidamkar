@@ -124,7 +124,7 @@
         </div>
         <div class="row">
             <div class="col">
-                <div class="card">
+                <div class="card overflow-auto">
                     <div class="card-header">
                         <div class="row justify-content-between align-items-center">
                             <div class="col-md-7">
