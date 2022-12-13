@@ -31,11 +31,7 @@ class RekapitulasiKegiatanRepository
     {
         return $this->rekapitulasiKegiatan->query()->create([
             'fungsional_id' => $user_id,
-            'periode_id' => $periode_id,
-            'url_rekap' => $url_rekap,
-            'name_rekap' => $name_rekap,
-            'url_capaian' => $url_capaian,
-            'name_capaian' => $name_capaian
+            'periode_id' => $periode_id
         ]);
     }
 

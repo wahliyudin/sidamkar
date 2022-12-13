@@ -13,16 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('rekapitulasi_kegiatans', function (Blueprint $table) {
+        Schema::create('surat_pernyataan_kegiatans', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('fungsional_id');
             $table->unsignedBigInteger('periode_id');
             $table->boolean('is_send')->default(false);
-            $table->boolean('is_ttd')->default(false);
-            $table->string('url_rekap')->nullable();
-            $table->string('name_rekap')->nullable();
-            $table->string('url_capaian')->nullable();
-            $table->string('name_capaian')->nullable();
+            $table->string('name');
+            $table->string('link');
             $table->timestamps();
 
             $table->foreign('fungsional_id')->on('users')->references('id')->cascadeOnDelete();
@@ -37,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rekapitulasi_kegiatans');
+        Schema::dropIfExists('surat_pernyataan_kegiatans');
     }
 };

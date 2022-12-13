@@ -7,7 +7,9 @@ use App\Models\DokumenKegiatanJabatan;
 use App\Models\HistoryKegiatanJabatan;
 use App\Models\LaporanKegiatanJabatan;
 use App\Models\Periode;
+use App\Models\RekapitulasiCapaian;
 use App\Models\Role;
+use App\Models\SuratPernyataanKegiatan;
 use App\Models\TemporaryFile;
 use App\Models\Unsur;
 use App\Models\User;
@@ -43,8 +45,7 @@ class KegiatanJabatanService
         PeriodeRepository $periodeRepository,
         RekapitulasiKegiatanRepository $rekapitulasiKegiatanRepository,
         GeneratePdfService $generatePdfService,
-        )
-    {
+    ) {
         $this->kegiatanJabatanRepository = $kegiatanJabatanRepository;
         $this->rencanaRepository = $rencanaRepository;
         $this->temporaryFileRepository = $temporaryFileRepository;
@@ -59,8 +60,8 @@ class KegiatanJabatanService
         $unsurs = Unsur::query()
             ->where('jenis_kegiatan_id', 1)
             ->where('periode_id', $periode->id)
-            ->withWhereHas('subUnsurs', function($query) use ($role){
-                $query->withWhereHas('butirKegiatans', function($query) use ($role){
+            ->withWhereHas('subUnsurs', function ($query) use ($role) {
+                $query->withWhereHas('butirKegiatans', function ($query) use ($role) {
                     $query->withWhereHas('role', function ($query) use ($role) {
                         $query->whereIn('id', $this->limiRole($role->id));
                     });
@@ -73,12 +74,12 @@ class KegiatanJabatanService
                             ->orWhereHas('butirKegiatans', function ($query) use ($search, $role) {
                                 $query->where('nama', 'like', "%$search%")
                                     ->whereHas('role', function ($query) use ($search, $role) {
-                                    $query->where(
-                                        'nama',
-                                        'like',
-                                        "%$search%"
-                                    );
-                                });
+                                        $query->where(
+                                            'nama',
+                                            'like',
+                                            "%$search%"
+                                        );
+                                    });
                             });
                     });
             })
@@ -258,6 +259,31 @@ class KegiatanJabatanService
 
     public function updateOrCreateRekapitulasi(User $user, Periode $periode, $url, $file_name, $content, $file_capaian, $file_name_capaian)
     {
+        // $rekapitulasiCapaian = RekapitulasiCapaian::query()->updateOrCreate([
+        //     'fungsional_id' => $user->id,
+        //     'periode_id' => $periode->id
+        // ], [
+        //     'fungsional_id' => $user->id,
+        //     'periode_id' => $periode->id,
+        //     'total_capaian' => 100,
+        //     'link' => '',
+        //     'name' => ''
+        // ]);
+        // if ($rekapitulasiCapaian instanceof RekapitulasiCapaian) {
+        //     deleteImage($rekapitulasiCapaian->link);
+        // }
+        // $suratPernyataan = SuratPernyataanKegiatan::query()->updateOrCreate([
+        //     'fungsional_id' => $user->id,
+        //     'periode_id' => $periode->id
+        // ], [
+        //     'fungsional_id' => $user->id,
+        //     'periode_id' => $periode->id,
+        //     'link' => '',
+        //     'name' => ''
+        // ]);
+        // if ($suratPernyataan instanceof SuratPernyataanKegiatan) {
+        //     deleteImage($suratPernyataan->link);
+        // }
         $rekapitulasiKegiatan = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode);
         if ($rekapitulasiKegiatan) {
             deleteImage($rekapitulasiKegiatan->file);

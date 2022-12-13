@@ -20,18 +20,19 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\DataAparatur\StoreDataAparatur;
 use App\Models\MekanismePengangkatan;
 use App\Models\PangkatGolonganTmt;
+use App\Traits\RoleTrait;
 use Carbon\Carbon;
 
 class DataSayaController extends Controller
 {
-    use ImageTrait;
+    use ImageTrait, RoleTrait;
 
     public function index()
     {
-        $user = User::query()->with(['userAparatur.provinsi.kabkotas', 'dokKepegawaians', 'dokKompetensis'])->find(Auth::user()->id);
+        $user = User::query()->with(['roles', 'userAparatur.provinsi.kabkotas', 'dokKepegawaians', 'dokKompetensis'])->find(Auth::user()->id);
         $provinsis = Provinsi::query()->get();
         $kab_kota = KabKota::query()->get();
-        $pangkats = PangkatGolonganTmt::query()->get();
+        $pangkats = PangkatGolonganTmt::query()->whereIn('nama', $this->getPangkatByRole($user->roles()->first()->name))->get();
         $mekanismePengangkatans = MekanismePengangkatan::query()->get();
         $judul = 'Data Saya';
         return view('aparatur.data-saya.index', compact('user', 'provinsis', 'kab_kota', 'pangkats', 'judul', 'mekanismePengangkatans'));
