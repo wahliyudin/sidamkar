@@ -49,8 +49,8 @@ class DataSayaController extends Controller
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
             'jenis_kelamin' => 'required',
-            'kab_kota_id' => 'required',
-            'provinsi_id' => 'required',
+            // 'kab_kota_id' => 'required',
+            // 'provinsi_id' => 'required',
             'mekanisme_pengangkatan_id' => 'nullable',
             'angka_mekanisme' => 'nullable',
         ]);
@@ -63,8 +63,8 @@ class DataSayaController extends Controller
             'tempat_lahir' => $request->tempat_lahir,
             'tanggal_lahir' => Carbon::make($request->tanggal_lahir)->format('Y-m-d'),
             'jenis_kelamin' => $request->jenis_kelamin,
-            'kab_kota_id' => $request->kab_kota_id,
-            'provinsi_id' => $request->provinsi_id,
+            // 'kab_kota_id' => $request->kab_kota_id,
+            // 'provinsi_id' => $request->provinsi_id,
 
         ];
         if (isset($request->mekanisme_pengangkatan_id)) {
