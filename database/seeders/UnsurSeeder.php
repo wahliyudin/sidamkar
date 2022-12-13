@@ -140,73 +140,106 @@ class UnsurSeeder extends Seeder
         ];
         Unsur::query()->upsert($penyelia, 'id');
         //end unsur no 1 sampai dengan 18 adalah RINCIAN KEGIATAN TUGAS JABATAN UNTUK JABATAN FUNGSIONAL PEMADAM KEBAKARAN
-        
+
 
         //unsur no 19 sampai dengan 28 adalah RINCIAN KEGIATAN JABATAN FUNGSIONAL ANALIS KEBAKARAN DAN ANGKA KREDITNYA
         $ahli_pratama = [
-        // 19
-        [
-            'jenis_kegiatan_id' => 1,
-            'periode_id' => 1,
-            'nama' => 'Persiapan pemeriksaan bangunan gedung'
-        ],
-        // 20
-        [
-            'jenis_kegiatan_id' => 1,
-            'periode_id' => 1,
-            'nama' => 'Pelaksanaan pemeriksaan bangunan gedung'
-        ],
-        // 21
-        [
-            'jenis_kegiatan_id' => 1,
-            'periode_id' => 1,
-            'nama' => 'Penyusunan laporan hasil pemeriksaan bangunan gedung'
-        ],
-        // 22
-        [
-            'jenis_kegiatan_id' => 1,
-            'periode_id' => 1,
-            'nama' => 'Pemberdayaan dan pembinaan masyarakat'
-        ],
-        // 23
-        [
-            'jenis_kegiatan_id' => 1,
-            'periode_id' => 1,
-            'nama' => 'Evaluasi pemberdayaan dan pembinaan masyarakat'
-        ],
-        // 24
-        [
-            'jenis_kegiatan_id' => 1,
-            'periode_id' => 1,
-            'nama' => 'Perencanaan pelaksanaan dan evaluasi pendidikan dan pelatihan',
-        ],
-        // 25
-        [
-            'jenis_kegiatan_id' => 1,
-            'periode_id' => 1,
-            'nama' => 'Penyusunan rencana Induk Sistem Proteksi Kebakaran (RISPK)',
-        ],
-        // 26
-        [
-            'jenis_kegiatan_id' => 1,
-            'periode_id' => 1,
-            'nama' => 'Penanganan Resiko Kebakaran B3 (bahan beracun dan berbahaya)',
-        ],
-        // 27
-        [
-            'jenis_kegiatan_id' => 1,
-            'periode_id' => 1,
-            'nama' => 'Penindakan terhadap penyimpangan standar keselamatan kebakaran',
-        ],
-        // 28
-        [
-            'jenis_kegiatan_id' => 1,
-            'periode_id' => 1,
-            'nama' => 'Pelaksanaan investigasi pasca kebakaran',
-        ],
+            // 19
+            [
+                'jenis_kegiatan_id' => 1,
+                'periode_id' => 1,
+                'nama' => 'Persiapan pemeriksaan bangunan gedung'
+            ],
+            // 20
+            [
+                'jenis_kegiatan_id' => 1,
+                'periode_id' => 1,
+                'nama' => 'Pelaksanaan pemeriksaan bangunan gedung'
+            ],
+            // 21
+            [
+                'jenis_kegiatan_id' => 1,
+                'periode_id' => 1,
+                'nama' => 'Penyusunan laporan hasil pemeriksaan bangunan gedung'
+            ],
+            // 22
+            [
+                'jenis_kegiatan_id' => 1,
+                'periode_id' => 1,
+                'nama' => 'Pemberdayaan dan pembinaan masyarakat'
+            ],
+            // 23
+            [
+                'jenis_kegiatan_id' => 1,
+                'periode_id' => 1,
+                'nama' => 'Evaluasi pemberdayaan dan pembinaan masyarakat'
+            ],
+            // 24
+            [
+                'jenis_kegiatan_id' => 1,
+                'periode_id' => 1,
+                'nama' => 'Perencanaan pelaksanaan dan evaluasi pendidikan dan pelatihan',
+            ],
+            // 25
+            [
+                'jenis_kegiatan_id' => 1,
+                'periode_id' => 1,
+                'nama' => 'Penyusunan rencana Induk Sistem Proteksi Kebakaran (RISPK)',
+            ],
+            // 26
+            [
+                'jenis_kegiatan_id' => 1,
+                'periode_id' => 1,
+                'nama' => 'Penanganan Resiko Kebakaran B3 (bahan beracun dan berbahaya)',
+            ],
+            // 27
+            [
+                'jenis_kegiatan_id' => 1,
+                'periode_id' => 1,
+                'nama' => 'Penindakan terhadap penyimpangan standar keselamatan kebakaran',
+            ],
+            // 28
+            [
+                'jenis_kegiatan_id' => 1,
+                'periode_id' => 1,
+                'nama' => 'Pelaksanaan investigasi pasca kebakaran',
+            ],
         ];
-        Unsur::query()->upsert($ahli_pratama,'id');
+        Unsur::query()->upsert($ahli_pratama, 'id');
 
-         // End unsur no 19 sampai dengan 28 adalah RINCIAN KEGIATAN JABATAN FUNGSIONAL ANALIS KEBAKARAN DAN ANGKA KREDITNYA
+        // End unsur no 19 sampai dengan 28 adalah RINCIAN KEGIATAN JABATAN FUNGSIONAL ANALIS KEBAKARAN DAN ANGKA KREDITNYA
+        $kegiatanProfesiFungsionalDamkar = [
+            //29
+            [
+                'jenis_kegiatan_id' => 3,
+                'periode_id' => 1,
+                'nama' => 'Pengembangan Profesi Pemadam Kebakaran'
+            ],
+            //30
+            [
+                'jenis_kegiatan_id' => 3,
+                'periode_id' => 1,
+                'nama' => 'Penunjang Tugas Pemadam Kebakaran'
+            ],
+        ];
+
+        Unsur::query()->upsert($kegiatanProfesiFungsionalDamkar, 'id');
+
+        $kegiatanProfesiAnalisDamkar = [
+            //31
+            [
+                'jenis_kegiatan_id' => 3,
+                'periode_id' => 1,
+                'nama' => 'Pengembangan Profesi Analis Kebakaran'
+            ],
+            //32
+            [
+                'jenis_kegiatan_id' => 3,
+                'periode_id' => 1,
+                'nama' => 'Penunjang Tugas Analis Kebakaran'
+            ],
+        ];
+
+        Unsur::query()->upsert($kegiatanProfesiAnalisDamkar, 'id');
     }
 }
