@@ -13,7 +13,8 @@
                                         fa-stopwatch"></i>
                                     </div>
                                     <div class="d-flex flex-column ms-2">
-                                        <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
+                                        <p
+                                            style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                             Periode
                                         </p>
                                         <h2 style="font-family: 'Roboto'; font-size: 13px; color: #06152B;" class="target">
@@ -36,7 +37,8 @@
                                             style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                             Jumlah Aparatur
                                         </p>
-                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">{{$total['aparatur']}}</h4>
+                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">
+                                            {{ $total['aparatur'] }}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -54,7 +56,8 @@
                                             style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                             Pejabat Struktural
                                         </p>
-                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">{{$total['struktural']}}</h4>
+                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">
+                                            {{ $total['struktural'] }}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -74,7 +77,8 @@
                                             style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                             Fungsional Damkar
                                         </p>
-                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">{{$total['damkar']}}</h4>
+                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">
+                                            {{ $total['damkar'] }}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -92,7 +96,8 @@
                                             style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                             Fungsional Analisis
                                         </p>
-                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">{{$total['analisis']}}</h4>
+                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">
+                                            {{ $total['analisis'] }}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -110,7 +115,8 @@
                                             style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                             User Admin Kab/Kota
                                         </p>
-                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">{{$total['kab_kota']}}</h4>
+                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">
+                                            {{ $total['kab_kota'] }}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -130,7 +136,8 @@
                                             style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                             User Admin Provinsi
                                         </p>
-                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">{{$total['provinsi']}}</h4>
+                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">
+                                            {{ $total['provinsi'] }}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -148,7 +155,8 @@
                                             style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                             Pengajuan Akun Kab/Kota
                                         </p>
-                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">{{$total['pengajuan_kab_kota']}}</h4>
+                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">
+                                            {{ $total['pengajuan_kab_kota'] }}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -166,7 +174,8 @@
                                             style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                             Pengajuan Akun Provinsi
                                         </p>
-                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">{{$total['pengajuan_provinsi']}}</h4>
+                                        <h4 style="font-family: 'Roboto';color: #06152B;" class="target">
+                                            {{ $total['pengajuan_provinsi'] }}</h4>
                                     </div>
                                 </div>
                             </div>

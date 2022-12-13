@@ -60,7 +60,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="card">
+            <div class="card overflow-auto">
                 <div class="card-header pb-0">
                     <div class="row align-items-center justify-content-between">
                         <div class="col-md-4">
@@ -79,23 +79,28 @@
                                 </button>
                             @else
                                 <button data-bs-toggle="modal" data-bs-target="#rekap"
-                                    class="btn btn-green btn-sm ps-3 pe-3 py-2 rekap">
+                                    class="btn btn-green btn-sm ps-3 pe-3 py-2 rekap btn-rekap">
                                     <i class="fa-solid fa-paper-plane me-1"></i>
-                                    Ajukan Laporan Rekapitulasi Capaian
+                                    Ajukan Laporan <br> Rekapitulasi Capaian
                                 </button>
                             @endif
                         </div>
                     </div>
                 </div>
                 <hr>
-                <div class="row align-items-center justify-content-end">
+                <div class="row align-items-center justify-content-between">
+                    <div class="form-group col-md-3 ms-3">
+                        <button class="btn btn-gray btn-sm ps-3 pe-3 py-2">
+                            <i class="fa-solid fa-clock-rotate-left me-1"></i> Riwayat Laporan
+                        </button>
+                    </div>
                     <div class="form-group col-md-6">
                         <label>Search</label>
                         <input type="text" name="search" placeholder="Search..." class="form-control">
                     </div>
                 </div>
                 <div class="card-body px-0 accordion-container">
-                    <div class="accordion unsur-container" id="accordion-parent">
+                    <div class="accordion unsur-container overflow-auto" id="accordion-parent">
 
                     </div>
                 </div>
@@ -255,6 +260,22 @@
             display: flex;
             justify-content: center;
             align-items: center;
+        }
+
+        @media screen and (max-width: 433px) {
+            .btn-rekap {
+                margin-top: 10px;
+            }
+        }
+
+        @media screen and (max-width: 340px) {
+            .send-rekap {
+                margin-top: 10px;
+            }
+
+            .send-skp {
+                margin-top: 10px;
+            }
         }
     </style>
 @endsection

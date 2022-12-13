@@ -355,8 +355,8 @@
                             </div>
                             <div class="form-group col-md-12">
                                 <label>File Dokumen</label>
-                                <input type="file" name="doc_kegiatan_tmp[]" multiple data-max-file-size="2MB"
-                                    data-max-files="3" required />
+                                <input type="file" class="overflow-auto" name="doc_kegiatan_tmp[]" multiple
+                                    data-max-file-size="2MB" data-max-files="3" required />
                             </div>
                             <div class="form-group col-md-12">
                                 <label>Detail Kegiatan</label>

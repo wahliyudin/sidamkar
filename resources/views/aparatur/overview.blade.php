@@ -7,9 +7,6 @@
                 Lengkapi Data Profile
             </div>
         @endif
-        <style>
-
-        </style>
         <div class="row">
             <div class="col-md-3 px-2">
                 <div class="card">
@@ -73,16 +70,15 @@
                     <div class="card-body py-3 px-3" style="height: 100px;">
                         <div class="d-flex align-items-center h-100">
                             <div class="circle circle-yellow-light">
-                                <i class="fa-solid fa-calendar-days"></i>
+                                <i class="fa-solid fa-user"></i>
                             </div>
                             <div class="d-flex flex-column ms-2">
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;"
                                     class="target-h1">
-                                    Periode Aktif
+                                    Atasan Langsung
                                 </p>
-                                <h2 style="font-family: 'Roboto';color: #06152B; font-size: 14px;"
-                                    class="target target-periode">Januari
-                                    2022 - Juli 2022
+                                <h2 style="font-family: 'Roboto';color: #06152B; font-size: 20px;"
+                                    class="target target-periode">Muhammad Runggu
                                 </h2>
                             </div>
                         </div>
@@ -100,7 +96,7 @@
                         <canvas id="line"></canvas>
                     </div>
                 </div>
-                <div class="card">
+                {{--  <div class="card overflow-auto">
                     <div class="card-header">
                         <h4 class="card-title" style="color: #17181A; font-family: 'Roboto';">Butir Kegiatan</h4>
                     </div>
@@ -146,10 +142,10 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
+                </div>  --}}
             </div>
             <div class="col-md-3 col">
-                <div class="card" style="overflow: auto; height: 550px">
+                <div class="card overflow-auto" style="overflow: auto; height: 550px">
                     <div class="card-header">
                         <h4 class="card-title text-center" style="color: #17181A; font-family: 'Roboto';">
                             INFORMATION

@@ -60,7 +60,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="card">
+            <div class="card overflow-auto">
                 <div class="card-header">
                     <div class="row justify-content-between">
                         <div class="col-md-6">
@@ -210,6 +210,14 @@
         @media screen and (max-width: 450px) {
             .target-periode {
                 font-size: 14px !important;
+            }
+
+            .update-rencana {
+                margin-top: 10px;
+            }
+
+            .simpan-rencana {
+                margin-top: 10px;
             }
         }
     </style>

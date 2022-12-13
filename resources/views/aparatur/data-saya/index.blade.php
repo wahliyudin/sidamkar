@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('content')
     <section class="section">
-        <div class="card mt-4">
+        <div class="card mt-4 overflow-auto">
             <div class="card-body" style="padding-top: 3rem;">
                 <form action="" method="post" class="form-data">
                     <div class="row">
@@ -226,9 +226,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="d-flex justify-content-end mt-2">
+                    <div class="justify-content-end mt-2 text-end btn-bwh">
                         <button type="reset" class="btn btn-gray text-sm px-5" id="reset">Reset</button>
-                        <button type="submit" class="btn btn-blue text-sm ms-3 px-5" id="simpan">Simpan</button>
+                        <button type="submit" class="btn btn-blue text-sm ms-3 px-5 btn-simpan"
+                            id="simpan">Simpan</button>
                     </div>
                 </form>
             </div>
@@ -386,6 +387,18 @@
 
     <link rel="stylesheet" href="{{ asset('assets/plugins/select2/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
+    <style>
+        .btn-simpan {
+
+            width: 140px;
+        }
+
+        @media screen and (max-width: 412px) {
+            .btn-simpan {
+                margin-top: 10px;
+            }
+        }
+    </style>
 @endsection
 @section('js')
     <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>

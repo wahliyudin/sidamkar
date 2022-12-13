@@ -5,13 +5,19 @@
                 <div class="logo">
                     <a href="{{ route('home') }}">
                         <img style="width: 6rem; height: 7rem;" src="{{ asset('assets/images/template/logo.png') }}"
-                            alt="Logo" srcset="">
+                            alt="Logo" srcse t="">
                     </a>
                 </div>
                 <div class="sidebar-toggler  x">
                     <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
                 </div>
             </div>
+            @foreach (Auth::user()->roles as $role)
+                <p style="font-size: 14px; color: white;" class="d-flex justify-content-center align-items-center">
+                    {{ $role->display_name }}
+                </p>
+            @endforeach
+
         </div>
         <div class="sidebar-menu">
             <ul class="menu">
