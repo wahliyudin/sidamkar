@@ -34,6 +34,10 @@ class CobaController extends Controller
 
     public function index()
     {
-        return view('welcome');
+        return KabProvPenilaiAndPenetap::query()
+            ->with('penilaiAngkaKreditDamkar')
+            ->where('tingkat_aparatur', 'kab_kota')
+            ->where('kab_kota_id', 1101)
+            ->first();
     }
 }

@@ -27,27 +27,17 @@ class MenteController extends Controller
 
     public function index(MenteDataTable $dataTable)
     {
-        $this->menteService->getCurrentPenilaiAndPenetapByKabKota('1101', 'damkar');
         $judul = 'Data Mentee';
         $periode = $this->menteService->getPeriodeActive();
         $fungsionals = $this->menteService->getFungsionalKabKota();
         $atasanLangsungs = $this->menteService->getAtasanLangsungKabKota();
         $user = $this->authUser()->load(['userProvKabKota']);
-        $penilaiAndPenetaps = $this->menteService->getCurrentPenilaiAndPenetapByKabKota($user->userProvKabKota->kab_kota_id, ['damkar', 'analis']);
-        if (!isset($penilaiAndPenetaps)) {
-            $penilaiAndPenetaps = $this->menteService->getCurrentPenilaiAndPenetapByProvinsi($user->userProvKabKota->provinsi_id, ['damkar', 'analis']);
+        $penilaiAndPenetap = $this->menteService->getCurrentPenilaiAndPenetapByKabKota($user->userProvKabKota->kab_kota_id);
+        if (!isset($penilaiAndPenetap)) {
+            $penilaiAndPenetap = $this->menteService->getCurrentPenilaiAndPenetapByProvinsi($user->userProvKabKota->provinsi_id);
         }
-        $penilaiPenetapDamkar = null;
-        $penilaiPenetapAnalis = null;
-        $penilaiAndPenetaps->map(function(KabProvPenilaiAndPenetap $kabProvPenilaiAndPenetap) use (&$penilaiPenetapDamkar, &$penilaiPenetapAnalis){
-            if ($kabProvPenilaiAndPenetap->jenis_aparatur == 'damkar') {
-                $penilaiPenetapDamkar = $kabProvPenilaiAndPenetap;
-            } else {
-                $penilaiPenetapAnalis = $kabProvPenilaiAndPenetap;
-            }
-        });
         $provinsis = Provinsi::query()->get(['id', 'nama']);
-        return $dataTable->render('kabkota.mente.index', compact('fungsionals', 'atasanLangsungs', 'penilaiPenetapDamkar', 'penilaiPenetapAnalis', 'provinsis', 'periode', 'judul'));
+        return $dataTable->render('kabkota.mente.index', compact('fungsionals', 'penilaiAndPenetap', 'atasanLangsungs', 'provinsis', 'periode', 'judul'));
     }
 
     public function tingkatKabKota(Request $request, $kab_kota_id)
