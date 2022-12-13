@@ -73,42 +73,6 @@ class MenteDataTable extends DataTable
                     });
                 });
             })
-            ->addColumn('penilai_ak', function (User $user) {
-                $kabProvPenilaiAndPenetaps = $user->userAparatur?->provinsi?->kabProvPenilaiAndPenetaps;
-                if ($user->roles->whereIn('name', getAllRoleFungsionalDamkar())->first() != null) {
-                    $kabProvPenilaiAndPenetapDamkar = $kabProvPenilaiAndPenetaps->where('jenis_aparatur', 'damkar')->first();
-                    if (isset($kabProvPenilaiAndPenetapDamkar?->penilaiAngkaKredit)) {
-                        return $kabProvPenilaiAndPenetapDamkar?->penilaiAngkaKredit?->userPejabatStruktural?->nama;
-                    }
-                    $crossPenilaiAndPenetap = $user->userAparatur?->provinsi?->crossPenilaiAndPenetaps?->where('jenis_aparatur', 'damkar')->first();
-                    return $crossPenilaiAndPenetap?->kabProvPenilaiAndPenetap?->penilaiAngkaKredit?->userPejabatStruktural?->nama;
-                } else {
-                    $kabProvPenilaiAndPenetapAnalis = $kabProvPenilaiAndPenetaps->where('jenis_aparatur', 'analis')->first();
-                    if (isset($kabProvPenilaiAndPenetapAnalis?->penilaiAngkaKredit)) {
-                        return $kabProvPenilaiAndPenetapAnalis?->penilaiAngkaKredit?->userPejabatStruktural?->nama;
-                    }
-                    $crossPenilaiAndPenetap = $user->userAparatur?->provinsi?->crossPenilaiAndPenetaps?->where('jenis_aparatur', 'analis')->first();
-                    return $crossPenilaiAndPenetap?->kabProvPenilaiAndPenetap?->penilaiAngkaKredit?->userPejabatStruktural?->nama;
-                }
-            })
-            ->addColumn('penetap_ak', function (User $user) {
-                $kabProvPenilaiAndPenetaps = $user->userAparatur?->provinsi?->kabProvPenilaiAndPenetaps;
-                if ($user->roles->whereIn('name', getAllRoleFungsionalDamkar())->first() != null) {
-                    $kabProvPenilaiAndPenetapDamkar = $kabProvPenilaiAndPenetaps->where('jenis_aparatur', 'damkar')->first();
-                    if (isset($kabProvPenilaiAndPenetapDamkar?->penetapAngkaKredit)) {
-                        return $kabProvPenilaiAndPenetapDamkar?->penetapAngkaKredit?->userPejabatStruktural?->nama;
-                    }
-                    $crossPenilaiAndPenetap = $user->userAparatur?->provinsi?->crossPenilaiAndPenetaps?->where('jenis_aparatur', 'damkar')->first();
-                    return $crossPenilaiAndPenetap?->kabProvPenilaiAndPenetap?->penetapAngkaKredit?->userPejabatStruktural?->nama;
-                } else {
-                    $kabProvPenilaiAndPenetapAnalis = $kabProvPenilaiAndPenetaps->where('jenis_aparatur', 'analis')->first();
-                    if (isset($kabProvPenilaiAndPenetapAnalis?->penetapAngkaKredit)) {
-                        return $kabProvPenilaiAndPenetapAnalis?->penetapAngkaKredit?->userPejabatStruktural?->nama;
-                    }
-                    $crossPenilaiAndPenetap = $user->userAparatur?->provinsi?->crossPenilaiAndPenetaps?->where('jenis_aparatur', 'analis')->first();
-                    return $crossPenilaiAndPenetap?->kabProvPenilaiAndPenetap?->penetapAngkaKredit?->userPejabatStruktural?->nama;
-                }
-            })
             ->addColumn('action', function (User $user) {
                 return '<button type="button" class="btn btn-blue btn-sm edit-mente" data-id="' . $user->id . '">edit</button>';
             })
@@ -136,17 +100,6 @@ class MenteDataTable extends DataTable
                     ->where('tingkat_aparatur', 'provinsi')
                     ->with([
                         'kabKota:id',
-                        'kabKota.kabProvPenilaiAndPenetaps:id,penilai_ak_id,penetap_ak_id,jenis_aparatur,kab_kota_id',
-                        'kabKota.kabProvPenilaiAndPenetaps.penilaiAngkaKredit:id',
-                        'kabKota.kabProvPenilaiAndPenetaps.penilaiAngkaKredit.userPejabatStruktural:id,nama,user_id',
-                        'kabKota.kabProvPenilaiAndPenetaps.penetapAngkaKredit:id',
-                        'kabKota.kabProvPenilaiAndPenetaps.penetapAngkaKredit.userPejabatStruktural:id,nama,user_id',
-                        'kabKota.crossPenilaiAndPenetap:id,kab_kota_id,provinsi_id,jenis_aparatur,kab_prov_penilai_and_penetap_id',
-                        'kabKota.crossPenilaiAndPenetap.kabProvPenilaiAndPenetap:id,penilai_ak_id,penetap_ak_id,jenis_aparatur,kab_kota_id',
-                        'kabKota.crossPenilaiAndPenetap.kabProvPenilaiAndPenetap.penilaiAngkaKredit:id',
-                        'kabKota.crossPenilaiAndPenetap.kabProvPenilaiAndPenetap.penilaiAngkaKredit.userPejabatStruktural:id,nama,user_id',
-                        'kabKota.crossPenilaiAndPenetap.kabProvPenilaiAndPenetap.penetapAngkaKredit:id',
-                        'kabKota.crossPenilaiAndPenetap.kabProvPenilaiAndPenetap.penetapAngkaKredit.userPejabatStruktural:id,nama,user_id',
                     ]);
             })
             ->where('status_akun', 1)
@@ -187,8 +140,6 @@ class MenteDataTable extends DataTable
         return [
             Column::make('nama'),
             Column::make('jabatan'),
-            Column::computed('penilai_ak'),
-            Column::computed('penetap_ak'),
             Column::make('atasan_langsung'),
             Column::computed('action')
                 ->exportable(false)
