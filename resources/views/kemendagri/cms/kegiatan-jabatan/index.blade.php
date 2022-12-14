@@ -33,10 +33,10 @@
                                     </div>
                                     <div id="contentUnsur{{ $unsur->id }}" class="accordion-collapse collapse"
                                         aria-labelledby="unsur{{ $unsur->id }}" style="">
-                                        <div class="accordion-body pt-0">
+                                        <div class="accordion-body overflow-auto pt-0">
                                             <div class="accordion" id="accordion-child">
                                                 @foreach ($unsur->subUnsurs as $sub_unsur)
-                                                    <div class="accordion-item">
+                                                    <div class="accordion-item ">
                                                         <div class="d-flex justify-content-between accordion-header py-1 px-2"
                                                             id="subUnsur{{ $sub_unsur->id }}">
                                                             <div class="d-flex align-items-center" style="color: #000000;">
@@ -54,12 +54,12 @@
                                                         <div id="contentchildSubUnsur{{ $sub_unsur->id }}"
                                                             class="accordion-collapse collapse"
                                                             aria-labelledby="subUnsur{{ $sub_unsur->id }}" style="">
-                                                            <div class="accordion-body">
+                                                            <div class="accordion-body overflow-auto">
                                                                 <ul class="ms-0">
                                                                     @foreach ($sub_unsur->butirKegiatans as $butir_kegiatan)
                                                                         <li class="accordian-list ">
                                                                             <div
-                                                                                class="d-flex align-items-center justify-content-between">
+                                                                                class="d-flex align-items-center justify-content-between flex-wrap">
                                                                                 <h6 class="accordian-title">
                                                                                     {{ $butir_kegiatan->nama }}
                                                                                 </h6>

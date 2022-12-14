@@ -119,7 +119,7 @@ $(document).ready(function () {
                     }" class="accordion-collapse collapse"
                         aria-labelledby="unsur${unsur.id}"
                         style="">
-                        <div class="accordion-body pt-0">
+                        <div class="accordion-body overflow-auto pt-0">
                             <div class="accordion" id="accordion-child">
                                 ${subUnsurs(unsur.sub_unsurs)}
                             </div>
@@ -168,7 +168,7 @@ $(document).ready(function () {
         return $.map(butirKegiatans, function (butirKegiatan, indexOrKey) {
             return `
                 <li class="accordian-list ">
-                    <div class="d-flex align-items-center justify-content-between flex-wrap">
+                    <div class="d-flex align-items-center justify-content-between flex-wrap w-auto">
                         <a href="${url(
                             "/laporan-kegiatan/jabatan/" +
                                 butirKegiatan.id +
@@ -179,7 +179,7 @@ $(document).ready(function () {
                             </h6>
                         </a>
                         <div class="d-flex align-items-center ">
-                            <span class="bg-green text-sm text-center  w-auto text-white font-bold py-1 px-2 rounded-md label-role" style="white-space: nowrap;">
+                            <span class="bg-green text-sm text-center text-white font-bold py-1 px-2 rounded-md label-role" style="white-space: nowrap;">
                                 ${butirKegiatan.role?.display_name}
                             </span>
                         </div>
