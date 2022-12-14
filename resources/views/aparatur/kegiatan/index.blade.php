@@ -207,7 +207,7 @@
             }
         }
 
-        @media screen and (max-width: 450px) {
+        @media screen and (max-width: 356px) {
             .target-periode {
                 font-size: 14px !important;
             }
