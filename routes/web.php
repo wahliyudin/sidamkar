@@ -5,6 +5,7 @@ use App\Http\Controllers\Aparatur\DaftarKegiatanController;
 use App\Http\Controllers\Aparatur\DaftarPenunjangController;
 use App\Http\Controllers\Aparatur\DataKegiatanController;
 use App\Http\Controllers\Aparatur\DataSayaController;
+use App\Http\Controllers\Struktural\DataStrukturalController;
 use App\Http\Controllers\Aparatur\Kegiatan\KegiatanJabatanController as KegiatanKegiatanJabatanController;
 use App\Http\Controllers\Aparatur\LaporanJabatanController;
 use App\Http\Controllers\Aparatur\LaporanKegiatan\KegiatanJabatanController as LaporanKegiatanKegiatanJabatanController;
@@ -143,6 +144,15 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['role:atasan_langsung|penilai_ak|penetap_ak'])->group(function () {
         Route::get('struktural/dashboard', [ControllersStrukturalDashboardController::class, 'index'])->name('struktural.dashboard.index');
 
+        Route::controller(DataStrukturalController::class)->group(function () {
+            Route::get('/data-struktural', 'index')->name('data-struktural');
+            Route::post('/datasaya-store', 'store')->name('datasaya-store');
+            Route::get('data-struktural/show-dockepeg/{id}', 'showDocKepeg')->name('data-struktural.show-doc-kepeg');
+            Route::post('data-struktural/store-dockepeg', 'storeDocKepeg')->name('data-struktural.store-doc-kepeg');
+            Route::post('data-struktural/store-dockom', 'storeDocKom')->name('data-struktural.store-doc-kom');
+            Route::delete('data-struktural/destroy-dockepeg/{id}', 'destroyDocKepeg')->name('data-struktural.destroy-doc-kepeg');
+            Route::delete('data-struktural/destroy-dockom/{id}', 'destroyDocKom')->name('data-struktural.destroy-doc-kom');
+        });
         Route::middleware(['role:atasan_langsung'])->group(function () {
             Route::get('data-atasan-langsung', [DataAtasanLangsungController::class, 'index'])->name('data-atasan-langsung');
             Route::post('data-atasan-langsung-store', [DataAtasanLangsungController::class, 'store'])->name('data-atasan-langsung-store');
