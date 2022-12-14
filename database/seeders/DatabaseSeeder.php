@@ -39,13 +39,9 @@ class DatabaseSeeder extends Seeder
         $this->call(UnsurSeeder::class);
         $this->call(SubUnsurSeeder::class);
         $this->call(ButirKegiatanSeeder::class);
+        $this->call(SubButirKegiatanSeeder::class);
         $this->call(KetentuanNilaiSeeder::class);
         $this->call(KetentuanSkpSeeder::class);
         $this->call(MekanismePengangkatanSeeder::class);
-        // $this->call(UnsurKegiatanProfesiSeeder::class);
-        // $this->call(SubUnsurKegiatanProfesiSeeder::class);
-        // $this->call(ButirKegiatanProfesiSeeder::class);
-        // $this->call(SubButirKegiatanProfesiSeeder::class);
-        // SubButirKegiatan::factory(5)->create();
     }
 }

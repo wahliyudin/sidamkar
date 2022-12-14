@@ -156,7 +156,7 @@ class ButirKegiatanSeeder extends Seeder
             // 18
             [
                 'role_id' => 1,
-                'sub_unsur_id' => 6,
+                'sub_unsur_id' => 101,
                 'nama' => 'Melaksanakan korve di lingkungan kerja',
                 'satuan_hasil' => 'Laporan korve di lingkungan kerja',
                 'score' => 0.02
@@ -164,7 +164,7 @@ class ButirKegiatanSeeder extends Seeder
             // 19
             [
                 'role_id' => 1,
-                'sub_unsur_id' => 6,
+                'sub_unsur_id' => 101,
                 'nama' => 'Melaksanakan pembersihan unit mobil',
                 'satuan_hasil' => 'Laporan pembersihan unit mobil',
                 'score' => 0.02
@@ -3174,7 +3174,7 @@ class ButirKegiatanSeeder extends Seeder
                 'score' => 0.01
             ],
 
-            //  
+            //
 
             //388
             [
@@ -3693,5 +3693,368 @@ class ButirKegiatanSeeder extends Seeder
 
         ];
         ButirKegiatan::query()->upsert($analis_kebakaran_ahli_pertama_dan_analis_kebakaran_ahli_muda1, 'id');
+
+        $kegiatanProfesiFungsionalDamkar = [
+            //448
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 96,
+                'nama' => 'Memperoleh ijasah sesuai dengan bidang tugas Jabatan Fungsional Pemadam Kebakaran',
+                'satuan_hasil' => 'Ijazah/Gelar',
+                'score' => 25
+            ],
+            //449
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 97,
+                'nama' => 'Membuat karya tulis/karya ilmiah hasil penelitian/pengkajian/ survei/evaluasi di bidang pemadaman kebakaran dan penyelamatan yang dipublikasikan:',
+                'satuan_hasil' => null,
+                'score' => null
+            ],
+            //450
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 97,
+                'nama' => 'Membuat karya tulis/karya ilmiah hasil penelitian/pengkajian/ survei/evaluasi di bidang pemadaman kebakaran dan penyelamatan yang tidak dipublikasikan:',
+                'satuan_hasil' => null,
+                'score' => null
+            ],
+            //451
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 97,
+                'nama' => 'Membuat karya tulis/karya ilmiah berupa tinjauan atau ulasan ilmiah hasil gagasan sendiri di bidang pemadaman kebakaran dan penyelamatan yangdipublikasikan:',
+                'satuan_hasil' => null,
+                'score' => null
+            ],
+            //452
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 97,
+                'nama' => 'Membuat karya tulis/karya ilmiah berupa tinjauan atau ulasan ilmiah hasil gagasan sendiri di bidang pemadaman kebakaran dan penyelamatan yangdipublikasikan:',
+                'satuan_hasil' => null,
+                'score' => null
+            ],
+            //453
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 97,
+                'nama' => 'Menyampaikan prasaran berupa tinjauan, gagasan dan atau ulasan ilmiah dalam pertemuan ilmiah',
+                'satuan_hasil' => 'Naskah',
+                'score' => 2.5
+            ],
+            //454
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 97,
+                'nama' => 'Membuat artikel di bidang pemadaman kebakaran dan penyelamatan yang dipublikasikan',
+                'satuan_hasil' => 'Artikel',
+                'score' => 2
+            ],
+            //455
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 98,
+                'nama' => 'Menerjemahkan/menyadur buku atau karya ilmiah di bidang pemadaman kebakaran dan penyelamatan yang dipublikasikan:',
+                'satuan_hasil' => 'Artikel',
+                'score' => 2
+            ],
+            //456
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 98,
+                'nama' => 'Menerjemahkan / menyadur buku atau karya ilmiah di bidang pemadaman kebakaran dan penyelamatan yang tidak dipublikasikan:',
+                'satuan_hasil' => 'Artikel',
+                'score' => 2
+            ],
+            //457
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 99,
+                'nama' => 'Membuat buku standar/pedoman/ petunjuk pelaksanaan/ petunjuk teknis di bidang Jabatan Fungsional Pemadam Kebakaran',
+                'satuan_hasil' => 'Buku',
+                'score' => 3
+            ],
+            //458
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 100,
+                'nama' => 'pelatihan fungsional',
+                'satuan_hasil' => 'Sertifikat/laporan',
+                'score' => 0.5
+            ],
+            //459
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 100,
+                'nama' => 'seminar/lokakarya/konferensi/simposium/studi banding-lapangan',
+                'satuan_hasil' => 'Sertifikat/laporan',
+                'score' => 0.5
+            ],
+            //460
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 100,
+                'nama' => 'pelatihan teknis/magang di bidang tugas pemadaman kebakaran dan penyelamatan dan memperoleh Sertifikat',
+                'satuan_hasil' => null,
+                'score' => null
+            ],
+            //461
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 100,
+                'nama' => 'Pelatihan manajerial/sosial kultural di bidang tugas pemadaman kebakaran dan penyelamatan dan memperoleh Sertifikat',
+                'satuan_hasil' => null,
+                'score' => null
+            ],
+            //462
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 100,
+                'nama' => 'maintain performance (pemeliharaan kinerja dan target kinerja)',
+                'satuan_hasil' => 'Sertifikat/laporan',
+                'score' => 0.5
+            ],
+            //463
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 101,
+                'nama' => 'Melaksanakan kegiatan lain yang mendukung pengembangan profesi yang ditetapkan oleh Instansi Pembina di bidang Jabatan Fungsional Pemadam Kebakaran',
+                'satuan_hasil' => 'Laporan',
+                'score' => 0.5
+            ],
+            //464
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 102,
+                'nama' => 'Mengajar/melatih/membimbing yang berkaitan dengan bidang Jabatan Fungsional Pemadam Kebakaran',
+                'satuan_hasil' => 'Sertifikat/ Laporan',
+                'score' => 0.4
+            ],
+            //465
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 103,
+                'nama' => 'Menjadi anggota Tim Penilai/ Tim Uji Kompetensi',
+                'satuan_hasil' => 'Laporan',
+                'score' => 0.04
+            ],
+            //466
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 104,
+                'nama' => 'Memperoleh penghargaan / tanda jasa Satya Lancana Karya Satya:',
+                'satuan_hasil' => null,
+                'score' => null
+            ],
+            //467
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 104,
+                'nama' => 'Penghargaan atas prestasi kerjanya',
+                'satuan_hasil' => null,
+                'score' => null
+            ],
+            //468
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 105,
+                'nama' => 'Memperoleh ijazah/gelar yang tidak sesuai bidang tugasnya:',
+                'satuan_hasil' => null,
+                'score' => null
+            ],
+            //469
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 106,
+                'nama' => 'Melakukan kegiatan yang mendukung pelaksanaan tugas Jabatan Fungsional Pemadam Kebakaran',
+                'satuan_hasil' => 'Laporan',
+                'score' => 0.04
+            ],
+
+        ];
+
+        ButirKegiatan::query()->upsert($kegiatanProfesiFungsionalDamkar, 'id');
+
+        $kegiatanProfesiAnalisDamkar = [
+            //470
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 107,
+                'nama' => 'Memperoleh ijasah sesuai dengan bidang tugas Jabatan Fungsional Analis Kebakaran',
+                'satuan_hasil' => 'Ijazah/Gelar',
+                'score' => 25
+            ],
+            //471
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 108,
+                'nama' => 'Membuat karya tulis/karya ilmiah hasil penelitian/pengkajian/ survei/evaluasi di bidang analisis pencegahan dan penanggulangan kebakaran dan penyelamatan yang dipublikasikan:',
+                'satuan_hasil' => null,
+                'score' => null
+            ],
+            //472
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 108,
+                'nama' => 'Membuat karya tulis/karya ilmiah hasilpenelitian/pengkajian/ survei/evaluasi di bidang analisispencegahan dan penanggulangan kebakaran danpenyelamatan yang tidak dipublikasikan:',
+                'satuan_hasil' => null,
+                'score' => null
+            ],
+            //473
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 108,
+                'nama' => 'Membuat karya tulis/karya ilmiah berupa tinjauan atau ulasan ilmiah hasil gagasan sendiri di bidang analisis pencegahan dan penanggulangan kebakaran dan penyelamatan yang dipublikasikan:',
+                'satuan_hasil' => null,
+                'score' => null
+            ],
+            //474
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 108,
+                'nama' => 'Membuat karya tulis/karya ilmiah berupa tinjauan atau ulasan ilmiah hasil gagasan sendiri di bidang analisis pencegahan dan penanggulangan kebakaran dan penyelamatan yang tidak dipublikasikan:',
+                'satuan_hasil' => null,
+                'score' => null
+            ],
+            //475
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 108,
+                'nama' => 'Menyampaikan prasaran berupa tinjauan, gagasan dan atau ulasan ilmiah dalam pertemuan ilmiah',
+                'satuan_hasil' => 'Naskah',
+                'score' => 2.5
+            ],
+            //476
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 108,
+                'nama' => 'Membuat artikel di bidang analisis pencegahan dan penanggulangan kebakaran dan penyelamatan yang dipublikasikan',
+                'satuan_hasil' => 'Artikel',
+                'score' => 2
+            ],
+            //477
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 109,
+                'nama' => 'Menerjemahkan/menyadur buku atau karya ilmiah di bidanganalisis pencegahan dan penanggulangan kebakaran danpenyelamatan yang dipublikasikan:',
+                'satuan_hasil' => null,
+                'score' => null
+            ],
+            //478
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 109,
+                'nama' => 'Menerjemahkan / menyadur buku atau karya ilmiah di bidang JF yang tidak dipublikasikan:',
+                'satuan_hasil' => null,
+                'score' => null
+            ],
+            //479
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 110,
+                'nama' => 'Membuat buku standar/pedoman/ petunjuk pelaksanaan/ petunjuk teknis di bidang Jabatan Fungsional Analis Kebakaran',
+                'satuan_hasil' => 'Buku',
+                'score' => 3
+            ],
+            //480
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 111,
+                'nama' => 'pelatihan fungsional',
+                'satuan_hasil' => 'Sertifikat/laporan',
+                'score' => 0.5
+            ],
+            //481
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 111,
+                'nama' => 'seminar/lokakarya/konferensi/simposium/studi bandinglapangan',
+                'satuan_hasil' => 'Sertifikat/laporan',
+                'score' => 3
+            ],
+            //482
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 111,
+                'nama' => 'pelatihan teknis/magang di bidang tugas analisis pencegahan dan penanggulangan kebakaran dan penyelamatan dan memperoleh Sertifikat',
+                'satuan_hasil' => null,
+                'score' => null
+            ],
+            //483
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 111,
+                'nama' => 'Pelatihan manajerial/sosial kultural di bidang tugas analisis pencegahan dan penanggulangan kebakaran dan penyelamatan dan memperoleh Sertifikat',
+                'satuan_hasil' => null,
+                'score' => null
+            ],
+            //484
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 111,
+                'nama' => 'Maintain performance (pemeliharaan kinerja dan target kinerja)',
+                'satuan_hasil' => 'Sertifikat/laporan',
+                'score' => 0.5
+            ],
+            //485
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 112,
+                'nama' => 'Melaksanakan kegiatan lain yang mendukung pengembangan profesi yang ditetapkan oleh Instansi Pembina di bidang Jabatan Fungsional Analis Kebakaran',
+                'satuan_hasil' => 'Laporan',
+                'score' => 0.5
+            ],
+            //486
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 113,
+                'nama' => 'Mengajar/melatih/membimbing yang berkaitan dengan bidang Jabatan Fungsional Analis Kebakaran',
+                'satuan_hasil' => 'Sertifikat/Laporan',
+                'score' => 0.4
+            ],
+            //487
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 114,
+                'nama' => 'Menjadi anggota Tim Penilai/ Tim Uji Kompetensi',
+                'satuan_hasil' => null,
+                'score' => null
+            ],
+            //488
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 115,
+                'nama' => 'Memperoleh penghargaan / tanda jasa Satya Lancana Karya Satya:',
+                'satuan_hasil' => null,
+                'score' => null
+            ],
+            //489
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 115,
+                'nama' => 'Penghargaan atas prestasi kerjanya',
+                'satuan_hasil' => null,
+                'score' => null
+            ],
+            //490
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 116,
+                'nama' => 'Memperoleh ijazah/gelar yang tidak sesuai bidang tugasnya:',
+                'satuan_hasil' => 'Laporan',
+                'score' => 0.4
+            ],
+            //491
+            [
+                'role_id' => null,
+                'sub_unsur_id' => 117,
+                'nama' => 'Melakukan kegiatan yang mendukung pelaksanaan tugas Jabatan Fungsional Analis Kebakaran',
+                'satuan_hasil' => 'Laporan',
+                'score' => 0.4
+            ],
+        ];
+
+        ButirKegiatan::query()->upsert($kegiatanProfesiAnalisDamkar, 'id');
     }
 }

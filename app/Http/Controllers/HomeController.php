@@ -41,8 +41,10 @@ class HomeController extends Controller
             return to_route('provinsi.overview.index');
         } elseif (
             auth()->user()->hasRole('atasan_langsung') ||
-            auth()->user()->hasRole('penilai_ak') ||
-            auth()->user()->hasRole('penetap_ak')
+            auth()->user()->hasRole('penilai_ak_damkar') ||
+            auth()->user()->hasRole('penilai_ak_analis') ||
+            auth()->user()->hasRole('penetap_ak_damkar') ||
+            auth()->user()->hasRole('penetap_ak_analis')
         ) {
             return to_route('struktural.dashboard.index');
         } elseif (auth()->user()->hasRole('kemendagri')) {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\DataTables\PenilaiAk\DataPengajuan;
+namespace App\DataTables\PenilaiAK\DataPengajuan;
 
 use App\Models\User;
 use App\Traits\AuthTrait;
@@ -49,7 +49,7 @@ class InternalDataTable extends DataTable
                 return $user?->userAparatur?->pangkatGolonganTmt?->nama;
             })
             ->addColumn('action', function (User $user) {
-                return '<a href="'.route('penilai-ak.data-pengajuan.internal.show', $user->id).'" class="btn btn-blue btn-sm">Detail</a>';
+                return '<a href="' . route('penilai-ak.data-pengajuan.internal.show', $user->id) . '" class="btn btn-blue btn-sm">Detail</a>';
             })
             ->rawColumns(['action'])
             ->setRowId('id');
@@ -63,16 +63,19 @@ class InternalDataTable extends DataTable
      */
     public function query(User $model): QueryBuilder
     {
-        $user = $this->authUser()->load(['kabProvPenilais', 'userPejabatStruktural:id,user_id,tingkat_aparatur']);
-        $kabKotas = $user->kabProvPenilais()->pluck('kab_kota_id')->toArray();
-        $jenisAparaturs = $user->kabProvPenilais()->pluck('jenis_aparatur')->toArray();
+        $user = $this->authUser()->load(['userPejabatStruktural:id,user_id,kab_kota_id,tingkat_aparatur']);
+        $jenisAparaturs = $this->getRoles($user->roles()->pluck('name')->toArray());
         return $model->newQuery()
             ->where('status_akun', User::STATUS_ACTIVE)
-            ->withWhereHas('userAparatur', function ($query) use ($user, $kabKotas) {
-                $query->with(['kabKota', 'pangkatGolonganTmt'])->whereIn('kab_kota_id', $kabKotas)
-                    ->where('tingkat_aparatur', $user->userPejabatStruktural->tingkat_aparatur);
+            ->withWhereHas('userAparatur', function ($query) use ($user) {
+                $query->with(['kabKota', 'pangkatGolonganTmt'])
+                    ->where('kab_kota_id', $user->userPejabatStruktural->kab_kota_id)
+                    ->where('tingkat_aparatur', 'kab_kota');
             })
-            ->whereRoleIs($this->getRoles($jenisAparaturs));
+            // ->whereHas('rekapitulasiKegiatan', function ($query) {
+            //     $query->where('is_send', true);
+            // })
+            ->whereRoleIs($jenisAparaturs);
     }
 
     /**
