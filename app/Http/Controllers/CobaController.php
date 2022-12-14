@@ -46,7 +46,7 @@ class CobaController extends Controller
                 $query->withWhereHas('butirKegiatans', function ($query) use ($role) {
                     $query->with('role', function ($query) use ($role) {
                         $query->whereIn('id', $this->limiRole($role->id));
-                    });
+                    })->with('subButirKegiatans');
                 });
             })
             ->get();

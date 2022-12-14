@@ -22,4 +22,9 @@ class SubButirKegiatan extends Model
     {
         return $this->belongsTo(ButirKegiatan::class);
     }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
 }
