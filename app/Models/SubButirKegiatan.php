@@ -11,6 +11,7 @@ class SubButirKegiatan extends Model
 
     protected $fillable = [
         'butir_kegiatan_id',
+        'role_id',
         'nama',
         'satuan_hasil',
         'score',

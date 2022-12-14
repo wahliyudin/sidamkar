@@ -53,11 +53,11 @@
                             <li class="submenu-item {{ request()->is('laporan-kegiatan/jabatan*') ? 'active' : '' }}">
                                 <a href="{{ route('laporan-kegiatan.jabatan') }}">Jabatan</a>
                             </li>
-                            <li class="submenu-item {{ request()->routeIs('laporan-kegiatan.profesi') ? 'active' : '' }}">
+                            <li class="submenu-item {{ request()->is('laporan-kegiatan/profesi*') ? 'active' : '' }}">
                                 <a href="{{ route('laporan-kegiatan.profesi') }}">Profesi</a>
                             </li>
-                            <li class="submenu-item {{ request()->routeIs('laporan-kegiatan.profesi') ? 'active' : '' }}">
-                                <a href="{{ route('laporan-kegiatan.profesi') }}">Penunjang</a>
+                            <li class="submenu-item {{ request()->is('laporan-kegiatan/penunjang*') ? 'active' : '' }}">
+                                <a href="{{ route('laporan-kegiatan.penunjang') }}">Penunjang</a>
                             </li>
                         </ul>
                     </li>
