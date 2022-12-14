@@ -149,7 +149,7 @@ $(document).ready(function () {
                         </a>
                         <div class="d-flex align-items-center">
                             <span class="bg-green text-sm text-center text-white font-bold py-1 px-2 rounded-md label-role" style="white-space: nowrap;">
-                                ${butirKegiatan.role?.display_name}
+                                ${butirKegiatan.role?.display_name ?? 'Semua Jenjang'}
                             </span>
                         </div>
                     </div>

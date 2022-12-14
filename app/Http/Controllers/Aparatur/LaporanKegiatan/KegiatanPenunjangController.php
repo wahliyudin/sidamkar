@@ -75,7 +75,7 @@ class KegiatanPenunjangController extends Controller
         $ketentuan_ak = DB::table('ketentuan_nilais')->where('role_id', $role[0]->role_id)->where('pangkat_golongan_tmt_id', $user1->userAparatur->pangkat_golongan_tmt_id)->get();
         $ak_diterima = DB::table('laporan_kegiatan_jabatans')->where('user_id', Auth::user()->id)->where('status', 3)->sum('score');
         $historyRekapitulasiKegiatans = $user?->rekapitulasiKegiatan?->historyRekapitulasiKegiatans ?? [];
-        return view('aparatur.laporan-kegiatan.profesi.index', compact('periode', 'user', 'judul', 'historyRekapitulasiKegiatans', 'skp', 'ketentuan_ak', 'ak_diterima'));
+        return view('aparatur.laporan-kegiatan.penunjang.index', compact('periode', 'user', 'judul', 'historyRekapitulasiKegiatans', 'skp', 'ketentuan_ak', 'ak_diterima'));
     }
 
     /**
@@ -100,7 +100,7 @@ class KegiatanPenunjangController extends Controller
         $laporanKegiatanJabatanCount = $this->kegiatanPenunjangService->laporanKegiatanJabatanCount($butirKegiatan, $user);
         $rencanas = $this->kegiatanPenunjangService->rencanas($user);
         $historyRekapitulasiKegiatans = $user?->rekapitulasiKegiatan?->historyRekapitulasiKegiatans ?? [];
-        return view('aparatur.laporan-kegiatan.profesi.show', compact(
+        return view('aparatur.laporan-kegiatan.penunjang.show', compact(
             'laporanKegiatanJabatanStatusValidasis',
             'laporanKegiatanJabatanStatusRevisis',
             'laporanKegiatanJabatanStatusSelesais',
