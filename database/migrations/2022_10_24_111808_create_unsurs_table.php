@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('jenis_kegiatan_id');
             $table->unsignedBigInteger('periode_id');
+            $table->enum('jenis_aparatur', ['damkar', 'analis'])->nullable();
             $table->string('nama')->fulltext();
             $table->timestamps();
 

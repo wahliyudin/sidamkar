@@ -5,6 +5,7 @@ use App\Http\Controllers\Aparatur\DaftarKegiatanController;
 use App\Http\Controllers\Aparatur\DaftarPenunjangController;
 use App\Http\Controllers\Aparatur\DataKegiatanController;
 use App\Http\Controllers\Aparatur\DataSayaController;
+use App\Http\Controllers\Struktural\DataStrukturalController;
 use App\Http\Controllers\Aparatur\Kegiatan\KegiatanJabatanController as KegiatanKegiatanJabatanController;
 use App\Http\Controllers\Aparatur\LaporanJabatanController;
 use App\Http\Controllers\Aparatur\LaporanKegiatan\KegiatanJabatanController as LaporanKegiatanKegiatanJabatanController;
@@ -131,11 +132,33 @@ Route::middleware(['auth'])->group(function () {
         Route::controller(LaporanKegiatanKegiatanProfesiController::class)->group(function () {
             Route::get('laporan-kegiatan/profesi', 'index')->name('laporan-kegiatan.profesi');
             Route::post('laporan-kegiatan/profesi/load-data', 'loadData')->name('laporan-kegiatan.profesi.load-data');
+            Route::get('laporan-kegiatan/profesi/{butir_kegiatan}/show', 'show')->name('laporan-kegiatan.profesi.show');
+            Route::post('laporan-kegiatan/profesi/{butir_kegiatan}/store', 'storeLaporan')->name('laporan-kegiatan.profesi.store-laporan');
+            Route::get('laporan-kegiatan/profesi/{laporan_kegiatan_jabatan}/edit', 'edit')->name('laporan-kegiatan.profesi.edit');
+            Route::post('laporan-kegiatan/profesi/{laporan_kegiatan_jabatan}/update', 'update')->name('laporan-kegiatan.profesi.update');
+            Route::post('laporan-kegiatan/profesi/tmp-file', 'storeTmpFile')->name('laporan-kegiatan.profesi.tmp-file');
+            Route::delete('laporan-kegiatan/profesi/revert', 'revertTmpFile')->name('laporan-kegiatan.profesi.revert');
+
+            Route::post('laporan-kegiatan/profesi/rekapitulasi', 'rekapitulasi')->name('laporan-kegiatan.profesi.rekapitulasi');
+            Route::post('laporan-kegiatan/profesi/rekapitulasi/send-rekap', 'sendRekap')->name('laporan-kegiatan.profesi.rekapitulasi.send-rekap');
+
+            Route::post('laporan-kegiatan/profesi/send-skp', 'sendSKP')->name('laporan-kegiatan.profesi.send-skp');
         });
 
         Route::controller(LaporanKegiatanKegiatanPenunjangController::class)->group(function () {
             Route::get('laporan-kegiatan/penunjang', 'index')->name('laporan-kegiatan.penunjang');
             Route::post('laporan-kegiatan/penunjang/load-data', 'loadData')->name('laporan-kegiatan.penunjang.load-data');
+            Route::get('laporan-kegiatan/penunjang/{butir_kegiatan}/show', 'show')->name('laporan-kegiatan.penunjang.show');
+            Route::post('laporan-kegiatan/penunjang/{butir_kegiatan}/store', 'storeLaporan')->name('laporan-kegiatan.penunjang.store-laporan');
+            Route::get('laporan-kegiatan/penunjang/{laporan_kegiatan_jabatan}/edit', 'edit')->name('laporan-kegiatan.penunjang.edit');
+            Route::post('laporan-kegiatan/penunjang/{laporan_kegiatan_jabatan}/update', 'update')->name('laporan-kegiatan.penunjang.update');
+            Route::post('laporan-kegiatan/penunjang/tmp-file', 'storeTmpFile')->name('laporan-kegiatan.penunjang.tmp-file');
+            Route::delete('laporan-kegiatan/penunjang/revert', 'revertTmpFile')->name('laporan-kegiatan.penunjang.revert');
+
+            Route::post('laporan-kegiatan/penunjang/rekapitulasi', 'rekapitulasi')->name('laporan-kegiatan.penunjang.rekapitulasi');
+            Route::post('laporan-kegiatan/penunjang/rekapitulasi/send-rekap', 'sendRekap')->name('laporan-kegiatan.penunjang.rekapitulasi.send-rekap');
+
+            Route::post('laporan-kegiatan/penunjang/send-skp', 'sendSKP')->name('laporan-kegiatan.penunjang.send-skp');
         });
 
         Route::get('/daftar-kegiatan', [DaftarKegiatanController::class, 'index'])->name('daftar-kegiatan');
@@ -149,6 +172,15 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['role:atasan_langsung|penilai_ak|penetap_ak'])->group(function () {
         Route::get('struktural/dashboard', [ControllersStrukturalDashboardController::class, 'index'])->name('struktural.dashboard.index');
 
+        Route::controller(DataStrukturalController::class)->group(function () {
+            Route::get('/data-struktural', 'index')->name('data-struktural');
+            Route::post('/datasaya-store', 'store')->name('datasaya-store');
+            Route::get('data-struktural/show-dockepeg/{id}', 'showDocKepeg')->name('data-struktural.show-doc-kepeg');
+            Route::post('data-struktural/store-dockepeg', 'storeDocKepeg')->name('data-struktural.store-doc-kepeg');
+            Route::post('data-struktural/store-dockom', 'storeDocKom')->name('data-struktural.store-doc-kom');
+            Route::delete('data-struktural/destroy-dockepeg/{id}', 'destroyDocKepeg')->name('data-struktural.destroy-doc-kepeg');
+            Route::delete('data-struktural/destroy-dockom/{id}', 'destroyDocKom')->name('data-struktural.destroy-doc-kom');
+        });
         Route::middleware(['role:atasan_langsung'])->group(function () {
             Route::get('data-atasan-langsung', [DataAtasanLangsungController::class, 'index'])->name('data-atasan-langsung');
             Route::post('data-atasan-langsung-store', [DataAtasanLangsungController::class, 'store'])->name('data-atasan-langsung-store');
@@ -193,7 +225,7 @@ Route::middleware(['auth'])->group(function () {
         Route::middleware(['role:penetap_ak'])->group(function () {
             Route::get('penetap-ak/data-pengajuan/kabkota-external/kabKota-external', [KabKotaExternal::class, 'index'])->name('penetap-ak.data-pengajuan.kabkota-external.kabKota-external');
             Route::get('penetap-ak/data-pengajuan/kabkota-internal/kabKota-internal', [KabKotaInternal::class, 'index'])->name('penetap-ak.data-pengajuan.kabkota-internal.kabKota-internal');
-            // Route::get('penetap_ak/overview', [PenilaiAkOverviewController::class, 'index'])->name('penetap_ak.overview');
+            Route::get('penetap_ak/overview', [PenilaiAkOverviewController::class, 'index'])->name('penetap_ak.overview');
             Route::get('data-penetap-ak', [DataPenetapAKController::class, 'index'])->name('data-penetap-ak');
             Route::post('/data-penetap-ak-store', [DataPenetapAKController::class, 'store'])->name('data-penetap-ak-store');
             Route::get('data-penetap-ak/show-dockepeg/{id}', [DataPenetapAKController::class, 'showDocKepeg'])->name('data-penetap-ak.show-doc-kepeg');

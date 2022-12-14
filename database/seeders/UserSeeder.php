@@ -305,7 +305,7 @@ class UserSeeder extends Seeder
             'email' => 'admin6@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'status_akun' => 0
+            'status_akun' => 1
         ]);
         $penilaiAK->userPejabatStruktural()->create([
             'nama' => 'Penilai AK',
@@ -327,7 +327,7 @@ class UserSeeder extends Seeder
                 'email' => fake()->email(),
                 'password' => Hash::make('123456789'),
                 'email_verified_at' => now(),
-                'status_akun' => 0
+                'status_akun' => 1
             ]);
             $penilaiAK1->userPejabatStruktural()->create([
                 'nama' => $penilaiAK1Name,
@@ -349,7 +349,7 @@ class UserSeeder extends Seeder
             'email' => 'admin0099@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'status_akun' => 0
+            'status_akun' => 1
         ]);
         $penetapAK->userPejabatStruktural()->create([
             'nama' => 'Penetap AK',
@@ -371,7 +371,7 @@ class UserSeeder extends Seeder
                 'email' => fake()->email(),
                 'password' => Hash::make('123456789'),
                 'email_verified_at' => now(),
-                'status_akun' => 0
+                'status_akun' => 1
             ]);
             $penetapAK->userPejabatStruktural()->create([
                 'nama' => $penetapAKName,
