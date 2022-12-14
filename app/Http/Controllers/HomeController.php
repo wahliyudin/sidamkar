@@ -39,14 +39,16 @@ class HomeController extends Controller
             return to_route('kab-kota.overview');
         } elseif (auth()->user()->hasRole('provinsi')) {
             return to_route('provinsi.overview.index');
-        } elseif (auth()->user()->hasRole('atasan_langsung')) {
-            return to_route('atasan-langsung.overview.index');
-        } elseif (auth()->user()->hasRole('penilai_ak_damkar') || auth()->user()->hasRole('penilai_ak_analis')) {
-            return to_route('penilai-ak.overview');
+        } elseif (
+            auth()->user()->hasRole('atasan_langsung') ||
+            auth()->user()->hasRole('penilai_ak_damkar') ||
+            auth()->user()->hasRole('penilai_ak_analis') ||
+            auth()->user()->hasRole('penetap_ak_damkar') ||
+            auth()->user()->hasRole('penetap_ak_analis')
+        ) {
+            return to_route('struktural.dashboard.index');
         } elseif (auth()->user()->hasRole('kemendagri')) {
             return to_route('kemendagri.overview.index');
-        } elseif (auth()->user()->hasRole('penetap_ak_damkar') || auth()->user()->hasRole('penetap_ak_analis')) {
-            return to_route('penetap-ak.overview');
         } else {
             return to_route('login')->with('warning', 'Kamu Tidak Dapat Mengakses Sistem');
         }
