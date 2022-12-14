@@ -19,7 +19,6 @@
                     </p>
                 @endforeach
             @endif
-
         </div>
         <div class="sidebar-menu">
             <ul class="menu">
@@ -114,8 +113,8 @@
                 @endrole
                 @role(['penilai_ak_damkar', 'penilai_ak_analis', 'atasan_langsung', 'penetap_ak_damkar',
                     'penetap_ak_analis'])
-                    <li class="sidebar-item {{ request()->routeIs('struktural.dashboard.index') ? 'active' : '' }}">
-                        <a href="{{ route('struktural.dashboard.index') }}" class='sidebar-link'>
+                    <li class="sidebar-item {{ request()->routeIs('struktural/dashboard') ? 'active' : '' }}">
+                        <a href="{{ route('struktural.dashboard') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="bi bi-grid-fill"></i>
                             </div>
