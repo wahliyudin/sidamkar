@@ -211,7 +211,7 @@ class UnsurSeeder extends Seeder
         $kegiatanProfesiFungsionalDamkar = [
             //29
             [
-                'jenis_kegiatan_id' => 3,
+                'jenis_kegiatan_id' => 2,
                 'periode_id' => 1,
                 'nama' => 'Pengembangan Profesi Pemadam Kebakaran'
             ],
@@ -228,7 +228,7 @@ class UnsurSeeder extends Seeder
         $kegiatanProfesiAnalisDamkar = [
             //31
             [
-                'jenis_kegiatan_id' => 3,
+                'jenis_kegiatan_id' => 2,
                 'periode_id' => 1,
                 'nama' => 'Pengembangan Profesi Analis Kebakaran'
             ],

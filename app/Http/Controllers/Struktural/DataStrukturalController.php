@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Struktural;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -33,7 +33,7 @@ class DataStrukturalController extends Controller
         $provinsis = Provinsi::query()->get();
         $kab_kota = KabKota::query()->get();
         $pangkats = PangkatGolonganTmt::query()->get();
-        return view('atasan-langsung.data-saya.index', compact('user', 'provinsis', 'kab_kota', 'pangkats', 'judul'));
+        return view('struktural.data-saya.index', compact('user', 'provinsis', 'kab_kota', 'pangkats', 'judul'));
     }
 
     public function store(Request $request)
@@ -87,13 +87,13 @@ class DataStrukturalController extends Controller
 
     public function create()
     {
-        return view('atasan-langsung.data-saya.index');
+        return view('struktural.data-saya.index');
     }
 
     public function showDocKepeg($id)
     {
         $file = DokKepegawaian::query()->findOrFail($id)->file;
-        return view('atasan-langsung.data-saya.show-document', compact('file'));
+        return view('struktural.data-saya.show-document', compact('file'));
     }
 
     public function storeDocKepeg(Request $request)
