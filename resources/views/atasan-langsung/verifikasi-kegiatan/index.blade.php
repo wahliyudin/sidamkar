@@ -2,25 +2,7 @@
 
 @section('content')
     <section class="section">
-        <div class="row">
-            <div class="col-md-3 px-2">
-                <div class="card">
-                    <div class="card-body py-3 px-3" style="height: 100px;">
-                        <div class="d-flex align-items-center h-100">
-                            <div class="circle circle-red-light">
-                                <i class="fa-solid fa-circle-exclamation"></i>
-                            </div>
-                            <div class="d-flex flex-column ms-2">
-                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                    Angka Kredit Sebelumnya
-                                </p>
-                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target">44</h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
         <div class="row">
             <div class="col">
                 <div class="card overflow-auto">
