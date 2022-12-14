@@ -14,6 +14,7 @@ use App\Models\Role;
 use App\Models\Unsur;
 use App\Models\User;
 use App\Repositories\PeriodeRepository;
+use App\Services\Aparatur\LaporanKegiatan\KegiatanProfesiService;
 use App\Traits\AuthTrait;
 use App\Traits\DataTableTrait;
 use App\Traits\ScoringTrait;
@@ -29,26 +30,20 @@ class CobaController extends Controller
     use ScoringTrait, AuthTrait, DataTableTrait;
 
     private PeriodeRepository $periodeRepository;
+    private KegiatanProfesiService $kegiatanProfesiService;
 
-    public function __construct(PeriodeRepository $periodeRepository)
+    public function __construct(PeriodeRepository $periodeRepository, KegiatanProfesiService $kegiatanProfesiService)
     {
         $this->periodeRepository = $periodeRepository;
     }
 
     public function index()
     {
-        $periode = $this->periodeRepository->isActive();
-        $role = Role::query()->find(6);
-        return Unsur::query()
-            ->where('jenis_kegiatan_id', 2)
-            ->where('periode_id', $periode->id)
-            ->withWhereHas('subUnsurs', function ($query) use ($role) {
-                $query->withWhereHas('butirKegiatans', function ($query) use ($role) {
-                    $query->with('role', function ($query) use ($role) {
-                        $query->whereIn('id', $this->limiRole($role->id));
-                    })->with('subButirKegiatans');
-                });
-            })
-            ->get();
+        // $profesis = $this->kegiatanProfesiService->loadUnsurs();
+        $pdf_rekap = PDF::loadView('generate-pdf.pengembang')
+            ->setPaper('A4');
+        unlink(public_path('coba.pdf'));
+        $pdf_rekap->save('coba.pdf');
+        return response()->file('coba.pdf');
     }
 }

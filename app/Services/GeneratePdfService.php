@@ -71,4 +71,16 @@ class GeneratePdfService
             ]);
         }
     }
+
+    public function generatePengembang()
+    {
+        $pdf_rekap = PDF::loadView('generate-pdf.pengembang')
+            ->setPaper('A4');
+        $file_name = uniqid();
+        Storage::put("rekapitulasi/$file_name.pdf", $pdf_rekap->output());
+        return [
+            asset("storage/rekapitulasi/$file_name.pdf"),
+            $file_name
+        ];
+    }
 }
