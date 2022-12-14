@@ -5,11 +5,10 @@ namespace App\Services\Aparatur\LaporanKegiatan;
 use App\Models\ButirKegiatan;
 use App\Models\DokumenKegiatanJabatan;
 use App\Models\HistoryKegiatanJabatan;
+use App\Models\JenisKegiatan;
 use App\Models\LaporanKegiatanJabatan;
 use App\Models\Periode;
-use App\Models\RekapitulasiCapaian;
 use App\Models\Role;
-use App\Models\SuratPernyataanKegiatan;
 use App\Models\TemporaryFile;
 use App\Models\Unsur;
 use App\Models\User;
@@ -25,7 +24,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 
-class KegiatanJabatanService
+class KegiatanProfesiService
 {
     use ScoringTrait;
 
@@ -58,7 +57,7 @@ class KegiatanJabatanService
     public function loadUnsurs(Periode $periode, string $search, Role $role)
     {
         $unsurs = Unsur::query()
-            ->where('jenis_kegiatan_id', 1)
+            ->where('jenis_kegiatan_id', JenisKegiatan::JENIS_KEGIATAN_PROFESI)
             ->where('periode_id', $periode->id)
             ->withWhereHas('subUnsurs', function ($query) use ($role) {
                 $query->withWhereHas('butirKegiatans', function ($query) use ($role) {
