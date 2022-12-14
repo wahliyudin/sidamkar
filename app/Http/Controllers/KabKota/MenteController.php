@@ -34,7 +34,7 @@ class MenteController extends Controller
         $user = $this->authUser()->load(['userProvKabKota']);
         $penilaiAndPenetap = $this->menteService->getCurrentPenilaiAndPenetapByKabKota($user->userProvKabKota->kab_kota_id);
         if (!isset($penilaiAndPenetap)) {
-            $penilaiAndPenetap = $this->menteService->getCurrentPenilaiAndPenetapByProvinsi($user->userProvKabKota->provinsi_id);
+            $penilaiAndPenetap = $this->menteService->getCurrentPenilaiAndPenetapByKabKota($user->userProvKabKota->kab_kota_id);
         }
         $provinsis = Provinsi::query()->get(['id', 'nama']);
         return $dataTable->render('kabkota.mente.index', compact('fungsionals', 'penilaiAndPenetap', 'atasanLangsungs', 'provinsis', 'periode', 'judul'));

@@ -20,14 +20,14 @@
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            {{--  <h5 class=" ms-3" style="margin-top:12px">
+            <h5 class=" ms-3" style="margin-top:12px">
                 @isset($judul)
                     {{ $judul }}
                 @endisset
-            </h5>  --}}
+            </h5>
             <div class="collapse navbar-collapse " id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-lg-0">
-                    <li class="nav-item dropdown me-1">
+                    {{--  <li class="nav-item dropdown me-1">
                         <a class="nav-link active dropdown-toggle text-gray-600" href="#"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             <i class='bi bi-envelope bi-sub fs-4'></i>
@@ -78,7 +78,7 @@
                                         notification</a></p>
                             </li>
                         </ul>
-                    </li>
+                    </li>  --}}
                 </ul>
                 <div class="dropdown">
                     <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
@@ -94,7 +94,8 @@
                                     </div>
                                 </div>
                             @endrole
-                            @role(['atasan_langsung', 'penilai_ak', 'penetap_ak'])
+                            @role(['atasan_langsung', 'penilai_ak_damkar', 'penilai_ak_analis', 'penetap_ak_damkar',
+                                'penetap_ak_analis'])
                                 <div class="user-img d-flex align-items-center">
                                     <div class="avatar avatar-md">
                                         <img

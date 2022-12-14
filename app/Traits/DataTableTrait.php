@@ -19,15 +19,18 @@ trait DataTableTrait
         }
     }
 
-    public function getRoles($jenisAparaturs)
+    public function getRoles($roles)
     {
-        $roles = [];
-        if (in_array('analis', $jenisAparaturs)) {
-            $roles = array_merge($roles, getAllRoleFungsionalAnalis());
+        $results = [];
+        if (in_array('penilai_ak_analis', $roles)) {
+            $results = array_merge($results, getAllRoleFungsionalAnalis());
         }
-        if (in_array('damkar', $jenisAparaturs)) {
-            $roles = array_merge($roles, getAllRoleFungsionalDamkar());
+        if (in_array('penilai_ak_damkar', $roles)) {
+            $results = array_merge($results, getAllRoleFungsionalDamkar());
         }
-        return $roles;
+        $results = array_map(function ($item) {
+            return '"' . $item . '"';
+        }, $results);
+        return $results;
     }
 }

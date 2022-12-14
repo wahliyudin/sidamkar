@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\PenilaiAk;
+namespace App\Http\Controllers\PenilaiAK;
 
 use App\Models\User;
 use Illuminate\Http\Request;
