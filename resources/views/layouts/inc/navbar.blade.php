@@ -150,9 +150,9 @@
                                 </a>
                             </li>
                         @endrole
-                        @role(['atasan_langsung', 'penilai_ak', 'penetap_ak'])
+                        @role(['atasan_langsung', 'penilai_ak_damkar', 'penetap_ak_damkar','penilai_ak_analis','penetap_ak_analis'])
                             <li>
-                                <a class="dropdown-item" href="{{ route('data-atasan-langsung') }}">
+                                <a class="dropdown-item" href="{{ route('data-struktural') }}">
                                     <i class="icon-mid bi bi-person me-2"></i>
                                     Data Saya
                                 </a>
