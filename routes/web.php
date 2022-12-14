@@ -5,6 +5,7 @@ use App\Http\Controllers\Aparatur\DaftarKegiatanController;
 use App\Http\Controllers\Aparatur\DaftarPenunjangController;
 use App\Http\Controllers\Aparatur\DataKegiatanController;
 use App\Http\Controllers\Aparatur\DataSayaController;
+use App\Http\Controllers\Struktural\OverviewStrukturalController;
 use App\Http\Controllers\Struktural\DataStrukturalController;
 use App\Http\Controllers\Aparatur\Kegiatan\KegiatanJabatanController as KegiatanKegiatanJabatanController;
 use App\Http\Controllers\Aparatur\LaporanJabatanController;
@@ -147,7 +148,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/laporan-jabatan', [LaporanJabatanController::class, 'index'])->name('laporan-jabatan');
     });
 
-    Route::middleware(['role:atasan_langsung|penilai_ak|penetap_ak'])->group(function () {
+    Route::middleware(['role:atasan_langsung|penilai_ak_damkar|penetap_ak_damkar|penilai_ak_analis|penetap_ak_analis'])->group(function () {
         Route::get('struktural/dashboard', [ControllersStrukturalDashboardController::class, 'index'])->name('struktural.dashboard.index');
 
         Route::controller(DataStrukturalController::class)->group(function () {
@@ -159,6 +160,13 @@ Route::middleware(['auth'])->group(function () {
             Route::delete('data-struktural/destroy-dockepeg/{id}', 'destroyDocKepeg')->name('data-struktural.destroy-doc-kepeg');
             Route::delete('data-struktural/destroy-dockom/{id}', 'destroyDocKom')->name('data-struktural.destroy-doc-kom');
         });
+
+        Route::controller(OverviewStrukturalController::class)->group(function () {
+            Route::get('/overview-struktural', 'index')->name('overview-struktural');
+           
+        });
+
+
         Route::middleware(['role:atasan_langsung'])->group(function () {
             Route::get('data-atasan-langsung', [DataAtasanLangsungController::class, 'index'])->name('data-atasan-langsung');
             Route::post('data-atasan-langsung-store', [DataAtasanLangsungController::class, 'store'])->name('data-atasan-langsung-store');
