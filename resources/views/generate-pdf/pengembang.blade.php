@@ -126,57 +126,36 @@
                 <th></th>
                 <th></th>
             </tr>
-            <tr>
-                <td>Perolehan ijazah/gelar pendidikan formal sesuai dengan bidang tugas JF</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>Pembuatan karya tulis/karya ilmiah di bidang JF</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>Penerjemahan/ penyaduran buku bahan bahan lain di bidang JF</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>Penyusunan Standar/Pedoman/Petunjuk Pelaksanaan/ Pelaksanaan Petunjuk Teknis di bidang JF</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>Pengembangan Kompetensi di JF</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>Kegiatan lain yang pengembangan profesi yang ditetapkan oleh Instansi Pembina di bidang JF</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+            @php
+                $sub_unsur_id = null;
+                $total_penunjang = 0;
+            @endphp
+            @foreach ($penunjangs as $item)
+                <tr>
+                    @if ($sub_unsur_id != $item->sub_unsur_id)
+                        <td>{{ $item->sub_unsur_nama }}</td>
+                        <td>{{ $item->nama }}</td>
+                        <td>{{ $item->satuan_hasil }}</td>
+                        <td class="text-center">{{ $item->angka_kredit }}</td>
+                        <td class="text-center">{{ $item->volume }}</td>
+                        <td class="text-center">{{ $item->jumlah_ak }}</td>
+                    @else
+                        <td></td>
+                        <td>{{ $item->nama }}</td>
+                        <td>{{ $item->satuan_hasil }}</td>
+                        <td class="text-center">{{ $item->angka_kredit }}</td>
+                        <td class="text-center">{{ $item->volume }}</td>
+                        <td class="text-center">{{ $item->jumlah_ak }}</td>
+                    @endif
+                </tr>
+                @php
+                    $sub_unsur_id = $item->sub_unsur_id;
+                    $total_penunjang += $item->jumlah_ak;
+                @endphp
+            @endforeach
             <tr>
                 <th class="text-start" colspan="5">JUMLAH ANGKA KREDIT PENGEMBANGAN PROFESI</th>
-                <th>0</th>
+                <th>{{ $total_penunjang }}</th>
             </tr>
             <tr>
                 <th class="text-start" colspan="2">II. PENUNJANG</th>
@@ -185,54 +164,32 @@
                 <th></th>
                 <th></th>
             </tr>
-            <tr>
-                <td>Pengajar/Pelatih/ Pembimbing di bidang JF</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>Keanggotaan dalam Tim Penilai/Tim Uji Kompetensi.</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>Perolehan Penghargaan</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>Perolehan gelar kesarjanaan lainnya</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>Pelaksanaan tugas lain yang mendukung pelaksanaan tugas JF</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <th class="text-start" colspan="5">JUMLAH ANGKA KREDIT PENUNJANG</th>
-                <th>0</th>
-            </tr>
-            <tr>
-                <th class="text-start" colspan="5">AK PENUNJANG YANG DI DAPATKAN</th>
-                <th>0</th>
-            </tr>
+            @php
+                $sub_unsur_id_2 = null;
+            @endphp
+            @foreach ($profesis as $item)
+                <tr>
+                    @if ($sub_unsur_id_2 != $item->sub_unsur_id)
+                        <td>{{ $item->sub_unsur_nama }}</td>
+                        <td>{{ $item->nama }}</td>
+                        <td>{{ $item->satuan_hasil }}</td>
+                        <td>{{ $item->angka_kredit }}</td>
+                        <td></td>
+                        <td></td>
+                    @else
+                        <td></td>
+                        <td>{{ $item->nama }}</td>
+                        <td>{{ $item->satuan_hasil }}</td>
+                        <td>{{ $item->angka_kredit }}</td>
+                        <td></td>
+                        <td></td>
+                    @endif
+                </tr>
+                @php
+                    $sub_unsur_id_2 = $item->sub_unsur_id;
+                @endphp
+            @endforeach
+
         </tbody>
     </table>
     <table width="98%" class="table table-light-none table-striped page-break">
