@@ -15,7 +15,7 @@ class SubUnsurSeeder extends Seeder
      */
     public function run()
     {
-        // Sub Unsur dengan id 1 sampai dengan 73 adalah milik dari kegiatan pokok JABATAN FUNGSIONAL PEMADAM KEBAKARAN 
+        // Sub Unsur dengan id 1 sampai dengan 73 adalah milik dari kegiatan pokok JABATAN FUNGSIONAL PEMADAM KEBAKARAN
 
         $damkarPemula = [
             [
@@ -398,7 +398,7 @@ class SubUnsurSeeder extends Seeder
         ];
         SubUnsur::query()->upsert($penyelia, 'id');
 
-        // End Sub Unsur dengan id 1 sampai dengan 73 adalah milik dari kegiatan pokok JABATAN FUNGSIONAL PEMADAM KEBAKARAN 
+        // End Sub Unsur dengan id 1 sampai dengan 73 adalah milik dari kegiatan pokok JABATAN FUNGSIONAL PEMADAM KEBAKARAN
 
         $analis_kebakaran_ahli_pertama = [
             [
@@ -518,5 +518,125 @@ class SubUnsurSeeder extends Seeder
             ],
         ];
         SubUnsur::query()->upsert($analis_kebakaran_ahli_pertama, 'id');
+
+        $kegiatanProfesiFungsionalDamkar = [
+            //96
+            [
+                'unsur_id' => 29,
+                'nama' => 'Perolehan ijazah/gelar pendidikan formal sesuai dengan bidang tugas Jabatan Fungsional Pemadam Kebakakaran'
+            ],
+            //97
+            [
+                'unsur_id' => 29,
+                'nama' => 'Pembuatan Karya Tulis / Karya Ilmiah di bidang Jabatan Fungsional Pemadam Kebakaran'
+            ],
+            //98
+            [
+                'unsur_id' => 29,
+                'nama' => 'Penerjemahan/ Penyaduran Buku dan Bahan-Bahan Lain di bidang Jabatan Fungsional Pemadam Kebakaran'
+            ],
+            //99
+            [
+                'unsur_id' => 29,
+                'nama' => 'Penyusunan Standar/Pedoman/ Petunjuk Pelaksanaan/ Petunjuk Teknis di bidang Jabatan Fungsional Pemadam Kebakaran'
+            ],
+            //100
+            [
+                'unsur_id' => 29,
+                'nama' => 'Pengembangan Kompetensi di bidang Jabatan Fungsional Pemadam Kebakaran'
+            ],
+            //101
+            [
+                'unsur_id' => 29,
+                'nama' => 'Kegiatan lain yang mendukung pengembangan profesi yang ditetapkan oleh Instansi Pembina di bidang Jabatan Fungsional Pemadam Kebakaran'
+            ],
+            //102
+            [
+                'unsur_id' => 30,
+                'nama' => 'Pengajar/Pelatih/Pembimbing di bidang Jabatan Fungsional Pemadam Kebakaran'
+            ],
+            //103
+            [
+                'unsur_id' => 30,
+                'nama' => 'Keanggotaan dalam Tim Penilai/Tim Uji Kompetensi'
+            ],
+            //104
+            [
+                'unsur_id' => 30,
+                'nama' => 'Perolehan Penghargaan'
+            ],
+            //105
+            [
+                'unsur_id' => 30,
+                'nama' => 'Perolehan ijazah/gelar kesarjanaan lainnya'
+            ],
+            //106
+            [
+                'unsur_id' => 30,
+                'nama' => 'Pelaksanaan tugas lain yang mendukung pelaksanaan tugas Jabatan Fungsional Pemadam Kebakaran'
+            ],
+        ];
+
+        SubUnsur::query()->upsert($kegiatanProfesiFungsionalDamkar, 'id');
+
+        $kegiatanProfesiAnalisDamkar = [
+            //107
+            [
+                'unsur_id' => 31,
+                'nama' => 'Perolehan ijazah/gelar pendidikan formal sesuai dengan bidang tugas Jabatan Fungsional Analis Kebakakaran'
+            ],
+            //108
+            [
+                'unsur_id' => 31,
+                'nama' => 'Pembuatan Karya Tulis / Karya Ilmiah di bidang Jabatan Fungsional Analis Kebakaran'
+            ],
+            //109
+            [
+                'unsur_id' => 31,
+                'nama' => 'Penerjemahan/ Penyaduran Buku dan Bahan-Bahan Lain di bidang Jabatan Fungsional Analis Kebakaran'
+            ],
+            //110
+            [
+                'unsur_id' => 31,
+                'nama' => 'Penyusunan Standar/Pedoman/Petunjuk Pelaksanaan/ PetunjukTeknis di bidang Jabatan FungsionalAnalis Kebakaran'
+            ],
+            //111
+            [
+                'unsur_id' => 31,
+                'nama' => 'Pengembangan Kompetensi di bidang Jabatan Fungsional Analis Kebakaran'
+            ],
+            //112
+            [
+                'unsur_id' => 31,
+                'nama' => 'Kegiatan lain yang mendukung pengembangan profesi yang ditetapkan oleh Instansi Pembina di bidang Jabatan Fungsional Analis Kebakaran'
+            ],
+            //113
+            [
+                'unsur_id' => 32,
+                'nama' => 'Pengajar/Pelatih/Pembimbing di bidang Jabatan Fungsional Analis Kebakaran'
+            ],
+            //114
+            [
+                'unsur_id' => 32,
+                'nama' => 'Keanggotaan dalam Tim Penilai/Tim Uji Kompetensi'
+            ],
+            //115
+            [
+                'unsur_id' => 32,
+                'nama' => 'Perolehan Penghargaan'
+            ],
+            //116
+            [
+                'unsur_id' => 32,
+                'nama' => 'Perolehan ijazah/gelar kesarjanaan lainnya'
+            ],
+            //117
+            [
+                'unsur_id' => 32,
+                'nama' => 'Pelaksanaan tugas lain yang mendukung pelaksanaan tugas Jabatan Fungsional Analis Kebakaran'
+            ],
+        ];
+
+        SubUnsur::query()->upsert($kegiatanProfesiAnalisDamkar, 'id');
     }
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\Aparatur\Kegiatan\KegiatanJabatanController as Kegiatan
 use App\Http\Controllers\Aparatur\LaporanJabatanController;
 use App\Http\Controllers\Aparatur\LaporanKegiatan\KegiatanJabatanController as LaporanKegiatanKegiatanJabatanController;
 use App\Http\Controllers\Aparatur\LaporanKegiatan\KegiatanProfesiController as LaporanKegiatanKegiatanProfesiController;
+use App\Http\Controllers\Aparatur\LaporanKegiatan\KegiatanPenunjangController as LaporanKegiatanKegiatanPenunjangController;
 use App\Http\Controllers\Aparatur\LaporanKegiatanController;
 use App\Http\Controllers\Aparatur\OverviewController;
 use App\Http\Controllers\Aparatur\StrukturalDashboardController;
@@ -130,6 +131,11 @@ Route::middleware(['auth'])->group(function () {
         Route::controller(LaporanKegiatanKegiatanProfesiController::class)->group(function () {
             Route::get('laporan-kegiatan/profesi', 'index')->name('laporan-kegiatan.profesi');
             Route::post('laporan-kegiatan/profesi/load-data', 'loadData')->name('laporan-kegiatan.profesi.load-data');
+        });
+
+        Route::controller(LaporanKegiatanKegiatanPenunjangController::class)->group(function () {
+            Route::get('laporan-kegiatan/penunjang', 'index')->name('laporan-kegiatan.penunjang');
+            Route::post('laporan-kegiatan/penunjang/load-data', 'loadData')->name('laporan-kegiatan.penunjang.load-data');
         });
 
         Route::get('/daftar-kegiatan', [DaftarKegiatanController::class, 'index'])->name('daftar-kegiatan');
