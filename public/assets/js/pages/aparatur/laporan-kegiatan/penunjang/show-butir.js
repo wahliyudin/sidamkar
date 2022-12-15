@@ -26,8 +26,8 @@ $(document).ready(function () {
             '.docx'
         ],
         server: {
-            process: '/laporan-kegiatan/jabatan/tmp-file',
-            revert: '/laporan-kegiatan/jabatan/revert',
+            process: '/laporan-kegiatan/penunjang/tmp-file',
+            revert: '/laporan-kegiatan/penunjang/revert',
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
@@ -42,7 +42,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: 'POST',
-            url: url('/laporan-kegiatan/jabatan/' + $('input[name="butir_kegiatan"]').val() + '/butir-kegiatan/store'),
+            url: url('/laporan-kegiatan/penunjang/' + $('input[name="butir_kegiatan"]').val() + '/butir-kegiatan/store'),
             processData: false,
             contentType: false,
             data: postData,
@@ -69,7 +69,7 @@ $(document).ready(function () {
         var pondEdit = FilePond.create(document.querySelector(`#revisiKegiatan${$(this).data('laporan')} input[name="doc_kegiatan_tmp[]"]`));
         $.ajax({
             type: "GET",
-            url: url("/laporan-kegiatan/jabatan/" + $(this).data('laporan') + "/edit"),
+            url: url("/laporan-kegiatan/penunjang/" + $(this).data('laporan') + "/edit"),
             dataType: "JSON",
             success: function (response) {
                 pondEdit.setOptions({
@@ -77,8 +77,8 @@ $(document).ready(function () {
                 });
                 pondEdit.setOptions({
                     server: {
-                        process: '/laporan-kegiatan/jabatan/tmp-file',
-                        revert: '/laporan-kegiatan/jabatan/revert',
+                        process: '/laporan-kegiatan/penunjang/tmp-file',
+                        revert: '/laporan-kegiatan/penunjang/revert',
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         }
@@ -95,7 +95,7 @@ $(document).ready(function () {
         $('.revisi-kegiatan .spin').show();
         $.ajax({
             type: 'POST',
-            url: url("/laporan-kegiatan/jabatan/" + $(this).data('laporan') + "/update"),
+            url: url("/laporan-kegiatan/penunjang/" + $(this).data('laporan') + "/update"),
             processData: false,
             contentType: false,
             data: postData,
