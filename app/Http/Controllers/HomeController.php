@@ -46,7 +46,7 @@ class HomeController extends Controller
             auth()->user()->hasRole('penetap_ak_damkar') ||
             auth()->user()->hasRole('penetap_ak_analis')
         ) {
-            return to_route('struktural.dashboard.index');
+            return to_route('struktural.dashboard');
         } elseif (auth()->user()->hasRole('kemendagri')) {
             return to_route('kemendagri.overview.index');
         } else {
