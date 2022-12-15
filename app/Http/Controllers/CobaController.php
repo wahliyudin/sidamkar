@@ -4,14 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Facades\Repositories\RekapitulasiKegiatanFacade;
 use App\Models\CrossPenilaiAndPenetap;
+use App\Models\JenisKegiatan;
 use App\Models\KabProvPenilaiAndPenetap;
 use App\Models\LaporanKegiatanJabatan;
 use App\Models\Provinsi;
 use App\Models\RekapitulasiKegiatan;
 use App\Models\Rencana;
+use App\Models\Role;
+use App\Models\SubUnsur;
 use App\Models\Unsur;
 use App\Models\User;
 use App\Repositories\PeriodeRepository;
+use App\Services\Aparatur\LaporanKegiatan\KegiatanProfesiService;
 use App\Traits\AuthTrait;
 use App\Traits\DataTableTrait;
 use App\Traits\ScoringTrait;
@@ -27,33 +31,59 @@ class CobaController extends Controller
     use ScoringTrait, AuthTrait, DataTableTrait;
 
     private PeriodeRepository $periodeRepository;
+    private KegiatanProfesiService $kegiatanProfesiService;
 
-    public function __construct(PeriodeRepository $periodeRepository)
+    public function __construct(PeriodeRepository $periodeRepository, KegiatanProfesiService $kegiatanProfesiService)
     {
         $this->periodeRepository = $periodeRepository;
     }
 
     public function index()
     {
-        return DB::select('SELECT
-                user_aparaturs.nama,
-                roles.display_name,
-                user_aparaturs.nip,
-                pangkat_golongan_tmts.nama AS golongan
-            FROM users
-                JOIN kab_prov_penilai_and_penetaps
-                    ON (
-                        kab_prov_penilai_and_penetaps.penilai_ak_analis_id = "97f7b5b2-7e9e-4cb7-a961-051ed8718bd2"
-                        OR kab_prov_penilai_and_penetaps.penilai_ak_damkar_id = "97f7b5b2-7e9e-4cb7-a961-051ed8718bd2"
-                        )
-            JOIN user_aparaturs ON user_aparaturs.user_id = users.id
-            JOIN role_user ON role_user.user_id = users.id
-            JOIN roles ON role_user.role_id = roles.id
-            LEFT JOIN pangkat_golongan_tmts ON pangkat_golongan_tmts.id = user_aparaturs.pangkat_golongan_tmt_id
-            WHERE user_aparaturs.kab_kota_id = 1101
-                AND users.status_akun = 1
-                AND roles.id IN (1,2,3,4,5,6,7)
-                AND user_aparaturs.tingkat_aparatur = "kab_kota"
-                ORDER BY roles.display_name ASC');
+        $penunjangs = DB::select('SELECT
+                sub_unsurs.id AS sub_unsur_id,
+                sub_unsurs.nama AS sub_unsur_nama,
+                (CASE WHEN butir_kegiatans.score IS NOT NULL
+                    THEN butir_kegiatans.nama
+                    ELSE CONCAT(butir_kegiatans.nama, " ", UPPER(LEFT(sub_butir_kegiatans.nama,1)),
+                        LOWER(SUBSTRING(sub_butir_kegiatans.nama,2,LENGTH(sub_butir_kegiatans.nama)))) END) AS nama,
+                (CASE WHEN butir_kegiatans.score IS NOT NULL THEN butir_kegiatans.satuan_hasil ELSE sub_butir_kegiatans.satuan_hasil END) AS satuan_hasil,
+                (CASE WHEN butir_kegiatans.score IS NOT NULL THEN butir_kegiatans.score ELSE sub_butir_kegiatans.score END) AS angka_kredit,
+                (CASE WHEN laporan_kegiatan_penunjang_profesis.butir_kegiatan_id IS NOT NULL THEN COUNT(laporan_kegiatan_penunjang_profesis.butir_kegiatan_id) ELSE COUNT(laporan_kegiatan_penunjang_profesis.sub_butir_kegiatan_id) END) AS volume,
+                SUM(laporan_kegiatan_penunjang_profesis.score) AS jumlah_ak
+            FROM butir_kegiatans
+            JOIN sub_unsurs ON butir_kegiatans.sub_unsur_id = sub_unsurs.id
+            JOIN unsurs ON unsurs.id = sub_unsurs.unsur_id
+            LEFT JOIN sub_butir_kegiatans ON butir_kegiatans.id = sub_butir_kegiatans.butir_kegiatan_id
+            JOIN laporan_kegiatan_penunjang_profesis ON (laporan_kegiatan_penunjang_profesis.butir_kegiatan_id = butir_kegiatans.id OR laporan_kegiatan_penunjang_profesis.sub_butir_kegiatan_id = sub_butir_kegiatans.id)
+            WHERE unsurs.jenis_aparatur = "analis"
+                AND unsurs.jenis_kegiatan_id = 2
+                GROUP BY laporan_kegiatan_penunjang_profesis.butir_kegiatan_id, laporan_kegiatan_penunjang_profesis.sub_butir_kegiatan_id
+        ');
+        $profesis = DB::select('SELECT
+                sub_unsurs.id AS sub_unsur_id,
+                sub_unsurs.nama AS sub_unsur_nama,
+                (CASE WHEN butir_kegiatans.score IS NOT NULL
+                    THEN butir_kegiatans.nama
+                    ELSE CONCAT(butir_kegiatans.nama, " ", UPPER(LEFT(sub_butir_kegiatans.nama,1)),
+                        LOWER(SUBSTRING(sub_butir_kegiatans.nama,2,LENGTH(sub_butir_kegiatans.nama)))) END) AS nama,
+                (CASE WHEN butir_kegiatans.score IS NOT NULL THEN butir_kegiatans.satuan_hasil ELSE sub_butir_kegiatans.satuan_hasil END) AS satuan_hasil,
+                (CASE WHEN butir_kegiatans.score IS NOT NULL THEN butir_kegiatans.score ELSE sub_butir_kegiatans.score END) AS angka_kredit,
+                (CASE WHEN laporan_kegiatan_penunjang_profesis.butir_kegiatan_id IS NOT NULL THEN COUNT(laporan_kegiatan_penunjang_profesis.butir_kegiatan_id) ELSE COUNT(laporan_kegiatan_penunjang_profesis.sub_butir_kegiatan_id) END) AS volume,
+                SUM(laporan_kegiatan_penunjang_profesis.score) AS jumlah_ak
+            FROM butir_kegiatans
+            JOIN sub_unsurs ON butir_kegiatans.sub_unsur_id = sub_unsurs.id
+            JOIN unsurs ON unsurs.id = sub_unsurs.unsur_id
+            LEFT JOIN sub_butir_kegiatans ON butir_kegiatans.id = sub_butir_kegiatans.butir_kegiatan_id
+            JOIN laporan_kegiatan_penunjang_profesis ON (laporan_kegiatan_penunjang_profesis.butir_kegiatan_id = butir_kegiatans.id OR laporan_kegiatan_penunjang_profesis.sub_butir_kegiatan_id = sub_butir_kegiatans.id)
+            WHERE unsurs.jenis_aparatur = "analis"
+                AND unsurs.jenis_kegiatan_id = 3
+                GROUP BY laporan_kegiatan_penunjang_profesis.butir_kegiatan_id, laporan_kegiatan_penunjang_profesis.sub_butir_kegiatan_id
+        ');
+        $pdf_rekap = PDF::loadView('generate-pdf.pengembang', compact('penunjangs', 'profesis'))
+            ->setPaper('A4');
+        unlink(public_path('coba.pdf'));
+        $pdf_rekap->save('coba.pdf');
+        return response()->file('coba.pdf');
     }
 }

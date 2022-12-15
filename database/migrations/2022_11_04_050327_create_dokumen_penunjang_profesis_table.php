@@ -13,13 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('history_kegiatan_profesis', function (Blueprint $table) {
+        Schema::create('dokumen_penunjang_profesis', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('laporan_kegiatan_profesi_id');
-            $table->string('keterangan');
+            $table->foreignUuid('laporan_kegiatan_penunjang_profesi_id');
+            $table->string('name');
+            $table->string('link');
+            $table->integer('size');
+            $table->string('type');
             $table->timestamps();
-
-            $table->foreign('laporan_kegiatan_profesi_id')->on('laporan_kegiatan_profesis')->references('id')->cascadeOnDelete();
         });
     }
 
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('history_kegiatan_profesis');
+        Schema::dropIfExists('dokumen_penunjang_profesis');
     }
 };

@@ -213,12 +213,14 @@ class UnsurSeeder extends Seeder
             [
                 'jenis_kegiatan_id' => 2,
                 'periode_id' => 1,
+                'jenis_aparatur' => 'damkar',
                 'nama' => 'Pengembangan Profesi Pemadam Kebakaran'
             ],
             //30
             [
                 'jenis_kegiatan_id' => 3,
                 'periode_id' => 1,
+                'jenis_aparatur' => 'damkar',
                 'nama' => 'Penunjang Tugas Pemadam Kebakaran'
             ],
         ];
@@ -230,12 +232,14 @@ class UnsurSeeder extends Seeder
             [
                 'jenis_kegiatan_id' => 2,
                 'periode_id' => 1,
+                'jenis_aparatur' => 'analis',
                 'nama' => 'Pengembangan Profesi Analis Kebakaran'
             ],
             //32
             [
                 'jenis_kegiatan_id' => 3,
                 'periode_id' => 1,
+                'jenis_aparatur' => 'analis',
                 'nama' => 'Penunjang Tugas Analis Kebakaran'
             ],
         ];

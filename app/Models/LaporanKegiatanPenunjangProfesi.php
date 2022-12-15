@@ -2,15 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class LaporanKegiatanProfesi extends Model
+class LaporanKegiatanPenunjangProfesi extends Model
 {
-    use HasFactory, HasUuids;
+    use HasFactory;
 
     protected $fillable = [
+        'kode',
+        'periode_id',
         'user_id',
         'butir_kegiatan_id',
         'sub_butir_kegiatan_id',
@@ -20,6 +21,11 @@ class LaporanKegiatanProfesi extends Model
         'status',
         'catatan'
     ];
+
+    public function periode()
+    {
+        return $this->belongsTo(Periode::class);
+    }
 
     public function user()
     {
@@ -34,15 +40,5 @@ class LaporanKegiatanProfesi extends Model
     public function subButirKegiatan()
     {
         return $this->belongsTo(SubButirKegiatan::class);
-    }
-
-    public function dokumenKegiatanProfesis()
-    {
-        return $this->hasMany(DokumenKegiatanProfesi::class);
-    }
-
-    public function historyKegiatanProfesis()
-    {
-        return $this->hasMany(HistoryKegiatanProfesi::class);
     }
 }

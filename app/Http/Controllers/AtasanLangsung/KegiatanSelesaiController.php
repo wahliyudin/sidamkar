@@ -42,7 +42,7 @@ class KegiatanSelesaiController extends Controller
                     ->where('kab_kota_id', $user?->userPejabatStruktural?->kab_kota_id)
                     ->with(['pangkatGolonganTmt']);
             })
-            ->withWhereHas('rekapitulasiKegiatan', function($query){
+            ->withWhereHas('rekapitulasiKegiatan', function ($query) {
                 $query->where('is_send', true);
             })
             ->withSum(['laporanKegiatanJabatans' => function ($query) use ($periode) {
@@ -56,20 +56,11 @@ class KegiatanSelesaiController extends Controller
                 }
                 return $user;
             });
-        $penilaiAndPenetaps = $this->menteService->getCurrentPenilaiAndPenetapByKabKota($user->userPejabatStruktural->kab_kota_id, ['damkar', 'analis']);
-        if (!isset($penilaiAndPenetaps)) {
-            $penilaiAndPenetaps = $this->menteService->getCurrentPenilaiAndPenetapByProvinsi($user->userPejabatStruktural->provinsi_id, ['damkar', 'analis']);
+        $penilaiAndPenetap = $this->menteService->getCurrentPenilaiAndPenetapByKabKota($user->userPejabatStruktural->kab_kota_id, ['damkar', 'analis']);
+        if (!isset($penilaiAndPenetap)) {
+            $penilaiAndPenetap = $this->menteService->getCurrentPenilaiAndPenetapByProvinsi($user->userPejabatStruktural->provinsi_id, ['damkar', 'analis']);
         }
-        $penilaiPenetapDamkar = null;
-        $penilaiPenetapAnalis = null;
-        $penilaiAndPenetaps->map(function(KabProvPenilaiAndPenetap $kabProvPenilaiAndPenetap) use (&$penilaiPenetapDamkar, &$penilaiPenetapAnalis){
-            if ($kabProvPenilaiAndPenetap->jenis_aparatur == 'damkar') {
-                $penilaiPenetapDamkar = $kabProvPenilaiAndPenetap;
-            } else {
-                $penilaiPenetapAnalis = $kabProvPenilaiAndPenetap;
-            }
-        });
-        return view('atasan-langsung.kegiatan-selesai.index', compact('fungsionals', 'penilaiPenetapDamkar', 'penilaiPenetapAnalis', 'judul'));
+        return view('atasan-langsung.kegiatan-selesai.index', compact('fungsionals', 'penilaiAndPenetap', 'judul'));
     }
 
     public function show($id)
