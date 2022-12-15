@@ -183,12 +183,6 @@ Route::middleware(['auth'])->group(function () {
             Route::delete('data-struktural/destroy-dockom/{id}', 'destroyDocKom')->name('data-struktural.destroy-doc-kom');
         });
 
-        Route::controller(OverviewStrukturalController::class)->group(function () {
-            Route::get('/overview-struktural', 'index')->name('overview-struktural');
-           
-        });
-
-
         Route::middleware(['role:atasan_langsung'])->group(function () {
             Route::get('data-atasan-langsung', [DataAtasanLangsungController::class, 'index'])->name('data-atasan-langsung');
             Route::post('data-atasan-langsung-store', [DataAtasanLangsungController::class, 'store'])->name('data-atasan-langsung-store');
