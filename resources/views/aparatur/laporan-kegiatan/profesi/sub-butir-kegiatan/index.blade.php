@@ -225,7 +225,7 @@
                 <div class="modal-body">
                     <div class="timeline-vertical" data-simplebar
                         style="max-height: 74vh; overflow-y: auto; overflow-x: hidden;">
-                        @include('aparatur.laporan-kegiatan.profesi.history_rekapitulasi',
+                        @include('aparatur.laporan-kegiatan.penunjang.history_rekapitulasi',
                             compact('historyRekapitulasiKegiatans'))
                     </div>
                     <div class="text-center mt-4">
@@ -294,5 +294,5 @@
     <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/extensions/toastify-js/src/toastify.js') }}"></script>
     <script src="{{ asset('assets/js/extensions/sweetalert2.all.min.js') }}"></script>
-    <script src="{{ asset('assets/js/pages/aparatur/kegiatan/profesi/index.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/aparatur/kegiatan/penunjang/index.js') }}"></script>
 @endsection

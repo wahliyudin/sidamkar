@@ -133,17 +133,14 @@ Route::middleware(['auth'])->group(function () {
         Route::controller(LaporanKegiatanKegiatanProfesiController::class)->group(function () {
             Route::get('laporan-kegiatan/profesi', 'index')->name('laporan-kegiatan.profesi');
             Route::post('laporan-kegiatan/profesi/load-data', 'loadData')->name('laporan-kegiatan.profesi.load-data');
-            Route::get('laporan-kegiatan/profesi/{butir_kegiatan}/show', 'show')->name('laporan-kegiatan.profesi.show');
-            Route::post('laporan-kegiatan/profesi/{butir_kegiatan}/store', 'storeLaporan')->name('laporan-kegiatan.profesi.store-laporan');
-            Route::get('laporan-kegiatan/profesi/{laporan_kegiatan_jabatan}/edit', 'edit')->name('laporan-kegiatan.profesi.edit');
-            Route::post('laporan-kegiatan/profesi/{laporan_kegiatan_jabatan}/update', 'update')->name('laporan-kegiatan.profesi.update');
+            Route::get('laporan-kegiatan/profesi/{butir_kegiatan}/butir-kegiatan/show', 'showButir')->name('laporan-kegiatan.profesi.butir-kegiatan.show');
+            Route::post('laporan-kegiatan/profesi/{butir_kegiatan}/butir-kegiatan/store', 'storeLaporanButir')->name('laporan-kegiatan.profesi.butir-kegiatan.store-laporan');
+            Route::get('laporan-kegiatan/profesi/{sub_butir_kegiatan}/sub-butir-kegiatan/show', 'showSubButir')->name('laporan-kegiatan.profesi.sub-butir-kegiatan.show');
+            Route::post('laporan-kegiatan/profesi/{sub_butir_kegiatan}/sub-butir-kegiatan/store', 'storeLaporanSubButir')->name('laporan-kegiatan.profesi.sub-butir-kegiatan.store-laporan');
+            Route::get('laporan-kegiatan/profesi/{laporan_kegiatan}/edit', 'edit')->name('laporan-kegiatan.profesi.edit');
+            Route::post('laporan-kegiatan/profesi/{laporan_kegiatan}/update', 'update')->name('laporan-kegiatan.profesi.update');
             Route::post('laporan-kegiatan/profesi/tmp-file', 'storeTmpFile')->name('laporan-kegiatan.profesi.tmp-file');
             Route::delete('laporan-kegiatan/profesi/revert', 'revertTmpFile')->name('laporan-kegiatan.profesi.revert');
-
-            Route::post('laporan-kegiatan/profesi/rekapitulasi', 'rekapitulasi')->name('laporan-kegiatan.profesi.rekapitulasi');
-            Route::post('laporan-kegiatan/profesi/rekapitulasi/send-rekap', 'sendRekap')->name('laporan-kegiatan.profesi.rekapitulasi.send-rekap');
-
-            Route::post('laporan-kegiatan/profesi/send-skp', 'sendSKP')->name('laporan-kegiatan.profesi.send-skp');
         });
 
         Route::controller(LaporanKegiatanKegiatanPenunjangController::class)->group(function () {
@@ -157,8 +154,6 @@ Route::middleware(['auth'])->group(function () {
             Route::post('laporan-kegiatan/penunjang/{laporan_kegiatan}/update', 'update')->name('laporan-kegiatan.penunjang.update');
             Route::post('laporan-kegiatan/penunjang/tmp-file', 'storeTmpFile')->name('laporan-kegiatan.penunjang.tmp-file');
             Route::delete('laporan-kegiatan/penunjang/revert', 'revertTmpFile')->name('laporan-kegiatan.penunjang.revert');
-
-            Route::post('laporan-kegiatan/penunjang/send-skp', 'sendSKP')->name('laporan-kegiatan.penunjang.send-skp');
         });
 
         Route::get('/daftar-kegiatan', [DaftarKegiatanController::class, 'index'])->name('daftar-kegiatan');
