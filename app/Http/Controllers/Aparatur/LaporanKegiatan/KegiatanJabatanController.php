@@ -53,15 +53,7 @@ class KegiatanJabatanController extends Controller
         $this->generatePdfService = $generatePdfService;
     }
 
-    /**
-     * index
-     * Menampilkan Unsur, SubUnsur, dan ButirKegiatan
-     * Berdasarkan Jabatan Satu Tingkat diatasnya
-     * Dan Satu Tingkat dibawahnya
-     *
-     * @return View
-     */
-    public function index(): View|Factory
+    public function index()
     {
         $periode = $this->periodeRepository->isActive();
         $user = $this->authUser()->load(['userAparatur.provinsi.kabkotas', 'ketentuanSkpFungsional', 'dokKepegawaians', 'dokKompetensis', 'rencanas', 'rekapitulasiKegiatan.historyRekapitulasiKegiatans' => function ($query) {
@@ -69,8 +61,8 @@ class KegiatanJabatanController extends Controller
         }]);
         $judul = 'Laporan Kegiatan Jabatan';
         $skp = $user?->ketentuanSkpFungsional;
-        $ketentuan_ak = $this->kegiatanPenunjangService->ketentuanNilai(DestructRoleFacade::getRoleFungsionalFirst($user->roles)?->id, $user?->userAparatur?->pangkat_golongan_tmt_id);
-        $ak_diterima = $this->kegiatanPenunjangService->sumScoreByUser($user->id);
+        $ketentuan_ak = $this->kegiatanJabatanService->ketentuanNilai(DestructRoleFacade::getRoleFungsionalFirst($user->roles)?->id, $user?->userAparatur?->pangkat_golongan_tmt_id);
+        $ak_diterima = $this->kegiatanJabatanService->sumScoreByUser($user->id);
         $historyRekapitulasiKegiatans = $user?->rekapitulasiKegiatan?->historyRekapitulasiKegiatans ?? [];
         return view('aparatur.laporan-kegiatan.jabatan.index', compact('periode', 'user', 'judul', 'historyRekapitulasiKegiatans', 'skp', 'ketentuan_ak', 'ak_diterima'));
     }
