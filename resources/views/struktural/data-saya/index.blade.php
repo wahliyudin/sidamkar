@@ -123,11 +123,9 @@
                                     <div class="form-group">
                                         <label for="basicInput">Jabatan</label>
                                         <ul>
-                                            @if (count(Auth::user()->roles) == 1)
                                                  @foreach (Auth::user()->roles as $role)
                                                      <li>{{ $role->display_name }}</li>
                                                  @endforeach
-                                            @endif
                                         </ul>
                                     </div>
                                 </div>
