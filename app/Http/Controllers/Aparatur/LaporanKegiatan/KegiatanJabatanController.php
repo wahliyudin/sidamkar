@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Aparatur\LaporanKegiatan;
 
+use App\Facades\Modules\DestructRoleFacade;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Aparatur\LaporanKegiatan\StoreLaporanRequest;
 use App\Http\Requests\Aparatur\LaporanKegiatan\UpdateLaporanRequest;
@@ -52,28 +53,16 @@ class KegiatanJabatanController extends Controller
         $this->generatePdfService = $generatePdfService;
     }
 
-    /**
-     * index
-     * Menampilkan Unsur, SubUnsur, dan ButirKegiatan
-     * Berdasarkan Jabatan Satu Tingkat diatasnya
-     * Dan Satu Tingkat dibawahnya
-     *
-     * @return View
-     */
-    public function index(): View|Factory
+    public function index()
     {
         $periode = $this->periodeRepository->isActive();
-        $user = $this->authUser()->load(['rencanas', 'rekapitulasiKegiatan.historyRekapitulasiKegiatans' => function ($query) {
+        $user = $this->authUser()->load(['userAparatur.provinsi.kabkotas', 'ketentuanSkpFungsional', 'dokKepegawaians', 'dokKompetensis', 'rencanas', 'rekapitulasiKegiatan.historyRekapitulasiKegiatans' => function ($query) {
             $query->orderBy('id', 'desc');
         }]);
         $judul = 'Laporan Kegiatan Jabatan';
-        $user1 = User::query()->with(['userAparatur.provinsi.kabkotas', 'dokKepegawaians', 'dokKompetensis'])->find(Auth::user()->id);
-        $skp = KetentuanSkpFungsional::with('ketentuanSkp')->where('user_id', auth()->user()->id)->first();
-
-        $role = DB::table('users')->join('role_user', 'role_user.user_id', '=', 'users.id')->where('users.id', '=', Auth::user()->id)->select('*')->get();
-
-        $ketentuan_ak = DB::table('ketentuan_nilais')->where('role_id', $role[0]->role_id)->where('pangkat_golongan_tmt_id', $user1->userAparatur->pangkat_golongan_tmt_id)->get();
-        $ak_diterima = DB::table('laporan_kegiatan_jabatans')->where('user_id', Auth::user()->id)->where('status', 3)->sum('score');
+        $skp = $user?->ketentuanSkpFungsional;
+        $ketentuan_ak = $this->kegiatanJabatanService->ketentuanNilai(DestructRoleFacade::getRoleFungsionalFirst($user->roles)?->id, $user?->userAparatur?->pangkat_golongan_tmt_id);
+        $ak_diterima = $this->kegiatanJabatanService->sumScoreByUser($user->id);
         $historyRekapitulasiKegiatans = $user?->rekapitulasiKegiatan?->historyRekapitulasiKegiatans ?? [];
         return view('aparatur.laporan-kegiatan.jabatan.index', compact('periode', 'user', 'judul', 'historyRekapitulasiKegiatans', 'skp', 'ketentuan_ak', 'ak_diterima'));
     }

@@ -30,7 +30,7 @@ $(document).ready(function () {
             },
             dataType: "json",
             success: function (response) {
-                $('.unsur-container').html(unsurs(response.data));
+                $('.unsur-container').html(unsurs(response.unsurs));
             }
         });
     }
