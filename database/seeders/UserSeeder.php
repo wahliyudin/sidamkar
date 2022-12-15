@@ -36,7 +36,7 @@ class UserSeeder extends Seeder
             'email' => 'adminsafsa2@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'status_akun' => 1
+            'status_akun' => 0
         ])->attachRole('damkar_pemula');
         $damkarPemula->userAparatur()->create([
             'nama' => 'Damkar Pemula',
@@ -82,7 +82,7 @@ class UserSeeder extends Seeder
             'email' => 'admia232sn2434@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'status_akun' => 1
+            'status_akun' => 0
         ])->attachRole('damkar_terampil');
         $damkarTerampil->userAparatur()->create([
             'nama' => 'Damkar Terampil',
@@ -125,7 +125,7 @@ class UserSeeder extends Seeder
             'email' => 'penyeliasjd@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'status_akun' => 1
+            'status_akun' => 0
         ])->attachRole('damkar_penyelia');
         $damkarPenyelia->userAparatur()->create([
             'nama' => 'Damkar Penyelia',
@@ -147,7 +147,7 @@ class UserSeeder extends Seeder
             'email' => 'admin3wqasas@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'status_akun' => 1
+            'status_akun' => 0
         ])->attachRole('analis_kebakaran_ahli_pertama');
         $analisKebakaranAhliPertama->userAparatur()->create([
             'nama' => 'Analis Kebakaran Ahli Pertama',
@@ -187,7 +187,7 @@ class UserSeeder extends Seeder
             'email' => 'adminsds3sasasas@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'status_akun' => 1
+            'status_akun' => 0
         ])->attachRole('analis_kebakaran_ahli_muda');
         $analisKebakaranAhliMadya->userAparatur()->create([
             'nama' => 'Analis Kebakaran Ahli Madya',
