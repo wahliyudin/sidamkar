@@ -22,6 +22,15 @@ class DestructRole
         return $this->process($roles, 'penetap_ak');
     }
 
+    public function getRoleFungsionalFirst(Collection $roles)
+    {
+        foreach ($roles as $role) {
+            if (in_array($role->name, getAllRoleFungsional())) {
+                return $role;
+            }
+        }
+    }
+
     private function process(Collection $roles, string $role_name)
     {
         foreach ($roles as $role) {

@@ -171,23 +171,17 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::middleware(['role:atasan_langsung|penilai_ak_damkar|penetap_ak_damkar|penilai_ak_analis|penetap_ak_analis'])->group(function () {
-        Route::get('struktural/dashboard', [ControllersStrukturalDashboardController::class, 'index'])->name('struktural.dashboard.index');
+        Route::get('struktural/dashboard', [ControllersStrukturalDashboardController::class, 'index'])->name('struktural.dashboard');
 
         Route::controller(DataStrukturalController::class)->group(function () {
             Route::get('/data-struktural', 'index')->name('data-struktural');
-            Route::post('/datasaya-store', 'store')->name('datasaya-store');
+            Route::post('/data-struktural-store', 'store')->name('data-struktural-store');
             Route::get('data-struktural/show-dockepeg/{id}', 'showDocKepeg')->name('data-struktural.show-doc-kepeg');
             Route::post('data-struktural/store-dockepeg', 'storeDocKepeg')->name('data-struktural.store-doc-kepeg');
             Route::post('data-struktural/store-dockom', 'storeDocKom')->name('data-struktural.store-doc-kom');
             Route::delete('data-struktural/destroy-dockepeg/{id}', 'destroyDocKepeg')->name('data-struktural.destroy-doc-kepeg');
             Route::delete('data-struktural/destroy-dockom/{id}', 'destroyDocKom')->name('data-struktural.destroy-doc-kom');
         });
-
-        Route::controller(OverviewStrukturalController::class)->group(function () {
-            Route::get('/overview-struktural', 'index')->name('overview-struktural');
-           
-        });
-
 
         Route::middleware(['role:atasan_langsung'])->group(function () {
             Route::get('data-atasan-langsung', [DataAtasanLangsungController::class, 'index'])->name('data-atasan-langsung');

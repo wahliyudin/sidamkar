@@ -48,8 +48,6 @@
             padding: .1rem .3rem;
         }
     </style>
-
-
 </head>
 
 <body>

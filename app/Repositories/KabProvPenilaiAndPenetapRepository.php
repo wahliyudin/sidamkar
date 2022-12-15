@@ -44,7 +44,7 @@ class KabProvPenilaiAndPenetapRepository
             'penilaiAngkaKreditAnalis.userPejabatStruktural',
             'penetapAngkaKreditAnalis.userPejabatStruktural'
         ])
-            ->where('provinsi', $provinsi)
+            ->where('provinsi_id', $provinsi)
             ->where('tingkat_aparatur', 'provinsi')
             ->first();
     }

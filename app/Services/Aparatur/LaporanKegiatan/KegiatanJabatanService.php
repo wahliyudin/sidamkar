@@ -14,6 +14,8 @@ use App\Models\TemporaryFile;
 use App\Models\Unsur;
 use App\Models\User;
 use App\Repositories\Aparatur\LaporanKegiatan\KegiatanJabatanRepository;
+use App\Repositories\KetentuanNilaiRepository;
+use App\Repositories\LaporanKegiatanPenunjangProfesiRepository;
 use App\Repositories\PeriodeRepository;
 use App\Repositories\RekapitulasiKegiatanRepository;
 use App\Repositories\RencanaRepository;
@@ -36,6 +38,8 @@ class KegiatanJabatanService
     protected PeriodeRepository $periodeRepository;
     protected RekapitulasiKegiatanRepository $rekapitulasiKegiatanRepository;
     protected GeneratePdfService $generatePdfService;
+    protected LaporanKegiatanPenunjangProfesiRepository $laporanKegiatanPenunjangProfesiRepository;
+    protected KetentuanNilaiRepository $ketentuanNilaiRepository;
 
     public function __construct(
         KegiatanJabatanRepository $kegiatanJabatanRepository,
@@ -45,6 +49,8 @@ class KegiatanJabatanService
         PeriodeRepository $periodeRepository,
         RekapitulasiKegiatanRepository $rekapitulasiKegiatanRepository,
         GeneratePdfService $generatePdfService,
+        LaporanKegiatanPenunjangProfesiRepository $laporanKegiatanPenunjangProfesiRepository,
+        KetentuanNilaiRepository $ketentuanNilaiRepository
     ) {
         $this->kegiatanJabatanRepository = $kegiatanJabatanRepository;
         $this->rencanaRepository = $rencanaRepository;
@@ -53,6 +59,8 @@ class KegiatanJabatanService
         $this->periodeRepository = $periodeRepository;
         $this->rekapitulasiKegiatanRepository = $rekapitulasiKegiatanRepository;
         $this->generatePdfService = $generatePdfService;
+        $this->laporanKegiatanPenunjangProfesiRepository = $laporanKegiatanPenunjangProfesiRepository;
+        $this->ketentuanNilaiRepository = $ketentuanNilaiRepository;
     }
 
     public function loadUnsurs(Periode $periode, string $search, Role $role)
@@ -270,5 +278,15 @@ class KegiatanJabatanService
             ]);
         }
         return $rekapitulasiKegiatan;
+    }
+
+    public function sumScoreByUser($user_id)
+    {
+        return $this->laporanKegiatanPenunjangProfesiRepository->sumScoreByUser($user_id);
+    }
+
+    public function ketentuanNilai($role_id, $pangkat_id)
+    {
+        return $this->ketentuanNilaiRepository->getByRolePangkat($role_id, $pangkat_id);
     }
 }
