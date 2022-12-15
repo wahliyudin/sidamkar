@@ -21,9 +21,9 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <h5 class=" ms-3" style="margin-top:12px">
-                @isset($judul)
+                {{--  @isset($judul)
                     {{ $judul }}
-                @endisset
+                @endisset  --}}
             </h5>
             <div class="collapse navbar-collapse " id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-lg-0">

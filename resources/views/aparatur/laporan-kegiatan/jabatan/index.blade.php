@@ -43,7 +43,7 @@
                                 <button data-bs-toggle="modal" data-bs-target="#rekap"
                                     class="btn btn-green btn-sm ps-3 pe-3 py-2 rekap btn-rekap">
                                     <i class="fa-solid fa-paper-plane me-1"></i>
-                                    Ajukan Laporan <br> Rekapitulasi Capaian
+                                    Ajukan Laporan
                                 </button>
                             @endif
                         </div>
