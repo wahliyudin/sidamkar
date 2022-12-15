@@ -3,16 +3,17 @@
 namespace App\Services\Aparatur\LaporanKegiatan;
 
 use App\Models\ButirKegiatan;
-use App\Models\DokumenKegiatanJabatan;
-use App\Models\HistoryKegiatanJabatan;
+use App\Models\DokumenPenunjangProfesi;
+use App\Models\HistoryPenunjangProfesi;
 use App\Models\JenisKegiatan;
-use App\Models\LaporanKegiatanJabatan;
+use App\Models\LaporanKegiatanPenunjangProfesi;
 use App\Models\Periode;
 use App\Models\Role;
+use App\Models\SubButirKegiatan;
 use App\Models\TemporaryFile;
 use App\Models\Unsur;
 use App\Models\User;
-use App\Repositories\Aparatur\LaporanKegiatan\KegiatanJabatanRepository;
+use App\Repositories\Aparatur\LaporanKegiatan\KegiatanPenunjangProfesiRepository;
 use App\Repositories\KetentuanNilaiRepository;
 use App\Repositories\LaporanKegiatanPenunjangProfesiRepository;
 use App\Repositories\PeriodeRepository;
@@ -24,13 +25,12 @@ use App\Services\KegiatanJabatanService as ServicesKegiatanJabatanService;
 use App\Traits\ScoringTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Validation\ValidationException;
 
 class KegiatanPenunjangService
 {
     use ScoringTrait;
 
-    protected KegiatanJabatanRepository $kegiatanJabatanRepository;
+    protected KegiatanPenunjangProfesiRepository $kegiatanPenunjangProfesiRepository;
     protected RencanaRepository $rencanaRepository;
     protected TemporaryFileRepository $temporaryFileRepository;
     protected ServicesKegiatanJabatanService $kegiatanJabatanService;
@@ -41,7 +41,7 @@ class KegiatanPenunjangService
     protected KetentuanNilaiRepository $ketentuanNilaiRepository;
 
     public function __construct(
-        KegiatanJabatanRepository $kegiatanJabatanRepository,
+        KegiatanPenunjangProfesiRepository $kegiatanPenunjangProfesiRepository,
         RencanaRepository $rencanaRepository,
         TemporaryFileRepository $temporaryFileRepository,
         ServicesKegiatanJabatanService $kegiatanJabatanService,
@@ -51,7 +51,7 @@ class KegiatanPenunjangService
         LaporanKegiatanPenunjangProfesiRepository $laporanKegiatanPenunjangProfesiRepository,
         KetentuanNilaiRepository $ketentuanNilaiRepository
     ) {
-        $this->kegiatanJabatanRepository = $kegiatanJabatanRepository;
+        $this->kegiatanPenunjangProfesiRepository = $kegiatanPenunjangProfesiRepository;
         $this->rencanaRepository = $rencanaRepository;
         $this->temporaryFileRepository = $temporaryFileRepository;
         $this->kegiatanJabatanService = $kegiatanJabatanService;
@@ -79,13 +79,13 @@ class KegiatanPenunjangService
                     });
                 });
             })
-            ->when($search, function ($query) use ($search, $role) {
+            ->when($search, function ($query) use ($search) {
                 $query->where('nama', 'like', "%$search%")
-                    ->orWhereHas('subUnsurs', function ($query) use ($search, $role) {
+                    ->orWhereHas('subUnsurs', function ($query) use ($search) {
                         $query->where('nama', 'like', "%$search%")
-                            ->orWhereHas('butirKegiatans', function ($query) use ($search, $role) {
+                            ->orWhereHas('butirKegiatans', function ($query) use ($search) {
                                 $query->where('nama', 'like', "%$search%")
-                                    ->whereHas('role', function ($query) use ($search, $role) {
+                                    ->whereHas('role', function ($query) use ($search) {
                                         $query->where(
                                             'nama',
                                             'like',
@@ -99,189 +99,113 @@ class KegiatanPenunjangService
         return $unsurs;
     }
 
-
     public function rencanas(User $user)
     {
         return $this->rencanaRepository->getAllByUser($user);
     }
 
-    public function storeLaporan(Request $request, User $user, ButirKegiatan $butirKegiatan): LaporanKegiatanJabatan
+    public function storeLaporan(Request $request, User $user, ?ButirKegiatan $butirKegiatan, ?SubButirKegiatan $subButirKegiatan)
     {
-        $role = $butirKegiatan->load('role')->role;
+        if (!is_null($butirKegiatan)) {
+            $role = $butirKegiatan->load('role')?->role;
+        } else {
+            $role = $subButirKegiatan->load('role')?->role;
+        }
         $periode = $this->periodeRepository->isActive();
-        $laporanKegiatanJabatan = $this->kegiatanJabatanRepository->store($request, $role, $user, $butirKegiatan, $request->current_date, $periode->id);
-        $historyKegiatanJabatan = $this->kegiatanJabatanRepository->storeHistoryKegiatanJabatan($laporanKegiatanJabatan, HistoryKegiatanJabatan::STATUS_LAPORKAN, HistoryKegiatanJabatan::ICON_KEYBOARD, $request->detail_kegiatan, 'Berhasil dilaporkan', $request->current_date);
+        $laporanKegiatanPenunjangProfesi = $this->kegiatanPenunjangProfesiRepository->store($request, $role, $user, $butirKegiatan, $subButirKegiatan, $request->current_date, $periode->id);
+        $historyKegiatanJabatan = $this->kegiatanPenunjangProfesiRepository->storeHistoryPenunjangProfesi($laporanKegiatanPenunjangProfesi, HistoryPenunjangProfesi::STATUS_LAPORKAN, HistoryPenunjangProfesi::ICON_KEYBOARD, $request->detail_kegiatan, 'Berhasil dilaporkan', $request->current_date);
         if (isset($request->doc_kegiatan_tmp[0]) && $request->doc_kegiatan_tmp[0] !== null) {
             foreach ($request->doc_kegiatan_tmp as $doc_kegiatan_tmp) {
                 $tmpFile = $this->temporaryFileRepository->getByFolder($doc_kegiatan_tmp);
                 if ($tmpFile) {
                     Storage::copy("tmp/$tmpFile->folder/$tmpFile->name", "kegiatan/$tmpFile->name");
-                    $this->kegiatanJabatanRepository->storeDokumenKegiatanJabatan($laporanKegiatanJabatan, $tmpFile);
-                    $this->kegiatanJabatanRepository->storeHistoryDokumenKegiatanJabatan($historyKegiatanJabatan, $tmpFile);
+                    $this->kegiatanPenunjangProfesiRepository->storeDokumenPenunjangProfesi($laporanKegiatanPenunjangProfesi, $tmpFile);
+                    $this->kegiatanPenunjangProfesiRepository->storeHistoryDokumenPenunjangProfesi($historyKegiatanJabatan, $tmpFile);
                     $this->temporaryFileRepository->destroy($tmpFile);
                     Storage::deleteDirectory("tmp/$tmpFile->folder");
                 }
             }
         }
-        $this->kegiatanJabatanRepository->storeHistoryKegiatanJabatan(
-            laporanKegiatanJabatan: $laporanKegiatanJabatan,
-            status: HistoryKegiatanJabatan::STATUS_VALIDASI,
-            icon: HistoryKegiatanJabatan::ICON_SPINNER,
+        $this->kegiatanPenunjangProfesiRepository->storeHistoryPenunjangProfesi(
+            laporanKegiatanPenunjangProfesi: $laporanKegiatanPenunjangProfesi,
+            status: HistoryPenunjangProfesi::STATUS_VALIDASI,
+            icon: HistoryPenunjangProfesi::ICON_SPINNER,
             keterangan: 'Sedang divalidasi oleh Atasan Langsung',
             detail_kegiatan: null,
-            current_date: $laporanKegiatanJabatan->current_date
+            current_date: $laporanKegiatanPenunjangProfesi->current_date
         );
-        return $laporanKegiatanJabatan;
+        return $laporanKegiatanPenunjangProfesi;
     }
 
-    public function edit(LaporanKegiatanJabatan $laporanKegiatanJabatan)
+    public function edit(LaporanKegiatanPenunjangProfesi $laporanKegiatanPenunjangProfesi)
     {
         $files = [];
-        foreach ($laporanKegiatanJabatan->dokumenKegiatanJabatans as $dokumenKegiatanJabatan) {
-            array_push($files, $this->struktur($dokumenKegiatanJabatan));
+        foreach ($laporanKegiatanPenunjangProfesi->dokumenPenunjangProfesis as $dokuemnPenunjangProfesi) {
+            array_push($files, $this->struktur($dokuemnPenunjangProfesi));
         }
         return $files;
     }
 
-    public function update(Request $request, LaporanKegiatanJabatan $laporanKegiatanJabatan)
+    public function update(Request $request, LaporanKegiatanPenunjangProfesi $laporanKegiatanPenunjangProfesi)
     {
-        $laporanKegiatanJabatan->load('dokumenKegiatanJabatans');
-        $laporanKegiatanJabatan->update([
+        $laporanKegiatanPenunjangProfesi->load('dokumenPenunjangProfesis');
+        $laporanKegiatanPenunjangProfesi->update([
             'detail_kegiatan' => $request->detail_kegiatan,
-            'status' => LaporanKegiatanJabatan::VALIDASI
+            'status' => LaporanKegiatanPenunjangProfesi::VALIDASI
         ]);
-        $historyKegiatanJabatan = $this->kegiatanJabatanRepository->storeHistoryKegiatanJabatan(
-            $laporanKegiatanJabatan,
-            HistoryKegiatanJabatan::STATUS_LAPORKAN,
-            HistoryKegiatanJabatan::ICON_PAPER_PLANE,
+        $historyKegiatanJabatan = $this->kegiatanPenunjangProfesiRepository->storeHistoryPenunjangProfesi(
+            $laporanKegiatanPenunjangProfesi,
+            HistoryPenunjangProfesi::STATUS_LAPORKAN,
+            HistoryPenunjangProfesi::ICON_PAPER_PLANE,
             $request->detail_kegiatan,
             'Kirim revisi Laporan kegiatan',
-            $laporanKegiatanJabatan->current_date
+            $laporanKegiatanPenunjangProfesi->current_date
         );
-        $this->kegiatanJabatanRepository->storeHistoryKegiatanJabatan(
-            laporanKegiatanJabatan: $laporanKegiatanJabatan,
-            status: HistoryKegiatanJabatan::STATUS_VALIDASI,
-            icon: HistoryKegiatanJabatan::ICON_SPINNER,
+        $this->kegiatanPenunjangProfesiRepository->storeHistoryPenunjangProfesi(
+            laporanKegiatanPenunjangProfesi: $laporanKegiatanPenunjangProfesi,
+            status: HistoryPenunjangProfesi::STATUS_VALIDASI,
+            icon: HistoryPenunjangProfesi::ICON_SPINNER,
             detail_kegiatan: null,
             keterangan: 'Sedang divalidasi oleh Atasan Langsung',
-            current_date: $laporanKegiatanJabatan->current_date
+            current_date: $laporanKegiatanPenunjangProfesi->current_date
         );
-        $laporanKegiatanJabatan->dokumenKegiatanJabatans()->whereNotIn('id', $request->doc_kegiatan_tmp)->delete();
+        $laporanKegiatanPenunjangProfesi->dokumenKegiatanJabatans()->whereNotIn('id', $request->doc_kegiatan_tmp)->delete();
         foreach ($request->doc_kegiatan_tmp as $doc_kegiatan_tmp) {
             $tmpFile = $this->temporaryFileRepository->getByFolder($doc_kegiatan_tmp);
             if ($tmpFile instanceof TemporaryFile) {
                 Storage::copy("tmp/$tmpFile->folder/$tmpFile->name", "kegiatan/$tmpFile->name");
-                $this->kegiatanJabatanRepository->storeDokumenKegiatanJabatan($laporanKegiatanJabatan, $tmpFile);
-                $this->kegiatanJabatanRepository->storeHistoryDokumenKegiatanJabatan($historyKegiatanJabatan, $tmpFile);
+                $this->kegiatanPenunjangProfesiRepository->storeDokumenPenunjangProfesi($laporanKegiatanPenunjangProfesi, $tmpFile);
+                $this->kegiatanPenunjangProfesiRepository->storeHistoryDokumenPenunjangProfesi($historyKegiatanJabatan, $tmpFile);
                 $this->temporaryFileRepository->destroy($tmpFile);
                 Storage::deleteDirectory("tmp/$tmpFile->folder");
             }
         }
-        foreach ($laporanKegiatanJabatan->dokumenKegiatanJabatans()->whereIn('id', $request->doc_kegiatan_tmp)->get() as $dokumenKegiatanJabatan) {
+        foreach ($laporanKegiatanPenunjangProfesi->dokumenKegiatanJabatans()->whereIn('id', $request->doc_kegiatan_tmp)->get() as $dokumenKegiatanJabatan) {
             $tmpFile = new TemporaryFile([
                 'name' => $dokumenKegiatanJabatan->name,
                 'size' => $dokumenKegiatanJabatan->size,
                 'type' => $dokumenKegiatanJabatan->type
             ]);
-            $this->kegiatanJabatanRepository->storeHistoryDokumenKegiatanJabatan($historyKegiatanJabatan, $tmpFile);
+            $this->kegiatanPenunjangProfesiRepository->storeHistoryDokumenPenunjangProfesi($historyKegiatanJabatan, $tmpFile);
         }
     }
 
-    public function struktur(DokumenKegiatanJabatan $dokumenKegiatanJabatan)
+    public function struktur(DokumenPenunjangProfesi $dokumenPenunjangProfesi)
     {
         return [
-            'source' => $dokumenKegiatanJabatan->id,
+            'source' => $dokumenPenunjangProfesi->id,
             'options' => [
                 'type' => 'local',
                 'file' => [
-                    'name' => $dokumenKegiatanJabatan->name,
-                    'size' => $dokumenKegiatanJabatan->size,
-                    'type' => $dokumenKegiatanJabatan->type
+                    'name' => $dokumenPenunjangProfesi->name,
+                    'size' => $dokumenPenunjangProfesi->size,
+                    'type' => $dokumenPenunjangProfesi->type
                 ],
                 'metadata' => [
-                    'poster' => $dokumenKegiatanJabatan->link
+                    'poster' => $dokumenPenunjangProfesi->link
                 ]
             ]
         ];
-    }
-
-    public function laporanKegiatanJabatanByUser($butirKegiatan, $user)
-    {
-        return $this->kegiatanJabatanService->laporanKegiatanJabatanByUser($butirKegiatan, $user);
-    }
-
-    public function laporanKegiatanJabatanCount(ButirKegiatan $butirKegiatan, User $user): int
-    {
-        return $this->kegiatanJabatanService->laporanKegiatanJabatanCount($butirKegiatan, $user);
-    }
-
-    public function laporanLast(ButirKegiatan $butirKegiatan, User $user)
-    {
-        return $this->kegiatanJabatanService->laporanLast($butirKegiatan, $user);
-    }
-
-    public function generateDocuments(User $userAuth)
-    {
-        $periode = $this->periodeRepository->isActive();
-        [$user, $atasan_langsung] = $this->validateDocument($userAuth);
-        [$capaian_url, $capaian_name] = $this->generatePdfService->generateCapaian($user, $atasan_langsung, $periode);
-        [$pernyataan_url, $pernyataan_name] = $this->generatePdfService->generatePernyataan($user, $atasan_langsung);
-        return $this->updateOrCreateRekapitulasi($user, $periode, $pernyataan_url, $pernyataan_name, 'Rekapitulasi Diterima Oleh Atasan Langsung', $capaian_url, $capaian_name);
-    }
-
-    public function generateRekapitulasiCapaian(User $userAuth)
-    {
-        $periode = $this->periodeRepository->isActive();
-        [$user, $atasan_langsung] = $this->validateDocument($userAuth);
-        return $this->generatePdfService->generateCapaian($user, $atasan_langsung, $periode);
-    }
-
-    public function generatePernyataan(User $userAuth)
-    {
-        [$user, $atasan_langsung] = $this->validateDocument($userAuth);
-        return $this->generatePdfService->generatePernyataan($user, $atasan_langsung);
-    }
-
-    private function validateDocument(User $user)
-    {
-        $user = $user->load([
-            'ketentuanSkpFungsional',
-            'mente.atasanLangsung.roles',
-            'mente.atasanLangsung.userPejabatStruktural.pangkatGolonganTmt',
-            'roles',
-            'userAparatur.pangkatGolonganTmt'
-        ]);
-        if (!isset($user?->ketentuanSkpFungsional)) {
-            throw ValidationException::withMessages(['Maaf Anda Belum Menginput SKP']);
-        }
-        if (!isset($user->userAparatur->pangkatGolonganTmt)) {
-            throw ValidationException::withMessages(["Maaf anda belum melengkapi data diri anda"]);
-        }
-        if (!isset($user->mente->atasanLangsung)) {
-            throw ValidationException::withMessages(["Maaf anda belum mempunyai atasan langsung"]);
-        }
-        if (!isset($user->mente->atasanLangsung->userPejabatStruktural->pangkatGolonganTmt)) {
-            throw ValidationException::withMessages(["Maaf atasan langsung anda belum melengkapi data dirinya"]);
-        }
-        return [
-            $user,
-            $user->mente->atasanLangsung
-        ];
-    }
-
-    public function updateOrCreateRekapitulasi(User $user, Periode $periode, $url, $file_name, $content, $file_capaian, $file_name_capaian)
-    {
-        $rekapitulasiKegiatan = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode);
-        if ($rekapitulasiKegiatan) {
-            deleteImage($rekapitulasiKegiatan->file);
-            $this->rekapitulasiKegiatanRepository->update($rekapitulasiKegiatan, $user->id, $periode->id, $url, $file_name, $file_capaian, $file_name_capaian);
-        } else {
-            $rekapitulasiKegiatan = $this->rekapitulasiKegiatanRepository->store($user->id, $periode->id, $url, $file_name, $file_capaian, $file_name_capaian);
-            $rekapitulasiKegiatan->historyRekapitulasiKegiatans()->create([
-                'content' => $content
-            ]);
-        }
-        return $rekapitulasiKegiatan;
     }
 
     public function sumScoreByUser($user_id)
@@ -292,5 +216,25 @@ class KegiatanPenunjangService
     public function ketentuanNilai($role_id, $pangkat_id)
     {
         return $this->ketentuanNilaiRepository->getByRolePangkat($role_id, $pangkat_id);
+    }
+
+    public function laporanKegiatanPenunjangProfesiByUser(?ButirKegiatan $butirKegiatan, ?SubButirKegiatan $subButirKegiatan, User $user)
+    {
+        return [
+            $this->kegiatanPenunjangProfesiRepository->laporanKegiatanPenunjangProfesiStatusValidasi($butirKegiatan, $subButirKegiatan, $user),
+            $this->kegiatanPenunjangProfesiRepository->laporanKegiatanPenunjangProfesiStatusRevisi($butirKegiatan, $subButirKegiatan, $user),
+            $this->kegiatanPenunjangProfesiRepository->laporanKegiatanPenunjangProfesiStatusSelesai($butirKegiatan, $subButirKegiatan, $user),
+            $this->kegiatanPenunjangProfesiRepository->laporanKegiatanPenunjangProfesiStatusTolak($butirKegiatan, $subButirKegiatan, $user),
+        ];
+    }
+
+    public function laporanKegiatanPenunjangProfesiCount(?ButirKegiatan $butirKegiatan, ?SubButirKegiatan $subButirKegiatan, User $user): int
+    {
+        return $this->kegiatanPenunjangProfesiRepository->laporanKegiatanPenunjangProfesiCount($butirKegiatan, $subButirKegiatan, $user);
+    }
+
+    public function laporanLast(?ButirKegiatan $butirKegiatan, ?SubButirKegiatan $subButirKegiatan, User $user)
+    {
+        return $this->kegiatanPenunjangProfesiRepository->laporanLast($butirKegiatan, $subButirKegiatan, $user);
     }
 }

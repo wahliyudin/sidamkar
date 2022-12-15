@@ -173,7 +173,7 @@ $(document).ready(function () {
                 return `
                     <li class="accordian-list ">
                         <div class="d-flex align-items-center justify-content-between">
-                            <a href="${url('/laporan-kegiatan/profesi/' + butirKegiatan.id + '/show')}" class="link-butir">
+                            <a href="${url('/laporan-kegiatan/penunjang/' + butirKegiatan.id + '/butir-kegiatan/show')}" class="link-butir">
                                 <h6 class="accordian-title">
                                     ${butirKegiatan.nama}
                                 </h6>
@@ -195,7 +195,7 @@ $(document).ready(function () {
             return `
                 <li class="accordian-list ">
                     <div class="d-flex align-items-center justify-content-between">
-                        <a href="${url('/laporan-kegiatan/profesi/' + subButirKegiatan.id + '/show')}" class="link-butir">
+                        <a href="${url('/laporan-kegiatan/penunjang/' + subButirKegiatan.id + '/sub-butir-kegiatan/show')}" class="link-butir">
                             <h6 class="accordian-title">
                                 ${subButirKegiatan.nama}
                             </h6>

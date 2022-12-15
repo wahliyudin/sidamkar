@@ -11,6 +11,19 @@
                             <div class="d-flex flex-column pe-3 ps-1" data-simplebar
                                 style="max-height: 74vh; overflow-y: auto; overflow-x: hidden;">
                                 <h6>File Dokumen</h6>
+                                <ul>
+                                    @if (count($laporanKegiatanPenunjangProfesi->dokumenPenunjangProfesis) > 0 &&
+                                        str($laporanKegiatanPenunjangProfesi?->dokumenPenunjangProfesis[0]?->link ?? '')->contains(['.pdf', '.docx']))
+                                        @foreach ($laporanKegiatanPenunjangProfesi->dokumenPenunjangProfesis as $dokumenPenunjangProfesi)
+                                            @if (str($dokumenPenunjangProfesi->link)->contains(['.pdf', '.docx']))
+                                                <li>
+                                                    <a
+                                                        href="{{ $dokumenPenunjangProfesi->link }}">{{ $dokumenPenunjangProfesi->name }}</a>
+                                                </li>
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                </ul>
                                 <div class="d-flex flex-wrap gap-3 justify-content-center">
                                     @if (count($laporanKegiatanPenunjangProfesi->dokumenPenunjangProfesis) > 0)
                                         <div class="swiper mySwiper">
@@ -28,19 +41,24 @@
                                         </div>
                                     @endif
                                 </div>
-                                {{-- <div class="form-group">
+                                <div class="form-group">
                                     <div class="d-flex flex-column mt-3">
                                         <span
-                                            style="color: #000; font-weight: 700;">{{ $laporanKegiatanPenunjangProfesi->butirKegiatan->subUnsur->unsur->nama }}</span>
+                                            style="color: #000; font-weight: 700;">{{ $laporanKegiatanPenunjangProfesi->subButirKegiatan->butirKegiatan->subUnsur->unsur->nama }}</span>
                                         <span
-                                            style="color: #000; margin-left: 1rem;">{{ $laporanKegiatanPenunjangProfesi->butirKegiatan->subUnsur->nama }}</span>
+                                            style="color: #000; margin-left: 1rem;">{{ $laporanKegiatanPenunjangProfesi->subButirKegiatan->butirKegiatan->subUnsur->nama }}</span>
                                         <ul style="margin-left: 1.5rem;">
                                             <li style="color: #000;">
-                                                {{ $laporanKegiatanPenunjangProfesi->butirKegiatan->nama }}
+                                                {{ $laporanKegiatanPenunjangProfesi->subButirKegiatan->butirKegiatan->nama }}
+                                                <ul style="margin-left: 1.5rem;">
+                                                    <li style="color: #000;">
+                                                        {{ $laporanKegiatanPenunjangProfesi->subButirKegiatan->nama }}
+                                                    </li>
+                                                </ul>
                                             </li>
                                         </ul>
                                     </div>
-                                </div> --}}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -56,7 +74,7 @@
                                 @break
 
                                 @case(2)
-                                    <button class="btn btn-red px-3 btn-sm text-sm">Revisi</button>
+                                    <button class="btn btn-red-dark px-3 btn-sm text-sm">Revisi</button>
                                 @break
 
                                 @case(3)
@@ -71,9 +89,11 @@
 
                         <div class="timeline-vertical" data-simplebar
                             style="max-height: 74vh; overflow-y: auto; overflow-x: hidden;">
-                            @foreach ($laporanKegiatanPenunjangProfesi->historyPenunjangProfesis()->orderBy('id', 'desc')->get() as $historyPenunjangProfesi)
+                            @include('aparatur.laporan-kegiatan.penunjang.sub-butir-kegiatan.history_rekapitulasi',
+                                compact('historyRekapitulasiKegiatans'))
+                            @foreach ($laporanKegiatanPenunjangProfesi->historyPenunjangProfesis()->orderBy('id', 'desc')->get() as $historyKegiatanPenunjangProfesi)
                                 <div class="timeline-item">
-                                    @switch($historyPenunjangProfesi->icon)
+                                    @switch($historyKegiatanPenunjangProfesi->icon)
                                         @case(1)
                                             <div class="timeline-icon icon-item icon-item-lg border-300">
                                                 <i class="text-red-terang fa-solid fa-keyboard"></i>
@@ -113,7 +133,7 @@
                                     <div class="row">
                                         <div class="col-lg-12 timeline-item-time">
                                             <div>
-                                                @switch($historyPenunjangProfesi->status)
+                                                @switch($historyKegiatanPenunjangProfesi->status)
                                                     @case(1)
                                                         <span class="btn btn-red-terang py-1 px-3"
                                                             style="font-size: 12px !important;">Laporkan</span>
@@ -141,21 +161,25 @@
                                                 @endswitch
 
                                                 <p class="fs--1 mb-0 fw-semi-bold text-600">
-                                                    {{ $historyPenunjangProfesi->keterangan }}
+                                                    {{ $historyKegiatanPenunjangProfesi->keterangan }}
                                                 </p>
                                                 <p class="fs--2 text-600">
-                                                    {{ $historyPenunjangProfesi->created_at->format('H:i') }} WIB,
-                                                    {{ $historyPenunjangProfesi->created_at->format('d F Y') }}
+                                                    {{ $historyKegiatanPenunjangProfesi->created_at->format('H:i') }}
+                                                    WIB,
+                                                    {{ $historyKegiatanPenunjangProfesi->created_at->format('d F Y') }}
                                                 </p>
                                             </div>
                                         </div>
-                                        @if (isset($historyPenunjangProfesi->historyDokumenPenunjangProfesis) &&
-                                            count($historyPenunjangProfesi->historyDokumenPenunjangProfesis) > 0)
+                                        @if (isset($historyKegiatanPenunjangProfesi->historyDokumenPenunjangProfesis) &&
+                                            count($historyKegiatanPenunjangProfesi->historyDokumenPenunjangProfesis) > 0)
                                             <div class="col-lg-12">
                                                 <ul>
-                                                    @if (count($historyPenunjangProfesi->historyDokumenPenunjangProfesis) > 0 &&
-                                                        str($historyPenunjangProfesi?->historyDokumenPenunjangProfesis[0]?->link ?? '')->contains(['.pdf', '.docx']))
-                                                        @foreach ($historyPenunjangProfesi->historyDokumenPenunjangProfesis as $historyDokumenPenunjangProfesi)
+                                                    @if (count($historyKegiatanPenunjangProfesi->historyDokumenPenunjangProfesis) > 0 &&
+                                                        str($historyKegiatanPenunjangProfesi?->historyDokumenPenunjangProfesis[0]?->link ?? '')->contains([
+                                                            '.pdf',
+                                                            '.docx',
+                                                        ]))
+                                                        @foreach ($historyKegiatanPenunjangProfesi->historyDokumenPenunjangProfesis as $historyDokumenPenunjangProfesi)
                                                             @if (str($historyDokumenPenunjangProfesi->link)->contains(['.pdf', '.docx']))
                                                                 <li>
                                                                     <a
@@ -167,10 +191,10 @@
                                                 </ul>
                                                 <div class="timeline-item-content">
                                                     <div class="timeline-item-card">
-                                                        @if (count($historyPenunjangProfesi->historyDokumenPenunjangProfesis) > 0)
+                                                        @if (count($historyKegiatanPenunjangProfesi->historyDokumenPenunjangProfesis) > 0)
                                                             <div class="swiper mySwiper">
                                                                 <div class="swiper-wrapper">
-                                                                    @foreach ($historyPenunjangProfesi->historyDokumenPenunjangProfesis as $historyDokumenPenunjangProfesi)
+                                                                    @foreach ($historyKegiatanPenunjangProfesi->historyDokumenPenunjangProfesis as $historyDokumenPenunjangProfesi)
                                                                         @if (!str($historyDokumenPenunjangProfesi->link)->contains(['.pdf', '.docx']))
                                                                             <div class="swiper-slide">
                                                                                 <img src="{{ $historyDokumenPenunjangProfesi->link }}"
@@ -183,12 +207,12 @@
                                                             </div>
                                                         @endif
                                                         <p class="fs--1 mb-0 text-gray mt-2">
-                                                            {{ $historyPenunjangProfesi->detail_kegiatan }}</p>
+                                                            {{ $historyKegiatanPenunjangProfesi->detail_kegiatan }}</p>
                                                     </div>
                                                 </div>
                                             </div>
-                                        @elseif (count($historyPenunjangProfesi->historyDokumenPenunjangProfesis) <= 0 &&
-                                            isset($historyPenunjangProfesi->detail_kegiatan))
+                                        @elseif (count($historyKegiatanPenunjangProfesi->historyDokumenPenunjangProfesis) <= 0 &&
+                                            isset($historyKegiatanPenunjangProfesi->detail_kegiatan))
                                             <div class="col-lg-12">
                                                 <div class="timeline-item-content">
                                                     <div class="timeline-item-card">
@@ -199,12 +223,12 @@
                                             </div>
                                         @endif
 
-                                        @if (isset($historyPenunjangProfesi?->catatan))
+                                        @if (isset($historyKegiatanPenunjangProfesi?->catatan))
                                             <div class="col-lg-12">
                                                 <div class="timeline-item-content">
                                                     <div class="timeline-item-card">
                                                         <p class="fs--1 mb-0 text-gray">
-                                                            {{ $historyPenunjangProfesi->catatan }}</p>
+                                                            {{ $historyKegiatanPenunjangProfesi->catatan }}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -215,29 +239,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="d-flex wrapper-btn justify-content-end align-items-center mt-0 pb-2">
-                    <button type="button" class="btn btn-danger btn-sm px-4" data-bs-dismiss="modal">Tutup</button>
-                    @if (in_array($laporanKegiatanPenunjangProfesi->status, [1]))
-                        <button type="button" data-laporan="{{ $laporanKegiatanPenunjangProfesi->id }}"
-                            class="btn btn-black px-4 btn-sm tolak-kegiatan ms-2">
-                            <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
-                                style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
-                            <span>Tolak</span>
-                        </button>
-                        <button type="button" data-user="{{ $laporanKegiatanPenunjangProfesi->rencana->user->id }}"
-                            data-laporan="{{ $laporanKegiatanPenunjangProfesi->id }}"
-                            class="btn btn-red-dark px-4 revisi-kegiatan ms-2">
-                            <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
-                                style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
-                            <span>Revisi</span>
-                        </button>
-                        <button type="button" data-laporan="{{ $laporanKegiatanPenunjangProfesi->id }}"
-                            class="btn btn-green-dark px-4 btn-sm verifikasi-kegiatan ms-2">
-                            <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
-                                style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
-                            <span>Verifikasi</span>
-                        </button>
-                    @endif
+                <div class="modal-footer text-end">
+                    <button type="button" class="btn btn-danger btn-sm px-5" data-bs-dismiss="modal">Tutup</button>
                 </div>
             </div>
         </div>

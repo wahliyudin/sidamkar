@@ -149,15 +149,14 @@ Route::middleware(['auth'])->group(function () {
         Route::controller(LaporanKegiatanKegiatanPenunjangController::class)->group(function () {
             Route::get('laporan-kegiatan/penunjang', 'index')->name('laporan-kegiatan.penunjang');
             Route::post('laporan-kegiatan/penunjang/load-data', 'loadData')->name('laporan-kegiatan.penunjang.load-data');
-            Route::get('laporan-kegiatan/penunjang/{butir_kegiatan}/show', 'show')->name('laporan-kegiatan.penunjang.show');
-            Route::post('laporan-kegiatan/penunjang/{butir_kegiatan}/store', 'storeLaporan')->name('laporan-kegiatan.penunjang.store-laporan');
-            Route::get('laporan-kegiatan/penunjang/{laporan_kegiatan_jabatan}/edit', 'edit')->name('laporan-kegiatan.penunjang.edit');
-            Route::post('laporan-kegiatan/penunjang/{laporan_kegiatan_jabatan}/update', 'update')->name('laporan-kegiatan.penunjang.update');
+            Route::get('laporan-kegiatan/penunjang/{butir_kegiatan}/butir-kegiatan/show', 'showButir')->name('laporan-kegiatan.penunjang.butir-kegiatan.show');
+            Route::post('laporan-kegiatan/penunjang/{butir_kegiatan}/butir-kegiatan/store', 'storeLaporanButir')->name('laporan-kegiatan.penunjang.butir-kegiatan.store-laporan');
+            Route::get('laporan-kegiatan/penunjang/{sub_butir_kegiatan}/sub-butir-kegiatan/show', 'showSubButir')->name('laporan-kegiatan.penunjang.sub-butir-kegiatan.show');
+            Route::post('laporan-kegiatan/penunjang/{sub_butir_kegiatan}/sub-butir-kegiatan/store', 'storeLaporanSubButir')->name('laporan-kegiatan.penunjang.sub-butir-kegiatan.store-laporan');
+            Route::get('laporan-kegiatan/penunjang/{laporan_kegiatan}/edit', 'edit')->name('laporan-kegiatan.penunjang.edit');
+            Route::post('laporan-kegiatan/penunjang/{laporan_kegiatan}/update', 'update')->name('laporan-kegiatan.penunjang.update');
             Route::post('laporan-kegiatan/penunjang/tmp-file', 'storeTmpFile')->name('laporan-kegiatan.penunjang.tmp-file');
             Route::delete('laporan-kegiatan/penunjang/revert', 'revertTmpFile')->name('laporan-kegiatan.penunjang.revert');
-
-            Route::post('laporan-kegiatan/penunjang/rekapitulasi', 'rekapitulasi')->name('laporan-kegiatan.penunjang.rekapitulasi');
-            Route::post('laporan-kegiatan/penunjang/rekapitulasi/send-rekap', 'sendRekap')->name('laporan-kegiatan.penunjang.rekapitulasi.send-rekap');
 
             Route::post('laporan-kegiatan/penunjang/send-skp', 'sendSKP')->name('laporan-kegiatan.penunjang.send-skp');
         });
@@ -185,7 +184,6 @@ Route::middleware(['auth'])->group(function () {
 
         Route::controller(OverviewStrukturalController::class)->group(function () {
             Route::get('/overview-struktural', 'index')->name('overview-struktural');
-           
         });
 
 
