@@ -123,12 +123,10 @@
                                     <div class="form-group">
                                         <label for="basicInput">Jabatan</label>
                                         <ul>
-                                            <li>Atasan Langsung</li>
-                                            <li>Penilai AK</li>
-                                            <li>Penetap AK</li>
+                                                 @foreach (Auth::user()->roles as $role)
+                                                     <li>{{ $role->display_name }}</li>
+                                                 @endforeach
                                         </ul>
-                                        {{--  <input type="text" name="jabatan" disabled class="form-control" placeholder=""
-                                            value="{{ Auth::user()->roles()->first()->display_name }}">  --}}
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -506,7 +504,7 @@
                     $('.btn-simpan-doc-kep .spin').show();
                     $.ajax({
                         type: 'POST',
-                        url: "{{ route('data-atasan-langsung.store-doc-kepeg') }}",
+                        url: "{{ route('data-struktural.store-doc-kepeg') }}",
                         processData: false,
                         contentType: false,
                         data: postData,
@@ -549,7 +547,7 @@
                     $('.btn-simpan-doc-kom .spin').show();
                     $.ajax({
                         type: 'POST',
-                        url: "{{ route('data-atasan-langsung.store-doc-kom') }}",
+                        url: "{{ route('data-struktural.store-doc-kom') }}",
                         processData: false,
                         contentType: false,
                         data: postData,
@@ -588,7 +586,7 @@
                     preConfirm: async () => {
                         return await $.ajax({
                             type: 'DELETE',
-                            url: "{{ url('data-atasan-langsung/destroy-dockepeg') }}/" +
+                            url: "{{ url('data-struktural.destroy-doc-kepeg') }}/" +
                                 $(this)
                                 .data('id'),
                             dataType: 'JSON'
@@ -619,7 +617,7 @@
                     preConfirm: async () => {
                         return await $.ajax({
                             type: 'DELETE',
-                            url: "{{ url('data-atasan-langsung/destroy-dockom') }}/" +
+                            url: "{{ url('data-struktural.destroy-doc-kom') }}/" +
                                 $(this)
                                 .data('id'),
                             dataType: 'JSON'

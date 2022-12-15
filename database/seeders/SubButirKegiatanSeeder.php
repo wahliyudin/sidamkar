@@ -123,20 +123,12 @@ class SubButirKegiatanSeeder extends Seeder
             //13
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 459,
-                'nama' => 'pelatihan fungsional',
-                'satuan_hasil' => 'Sertifikat/laporan',
-                'score' => 0.5
-            ],
-            //14
-            [
-                'role_id' => null,
                 'butir_kegiatan_id' => 461,
                 'nama' => 'amanya lebih dari 960 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
                 'score' => 15
             ],
-            //15
+            //14
             [
                 'role_id' => null,
                 'butir_kegiatan_id' => 461,
@@ -144,7 +136,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'satuan_hasil' => 'Sertifikat/laporan',
                 'score' => 9
             ],
-            //16
+            //15
             [
                 'role_id' => null,
                 'butir_kegiatan_id' => 461,
@@ -152,7 +144,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'satuan_hasil' => 'Sertifikat/laporan',
                 'score' => 6
             ],
-            //17
+            //16
             [
                 'role_id' => null,
                 'butir_kegiatan_id' => 461,
@@ -160,7 +152,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'satuan_hasil' => 'Sertifikat/laporan',
                 'score' => 3
             ],
-            //18
+            //17
             [
                 'role_id' => null,
                 'butir_kegiatan_id' => 461,
@@ -168,7 +160,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'satuan_hasil' => 'Sertifikat/laporan',
                 'score' => 2
             ],
-            //19
+            //18
             [
                 'role_id' => null,
                 'butir_kegiatan_id' => 461,
@@ -176,7 +168,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'satuan_hasil' => 'Sertifikat/laporan',
                 'score' => 1
             ],
-            //20
+            //19
             [
                 'role_id' => null,
                 'butir_kegiatan_id' => 461,
@@ -184,7 +176,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'satuan_hasil' => 'Sertifikat/laporan',
                 'score' => 0.5
             ],
-            //21
+            //20
             [
                 'role_id' => null,
                 'butir_kegiatan_id' => 462,
@@ -192,7 +184,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'satuan_hasil' => 'Sertifikat/laporan',
                 'score' => 7.5
             ],
-            //22
+            //21
             [
                 'role_id' => null,
                 'butir_kegiatan_id' => 462,
@@ -200,7 +192,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'satuan_hasil' => 'Sertifikat/laporan',
                 'score' => 4.5
             ],
-            //23
+            //22
             [
                 'role_id' => null,
                 'butir_kegiatan_id' => 462,
@@ -208,7 +200,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'satuan_hasil' => 'Sertifikat/laporan',
                 'score' => 3
             ],
-            //24
+            //23
             [
                 'role_id' => null,
                 'butir_kegiatan_id' => 462,
@@ -216,7 +208,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'satuan_hasil' => 'Sertifikat/laporan',
                 'score' => 1.5
             ],
-            //25
+            //24
             [
                 'role_id' => null,
                 'butir_kegiatan_id' => 462,
@@ -224,7 +216,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'satuan_hasil' => 'Sertifikat/laporan',
                 'score' => 1
             ],
-            //26
+            //25
             [
                 'role_id' => null,
                 'butir_kegiatan_id' => 462,
@@ -232,7 +224,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'satuan_hasil' => 'Sertifikat/laporan',
                 'score' => 0.5
             ],
-            //27
+            //26
             [
                 'role_id' => null,
                 'butir_kegiatan_id' => 462,
@@ -240,66 +232,66 @@ class SubButirKegiatanSeeder extends Seeder
                 'satuan_hasil' => 'Sertifikat/laporan',
                 'score' => 0.25
             ],
-            //28
+            //27
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 466,
+                'butir_kegiatan_id' => 467,
                 'nama' => '30 (tiga puluh) tahun lebih',
                 'satuan_hasil' => 'Piagam',
                 'score' => 3
             ],
-            //29
+            //28
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 466,
+                'butir_kegiatan_id' => 467,
                 'nama' => '20 (dua puluh) tahun',
                 'satuan_hasil' => 'Piagam',
                 'score' => 2
             ],
-            //30
+            //29
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 466,
+                'butir_kegiatan_id' => 467,
                 'nama' => '10 (sepuluh) tahun',
                 'satuan_hasil' => 'Piagam',
                 'score' => 1
             ],
-            //31
+            //30
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 466,
+                'butir_kegiatan_id' => 468,
                 'nama' => 'Tingkat Internasional',
                 'satuan_hasil' => 'Sertifikat/Piagam',
                 'score' => 35
             ],
+            //31
+            [
+                'role_id' => null,
+                'butir_kegiatan_id' => 468,
+                'nama' => 'Tingkat Nasional',
+                'satuan_hasil' => 'Sertifikat/Piagam',
+                'score' => 25
+            ],
             //32
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 466,
-                'nama' => 'Tingkat Nasional',
+                'butir_kegiatan_id' => 468,
+                'nama' => 'Tingkat lokal',
                 'satuan_hasil' => 'Sertifikat/Piagam',
                 'score' => 25
             ],
             //33
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 466,
-                'nama' => 'Tingkat lokal',
-                'satuan_hasil' => 'Sertifikat/Piagam',
-                'score' => 25
-            ],
-            //34
-            [
-                'role_id' => null,
-                'butir_kegiatan_id' => 467,
+                'butir_kegiatan_id' => 469,
                 'nama' => 'Diploma Tiga',
                 'satuan_hasil' => 'Ijazah/Gelar',
                 'score' => 4
             ],
-            //35
+            //34
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 467,
+                'butir_kegiatan_id' => 469,
                 'nama' => 'Diploma Dua',
                 'satuan_hasil' => 'Ijazah/Gelar',
                 'score' => 3
@@ -309,18 +301,18 @@ class SubButirKegiatanSeeder extends Seeder
         SubButirKegiatan::query()->upsert($kegiatanProfesiFungsionalDamkar, 'id');
 
         $kegiatanProfesiAnalisDamkar = [
-            //36
+            //35
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 470,
+                'butir_kegiatan_id' => 472,
                 'nama' => 'dalam buku/majalah ilmiah internasional yang terindek',
                 'satuan_hasil' => 'Jurnal/Buku',
                 'score' => 20
             ],
-            //37
+            //36
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 470,
+                'butir_kegiatan_id' => 472,
                 'nama' => 'dalam buku/majalah ilmiah nasional terakreditasi',
                 'satuan_hasil' => 'Jurnal/Buku',
                 'score' => 12.5
@@ -328,7 +320,7 @@ class SubButirKegiatanSeeder extends Seeder
             //37
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 470,
+                'butir_kegiatan_id' => 472,
                 'nama' => 'dalam buku/majalah ilmiah yang diakui organisasi profesi dan Instansi Pembina',
                 'satuan_hasil' => 'Jurnal/Buku/ Naskah',
                 'score' => 6
@@ -336,7 +328,7 @@ class SubButirKegiatanSeeder extends Seeder
             //38
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 471,
+                'butir_kegiatan_id' => 473,
                 'nama' => 'dalam bentuk buku',
                 'satuan_hasil' => 'Buku',
                 'score' => 8
@@ -344,7 +336,7 @@ class SubButirKegiatanSeeder extends Seeder
             //39
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 471,
+                'butir_kegiatan_id' => 473,
                 'nama' => 'dalam bentuk majalah ilmiah',
                 'satuan_hasil' => 'Naskah',
                 'score' => 4
@@ -352,7 +344,7 @@ class SubButirKegiatanSeeder extends Seeder
             //40
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 472,
+                'butir_kegiatan_id' => 474,
                 'nama' => 'dalam bentuk buku yang diterbitkan dan diedarkan secara nasional',
                 'satuan_hasil' => 'Buku',
                 'score' => 8
@@ -360,7 +352,7 @@ class SubButirKegiatanSeeder extends Seeder
             //41
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 472,
+                'butir_kegiatan_id' => 474,
                 'nama' => 'dalam majalah ilmiah yang diakui organisasi profesi dan Instansi Pembina',
                 'satuan_hasil' => 'Naskah',
                 'score' => 4
@@ -368,7 +360,7 @@ class SubButirKegiatanSeeder extends Seeder
             //42
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 473,
+                'butir_kegiatan_id' => 475,
                 'nama' => 'dalam bentuk buku',
                 'satuan_hasil' => 'Buku',
                 'score' => 7
@@ -376,7 +368,7 @@ class SubButirKegiatanSeeder extends Seeder
             //43
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 473,
+                'butir_kegiatan_id' => 475,
                 'nama' => 'dalam bentuk makalah',
                 'satuan_hasil' => 'Naskah',
                 'score' => 3.5
@@ -384,7 +376,7 @@ class SubButirKegiatanSeeder extends Seeder
             //44
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 476,
+                'butir_kegiatan_id' => 478,
                 'nama' => 'dalam bentuk buku yang diterbitkan dan diedarkan secara nasional',
                 'satuan_hasil' => 'Buku',
                 'score' => 7
@@ -392,7 +384,7 @@ class SubButirKegiatanSeeder extends Seeder
             //45
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 476,
+                'butir_kegiatan_id' => 478,
                 'nama' => 'dalam majalah ilmiah yang diakui organisasi profesi dan Instansi Pembina',
                 'satuan_hasil' => 'Naskah',
                 'score' => 3.5
@@ -400,7 +392,7 @@ class SubButirKegiatanSeeder extends Seeder
             //46
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 477,
+                'butir_kegiatan_id' => 479,
                 'nama' => 'dalam bentuk buku',
                 'satuan_hasil' => 'Buku',
                 'score' => 3
@@ -408,7 +400,7 @@ class SubButirKegiatanSeeder extends Seeder
             //47
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 477,
+                'butir_kegiatan_id' => 479,
                 'nama' => 'dalam bentuk makalah',
                 'satuan_hasil' => 'Naskah',
                 'score' => 1.5
@@ -416,7 +408,7 @@ class SubButirKegiatanSeeder extends Seeder
             //48
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 481,
+                'butir_kegiatan_id' => 483,
                 'nama' => 'lamanya lebih dari 960 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
                 'score' => 15
@@ -424,7 +416,7 @@ class SubButirKegiatanSeeder extends Seeder
             //44
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 481,
+                'butir_kegiatan_id' => 483,
                 'nama' => 'lamanya antara 641 - 960 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
                 'score' => 9
@@ -432,7 +424,7 @@ class SubButirKegiatanSeeder extends Seeder
             //45
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 481,
+                'butir_kegiatan_id' => 483,
                 'nama' => 'lamanya antara 481 - 640 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
                 'score' => 6
@@ -440,7 +432,7 @@ class SubButirKegiatanSeeder extends Seeder
             //46
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 481,
+                'butir_kegiatan_id' => 483,
                 'nama' => 'lamanya antara 161 - 480 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
                 'score' => 3
@@ -448,7 +440,7 @@ class SubButirKegiatanSeeder extends Seeder
             //47
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 481,
+                'butir_kegiatan_id' => 483,
                 'nama' => 'lamanya antara 81 - 160 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
                 'score' => 2
@@ -456,7 +448,7 @@ class SubButirKegiatanSeeder extends Seeder
             //48
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 481,
+                'butir_kegiatan_id' => 483,
                 'nama' => 'lamanya antara 30 - 80 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
                 'score' => 1
@@ -464,7 +456,7 @@ class SubButirKegiatanSeeder extends Seeder
             //48
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 481,
+                'butir_kegiatan_id' => 483,
                 'nama' => 'lamanya kurang dari 30 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
                 'score' => 0.5
@@ -472,7 +464,7 @@ class SubButirKegiatanSeeder extends Seeder
             //49
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 482,
+                'butir_kegiatan_id' => 484,
                 'nama' => 'lamanya lebih dari 960 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
                 'score' => 7.5
@@ -480,7 +472,7 @@ class SubButirKegiatanSeeder extends Seeder
             //50
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 482,
+                'butir_kegiatan_id' => 484,
                 'nama' => 'lamanya antara 641 - 960 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
                 'score' => 4.5
@@ -488,7 +480,7 @@ class SubButirKegiatanSeeder extends Seeder
             //51
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 482,
+                'butir_kegiatan_id' => 484,
                 'nama' => 'lamanya antara 481 - 640 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
                 'score' => 3
@@ -496,7 +488,7 @@ class SubButirKegiatanSeeder extends Seeder
             //52
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 482,
+                'butir_kegiatan_id' => 484,
                 'nama' => 'lamanya antara 161 - 480 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
                 'score' => 1.5
@@ -504,7 +496,7 @@ class SubButirKegiatanSeeder extends Seeder
             //53
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 482,
+                'butir_kegiatan_id' => 484,
                 'nama' => 'lamanya antara 81 - 160 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
                 'score' => 1
@@ -512,7 +504,7 @@ class SubButirKegiatanSeeder extends Seeder
             //53
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 482,
+                'butir_kegiatan_id' => 484,
                 'nama' => 'lamanya antara 30 - 80 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
                 'score' => 0.5
@@ -520,7 +512,7 @@ class SubButirKegiatanSeeder extends Seeder
             //54
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 482,
+                'butir_kegiatan_id' => 484,
                 'nama' => 'lamanya kurang dari 30 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
                 'score' => 0.25
@@ -528,7 +520,7 @@ class SubButirKegiatanSeeder extends Seeder
             //54
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 488,
+                'butir_kegiatan_id' => 489,
                 'nama' => '30 (tiga puluh) tahun lebih',
                 'satuan_hasil' => 'Piagam',
                 'score' => 3
@@ -536,7 +528,7 @@ class SubButirKegiatanSeeder extends Seeder
             //55
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 488,
+                'butir_kegiatan_id' => 489,
                 'nama' => '20 (dua puluh) tahun',
                 'satuan_hasil' => 'Piagam',
                 'score' => 2
@@ -544,7 +536,7 @@ class SubButirKegiatanSeeder extends Seeder
             //56
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 488,
+                'butir_kegiatan_id' => 489,
                 'nama' => '10 (sepuluh) tahun`',
                 'satuan_hasil' => 'Piagam',
                 'score' => 1
@@ -552,7 +544,7 @@ class SubButirKegiatanSeeder extends Seeder
             //57
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 488,
+                'butir_kegiatan_id' => 490,
                 'nama' => 'Tingkat Internasional',
                 'satuan_hasil' => 'Sertifikat/Piagam',
                 'score' => 35
@@ -560,7 +552,7 @@ class SubButirKegiatanSeeder extends Seeder
             //58
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 488,
+                'butir_kegiatan_id' => 490,
                 'nama' => 'Tingkat Nasional',
                 'satuan_hasil' => 'Sertifikat/Piagam',
                 'score' => 25
@@ -568,7 +560,7 @@ class SubButirKegiatanSeeder extends Seeder
             //59
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 488,
+                'butir_kegiatan_id' => 490,
                 'nama' => 'Tingkat Lokal',
                 'satuan_hasil' => 'Sertifikat/Piagam',
                 'score' => 15
@@ -576,7 +568,7 @@ class SubButirKegiatanSeeder extends Seeder
             //60
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 489,
+                'butir_kegiatan_id' => 491,
                 'nama' => 'Doktor',
                 'satuan_hasil' => 'Ijazah/Gelar',
                 'score' => 15
@@ -584,7 +576,7 @@ class SubButirKegiatanSeeder extends Seeder
             //61
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 489,
+                'butir_kegiatan_id' => 491,
                 'nama' => ' Magister',
                 'satuan_hasil' => 'Ijazah/Gelar',
                 'score' => 10
@@ -592,7 +584,7 @@ class SubButirKegiatanSeeder extends Seeder
             //62
             [
                 'role_id' => null,
-                'butir_kegiatan_id' => 489,
+                'butir_kegiatan_id' => 491,
                 'nama' => ' Sarjana/Diploma Empat',
                 'satuan_hasil' => 'Ijazah/Gelar',
                 'score' => 5
