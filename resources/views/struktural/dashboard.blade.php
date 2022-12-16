@@ -9,9 +9,9 @@
             </div>
         @endif
         <div class="row">
-            <div class="col-md-3 px-2">
+            <div class="col-md-6 px-2">
                 <div class="card">
-                    <div class="card-body py-3 px-3" style="height: 100px;">
+                    <div class="card-body py-3 px-3">
                         <div class="d-flex align-items-center h-100">
                             <div class="circle circle-blue">
                                 <i class="fa-solid fa-user"></i>
@@ -20,15 +20,17 @@
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                     Penilai AK Damkar
                                 </p>
-                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target">44</h2>
+                                <h5 style="font-family: 'Roboto';color: #06152B;" class="target">
+                                    {{ $penilaiAndPenetap?->penilaiAngkaKreditDamkar?->userPejabatStruktural?->nama ?? '-' }}
+                                </h5>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 px-2">
+            <div class="col-md-6 px-2">
                 <div class="card">
-                    <div class="card-body py-3 px-3" style="height: 100px;">
+                    <div class="card-body py-3 px-3">
                         <div class="d-flex align-items-center h-100">
                             <div class="circle circle-blue">
                                 <i class="fa-solid fa-user"></i>
@@ -37,15 +39,19 @@
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                     Penilai AK Analis
                                 </p>
-                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target">44</h2>
+                                <h5 style="font-family: 'Roboto';color: #06152B;" class="target">
+                                    {{ $penilaiAndPenetap?->penilaiAngkaKreditAnalis?->userPejabatStruktural?->nama ?? '-' }}
+                                </h5>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 px-2">
+        </div>
+        <div class="row">
+            <div class="col-md-6 px-2">
                 <div class="card">
-                    <div class="card-body py-3 px-3" style="height: 100px;">
+                    <div class="card-body py-3 px-3">
                         <div class="d-flex align-items-center h-100">
                             <div class="circle circle-blue">
                                 <i class="fa-solid fa-user"></i>
@@ -54,15 +60,17 @@
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                     Penetap AK Damkar
                                 </p>
-                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target">44</h2>
+                                <h5 style="font-family: 'Roboto';color: #06152B;" class="target">
+                                    {{ $penilaiAndPenetap?->penetapAngkaKreditDamkar?->userPejabatStruktural?->nama ?? '-' }}
+                                </h5>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 px-2">
+            <div class="col-md-6 px-2">
                 <div class="card">
-                    <div class="card-body py-3 px-3" style="height: 100px;">
+                    <div class="card-body py-3 px-3">
                         <div class="d-flex align-items-center h-100">
                             <div class="circle circle-blue">
                                 <i class="fa-solid fa-user"></i>
@@ -71,7 +79,9 @@
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                     Penetap AK Analis
                                 </p>
-                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target">44</h2>
+                                <h5 style="font-family: 'Roboto';color: #06152B;" class="target">
+                                    {{ $penilaiAndPenetap?->penetapAngkaKreditAnalis?->userPejabatStruktural?->nama ?? '-' }}
+                                </h5>
                             </div>
                         </div>
                     </div>

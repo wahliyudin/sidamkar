@@ -63,8 +63,9 @@ class KegiatanJabatanController extends Controller
         $skp = $user?->ketentuanSkpFungsional;
         $ketentuan_ak = $this->kegiatanJabatanService->ketentuanNilai(DestructRoleFacade::getRoleFungsionalFirst($user->roles)?->id, $user?->userAparatur?->pangkat_golongan_tmt_id);
         $ak_diterima = $this->kegiatanJabatanService->sumScoreByUser($user->id);
+        $ak_jabatan = DB::table('laporan_kegiatan_jabatans')->where('user_id', Auth::user()->id)->sum('score');
         $historyRekapitulasiKegiatans = $user?->rekapitulasiKegiatan?->historyRekapitulasiKegiatans ?? [];
-        return view('aparatur.laporan-kegiatan.jabatan.index', compact('periode', 'user', 'judul', 'historyRekapitulasiKegiatans', 'skp', 'ketentuan_ak', 'ak_diterima'));
+        return view('aparatur.laporan-kegiatan.jabatan.index', compact('periode', 'user', 'judul', 'historyRekapitulasiKegiatans', 'skp', 'ketentuan_ak', 'ak_diterima', 'ak_jabatan'));
     }
 
     /**

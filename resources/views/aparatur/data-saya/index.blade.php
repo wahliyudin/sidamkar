@@ -54,10 +54,10 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="basicInput">Privinsi</label>
+                                        <label for="basicInput">Provinsi</label>
                                         <select class="form-select provinsi2" disabled data-id=".provinsi2"
                                             name="provinsi_id">
-                                            <option disabled selected>- Pilih Privinsi -</option>
+                                            <option disabled selected>- Pilih Provinsi -</option>
                                             @foreach ($provinsis as $prov)
                                                 <option value="{{ $prov->id }}" @selected(old('provinsi_id', $user->userAparatur?->provinsi_id) == $prov->id)>
                                                     {{ $prov->nama }}</option>
