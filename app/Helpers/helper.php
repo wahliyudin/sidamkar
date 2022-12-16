@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Periode;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
 
 if (!function_exists('deleteImage')) {
@@ -64,5 +66,11 @@ if (!function_exists('getAllRoleProvKabKota')) {
             'kab_kota',
             'provinsi'
         ];
+    }
+}
+if (!function_exists('concatPriodeY')) {
+    function concatPriodeY(Periode $periode)
+    {
+        return Carbon::make($periode->awal)->format('Y') . " - " . Carbon::make($periode->awal)->format('Y');
     }
 }

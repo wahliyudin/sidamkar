@@ -17,7 +17,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->foreignUuid('fungsional_id');
             $table->unsignedBigInteger('periode_id');
-            $table->integer('total_capaian');
+            $table->float('total_capaian', places: 4, unsigned: true)->nullable();
             $table->boolean('is_send')->default(false);
             $table->string('name');
             $table->string('link');

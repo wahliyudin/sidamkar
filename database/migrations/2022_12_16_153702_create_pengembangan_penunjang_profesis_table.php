@@ -13,18 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('penilaian_capaians', function (Blueprint $table) {
+        Schema::create('pengembangan_penunjang_profesis', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('fungsional_id');
             $table->unsignedBigInteger('periode_id');
-            $table->float('capaian_ak', places: 4, unsigned: true)->nullable();
+            $table->float('jml_ak_profesi', places: 4, unsigned: true)->nullable();
+            $table->float('jml_ak_penunjang', places: 4, unsigned: true)->nullable();
             $table->boolean('is_send')->default(false);
             $table->string('name');
             $table->string('link');
             $table->timestamps();
-
-            $table->foreign('fungsional_id')->on('users')->references('id')->cascadeOnDelete();
-            $table->foreign('periode_id')->on('periodes')->references('id')->cascadeOnDelete();
         });
     }
 
@@ -35,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('penilaian_capaians');
+        Schema::dropIfExists('pengembangan_penunjang_profesis');
     }
 };
