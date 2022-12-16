@@ -36,7 +36,7 @@ class UserSeeder extends Seeder
             'email' => 'adminsafsa2@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'status_akun' => 0
+            'status_akun' => 1
         ])->attachRole('damkar_pemula');
         $damkarPemula->userAparatur()->create([
             'nama' => 'Damkar Pemula',
@@ -53,7 +53,7 @@ class UserSeeder extends Seeder
         ]);
 
 
-        for ($i=0; $i < 10; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             $damkarPemula1Name = fake()->name();
             $damkarPemula1 = User::query()->create([
                 'username' => $damkarPemula1Name,
@@ -97,7 +97,7 @@ class UserSeeder extends Seeder
             'kab_kota_id' => 1101,
         ]);
 
-        for ($i=0; $i < 10; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             $damkarTerampil1Name = fake()->name();
             $damkarTerampil1 = User::query()->create([
                 'username' => $damkarTerampil1Name,
@@ -215,7 +215,7 @@ class UserSeeder extends Seeder
             'kab_kota_id' => 1101,
         ]);
 
-        for ($i=0; $i < 5; $i++) {
+        for ($i = 0; $i < 5; $i++) {
             $kabKota1 = User::query()->create([
                 'username' => fake()->name(),
                 'email' => fake()->email(),
@@ -242,7 +242,7 @@ class UserSeeder extends Seeder
             'provinsi_id' => 11,
         ]);
 
-        for ($i=0; $i < 5; $i++) {
+        for ($i = 0; $i < 5; $i++) {
             $provinsi1 = User::query()->create([
                 'username' => fake()->name(),
                 'email' => fake()->email(),
@@ -261,7 +261,7 @@ class UserSeeder extends Seeder
             'email' => 'admin51@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'status_akun' => 0
+            'status_akun' => 1
         ])->attachRole('atasan_langsung');
         $atasanLangsung->userPejabatStruktural()->create([
             'nama' => 'Atasan Langsung',
@@ -277,7 +277,7 @@ class UserSeeder extends Seeder
             'kab_kota_id' => 1101,
         ]);
 
-        for ($i=0; $i < 5; $i++) {
+        for ($i = 0; $i < 5; $i++) {
             $atasanLangsung1Name = fake()->name();
             $atasanLangsung1 = User::query()->create([
                 'username' => $atasanLangsung1Name,
@@ -320,7 +320,7 @@ class UserSeeder extends Seeder
             'provinsi_id' => 11,
             'kab_kota_id' => 1101,
         ]);
-        for ($i=0; $i < 6; $i++) {
+        for ($i = 0; $i < 6; $i++) {
             $penilaiAK1Name = fake()->name();
             $penilaiAK1 = User::query()->create([
                 'username' => $penilaiAK1Name,
@@ -364,7 +364,7 @@ class UserSeeder extends Seeder
             'kab_kota_id' => 1101,
         ]);
 
-        for ($i=0; $i < 5; $i++) {
+        for ($i = 0; $i < 5; $i++) {
             $penetapAKName = fake()->name();
             $penetapAK = User::query()->create([
                 'username' => $penetapAKName,
@@ -413,7 +413,7 @@ class UserSeeder extends Seeder
             'nomenklatur_perangkat_daerah_id' => 1,
             'provinsi_id' => 36,
         ]);
-        
+
         $adminProvinsiJawaBarat = User::query()->create([
             'username' => 'Admin Provinsi Jawa Barat',
             'email' => 'adminprovjawabarat@gmail.com',
@@ -520,7 +520,7 @@ class UserSeeder extends Seeder
             'provinsi_id' => 32,
             'kab_kota_id' => 3275,
         ]);
-        
+
         $atasanLangsungKabBogor = User::query()->create([
             'username' => 'Atasan Langsung Kabupaten Bogor',
             'email' => 'atasanKotaBogor@gmail.com',
@@ -833,7 +833,7 @@ class UserSeeder extends Seeder
             'provinsi_id' => 32,
             'kab_kota_id' => 3201,
         ]);
-         //end ini adalah seeder user yang dari request client
+        //end ini adalah seeder user yang dari request client
 
     }
 }

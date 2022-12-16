@@ -68,7 +68,7 @@
             function loadData(search = null) {
                 $.ajax({
                     type: "POST",
-                    url: url('/atasan-langsung/verifikasi-kegiatan/kegiatan-jabatan/' + $(
+                    url: url('/atasan-langsung/verifikasi-kegiatan/jabatan/' + $(
                         'input[name="secret"]').val() + '/load-unsurs'),
                     data: {
                         search: search
@@ -81,33 +81,37 @@
             }
 
             function unsurs(unsurs) {
-                return $.map(unsurs, function(unsur, indexOrKey) {
-                    return `
-                        <div class="accordion-item">
-                            <div class="d-flex justify-content-between align-items-center accordion-header py-3 px-2" id="unsur${unsur.id}">
-                                <div class="ps-2 pt-2">
-                                    <h6 class="accordian-title" style="color: #000000;">${unsur.nama}</h6>
+                if (unsurs.length > 0) {
+                    return $.map(unsurs, function(unsur, indexOrKey) {
+                        return `
+                            <div class="accordion-item">
+                                <div class="d-flex justify-content-between align-items-center accordion-header py-3 px-2" id="unsur${unsur.id}">
+                                    <div class="ps-2 pt-2">
+                                        <h6 class="accordian-title" style="color: #000000;">${unsur.nama}</h6>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse"
+                                            data-bs-target="#contentUnsur${unsur.id}" aria-expanded="false"
+                                            aria-controls="contentUnsur${unsur.id}">
+                                        </button>
+                                    </div>
                                 </div>
-                                <div class="d-flex align-items-center">
-                                    <button class="accordion-button collapsed" type="button"
-                                        data-bs-toggle="collapse"
-                                        data-bs-target="#contentUnsur${unsur.id}" aria-expanded="false"
-                                        aria-controls="contentUnsur${unsur.id}">
-                                    </button>
-                                </div>
-                            </div>
-                            <div id="contentUnsur${unsur.id}" class="accordion-collapse collapse"
-                                aria-labelledby="unsur${unsur.id}"
-                                style="">
-                                <div class="accordion-body pt-0">
-                                    <div class="accordion" id="accordion-child">
-                                        ${subUnsurs(unsur.sub_unsurs)}
+                                <div id="contentUnsur${unsur.id}" class="accordion-collapse collapse"
+                                    aria-labelledby="unsur${unsur.id}"
+                                    style="">
+                                    <div class="accordion-body pt-0">
+                                        <div class="accordion" id="accordion-child">
+                                            ${subUnsurs(unsur.sub_unsurs)}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    `;
-                }).join('')
+                        `;
+                    }).join('')
+                } else {
+                    return `<div class="d-flex py-4 justify-content-center">Belum Ada Data Untuk Ditampilkan</div>`;
+                }
             }
 
             function subUnsurs(subUnsurs) {
@@ -149,7 +153,7 @@
                     return `
                     <li class="accordian-list ">
                         <div class="d-flex align-items-center justify-content-between">
-                            <a href="${url('/atasan-langsung/verifikasi-kegiatan/'+$('input[name="user"]').val()+'/kegiatan-jabatan/'+butirKegiatan.id+'/show')}" class="link-butir">
+                            <a href="${url('/atasan-langsung/verifikasi-kegiatan/jabatan/'+$('input[name="user"]').val()+'/'+butirKegiatan.id+'/show')}" class="link-butir">
                                 <h6 class="accordian-title">
                                     ${butirKegiatan.nama}
                                 </h6>

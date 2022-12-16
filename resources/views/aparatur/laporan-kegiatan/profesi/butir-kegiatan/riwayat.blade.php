@@ -1,5 +1,5 @@
-<div class="modal fade" id="riwayatKegiatan{{ $laporanKegiatanJabatan->id }}" data-bs-backdrop="static" tabindex="-1"
-    role="dialog" aria-labelledby="riwayatKegiatanTitle" aria-hidden="true">
+<div class="modal fade" id="riwayatKegiatan{{ $laporanKegiatanPenunjangProfesi->id }}" data-bs-backdrop="static"
+    tabindex="-1" role="dialog" aria-labelledby="riwayatKegiatanTitle" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-body px-4 py-0">
@@ -12,26 +12,26 @@
                                 style="max-height: 74vh; overflow-y: auto; overflow-x: hidden;">
                                 <h6>File Dokumen</h6>
                                 <ul>
-                                    @if (count($laporanKegiatanJabatan->dokumenKegiatanJabatans) > 0 &&
-                                        str($laporanKegiatanJabatan?->dokumenKegiatanJabatans[0]?->link ?? '')->contains(['.pdf', '.docx']))
-                                        @foreach ($laporanKegiatanJabatan->dokumenKegiatanJabatans as $dokumenKegiatanJabatan)
-                                            @if (str($dokumenKegiatanJabatan->link)->contains(['.pdf', '.docx']))
+                                    @if (count($laporanKegiatanPenunjangProfesi->dokumenPenunjangProfesis) > 0 &&
+                                        str($laporanKegiatanPenunjangProfesi?->dokumenPenunjangProfesis[0]?->link ?? '')->contains(['.pdf', '.docx']))
+                                        @foreach ($laporanKegiatanPenunjangProfesi->dokumenPenunjangProfesis as $dokumenPenunjangProfesi)
+                                            @if (str($dokumenPenunjangProfesi->link)->contains(['.pdf', '.docx']))
                                                 <li>
                                                     <a
-                                                        href="{{ $dokumenKegiatanJabatan->link }}">{{ $dokumenKegiatanJabatan->name }}</a>
+                                                        href="{{ $dokumenPenunjangProfesi->link }}">{{ $dokumenPenunjangProfesi->name }}</a>
                                                 </li>
                                             @endif
                                         @endforeach
                                     @endif
                                 </ul>
                                 <div class="d-flex flex-wrap gap-3 justify-content-center">
-                                    @if (count($laporanKegiatanJabatan->dokumenKegiatanJabatans) > 0)
+                                    @if (count($laporanKegiatanPenunjangProfesi->dokumenPenunjangProfesis) > 0)
                                         <div class="swiper mySwiper">
                                             <div class="swiper-wrapper">
-                                                @foreach ($laporanKegiatanJabatan->dokumenKegiatanJabatans as $dokumenKegiatanJabatan)
-                                                    @if (!str($dokumenKegiatanJabatan->link)->contains(['.pdf', '.docx']))
+                                                @foreach ($laporanKegiatanPenunjangProfesi->dokumenPenunjangProfesis as $dokumenPenunjangProfesi)
+                                                    @if (!str($dokumenPenunjangProfesi->link)->contains(['.pdf', '.docx']))
                                                         <div class="swiper-slide">
-                                                            <img src="{{ $dokumenKegiatanJabatan->link }}"
+                                                            <img src="{{ $dokumenPenunjangProfesi->link }}"
                                                                 alt="">
                                                         </div>
                                                     @endif
@@ -44,11 +44,12 @@
                                 <div class="form-group">
                                     <div class="d-flex flex-column mt-3">
                                         <span
-                                            style="color: #000; font-weight: 700;">{{ $laporanKegiatanJabatan->butirKegiatan->subUnsur->unsur->nama }}</span>
+                                            style="color: #000; font-weight: 700;">{{ $laporanKegiatanPenunjangProfesi->butirKegiatan->subUnsur->unsur->nama }}</span>
                                         <span
-                                            style="color: #000; margin-left: 1rem;">{{ $laporanKegiatanJabatan->butirKegiatan->subUnsur->nama }}</span>
+                                            style="color: #000; margin-left: 1rem;">{{ $laporanKegiatanPenunjangProfesi->butirKegiatan->subUnsur->nama }}</span>
                                         <ul style="margin-left: 1.5rem;">
-                                            <li style="color: #000;">{{ $laporanKegiatanJabatan->butirKegiatan->nama }}
+                                            <li style="color: #000;">
+                                                {{ $laporanKegiatanPenunjangProfesi->butirKegiatan->nama }}
                                             </li>
                                         </ul>
                                     </div>
@@ -62,7 +63,7 @@
                                 Laporan
                                 Kegiatan</h5>
 
-                            @switch($laporanKegiatanJabatan->status)
+                            @switch($laporanKegiatanPenunjangProfesi->status)
                                 @case(1)
                                     <button class="btn btn-yellow px-3 btn-sm text-sm">Valdasi</button>
                                 @break
@@ -83,11 +84,11 @@
 
                         <div class="timeline-vertical" data-simplebar
                             style="max-height: 74vh; overflow-y: auto; overflow-x: hidden;">
-                            @include('aparatur.laporan-kegiatan.jabatan.history_rekapitulasi',
+                            @include('aparatur.laporan-kegiatan.penunjang.sub-butir-kegiatan.history_rekapitulasi',
                                 compact('historyRekapitulasiKegiatans'))
-                            @foreach ($laporanKegiatanJabatan->historyKegiatanJabatans()->orderBy('id', 'desc')->get() as $historyKegiatanJabatan)
+                            @foreach ($laporanKegiatanPenunjangProfesi->historyPenunjangProfesis()->orderBy('id', 'desc')->get() as $historyKegiatanPenunjangProfesi)
                                 <div class="timeline-item">
-                                    @switch($historyKegiatanJabatan->icon)
+                                    @switch($historyKegiatanPenunjangProfesi->icon)
                                         @case(1)
                                             <div class="timeline-icon icon-item icon-item-lg border-300">
                                                 <i class="text-red-terang fa-solid fa-keyboard"></i>
@@ -127,7 +128,7 @@
                                     <div class="row">
                                         <div class="col-lg-12 timeline-item-time">
                                             <div>
-                                                @switch($historyKegiatanJabatan->status)
+                                                @switch($historyKegiatanPenunjangProfesi->status)
                                                     @case(1)
                                                         <span class="btn btn-red-terang py-1 px-3"
                                                             style="font-size: 12px !important;">Laporkan</span>
@@ -155,25 +156,29 @@
                                                 @endswitch
 
                                                 <p class="fs--1 mb-0 fw-semi-bold text-600">
-                                                    {{ $historyKegiatanJabatan->keterangan }}
+                                                    {{ $historyKegiatanPenunjangProfesi->keterangan }}
                                                 </p>
                                                 <p class="fs--2 text-600">
-                                                    {{ $historyKegiatanJabatan->created_at->format('H:i') }} WIB,
-                                                    {{ $historyKegiatanJabatan->created_at->format('d F Y') }}
+                                                    {{ $historyKegiatanPenunjangProfesi->created_at->format('H:i') }}
+                                                    WIB,
+                                                    {{ $historyKegiatanPenunjangProfesi->created_at->format('d F Y') }}
                                                 </p>
                                             </div>
                                         </div>
-                                        @if (isset($historyKegiatanJabatan->historyDokumenKegiatanJabatans) &&
-                                            count($historyKegiatanJabatan->historyDokumenKegiatanJabatans) > 0)
+                                        @if (isset($historyKegiatanPenunjangProfesi->historyDokumenPenunjangProfesis) &&
+                                            count($historyKegiatanPenunjangProfesi->historyDokumenPenunjangProfesis) > 0)
                                             <div class="col-lg-12">
                                                 <ul>
-                                                    @if (count($historyKegiatanJabatan->historyDokumenKegiatanJabatans) > 0 &&
-                                                        str($historyKegiatanJabatan?->historyDokumenKegiatanJabatans[0]?->link ?? '')->contains(['.pdf', '.docx']))
-                                                        @foreach ($historyKegiatanJabatan->historyDokumenKegiatanJabatans as $historyDokumenKegiatanJabatan)
-                                                            @if (str($historyDokumenKegiatanJabatan->link)->contains(['.pdf', '.docx']))
+                                                    @if (count($historyKegiatanPenunjangProfesi->historyDokumenPenunjangProfesis) > 0 &&
+                                                        str($historyKegiatanPenunjangProfesi?->historyDokumenPenunjangProfesis[0]?->link ?? '')->contains([
+                                                            '.pdf',
+                                                            '.docx',
+                                                        ]))
+                                                        @foreach ($historyKegiatanPenunjangProfesi->historyDokumenPenunjangProfesis as $historyDokumenPenunjangProfesi)
+                                                            @if (str($historyDokumenPenunjangProfesi->link)->contains(['.pdf', '.docx']))
                                                                 <li>
                                                                     <a
-                                                                        href="{{ $historyDokumenKegiatanJabatan->link }}">{{ $historyDokumenKegiatanJabatan->name }}</a>
+                                                                        href="{{ $historyDokumenPenunjangProfesi->link }}">{{ $historyDokumenPenunjangProfesi->name }}</a>
                                                                 </li>
                                                             @endif
                                                         @endforeach
@@ -181,13 +186,13 @@
                                                 </ul>
                                                 <div class="timeline-item-content">
                                                     <div class="timeline-item-card">
-                                                        @if (count($historyKegiatanJabatan->historyDokumenKegiatanJabatans) > 0)
+                                                        @if (count($historyKegiatanPenunjangProfesi->historyDokumenPenunjangProfesis) > 0)
                                                             <div class="swiper mySwiper">
                                                                 <div class="swiper-wrapper">
-                                                                    @foreach ($historyKegiatanJabatan->historyDokumenKegiatanJabatans as $historyDokumenKegiatanJabatan)
-                                                                        @if (!str($historyDokumenKegiatanJabatan->link)->contains(['.pdf', '.docx']))
+                                                                    @foreach ($historyKegiatanPenunjangProfesi->historyDokumenPenunjangProfesis as $historyDokumenPenunjangProfesi)
+                                                                        @if (!str($historyDokumenPenunjangProfesi->link)->contains(['.pdf', '.docx']))
                                                                             <div class="swiper-slide">
-                                                                                <img src="{{ $historyDokumenKegiatanJabatan->link }}"
+                                                                                <img src="{{ $historyDokumenPenunjangProfesi->link }}"
                                                                                     alt="">
                                                                             </div>
                                                                         @endif
@@ -197,28 +202,28 @@
                                                             </div>
                                                         @endif
                                                         <p class="fs--1 mb-0 text-gray mt-2">
-                                                            {{ $historyKegiatanJabatan->detail_kegiatan }}</p>
+                                                            {{ $historyKegiatanPenunjangProfesi->detail_kegiatan }}</p>
                                                     </div>
                                                 </div>
                                             </div>
-                                        @elseif (count($historyKegiatanJabatan->historyDokumenKegiatanJabatans) <= 0 &&
-                                            isset($historyKegiatanJabatan->detail_kegiatan))
+                                        @elseif (count($historyKegiatanPenunjangProfesi->historyDokumenPenunjangProfesis) <= 0 &&
+                                            isset($historyKegiatanPenunjangProfesi->detail_kegiatan))
                                             <div class="col-lg-12">
                                                 <div class="timeline-item-content">
                                                     <div class="timeline-item-card">
                                                         <p class="fs--1 mb-0 text-gray">
-                                                            {{ $laporanKegiatanJabatan->detail_kegiatan }}</p>
+                                                            {{ $laporanKegiatanPenunjangProfesi->detail_kegiatan }}</p>
                                                     </div>
                                                 </div>
                                             </div>
                                         @endif
 
-                                        @if (isset($historyKegiatanJabatan?->catatan))
+                                        @if (isset($historyKegiatanPenunjangProfesi?->catatan))
                                             <div class="col-lg-12">
                                                 <div class="timeline-item-content">
                                                     <div class="timeline-item-card">
                                                         <p class="fs--1 mb-0 text-gray">
-                                                            {{ $historyKegiatanJabatan->catatan }}</p>
+                                                            {{ $historyKegiatanPenunjangProfesi->catatan }}</p>
                                                     </div>
                                                 </div>
                                             </div>

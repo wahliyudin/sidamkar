@@ -11,6 +11,19 @@
                             <div class="d-flex flex-column pe-3 ps-1" data-simplebar
                                 style="max-height: 74vh; overflow-y: auto; overflow-x: hidden;">
                                 <h6>File Dokumen</h6>
+                                <ul>
+                                    @if (count($laporanKegiatanJabatan->dokumenKegiatanJabatans) > 0 &&
+                                        str($laporanKegiatanJabatan?->dokumenKegiatanJabatans[0]?->link ?? '')->contains(['.pdf', '.docx']))
+                                        @foreach ($laporanKegiatanJabatan->dokumenKegiatanJabatans as $dokumenKegiatanJabatan)
+                                            @if (str($dokumenKegiatanJabatan->link)->contains(['.pdf', '.docx']))
+                                                <li>
+                                                    <a
+                                                        href="{{ $dokumenKegiatanJabatan->link }}">{{ $dokumenKegiatanJabatan->name }}</a>
+                                                </li>
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                </ul>
                                 <div class="d-flex flex-wrap gap-3 justify-content-center">
                                     @if (count($laporanKegiatanJabatan->dokumenKegiatanJabatans) > 0)
                                         <div class="swiper mySwiper">
@@ -55,7 +68,7 @@
                                 @break
 
                                 @case(2)
-                                    <button class="btn btn-red px-3 btn-sm text-sm">Revisi</button>
+                                    <button class="btn btn-red-dark px-3 btn-sm text-sm">Revisi</button>
                                 @break
 
                                 @case(3)

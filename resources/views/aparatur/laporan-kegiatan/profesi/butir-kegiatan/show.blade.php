@@ -21,24 +21,24 @@
                     style="border-bottom: 1px solid rgba(0, 0, 0, 0.125);">
                     <h4 class="m-0 text-yellow text-uppercase">Validasi</h4>
                     <p class="m-0" style="font-style: italic;">Total :
-                        {{ count($laporanKegiatanJabatanStatusValidasis) }}</p>
+                        {{ count($laporanKegiatanPenunjangProfesiStatusValidasis) }}</p>
                 </div>
                 <div class="card-body mx-0 my-2 container-laporan">
-                    @forelse ($laporanKegiatanJabatanStatusValidasis as $laporanKegiatanJabatanStatusValidasi)
+                    @forelse ($laporanKegiatanPenunjangProfesiStatusValidasis as $laporanKegiatanPenunjangProfesiStatusValidasi)
                         <div class="laporan-item pb-4">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <p class="m-0" style="font-weight: 600;">
-                                    {{ $laporanKegiatanJabatanStatusValidasi->created_at->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanJabatanStatusValidasi->created_at->translatedFormat('d M Y') }}
+                                    {{ $laporanKegiatanPenunjangProfesiStatusValidasi->created_at->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanPenunjangProfesiStatusValidasi->created_at->translatedFormat('d M Y') }}
                                 </p>
                                 <button class="btn btn-yellow btn-sm text-sm px-3">Validasi</button>
                             </div>
-                            @if (count($laporanKegiatanJabatanStatusValidasi->dokumenKegiatanJabatans) > 0)
+                            @if (count($laporanKegiatanPenunjangProfesiStatusValidasi->dokumenPenunjangProfesis) > 0)
                                 <div class="swiper mySwiper">
                                     <div class="swiper-wrapper">
-                                        @foreach ($laporanKegiatanJabatanStatusValidasi->dokumenKegiatanJabatans as $dokumenKegiatanJabatan)
-                                            @if (!str($dokumenKegiatanJabatan->link)->contains(['.pdf', '.docx']))
+                                        @foreach ($laporanKegiatanPenunjangProfesiStatusValidasi->dokumenPenunjangProfesis as $dokumenPenunjangProfesi)
+                                            @if (!str($dokumenPenunjangProfesi->link)->contains(['.pdf', '.docx']))
                                                 <div class="swiper-slide">
-                                                    <img src="{{ $dokumenKegiatanJabatan->link }}" alt="">
+                                                    <img src="{{ $dokumenPenunjangProfesi->link }}" alt="">
                                                 </div>
                                             @endif
                                         @endforeach
@@ -50,34 +50,28 @@
                                 <div class="d-flex align-items-start item-attr">
                                     <i class="fa-solid fa-address-card" style="font-size: 1.3rem; width: 27px;"></i>
                                     <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
-                                        {{ $laporanKegiatanJabatanStatusValidasi->kode }}
+                                        {{ $laporanKegiatanPenunjangProfesiStatusValidasi->kode }}
                                     </p>
                                 </div>
                                 <div class="d-flex align-items-start item-attr">
                                     <i class="fa-solid fa-user" style="font-size: 1.3rem; width: 27px;"></i>
                                     <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
-                                        {{ $laporanKegiatanJabatanStatusValidasi->rencana->user->userAparatur->nama }}
+                                        {{ $laporanKegiatanPenunjangProfesiStatusValidasi->user->userAparatur->nama }}
                                     </p>
                                 </div>
                                 <div class="d-flex align-items-start item-attr">
                                     <i class="fa-solid fa-person-running" style="font-size: 1.3rem; width: 27px;"></i>
                                     <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
-                                        {{ $laporanKegiatanJabatanStatusValidasi->butirKegiatan->nama }}
-                                    </p>
-                                </div>
-                                <div class="d-flex align-items-start item-attr">
-                                    <i class="fa-solid fa-list-ul" style="font-size: 1.3rem; width: 27px;"></i>
-                                    <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
-                                        {{ $laporanKegiatanJabatanStatusValidasi->rencana->nama }}
+                                        {{ $laporanKegiatanPenunjangProfesiStatusValidasi->butirKegiatan->nama }}
                                     </p>
                                 </div>
                             </div>
                             <button class="btn btn-gray w-100 py-2 mt-3" data-bs-toggle="modal"
-                                data-bs-target="#riwayatKegiatan{{ $laporanKegiatanJabatanStatusValidasi->id }}">Detail
+                                data-bs-target="#riwayatKegiatan{{ $laporanKegiatanPenunjangProfesiStatusValidasi->id }}">Detail
                                 Laporan</button>
                         </div>
-                        @include('aparatur.laporan-kegiatan.jabatan.riwayat', [
-                            'laporanKegiatanJabatan' => $laporanKegiatanJabatanStatusValidasi,
+                        @include('aparatur.laporan-kegiatan.profesi.butir-kegiatan.riwayat', [
+                            'laporanKegiatanPenunjangProfesi' => $laporanKegiatanPenunjangProfesiStatusValidasi,
                         ])
                     @empty
                         <div class="d-flex justify-content-center mt-3">
@@ -93,24 +87,24 @@
                     style="border-bottom: 1px solid rgba(0, 0, 0, 0.125);">
                     <h4 class="m-0 text-red text-uppercase">Revisi</h4>
                     <p class="m-0" style="font-style: italic;">Total :
-                        {{ count($laporanKegiatanJabatanStatusRevisis) }}</p>
+                        {{ count($laporanKegiatanPenunjangProfesiStatusRevisis) }}</p>
                 </div>
                 <div class="card-body mx-0 my-2 container-laporan">
-                    @forelse ($laporanKegiatanJabatanStatusRevisis as $laporanKegiatanJabatanStatusRevisi)
+                    @forelse ($laporanKegiatanPenunjangProfesiStatusRevisis as $laporanKegiatanPenunjangProfesiStatusRevisi)
                         <div class="laporan-item pb-4">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <p class="m-0" style="font-weight: 600;">
-                                    {{ $laporanKegiatanJabatanStatusRevisi->created_at->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanJabatanStatusRevisi->created_at->translatedFormat('d M Y') }}
+                                    {{ $laporanKegiatanPenunjangProfesiStatusRevisi->created_at->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanPenunjangProfesiStatusRevisi->created_at->translatedFormat('d M Y') }}
                                 </p>
                                 <button class="btn btn-red-dark btn-sm text-sm px-3">Revisi</button>
                             </div>
-                            @if (count($laporanKegiatanJabatanStatusRevisi->dokumenKegiatanJabatans) > 0)
+                            @if (count($laporanKegiatanPenunjangProfesiStatusRevisi->dokumenPenunjangProfesis) > 0)
                                 <div class="swiper mySwiper">
                                     <div class="swiper-wrapper">
-                                        @foreach ($laporanKegiatanJabatanStatusRevisi->dokumenKegiatanJabatans as $dokumenKegiatanJabatan)
-                                            @if (!str($dokumenKegiatanJabatan->link)->contains(['.pdf', '.docx']))
+                                        @foreach ($laporanKegiatanPenunjangProfesiStatusRevisi->dokumenPenunjangProfesis as $dokumenPenunjangProfesi)
+                                            @if (!str($dokumenPenunjangProfesi->link)->contains(['.pdf', '.docx']))
                                                 <div class="swiper-slide">
-                                                    <img src="{{ $dokumenKegiatanJabatan->link }}" alt="">
+                                                    <img src="{{ $dokumenPenunjangProfesi->link }}" alt="">
                                                 </div>
                                             @endif
                                         @endforeach
@@ -122,35 +116,30 @@
                                 <div class="d-flex align-items-start item-attr">
                                     <i class="fa-solid fa-address-card" style="font-size: 1.3rem; width: 27px;"></i>
                                     <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
-                                        {{ $laporanKegiatanJabatanStatusRevisi->kode }}
+                                        {{ $laporanKegiatanPenunjangProfesiStatusRevisi->kode }}
                                     </p>
                                 </div>
                                 <div class="d-flex align-items-start item-attr">
                                     <i class="fa-solid fa-user" style="font-size: 1.3rem; width: 27px;"></i>
                                     <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
-                                        {{ $laporanKegiatanJabatanStatusRevisi->rencana->user->userAparatur->nama }}
+                                        {{ $laporanKegiatanPenunjangProfesiStatusRevisi->user->userAparatur->nama }}
                                     </p>
                                 </div>
                                 <div class="d-flex align-items-start item-attr">
                                     <i class="fa-solid fa-person-running" style="font-size: 1.3rem; width: 27px;"></i>
                                     <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
-                                        {{ $laporanKegiatanJabatanStatusRevisi->butirKegiatan->nama }}
-                                    </p>
-                                </div>
-                                <div class="d-flex align-items-start item-attr">
-                                    <i class="fa-solid fa-list-ul" style="font-size: 1.3rem; width: 27px;"></i>
-                                    <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
-                                        {{ $laporanKegiatanJabatanStatusRevisi->rencana->nama }}
+                                        {{ $laporanKegiatanPenunjangProfesiStatusRevisi->butirKegiatan->nama }}
                                     </p>
                                 </div>
                             </div>
                             <button class="btn btn-gray w-100 py-2 mt-3 detail-revisi"
-                                data-laporan="{{ $laporanKegiatanJabatanStatusRevisi->id }}" data-bs-toggle="modal"
-                                data-bs-target="#revisiKegiatan{{ $laporanKegiatanJabatanStatusRevisi->id }}">Detail
+                                data-laporan="{{ $laporanKegiatanPenunjangProfesiStatusRevisi->id }}"
+                                data-bs-toggle="modal"
+                                data-bs-target="#revisiKegiatan{{ $laporanKegiatanPenunjangProfesiStatusRevisi->id }}">Detail
                                 Laporan</button>
                         </div>
-                        @include('aparatur.laporan-kegiatan.jabatan.revisi', [
-                            'laporanKegiatanJabatan' => $laporanKegiatanJabatanStatusRevisi,
+                        @include('aparatur.laporan-kegiatan.profesi.butir-kegiatan.revisi', [
+                            'laporanKegiatanPenunjangProfesi' => $laporanKegiatanPenunjangProfesiStatusRevisi,
                         ])
                     @empty
                         <div class="d-flex justify-content-center mt-3">
@@ -166,24 +155,24 @@
                     style="border-bottom: 1px solid rgba(0, 0, 0, 0.125);">
                     <h4 class="m-0 text-green text-uppercase">Selesai</h4>
                     <p class="m-0" style="font-style: italic;">Total :
-                        {{ count($laporanKegiatanJabatanStatusSelesais) }}</p>
+                        {{ count($laporanKegiatanPenunjangProfesiStatusSelesais) }}</p>
                 </div>
                 <div class="card-body mx-0 my-2 container-laporan">
-                    @forelse ($laporanKegiatanJabatanStatusSelesais as $laporanKegiatanJabatanStatusSelesai)
+                    @forelse ($laporanKegiatanPenunjangProfesiStatusSelesais as $laporanKegiatanPenunjangProfesiStatusSelesai)
                         <div class="laporan-item pb-4">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <p class="m-0" style="font-weight: 600;">
-                                    {{ $laporanKegiatanJabatanStatusSelesai->created_at->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanJabatanStatusSelesai->created_at->translatedFormat('d M Y') }}
+                                    {{ $laporanKegiatanPenunjangProfesiStatusSelesai->created_at->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanPenunjangProfesiStatusSelesai->created_at->translatedFormat('d M Y') }}
                                 </p>
                                 <button class="btn btn-green btn-sm text-sm px-3">Selesai</button>
                             </div>
-                            @if (count($laporanKegiatanJabatanStatusSelesai->dokumenKegiatanJabatans) > 0)
+                            @if (count($laporanKegiatanPenunjangProfesiStatusSelesai->dokumenPenunjangProfesis) > 0)
                                 <div class="swiper mySwiper">
                                     <div class="swiper-wrapper">
-                                        @foreach ($laporanKegiatanJabatanStatusSelesai->dokumenKegiatanJabatans as $dokumenKegiatanJabatan)
-                                            @if (!str($dokumenKegiatanJabatan->link)->contains(['.pdf', '.docx']))
+                                        @foreach ($laporanKegiatanPenunjangProfesiStatusSelesai->dokumenPenunjangProfesis as $dokumenPenunjangProfesi)
+                                            @if (!str($dokumenPenunjangProfesi->link)->contains(['.pdf', '.docx']))
                                                 <div class="swiper-slide">
-                                                    <img src="{{ $dokumenKegiatanJabatan->link }}" alt="">
+                                                    <img src="{{ $dokumenPenunjangProfesi->link }}" alt="">
                                                 </div>
                                             @endif
                                         @endforeach
@@ -195,34 +184,28 @@
                                 <div class="d-flex align-items-start item-attr">
                                     <i class="fa-solid fa-address-card" style="font-size: 1.3rem; width: 27px;"></i>
                                     <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
-                                        {{ $laporanKegiatanJabatanStatusSelesai->kode }}
+                                        {{ $laporanKegiatanPenunjangProfesiStatusSelesai->kode }}
                                     </p>
                                 </div>
                                 <div class="d-flex align-items-start item-attr">
                                     <i class="fa-solid fa-user" style="font-size: 1.3rem; width: 27px;"></i>
                                     <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
-                                        {{ $laporanKegiatanJabatanStatusSelesai->rencana->user->userAparatur->nama }}
+                                        {{ $laporanKegiatanPenunjangProfesiStatusSelesai->user->userAparatur->nama }}
                                     </p>
                                 </div>
                                 <div class="d-flex align-items-start item-attr">
                                     <i class="fa-solid fa-person-running" style="font-size: 1.3rem; width: 27px;"></i>
                                     <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
-                                        {{ $laporanKegiatanJabatanStatusSelesai->butirKegiatan->nama }}
-                                    </p>
-                                </div>
-                                <div class="d-flex align-items-start item-attr">
-                                    <i class="fa-solid fa-list-ul" style="font-size: 1.3rem; width: 27px;"></i>
-                                    <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
-                                        {{ $laporanKegiatanJabatanStatusSelesai->rencana->nama }}
+                                        {{ $laporanKegiatanPenunjangProfesiStatusSelesai->butirKegiatan->nama }}
                                     </p>
                                 </div>
                             </div>
                             <button class="btn btn-gray w-100 py-2 mt-3" data-bs-toggle="modal"
-                                data-bs-target="#riwayatKegiatan{{ $laporanKegiatanJabatanStatusSelesai->id }}">Detail
+                                data-bs-target="#riwayatKegiatan{{ $laporanKegiatanPenunjangProfesiStatusSelesai->id }}">Detail
                                 Laporan</button>
                         </div>
-                        @include('aparatur.laporan-kegiatan.jabatan.riwayat', [
-                            'laporanKegiatanJabatan' => $laporanKegiatanJabatanStatusSelesai,
+                        @include('aparatur.laporan-kegiatan.profesi.butir-kegiatan.riwayat', [
+                            'laporanKegiatanPenunjangProfesi' => $laporanKegiatanPenunjangProfesiStatusSelesai,
                         ])
                     @empty
                         <div class="d-flex justify-content-center mt-3">
@@ -239,24 +222,24 @@
                         style="border-bottom: 1px solid rgba(0, 0, 0, 0.125);">
                         <h4 class="m-0 text-uppercase">Ditolak</h4>
                         <p class="m-0" style="font-style: italic;">Total :
-                            {{ count($laporanKegiatanJabatanStatusTolaks) }}</p>
+                            {{ count($laporanKegiatanPenunjangProfesiStatusTolaks) }}</p>
                     </div>
                     <div class="card-body mx-0 my-2 container-laporan">
-                        @forelse ($laporanKegiatanJabatanStatusTolaks as $laporanKegiatanJabatanStatusTolak)
+                        @forelse ($laporanKegiatanPenunjangProfesiStatusTolaks as $laporanKegiatanPenunjangProfesiStatusTolak)
                             <div class="laporan-item pb-4">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
                                     <p class="m-0" style="font-weight: 600;">
-                                        {{ $laporanKegiatanJabatanStatusTolak->created_at->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanJabatanStatusTolak->created_at->translatedFormat('d M Y') }}
+                                        {{ $laporanKegiatanPenunjangProfesiStatusTolak->created_at->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanPenunjangProfesiStatusTolak->created_at->translatedFormat('d M Y') }}
                                     </p>
                                     <button class="btn btn-black btn-sm text-sm px-3">DITOLAK</button>
                                 </div>
-                                @if (count($laporanKegiatanJabatanStatusTolak->dokumenKegiatanJabatans) > 0)
+                                @if (count($laporanKegiatanPenunjangProfesiStatusTolak->dokumenPenunjangProfesis) > 0)
                                     <div class="swiper mySwiper">
                                         <div class="swiper-wrapper">
-                                            @foreach ($laporanKegiatanJabatanStatusTolak->dokumenKegiatanJabatans as $dokumenKegiatanJabatan)
-                                                @if (!str($dokumenKegiatanJabatan->link)->contains(['.pdf', '.docx']))
+                                            @foreach ($laporanKegiatanPenunjangProfesiStatusTolak->dokumenPenunjangProfesis as $dokumenPenunjangProfesi)
+                                                @if (!str($dokumenPenunjangProfesi->link)->contains(['.pdf', '.docx']))
                                                     <div class="swiper-slide">
-                                                        <img src="{{ $dokumenKegiatanJabatan->link }}" alt="">
+                                                        <img src="{{ $dokumenPenunjangProfesi->link }}" alt="">
                                                     </div>
                                                 @endif
                                             @endforeach
@@ -268,33 +251,28 @@
                                     <div class="d-flex align-items-start item-attr">
                                         <i class="fa-solid fa-address-card" style="font-size: 1.3rem; width: 27px;"></i>
                                         <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
-                                            {{ $laporanKegiatanJabatanStatusTolak->kode }}
+                                            {{ $laporanKegiatanPenunjangProfesiStatusTolak->kode }}
                                         </p>
                                     </div>
                                     <div class="d-flex align-items-start item-attr">
                                         <i class="fa-solid fa-user" style="font-size: 1.3rem; width: 27px;"></i>
                                         <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
-                                            {{ $laporanKegiatanJabatanStatusTolak->rencana->user->userAparatur->nama }}</p>
+                                            {{ $laporanKegiatanPenunjangProfesiStatusTolak->user->userAparatur->nama }}
+                                        </p>
                                     </div>
                                     <div class="d-flex align-items-start item-attr">
                                         <i class="fa-solid fa-person-running" style="font-size: 1.3rem; width: 27px;"></i>
                                         <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
-                                            {{ $laporanKegiatanJabatanStatusTolak->butirKegiatan->nama }}
-                                        </p>
-                                    </div>
-                                    <div class="d-flex align-items-start item-attr">
-                                        <i class="fa-solid fa-list-ul" style="font-size: 1.3rem; width: 27px;"></i>
-                                        <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
-                                            {{ $laporanKegiatanJabatanStatusTolak->rencana->nama }}
+                                            {{ $laporanKegiatanPenunjangProfesiStatusTolak->butirKegiatan->nama }}
                                         </p>
                                     </div>
                                 </div>
                                 <button class="btn btn-gray w-100 py-2 mt-3" data-bs-toggle="modal"
-                                    data-bs-target="#riwayatKegiatan{{ $laporanKegiatanJabatanStatusTolak->id }}">Detail
+                                    data-bs-target="#riwayatKegiatan{{ $laporanKegiatanPenunjangProfesiStatusTolak->id }}">Detail
                                     Laporan</button>
                             </div>
-                            @include('atasan-langsung.verifikasi-kegiatan.jabatan.riwayat', [
-                                'laporanKegiatanJabatan' => $laporanKegiatanJabatanStatusTolak,
+                            @include('atasan-langsung.verifikasi-kegiatan.profesi.butir-kegiatan.riwayat', [
+                                'laporanKegiatanPenunjangProfesi' => $laporanKegiatanPenunjangProfesiStatusTolak,
                             ])
                         @empty
                             <div class="d-flex justify-content-center mt-3">
@@ -304,11 +282,8 @@
                     </div>
                 </div>
             </div>
-
         </div>
-
     </div>
-
 
     <div class="modal fade" id="laporkan" tabindex="-1" role="dialog" data-bs-backdrop="static"
         aria-labelledby="laporkanTitle" aria-hidden="true">
@@ -321,7 +296,6 @@
                 <div class="modal-body">
                     <form class="d-flex flex-column form-kegiatan" enctype="multipart/form-data">
                         <input type="hidden" name="butir_kegiatan" value="{{ $butirKegiatan->id }}">
-                        <input type="hidden" name="rencana_count" value="{{ $laporanKegiatanJabatanCount }}">
                         <div class="row ps-5">
                             <ul>
                                 <li>
@@ -337,21 +311,6 @@
                                     max="{{ Carbon\Carbon::make($periode->akhir)->format('Y-m-d H:i') }}"
                                     min="{{ Carbon\Carbon::make($periode->awal)->format('Y-m-d H:i') }}"
                                     name="current_date">
-                            </div>
-                            @if ($laporanKegiatanJabatanCount != 0)
-                                <input type="hidden" value="{{ $laporanKegiatanJabatanLast?->rencana_id }}"
-                                    name="rencana_id">
-                            @endif
-                            <div class="form-group col-md-12">
-                                <label>Rencana</label>
-                                <select {{ $laporanKegiatanJabatanCount == 0 ? '' : 'disabled' }} name="rencana_id"
-                                    class="form-select">
-                                    <option selected disabled>- Pilih Rencana -</option>
-                                    @foreach ($rencanas as $rencana)
-                                        <option @selected($laporanKegiatanJabatanLast?->rencana_id == $rencana->id) value="{{ $rencana->id }}">
-                                            {{ $rencana->nama }}</option>
-                                    @endforeach
-                                </select>
                             </div>
                             <div class="form-group col-md-12">
                                 <label>File Dokumen</label>
@@ -441,10 +400,9 @@
     <script src="{{ asset('assets/js/extensions/sweetalert2.all.min.js') }}"></script>
     <script src="{{ asset('assets/js/pages/aparatur/laporan-kegiatan/simplebar.js') }}"></script>
     <script src="{{ asset('assets/plugins/swiper/swiper-bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/js/pages/aparatur/laporan-kegiatan/jabatan/show.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/aparatur/laporan-kegiatan/profesi/show-butir.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
-
 
     <script>
         $(document).ready(function() {

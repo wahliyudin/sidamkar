@@ -15,7 +15,7 @@
                                     Angka Kredit Minimal
                                 </p>
                                 <h2 style="font-family: 'Roboto';color: #06152B;" class="target">
-                                    {{ isset($ketentuan_ak[0]) ? $ketentuan_ak[0]->ak_min : '0' }}</h2>
+                                    {{ $ketentuan_ak?->ak_min ?? '0' }}</h2>
                             </div>
                         </div>
                     </div>
@@ -62,28 +62,9 @@
         <div class="row">
             <div class="card overflow-auto">
                 <div class="card-header pb-0">
-                    <div class="row align-items-center justify-content-between">
+                    <div class="row align-items-center justify-content-start">
                         <div class="col-md-4">
-                            <h3>Kegiatan Jabatan</h3>
-                        </div>
-                        <div class="col-md-6 text-end">
-                            <button data-bs-toggle="modal" data-bs-target="#skp"
-                                class="btn btn-warning btn-sm ps-3 pe-3 py-2 ">
-                                <i class="fa-solid fa-file-lines"></i>
-                                Input SKP
-                            </button>
-                            @if ($user->rekapitulasiKegiatan?->is_send == true)
-                                <button data-bs-toggle="modal" data-bs-target="#historyRekap"
-                                    class="btn btn-blue btn-sm ps-3 pe-3 py-2">
-                                    History Laporan Rekapitulasi Capaian
-                                </button>
-                            @else
-                                <button data-bs-toggle="modal" data-bs-target="#rekap"
-                                    class="btn btn-green btn-sm ps-3 pe-3 py-2 rekap btn-rekap">
-                                    <i class="fa-solid fa-paper-plane me-1"></i>
-                                    Ajukan Laporan <br> Rekapitulasi Capaian
-                                </button>
-                            @endif
+                            <h3>Kegiatan Profesi</h3>
                         </div>
                     </div>
                 </div>
@@ -126,110 +107,6 @@
                                 style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
                             <span>Kirim</span>
                         </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="skp" tabindex="-1" role="dialog" aria-labelledby="skpTitle" aria-hidden="true">
-        <div class="modal-dialog modal-md modal-dialog-centered modal-dialog-centered" role="document">
-            <div class="modal-content relative">
-                <div class="modal-header">
-                    <h5 class=" uppercase">Input SKP</h5>
-                </div>
-                <div class="modal-body">
-                    @if ($skp)
-                        <form id="form-skp" method="post" enctype="multipart/form-data">
-                            <p>Status SKP : <strong class="text-red"> Menunggu Verifikasi</strong>
-                            </p>
-                            <div class="form-group">
-                                <label>Jenis SKP</label>
-                                <select disabled class="form-select skp">
-                                    @if ($skp->ketentuan_skp_id)
-                                        <option selected disabled>Huruf</option>
-                                    @else
-                                        <option selected disabled>Angka</option>
-                                    @endif
-
-                                </select>
-                            </div>
-                            <div class="form-group jenis-skp">
-                                @if ($skp->ketentuan_skp_id)
-                                    <label>Nilai SKP</label>
-                                    <select disabled class="form-select nilai-skp">
-                                        <option value="{{ $skp->ketentuan_skp_id }}">{{ $skp->ketentuanSkp->nama }}
-                                        </option>
-                                    </select>
-                                @else
-                                    <label>Nilai SKP </label>
-                                    <input disabled class="form-control nilai-skp" type="number"
-                                        placeholder="Masukan Nilai" value="{{ $skp->nilai_skp }}" />
-                                @endif
-                            </div>
-                            {{-- <div class="form-group">
-                        <label>File SKP<span class="text-danger">*</span></label>
-                        <input type="file" data-max-file-size="2MB" required name="file_skp" required />
-                        @error('file_permohonan')
-                            <strong style="color: red;">{{ $message }}</strong>
-                        @enderror
-                    </div> --}}
-                        </form>
-                        <div class="text-center mt-4">
-                            <button class="btn btn-danger px-5" data-bs-dismiss="modal">Batal</button>
-                        </div>
-                    @else
-                        <form id="form-skp" method="post" enctype="multipart/form-data">
-                            <p>Status SKP : <strong class="text-black"> Menunggu Input</strong>
-                            </p>
-                            <div class="form-group">
-                                <label>Jenis SKP</label>
-                                <select class="form-select skp">
-                                    <option selected disabled>- Pilih Jenis SKP -</option>
-                                    <option value="huruf">Huruf</option>
-                                    <option value="angka">Angka</option>
-                                </select>
-                            </div>
-                            <div class="form-group jenis-skp">
-
-                            </div>
-                            {{-- <div class="form-group">
-                            <label>File SKP<span class="text-danger">*</span></label>
-                            <input type="file" data-max-file-size="2MB" required name="file_skp" required />
-                            @error('file_permohonan')
-                                <strong style="color: red;">{{ $message }}</strong>
-                            @enderror
-                        </div> --}}
-                        </form>
-                        <div class="text-center mt-4">
-                            <button class="btn btn-danger px-5" data-bs-dismiss="modal">Batal</button>
-                            <button type="button" class="btn btn-blue px-5 send-skp">
-                                <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
-                                    style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
-                                <span>Kirim</span>
-                            </button>
-                        </div>
-                    @endif
-
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="historyRekap" tabindex="-1" role="dialog" aria-labelledby="historyRekapTitle"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="text-red uppercase">Surat Pernyataan Melakukan Kegiatan</h5>
-                </div>
-                <div class="modal-body">
-                    <div class="timeline-vertical" data-simplebar
-                        style="max-height: 74vh; overflow-y: auto; overflow-x: hidden;">
-                        @include('aparatur.laporan-kegiatan.profesi.history_rekapitulasi',
-                            compact('historyRekapitulasiKegiatans'))
-                    </div>
-                    <div class="text-center mt-4">
-                        <button class="btn btn-danger px-5" data-bs-dismiss="modal">Tutup</button>
                     </div>
                 </div>
             </div>

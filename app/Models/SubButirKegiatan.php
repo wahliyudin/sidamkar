@@ -27,4 +27,9 @@ class SubButirKegiatan extends Model
     {
         return $this->belongsTo(Role::class);
     }
+
+    public function laporanKegiatanPenunjangProfesis()
+    {
+        return $this->hasMany(LaporanKegiatanPenunjangProfesi::class);
+    }
 }

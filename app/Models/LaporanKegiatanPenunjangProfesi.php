@@ -2,12 +2,18 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class LaporanKegiatanPenunjangProfesi extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
+
+    const VALIDASI = 1;
+    const REVISI = 2;
+    const SELESAI = 3;
+    const TOLAK = 4;
 
     protected $fillable = [
         'kode',
@@ -40,5 +46,15 @@ class LaporanKegiatanPenunjangProfesi extends Model
     public function subButirKegiatan()
     {
         return $this->belongsTo(SubButirKegiatan::class);
+    }
+
+    public function historyPenunjangProfesis()
+    {
+        return $this->hasMany(HistoryPenunjangProfesi::class);
+    }
+
+    public function dokumenPenunjangProfesis()
+    {
+        return $this->hasMany(DokumenPenunjangProfesi::class);
     }
 }

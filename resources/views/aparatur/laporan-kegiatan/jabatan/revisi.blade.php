@@ -23,7 +23,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <div class="d-flex flex-column mt-3">
+                                        {{-- <div class="d-flex flex-column mt-3">
                                             <span
                                                 style="color: #000; font-weight: 700;">{{ $laporanKegiatanJabatan->butirKegiatan->subUnsur->unsur->nama }}</span>
                                             <span
@@ -33,7 +33,7 @@
                                                     {{ $laporanKegiatanJabatan->butirKegiatan->nama }}
                                                 </li>
                                             </ul>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                             </div>
@@ -65,7 +65,7 @@
 
                             <div class="timeline-vertical" data-simplebar
                                 style="max-height: 74vh; overflow-y: auto; overflow-x: hidden;">
-                                @include('aparatur.laporan-kegiatan.jabatan.history_rekapitulasi',
+                                @include('aparatur.laporan-kegiatan.penunjang.history_rekapitulasi',
                                     compact('historyRekapitulasiKegiatans'))
                                 @foreach ($laporanKegiatanJabatan->historyKegiatanJabatans()->orderBy('id', 'desc')->get() as $historyKegiatanJabatan)
                                     <div class="timeline-item">
@@ -189,7 +189,8 @@
                                                     <div class="timeline-item-content">
                                                         <div class="timeline-item-card">
                                                             <p class="fs--1 mb-0 text-gray">
-                                                                {{ $laporanKegiatanJabatan->detail_kegiatan }}</p>
+                                                                {{ $laporanKegiatanJabatan->detail_kegiatan }}
+                                                            </p>
                                                         </div>
                                                     </div>
                                                 </div>

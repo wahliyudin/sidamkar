@@ -55,7 +55,7 @@ $(document).ready(function () {
             preConfirm: async (value) => {
                 return await $.ajax({
                     type: 'POST',
-                    url: url("/atasan-langsung/verifikasi-kegiatan/" + id + "/kegiatan-jabatan/tolak"),
+                    url: url("/atasan-langsung/verifikasi-kegiatan/jabatan/" + id + "/tolak"),
                     data: {
                         catatan: value
                     },
@@ -68,7 +68,11 @@ $(document).ready(function () {
                 swal.close()
             }
             if (e.value.status == 200) {
-                swal({ type: 'success', title: 'Berhasil', html: 'Laporan Dinyatakan <b style="font-weight: bold; color:black;">DITOLAK</b>' }).then(() => {
+                swal({
+                    type: 'success',
+                    title: 'Berhasil',
+                    html: 'Laporan Dinyatakan <b style="font-weight: bold; color:black;">DITOLAK</b>'
+                }).then(() => {
                     location.reload()
                 });
             } else {
@@ -97,7 +101,7 @@ $(document).ready(function () {
             preConfirm: async (value) => {
                 return await $.ajax({
                     type: 'POST',
-                    url: url("/atasan-langsung/verifikasi-kegiatan/" + id + "/" + user_id + "/kegiatan-jabatan/revisi"),
+                    url: url("/atasan-langsung/verifikasi-kegiatan/jabatan/" + id + "/" + user_id + "/revisi"),
                     data: {
                         catatan: value
                     },
@@ -110,7 +114,11 @@ $(document).ready(function () {
                 swal.close()
             }
             if (e.value.status == 200) {
-                swal({ type: 'success', title: 'Berhasil', html: 'Laporan Perlu <b style="font-weight: bold; color:#884414;">DIREVISI</b>' }).then(() => {
+                swal({
+                    type: 'success',
+                    title: 'Berhasil',
+                    html: 'Laporan Perlu <b style="font-weight: bold; color:#884414;">DIREVISI</b>'
+                }).then(() => {
                     location.reload()
                 });
             } else {
@@ -132,7 +140,7 @@ $(document).ready(function () {
             preConfirm: async () => {
                 return await $.ajax({
                     type: 'POST',
-                    url: url("/atasan-langsung/verifikasi-kegiatan/" + id + "/kegiatan-jabatan/verifikasi"),
+                    url: url("/atasan-langsung/verifikasi-kegiatan/jabatan/" + id + "/verifikasi"),
                     dataType: 'JSON'
                 });
             },
@@ -142,7 +150,11 @@ $(document).ready(function () {
                 swal.close()
             }
             if (e.value.status == 200) {
-                swal({ type: 'success', title: 'Berhasil', html: 'Laporan Dinyatakan <b style="font-weight: bold; color:green;">SELESAI</b>' }).then(() => {
+                swal({
+                    type: 'success',
+                    title: 'Berhasil',
+                    html: 'Laporan Dinyatakan <b style="font-weight: bold; color:green;">SELESAI</b>'
+                }).then(() => {
                     location.reload()
                 });
             } else {

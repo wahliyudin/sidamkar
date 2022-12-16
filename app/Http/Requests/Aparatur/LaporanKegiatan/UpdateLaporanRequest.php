@@ -24,15 +24,7 @@ class UpdateLaporanRequest extends FormRequest
     public function rules()
     {
         return [
-            'detail_kegiatan' => 'required',
-            'doc_kegiatan_tmp' => 'required'
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            'doc_kegiatan_tmp.required' => 'File Dokumen Wajib Diisi'
+            'detail_kegiatan' => 'required'
         ];
     }
 }

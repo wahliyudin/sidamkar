@@ -4,12 +4,17 @@ namespace App\Http\Controllers\Aparatur\LaporanKegiatan;
 
 use App\Facades\Modules\DestructRoleFacade;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Aparatur\LaporanKegiatan\ButirKegiatan\StorePenunjangProfesiRequest;
 use App\Http\Requests\Aparatur\LaporanKegiatan\StoreLaporanRequest;
+use App\Http\Requests\Aparatur\LaporanKegiatan\SubButirKegiatan\StorePenunjangProfesiRequest as SubButirKegiatanStorePenunjangProfesiRequest;
 use App\Http\Requests\Aparatur\LaporanKegiatan\UpdateLaporanRequest;
+use App\Http\Requests\Aparatur\LaporanKegiatan\UpdatePenunjangProfesiRequest;
 use App\Models\ButirKegiatan;
 use App\Models\KetentuanSkpFungsional;
 use App\Models\LaporanKegiatanJabatan;
+use App\Models\LaporanKegiatanPenunjangProfesi;
 use App\Models\RekapitulasiKegiatan;
+use App\Models\SubButirKegiatan;
 use App\Repositories\PeriodeRepository;
 use App\Services\Aparatur\LaporanKegiatan\KegiatanProfesiService;
 use App\Services\GeneratePdfService;
@@ -51,7 +56,15 @@ class KegiatanProfesiController extends Controller
         $this->generatePdfService = $generatePdfService;
     }
 
-    public function index()
+    /**
+     * index
+     * Menampilkan Unsur, SubUnsur, dan ButirKegiatan
+     * Berdasarkan Jabatan Satu Tingkat diatasnya
+     * Dan Satu Tingkat dibawahnya
+     *
+     * @return View
+     */
+    public function index(): View|Factory
     {
         $periode = $this->periodeRepository->isActive();
         $user = $this->authUser()->load(['userAparatur.provinsi.kabkotas', 'ketentuanSkpFungsional', 'dokKepegawaians', 'dokKompetensis', 'rencanas', 'rekapitulasiKegiatan.historyRekapitulasiKegiatans' => function ($query) {
@@ -62,15 +75,10 @@ class KegiatanProfesiController extends Controller
         $ketentuan_ak = $this->kegiatanProfesiService->ketentuanNilai(DestructRoleFacade::getRoleFungsionalFirst($user->roles)?->id, $user?->userAparatur?->pangkat_golongan_tmt_id);
         $ak_diterima = $this->kegiatanProfesiService->sumScoreByUser($user->id);
         $historyRekapitulasiKegiatans = $user?->rekapitulasiKegiatan?->historyRekapitulasiKegiatans ?? [];
-        return view('aparatur.laporan-kegiatan.penunjang.index', compact('periode', 'user', 'judul', 'historyRekapitulasiKegiatans', 'skp', 'ketentuan_ak', 'ak_diterima'));
+        return view('aparatur.laporan-kegiatan.profesi.index', compact('periode', 'user', 'judul', 'historyRekapitulasiKegiatans', 'skp', 'ketentuan_ak', 'ak_diterima'));
     }
 
-    /**
-     * show
-     *
-     * @param ButirKegiatan $butirKegiatan
-     */
-    public function show(ButirKegiatan $butirKegiatan)
+    public function showButir(ButirKegiatan $butirKegiatan)
     {
         $periode = $this->periodeRepository->isActive();
         $user = $this->authUser()->load(['rekapitulasiKegiatan.historyRekapitulasiKegiatans' => function ($query) {
@@ -78,25 +86,58 @@ class KegiatanProfesiController extends Controller
         }]);
         $judul = 'Laporan Kegiatan Jabatan';
         [
-            $laporanKegiatanJabatanStatusValidasis,
-            $laporanKegiatanJabatanStatusRevisis,
-            $laporanKegiatanJabatanStatusSelesais,
-            $laporanKegiatanJabatanStatusTolaks,
-        ] = $this->kegiatanProfesiService->laporanKegiatanJabatanByUser($butirKegiatan, $user);
-        $laporanKegiatanJabatanLast = $this->kegiatanProfesiService->laporanLast($butirKegiatan, $user);
-        $laporanKegiatanJabatanCount = $this->kegiatanProfesiService->laporanKegiatanJabatanCount($butirKegiatan, $user);
+            $laporanKegiatanPenunjangProfesiStatusValidasis,
+            $laporanKegiatanPenunjangProfesiStatusRevisis,
+            $laporanKegiatanPenunjangProfesiStatusSelesais,
+            $laporanKegiatanPenunjangProfesiStatusTolaks,
+        ] = $this->kegiatanProfesiService->laporanKegiatanPenunjangProfesiByUser($butirKegiatan, null, $user);
+        $laporanKegiatanPenunjangProfesiLast = $this->kegiatanProfesiService->laporanLast($butirKegiatan, null, $user);
+        $laporanKegiatanPenunjangProfesiCount = $this->kegiatanProfesiService->laporanKegiatanPenunjangProfesiCount($butirKegiatan, null, $user);
         $rencanas = $this->kegiatanProfesiService->rencanas($user);
         $historyRekapitulasiKegiatans = $user?->rekapitulasiKegiatan?->historyRekapitulasiKegiatans ?? [];
-        return view('aparatur.laporan-kegiatan.penunjang.show', compact(
-            'laporanKegiatanJabatanStatusValidasis',
-            'laporanKegiatanJabatanStatusRevisis',
-            'laporanKegiatanJabatanStatusSelesais',
-            'laporanKegiatanJabatanStatusTolaks',
-            'laporanKegiatanJabatanCount',
-            'laporanKegiatanJabatanLast',
+        return view('aparatur.laporan-kegiatan.profesi.butir-kegiatan.show', compact(
+            'laporanKegiatanPenunjangProfesiStatusValidasis',
+            'laporanKegiatanPenunjangProfesiStatusRevisis',
+            'laporanKegiatanPenunjangProfesiStatusSelesais',
+            'laporanKegiatanPenunjangProfesiStatusTolaks',
+            'laporanKegiatanPenunjangProfesiCount',
+            'laporanKegiatanPenunjangProfesiLast',
             'user',
             'rencanas',
             'butirKegiatan',
+            'periode',
+            'judul',
+            'historyRekapitulasiKegiatans'
+        ));
+    }
+
+    public function showSubButir(SubButirKegiatan $subButirKegiatan)
+    {
+        $periode = $this->periodeRepository->isActive();
+        $user = $this->authUser()->load(['rekapitulasiKegiatan.historyRekapitulasiKegiatans' => function ($query) {
+            $query->orderBy('id', 'desc');
+        }]);
+        $judul = 'Laporan Kegiatan Jabatan';
+        [
+            $laporanKegiatanPenunjangProfesiStatusValidasis,
+            $laporanKegiatanPenunjangProfesiStatusRevisis,
+            $laporanKegiatanPenunjangProfesiStatusSelesais,
+            $laporanKegiatanPenunjangProfesiStatusTolaks,
+        ] = $this->kegiatanProfesiService->laporanKegiatanPenunjangProfesiByUser(null, $subButirKegiatan, $user);
+        $laporanKegiatanPenunjangProfesiLast = $this->kegiatanProfesiService->laporanLast(null, $subButirKegiatan, $user);
+        $laporanKegiatanPenunjangProfesiCount = $this->kegiatanProfesiService->laporanKegiatanPenunjangProfesiCount(null, null, $user);
+        $rencanas = $this->kegiatanProfesiService->rencanas($user);
+        $historyRekapitulasiKegiatans = $user?->rekapitulasiKegiatan?->historyRekapitulasiKegiatans ?? [];
+        return view('aparatur.laporan-kegiatan.profesi.sub-butir-kegiatan.show', compact(
+            'laporanKegiatanPenunjangProfesiStatusValidasis',
+            'laporanKegiatanPenunjangProfesiStatusRevisis',
+            'laporanKegiatanPenunjangProfesiStatusSelesais',
+            'laporanKegiatanPenunjangProfesiStatusTolaks',
+            'laporanKegiatanPenunjangProfesiCount',
+            'laporanKegiatanPenunjangProfesiLast',
+            'user',
+            'rencanas',
+            'subButirKegiatan',
             'periode',
             'judul',
             'historyRekapitulasiKegiatans'
@@ -125,45 +166,34 @@ class KegiatanProfesiController extends Controller
         }
     }
 
-    /**
-     * storeLaporan
-     *
-     * @param StoreLaporanRequest $request
-     * @param ButirKegiatan $butirKegiatan
-     * @return JsonResponse
-     */
-    public function storeLaporan(StoreLaporanRequest $request, ButirKegiatan $butirKegiatan): JsonResponse
+    public function storeLaporanButir(StorePenunjangProfesiRequest $request, ButirKegiatan $butirKegiatan)
     {
-        $this->kegiatanProfesiService->storeLaporan($request, $this->authUser(), $butirKegiatan);
+        $this->kegiatanProfesiService->storeLaporan($request, $this->authUser(), $butirKegiatan, null);
         return response()->json([
             'status' => 200,
             'message' => 'Berhasil dilaporkan'
         ]);
     }
 
-    /**
-     * edit
-     *
-     * @param LaporanKegiatanJabatan $laporanKegiatanJabatan
-     * @return JsonResponse
-     */
-    public function edit(LaporanKegiatanJabatan $laporanKegiatanJabatan): JsonResponse
+    public function storeLaporanSubButir(SubButirKegiatanStorePenunjangProfesiRequest $request, SubButirKegiatan $subButirKegiatan)
     {
+        $this->kegiatanProfesiService->storeLaporan($request, $this->authUser(), null, $subButirKegiatan);
         return response()->json([
-            'data' => $this->kegiatanProfesiService->edit($laporanKegiatanJabatan)
+            'status' => 200,
+            'message' => 'Berhasil dilaporkan'
         ]);
     }
 
-    /**
-     * update
-     *
-     * @param UpdateLaporanRequest $request
-     * @param LaporanKegiatanJabatan $laporanKegiatanJabatan
-     * @return JsonResponse
-     */
-    public function update(UpdateLaporanRequest $request, LaporanKegiatanJabatan $laporanKegiatanJabatan): JsonResponse
+    public function edit(LaporanKegiatanPenunjangProfesi $laporanKegiatanPenunjangProfesi): JsonResponse
     {
-        $this->kegiatanProfesiService->update($request, $laporanKegiatanJabatan);
+        return response()->json([
+            'data' => $this->kegiatanProfesiService->edit($laporanKegiatanPenunjangProfesi)
+        ]);
+    }
+
+    public function update(UpdatePenunjangProfesiRequest $request, LaporanKegiatanPenunjangProfesi $laporanKegiatanPenunjangProfesi): JsonResponse
+    {
+        $this->kegiatanProfesiService->update($request, $laporanKegiatanPenunjangProfesi);
         return response()->json([
             'status' => 200,
             'message' => 'Berhasil diperbaiki'
@@ -192,36 +222,6 @@ class KegiatanProfesiController extends Controller
     public function revertTmpFile(Request $request): void
     {
         $this->temporaryFileService->revert($request->getContent());
-    }
-
-    public function rekapitulasi()
-    {
-        $rekapitulasiKegiatan = $this->kegiatanProfesiService->generateDocuments($this->authUser());
-        return response()->json([
-            'message' => 'Berhasil',
-            'data' => $rekapitulasiKegiatan?->url_rekap
-        ]);
-    }
-
-    public function sendRekap()
-    {
-        $periode = $this->periodeRepository->isActive();
-        $rekap = RekapitulasiKegiatan::query()
-            ->where('fungsional_id', auth()->user()->id)
-            ->where('periode_id', $periode->id)
-            ->first();
-        if (!$rekap) {
-            throw ValidationException::withMessages(['Data Rekapitulasi Belum Dibuat']);
-        }
-        if ($rekap->is_send == true) {
-            throw ValidationException::withMessages(['Data rekapitulasi sudah dikirim']);
-        }
-        $rekap->update([
-            'is_send' => true
-        ]);
-        return response()->json([
-            'message' => 'Berhasil dikirim'
-        ]);
     }
 
     public function sendSKP(Request $request)
