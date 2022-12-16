@@ -55,7 +55,7 @@ $(document).ready(function () {
             preConfirm: async (value) => {
                 return await $.ajax({
                     type: 'POST',
-                    url: url("/atasan-langsung/verifikasi-kegiatan/jabatan/" + id + "/tolak"),
+                    url: url("/atasan-langsung/verifikasi-kegiatan/profesi/" + id + "/tolak"),
                     data: {
                         catatan: value
                     },
@@ -101,7 +101,7 @@ $(document).ready(function () {
             preConfirm: async (value) => {
                 return await $.ajax({
                     type: 'POST',
-                    url: url("/atasan-langsung/verifikasi-kegiatan/jabatan/" + id + "/" + user_id + "/revisi"),
+                    url: url("/atasan-langsung/verifikasi-kegiatan/profesi/" + id + "/" + user_id + "/revisi"),
                     data: {
                         catatan: value
                     },
@@ -140,7 +140,7 @@ $(document).ready(function () {
             preConfirm: async () => {
                 return await $.ajax({
                     type: 'POST',
-                    url: url("/atasan-langsung/verifikasi-kegiatan/jabatan/" + id + "/verifikasi"),
+                    url: url("/atasan-langsung/verifikasi-kegiatan/profesi/" + id + "/verifikasi"),
                     dataType: 'JSON'
                 });
             },

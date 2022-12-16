@@ -124,49 +124,23 @@
                     </li>
                 @endrole
                 @role(['atasan_langsung'])
-                    <li class="sidebar-item has-sub ">
+                    <li
+                        class="sidebar-item has-sub {{ request()->is('atasan-langsung/verifikasi-kegiatan*') ? 'active' : '' }}">
                         <a href="javascript(0)" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
-                                <i class="fa-solid fa-user"></i>
+                                <i class="fa-solid fa-copy"></i>
                             </div>
                             <span>Atasan Langsung</span>
                         </a>
                         <ul
                             class="submenu {{ request()->is('atasan-langsung/verifikasi-kegiatan*') || request()->is('atasan-langsung/kegiatan-selesai*') ? 'active' : '' }}">
                             <li
-                                class="sidebar-item has-sub {{ request()->is('atasan-langsung/verifikasi-kegiatan*') ? 'active' : '' }}">
-                                <a href="javascript(0)" class='sidebar-link'>
-                                    <div style="width: 16px; height: 16px; display: flex; align-items: center;">
-                                        <i class="fa-solid fa-clipboard"></i>
-                                    </div>
-                                    <span style="font-size: 14px !important; margin-left: .5rem !important;">Verifikasi
-                                        Kegiatan</span>
-                                </a>
-                                <ul
-                                    class="submenu {{ request()->is('atasan-langsung/verifikasi-kegiatan*') ? 'active' : '' }}">
-                                    <li
-                                        class="submenu-item {{ request()->is('atasan-langsung/verifikasi-kegiatan*') ? 'active' : '' }}">
-                                        <a href="{{ route('atasan-langsung.verifikasi-kegiatan') }}">Jabatan</a>
-                                    </li>
-                                    <li
-                                        class="submenu-item {{ request()->is('kemendagri/verifikasi-data/admin-kabkota*') ? 'active' : '' }}">
-                                        <a href="#">Profesi</a>
-                                    </li>
-                                    <li
-                                        class="submenu-item {{ request()->is('kemendagri/verifikasi-data/admin-provinsi*') ? 'active' : '' }}">
-                                        <a href="#">Penunjang</a>
-                                    </li>
-                                </ul>
+                                class="submenu-item {{ request()->is('atasan-langsung/verifikasi-kegiatan*') ? 'active' : '' }}">
+                                <a href="{{ route('atasan-langsung.verifikasi-kegiatan') }}">Verifikasi Kegiatan</a>
                             </li>
                             <li
-                                class="sidebar-item {{ request()->is('atasan-langsung/kegiatan-selesai*') ? 'active' : '' }}">
-                                <a href="{{ route('atasan-langsung.kegiatan-selesai') }}" class='sidebar-link no-arrow'>
-                                    <div style="width: 16px; height: 16px; display: flex; align-items: center;">
-                                        <i class="fa-solid fa-clipboard-check"></i>
-                                    </div>
-                                    <span style="font-size: 14px !important; margin-left: .5rem !important;">Kegiatan
-                                        Selesai</span>
-                                </a>
+                                class="submenu-item {{ request()->is('atasan-langsung/kegiatan-selesai*') ? 'active' : '' }}">
+                                <a href="{{ route('atasan-langsung.kegiatan-selesai') }}">Kegiatan Selesai</a>
                             </li>
                         </ul>
                     </li>

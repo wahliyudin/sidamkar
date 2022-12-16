@@ -93,6 +93,7 @@ class GeneratePdfService
             JOIN laporan_kegiatan_penunjang_profesis ON (laporan_kegiatan_penunjang_profesis.butir_kegiatan_id = butir_kegiatans.id OR laporan_kegiatan_penunjang_profesis.sub_butir_kegiatan_id = sub_butir_kegiatans.id)
             WHERE unsurs.jenis_aparatur = "analis"
                 AND unsurs.jenis_kegiatan_id = 2
+                AND laporan_kegiatan_penunjang_profesis.status = 3
                 GROUP BY laporan_kegiatan_penunjang_profesis.butir_kegiatan_id, laporan_kegiatan_penunjang_profesis.sub_butir_kegiatan_id
         ');
         $profesis = DB::select('SELECT
@@ -113,6 +114,7 @@ class GeneratePdfService
             JOIN laporan_kegiatan_penunjang_profesis ON (laporan_kegiatan_penunjang_profesis.butir_kegiatan_id = butir_kegiatans.id OR laporan_kegiatan_penunjang_profesis.sub_butir_kegiatan_id = sub_butir_kegiatans.id)
             WHERE unsurs.jenis_aparatur = "analis"
                 AND unsurs.jenis_kegiatan_id = 3
+                AND laporan_kegiatan_penunjang_profesis.status = 3
                 GROUP BY laporan_kegiatan_penunjang_profesis.butir_kegiatan_id, laporan_kegiatan_penunjang_profesis.sub_butir_kegiatan_id
         ');
         $pdf_rekap = PDF::loadView('generate-pdf.pengembang', compact('penunjangs', 'profesis'))

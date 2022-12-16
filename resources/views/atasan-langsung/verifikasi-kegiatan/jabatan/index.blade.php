@@ -68,7 +68,7 @@
             function loadData(search = null) {
                 $.ajax({
                     type: "POST",
-                    url: url('/atasan-langsung/verifikasi-kegiatan/kegiatan-jabatan/' + $(
+                    url: url('/atasan-langsung/verifikasi-kegiatan/jabatan/' + $(
                         'input[name="secret"]').val() + '/load-unsurs'),
                     data: {
                         search: search
@@ -149,7 +149,7 @@
                     return `
                     <li class="accordian-list ">
                         <div class="d-flex align-items-center justify-content-between">
-                            <a href="${url('/atasan-langsung/verifikasi-kegiatan/'+$('input[name="user"]').val()+'/kegiatan-jabatan/'+butirKegiatan.id+'/show')}" class="link-butir">
+                            <a href="${url('/atasan-langsung/verifikasi-kegiatan/jabatan/'+$('input[name="user"]').val()+'/'+butirKegiatan.id+'/show')}" class="link-butir">
                                 <h6 class="accordian-title">
                                     ${butirKegiatan.nama}
                                 </h6>

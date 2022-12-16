@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="row">
-                        <h4>Kegiatan Profesi {{ $user->userAparatur->nama }}</h4>
+                        <h4>Kegiatan Penunjang {{ $user->userAparatur->nama }}</h4>
                     </div>
                     <hr>
                     <div class="row align-items-center justify-content-between">
@@ -68,7 +68,7 @@
             function loadData(search = null) {
                 $.ajax({
                     type: "POST",
-                    url: url('/atasan-langsung/verifikasi-kegiatan/profesi/' + $(
+                    url: url('/atasan-langsung/verifikasi-kegiatan/penunjang/' + $(
                         'input[name="secret"]').val() + '/load-unsurs'),
                     data: {
                         search: search
@@ -148,39 +148,39 @@
                 return $.map(butirKegiatans, function(butirKegiatan, indexOrKey) {
                     if (butirKegiatan.sub_butir_kegiatans.length != 0) {
                         return `
-                        <div class="accordion-item">
-                            <div class="d-flex justify-content-between accordion-header py-1 px-2"
-                                id="butirKegiatan${butirKegiatan.id}">
-                                <div class="d-flex align-items-center"
-                                    style="color: #000000;">
-                                    <h6 class="accordian-title">
-                                        ${butirKegiatan.nama}
-                                    </h6>
+                            <div class="accordion-item">
+                                <div class="d-flex justify-content-between accordion-header py-1 px-2"
+                                    id="butirKegiatan${butirKegiatan.id}">
+                                    <div class="d-flex align-items-center"
+                                        style="color: #000000;">
+                                        <h6 class="accordian-title">
+                                            ${butirKegiatan.nama}
+                                        </h6>
+                                    </div>
+                                    <button class="accordion-button collapsed"
+                                        type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#contentchildButirKegiatan${butirKegiatan.id}"
+                                        aria-expanded="false"
+                                        aria-controls="contentchildButirKegiatan${butirKegiatan.id}">
+                                    </button>
                                 </div>
-                                <button class="accordion-button collapsed"
-                                    type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#contentchildButirKegiatan${butirKegiatan.id}"
-                                    aria-expanded="false"
-                                    aria-controls="contentchildButirKegiatan${butirKegiatan.id}">
-                                </button>
-                            </div>
-                            <div id="contentchildButirKegiatan${butirKegiatan.id}"
-                                class="accordion-collapse collapse"
-                                aria-labelledby="butirKegiatan${butirKegiatan.id}"
-                                style="">
-                                <div class="accordion-body">
-                                    <ul class="ms-0">
-                                        ${subButirKegiatans(butirKegiatan.sub_butir_kegiatans)}
-                                    </ul>
+                                <div id="contentchildButirKegiatan${butirKegiatan.id}"
+                                    class="accordion-collapse collapse"
+                                    aria-labelledby="butirKegiatan${butirKegiatan.id}"
+                                    style="">
+                                    <div class="accordion-body">
+                                        <ul class="ms-0">
+                                            ${subButirKegiatans(butirKegiatan.sub_butir_kegiatans)}
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        `;
+                            `;
                     } else {
                         return `
                                 <li class="accordian-list ">
                                     <div class="d-flex align-items-center justify-content-between">
-                                        <a href="${url('/atasan-langsung/verifikasi-kegiatan/profesi/'+$('input[name="user"]').val()+'/'+butirKegiatan.id+'/butir-kegiatan/show')}" class="link-butir">
+                                        <a href="${url('/atasan-langsung/verifikasi-kegiatan/penunjang/'+$('input[name="user"]').val()+'/'+butirKegiatan.id+'/butir-kegiatan/show')}" class="link-butir">
                                             <h6 class="accordian-title">
                                                 ${butirKegiatan.nama}
                                             </h6>
@@ -200,21 +200,21 @@
             function subButirKegiatans(sub_butir_kegiatans) {
                 return $.map(sub_butir_kegiatans, function(subButirKegiatan, indexOrKey) {
                     return `
-                <li class="accordian-list ">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <a href="${url('/atasan-langsung/verifikasi-kegiatan/profesi/'+$('input[name="user"]').val()+'/'+subButirKegiatan.id+'/sub-butir-kegiatan/show')}" class="link-butir">
-                            <h6 class="accordian-title">
-                                ${subButirKegiatan.nama}
-                            </h6>
-                        </a>
-                        <div class="d-flex align-items-center">
-                            <span class="bg-green text-sm text-center text-white font-bold py-1 px-2 rounded-md label-role" style="white-space: nowrap;">
-                                ${subButirKegiatan.role?.display_name ?? 'Semua Jenjang'}
-                            </span>
-                        </div>
-                    </div>
-                </li>
-                `;
+                        <li class="accordian-list ">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <a href="${url('/atasan-langsung/verifikasi-kegiatan/penunjang/'+$('input[name="user"]').val()+'/'+subButirKegiatan.id+'/sub-butir-kegiatan/show')}" class="link-butir">
+                                    <h6 class="accordian-title">
+                                        ${subButirKegiatan.nama}
+                                    </h6>
+                                </a>
+                                <div class="d-flex align-items-center">
+                                    <span class="bg-green text-sm text-center text-white font-bold py-1 px-2 rounded-md label-role" style="white-space: nowrap;">
+                                        ${subButirKegiatan.role?.display_name ?? 'Semua Jenjang'}
+                                    </span>
+                                </div>
+                            </div>
+                        </li>
+                        `;
                 }).join('')
             }
 

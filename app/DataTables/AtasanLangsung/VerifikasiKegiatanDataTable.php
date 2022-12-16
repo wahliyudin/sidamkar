@@ -43,9 +43,10 @@ class VerifikasiKegiatanDataTable extends DataTable
             ->addColumn('nip', function (Mente $mente) {
                 return $mente->fungsional->userAparatur?->nip;
             })
-            ->addColumn('action', function (Mente $mente) {
-                return '<a class="btn btn-primary btn-status px-3 text-sm" href="' . route('atasan-langsung.verifikasi-kegiatan.kegiatan-jabatan', $mente->fungsional->id) . '">Detail</a>';
+            ->addColumn('jenis_kegiatan', function (Mente $mente) {
+                return view('atasan-langsung.verifikasi-kegiatan.buttons', compact('mente'))->render();
             })
+            ->rawColumns(['jenis_kegiatan'])
             ->setRowId('id');
     }
 
@@ -96,7 +97,7 @@ class VerifikasiKegiatanDataTable extends DataTable
         return [
             Column::make('nama'),
             Column::make('nip'),
-            Column::computed('action')
+            Column::computed('jenis_kegiatan')
                 ->exportable(false)
                 ->printable(false)
                 ->width(60)

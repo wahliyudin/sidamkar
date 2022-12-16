@@ -24,6 +24,9 @@ use App\Http\Controllers\AtasanLangsung\KegiatanLangsungController;
 use App\Http\Controllers\AtasanLangsung\KegiatanSelesaiController as AtasanLangsungKegiatanSelesaiController;
 use App\Http\Controllers\AtasanLangsung\OverviewController as AtasanLangsungOverviewController;
 use App\Http\Controllers\AtasanLangsung\PengajuanKegiatanController;
+use App\Http\Controllers\AtasanLangsung\VerifikasiKegiatan\KegiatanJabatanController as VerifikasiKegiatanKegiatanJabatanController;
+use App\Http\Controllers\AtasanLangsung\VerifikasiKegiatan\KegiatanPenunjangController as VerifikasiKegiatanKegiatanPenunjangController;
+use App\Http\Controllers\AtasanLangsung\VerifikasiKegiatan\KegiatanProfesiController as VerifikasiKegiatanKegiatanProfesiController;
 use App\Http\Controllers\AtasanLangsung\VerifikasiKegiatanController as AtasanLangsungVerifikasiKegiatanController;
 use App\Http\Controllers\PenilaiAk\OverviewController as PenilaiAkOverviewController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -52,7 +55,6 @@ use App\Http\Controllers\PenetapAK\OverviewPenetapAk;
 use App\Http\Controllers\PenetapAK\DataPengajuan\KabKotaExternal;
 use App\Http\Controllers\PenetapAK\DataPengajuan\KabKotaInternal;
 use App\Http\Controllers\PenetapAK\DataPenetapAKController;
-use App\Http\Controllers\PenilaiAK\DataPenilaiAKController;
 use App\Http\Controllers\Kemendagri\CMS\PeriodeController;
 use App\Http\Controllers\PenilaiAk\DataPengajuan\ExternalController;
 use App\Http\Controllers\PenilaiAk\DataPengajuan\InternalController;
@@ -183,35 +185,46 @@ Route::middleware(['auth'])->group(function () {
 
 
         Route::middleware(['role:atasan_langsung'])->group(function () {
-            Route::get('data-atasan-langsung', [DataAtasanLangsungController::class, 'index'])->name('data-atasan-langsung');
-            Route::post('data-atasan-langsung-store', [DataAtasanLangsungController::class, 'store'])->name('data-atasan-langsung-store');
-            Route::get('data-atasan-langsung/show-dockepeg/{id}', [DataAtasanLangsungController::class, 'showDocKepeg'])->name('data-atasan-langsung.show-doc-kepeg');
-            Route::post('data-atasan-langsung/store-dockepeg', [DataAtasanLangsungController::class, 'storeDocKepeg'])->name('data-atasan-langsung.store-doc-kepeg');
-            Route::post('data-atasan-langsung/store-dockom', [DataAtasanLangsungController::class, 'storeDocKom'])->name('data-atasan-langsung.store-doc-kom');
-            Route::delete('data-atasan-langsung/destroy-dockepeg/{id}', [DataAtasanLangsungController::class, 'destroyDocKepeg'])->name('data-atasan-langsung.destroy-doc-kepeg');
-            Route::delete('data-atasan-langsung/destroy-dockom/{id}', [DataAtasanLangsungController::class, 'destroyDocKom'])->name('data-atasan-langsung.destroy-doc-kom');
-            Route::get('atasan-langsung/pengajuan-kegiatan', [PengajuanKegiatanController::class, 'index'])->name('atasan-langsung.pengajuan-kegiatan.index');
-            Route::post('atasan-langsung/pengajuan-kegiatan/{id}/load-data', [PengajuanKegiatanController::class, 'loadData'])->name('atasan-langsung.pengajuan-kegiatan.load-data');
-            Route::get('atasan-langsung/pengajuan-kegiatan/{id}/show', [PengajuanKegiatanController::class, 'show'])->name('atasan-langsung.pengajuan-kegiatan.show');
-            Route::post('atasan-langsung/pengajuan-kegiatan/{id}/{current_date}/tolak', [PengajuanKegiatanController::class, 'tolak'])->name('atasan-langsung.pengajuan-kegiatan.tolak');
-            Route::post('atasan-langsung/pengajuan-kegiatan/{id}/{current_date}/revisi', [PengajuanKegiatanController::class, 'revisi'])->name('atasan-langsung.pengajuan-kegiatan.revisi');
-            Route::post('atasan-langsung/pengajuan-kegiatan/{id}/{current_date}/verifikasi', [PengajuanKegiatanController::class, 'verifikasi'])->name('atasan-langsung.pengajuan-kegiatan.verifikasi');
             Route::get('atasan-langsung/kegiatan-selesai', [AtasanLangsungKegiatanSelesaiController::class, 'index'])->name('atasan-langsung.kegiatan-selesai');
             Route::get('atasan-langsung/kegiatan-selesai/{id}/show', [AtasanLangsungKegiatanSelesaiController::class, 'show'])->name('atasan-langsung.kegiatan-selesai.show');
             Route::post('atasan-langsung/kegiatan-selesai/{id}/ttd', [AtasanLangsungKegiatanSelesaiController::class, 'ttd'])->name('atasan-langsung.kegiatan-selesai.ttd');
 
             Route::get('atasan-langsung/verifikasi-kegiatan', [AtasanLangsungVerifikasiKegiatanController::class, 'index'])->name('atasan-langsung.verifikasi-kegiatan');
-            Route::get('atasan-langsung/verifikasi-kegiatan/{id}/kegiatan-jabatan', [AtasanLangsungVerifikasiKegiatanController::class, 'kegiatanJabatan'])->name('atasan-langsung.verifikasi-kegiatan.kegiatan-jabatan');
-            Route::post('atasan-langsung/verifikasi-kegiatan/kegiatan-jabatan/{id}/load-unsurs', [AtasanLangsungVerifikasiKegiatanController::class, 'loadUnsurs'])->name('atasan-langsung.verifikasi-kegiatan.kegiatan-jabatan.load-unsurs');
-            Route::get('atasan-langsung/verifikasi-kegiatan/{user}/kegiatan-jabatan/{butir}/show', [AtasanLangsungVerifikasiKegiatanController::class, 'kegiatanJabatanShow'])->name('atasan-langsung.verifikasi-kegiatan.kegiatan-jabatan.show');
-            Route::post('atasan-langsung/verifikasi-kegiatan/{id}/kegiatan-jabatan/verifikasi', [AtasanLangsungVerifikasiKegiatanController::class, 'verifikasi'])->name('atasan-langsung.verifikasi-kegiatan.kegiatan-jabatan.verifikasi');
-            Route::post('atasan-langsung/verifikasi-kegiatan/{laporan_id}/{user_id}/kegiatan-jabatan/revisi', [AtasanLangsungVerifikasiKegiatanController::class, 'revisi'])->name('atasan-langsung.verifikasi-kegiatan.kegiatan-jabatan.revisi');
-            Route::post('atasan-langsung/verifikasi-kegiatan/{id}/kegiatan-jabatan/tolak', [AtasanLangsungVerifikasiKegiatanController::class, 'tolak'])->name('atasan-langsung.verifikasi-kegiatan.kegiatan-jabatan.tolak');
+
+            Route::controller(VerifikasiKegiatanKegiatanJabatanController::class)->group(function () {
+                Route::get('atasan-langsung/verifikasi-kegiatan/jabatan', 'index')->name('atasan-langsung.verifikasi-kegiatan.jabatan.index');
+                Route::get('atasan-langsung/verifikasi-kegiatan/jabatan/{id}', 'kegiatanJabatan')->name('atasan-langsung.verifikasi-kegiatan.jabatan');
+                Route::post('atasan-langsung/verifikasi-kegiatan/jabatan/{id}/load-unsurs', 'loadUnsurs')->name('atasan-langsung.verifikasi-kegiatan.jabatan.load-unsurs');
+                Route::get('atasan-langsung/verifikasi-kegiatan/jabatan/{user}/{butir}/show', 'kegiatanJabatanShow')->name('atasan-langsung.verifikasi-kegiatan.jabatan.show');
+                Route::post('atasan-langsung/verifikasi-kegiatan/jabatan/{id}/verifikasi', 'verifikasi')->name('atasan-langsung.verifikasi-kegiatan.jabatan.verifikasi');
+                Route::post('atasan-langsung/verifikasi-kegiatan/jabatan/{laporan_id}/{user_id}/revisi', 'revisi')->name('atasan-langsung.verifikasi-kegiatan.jabatan.revisi');
+                Route::post('atasan-langsung/verifikasi-kegiatan/jabatan/{id}/tolak', 'tolak')->name('atasan-langsung.verifikasi-kegiatan.jabatan.tolak');
+            });
+
+            Route::controller(VerifikasiKegiatanKegiatanPenunjangController::class)->group(function () {
+                Route::get('atasan-langsung/verifikasi-kegiatan/penunjang', 'index')->name('atasan-langsung.verifikasi-kegiatan.penunjang.index');
+                Route::get('atasan-langsung/verifikasi-kegiatan/penunjang/{id}', 'kegiatanPenunjang')->name('atasan-langsung.verifikasi-kegiatan.penunjang');
+                Route::post('atasan-langsung/verifikasi-kegiatan/penunjang/{id}/load-unsurs', 'loadUnsurs')->name('atasan-langsung.verifikasi-kegiatan.penunjang.load-unsurs');
+                Route::get('atasan-langsung/verifikasi-kegiatan/penunjang/{user}/{butir}/butir-kegiatan/show', 'kegiatanPenunjangShowButir')->name('atasan-langsung.verifikasi-kegiatan.penunjang.butir-kegiatan.show');
+                Route::get('atasan-langsung/verifikasi-kegiatan/penunjang/{user}/{sub_butir}/sub-butir-kegiatan/show', 'kegiatanPenunjangShowSubButir')->name('atasan-langsung.verifikasi-kegiatan.penunjang.sub-butir-kegiatan.show');
+                Route::post('atasan-langsung/verifikasi-kegiatan/penunjang/{id}/verifikasi', 'verifikasi')->name('atasan-langsung.verifikasi-kegiatan.penunjang.verifikasi');
+                Route::post('atasan-langsung/verifikasi-kegiatan/penunjang/{laporan_id}/{user_id}/revisi', 'revisi')->name('atasan-langsung.verifikasi-kegiatan.penunjang.revisi');
+                Route::post('atasan-langsung/verifikasi-kegiatan/penunjang/{id}/tolak', 'tolak')->name('atasan-langsung.verifikasi-kegiatan.penunjang.tolak');
+            });
+
+            Route::controller(VerifikasiKegiatanKegiatanProfesiController::class)->group(function () {
+                Route::get('atasan-langsung/verifikasi-kegiatan/profesi', 'index')->name('atasan-langsung.verifikasi-kegiatan.profesi.index');
+                Route::get('atasan-langsung/verifikasi-kegiatan/profesi/{id}', 'kegiatanProfesi')->name('atasan-langsung.verifikasi-kegiatan.profesi');
+                Route::post('atasan-langsung/verifikasi-kegiatan/profesi/{id}/load-unsurs', 'loadUnsurs')->name('atasan-langsung.verifikasi-kegiatan.profesi.load-unsurs');
+                Route::get('atasan-langsung/verifikasi-kegiatan/profesi/{user}/{butir}/butir-kegiatan/show', 'kegiatanProfesiShowButir')->name('atasan-langsung.verifikasi-kegiatan.profesi.butir-kegiatan.show');
+                Route::get('atasan-langsung/verifikasi-kegiatan/profesi/{user}/{sub_butir}/sub-butir-kegiatan/show', 'kegiatanProfesiShowSubButir')->name('atasan-langsung.verifikasi-kegiatan.profesi.sub-butir-kegiatan.show');
+                Route::post('atasan-langsung/verifikasi-kegiatan/profesi/{id}/verifikasi', 'verifikasi')->name('atasan-langsung.verifikasi-kegiatan.profesi.verifikasi');
+                Route::post('atasan-langsung/verifikasi-kegiatan/profesi/{laporan_id}/{user_id}/revisi', 'revisi')->name('atasan-langsung.verifikasi-kegiatan.profesi.revisi');
+                Route::post('atasan-langsung/verifikasi-kegiatan/profesi/{id}/tolak', 'tolak')->name('atasan-langsung.verifikasi-kegiatan.profesi.tolak');
+            });
         });
 
         Route::middleware(['role:penilai_ak'])->group(function () {
-            Route::get('data-penilai-ak', [DataPenilaiAKController::class, 'index'])->name('data-penilai-ak');
-            Route::post('/data-penilai-ak-store', [DataPenilaiAKController::class, 'store'])->name('data-penilai-ak-store');
             Route::get('data-penilai-ak/show-dockepeg/{id}', [DataAtasanLangsungController::class, 'showDocKepeg'])->name('data-penilai-ak.show-doc-kepeg');
             Route::post('data-penilai-ak/store-dockepeg', [DataAtasanLangsungController::class, 'storeDocKepeg'])->name('data-penilai-ak.store-doc-kepeg');
             Route::post('data-penilai-ak/store-dockom', [DataAtasanLangsungController::class, 'storeDocKom'])->name('data-penilai-ak.store-doc-kom');
@@ -297,9 +310,6 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::middleware(['role:penilai_ak_damkar|penilai_ak_analis'])->group(function () {
-        Route::get('penilai-ak/overview', [PenilaiAkOverviewController::class, 'index'])->name('penilai-ak.overview');
-        Route::get('data-penilai-ak', [DataPenilaiAKController::class, 'index'])->name('data-penilai-ak');
-        Route::post('/data-penilai-ak-store', [DataPenilaiAKController::class, 'store'])->name('data-penilai-ak-store');
         Route::get('data-penilai-ak/show-dockepeg/{id}', [DataAtasanLangsungController::class, 'showDocKepeg'])->name('data-penilai-ak.show-doc-kepeg');
         Route::post('data-penilai-ak/store-dockepeg', [DataAtasanLangsungController::class, 'storeDocKepeg'])->name('data-penilai-ak.store-doc-kepeg');
         Route::post('data-penilai-ak/store-dockom', [DataAtasanLangsungController::class, 'storeDocKom'])->name('data-penilai-ak.store-doc-kom');
