@@ -65,9 +65,10 @@
                                     data-bs-target="#riwayatKegiatan{{ $laporanKegiatanPenunjangProfesiStatusValidasi->id }}">Detail
                                     Laporan</button>
                             </div>
-                            @include('atasan-langsung.verifikasi-kegiatan.profesi.riwayat', [
-                                'laporanKegiatanPenunjangProfesi' => $laporanKegiatanPenunjangProfesiStatusValidasi,
-                            ])
+                            @include('atasan-langsung.verifikasi-kegiatan.penunjang.butir-kegiatan.riwayat',
+                                [
+                                    'laporanKegiatanPenunjangProfesi' => $laporanKegiatanPenunjangProfesiStatusValidasi,
+                                ])
                         @empty
                             <div class="d-flex justify-content-center mt-3">
                                 <p class="m-0" style="font-style: italic;">Tidak ada data untuk ditampilkan</p>
@@ -127,9 +128,10 @@
                                     data-bs-target="#riwayatKegiatan{{ $laporanKegiatanPenunjangProfesiStatusRevisi->id }}">Detail
                                     Laporan</button>
                             </div>
-                            @include('atasan-langsung.verifikasi-kegiatan.profesi.riwayat', [
-                                'laporanKegiatanPenunjangProfesi' => $laporanKegiatanPenunjangProfesiStatusRevisi,
-                            ])
+                            @include('atasan-langsung.verifikasi-kegiatan.penunjang.butir-kegiatan.riwayat',
+                                [
+                                    'laporanKegiatanPenunjangProfesi' => $laporanKegiatanPenunjangProfesiStatusRevisi,
+                                ])
                         @empty
                             <div class="d-flex justify-content-center mt-3">
                                 <p class="m-0" style="font-style: italic;">Tidak ada data untuk ditampilkan</p>
@@ -193,9 +195,10 @@
                                     data-bs-target="#riwayatKegiatan{{ $laporanKegiatanPenunjangProfesiStatusSelesai->id }}">Detail
                                     Laporan</button>
                             </div>
-                            @include('atasan-langsung.verifikasi-kegiatan.profesi.riwayat', [
-                                'laporanKegiatanPenunjangProfesi' => $laporanKegiatanPenunjangProfesiStatusSelesai,
-                            ])
+                            @include('atasan-langsung.verifikasi-kegiatan.penunjang.butir-kegiatan.riwayat',
+                                [
+                                    'laporanKegiatanPenunjangProfesi' => $laporanKegiatanPenunjangProfesiStatusSelesai,
+                                ])
                         @empty
                             <div class="d-flex justify-content-center mt-3">
                                 <p class="m-0" style="font-style: italic;">Tidak ada data untuk ditampilkan</p>
@@ -259,9 +262,10 @@
                                     data-bs-target="#riwayatKegiatan{{ $laporanKegiatanPenunjangProfesiStatusTolak->id }}">Detail
                                     Laporan</button>
                             </div>
-                            @include('atasan-langsung.verifikasi-kegiatan.profesi.riwayat', [
-                                'laporanKegiatanPenunjangProfesi' => $laporanKegiatanPenunjangProfesiStatusTolak,
-                            ])
+                            @include('atasan-langsung.verifikasi-kegiatan.penunjang.butir-kegiatan.riwayat',
+                                [
+                                    'laporanKegiatanPenunjangProfesi' => $laporanKegiatanPenunjangProfesiStatusTolak,
+                                ])
                         @empty
                             <div class="d-flex justify-content-center mt-3">
                                 <p class="m-0" style="font-style: italic;">Tidak ada data untuk ditampilkan</p>
@@ -286,5 +290,5 @@
     <script src="{{ asset('assets/js/extensions/sweetalert2.all.min.js') }}"></script>
     <script src="{{ asset('assets/js/pages/aparatur/laporan-kegiatan/simplebar.js') }}"></script>
     <script src="{{ asset('assets/plugins/swiper/swiper-bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/js/pages/atasan-langsung/verifikasi-kegiatan/profesi.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/atasan-langsung/verifikasi-kegiatan/penunjang.js') }}"></script>
 @endsection

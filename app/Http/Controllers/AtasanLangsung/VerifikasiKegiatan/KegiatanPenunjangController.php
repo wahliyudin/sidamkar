@@ -47,7 +47,8 @@ class KegiatanPenunjangController extends Controller
             $laporanKegiatanPenunjangProfesiStatusSelesais,
             $laporanKegiatanPenunjangProfesiStatusTolaks,
         ] = $this->kegiatanPenunjangProfesiService->laporanKegiatanPenunjangProfesiByUser($butirKegiatan, null, $user);
-        return view('atasan-langsung.verifikasi-kegiatan.penunjang.show', compact(
+        // return $laporanKegiatanPenunjangProfesiStatusValidasis;
+        return view('atasan-langsung.verifikasi-kegiatan.penunjang.butir-kegiatan.show', compact(
             'laporanKegiatanPenunjangProfesiStatusValidasis',
             'laporanKegiatanPenunjangProfesiStatusRevisis',
             'laporanKegiatanPenunjangProfesiStatusSelesais',
@@ -71,7 +72,7 @@ class KegiatanPenunjangController extends Controller
             $laporanKegiatanPenunjangProfesiStatusSelesais,
             $laporanKegiatanPenunjangProfesiStatusTolaks,
         ] = $this->kegiatanPenunjangProfesiService->laporanKegiatanPenunjangProfesiByUser(null, $subButirKegiatan, $user);
-        return view('atasan-langsung.verifikasi-kegiatan.penunjang.show', compact(
+        return view('atasan-langsung.verifikasi-kegiatan.penunjang.sub-butir-kegiatan.show', compact(
             'laporanKegiatanPenunjangProfesiStatusValidasis',
             'laporanKegiatanPenunjangProfesiStatusRevisis',
             'laporanKegiatanPenunjangProfesiStatusSelesais',

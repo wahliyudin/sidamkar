@@ -44,12 +44,17 @@
                                 <div class="form-group">
                                     <div class="d-flex flex-column mt-3">
                                         <span
-                                            style="color: #000; font-weight: 700;">{{ $laporanKegiatanPenunjangProfesi->butirKegiatan->subUnsur->unsur->nama }}</span>
+                                            style="color: #000; font-weight: 700;">{{ $laporanKegiatanPenunjangProfesi->subButirKegiatan->butirKegiatan->subUnsur->unsur->nama }}</span>
                                         <span
-                                            style="color: #000; margin-left: 1rem;">{{ $laporanKegiatanPenunjangProfesi->butirKegiatan->subUnsur->nama }}</span>
+                                            style="color: #000; margin-left: 1rem;">{{ $laporanKegiatanPenunjangProfesi->subButirKegiatan->butirKegiatan->subUnsur->nama }}</span>
                                         <ul style="margin-left: 1.5rem;">
                                             <li style="color: #000;">
-                                                {{ $laporanKegiatanPenunjangProfesi->butirKegiatan->nama }}
+                                                {{ $laporanKegiatanPenunjangProfesi->subButirKegiatan->butirKegiatan->nama }}
+                                                <ul style="margin-left: 1.5rem;">
+                                                    <li style="color: #000;">
+                                                        {{ $laporanKegiatanPenunjangProfesi->subButirKegiatan->nama }}
+                                                    </li>
+                                                </ul>
                                             </li>
                                         </ul>
                                     </div>
