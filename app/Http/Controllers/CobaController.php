@@ -41,6 +41,10 @@ class CobaController extends Controller
 
     public function index()
     {
+        // '(CASE WHEN butir_kegiatans.percent IS NOT NULL
+        // THEN (butir_kegiatans.percent/100) * ketentuan_nilais.ak_kp
+        // ELSE butir_kegiatans.score
+        // END)';
         $penunjangs = DB::select('SELECT
                 sub_unsurs.id AS sub_unsur_id,
                 sub_unsurs.nama AS sub_unsur_nama,
