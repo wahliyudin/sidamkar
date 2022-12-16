@@ -36,7 +36,7 @@ class UserSeeder extends Seeder
             'email' => 'adminsafsa2@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'status_akun' => 1
+            'status_akun' => 0
         ])->attachRole('damkar_pemula');
         $damkarPemula->userAparatur()->create([
             'nama' => 'Damkar Pemula',
@@ -82,7 +82,7 @@ class UserSeeder extends Seeder
             'email' => 'admia232sn2434@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'status_akun' => 1
+            'status_akun' => 0
         ])->attachRole('damkar_terampil');
         $damkarTerampil->userAparatur()->create([
             'nama' => 'Damkar Terampil',
@@ -125,7 +125,7 @@ class UserSeeder extends Seeder
             'email' => 'penyeliasjd@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'status_akun' => 1
+            'status_akun' => 0
         ])->attachRole('damkar_penyelia');
         $damkarPenyelia->userAparatur()->create([
             'nama' => 'Damkar Penyelia',
@@ -147,7 +147,7 @@ class UserSeeder extends Seeder
             'email' => 'admin3wqasas@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'status_akun' => 1
+            'status_akun' => 0
         ])->attachRole('analis_kebakaran_ahli_pertama');
         $analisKebakaranAhliPertama->userAparatur()->create([
             'nama' => 'Analis Kebakaran Ahli Pertama',
@@ -187,7 +187,7 @@ class UserSeeder extends Seeder
             'email' => 'adminsds3sasasas@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'status_akun' => 1
+            'status_akun' => 0
         ])->attachRole('analis_kebakaran_ahli_muda');
         $analisKebakaranAhliMadya->userAparatur()->create([
             'nama' => 'Analis Kebakaran Ahli Madya',
@@ -261,7 +261,7 @@ class UserSeeder extends Seeder
             'email' => 'admin51@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'status_akun' => 1
+            'status_akun' => 0
         ])->attachRole('atasan_langsung');
         $atasanLangsung->userPejabatStruktural()->create([
             'nama' => 'Atasan Langsung',
@@ -305,7 +305,7 @@ class UserSeeder extends Seeder
             'email' => 'admin6@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'status_akun' => 1
+            'status_akun' => 0
         ]);
         $penilaiAK->userPejabatStruktural()->create([
             'nama' => 'Penilai AK',
@@ -327,7 +327,7 @@ class UserSeeder extends Seeder
                 'email' => fake()->email(),
                 'password' => Hash::make('123456789'),
                 'email_verified_at' => now(),
-                'status_akun' => 1
+                'status_akun' => 0
             ]);
             $penilaiAK1->userPejabatStruktural()->create([
                 'nama' => $penilaiAK1Name,
@@ -349,7 +349,7 @@ class UserSeeder extends Seeder
             'email' => 'admin0099@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'status_akun' => 1
+            'status_akun' => 0
         ]);
         $penetapAK->userPejabatStruktural()->create([
             'nama' => 'Penetap AK',
@@ -371,7 +371,7 @@ class UserSeeder extends Seeder
                 'email' => fake()->email(),
                 'password' => Hash::make('123456789'),
                 'email_verified_at' => now(),
-                'status_akun' => 1
+                'status_akun' => 0
             ]);
             $penetapAK->userPejabatStruktural()->create([
                 'nama' => $penetapAKName,
@@ -484,7 +484,7 @@ class UserSeeder extends Seeder
             'email' => 'atasanKotaTangsel@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'status_akun' => 1
+            'status_akun' => 0
         ])->attachRole('atasan_langsung');
         $atasanLangsungKotaTanggerangSelatan->userPejabatStruktural()->create([
             'nama' => 'Atasan Langsung Kota Tanggerang Selatan',
@@ -505,7 +505,7 @@ class UserSeeder extends Seeder
             'email' => 'atasanKotaBekasi1@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'status_akun' => 1
+            'status_akun' => 0
         ])->attachRole('atasan_langsung');
         $atasanLangsungKotaBekasi->userPejabatStruktural()->create([
             'nama' => 'Atasan Langsung Kota Bekasi',
@@ -526,7 +526,7 @@ class UserSeeder extends Seeder
             'email' => 'atasanKotaBogor@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'status_akun' => 1
+            'status_akun' => 0
         ])->attachRole('atasan_langsung');
         $atasanLangsungKabBogor->userPejabatStruktural()->create([
             'nama' => 'Atasan Langsung Kota Bogor',
@@ -547,7 +547,7 @@ class UserSeeder extends Seeder
             'email' => 'atasanKotasukabumi@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'status_akun' => 1
+            'status_akun' => 0
         ])->attachRole('atasan_langsung');
         $atasanLangsungKotaSukabumi->userPejabatStruktural()->create([
             'nama' => 'Atasan Langsung Kabupaten Sukabumi',
@@ -568,7 +568,7 @@ class UserSeeder extends Seeder
             'email' => 'atasanprovdki.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'status_akun' => 1
+            'status_akun' => 0
         ])->attachRole('atasan_langsung');
         $atasanLangsungProvDKI->userPejabatStruktural()->create([
             'nama' => 'Atasan Langsung DKI Jakarta',
@@ -588,7 +588,7 @@ class UserSeeder extends Seeder
             'email' => 'atasanprovbanten.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'status_akun' => 1
+            'status_akun' => 0
         ])->attachRole('atasan_langsung');
         $atasanLangsungProvBanten->userPejabatStruktural()->create([
             'nama' => 'Atasan Langsung Banten',
@@ -608,7 +608,7 @@ class UserSeeder extends Seeder
             'email' => 'atasanprovjawabarat.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'status_akun' => 1
+            'status_akun' => 0
         ])->attachRole('atasan_langsung');
         $atasanLangsungProvJawaBarat->userPejabatStruktural()->create([
             'nama' => 'Atasan Langsung Jawa Barat',
@@ -623,7 +623,216 @@ class UserSeeder extends Seeder
             'provinsi_id' => 32,
         ]);
 
+        $Struktural1 = User::query()->create([
+            'username' => 'Struktural1',
+            'email' => 'admin6sdetret455sdsd@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ]);
+        $Struktural1->userPejabatStruktural()->create([
+            'nama' => 'Struktural1',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'kab_kota',
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 32,
+            'kab_kota_id' => 3201,
+        ]);
 
+        $Struktural2 = User::query()->create([
+            'username' => 'Struktural2',
+            'email' => 'admiasaasasadrn6sdsdsd@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ]);
+        $Struktural2->userPejabatStruktural()->create([
+            'nama' => 'Struktural2',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'kab_kota',
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 32,
+            'kab_kota_id' => 3201,
+        ]);
+
+        $Struktural3 = User::query()->create([
+            'username' => 'Struktural3',
+            'email' => 'admasaidtrtytyasan6sdsdsd@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ]);
+        $Struktural3->userPejabatStruktural()->create([
+            'nama' => 'Struktural3',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'kab_kota',
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 32,
+            'kab_kota_id' => 3201,
+        ]);
+
+        $Struktural4 = User::query()->create([
+            'username' => 'Struktural4',
+            'email' => 'admasaiaasasasan6sdsdsd@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ]);
+        $Struktural4->userPejabatStruktural()->create([
+            'nama' => 'Struktural4',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'kab_kota',
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 32,
+            'kab_kota_id' => 3201,
+        ]);
+
+        $damkarPemulaBogor = User::query()->create([
+            'username' => 'Damkar Pemula Bogor',
+            'email' => 'adaaaaaaamiasasansafsa2@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ])->attachRole('damkar_pemula');
+        $damkarPemulaBogor->userAparatur()->create([
+            'nama' => 'Damkar Pemula Bogor',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'kab_kota',
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 32,
+            'kab_kota_id' => 3201,
+        ]);
+
+        $damkarTerampilBogor = User::query()->create([
+            'username' => 'Damkar Terampil Bogor',
+            'email' => 'admaadsfeasawtrwia232sn2434@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ])->attachRole('damkar_terampil');
+        $damkarTerampilBogor->userAparatur()->create([
+            'nama' => 'Damkar Terampil Bogor',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'kab_kota',
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 32,
+            'kab_kota_id' => 3201,
+        ]);
+
+        $damkarPenyeliaBogor = User::query()->create([
+            'username' => 'Damkar Penyelia Bogor',
+            'email' => 'penyelasasasasasaiasjd@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ])->attachRole('damkar_penyelia');
+        $damkarPenyeliaBogor->userAparatur()->create([
+            'nama' => 'Damkar Penyelia Bogor',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'kab_kota',
+            'jenis_kelamin' => 'L',
+            'tingkat_aparatur' => 'kab_kota',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 32,
+            'kab_kota_id' => 3201,
+        ]);
+
+        $analisKebakaranAhliPertamaBogor = User::query()->create([
+            'username' => 'Analis Kebakaran Ahli Pertama Bogor',
+            'email' => 'admin3wqaasasaasasasasas@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ])->attachRole('analis_kebakaran_ahli_pertama');
+        $analisKebakaranAhliPertamaBogor->userAparatur()->create([
+            'nama' => 'Analis Kebakaran Ahli Pertama Bogor',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'kab_kota',
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 32,
+            'kab_kota_id' => 3201,
+        ]);
+
+        $analisKebakaranAhliMuda = User::query()->create([
+            'username' => 'Analis Kebakaran Ahli Muda Bogor',
+            'email' => 'admin3saasasasasassadsdsas@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ])->attachRole('analis_kebakaran_ahli_muda');
+        $analisKebakaranAhliMuda->userAparatur()->create([
+            'nama' => 'Analis Kebakaran Ahli Muda Bogor',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'kab_kota',
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 32,
+            'kab_kota_id' => 3201,
+        ]);
+
+        $analisKebakaranAhliMadyaBogor = User::query()->create([
+            'username' => 'Analis Kebakaran Ahli Madya Bogor',
+            'email' => 'adminsds3saasasassasas@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ])->attachRole('analis_kebakaran_ahli_muda');
+        $analisKebakaranAhliMadyaBogor->userAparatur()->create([
+            'nama' => 'Analis Kebakaran Ahli Madya Bogor',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'kab_kota',
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 32,
+            'kab_kota_id' => 3201,
+        ]);
          //end ini adalah seeder user yang dari request client
 
     }

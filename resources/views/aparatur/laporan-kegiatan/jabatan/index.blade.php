@@ -7,24 +7,6 @@
                 <div class="card">
                     <div class="card-body py-3 px-3" style="height: 100px;">
                         <div class="d-flex align-items-center h-100">
-                            <div class="circle circle-blue">
-                                <i class="fa-solid fa-copy"></i>
-                            </div>
-                            <div class="d-flex flex-column ms-2">
-                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                    Angka Kredit Minimal
-                                </p>
-                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target">
-                                    {{ $ketentuan_ak?->ak_min ?? '0' }}</h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 px-2">
-                <div class="card">
-                    <div class="card-body py-3 px-3" style="height: 100px;">
-                        <div class="d-flex align-items-center h-100">
                             <div class="circle circle-purple">
                                 <i class="fa-solid fa-copy"></i>
                             </div>
@@ -33,26 +15,6 @@
                                     Angka Kredit diterima
                                 </p>
                                 <h2 style="font-family: 'Roboto';color: #06152B;" class="target">{{ $ak_diterima }}</h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 px-2">
-                <div class="card">
-                    <div class="card-body py-3 px-3" style="height: 100px;">
-                        <div class="d-flex align-items-center h-100">
-                            <div class="circle circle-green">
-                                <i class="fa-solid
-                                fa-stopwatch"></i>
-                            </div>
-                            <div class="d-flex flex-column ms-2">
-                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                    Periode
-                                </p>
-                                <h2 style="font-family: 'Roboto'; font-size: 18px; color: #06152B;" class="target">
-                                    {{ Carbon\Carbon::make($periode->awal)->translatedFormat('F Y') . ' - ' . Carbon\Carbon::make($periode->akhir)->translatedFormat('F Y') }}
-                                </h2>
                             </div>
                         </div>
                     </div>
@@ -81,7 +43,7 @@
                                 <button data-bs-toggle="modal" data-bs-target="#rekap"
                                     class="btn btn-green btn-sm ps-3 pe-3 py-2 rekap btn-rekap">
                                     <i class="fa-solid fa-paper-plane me-1"></i>
-                                    Ajukan Laporan <br> Rekapitulasi Capaian
+                                    Ajukan Laporan
                                 </button>
                             @endif
                         </div>

@@ -55,7 +55,7 @@
                             </div>
                             <div class="d-flex flex-column ms-2">
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
-                                    Angka Kredit diterima
+                                    Total AK Diterima
                                 </p>
                                 <h2 style="font-family: 'Roboto';color: #06152B;" class="target">
                                     100
