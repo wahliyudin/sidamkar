@@ -183,15 +183,17 @@ class KegiatanPenunjangController extends Controller
         ]);
     }
 
-    public function edit(LaporanKegiatanPenunjangProfesi $laporanKegiatanPenunjangProfesi): JsonResponse
+    public function edit($laporanKegiatanPenunjangProfesi): JsonResponse
     {
+        $laporanKegiatanPenunjangProfesi = LaporanKegiatanPenunjangProfesi::query()->find($laporanKegiatanPenunjangProfesi);
         return response()->json([
             'data' => $this->kegiatanPenunjangService->edit($laporanKegiatanPenunjangProfesi)
         ]);
     }
 
-    public function update(UpdatePenunjangProfesiRequest $request, LaporanKegiatanPenunjangProfesi $laporanKegiatanPenunjangProfesi): JsonResponse
+    public function update(UpdatePenunjangProfesiRequest $request, $laporanKegiatanPenunjangProfesi): JsonResponse
     {
+        $laporanKegiatanPenunjangProfesi = LaporanKegiatanPenunjangProfesi::query()->find($laporanKegiatanPenunjangProfesi);
         $this->kegiatanPenunjangService->update($request, $laporanKegiatanPenunjangProfesi);
         return response()->json([
             'status' => 200,

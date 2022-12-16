@@ -41,24 +41,6 @@ class CobaController extends Controller
 
     public function index()
     {
-        $butirKegiatan = null;
-        $subButirKegiatan = 29;
-        return LaporanKegiatanPenunjangProfesi::query()
-            ->with([
-                'user.userAparatur',
-                'dokumenPenunjangProfesis',
-                'butirKegiatan.subUnsur.unsur',
-                'subButirKegiatan.butirKegiatan.subUnsur.unsur',
-                'historyPenunjangProfesis.historyDokumenPenunjangProfesis'
-            ])
-            ->where('user_id', $this->authUser()->id)
-            ->when($butirKegiatan, function ($query, $butirKegiatan) {
-                $query->where('butir_kegiatan_id', $butirKegiatan);
-            })
-            ->when($subButirKegiatan, function ($query, $subButirKegiatan) {
-                $query->where('sub_butir_kegiatan_id', $subButirKegiatan);
-            })
-            ->orderBy('id', 'desc')
-            ->get();
+        return LaporanKegiatanPenunjangProfesi::query()->with('dokumenPenunjangProfesis')->find('97fdaeeb-4bf8-4c22-88e8-9a0dc98c26a8');
     }
 }

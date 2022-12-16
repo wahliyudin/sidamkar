@@ -113,14 +113,14 @@ class KegiatanPenunjangService
         }
         $periode = $this->periodeRepository->isActive();
         $laporanKegiatanPenunjangProfesi = $this->kegiatanPenunjangProfesiRepository->store($request, $role, $user, $butirKegiatan, $subButirKegiatan, $request->current_date, $periode->id);
-        $historyKegiatanJabatan = $this->kegiatanPenunjangProfesiRepository->storeHistoryPenunjangProfesi($laporanKegiatanPenunjangProfesi, HistoryPenunjangProfesi::STATUS_LAPORKAN, HistoryPenunjangProfesi::ICON_KEYBOARD, $request->detail_kegiatan, 'Berhasil dilaporkan', $request->current_date);
+        $historyPenunjangProfesi = $this->kegiatanPenunjangProfesiRepository->storeHistoryPenunjangProfesi($laporanKegiatanPenunjangProfesi, HistoryPenunjangProfesi::STATUS_LAPORKAN, HistoryPenunjangProfesi::ICON_KEYBOARD, $request->detail_kegiatan, 'Berhasil dilaporkan', $request->current_date);
         if (isset($request->doc_kegiatan_tmp[0]) && $request->doc_kegiatan_tmp[0] !== null) {
             foreach ($request->doc_kegiatan_tmp as $doc_kegiatan_tmp) {
                 $tmpFile = $this->temporaryFileRepository->getByFolder($doc_kegiatan_tmp);
                 if ($tmpFile) {
                     Storage::copy("tmp/$tmpFile->folder/$tmpFile->name", "kegiatan/$tmpFile->name");
                     $this->kegiatanPenunjangProfesiRepository->storeDokumenPenunjangProfesi($laporanKegiatanPenunjangProfesi, $tmpFile);
-                    $this->kegiatanPenunjangProfesiRepository->storeHistoryDokumenPenunjangProfesi($historyKegiatanJabatan, $tmpFile);
+                    $this->kegiatanPenunjangProfesiRepository->storeHistoryDokumenPenunjangProfesi($historyPenunjangProfesi, $tmpFile);
                     $this->temporaryFileRepository->destroy($tmpFile);
                     Storage::deleteDirectory("tmp/$tmpFile->folder");
                 }
@@ -153,7 +153,8 @@ class KegiatanPenunjangService
             'detail_kegiatan' => $request->detail_kegiatan,
             'status' => LaporanKegiatanPenunjangProfesi::VALIDASI
         ]);
-        $historyKegiatanJabatan = $this->kegiatanPenunjangProfesiRepository->storeHistoryPenunjangProfesi(
+
+        $historyPenunjangProfesi = $this->kegiatanPenunjangProfesiRepository->storeHistoryPenunjangProfesi(
             $laporanKegiatanPenunjangProfesi,
             HistoryPenunjangProfesi::STATUS_LAPORKAN,
             HistoryPenunjangProfesi::ICON_PAPER_PLANE,
@@ -161,6 +162,7 @@ class KegiatanPenunjangService
             'Kirim revisi Laporan kegiatan',
             $laporanKegiatanPenunjangProfesi->current_date
         );
+
         $this->kegiatanPenunjangProfesiRepository->storeHistoryPenunjangProfesi(
             laporanKegiatanPenunjangProfesi: $laporanKegiatanPenunjangProfesi,
             status: HistoryPenunjangProfesi::STATUS_VALIDASI,
@@ -169,24 +171,31 @@ class KegiatanPenunjangService
             keterangan: 'Sedang divalidasi oleh Atasan Langsung',
             current_date: $laporanKegiatanPenunjangProfesi->current_date
         );
-        $laporanKegiatanPenunjangProfesi->dokumenKegiatanJabatans()->whereNotIn('id', $request->doc_kegiatan_tmp)->delete();
-        foreach ($request->doc_kegiatan_tmp as $doc_kegiatan_tmp) {
-            $tmpFile = $this->temporaryFileRepository->getByFolder($doc_kegiatan_tmp);
-            if ($tmpFile instanceof TemporaryFile) {
-                Storage::copy("tmp/$tmpFile->folder/$tmpFile->name", "kegiatan/$tmpFile->name");
-                $this->kegiatanPenunjangProfesiRepository->storeDokumenPenunjangProfesi($laporanKegiatanPenunjangProfesi, $tmpFile);
-                $this->kegiatanPenunjangProfesiRepository->storeHistoryDokumenPenunjangProfesi($historyKegiatanJabatan, $tmpFile);
-                $this->temporaryFileRepository->destroy($tmpFile);
-                Storage::deleteDirectory("tmp/$tmpFile->folder");
+
+        if (count($laporanKegiatanPenunjangProfesi->dokumenPenunjangProfesis) > 0) {
+            $laporanKegiatanPenunjangProfesi->dokumenPenunjangProfesis()?->whereNotIn('id', $request->doc_kegiatan_tmp)?->delete();
+            if (count($laporanKegiatanPenunjangProfesi->dokumenPenunjangProfesis()->whereIn('id', $request->doc_kegiatan_tmp)->get()) > 0) {
+                foreach ($laporanKegiatanPenunjangProfesi->dokumenPenunjangProfesis()->whereIn('id', $request->doc_kegiatan_tmp)->get() as $dokumenKegiatanJabatan) {
+                    $tmpFile = new TemporaryFile([
+                        'name' => $dokumenKegiatanJabatan->name,
+                        'size' => $dokumenKegiatanJabatan->size,
+                        'type' => $dokumenKegiatanJabatan->type
+                    ]);
+                    $this->kegiatanPenunjangProfesiRepository->storeHistoryDokumenPenunjangProfesi($historyPenunjangProfesi, $tmpFile);
+                }
             }
         }
-        foreach ($laporanKegiatanPenunjangProfesi->dokumenKegiatanJabatans()->whereIn('id', $request->doc_kegiatan_tmp)->get() as $dokumenKegiatanJabatan) {
-            $tmpFile = new TemporaryFile([
-                'name' => $dokumenKegiatanJabatan->name,
-                'size' => $dokumenKegiatanJabatan->size,
-                'type' => $dokumenKegiatanJabatan->type
-            ]);
-            $this->kegiatanPenunjangProfesiRepository->storeHistoryDokumenPenunjangProfesi($historyKegiatanJabatan, $tmpFile);
+        if (isset($request->doc_kegiatan_tmp) && count($request->doc_kegiatan_tmp) > 0) {
+            foreach ($request->doc_kegiatan_tmp as $doc_kegiatan_tmp) {
+                $tmpFile = $this->temporaryFileRepository->getByFolder($doc_kegiatan_tmp);
+                if ($tmpFile instanceof TemporaryFile) {
+                    Storage::copy("tmp/$tmpFile->folder/$tmpFile->name", "kegiatan/$tmpFile->name");
+                    $this->kegiatanPenunjangProfesiRepository->storeDokumenPenunjangProfesi($laporanKegiatanPenunjangProfesi, $tmpFile);
+                    $this->kegiatanPenunjangProfesiRepository->storeHistoryDokumenPenunjangProfesi($historyPenunjangProfesi, $tmpFile);
+                    $this->temporaryFileRepository->destroy($tmpFile);
+                    Storage::deleteDirectory("tmp/$tmpFile->folder");
+                }
+            }
         }
     }
 

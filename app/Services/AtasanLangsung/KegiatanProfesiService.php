@@ -8,10 +8,13 @@ use App\Models\LaporanKegiatanJabatan;
 use App\Models\Periode;
 use App\Models\Unsur;
 use App\Models\User;
+use App\Repositories\Aparatur\LaporanKegiatan\KegiatanPenunjangProfesiRepository;
 use App\Repositories\ButirKegiatanRepository;
 use App\Repositories\HistoryKegiatanJabatanRepository;
-use App\Repositories\LaporanKegiatanJabatanRepository;
+use App\Repositories\HistoryPenunjangProfesiRepository;
+use App\Repositories\LaporanKegiatanPenunjangProfesiRepository;
 use App\Repositories\PeriodeRepository;
+use App\Repositories\SubButirKegiatanRepository;
 use App\Repositories\UserRepository;
 use App\Services\KegiatanJabatanService as ServicesKegiatanJabatanService;
 use Illuminate\Http\Request;
@@ -21,21 +24,21 @@ class KegiatanProfesiService
     private PeriodeRepository $periodeRepository;
     private UserRepository $userRepository;
     private ButirKegiatanRepository $butirKegiatanRepository;
+    private LaporanKegiatanPenunjangProfesiRepository $laporanKegiatanPenunjangProfesiRepository;
+    private HistoryPenunjangProfesiRepository $historyPenunjangProfesiRepository;
 
     public function __construct(
         PeriodeRepository $periodeRepository,
         UserRepository $userRepository,
         ButirKegiatanRepository $butirKegiatanRepository,
-        ServicesKegiatanJabatanService $kegiatanJabatanService,
-        LaporanKegiatanJabatanRepository $laporanKegiatanJabatanRepository,
-        HistoryKegiatanJabatanRepository $historyKegiatanJabatanRepository
+        HistoryPenunjangProfesiRepository $historyPenunjangProfesiRepository,
+        LaporanKegiatanPenunjangProfesiRepository $laporanKegiatanPenunjangProfesiRepository
     ) {
         $this->periodeRepository = $periodeRepository;
         $this->userRepository = $userRepository;
         $this->butirKegiatanRepository = $butirKegiatanRepository;
-        $this->kegiatanJabatanService = $kegiatanJabatanService;
-        $this->laporanKegiatanJabatanRepository = $laporanKegiatanJabatanRepository;
-        $this->historyKegiatanJabatanRepository = $historyKegiatanJabatanRepository;
+        $this->historyPenunjangProfesiRepository = $historyPenunjangProfesiRepository;
+        $this->laporanKegiatanPenunjangProfesiRepository = $laporanKegiatanPenunjangProfesiRepository;
     }
 
     public function periodeActive(): Periode
@@ -84,23 +87,28 @@ class KegiatanProfesiService
         return $unsurs;
     }
 
-    public function laporanKegiatanPenunjangProfesiByUser($butirKegiatan, $user)
-    {
-    }
-
-    public function laporanKegiatanPenunjangProfesiCount(ButirKegiatan $butirKegiatan, User $user)
-    {
-    }
-
     public function verifikasi($id)
     {
+        $laporanKegiatanPenunjangProfesi = $this->laporanKegiatanPenunjangProfesiRepository->getById($id);
+        $this->laporanKegiatanPenunjangProfesiRepository->updateStatusAndCatatan($laporanKegiatanPenunjangProfesi, $laporanKegiatanPenunjangProfesi::SELESAI);
+        $this->historyPenunjangProfesiRepository->storeStatusSelesai($laporanKegiatanPenunjangProfesi);
+        return $laporanKegiatanPenunjangProfesi;
     }
 
     public function revisi(Request $request, $laporan_id, $user_id)
     {
+        $user = $this->userRepository->getUserById($user_id);
+        $laporanKegiatanPenunjangProfesi = $this->laporanKegiatanPenunjangProfesiRepository->getById($laporan_id);
+        $this->laporanKegiatanPenunjangProfesiRepository->updateStatusAndCatatan($laporanKegiatanPenunjangProfesi, $laporanKegiatanPenunjangProfesi::REVISI, $request->catatan);
+        $this->historyPenunjangProfesiRepository->storeStatusRevisi($laporanKegiatanPenunjangProfesi, $user, $request->catatan);
+        return $laporanKegiatanPenunjangProfesi;
     }
 
     public function tolak(Request $request, $id)
     {
+        $laporanKegiatanPenunjangProfesi = $this->laporanKegiatanPenunjangProfesiRepository->getById($id);
+        $this->laporanKegiatanPenunjangProfesiRepository->updateStatusAndCatatan($laporanKegiatanPenunjangProfesi, $laporanKegiatanPenunjangProfesi::TOLAK, $request->catatan);
+        $this->historyPenunjangProfesiRepository->storeStatusTolak($laporanKegiatanPenunjangProfesi, $request->catatan);
+        return $laporanKegiatanPenunjangProfesi;
     }
 }

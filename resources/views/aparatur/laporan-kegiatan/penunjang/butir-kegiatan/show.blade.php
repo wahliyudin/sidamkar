@@ -138,7 +138,7 @@
                                 data-bs-target="#revisiKegiatan{{ $laporanKegiatanPenunjangProfesiStatusRevisi->id }}">Detail
                                 Laporan</button>
                         </div>
-                        @include('aparatur.laporan-kegiatan.jabatan.revisi', [
+                        @include('aparatur.laporan-kegiatan.penunjang.butir-kegiatan.revisi', [
                             'laporanKegiatanPenunjangProfesi' => $laporanKegiatanPenunjangProfesiStatusRevisi,
                         ])
                     @empty
