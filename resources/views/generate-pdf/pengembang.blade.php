@@ -137,14 +137,18 @@
                         <td>{{ $item->sub_unsur_nama }}</td>
                         <td>{{ $item->nama }}</td>
                         <td>{{ $item->satuan_hasil }}</td>
-                        <td class="text-center">{{ $item->angka_kredit }}</td>
+                        <td class="text-center">
+                            {{ !is_null($item->angka_kredit) ? $item->angka_kredit : $item->angka_kredit_percent . '% AK Kenaikan Pangkat' }}
+                        </td>
                         <td class="text-center">{{ $item->volume }}</td>
                         <td class="text-center">{{ $item->jumlah_ak }}</td>
                     @else
                         <td></td>
                         <td>{{ $item->nama }}</td>
                         <td>{{ $item->satuan_hasil }}</td>
-                        <td class="text-center">{{ $item->angka_kredit }}</td>
+                        <td class="text-center">
+                            {{ !is_null($item->angka_kredit) ? $item->angka_kredit : $item->angka_kredit_percent . '% AK Kenaikan Pangkat' }}
+                        </td>
                         <td class="text-center">{{ $item->volume }}</td>
                         <td class="text-center">{{ $item->jumlah_ak }}</td>
                     @endif
@@ -175,14 +179,18 @@
                         <td>{{ $item->sub_unsur_nama }}</td>
                         <td>{{ $item->nama }}</td>
                         <td>{{ $item->satuan_hasil }}</td>
-                        <td class="text-center">{{ $item->angka_kredit }}</td>
+                        <td class="text-center">
+                            {{ !is_null($item->angka_kredit) ? $item->angka_kredit : $item->angka_kredit_percent . '% AK Kenaikan Pangkat' }}
+                        </td>
                         <td class="text-center">{{ $item->volume }}</td>
                         <td class="text-center">{{ $item->jumlah_ak }}</td>
                     @else
                         <td></td>
                         <td>{{ $item->nama }}</td>
                         <td>{{ $item->satuan_hasil }}</td>
-                        <td class="text-center">{{ $item->angka_kredit }}</td>
+                        <td class="text-center">
+                            {{ !is_null($item->angka_kredit) ? $item->angka_kredit : $item->angka_kredit_percent . '% AK Kenaikan Pangkat' }}
+                        </td>
                         <td class="text-center">{{ $item->volume }}</td>
                         <td class="text-center">{{ $item->jumlah_ak }}</td>
                     @endif
