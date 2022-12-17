@@ -49,7 +49,7 @@
                                                                 style="height: 3rem; object-fit: cover;" alt=""
                                                                 srcset="">
                                                         </div>
-                                                        <iframe src="{{ $rekapitulasiKegiatan?->url_capaian }}"
+                                                        <iframe src="{{ $rekapitulasiKegiatan?->link_rekap_capaian }}"
                                                             style="border-radius: 10px; overflow: hidden;" width="100%"
                                                             height="500px"></iframe>
                                                         @if ($rekapitulasiKegiatan?->is_ttd != true)
@@ -62,7 +62,7 @@
                                                 <div class="tab-pane fade" id="surat-tab2">
                                                     <div class="card">
                                                         <div class="card-body px-0">
-                                                            <iframe src="{{ $rekapitulasiKegiatan?->url_rekap }}"
+                                                            <iframe src="{{ $rekapitulasiKegiatan?->link_pernyataan }}"
                                                                 style="border-radius: 10px; overflow: hidden;"
                                                                 width="100%" height="500px"></iframe>
                                                         </div>
@@ -72,7 +72,7 @@
                                                 <div class="tab-pane fade" id="surat-tab3">
                                                     <div class="card">
                                                         <div class="card-body px-0">
-                                                            <iframe src=""
+                                                            <iframe src="{{ $rekapitulasiKegiatan?->link_pengembang }}"
                                                                 style="border-radius: 10px; overflow: hidden;"
                                                                 width="100%" height="500px"></iframe>
                                                         </div>

@@ -73,37 +73,38 @@
             <tr>
                 <td style="width: 150px;">Nama</td>
                 <td style="width: 10px;">:</td>
-                <td>Lorem, ipsum. Lorem, ipsum.</td>
+                <td>{{ $data['user']?->userAparatur?->nama }}</td>
             </tr>
             <tr>
                 <td style="width: 150px;">NIP</td>
                 <td style="width: 10px;">:</td>
-                <td>Lorem, ipsum. Lorem, ipsum.</td>
+                <td>{{ $data['user']?->userAparatur?->nip }}</td>
             </tr>
             <tr>
                 <td style="width: 150px;">Nomor Seri Karpeg</td>
                 <td style="width: 10px;">:</td>
-                <td>Lorem, ipsum. Lorem, ipsum.</td>
+                <td>{{ $data['user']?->userAparatur?->nomor_karpeg }}</td>
             </tr>
             <tr>
                 <td style="width: 150px;">Tempat/Tgl Lahir</td>
                 <td style="width: 10px;">:</td>
-                <td>Lorem, ipsum. Lorem, ipsum.</td>
+                <td>{{ $data['user']?->userAparatur->tempat_lahir . ', ' . \Carbon\Carbon::make($data['user']?->userAparatur->tanggal_lahir)->format('Y-m-d') }}
+                </td>
             </tr>
             <tr>
                 <td style="width: 150px;">Jenis Kelamin</td>
                 <td style="width: 10px;">:</td>
-                <td>Lorem, ipsum. Lorem, ipsum.</td>
+                <td>{{ $data['user']?->userAparatur?->jenis_kelamin == 'P' ? 'Perempuan' : 'Laki-Laki' }}</td>
             </tr>
             <tr>
                 <td style="width: 150px;">Pangkat/Gol. Ruang/TMT</td>
                 <td style="width: 10px;">:</td>
-                <td>Lorem, ipsum. Lorem, ipsum.</td>
+                <td>{{ $data['user']?->userAparatur?->pangkatGolonganTmt?->nama }}</td>
             </tr>
             <tr>
                 <td style="width: 150px;">Jabatan/TMT</td>
                 <td style="width: 10px;">:</td>
-                <td>Lorem, ipsum. Lorem, ipsum.</td>
+                <td>{{ $data['role']?->display_name }}</td>
             </tr>
             <tr>
                 <td style="width: 150px;">Unit Kerja</td>
@@ -126,24 +127,24 @@
                 <th class="center" width="115px">AK YANG DIDAPAT</th>
             </tr>
             <tr>
-                <td class="center">0</td>
-                <td class="center">0</td>
-                <td class="center">0</td>
-                <td class="center">0</td>
-                <td class="center">0</td>
-                <td class="center">0</td>
+                <td class="center">{{ $data['periode'] }}</td>
+                <td class="center">{{ $data['target_ak_skp'] }}</td>
+                <td class="center">{{ $data['capaian'] }}</td>
+                <td class="center">{{ $data['persentase'] }}</td>
+                <td class="center">{{ $data['ak_min'] }}</td>
+                <td class="center">{{ $data['total_ak'] }}</td>
             </tr>
             <tr>
                 <th class="center" colspan="5">Jumlah Angka Kredit Yang Diperoleh Berdasarkan Capaian SKP</th>
-                <th class="center">0.00</th>
+                <th class="center">{{ $data['total_ak'] }}</th>
             </tr>
             <tr>
                 <th class="center" colspan="5">Angka Kredit Maksimal</th>
-                <th class="center">0</th>
+                <th class="center">{{ $data['ak_max'] }}</th>
             </tr>
             <tr>
                 <th class="center" colspan="5">Capaian Angka Kredit</th>
-                <th class="center"><br></th>
+                <th class="center">{{ $data['result'] }}</th>
             </tr>
         </tbody>
     </table>

@@ -128,7 +128,7 @@ class KegiatanPenunjangProfesiService
     public function verifikasi($id)
     {
         $laporanKegiatanPenunjangProfesi = $this->laporanKegiatanPenunjangProfesiRepository->getById($id);
-        $this->laporanKegiatanPenunjangProfesiRepository->updateStatusAndCatatan($laporanKegiatanPenunjangProfesi, $laporanKegiatanPenunjangProfesi::SELESAI);
+        $this->laporanKegiatanPenunjangProfesiRepository->updateStatusAndCatatan($laporanKegiatanPenunjangProfesi, LaporanKegiatanPenunjangProfesi::SELESAI);
         $this->historyPenunjangProfesiRepository->storeStatusSelesai($laporanKegiatanPenunjangProfesi);
         return $laporanKegiatanPenunjangProfesi;
     }
@@ -137,7 +137,7 @@ class KegiatanPenunjangProfesiService
     {
         $user = $this->userRepository->getUserById($user_id);
         $laporanKegiatanPenunjangProfesi = $this->laporanKegiatanPenunjangProfesiRepository->getById($laporan_id);
-        $this->laporanKegiatanPenunjangProfesiRepository->updateStatusAndCatatan($laporanKegiatanPenunjangProfesi, $laporanKegiatanPenunjangProfesi::REVISI, $request->catatan);
+        $this->laporanKegiatanPenunjangProfesiRepository->updateStatusAndCatatan($laporanKegiatanPenunjangProfesi, LaporanKegiatanPenunjangProfesi::REVISI, $request->catatan);
         $this->historyPenunjangProfesiRepository->storeStatusRevisi($laporanKegiatanPenunjangProfesi, $user, $request->catatan);
         return $laporanKegiatanPenunjangProfesi;
     }
@@ -145,7 +145,7 @@ class KegiatanPenunjangProfesiService
     public function tolak(Request $request, $id)
     {
         $laporanKegiatanPenunjangProfesi = $this->laporanKegiatanPenunjangProfesiRepository->getById($id);
-        $this->laporanKegiatanPenunjangProfesiRepository->updateStatusAndCatatan($laporanKegiatanPenunjangProfesi, $laporanKegiatanPenunjangProfesi::TOLAK, $request->catatan);
+        $this->laporanKegiatanPenunjangProfesiRepository->updateStatusAndCatatan($laporanKegiatanPenunjangProfesi, LaporanKegiatanPenunjangProfesi::TOLAK, $request->catatan);
         $this->historyPenunjangProfesiRepository->storeStatusTolak($laporanKegiatanPenunjangProfesi, $request->catatan);
         return $laporanKegiatanPenunjangProfesi;
     }

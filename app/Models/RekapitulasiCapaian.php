@@ -18,4 +18,14 @@ class RekapitulasiCapaian extends Model
         'link',
         'name'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'fungsional_id');
+    }
+
+    public function periode()
+    {
+        return $this->belongsTo(Periode::class);
+    }
 }

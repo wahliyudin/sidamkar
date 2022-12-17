@@ -22,12 +22,13 @@ class RencanaRepository
 
     public function getDataRekapCapaian(User $user)
     {
-        return Rencana::query()
+        $total = 0;
+        $data = Rencana::query()
             ->where('user_id', $user->id)
             ->withWhereHas('laporanKegiatanJabatans', function ($query) {
                 $query->where('status', LaporanKegiatanJabatan::SELESAI)->with('butirKegiatan.subUnsur.unsur');
             })
-            ->get()->map(function (Rencana $rencana) use ($user) {
+            ->get()->map(function (Rencana $rencana) use ($user, &$total) {
                 $sesuai_jenjang = [];
                 $jenjang_bawah = [];
                 $jenjang_atas = [];
@@ -43,9 +44,22 @@ class RencanaRepository
                 $rencana->jenjang_bawah = $this->current($jenjang_bawah);
                 $rencana->sesuai_jenjang = $this->current($sesuai_jenjang);
                 $rencana->jenjang_atas = $this->current($jenjang_atas);
+                foreach ($rencana->jenjang_bawah as $jenjang_bawah) {
+                    $total += $jenjang_bawah['jumlah_ak'];
+                }
+                foreach ($rencana->sesuai_jenjang as $sesuai_jenjang) {
+                    $total += $sesuai_jenjang['jumlah_ak'];
+                }
+                foreach ($rencana->jenjang_atas as $jenjang_atas) {
+                    $total += $jenjang_atas['jumlah_ak'];
+                }
                 unset($rencana->laporanKegiatanJabatans);
                 return $rencana;
             });
+        return [
+            $data,
+            $total
+        ];
     }
 
     private function current($data)

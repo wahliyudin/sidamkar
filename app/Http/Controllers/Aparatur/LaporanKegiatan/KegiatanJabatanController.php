@@ -202,7 +202,7 @@ class KegiatanJabatanController extends Controller
         $rekapitulasiKegiatan = $this->kegiatanJabatanService->generateDocuments($this->authUser());
         return response()->json([
             'message' => 'Berhasil',
-            'data' => $rekapitulasiKegiatan?->url_rekap
+            'data' => $rekapitulasiKegiatan?->link_pernyataan
         ]);
     }
 

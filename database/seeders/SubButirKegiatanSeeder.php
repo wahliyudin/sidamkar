@@ -22,6 +22,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 450,
                 'nama' => 'dalam buku/majalah ilmiah internasional yang terindek',
                 'satuan_hasil' => 'Jurnal/Buku',
+                'percent' => null,
                 'score' => 20
             ],
             //2
@@ -30,6 +31,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 450,
                 'nama' => 'dalam buku/majalah ilmiah nasional terakreditasi',
                 'satuan_hasil' => 'Jurnal/Buku',
+                'percent' => null,
                 'score' => 12.5
             ],
             //3
@@ -38,6 +40,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 450,
                 'nama' => 'dalam buku/majalah ilmiah yang diakui organisasi profesi dan Instansi Pembina',
                 'satuan_hasil' => 'Jurnal/Buku/ Naskah',
+                'percent' => null,
                 'score' => 6
             ],
             //4
@@ -46,6 +49,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 451,
                 'nama' => 'dalam bentuk buku',
                 'satuan_hasil' => 'Buku',
+                'percent' => null,
                 'score' => 8
             ],
             //5
@@ -54,6 +58,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 451,
                 'nama' => 'dalam bentuk majalah ilmiah',
                 'satuan_hasil' => 'Naskah',
+                'percent' => null,
                 'score' => 4
             ],
             //6
@@ -62,6 +67,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 452,
                 'nama' => 'dalam bentuk buku yang diterbitkan dan diedarkan secara nasional',
                 'satuan_hasil' => 'Buku',
+                'percent' => null,
                 'score' => 8
             ],
             //7
@@ -70,6 +76,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 452,
                 'nama' => 'dalam majalah ilmiah yang diakui organisasi profesi dan Instansi',
                 'satuan_hasil' => 'Naskah',
+                'percent' => null,
                 'score' => 4
             ],
             //8
@@ -78,6 +85,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 453,
                 'nama' => 'dalam bentuk buku',
                 'satuan_hasil' => 'Buku',
+                'percent' => null,
                 'score' => 7
             ],
             //9
@@ -86,6 +94,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 453,
                 'nama' => 'dalam bentuk bentuk naskah',
                 'satuan_hasil' => 'Naskah',
+                'percent' => null,
                 'score' => 3.5
             ],
             //10
@@ -94,6 +103,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 456,
                 'nama' => 'dalam bentuk buku yang diterbitkan dan diedarkan secara nasional',
                 'satuan_hasil' => 'Buku',
+                'percent' => null,
                 'score' => 7
             ],
             //11
@@ -102,6 +112,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 456,
                 'nama' => 'dalam majalah ilmiah yang diakui organisasi profesi dan Instansi Pembina',
                 'satuan_hasil' => 'Naskah',
+                'percent' => null,
                 'score' => 3.5
             ],
             //11
@@ -110,6 +121,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 457,
                 'nama' => 'dalam bentuk buku',
                 'satuan_hasil' => 'Buku',
+                'percent' => null,
                 'score' => 3.5
             ],
             //12
@@ -118,6 +130,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 457,
                 'nama' => 'dalam bentuk naskah',
                 'satuan_hasil' => 'Naskah',
+                'percent' => null,
                 'score' => 3.5
             ],
             //13
@@ -126,6 +139,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 461,
                 'nama' => 'amanya lebih dari 960 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
+                'percent' => null,
                 'score' => 15
             ],
             //14
@@ -134,6 +148,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 461,
                 'nama' => 'lamanya antara 641 - 960 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
+                'percent' => null,
                 'score' => 9
             ],
             //15
@@ -142,6 +157,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 461,
                 'nama' => 'lamanya antara 481 - 640 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
+                'percent' => null,
                 'score' => 6
             ],
             //16
@@ -150,6 +166,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 461,
                 'nama' => 'lamanya antara 161 - 480 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
+                'percent' => null,
                 'score' => 3
             ],
             //17
@@ -158,6 +175,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 461,
                 'nama' => 'lamanya antara 81 - 160 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
+                'percent' => null,
                 'score' => 2
             ],
             //18
@@ -166,6 +184,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 461,
                 'nama' => 'lamanya antara 30 - 80 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
+                'percent' => null,
                 'score' => 1
             ],
             //19
@@ -174,6 +193,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 461,
                 'nama' => 'lamanya kurang dari 30 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
+                'percent' => null,
                 'score' => 0.5
             ],
             //20
@@ -182,6 +202,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 462,
                 'nama' => 'lamanya lebih dari 960 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
+                'percent' => null,
                 'score' => 7.5
             ],
             //21
@@ -190,6 +211,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 462,
                 'nama' => 'lamanya antara 641 - 960 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
+                'percent' => null,
                 'score' => 4.5
             ],
             //22
@@ -198,6 +220,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 462,
                 'nama' => 'lamanya antara 481 - 640 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
+                'percent' => null,
                 'score' => 3
             ],
             //23
@@ -206,6 +229,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 462,
                 'nama' => 'lamanya antara 161 - 480 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
+                'percent' => null,
                 'score' => 1.5
             ],
             //24
@@ -214,6 +238,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 462,
                 'nama' => 'lamanya antara 81 - 160 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
+                'percent' => null,
                 'score' => 1
             ],
             //25
@@ -222,6 +247,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 462,
                 'nama' => 'lamanya antara 30 - 80 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
+                'percent' => null,
                 'score' => 0.5
             ],
             //26
@@ -230,6 +256,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 462,
                 'nama' => 'lamanya kurang dari 30 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
+                'percent' => null,
                 'score' => 0.25
             ],
             //27
@@ -238,6 +265,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 467,
                 'nama' => '30 (tiga puluh) tahun lebih',
                 'satuan_hasil' => 'Piagam',
+                'percent' => null,
                 'score' => 3
             ],
             //28
@@ -246,6 +274,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 467,
                 'nama' => '20 (dua puluh) tahun',
                 'satuan_hasil' => 'Piagam',
+                'percent' => null,
                 'score' => 2
             ],
             //29
@@ -254,6 +283,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 467,
                 'nama' => '10 (sepuluh) tahun',
                 'satuan_hasil' => 'Piagam',
+                'percent' => null,
                 'score' => 1
             ],
             //30
@@ -262,7 +292,8 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 468,
                 'nama' => 'Tingkat Internasional',
                 'satuan_hasil' => 'Sertifikat/Piagam',
-                'score' => 35
+                'percent' => 35,
+                'score' => null
             ],
             //31
             [
@@ -270,7 +301,8 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 468,
                 'nama' => 'Tingkat Nasional',
                 'satuan_hasil' => 'Sertifikat/Piagam',
-                'score' => 25
+                'percent' => 25,
+                'score' => null
             ],
             //32
             [
@@ -278,7 +310,8 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 468,
                 'nama' => 'Tingkat lokal',
                 'satuan_hasil' => 'Sertifikat/Piagam',
-                'score' => 25
+                'percent' => 25,
+                'score' => null
             ],
             //33
             [
@@ -286,6 +319,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 469,
                 'nama' => 'Diploma Tiga',
                 'satuan_hasil' => 'Ijazah/Gelar',
+                'percent' => null,
                 'score' => 4
             ],
             //34
@@ -294,6 +328,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 469,
                 'nama' => 'Diploma Dua',
                 'satuan_hasil' => 'Ijazah/Gelar',
+                'percent' => null,
                 'score' => 3
             ],
         ];
@@ -307,6 +342,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 472,
                 'nama' => 'dalam buku/majalah ilmiah internasional yang terindek',
                 'satuan_hasil' => 'Jurnal/Buku',
+                'percent' => null,
                 'score' => 20
             ],
             //36
@@ -315,6 +351,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 472,
                 'nama' => 'dalam buku/majalah ilmiah nasional terakreditasi',
                 'satuan_hasil' => 'Jurnal/Buku',
+                'percent' => null,
                 'score' => 12.5
             ],
             //37
@@ -323,6 +360,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 472,
                 'nama' => 'dalam buku/majalah ilmiah yang diakui organisasi profesi dan Instansi Pembina',
                 'satuan_hasil' => 'Jurnal/Buku/ Naskah',
+                'percent' => null,
                 'score' => 6
             ],
             //38
@@ -331,6 +369,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 473,
                 'nama' => 'dalam bentuk buku',
                 'satuan_hasil' => 'Buku',
+                'percent' => null,
                 'score' => 8
             ],
             //39
@@ -339,6 +378,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 473,
                 'nama' => 'dalam bentuk majalah ilmiah',
                 'satuan_hasil' => 'Naskah',
+                'percent' => null,
                 'score' => 4
             ],
             //40
@@ -347,6 +387,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 474,
                 'nama' => 'dalam bentuk buku yang diterbitkan dan diedarkan secara nasional',
                 'satuan_hasil' => 'Buku',
+                'percent' => null,
                 'score' => 8
             ],
             //41
@@ -355,6 +396,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 474,
                 'nama' => 'dalam majalah ilmiah yang diakui organisasi profesi dan Instansi Pembina',
                 'satuan_hasil' => 'Naskah',
+                'percent' => null,
                 'score' => 4
             ],
             //42
@@ -363,6 +405,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 475,
                 'nama' => 'dalam bentuk buku',
                 'satuan_hasil' => 'Buku',
+                'percent' => null,
                 'score' => 7
             ],
             //43
@@ -371,6 +414,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 475,
                 'nama' => 'dalam bentuk makalah',
                 'satuan_hasil' => 'Naskah',
+                'percent' => null,
                 'score' => 3.5
             ],
             //44
@@ -379,6 +423,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 478,
                 'nama' => 'dalam bentuk buku yang diterbitkan dan diedarkan secara nasional',
                 'satuan_hasil' => 'Buku',
+                'percent' => null,
                 'score' => 7
             ],
             //45
@@ -387,6 +432,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 478,
                 'nama' => 'dalam majalah ilmiah yang diakui organisasi profesi dan Instansi Pembina',
                 'satuan_hasil' => 'Naskah',
+                'percent' => null,
                 'score' => 3.5
             ],
             //46
@@ -395,6 +441,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 479,
                 'nama' => 'dalam bentuk buku',
                 'satuan_hasil' => 'Buku',
+                'percent' => null,
                 'score' => 3
             ],
             //47
@@ -403,6 +450,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 479,
                 'nama' => 'dalam bentuk makalah',
                 'satuan_hasil' => 'Naskah',
+                'percent' => null,
                 'score' => 1.5
             ],
             //48
@@ -411,6 +459,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 483,
                 'nama' => 'lamanya lebih dari 960 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
+                'percent' => null,
                 'score' => 15
             ],
             //44
@@ -419,6 +468,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 483,
                 'nama' => 'lamanya antara 641 - 960 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
+                'percent' => null,
                 'score' => 9
             ],
             //45
@@ -427,6 +477,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 483,
                 'nama' => 'lamanya antara 481 - 640 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
+                'percent' => null,
                 'score' => 6
             ],
             //46
@@ -435,6 +486,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 483,
                 'nama' => 'lamanya antara 161 - 480 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
+                'percent' => null,
                 'score' => 3
             ],
             //47
@@ -443,6 +495,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 483,
                 'nama' => 'lamanya antara 81 - 160 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
+                'percent' => null,
                 'score' => 2
             ],
             //48
@@ -451,6 +504,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 483,
                 'nama' => 'lamanya antara 30 - 80 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
+                'percent' => null,
                 'score' => 1
             ],
             //48
@@ -459,6 +513,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 483,
                 'nama' => 'lamanya kurang dari 30 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
+                'percent' => null,
                 'score' => 0.5
             ],
             //49
@@ -467,6 +522,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 484,
                 'nama' => 'lamanya lebih dari 960 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
+                'percent' => null,
                 'score' => 7.5
             ],
             //50
@@ -475,6 +531,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 484,
                 'nama' => 'lamanya antara 641 - 960 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
+                'percent' => null,
                 'score' => 4.5
             ],
             //51
@@ -483,6 +540,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 484,
                 'nama' => 'lamanya antara 481 - 640 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
+                'percent' => null,
                 'score' => 3
             ],
             //52
@@ -491,6 +549,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 484,
                 'nama' => 'lamanya antara 161 - 480 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
+                'percent' => null,
                 'score' => 1.5
             ],
             //53
@@ -499,6 +558,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 484,
                 'nama' => 'lamanya antara 81 - 160 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
+                'percent' => null,
                 'score' => 1
             ],
             //53
@@ -507,6 +567,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 484,
                 'nama' => 'lamanya antara 30 - 80 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
+                'percent' => null,
                 'score' => 0.5
             ],
             //54
@@ -515,6 +576,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 484,
                 'nama' => 'lamanya kurang dari 30 jam',
                 'satuan_hasil' => 'Sertifikat/laporan',
+                'percent' => null,
                 'score' => 0.25
             ],
             //54
@@ -523,6 +585,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 489,
                 'nama' => '30 (tiga puluh) tahun lebih',
                 'satuan_hasil' => 'Piagam',
+                'percent' => null,
                 'score' => 3
             ],
             //55
@@ -531,6 +594,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 489,
                 'nama' => '20 (dua puluh) tahun',
                 'satuan_hasil' => 'Piagam',
+                'percent' => null,
                 'score' => 2
             ],
             //56
@@ -539,6 +603,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 489,
                 'nama' => '10 (sepuluh) tahun`',
                 'satuan_hasil' => 'Piagam',
+                'percent' => null,
                 'score' => 1
             ],
             //57
@@ -547,7 +612,8 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 490,
                 'nama' => 'Tingkat Internasional',
                 'satuan_hasil' => 'Sertifikat/Piagam',
-                'score' => 35
+                'percent' => 35,
+                'score' => null
             ],
             //58
             [
@@ -555,7 +621,8 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 490,
                 'nama' => 'Tingkat Nasional',
                 'satuan_hasil' => 'Sertifikat/Piagam',
-                'score' => 25
+                'percent' => 25,
+                'score' => null
             ],
             //59
             [
@@ -563,7 +630,8 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 490,
                 'nama' => 'Tingkat Lokal',
                 'satuan_hasil' => 'Sertifikat/Piagam',
-                'score' => 15
+                'percent' => 15,
+                'score' => null
             ],
             //60
             [
@@ -571,6 +639,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 491,
                 'nama' => 'Doktor',
                 'satuan_hasil' => 'Ijazah/Gelar',
+                'percent' => null,
                 'score' => 15
             ],
             //61
@@ -579,6 +648,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 491,
                 'nama' => ' Magister',
                 'satuan_hasil' => 'Ijazah/Gelar',
+                'percent' => null,
                 'score' => 10
             ],
             //62
@@ -587,6 +657,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 491,
                 'nama' => ' Sarjana/Diploma Empat',
                 'satuan_hasil' => 'Ijazah/Gelar',
+                'percent' => null,
                 'score' => 5
             ],
         ];

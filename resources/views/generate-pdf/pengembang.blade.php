@@ -64,37 +64,38 @@
             <tr>
                 <td style="width: 150px;">Nama</td>
                 <td style="width: 10px;">:</td>
-                <td>Lorem, ipsum. Lorem, ipsum.</td>
+                <td>{{ $user?->userAparatur?->nama }}</td>
             </tr>
             <tr>
                 <td style="width: 150px;">NIP</td>
                 <td style="width: 10px;">:</td>
-                <td>Lorem, ipsum. Lorem, ipsum.</td>
+                <td>{{ $user?->userAparatur?->nip }}</td>
             </tr>
             <tr>
                 <td style="width: 150px;">Nomor Seri Karpeg</td>
                 <td style="width: 10px;">:</td>
-                <td>Lorem, ipsum. Lorem, ipsum.</td>
+                <td>{{ $user?->userAparatur?->nomor_karpeg }}</td>
             </tr>
             <tr>
                 <td style="width: 150px;">Tempat/Tgl Lahir</td>
                 <td style="width: 10px;">:</td>
-                <td>Lorem, ipsum. Lorem, ipsum.</td>
+                <td>{{ $user?->userAparatur->tempat_lahir . ', ' . \Carbon\Carbon::make($user?->userAparatur->tanggal_lahir)->format('Y-m-d') }}
+                </td>
             </tr>
             <tr>
                 <td style="width: 150px;">Jenis Kelamin</td>
                 <td style="width: 10px;">:</td>
-                <td>Lorem, ipsum. Lorem, ipsum.</td>
+                <td>{{ $user?->userAparatur?->jenis_kelamin == 'P' ? 'Perempuan' : 'Laki-Laki' }}</td>
             </tr>
             <tr>
                 <td style="width: 150px;">Pangkat/Gol. Ruang/TMT</td>
                 <td style="width: 10px;">:</td>
-                <td>Lorem, ipsum. Lorem, ipsum.</td>
+                <td>{{ $user?->userAparatur?->pangkatGolonganTmt?->nama }}</td>
             </tr>
             <tr>
                 <td style="width: 150px;">Jabatan/TMT</td>
                 <td style="width: 10px;">:</td>
-                <td>Lorem, ipsum. Lorem, ipsum.</td>
+                <td>{{ $role?->display_name }}</td>
             </tr>
             <tr>
                 <td style="width: 150px;">Unit Kerja</td>
@@ -128,9 +129,9 @@
             </tr>
             @php
                 $sub_unsur_id = null;
-                $total_penunjang = 0;
+                $total_profesi = 0;
             @endphp
-            @foreach ($penunjangs as $item)
+            @foreach ($profesis as $item)
                 <tr>
                     @if ($sub_unsur_id != $item->sub_unsur_id)
                         <td>{{ $item->sub_unsur_nama }}</td>
@@ -150,12 +151,12 @@
                 </tr>
                 @php
                     $sub_unsur_id = $item->sub_unsur_id;
-                    $total_penunjang += $item->jumlah_ak;
+                    $total_profesi += $item->jumlah_ak;
                 @endphp
             @endforeach
             <tr>
                 <th class="text-start" colspan="5">JUMLAH ANGKA KREDIT PENGEMBANGAN PROFESI</th>
-                <th>{{ $total_penunjang }}</th>
+                <th>{{ $total_profesi }}</th>
             </tr>
             <tr>
                 <th class="text-start" colspan="2">II. PENUNJANG</th>
@@ -166,30 +167,39 @@
             </tr>
             @php
                 $sub_unsur_id_2 = null;
+                $total_penunjang = 0;
             @endphp
-            @foreach ($profesis as $item)
+            @foreach ($penunjangs as $item)
                 <tr>
                     @if ($sub_unsur_id_2 != $item->sub_unsur_id)
                         <td>{{ $item->sub_unsur_nama }}</td>
                         <td>{{ $item->nama }}</td>
                         <td>{{ $item->satuan_hasil }}</td>
-                        <td>{{ $item->angka_kredit }}</td>
-                        <td></td>
-                        <td></td>
+                        <td class="text-center">{{ $item->angka_kredit }}</td>
+                        <td class="text-center">{{ $item->volume }}</td>
+                        <td class="text-center">{{ $item->jumlah_ak }}</td>
                     @else
                         <td></td>
                         <td>{{ $item->nama }}</td>
                         <td>{{ $item->satuan_hasil }}</td>
-                        <td>{{ $item->angka_kredit }}</td>
-                        <td></td>
-                        <td></td>
+                        <td class="text-center">{{ $item->angka_kredit }}</td>
+                        <td class="text-center">{{ $item->volume }}</td>
+                        <td class="text-center">{{ $item->jumlah_ak }}</td>
                     @endif
                 </tr>
                 @php
                     $sub_unsur_id_2 = $item->sub_unsur_id;
+                    $total_penunjang += $item->jumlah_ak;
                 @endphp
             @endforeach
-
+            <tr>
+                <th class="text-start" colspan="5">JUMLAH ANGKA KREDIT PENUNJANG</th>
+                <th>{{ $total_penunjang }}</th>
+            </tr>
+            <tr>
+                <th class="text-start" colspan="5">AK PENUNJANG YANG DIDAPATKAN</th>
+                <th>{{ $total_penunjang }}</th>
+            </tr>
         </tbody>
     </table>
     <table width="98%" class="table table-light-none table-striped page-break">
