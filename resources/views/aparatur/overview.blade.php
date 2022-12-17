@@ -57,9 +57,7 @@
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
                                     Total AK Diterima
                                 </p>
-                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target">
-                                    100
-                                </h2>
+                                <h2 style="font-family: 'Roboto';color: #06152B;" class="target">{{ $ak_total }}</h2>
                             </div>
                         </div>
                     </div>

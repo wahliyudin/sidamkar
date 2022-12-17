@@ -80,8 +80,9 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="basicInput">Privinsi</label>
-                                        <select class="form-select provinsi2" data-id=".provinsi2" name="provinsi_id">
+                                        <label for="basicInput">Provinsi</label>
+                                        <select class="form-select provinsi2" disabled data-id=".provinsi2"
+                                            name="provinsi_id">
                                             <option disabled selected>- Pilih Privinsi -</option>
                                             @foreach ($provinsis as $prov)
                                                 <option value="{{ $prov->id }}" @selected(old('provinsi_id', $user->userPejabatStruktural?->provinsi_id) == $prov->id)>
@@ -95,7 +96,8 @@
                                     @if ($user->userPejabatStruktural?->tingkat_aparatur == 'kab_kota')
                                         <div class="form-group">
                                             <label for="basicInput">Kabupaten / Kota</label>
-                                            <select class="kab_kota_id form-select" name="kab_kota_id" id="kab_kota_id">
+                                            <select class="kab_kota_id form-select" disabled name="kab_kota_id"
+                                                id="kab_kota_id">
                                                 <option disabled selected>- Pilih Kabupaten / Kota -</option>
                                                 @foreach ($kab_kota as $kabkota)
                                                     <option value="{{ $kabkota->id }}" @selected(old('kab_kota_id', $user->userPejabatStruktural?->kab_kota_id) == $kabkota->id)>
@@ -123,9 +125,9 @@
                                     <div class="form-group">
                                         <label for="basicInput">Jabatan</label>
                                         <ul>
-                                                 @foreach (Auth::user()->roles as $role)
-                                                     <li>{{ $role->display_name }}</li>
-                                                 @endforeach
+                                            @foreach (Auth::user()->roles as $role)
+                                                <li>{{ $role->display_name }}</li>
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </div>
