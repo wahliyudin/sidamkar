@@ -19,10 +19,14 @@ return new class extends Migration
             $table->unsignedBigInteger('periode_id');
             $table->boolean('is_send')->default(false);
             $table->boolean('is_ttd')->default(false);
-            $table->string('url_rekap')->nullable();
-            $table->string('name_rekap')->nullable();
-            $table->string('url_capaian')->nullable();
-            $table->string('name_capaian')->nullable();
+            $table->string('link_pernyataan')->nullable();
+            $table->string('name_pernyataan')->nullable();
+            $table->string('link_rekap_capaian')->nullable();
+            $table->string('name_rekap_capaian')->nullable();
+            $table->string('link_pengembang')->nullable();
+            $table->string('name_pengembang')->nullable();
+            $table->string('link_penilaian_capaian')->nullable();
+            $table->string('name_penilaian_capaian')->nullable();
             $table->timestamps();
 
             $table->foreign('fungsional_id')->on('users')->references('id')->cascadeOnDelete();

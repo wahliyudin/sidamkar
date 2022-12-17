@@ -9,6 +9,8 @@ class KetentuanNilai extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'role_id',
+        'pangkat_golongan_tmt_id',
         'ak_min',
         'ak_max',
         'ak_kp',
@@ -17,6 +19,6 @@ class KetentuanNilai extends Model
         'ak_bangprof',
         'ak_dasar',
         'ak_max_bangprof_penunjang',
-        'ak_max_penunjang', 
+        'ak_max_penunjang',
     ];
 }

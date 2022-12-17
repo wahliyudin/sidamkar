@@ -14,7 +14,15 @@ class RekapitulasiKegiatan extends Model
         'fungsional_id',
         'periode_id',
         'is_send',
-        'is_ttd'
+        'is_ttd',
+        'link_pernyataan',
+        'name_pernyataan',
+        'link_rekap_capaian',
+        'name_rekap_capaian',
+        'link_pengembang',
+        'name_pengembang',
+        'link_penilaian_capaian',
+        'name_penilaian_capaian'
     ];
 
     public function fungsional()
