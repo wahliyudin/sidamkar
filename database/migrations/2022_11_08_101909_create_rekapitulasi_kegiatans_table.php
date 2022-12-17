@@ -17,16 +17,21 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->foreignUuid('fungsional_id');
             $table->unsignedBigInteger('periode_id');
-            $table->boolean('is_send')->default(false);
-            $table->boolean('is_ttd')->default(false);
+            $table->enum('is_send', [1, 2, 3])->nullable();
+            $table->boolean('is_ttd_penilai')->default(false);
+            $table->boolean('is_ttd_penetap')->default(false);
             $table->string('link_pernyataan')->nullable();
             $table->string('name_pernyataan')->nullable();
             $table->string('link_rekap_capaian')->nullable();
             $table->string('name_rekap_capaian')->nullable();
+            $table->float('total_capaian', places: 4, unsigned: true)->nullable();
             $table->string('link_pengembang')->nullable();
             $table->string('name_pengembang')->nullable();
+            $table->float('jml_ak_profesi', places: 4, unsigned: true)->nullable();
+            $table->float('jml_ak_penunjang', places: 4, unsigned: true)->nullable();
             $table->string('link_penilaian_capaian')->nullable();
             $table->string('name_penilaian_capaian')->nullable();
+            $table->float('capaian_ak', places: 4, unsigned: true)->nullable();
             $table->timestamps();
 
             $table->foreign('fungsional_id')->on('users')->references('id')->cascadeOnDelete();

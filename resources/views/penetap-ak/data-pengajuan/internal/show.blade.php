@@ -5,17 +5,8 @@
         <div class="row">
             <div class="col-md-12 px-2">
                 <div class="card mb-3">
-                    <div class="card-header d-flex justify-content-between align-items-center">
+                    <div class="card-header">
                         <h4>Laporan/Dokumen {{ $user?->userAparatur->nama }}</h4>
-                        <div class="d-flex align-items-center">
-                            <button data-id="{{ $user?->id }}"
-                                class="btn {{ in_array($rekapitulasiKegiatan->is_send, [2, 3]) ? 'disabled' : '' }} btn-blue me-3 ps-3 pe-4 text-sm ttd">
-                                <i class="fa-solid fa-pen-clip me-2"></i>TTD</button>
-                            <button data-id="{{ $user?->id }}"
-                                class="btn btn-green btn-sm ps-3 {{ in_array($rekapitulasiKegiatan->is_send, [2, 3]) || $rekapitulasiKegiatan->is_ttd_penilai == false ? 'disabled' : '' }} pe-4 text-sm send-to-penilai">
-                                <i class="fa-solid fa-paper-plane me-2"></i>Kirim Dokumen Ke
-                                Penilai</button>
-                        </div>
                     </div>
                     <div class="card-body">
                         <div class="page-content">
@@ -36,7 +27,7 @@
                                                     <a href="#surat-tab2"
                                                         class="h-100 nav-link border-y-0 border-right-0 d-flex justify-content-center align-items-center"
                                                         data-toggle="tab" data-id="surat-tab2">
-                                                        <h6 class="my-1">Pernyataan</h6>
+                                                        <h6 class="my-1">Penilaian Capaian</h6>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item">
@@ -57,7 +48,7 @@
                                                                 style="height: 3rem; object-fit: cover;" alt=""
                                                                 srcset="">
                                                         </div>
-                                                        <iframe src="{{ $rekapitulasiKegiatan?->link_rekap_capaian }}"
+                                                        <iframe src="{{ $rekapitulasiKegiatan?->file_capaian }}"
                                                             style="border-radius: 10px; overflow: hidden;" width="100%"
                                                             height="500px"></iframe>
                                                     </div>
@@ -66,7 +57,7 @@
                                                 <div class="tab-pane fade" id="surat-tab2">
                                                     <div class="card">
                                                         <div class="card-body px-0">
-                                                            <iframe src="{{ $rekapitulasiKegiatan?->link_pernyataan }}"
+                                                            <iframe src=""
                                                                 style="border-radius: 10px; overflow: hidden;"
                                                                 width="100%" height="500px"></iframe>
                                                         </div>
@@ -76,7 +67,7 @@
                                                 <div class="tab-pane fade" id="surat-tab3">
                                                     <div class="card">
                                                         <div class="card-body px-0">
-                                                            <iframe src="{{ $rekapitulasiKegiatan?->link_pengembang }}"
+                                                            <iframe src=""
                                                                 style="border-radius: 10px; overflow: hidden;"
                                                                 width="100%" height="500px"></iframe>
                                                         </div>
@@ -183,26 +174,6 @@
                         type: 'success',
                         title: 'Berhasil',
                         html: 'Berhasil Ditanda Tangan'
-                    }).then(() => {
-                        location.reload()
-                    });
-                },
-                error: ajaxError
-            });
-        });
-        $('.send-to-penilai').click(function(e) {
-            e.preventDefault();
-            $('#surat-tab1 .bg-spin').show();
-            $.ajax({
-                type: "POST",
-                url: url('/atasan-langsung/kegiatan-selesai/' + $(this).data('id') + '/send-to-penilai'),
-                dataType: "JSON",
-                success: function(response) {
-                    $('#surat-tab1 .bg-spin').hide();
-                    swal({
-                        type: 'success',
-                        title: 'Berhasil',
-                        html: response.message
                     }).then(() => {
                         location.reload()
                     });

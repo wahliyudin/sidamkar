@@ -308,7 +308,6 @@ class KegiatanJabatanService
         ];
     }
 
-
     public function sumScoreByUser($user_id)
     {
         return $this->laporanKegiatanPenunjangProfesiRepository->sumScoreByUser($user_id);

@@ -3,18 +3,14 @@
 namespace App\Services;
 
 use App\Facades\Modules\DestructRoleFacade;
-use App\Models\LaporanKegiatanJabatan;
 use App\Models\Periode;
 use App\Models\RekapitulasiKegiatan;
-use App\Models\Rencana;
-use App\Models\Unsur;
 use App\Models\User;
 use App\Repositories\PenilaianCapaianRepository;
 use App\Repositories\PeriodeRepository;
 use App\Repositories\RencanaRepository;
 use App\Repositories\UnsurRepository;
 use App\Traits\ScoringTrait;
-use Illuminate\Validation\ValidationException;
 use Barryvdh\Snappy\Facades\SnappyPdf as PDF;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -180,7 +176,7 @@ class GeneratePdfService
         $rekapitulasiKegiatan = $this->generatePernyataan($user, $content, $ttd);
         if ($rekapitulasiKegiatan instanceof RekapitulasiKegiatan) {
             $rekapitulasiKegiatan->update([
-                'is_ttd' => true
+                'is_ttd_penilai' => true
             ]);
             $rekapitulasiKegiatan->historyRekapitulasiKegiatans()->create([
                 'content' => 'Rekapitulasi ditanda tangani Atasan Langsung'

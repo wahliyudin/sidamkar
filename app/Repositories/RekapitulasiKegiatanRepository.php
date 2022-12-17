@@ -27,6 +27,21 @@ class RekapitulasiKegiatanRepository
             ->where('periode_id', $periode->id)->first();
     }
 
+    public function sendToAtasanLangsung(RekapitulasiKegiatan $rekapitulasiKegiatan)
+    {
+        return $rekapitulasiKegiatan->update(['is_send' => RekapitulasiKegiatan::IS_SEND_KE_ATASAN_LANGSUNG]);
+    }
+
+    public function sendToPenilai(RekapitulasiKegiatan $rekapitulasiKegiatan)
+    {
+        return $rekapitulasiKegiatan->update(['is_send' => RekapitulasiKegiatan::IS_SEND_KE_PENILAI]);
+    }
+
+    public function sendToPenetap(RekapitulasiKegiatan $rekapitulasiKegiatan)
+    {
+        return $rekapitulasiKegiatan->update(['is_send' => RekapitulasiKegiatan::IS_SEND_KE_PENETAP]);
+    }
+
     public function store($user_id, $periode_id, $link_pernyataan, $name_pernyataan, $link_rekap_capaian, $name_rekap_capaian, $link_pengembang, $name_pengembang, $link_penilaian_capaian, $name_penilaian_capaian): RekapitulasiKegiatan
     {
         return $this->rekapitulasiKegiatan->query()->create([

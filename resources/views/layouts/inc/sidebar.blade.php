@@ -198,14 +198,16 @@
                                     </div>
                                     <span>Data Pengajuan</span>
                                 </a>
-                                <ul class="submenu ">
-                                    <li class="submenu-item ">
-                                        <a href="#">
+                                <ul
+                                    class="submenu {{ request()->is('penetap-ak/data-pengajuan/external*') || request()->is('penetap-ak/data-pengajuan/internal*') ? 'active' : '' }}">
+                                    <li
+                                        class="submenu-item {{ request()->is('penetap-ak/data-pengajuan/internal*') ? 'active' : '' }}">
+                                        <a href="{{ route('penetap-ak.data-pengajuan.internal') }}">
                                             Internal</a>
                                     </li>
                                     <li
-                                        class="submenu-item {{ request()->is('penilai-ak/data-pengajuan/external*') ? 'active' : '' }}">
-                                        <a href="#">
+                                        class="submenu-item {{ request()->is('penetap-ak/data-pengajuan/external*') ? 'active' : '' }}">
+                                        <a href="{{ route('penetap-ak.data-pengajuan.external') }}">
                                             External</a>
                                     </li>
                                 </ul>

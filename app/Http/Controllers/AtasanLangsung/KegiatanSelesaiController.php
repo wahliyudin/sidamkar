@@ -3,15 +3,15 @@
 namespace App\Http\Controllers\AtasanLangsung;
 
 use App\Http\Controllers\Controller;
-use App\Models\KabProvPenilaiAndPenetap;
 use App\Models\LaporanKegiatanJabatan;
 use App\Models\RekapitulasiKegiatan;
 use App\Models\User;
 use App\Repositories\PeriodeRepository;
+use App\Repositories\RekapitulasiKegiatanRepository;
+use App\Repositories\UserRepository;
 use App\Services\GeneratePdfService;
 use App\Services\MenteService;
 use App\Traits\AuthTrait;
-use Illuminate\Http\Request;
 
 class KegiatanSelesaiController extends Controller
 {
@@ -20,12 +20,16 @@ class KegiatanSelesaiController extends Controller
     private PeriodeRepository $periodeRepository;
     private MenteService $menteService;
     private GeneratePdfService $generatePdfService;
+    private RekapitulasiKegiatanRepository $rekapitulasiKegiatanRepository;
+    private UserRepository $userRepository;
 
-    public function __construct(PeriodeRepository $periodeRepository, MenteService $menteService, GeneratePdfService $generatePdfService)
+    public function __construct(PeriodeRepository $periodeRepository, MenteService $menteService, GeneratePdfService $generatePdfService, RekapitulasiKegiatanRepository $rekapitulasiKegiatanRepository, UserRepository $userRepository)
     {
         $this->periodeRepository = $periodeRepository;
         $this->menteService = $menteService;
         $this->generatePdfService = $generatePdfService;
+        $this->rekapitulasiKegiatanRepository = $rekapitulasiKegiatanRepository;
+        $this->userRepository = $userRepository;
     }
 
     public function index()
@@ -43,7 +47,7 @@ class KegiatanSelesaiController extends Controller
                     ->with(['pangkatGolonganTmt']);
             })
             ->withWhereHas('rekapitulasiKegiatan', function ($query) {
-                $query->where('is_send', true);
+                $query->where('is_send', RekapitulasiKegiatan::IS_SEND_KE_ATASAN_LANGSUNG);
             })
             ->withSum(['laporanKegiatanJabatans' => function ($query) use ($periode) {
                 $query->where('status', LaporanKegiatanJabatan::SELESAI)->whereBetween('current_date', [$periode->awal, $periode->akhir]);
@@ -66,10 +70,8 @@ class KegiatanSelesaiController extends Controller
     public function show($id)
     {
         $periode = $this->periodeRepository->isActive();
-        $rekapitulasiKegiatan = RekapitulasiKegiatan::query()
-            ->where('fungsional_id', $id)
-            ->where('periode_id', $periode->id)->first();
         $user = User::query()->findOrFail($id);
+        $rekapitulasiKegiatan = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode);
         return view('atasan-langsung.kegiatan-selesai.show', compact('rekapitulasiKegiatan', 'user'));
     }
 
@@ -79,6 +81,17 @@ class KegiatanSelesaiController extends Controller
         $this->generatePdfService->ttdRekapitulasi($user, 'Rekapitulasi Ditanda Tangani Oleh Atasan Langsung', public_path('storage/ttd.png'));
         return response()->json([
             'message' => 'Berhasil'
+        ]);
+    }
+
+    public function sendToPenilai($user_id)
+    {
+        $periode = $this->periodeRepository->isActive();
+        $user = $this->userRepository->getUserById($user_id);
+        $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode);
+        $this->rekapitulasiKegiatanRepository->sendToPenilai($rekap);
+        return response()->json([
+            'message' => 'Berhasil dikirim ke Penilai'
         ]);
     }
 }

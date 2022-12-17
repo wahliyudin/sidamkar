@@ -56,6 +56,8 @@ use App\Http\Controllers\PenetapAK\DataPengajuan\KabKotaExternal;
 use App\Http\Controllers\PenetapAK\DataPengajuan\KabKotaInternal;
 use App\Http\Controllers\PenetapAK\DataPenetapAKController;
 use App\Http\Controllers\Kemendagri\CMS\PeriodeController;
+use App\Http\Controllers\PenetapAK\DataPengajuan\ExternalController as DataPengajuanExternalController;
+use App\Http\Controllers\PenetapAK\DataPengajuan\InternalController as DataPengajuanInternalController;
 use App\Http\Controllers\PenilaiAk\DataPengajuan\ExternalController;
 use App\Http\Controllers\PenilaiAk\DataPengajuan\InternalController;
 use App\Http\Controllers\PenilaiAk\KegiatanSelesai\ShowController;
@@ -180,10 +182,12 @@ Route::middleware(['auth'])->group(function () {
         });
 
         Route::middleware(['role:atasan_langsung'])->group(function () {
-            Route::get('atasan-langsung/kegiatan-selesai', [AtasanLangsungKegiatanSelesaiController::class, 'index'])->name('atasan-langsung.kegiatan-selesai');
-            Route::get('atasan-langsung/kegiatan-selesai/{id}/show', [AtasanLangsungKegiatanSelesaiController::class, 'show'])->name('atasan-langsung.kegiatan-selesai.show');
-            Route::post('atasan-langsung/kegiatan-selesai/{id}/ttd', [AtasanLangsungKegiatanSelesaiController::class, 'ttd'])->name('atasan-langsung.kegiatan-selesai.ttd');
-
+            Route::controller(AtasanLangsungKegiatanSelesaiController::class)->group(function () {
+                Route::get('atasan-langsung/kegiatan-selesai', 'index')->name('atasan-langsung.kegiatan-selesai');
+                Route::get('atasan-langsung/kegiatan-selesai/{id}/show', 'show')->name('atasan-langsung.kegiatan-selesai.show');
+                Route::post('atasan-langsung/kegiatan-selesai/{id}/ttd', 'ttd')->name('atasan-langsung.kegiatan-selesai.ttd');
+                Route::post('atasan-langsung/kegiatan-selesai/{user_id}/send-to-penilai', 'sendToPenilai')->name('atasan-langsung.kegiatan-selesai.send-to-penilai');
+            });
             Route::get('atasan-langsung/verifikasi-kegiatan', [AtasanLangsungVerifikasiKegiatanController::class, 'index'])->name('atasan-langsung.verifikasi-kegiatan');
 
             Route::controller(VerifikasiKegiatanKegiatanJabatanController::class)->group(function () {
@@ -232,16 +236,13 @@ Route::middleware(['auth'])->group(function () {
             Route::get('penilai-ak/kegiatan-selesai', [PenilaiAkKegiatanSelesaiController::class, 'index'])->name('penilai-ak.kegiatan-selesai');
         });
         Route::middleware(['role:penetap_ak'])->group(function () {
-            Route::get('penetap-ak/data-pengajuan/kabkota-external/kabKota-external', [KabKotaExternal::class, 'index'])->name('penetap-ak.data-pengajuan.kabkota-external.kabKota-external');
-            Route::get('penetap-ak/data-pengajuan/kabkota-internal/kabKota-internal', [KabKotaInternal::class, 'index'])->name('penetap-ak.data-pengajuan.kabkota-internal.kabKota-internal');
+            Route::controller(DataPengajuanInternalController::class)->group(function () {
+                Route::get('penetap-ak/data-pengajuan/internal', 'index')->name('penetap-ak.data-pengajuan.internal');
+            });
+            Route::controller(DataPengajuanExternalController::class)->group(function () {
+                Route::get('penetap-ak/data-pengajuan/external', 'index')->name('penetap-ak.data-pengajuan.external');
+            });
             Route::get('penetap_ak/overview', [PenilaiAkOverviewController::class, 'index'])->name('penetap_ak.overview');
-            Route::get('data-penetap-ak', [DataPenetapAKController::class, 'index'])->name('data-penetap-ak');
-            Route::post('/data-penetap-ak-store', [DataPenetapAKController::class, 'store'])->name('data-penetap-ak-store');
-            Route::get('data-penetap-ak/show-dockepeg/{id}', [DataPenetapAKController::class, 'showDocKepeg'])->name('data-penetap-ak.show-doc-kepeg');
-            Route::post('data-penetap-ak/store-dockepeg', [DataAtasanLangsungController::class, 'storeDocKepeg'])->name('data-penetap-ak.store-doc-kepeg');
-            Route::post('data-penetap-ak/store-dockom', [DataAtasanLangsungController::class, 'storeDocKom'])->name('data-penetap-ak.store-doc-kom');
-            Route::delete('data-penetap-ak/destroy-dockepeg/{id}', [DataAtasanLangsungController::class, 'destroyDocKepeg'])->name('data-penetap-ak.destroy-doc-kepeg');
-            Route::delete('data-penetap-ak/destroy-dockom/{id}', [DataAtasanLangsungController::class, 'destroyDocKom'])->name('data-penetap-ak.destroy-doc-kom');
         });
     });
 

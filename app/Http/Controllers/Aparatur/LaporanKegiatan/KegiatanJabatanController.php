@@ -8,24 +8,16 @@ use App\Http\Requests\Aparatur\LaporanKegiatan\StoreLaporanRequest;
 use App\Http\Requests\Aparatur\LaporanKegiatan\UpdateLaporanRequest;
 use App\Models\ButirKegiatan;
 use App\Models\LaporanKegiatanJabatan;
-use App\Models\RekapitulasiKegiatan;
-use App\Models\Unsur;
-use App\Models\User;
 use App\Repositories\PeriodeRepository;
 use App\Services\Aparatur\LaporanKegiatan\KegiatanJabatanService;
 use App\Services\GeneratePdfService;
 use App\Services\TemporaryFileService;
 use App\Traits\AuthTrait;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
-use Barryvdh\Snappy\Facades\SnappyPdf as PDF;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
 use App\Models\KetentuanSkpFungsional;
+use App\Repositories\RekapitulasiKegiatanRepository;
 
 class KegiatanJabatanController extends Controller
 {
@@ -35,22 +27,15 @@ class KegiatanJabatanController extends Controller
     private KegiatanJabatanService $kegiatanJabatanService;
     private TemporaryFileService $temporaryFileService;
     private GeneratePdfService $generatePdfService;
+    private RekapitulasiKegiatanRepository $rekapitulasiKegiatanRepository;
 
-    /**
-     * __construct
-     * Inject Service dan Repository
-     *
-     * @param PeriodeRepository $periodeRepository
-     * @param KegiatanJabatanService $kegiatanJabatanService
-     * @param TemporaryFileService $temporaryFileService
-     * @return void
-     */
-    public function __construct(PeriodeRepository $periodeRepository, KegiatanJabatanService $kegiatanJabatanService, TemporaryFileService $temporaryFileService, GeneratePdfService $generatePdfService)
+    public function __construct(PeriodeRepository $periodeRepository, KegiatanJabatanService $kegiatanJabatanService, TemporaryFileService $temporaryFileService, GeneratePdfService $generatePdfService, RekapitulasiKegiatanRepository $rekapitulasiKegiatanRepository)
     {
         $this->periodeRepository = $periodeRepository;
         $this->kegiatanJabatanService = $kegiatanJabatanService;
         $this->temporaryFileService = $temporaryFileService;
         $this->generatePdfService = $generatePdfService;
+        $this->rekapitulasiKegiatanRepository = $rekapitulasiKegiatanRepository;
     }
 
     public function index()
@@ -208,19 +193,14 @@ class KegiatanJabatanController extends Controller
     public function sendRekap()
     {
         $periode = $this->periodeRepository->isActive();
-        $rekap = RekapitulasiKegiatan::query()
-            ->where('fungsional_id', auth()->user()->id)
-            ->where('periode_id', $periode->id)
-            ->first();
+        $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode(auth()->user(), $periode);
         if (!$rekap) {
             throw ValidationException::withMessages(['Data Rekapitulasi Belum Dibuat']);
         }
-        if ($rekap->is_send == true) {
+        if (in_array($rekap->is_send, [1, 2, 3])) {
             throw ValidationException::withMessages(['Data rekapitulasi sudah dikirim']);
         }
-        $rekap->update([
-            'is_send' => true
-        ]);
+        $this->rekapitulasiKegiatanRepository->sendToAtasanLangsung($rekap);
         return response()->json([
             'message' => 'Berhasil dikirim'
         ]);
