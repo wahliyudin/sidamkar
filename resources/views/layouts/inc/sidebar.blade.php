@@ -18,7 +18,7 @@
                         {{ $role->display_name }}
                     </p>
                 @endforeach
-            @elseif (count(Auth::user()->roles) > 2)
+            @else
                 <p style="font-size: 14px; color: white;" class="d-flex justify-content-center align-items-center">
                     <marquee width="80%" direction="left" scrollamount="5">
                         @foreach (Auth::user()->roles as $role)
