@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Models\LaporanKegiatanJabatan;
 use App\Models\Rencana;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class RencanaRepository
 {
@@ -23,41 +24,39 @@ class RencanaRepository
     public function getDataRekapCapaian(User $user)
     {
         $total = 0;
-        $data = Rencana::query()
-            ->where('user_id', $user->id)
-            ->withWhereHas('laporanKegiatanJabatans', function ($query) {
-                $query->where('status', LaporanKegiatanJabatan::SELESAI)->with('butirKegiatan.subUnsur.unsur');
-            })
-            ->get()->map(function (Rencana $rencana) use ($user, &$total) {
-                $sesuai_jenjang = [];
-                $jenjang_bawah = [];
-                $jenjang_atas = [];
-                foreach ($rencana->laporanKegiatanJabatans as $laporan) {
-                    if ($laporan->butirKegiatan->role_id == $user->roles()->whereIn('name', getAllRoleFungsional())->first()->id) {
-                        array_push($sesuai_jenjang, $laporan);
-                    } elseif ($laporan->butirKegiatan->role_id == $user->roles()->whereIn('name', getAllRoleFungsional())->first()->id + 1) {
-                        array_push($jenjang_atas, $laporan);
-                    } elseif ($laporan->butirKegiatan->role_id == $user->roles()->whereIn('name', getAllRoleFungsional())->first()->id - 1) {
-                        array_push($jenjang_bawah, $laporan);
-                    }
-                }
-                $rencana->jenjang_bawah = $this->current($jenjang_bawah);
-                $rencana->sesuai_jenjang = $this->current($sesuai_jenjang);
-                $rencana->jenjang_atas = $this->current($jenjang_atas);
-                foreach ($rencana->jenjang_bawah as $jenjang_bawah) {
-                    $total += $jenjang_bawah['jumlah_ak'];
-                }
-                foreach ($rencana->sesuai_jenjang as $sesuai_jenjang) {
-                    $total += $sesuai_jenjang['jumlah_ak'];
-                }
-                foreach ($rencana->jenjang_atas as $jenjang_atas) {
-                    $total += $jenjang_atas['jumlah_ak'];
-                }
-                unset($rencana->laporanKegiatanJabatans);
-                return $rencana;
-            });
+        $data = DB::select('SELECT
+                rencanas.id AS rencana_id,
+	            rencanas.nama AS rencana,
+                (CASE WHEN butir_kegiatans.role_id = 1 THEN "sesuai_jenjang"
+                    ELSE (CASE WHEN butir_kegiatans.role_id = 2 THEN "jenjang_atas"
+                        ELSE (CASE WHEN butir_kegiatans.role_id = -1 THEN "jenjang_bawah" END)END)END) AS tingkat_role,
+                butir_kegiatans.nama AS butir_kegiatan_nama,
+                butir_kegiatans.satuan_hasil,
+                butir_kegiatans.score,
+                COUNT(laporan_kegiatan_jabatans.id) AS volume,
+                SUM(laporan_kegiatan_jabatans.score) AS jumlah_ak
+            FROM rencanas
+            JOIN laporan_kegiatan_jabatans ON laporan_kegiatan_jabatans.rencana_id = rencanas.id
+            JOIN butir_kegiatans ON butir_kegiatans.id = laporan_kegiatan_jabatans.butir_kegiatan_id
+            JOIN sub_unsurs ON sub_unsurs.id = butir_kegiatans.sub_unsur_id
+            JOIN unsurs ON unsurs.id = sub_unsurs.unsur_id
+            WHERE rencanas.user_id = "97febcd8-f889-4376-b5c0-48867969ef31"
+                AND laporan_kegiatan_jabatans.status = 3
+            GROUP BY laporan_kegiatan_jabatans.butir_kegiatan_id');
+        $rencanas = [];
+        foreach ($data as $item) {
+            if (isset($rencanas[$item->rencana_id])) {
+                array_push($rencanas[$item->rencana_id]['rencanas'], json_decode(json_encode($item), true));
+            } else {
+                $rencanas[$item->rencana_id] = [
+                    'rencana' => $item->rencana,
+                    'rencanas' => [json_decode(json_encode($item), true)]
+                ];
+            }
+            $total += $item->jumlah_ak;
+        }
         return [
-            $data,
+            $rencanas,
             $total
         ];
     }
@@ -71,7 +70,7 @@ class RencanaRepository
         for ($i = 0; $i < count($data); $i++) {
             $sum += $data[$i]->score;
             $count++;
-            if ($tmp?->butir_kegiatan_id == $data[$i]->butir_kegiatan_id && count($data) - 1 == $i) {
+            if ($tmp?->butir_kegiatan_id == $data[$i]->butir_kegiatan_id) {
                 unset($data[$i]->butirKegiatan->subUnsur);
                 array_push($current, [
                     'jumlah_ak' => $sum,

@@ -57,7 +57,7 @@ class GeneratePdfService
     {
         [$rencanas, $total_capaian] = $this->rencanaRepository->getDataRekapCapaian($user);
         $role_atasan_langsung = DestructRoleFacade::getRoleAtasanLangsung($atasan_langsung?->roles);
-        $pdf_rekap = PDF::loadView('generate-pdf.rekapitulasi-capaian', compact('rencanas', 'ttd', 'user', 'atasan_langsung', 'role_atasan_langsung', 'periode'))->setPaper('A4');
+        $pdf_rekap = PDF::loadView('generate-pdf.rekapitulasi-capaian', compact('rencanas', 'total_capaian', 'ttd', 'user', 'atasan_langsung', 'role_atasan_langsung', 'periode'))->setPaper('A4');
         $file_name = uniqid();
         Storage::put("rekapitulasi/$file_name.pdf", $pdf_rekap->output());
         return [
