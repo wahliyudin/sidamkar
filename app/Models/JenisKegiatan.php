@@ -10,8 +10,8 @@ class JenisKegiatan extends Model
     use HasFactory;
 
     const JENIS_KEGIATAN_JABATAN = 1;
-    const JENIS_KEGIATAN_PROFESI = 2;
-    const JENIS_KEGIATAN_PENUNJANG = 3;
+    const JENIS_KEGIATAN_PENUNJANG = 2;
+    const JENIS_KEGIATAN_PROFESI = 3;
 
     protected $fillable = [
         'nama'

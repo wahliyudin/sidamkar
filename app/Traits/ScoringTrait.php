@@ -21,13 +21,13 @@ trait ScoringTrait
     public function limiRole($role)
     {
         if ($role >= 1 && $role <= 4) {
-            if ($role == 4) return [$role - 1, $role];
-            if ($role == 1) return [$role + 1, $role];
+            if ($role == 4) return [null, $role - 1, $role];
+            if ($role == 1) return [$role + 1, null, $role];
             return [$role + 1, $role - 1, $role];
         }
         if ($role >= 5 && $role <= 7) {
-            if ($role == 7) return [$role - 1, $role];
-            if ($role == 5) return [$role + 1, $role];
+            if ($role == 7) return [null, $role - 1, $role];
+            if ($role == 5) return [$role + 1, null, $role];
             return [$role + 1, $role - 1, $role];
         }
     }

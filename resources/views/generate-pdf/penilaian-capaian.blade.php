@@ -171,8 +171,11 @@
             </tr>
             <tr>
                 <td class="bd" colspan="4">Tembusan disampaikan kepada:</td>
-                <td class="bd" colspan="2" style="position: relative;"><img src="{{ public_path('ttd.jpeg') }}"
-                        style="width: 100px; position: absolute; right: 35%; top: 10px;" alt="">
+                <td class="bd" colspan="2" style="position: relative;">
+                    @if (isset($penilai))
+                        <img src="{{ linkToBasePath($penilai?->file_ttd) }}"
+                            style="width: 100px; position: absolute; right: 35%; top: 10px;" alt="">
+                    @endif
                 </td>
             </tr>
             <tr>
