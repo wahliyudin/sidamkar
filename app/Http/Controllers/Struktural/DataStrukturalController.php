@@ -47,7 +47,7 @@ class DataStrukturalController extends Controller
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
             'jenis_kelamin' => 'required',
-            'provinsi_id' => 'required'
+            // 'provinsi_id' => 'required'
         ];
         if ($this->authUser()->tingkat_aparatur == 'kab_kota') {
             $rules['kab_kota_id'] = 'required';
@@ -62,17 +62,23 @@ class DataStrukturalController extends Controller
             'tempat_lahir' => $request->tempat_lahir,
             'tanggal_lahir' => Carbon::make($request->tanggal_lahir)->format('Y-m-d'),
             'jenis_kelamin' => $request->jenis_kelamin,
-            'kab_kota_id' => $request?->kab_kota_id ?? null,
-            'provinsi_id' => $request->provinsi_id,
+            // 'kab_kota_id' => $request?->kab_kota_id ?? null,
+            // 'provinsi_id' => $request->provinsi_id,
         ];
         if ($request->hasFile('avatar')) {
             $data['foto_pegawai'] = $this->storeImage($request->file('avatar'), 'aparatur');
+        }
+        if ($request->hasFile('ttd')) {
+            $data['file_ttd'] = $this->storeImage($request->file('ttd'), 'aparatur');
         }
         $user = User::query()->with('userPejabatStruktural')->find(auth()->user()->id);
         if (isset($user->userPejabatStruktural)) {
             $user->userPejabatStruktural()->update($data);
             if (isset($data['foto_pegawai'])) {
                 deleteImage($user->userPejabatStruktural->foto_pegawai);
+            }
+            if (isset($data['file_ttd'])) {
+                deleteImage($user->userPejabatStruktural->file_ttd);
             }
         } else {
             $user->userPejabatStruktural()->create($data);

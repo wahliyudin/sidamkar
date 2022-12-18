@@ -53,33 +53,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="basicInput">Jenis Kelamin</label>
-                                        <select class="jenis_kelamin form-select" name="jenis_kelamin">
-                                            <option disabled selected>- Pilih Jenis Kelamin -</option>
-                                            <option @selected(old('jenis_kelamin', $user->userPejabatStruktural?->jenis_kelamin) == 'L') value="L">Laki - Laki</option>
-                                            <option @selected(old('jenis_kelamin', $user->userPejabatStruktural?->jenis_kelamin) == 'P') value="P">Perempuan</option>
-                                        </select>
-                                        @error('jenis_kelamin')
-                                            <span class="text-danger text-sm">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="basicInput">Pendidikan Terakhir</label>
-                                        <select class="pen_terakhir form-select" name="pendidikan_terakhir">
-                                            <option disabled selected>- Pilih Pendidikan Terakhir -</option>
-                                            <option @selected(old('pendidikan_terakhir', $user->userPejabatStruktural?->pendidikan_terakhir) == '1') value="1">SMA/SMK/Sederajat</option>
-                                            <option @selected(old('pendidikan_terakhir', $user->userPejabatStruktural?->pendidikan_terakhir) == '2') value="2">D3</option>
-                                            <option @selected(old('pendidikan_terakhir', $user->userPejabatStruktural?->pendidikan_terakhir) == '3') value="3">S1/D4</option>
-                                            <option @selected(old('pendidikan_terakhir', $user->userPejabatStruktural?->pendidikan_terakhir) == '4') value="4">S2</option>
-                                        </select>
-                                        @error('pendidikan_terakhir')
-                                            <span class="text-danger text-sm">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
+                                     <div class="form-group">
                                         <label for="basicInput">Provinsi</label>
                                         <select class="form-select provinsi2" disabled data-id=".provinsi2"
                                             name="provinsi_id">
@@ -110,6 +84,52 @@
                                         </div>
                                     @endif
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">Pendidikan Terakhir</label>
+                                        <select class="pen_terakhir form-select" name="pendidikan_terakhir">
+                                            <option disabled selected>- Pilih Pendidikan Terakhir -</option>
+                                            <option @selected(old('pendidikan_terakhir', $user->userPejabatStruktural?->pendidikan_terakhir) == '1') value="1">SMA/SMK/Sederajat</option>
+                                            <option @selected(old('pendidikan_terakhir', $user->userPejabatStruktural?->pendidikan_terakhir) == '2') value="2">D3</option>
+                                            <option @selected(old('pendidikan_terakhir', $user->userPejabatStruktural?->pendidikan_terakhir) == '3') value="3">S1/D4</option>
+                                            <option @selected(old('pendidikan_terakhir', $user->userPejabatStruktural?->pendidikan_terakhir) == '4') value="4">S2</option>
+                                        </select>
+                                        @error('pendidikan_terakhir')
+                                            <span class="text-danger text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="basicInput">Jenis Kelamin</label>
+                                        <select class="jenis_kelamin form-select" name="jenis_kelamin">
+                                            <option disabled selected>- Pilih Jenis Kelamin -</option>
+                                            <option @selected(old('jenis_kelamin', $user->userPejabatStruktural?->jenis_kelamin) == 'L') value="L">Laki - Laki</option>
+                                            <option @selected(old('jenis_kelamin', $user->userPejabatStruktural?->jenis_kelamin) == 'P') value="P">Perempuan</option>
+                                        </select>
+                                        @error('jenis_kelamin')
+                                            <span class="text-danger text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="form-group">
+                                        <div class="container d-flex justify-content-center">
+                                            <input id="ttd" type="file" accept="image/png, image/jpeg"
+                                                style="display: none;" name="ttd" id="">
+                                            <label for="ttd">
+                                                <img src="{{ isset($user->userPejabatStruktural?->file_ttd) ? $user->userPejabatStruktural?->file_ttd : asset('assets/images/faces/3.jpg') }}"
+                                                    alt="ttd" class="image preview-ttd"
+                                                    style="min-width:145px; min-height: 145px; max-width:145px; max-height: 145px; object-fit: cover; border-radius: 10px;">
+                                                <span class="middle">
+                                                    <div class="text" style="cursor: pointer;"><i
+                                                            class="fa-regular fa-pen-to-square fa-xl"></i>
+                                                    </div>
+                                                </span>
+                                            </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             </div>
                             <div class="row col-md-12"
                                 style="border: 2px solid #E5E5E5;border-radius: 6px;padding: 4px;margin-top: 19px;">
@@ -643,6 +663,11 @@
             e.preventDefault();
             previewImage(this, document.querySelector('.preview-avatar'))
         });
+        $('#ttd').change(function(e) {
+            e.preventDefault();
+            previewImage(this, document.querySelector('.preview-ttd'))
+        });
+
 
         function previewImage(image, imgPreview) {
             const oFReader = new FileReader();
