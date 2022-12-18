@@ -53,7 +53,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                     <div class="form-group">
+                                    <div class="form-group">
                                         <label for="basicInput">Provinsi</label>
                                         <select class="form-select provinsi2" disabled data-id=".provinsi2"
                                             name="provinsi_id">
@@ -110,26 +110,26 @@
                                         @enderror
                                     </div>
                                     <div class="container">
-                                <div class="row justify-content-center">
-                                    <div class="form-group">
-                                        <div class="container d-flex justify-content-center">
-                                            <input id="ttd" type="file" accept="image/png, image/jpeg"
-                                                style="display: none;" name="ttd" id="">
-                                            <label for="ttd">
-                                                <img src="{{ isset($user->userPejabatStruktural?->file_ttd) ? $user->userPejabatStruktural?->file_ttd : asset('assets/images/faces/3.jpg') }}"
-                                                    alt="ttd" class="image preview-ttd"
-                                                    style="min-width:145px; min-height: 145px; max-width:145px; max-height: 145px; object-fit: cover; border-radius: 10px;">
-                                                <span class="middle">
-                                                    <div class="text" style="cursor: pointer;"><i
-                                                            class="fa-regular fa-pen-to-square fa-xl"></i>
-                                                    </div>
-                                                </span>
-                                            </label>
+                                        <div class="row justify-content-center">
+                                            <div class="form-group">
+                                                <div class="container d-flex justify-content-center">
+                                                    <input id="ttd" type="file" accept="image/png, image/jpeg"
+                                                        style="display: none;" name="ttd" id="">
+                                                    <label for="ttd">
+                                                        <img src="{{ isset($user->userPejabatStruktural?->file_ttd) ? $user->userPejabatStruktural?->file_ttd : asset('assets/images/faces/3.jpg') }}"
+                                                            alt="ttd" class="image preview-ttd"
+                                                            style="min-width:290px; min-height: 145px; max-width:290px; max-height: 145px; object-fit: cover; border-radius: 10px;">
+                                                        <span class="middle">
+                                                            <div class="text" style="cursor: pointer;"><i
+                                                                    class="fa-regular fa-pen-to-square fa-xl"></i>
+                                                            </div>
+                                                        </span>
+                                                    </label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             </div>
                             <div class="row col-md-12"
                                 style="border: 2px solid #E5E5E5;border-radius: 6px;padding: 4px;margin-top: 19px;">
@@ -349,6 +349,10 @@
         .simpan-data {
             width: 140px;
             text-align: center;
+        }
+
+        .swal2-title {
+            font-size: 23px !important;
         }
     </style>
 @endsection
