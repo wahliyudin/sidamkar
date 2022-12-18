@@ -94,7 +94,7 @@
                                     </div>
                                     <div id="contentUnsur{{ $unsur->id }}" class="accordion-collapse collapse"
                                         aria-labelledby="unsur{{ $unsur->id }}" style="">
-                                        <div class="accordion-body">
+                                        <div class="accordion-body overflow-auto">
                                             <div class="accordion" id="accordion-child">
                                                 @foreach ($unsur->subUnsurs as $sub_unsur)
                                                     <div class="accordion-item">
@@ -115,7 +115,7 @@
                                                         <div id="contentchildSubUnsur{{ $sub_unsur->id }}"
                                                             class="accordion-collapse collapse"
                                                             aria-labelledby="subUnsur{{ $sub_unsur->id }}" style="">
-                                                            <div class="accordion-body">
+                                                            <div class="accordion-body overflow-auto">
                                                                 <ul class="ms-0">
                                                                     @foreach ($sub_unsur->butirKegiatans as $butir_kegiatan)
                                                                         <li class="accordian-list">
