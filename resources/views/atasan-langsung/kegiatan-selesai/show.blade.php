@@ -9,10 +9,10 @@
                         <h4>Laporan/Dokumen {{ $user?->userAparatur->nama }}</h4>
                         <div class="d-flex align-items-center">
                             <button data-id="{{ $user?->id }}"
-                                class="btn {{ in_array($rekapitulasiKegiatan->is_send, [2, 3]) ? 'disabled' : '' }} btn-blue me-3 ps-3 pe-4 text-sm ttd">
+                                class="btn {{ in_array($rekapitulasiKegiatan->is_send, [2, 3]) || $rekapitulasiKegiatan->is_ttd_atasan_langsung == true ? 'disabled' : '' }} btn-blue me-3 ps-3 pe-4 text-sm ttd">
                                 <i class="fa-solid fa-pen-clip me-2"></i>TTD</button>
                             <button data-id="{{ $user?->id }}"
-                                class="btn btn-green btn-sm ps-3 {{ in_array($rekapitulasiKegiatan->is_send, [2, 3]) || $rekapitulasiKegiatan->is_ttd_penilai == false ? 'disabled' : '' }} pe-4 text-sm send-to-penilai">
+                                class="btn btn-green btn-sm ps-3 {{ in_array($rekapitulasiKegiatan->is_send, [2, 3]) || $rekapitulasiKegiatan->is_ttd_atasan_langsung == false ? 'disabled' : '' }} pe-4 text-sm send-to-penilai">
                                 <i class="fa-solid fa-paper-plane me-2"></i>Kirim Dokumen Ke
                                 Penilai</button>
                         </div>

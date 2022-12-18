@@ -238,13 +238,44 @@ class KegiatanJabatanService
         [$user, $atasan_langsung] = $this->validateDocument($userAuth);
         [$link_pernyataan, $name_pernyataan] = $this->generatePdfService->generatePernyataan($user, $atasan_langsung);
         [$link_rekap_capaian, $name_rekap_capaian, $total_capaian] = $this->generatePdfService->generateRekapCapaian($user, $atasan_langsung, $periode);
-        [$link_pengembang, $name_pengembang] = $this->generatePdfService->generatePengembang($user);
-        [$link_penilaian_capaian, $name_penilaian_capaian, $ak_capaian] = $this->generatePdfService->generatePenilaianCapaian($periode, $user, $total_capaian);
-        return $this->updateOrCreateRekapitulasi($user, $periode, 'Rekapitulasi Diterima Oleh Atasan Langsung', $link_pernyataan, $name_pernyataan, $link_rekap_capaian, $name_rekap_capaian, $link_pengembang, $name_pengembang, $link_penilaian_capaian, $name_penilaian_capaian);
+        [$link_pengembang, $name_pengembang, $jml_ak_penunjang, $jml_ak_profesi] = $this->generatePdfService->generatePengembang($user);
+        [$link_penilaian_capaian, $name_penilaian_capaian, $capaian_ak] = $this->generatePdfService->generatePenilaianCapaian($periode, $user, $total_capaian);
+        return $this->updateOrCreateRekapitulasi(
+            $user,
+            $periode,
+            'Rekapitulasi Diterima Oleh Atasan Langsung',
+            $link_pernyataan,
+            $name_pernyataan,
+            $link_rekap_capaian,
+            $name_rekap_capaian,
+            $total_capaian,
+            $link_pengembang,
+            $name_pengembang,
+            $jml_ak_profesi,
+            $jml_ak_penunjang,
+            $link_penilaian_capaian,
+            $name_penilaian_capaian,
+            $capaian_ak
+        );
     }
 
-    public function updateOrCreateRekapitulasi(User $user, Periode $periode, $content, $link_pernyataan, $name_pernyataan, $link_rekap_capaian, $name_rekap_capaian, $link_pengembang, $name_pengembang, $link_penilaian_capaian, $name_penilaian_capaian)
-    {
+    public function updateOrCreateRekapitulasi(
+        User $user,
+        Periode $periode,
+        $content,
+        $link_pernyataan,
+        $name_pernyataan,
+        $link_rekap_capaian,
+        $name_rekap_capaian,
+        $total_capaian,
+        $link_pengembang,
+        $name_pengembang,
+        $jml_ak_profesi,
+        $jml_ak_penunjang,
+        $link_penilaian_capaian,
+        $name_penilaian_capaian,
+        $capaian_ak
+    ) {
         // $rekapitulasiKegiatan = $this->suratPernyataanKegiatanRepository->updateOrCreate($user->id, $periode->id, $link_pernyataan, $name_pernyataan);
         // $this->rekapitulasiCapaianRepository->updateOrCreate($user->id, $periode->id, '', $link_rekap_capaian, $name_rekap_capaian);
         // $this->pengembanganPenunjangProfesiRepository->updateOrCreate($user->id, $periode->id, $link_pengembang, $name_pengembang, '', '');
@@ -258,9 +289,38 @@ class KegiatanJabatanService
         // return $rekapitulasiKegiatan;
         $rekapitulasiKegiatan = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode);
         if ($rekapitulasiKegiatan) {
-            $this->rekapitulasiKegiatanRepository->update($rekapitulasiKegiatan, $link_pernyataan, $name_pernyataan, $link_rekap_capaian, $name_rekap_capaian, $link_pengembang, $name_pengembang, $link_penilaian_capaian, $name_penilaian_capaian);
+            $this->rekapitulasiKegiatanRepository->update(
+                $rekapitulasiKegiatan,
+                $link_pernyataan,
+                $name_pernyataan,
+                $link_rekap_capaian,
+                $name_rekap_capaian,
+                $total_capaian,
+                $link_pengembang,
+                $name_pengembang,
+                $jml_ak_profesi,
+                $jml_ak_penunjang,
+                $link_penilaian_capaian,
+                $name_penilaian_capaian,
+                $capaian_ak
+            );
         } else {
-            $rekapitulasiKegiatan = $this->rekapitulasiKegiatanRepository->store($user->id, $periode->id, $link_pernyataan, $name_pernyataan, $link_rekap_capaian, $name_rekap_capaian, $link_pengembang, $name_pengembang, $link_penilaian_capaian, $name_penilaian_capaian);
+            $rekapitulasiKegiatan = $this->rekapitulasiKegiatanRepository->store(
+                $user->id,
+                $periode->id,
+                $link_pernyataan,
+                $name_pernyataan,
+                $link_rekap_capaian,
+                $name_rekap_capaian,
+                $total_capaian,
+                $link_pengembang,
+                $name_pengembang,
+                $jml_ak_profesi,
+                $jml_ak_penunjang,
+                $link_penilaian_capaian,
+                $name_penilaian_capaian,
+                $capaian_ak
+            );
             $rekapitulasiKegiatan->historyRekapitulasiKegiatans()->create([
                 'content' => $content
             ]);

@@ -37,7 +37,6 @@
 
 @section('js')
     <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
-    {{-- {{ $dataTable->scripts() }} --}}
     <script src="{{ asset('assets/js/extensions/sweetalert2.all.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>

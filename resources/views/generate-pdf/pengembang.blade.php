@@ -216,14 +216,16 @@
                 <td colspan="6" style="border-width: 0 !important;"> <br></td>
             </tr>
             <tr>
-                <th colspan="2" style="border-width: 0 !important;">CATATAN AK PENGEMBANGAN PROFESI:</th>
+                <th colspan="2" style="border-width: 0 !important;" class="text-start">CATATAN AK PENGEMBANGAN
+                    PROFESI:</th>
                 <th style="border-width: 0 !important;"></th>
-                <th style="border-width: 0 !important;" colspan="3" class="center">KETUA TIM PENILAI</th>
+                <th style="border-width: 0 !important;" colspan="3" style="white-space: nowrap;" class="center">KETUA
+                    TIM PENILAI</th>
             </tr>
             <tr>
                 <td style="border-width: 0 !important;" colspan="2"> Terpenuhi/Tidak terpenuhi *) AK Pengembangan
-                    Profesi untuk Kenaikan Jenjang Jabatan
-                    (Pemadam Kebakaran Mahir ke Pemadam Kebakaran Penyelia/Analis Kebakaran Ahli Muda ke Analis
+                    Profesi untuk<br> Kenaikan Jenjang Jabatan
+                    (Pemadam Kebakaran Mahir ke Pemadam<br> Kebakaran Penyelia/Analis Kebakaran Ahli Muda ke Analis
                     Kebakaran Ahli Madya)*</td>
                 <td style="border-width: 0 !important;"><br></td>
                 <td style="border-width: 0 !important;" colspan="3"></td>
@@ -231,14 +233,18 @@
             <tr>
                 <td style="border-width: 0 !important;" colspan="2"></td>
                 <td style="border-width: 0 !important;"><br></td>
-                <td class="center" colspan="3" style="text-decoration: underline; border-width: 0 !important;">
-                    ........................................</td>
+                <td class="center" colspan="3" style="border-width: 0 !important; position: relative;">
+                    @if (isset($penilai))
+                        <img src="{{ linkToBasePath($penilai?->userPejabatStruktural?->file_ttd) }}"
+                            style="width: 100px; position: absolute; right: 20%; top: -40px;" alt="">
+                    @endif
+                </td>
             </tr>
             <tr>
                 <td style="border-width: 0 !important; font-style: italic;" colspan="2">paraf atasan langsung</td>
                 <td style="border-width: 0 !important;"><br></td>
-                <td style="border-width: 0 !important; " colspan="3" class="center">
-                    NIP...........................................</td>
+                <td style="border-width: 0 !important; padding-top: 10px;" colspan="3" class="center">
+                    NIP : {{ isset($penilai) ? $penilai?->userPejabatStruktural?->nip : '-' }}</td>
             </tr>
         </tbody>
     </table>

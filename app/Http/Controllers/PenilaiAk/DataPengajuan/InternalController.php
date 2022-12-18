@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\RekapitulasiKegiatan;
 use App\Models\User;
 use App\Repositories\PeriodeRepository;
+use App\Repositories\RekapitulasiKegiatanRepository;
 use App\Repositories\UserRepository;
 use App\Traits\AuthTrait;
 use App\Traits\DataTableTrait;
@@ -19,11 +20,13 @@ class InternalController extends Controller
     use AuthTrait, DataTableTrait;
     private UserRepository $userRepository;
     private PeriodeRepository $periodeRepository;
+    private RekapitulasiKegiatanRepository $rekapitulasiKegiatanRepository;
 
-    public function __construct(UserRepository $userRepository, PeriodeRepository $periodeRepository)
+    public function __construct(UserRepository $userRepository, PeriodeRepository $periodeRepository, RekapitulasiKegiatanRepository $rekapitulasiKegiatanRepository)
     {
         $this->userRepository = $userRepository;
         $this->periodeRepository = $periodeRepository;
+        $this->rekapitulasiKegiatanRepository = $rekapitulasiKegiatanRepository;
     }
 
     public function index()
@@ -79,5 +82,29 @@ class InternalController extends Controller
             ->where('periode_id', $periode->id)->first();
         $user = $this->userRepository->getUserById($id)->load('userAparatur');
         return view('penilai-ak.data-pengajuan.internal.show', compact('user', 'rekapitulasiKegiatan'));
+    }
+
+    public function ttd($id)
+    {
+        $periode = $this->periodeRepository->isActive();
+        $user = $this->userRepository->getUserById($id)->load(['mente.atasanLangsung.userPejabatStruktural']);
+        $atasan_langsung = $user->mente->atasanLangsung;
+        $penilai_ak = $this->authUser()->load(['userPejabatStruktural']);
+        $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode);
+        $this->generatePdfService->ttdRekapitulasi($rekap, $user, $periode, $penilai_ak);
+        return response()->json([
+            'message' => 'Berhasil'
+        ]);
+    }
+
+    public function sendToPenetap($user_id)
+    {
+        $periode = $this->periodeRepository->isActive();
+        $user = $this->userRepository->getUserById($user_id);
+        $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode);
+        $this->rekapitulasiKegiatanRepository->sendToPenetap($rekap);
+        return response()->json([
+            'message' => 'Berhasil dikirim ke Penetap'
+        ]);
     }
 }

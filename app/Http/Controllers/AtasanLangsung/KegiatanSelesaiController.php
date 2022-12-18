@@ -77,8 +77,11 @@ class KegiatanSelesaiController extends Controller
 
     public function ttd($id)
     {
-        $user = User::query()->where('id', $id)->first();
-        $this->generatePdfService->ttdRekapitulasi($user, 'Rekapitulasi Ditanda Tangani Oleh Atasan Langsung', public_path('storage/ttd.png'));
+        $periode = $this->periodeRepository->isActive();
+        $user = $this->userRepository->getUserById($id);
+        $atasan_langsung = $this->authUser()->load(['userPejabatStruktural']);
+        $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode);
+        $this->generatePdfService->ttdRekapitulasi($rekap, $user, $periode, $atasan_langsung);
         return response()->json([
             'message' => 'Berhasil'
         ]);

@@ -8,6 +8,7 @@ use App\Models\RekapitulasiKegiatan;
 use App\Models\User;
 use App\Repositories\PenilaianCapaianRepository;
 use App\Repositories\PeriodeRepository;
+use App\Repositories\RekapitulasiKegiatanRepository;
 use App\Repositories\RencanaRepository;
 use App\Repositories\UnsurRepository;
 use App\Traits\ScoringTrait;
@@ -23,13 +24,15 @@ class GeneratePdfService
     protected UnsurRepository $unsurRepository;
     protected RencanaRepository $rencanaRepository;
     protected PenilaianCapaianRepository $penilaianCapaianRepository;
+    protected RekapitulasiKegiatanRepository $rekapitulasiKegiatanRepository;
 
-    public function __construct(PeriodeRepository $periodeRepository, UnsurRepository $unsurRepository, RencanaRepository $rencanaRepository, PenilaianCapaianRepository $penilaianCapaianRepository)
+    public function __construct(PeriodeRepository $periodeRepository, UnsurRepository $unsurRepository, RencanaRepository $rencanaRepository, PenilaianCapaianRepository $penilaianCapaianRepository, RekapitulasiKegiatanRepository $rekapitulasiKegiatanRepository)
     {
         $this->periodeRepository = $periodeRepository;
         $this->unsurRepository = $unsurRepository;
         $this->rencanaRepository = $rencanaRepository;
         $this->penilaianCapaianRepository = $penilaianCapaianRepository;
+        $this->rekapitulasiKegiatanRepository = $rekapitulasiKegiatanRepository;
     }
 
     public function generatePernyataan(User $user, User $atasan_langsung, $ttd = null)
@@ -151,16 +154,26 @@ class GeneratePdfService
             ->setPaper('A4');
         $file_name = uniqid();
         Storage::put("rekapitulasi/$file_name.pdf", $pdf_rekap->output());
+        $jml_ak_penunjang = 0;
+        $jml_ak_profesi = 0;
+        foreach ($penunjangs as $penunjang) {
+            $jml_ak_penunjang += $penunjang->jumlah_ak;
+        }
+        foreach ($profesis as $profesi) {
+            $jml_ak_profesi += $profesi->jumlah_ak;
+        }
         return [
             asset("storage/rekapitulasi/$file_name.pdf"),
-            $file_name
+            $file_name,
+            $jml_ak_penunjang,
+            $jml_ak_profesi
         ];
     }
 
-    public function generatePenilaianCapaian(Periode $periode, User $user, $target_ak_skp)
+    public function generatePenilaianCapaian(Periode $periode, User $user, $target_ak_skp, User $penilai = null)
     {
         $data = $this->penilaianCapaianRepository->generatePenilaianCapaian($periode, $user, $target_ak_skp);
-        $pdf_rekap = PDF::loadView('generate-pdf.penilaian-capaian', compact('data'))
+        $pdf_rekap = PDF::loadView('generate-pdf.penilaian-capaian', compact('data', 'penilai'))
             ->setPaper('A4');
         $file_name = uniqid();
         Storage::put("rekapitulasi/$file_name.pdf", $pdf_rekap->output());
@@ -171,16 +184,14 @@ class GeneratePdfService
         ];
     }
 
-    public function ttdRekapitulasi(User $user, $content, $ttd)
+    public function ttdRekapitulasi(RekapitulasiKegiatan $rekapitulasiKegiatan, User $user, Periode $periode, User $atasan_langsung)
     {
-        $rekapitulasiKegiatan = $this->generatePernyataan($user, $content, $ttd);
-        if ($rekapitulasiKegiatan instanceof RekapitulasiKegiatan) {
-            $rekapitulasiKegiatan->update([
-                'is_ttd_penilai' => true
-            ]);
-            $rekapitulasiKegiatan->historyRekapitulasiKegiatans()->create([
-                'content' => 'Rekapitulasi ditanda tangani Atasan Langsung'
-            ]);
-        }
+        $ttd = $atasan_langsung?->userPejabatStruktural?->file_ttd;
+        $this->generatePernyataan($user, $atasan_langsung, $ttd);
+        $this->generateRekapCapaian($user, $atasan_langsung, $periode, $ttd);
+        $this->rekapitulasiKegiatanRepository->ttdAtasanLangsung($rekapitulasiKegiatan);
+        $rekapitulasiKegiatan->historyRekapitulasiKegiatans()->create([
+            'content' => 'Rekapitulasi ditanda tangani Atasan Langsung'
+        ]);
     }
 }
