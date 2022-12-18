@@ -20,20 +20,27 @@
                                                     <a href="#surat-tab1"
                                                         class="h-100 nav-link border-y-0 border-left-0 active d-flex justify-content-center align-items-center"
                                                         data-toggle="tab" data-id="surat-tab1">
-                                                        <h6 class="my-1">Rekapitulasi Capaian</h6>
+                                                        <h6 class="my-1">Surat Pernyataan</h6>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item">
                                                     <a href="#surat-tab2"
-                                                        class="h-100 nav-link border-y-0 border-right-0 d-flex justify-content-center align-items-center"
+                                                        class="h-100 nav-link border-y-0 border-left-0 d-flex justify-content-center align-items-center"
                                                         data-toggle="tab" data-id="surat-tab2">
-                                                        <h6 class="my-1">Penilaian Capaian</h6>
+                                                        <h6 class="my-1">Rekapitulasi Capaian</h6>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item">
                                                     <a href="#surat-tab3"
-                                                        class="h-100 nav-link border-y-0 border-left-0 d-flex justify-content-center align-items-center"
+                                                        class="h-100 nav-link border-y-0 border-right-0 d-flex justify-content-center align-items-center"
                                                         data-toggle="tab" data-id="surat-tab3">
+                                                        <h6 class="my-1">Penilaian Capaian</h6>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="#surat-tab4"
+                                                        class="h-100 nav-link border-y-0 border-left-0 d-flex justify-content-center align-items-center"
+                                                        data-toggle="tab" data-id="surat-tab4">
                                                         <h6 class="my-1">Pengembangan & Penunjang</h6>
                                                     </a>
                                                 </li>
@@ -48,16 +55,16 @@
                                                                 style="height: 3rem; object-fit: cover;" alt=""
                                                                 srcset="">
                                                         </div>
-                                                        <iframe src="{{ $rekapitulasiKegiatan?->file_capaian }}"
+                                                        <iframe src="{{ $rekapitulasiKegiatan?->link_pernyataan }}"
                                                             style="border-radius: 10px; overflow: hidden;" width="100%"
                                                             height="500px"></iframe>
                                                     </div>
                                                 </div>
-
                                                 <div class="tab-pane fade" id="surat-tab2">
                                                     <div class="card">
                                                         <div class="card-body px-0">
-                                                            <iframe src=""
+                                                            <iframe
+                                                                src="{{ $rekapitulasiKegiatan?->link_penilaian_capaian }}"
                                                                 style="border-radius: 10px; overflow: hidden;"
                                                                 width="100%" height="500px"></iframe>
                                                         </div>
@@ -67,7 +74,18 @@
                                                 <div class="tab-pane fade" id="surat-tab3">
                                                     <div class="card">
                                                         <div class="card-body px-0">
-                                                            <iframe src=""
+                                                            <iframe
+                                                                src="{{ $rekapitulasiKegiatan?->link_penilaian_capaian }}"
+                                                                style="border-radius: 10px; overflow: hidden;"
+                                                                width="100%" height="500px"></iframe>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="tab-pane fade" id="surat-tab4">
+                                                    <div class="card">
+                                                        <div class="card-body px-0">
+                                                            <iframe src="{{ $rekapitulasiKegiatan?->link_pengembang }}"
                                                                 style="border-radius: 10px; overflow: hidden;"
                                                                 width="100%" height="500px"></iframe>
                                                         </div>

@@ -18,6 +18,8 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use App\Models\KetentuanSkpFungsional;
 use App\Repositories\RekapitulasiKegiatanRepository;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class KegiatanJabatanController extends Controller
 {

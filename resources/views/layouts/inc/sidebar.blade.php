@@ -131,8 +131,7 @@
                     </li>
                 @endrole
                 @role(['atasan_langsung'])
-                    <li
-                        class="sidebar-item has-sub {{ request()->is('atasan-langsung/verifikasi-kegiatan*') ? 'active' : '' }}">
+                    <li class="sidebar-item has-sub ">
                         <a href="javascript(0)" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="fa-solid fa-copy"></i>
@@ -198,8 +197,10 @@
                             </div>
                             <span>Penetap AK</span>
                         </a>
-                        <ul class="submenu ">
-                            <li class="sidebar-item has-sub ">
+                        <ul
+                            class="submenu {{ request()->is('penetap-ak/data-pengajuan/external*') || request()->is('penetap-ak/data-pengajuan/internal*') ? 'active' : '' }}">
+                            <li
+                                class="sidebar-item has-sub {{ request()->is('penetap-ak/data-pengajuan/external*') || request()->is('penetap-ak/data-pengajuan/internal*') ? 'active' : '' }}">
                                 <a href="javascript(0)" class='sidebar-link'>
                                     <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                         <i class="fa-solid fa-square-poll-vertical"></i>

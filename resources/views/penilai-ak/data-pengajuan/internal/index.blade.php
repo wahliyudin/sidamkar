@@ -11,7 +11,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <table id="internal" class="table table-bordered table-striped">
+                <table id="internal" class="table dataTable no-footer dtr-inline">
                     <thead>
                         <tr>
                             <th>Nama</th>

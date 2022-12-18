@@ -16,6 +16,7 @@
                         <tr>
                             <th>Nama</th>
                             <th>NIP</th>
+                            <th>Jenis Kelamin</th>
                             <th>Jabatan</th>
                             <th>Aksi</th>
                         </tr>
@@ -50,7 +51,7 @@
             serverSide: true,
             processing: true,
             ajax: {
-                url: url('/penilai-ak/data-pengajuan/internal/datatable'),
+                url: url('/penetap-ak/data-pengajuan/internal/datatable'),
                 type: "POST",
                 data: {
                     "_token": "{{ csrf_token() }}"
@@ -63,6 +64,10 @@
                 {
                     data: 'nip',
                     name: 'nip'
+                },
+                {
+                    data: 'jenis_kelamin',
+                    name: 'jenis_kelamin'
                 },
                 {
                     data: 'display_name',
