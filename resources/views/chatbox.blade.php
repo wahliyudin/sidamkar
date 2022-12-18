@@ -149,7 +149,7 @@
                 </div>
                 <div class="type_msg">
                     <div class="input_msg_write">
-                        <textarea cols="5" rows="10" class="write_msg" placeholder="Type a message"></textarea>
+                        <textarea cols="5" rows="5" class="write_msg" placeholder="Type a message"></textarea>
                         <button class="msg_send_btn" type="button"><i class="fa-solid fa-paper-plane fa-xs"></i></button>
                     </div>
                 </div>
@@ -252,7 +252,7 @@
             padding: 18px 16px 10px;
         }
         .inbox_chat {
-            height: 550px;
+            height: 620px;
             overflow-y: scroll;
         }
         .active_chat{
