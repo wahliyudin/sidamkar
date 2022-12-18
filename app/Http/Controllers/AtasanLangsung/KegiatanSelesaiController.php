@@ -47,7 +47,7 @@ class KegiatanSelesaiController extends Controller
                     ->with(['pangkatGolonganTmt']);
             })
             ->withWhereHas('rekapitulasiKegiatan', function ($query) {
-                $query->where('is_send', RekapitulasiKegiatan::IS_SEND_KE_ATASAN_LANGSUNG);
+                $query->whereIn('is_send', [RekapitulasiKegiatan::IS_SEND_KE_ATASAN_LANGSUNG, RekapitulasiKegiatan::IS_SEND_KE_PENILAI, RekapitulasiKegiatan::IS_SEND_KE_PENETAP]);
             })
             ->withSum(['laporanKegiatanJabatans' => function ($query) use ($periode) {
                 $query->where('status', LaporanKegiatanJabatan::SELESAI)->whereBetween('current_date', [$periode->awal, $periode->akhir]);

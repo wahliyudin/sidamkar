@@ -100,7 +100,7 @@ class GeneratePdfService
             JOIN laporan_kegiatan_penunjang_profesis ON (laporan_kegiatan_penunjang_profesis.butir_kegiatan_id = butir_kegiatans.id OR laporan_kegiatan_penunjang_profesis.sub_butir_kegiatan_id = sub_butir_kegiatans.id)
             JOIN users ON users.id = ' . '"' . $user->id . '"' . '
             JOIN user_aparaturs ON users.id = user_aparaturs.user_id
-            JOIN ketentuan_nilais
+            LEFT JOIN ketentuan_nilais
                 ON (ketentuan_nilais.role_id = ' . $role->id . ' AND ketentuan_nilais.pangkat_golongan_tmt_id = user_aparaturs.pangkat_golongan_tmt_id)
             WHERE unsurs.jenis_aparatur = ' . '"' . $jenis . '"' . '
                 AND unsurs.jenis_kegiatan_id = 2
@@ -140,7 +140,7 @@ class GeneratePdfService
             JOIN laporan_kegiatan_penunjang_profesis ON (laporan_kegiatan_penunjang_profesis.butir_kegiatan_id = butir_kegiatans.id OR laporan_kegiatan_penunjang_profesis.sub_butir_kegiatan_id = sub_butir_kegiatans.id)
             JOIN users ON users.id = ' . '"' . $user->id . '"' . '
             JOIN user_aparaturs ON users.id = user_aparaturs.user_id
-            JOIN ketentuan_nilais
+            LEFT JOIN ketentuan_nilais
                 ON (ketentuan_nilais.role_id = ' . $role->id . ' AND ketentuan_nilais.pangkat_golongan_tmt_id = user_aparaturs.pangkat_golongan_tmt_id)
             WHERE unsurs.jenis_aparatur = ' . '"' . $jenis . '"' . '
                 AND unsurs.jenis_kegiatan_id = 3

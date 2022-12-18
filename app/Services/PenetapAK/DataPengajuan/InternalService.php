@@ -25,7 +25,7 @@ class InternalService
             JOIN roles ON role_user.role_id = roles.id
             JOIN rekapitulasi_kegiatans ON rekapitulasi_kegiatans.fungsional_id = users.id
             WHERE users.status_akun = 1
-                AND rekapitulasi_kegiatans.is_send = 2
+                AND rekapitulasi_kegiatans.is_send = 3
                 AND user_aparaturs.tingkat_aparatur = kab_prov_penilai_and_penetaps.tingkat_aparatur
                 AND (CASE WHEN kab_prov_penilai_and_penetaps.tingkat_aparatur = "kab_kota" THEN
                     kab_prov_penilai_and_penetaps.kab_kota_id = user_aparaturs.kab_kota_id

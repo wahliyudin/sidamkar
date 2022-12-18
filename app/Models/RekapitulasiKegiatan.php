@@ -18,6 +18,7 @@ class RekapitulasiKegiatan extends Model
         'fungsional_id',
         'periode_id',
         'is_send',
+        'is_ttd_atasan_langsung',
         'is_ttd_penilai',
         'is_ttd_penetap',
         'link_pernyataan',

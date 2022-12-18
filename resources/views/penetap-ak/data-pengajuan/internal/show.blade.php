@@ -18,28 +18,28 @@
                                             <ul class="nav nav-tabs nav-justified bg-light rounded-top mb-0">
                                                 <li class="nav-item">
                                                     <a href="#surat-tab1"
-                                                        class="h-100 nav-link border-y-0 border-left-0 active d-flex justify-content-center align-items-center"
+                                                        class="h-100 nav-link border-y-0 border-left-0 px-2 active d-flex justify-content-center align-items-center"
                                                         data-toggle="tab" data-id="surat-tab1">
                                                         <h6 class="my-1">Surat Pernyataan</h6>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item">
                                                     <a href="#surat-tab2"
-                                                        class="h-100 nav-link border-y-0 border-left-0 d-flex justify-content-center align-items-center"
+                                                        class="h-100 nav-link border-y-0 border-left-0 px-2 d-flex justify-content-center align-items-center"
                                                         data-toggle="tab" data-id="surat-tab2">
                                                         <h6 class="my-1">Rekapitulasi Capaian</h6>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item">
                                                     <a href="#surat-tab3"
-                                                        class="h-100 nav-link border-y-0 border-right-0 d-flex justify-content-center align-items-center"
+                                                        class="h-100 nav-link border-y-0 border-right-0 px-2 d-flex justify-content-center align-items-center"
                                                         data-toggle="tab" data-id="surat-tab3">
                                                         <h6 class="my-1">Penilaian Capaian</h6>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item">
                                                     <a href="#surat-tab4"
-                                                        class="h-100 nav-link border-y-0 border-left-0 d-flex justify-content-center align-items-center"
+                                                        class="h-100 nav-link border-y-0 border-left-0 px-2 d-flex justify-content-center align-items-center"
                                                         data-toggle="tab" data-id="surat-tab4">
                                                         <h6 class="my-1">Pengembangan & Penunjang</h6>
                                                     </a>

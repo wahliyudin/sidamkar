@@ -69,10 +69,10 @@ class PenilaianCapaianRepository
             'target_ak_skp' => $target_ak_skp,
             'capaian' => $capaian,
             'persentase' => $capaian . '%',
-            'ak_min' => $ketentuan_nailai->ak_min,
-            'ak_max' => $ketentuan_nailai->ak_max,
+            'ak_min' => $ketentuan_nailai?->ak_min,
+            'ak_max' => $ketentuan_nailai?->ak_max,
             'total_ak' => $target_ak_skp * ($capaian / 100),
-            'result' => $this->calculateCapaian($target_ak_skp, $capaian, $ketentuan_nailai->ak_max)
+            'result' => $this->calculateCapaian($target_ak_skp, $capaian, $ketentuan_nailai?->ak_max)
         ];
     }
 

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignUuid('fungsional_id');
             $table->unsignedBigInteger('periode_id');
             $table->enum('is_send', [1, 2, 3])->nullable();
+            $table->boolean('is_ttd_atasan_langsung')->default(false);
             $table->boolean('is_ttd_penilai')->default(false);
             $table->boolean('is_ttd_penetap')->default(false);
             $table->string('link_pernyataan')->nullable();
