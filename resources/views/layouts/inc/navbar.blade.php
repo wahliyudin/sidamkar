@@ -83,9 +83,9 @@
                 <div class="dropdown">
                     <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
                         <div class="user-menu d-flex align-items-center">
-                            {{--  <div class="user-name text-end me-3">
+                            <div class="user-name text-end me-3">
                                 <h6 class="mb-0 text-gray-600">{{ Auth::user()->username }}</h6>
-                            </div>  --}}
+                            </div>
                             @role(getAllRoleFungsional())
                                 <div class="user-img d-flex align-items-center">
                                     <div class="avatar avatar-md">
@@ -150,7 +150,8 @@
                                 </a>
                             </li>
                         @endrole
-                        @role(['atasan_langsung', 'penilai_ak_damkar', 'penetap_ak_damkar','penilai_ak_analis','penetap_ak_analis'])
+                        @role(['atasan_langsung', 'penilai_ak_damkar', 'penetap_ak_damkar', 'penilai_ak_analis',
+                            'penetap_ak_analis'])
                             <li>
                                 <a class="dropdown-item" href="{{ route('data-struktural') }}">
                                     <i class="icon-mid bi bi-person me-2"></i>
