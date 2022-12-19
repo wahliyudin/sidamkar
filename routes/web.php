@@ -5,7 +5,6 @@ use App\Http\Controllers\Aparatur\DaftarKegiatanController;
 use App\Http\Controllers\Aparatur\DaftarPenunjangController;
 use App\Http\Controllers\Aparatur\DataKegiatanController;
 use App\Http\Controllers\Aparatur\DataSayaController;
-use App\Http\Controllers\Struktural\OverviewStrukturalController;
 use App\Http\Controllers\Struktural\DataStrukturalController;
 use App\Http\Controllers\Aparatur\Kegiatan\KegiatanJabatanController as KegiatanKegiatanJabatanController;
 use App\Http\Controllers\Aparatur\LaporanJabatanController;
@@ -14,21 +13,15 @@ use App\Http\Controllers\Aparatur\LaporanKegiatan\KegiatanProfesiController as L
 use App\Http\Controllers\Aparatur\LaporanKegiatan\KegiatanPenunjangController as LaporanKegiatanKegiatanPenunjangController;
 use App\Http\Controllers\Aparatur\LaporanKegiatanController;
 use App\Http\Controllers\Aparatur\OverviewController;
-use App\Http\Controllers\Aparatur\StrukturalDashboardController;
 use App\Http\Controllers\Aparatur\TabelKegiatanController;
 use App\Http\Controllers\Aparatur\tabelPenunjangController;
 use App\Http\Controllers\Api\FilePondController;
 use App\Http\Controllers\Api\KabKotaController;
-use App\Http\Controllers\AtasanLangsung\DataAtasanLangsungController;
-use App\Http\Controllers\AtasanLangsung\KegiatanLangsungController;
 use App\Http\Controllers\AtasanLangsung\KegiatanSelesaiController as AtasanLangsungKegiatanSelesaiController;
-use App\Http\Controllers\AtasanLangsung\OverviewController as AtasanLangsungOverviewController;
-use App\Http\Controllers\AtasanLangsung\PengajuanKegiatanController;
 use App\Http\Controllers\AtasanLangsung\VerifikasiKegiatan\KegiatanJabatanController as VerifikasiKegiatanKegiatanJabatanController;
 use App\Http\Controllers\AtasanLangsung\VerifikasiKegiatan\KegiatanPenunjangController as VerifikasiKegiatanKegiatanPenunjangController;
 use App\Http\Controllers\AtasanLangsung\VerifikasiKegiatan\KegiatanProfesiController as VerifikasiKegiatanKegiatanProfesiController;
 use App\Http\Controllers\AtasanLangsung\VerifikasiKegiatanController as AtasanLangsungVerifikasiKegiatanController;
-use App\Http\Controllers\PenilaiAk\OverviewController as PenilaiAkOverviewController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CobaController;
 use App\Http\Controllers\KabKota\ChatboxController;
@@ -45,23 +38,14 @@ use App\Http\Controllers\Kemendagri\PejabatStrukturalController as KemendagriPej
 use App\Http\Controllers\Kemendagri\VerifikasiData\AdminKabKotaController;
 use App\Http\Controllers\Kemendagri\VerifikasiData\AdminProvinsiController;
 use App\Http\Controllers\Kemendagri\VerifikasiData\AparaturController as KemendagriAparaturController;
-use App\Http\Controllers\PenilaiAk\DataPengajuan\DataPengajuanController;
-use App\Http\Controllers\PenilaiAk\KegiatanSelesai\KegiatanSelesaiController;
-use App\Http\Controllers\PenilaiAk\ProfesiPenunjangController;
-use App\Http\Controllers\PenilaiAk\ProfesiPenunjangShowController;
 use App\Http\Controllers\Kemendagri\CMS\InformasiController;
 use App\Http\Controllers\Kemendagri\CMS\KegiatanPenunjangController;
-use App\Http\Controllers\PenetapAK\OverviewPenetapAk;
-use App\Http\Controllers\PenetapAK\DataPengajuan\KabKotaExternal;
-use App\Http\Controllers\PenetapAK\DataPengajuan\KabKotaInternal;
-use App\Http\Controllers\PenetapAK\DataPenetapAKController;
 use App\Http\Controllers\Kemendagri\CMS\PeriodeController;
-use App\Http\Controllers\PenilaiAk\DataPengajuan\ExternalController;
+use App\Http\Controllers\PenetapAK\DataPengajuan\ExternalController as DataPengajuanExternalController;
+use App\Http\Controllers\PenetapAK\DataPengajuan\InternalController as DataPengajuanInternalController;
+use App\Http\Controllers\PenilaiAK\DataPengajuan\ExternalController;
 use App\Http\Controllers\PenilaiAk\DataPengajuan\InternalController;
-use App\Http\Controllers\PenilaiAk\KegiatanSelesai\ShowController;
 use App\Http\Controllers\PenilaiAk\KegiatanSelesaiController as PenilaiAkKegiatanSelesaiController;
-use App\Http\Controllers\provinsi\Chatbox;
-use App\Http\Controllers\Provinsi\DataAparaturController as ProvinsiDataAparaturController;
 use App\Http\Controllers\Provinsi\OverviewController as ProvinsiOverviewController;
 use App\Http\Controllers\provinsi\ChatboxController as ProvinsiChatboxController;
 use App\Http\Controllers\Provinsi\ManajemenUser\FungsionalController as ProvinsiFungsionalController;
@@ -180,10 +164,12 @@ Route::middleware(['auth'])->group(function () {
         });
 
         Route::middleware(['role:atasan_langsung'])->group(function () {
-            Route::get('atasan-langsung/kegiatan-selesai', [AtasanLangsungKegiatanSelesaiController::class, 'index'])->name('atasan-langsung.kegiatan-selesai');
-            Route::get('atasan-langsung/kegiatan-selesai/{id}/show', [AtasanLangsungKegiatanSelesaiController::class, 'show'])->name('atasan-langsung.kegiatan-selesai.show');
-            Route::post('atasan-langsung/kegiatan-selesai/{id}/ttd', [AtasanLangsungKegiatanSelesaiController::class, 'ttd'])->name('atasan-langsung.kegiatan-selesai.ttd');
-
+            Route::controller(AtasanLangsungKegiatanSelesaiController::class)->group(function () {
+                Route::get('atasan-langsung/kegiatan-selesai', 'index')->name('atasan-langsung.kegiatan-selesai');
+                Route::get('atasan-langsung/kegiatan-selesai/{id}/show', 'show')->name('atasan-langsung.kegiatan-selesai.show');
+                Route::post('atasan-langsung/kegiatan-selesai/{id}/ttd', 'ttd')->name('atasan-langsung.kegiatan-selesai.ttd');
+                Route::post('atasan-langsung/kegiatan-selesai/{user_id}/send-to-penilai', 'sendToPenilai')->name('atasan-langsung.kegiatan-selesai.send-to-penilai');
+            });
             Route::get('atasan-langsung/verifikasi-kegiatan', [AtasanLangsungVerifikasiKegiatanController::class, 'index'])->name('atasan-langsung.verifikasi-kegiatan');
 
             Route::controller(VerifikasiKegiatanKegiatanJabatanController::class)->group(function () {
@@ -219,32 +205,32 @@ Route::middleware(['auth'])->group(function () {
             });
         });
 
-        Route::middleware(['role:penilai_ak'])->group(function () {
-            Route::get('data-penilai-ak/show-dockepeg/{id}', [DataAtasanLangsungController::class, 'showDocKepeg'])->name('data-penilai-ak.show-doc-kepeg');
-            Route::post('data-penilai-ak/store-dockepeg', [DataAtasanLangsungController::class, 'storeDocKepeg'])->name('data-penilai-ak.store-doc-kepeg');
-            Route::post('data-penilai-ak/store-dockom', [DataAtasanLangsungController::class, 'storeDocKom'])->name('data-penilai-ak.store-doc-kom');
-            Route::delete('data-penilai-ak/destroy-dockepeg/{id}', [DataAtasanLangsungController::class, 'destroyDocKepeg'])->name('data-penilai-ak.destroy-doc-kepeg');
-            Route::delete('data-penilai-ak/destroy-dockom/{id}', [DataAtasanLangsungController::class, 'destroyDocKom'])->name('data-penilai-ak.destroy-doc-kom');
-
-            Route::get('penilai-ak/data-pengajuan/internal', [InternalController::class, 'index'])->name('penilai-ak.data-pengajuan.internal');
-            Route::get('penilai-ak/data-pengajuan/internal/{id}/show', [InternalController::class, 'show'])->name('penilai-ak.data-pengajuan.internal.show');
-            Route::get('penilai-ak/data-pengajuan/external', [ExternalController::class, 'index'])->name('penilai-ak.data-pengajuan.external');
+        Route::middleware(['role:penilai_ak_damkar|penilai_ak_analis'])->group(function () {
+            Route::controller(InternalController::class)->group(function () {
+                Route::get('penilai-ak/data-pengajuan/internal', 'index')->name('penilai-ak.data-pengajuan.internal');
+                Route::get('penilai-ak/data-pengajuan/internal/{id}/show', 'show')->name('penilai-ak.data-pengajuan.internal.show');
+                Route::post('penilai-ak/data-pengajuan/internal/datatable', 'datatable')->name('penilai-ak.data-pengajuan.internal.datatable');
+                Route::post('penilai-ak/data-pengajuan/internal/{id}/ttd', 'ttd')->name('penilai-ak.data-pengajuan.internal.ttd');
+                Route::post('penilai-ak/data-pengajuan/internal/{user_id}/send-to-penetap', 'sendToPenetap')->name('penilai-ak.data-pengajuan.internal.send-to-penetap');
+            });
+            Route::controller(ExternalController::class)->group(function () {
+                Route::get('penilai-ak/data-pengajuan/external', 'index')->name('penilai-ak.data-pengajuan.external');
+                Route::get('penilai-ak/data-pengajuan/external/{id}/show', 'show')->name('penilai-ak.data-pengajuan.external.show');
+                Route::post('penilai-ak/data-pengajuan/external/datatable', 'datatable')->name('penilai-ak.data-pengajuan.external.datatable');
+            });
             Route::get('penilai-ak/kegiatan-selesai', [PenilaiAkKegiatanSelesaiController::class, 'index'])->name('penilai-ak.kegiatan-selesai');
         });
-        Route::middleware(['role:penetap_ak'])->group(function () {
-            Route::get('penetap-ak/data-pengajuan/kabkota-external/kabKota-external', [KabKotaExternal::class, 'index'])->name('penetap-ak.data-pengajuan.kabkota-external.kabKota-external');
-            Route::get('penetap-ak/data-pengajuan/kabkota-internal/kabKota-internal', [KabKotaInternal::class, 'index'])->name('penetap-ak.data-pengajuan.kabkota-internal.kabKota-internal');
-            Route::get('penetap_ak/overview', [PenilaiAkOverviewController::class, 'index'])->name('penetap_ak.overview');
-            Route::get('data-penetap-ak', [DataPenetapAKController::class, 'index'])->name('data-penetap-ak');
-            Route::post('/data-penetap-ak-store', [DataPenetapAKController::class, 'store'])->name('data-penetap-ak-store');
-            Route::get('data-penetap-ak/show-dockepeg/{id}', [DataPenetapAKController::class, 'showDocKepeg'])->name('data-penetap-ak.show-doc-kepeg');
-            Route::post('data-penetap-ak/store-dockepeg', [DataAtasanLangsungController::class, 'storeDocKepeg'])->name('data-penetap-ak.store-doc-kepeg');
-            Route::post('data-penetap-ak/store-dockom', [DataAtasanLangsungController::class, 'storeDocKom'])->name('data-penetap-ak.store-doc-kom');
-            Route::delete('data-penetap-ak/destroy-dockepeg/{id}', [DataAtasanLangsungController::class, 'destroyDocKepeg'])->name('data-penetap-ak.destroy-doc-kepeg');
-            Route::delete('data-penetap-ak/destroy-dockom/{id}', [DataAtasanLangsungController::class, 'destroyDocKom'])->name('data-penetap-ak.destroy-doc-kom');
+        Route::middleware(['role:penetap_ak_analis|penetap_ak_damkar'])->group(function () {
+            Route::controller(DataPengajuanInternalController::class)->group(function () {
+                Route::get('penetap-ak/data-pengajuan/internal', 'index')->name('penetap-ak.data-pengajuan.internal');
+                Route::get('penetap-ak/data-pengajuan/internal/{id}/show', 'show')->name('penetap-ak.data-pengajuan.internal.show');
+                Route::post('penetap-ak/data-pengajuan/internal/datatable', 'datatable')->name('penetap-ak.data-pengajuan.internal.datatable');
+            });
+            Route::controller(DataPengajuanExternalController::class)->group(function () {
+                Route::get('penetap-ak/data-pengajuan/external', 'index')->name('penetap-ak.data-pengajuan.external');
+            });
         });
     });
-
 
     Route::middleware(['role:kab_kota'])->group(function () {
         Route::get('kab-kota/overview', [KabKotaOverviewController::class, 'index'])->name('kab-kota.overview');
@@ -274,63 +260,6 @@ Route::middleware(['auth'])->group(function () {
         Route::post('kab-kota/data-mente/store-penilai-penetap', [KabKotaMenteController::class, 'storePenilaiAndPenetap'])->name('kab-kota.data-mente.store-penilai-penetap');
 
         Route::get('kab-kota/chatbox', [ChatboxController::class, 'index'])->name('kab-kota.chatbox');
-    });
-
-    Route::middleware(['role:atasan_langsung'])->group(function () {
-        Route::get('data-atasan-langsung', [DataAtasanLangsungController::class, 'index'])->name('data-atasan-langsung');
-        Route::post('data-atasan-langsung-store', [DataAtasanLangsungController::class, 'store'])->name('data-atasan-langsung-store');
-        Route::get('data-atasan-langsung/show-dockepeg/{id}', [DataAtasanLangsungController::class, 'showDocKepeg'])->name('data-atasan-langsung.show-doc-kepeg');
-        Route::post('data-atasan-langsung/store-dockepeg', [DataAtasanLangsungController::class, 'storeDocKepeg'])->name('data-atasan-langsung.store-doc-kepeg');
-        Route::post('data-atasan-langsung/store-dockom', [DataAtasanLangsungController::class, 'storeDocKom'])->name('data-atasan-langsung.store-doc-kom');
-        Route::delete('data-atasan-langsung/destroy-dockepeg/{id}', [DataAtasanLangsungController::class, 'destroyDocKepeg'])->name('data-atasan-langsung.destroy-doc-kepeg');
-        Route::delete('data-atasan-langsung/destroy-dockom/{id}', [DataAtasanLangsungController::class, 'destroyDocKom'])->name('data-atasan-langsung.destroy-doc-kom');
-        Route::get('atasan-langsung/overview', [AtasanLangsungOverviewController::class, 'index'])->name('atasan-langsung.overview.index');
-        Route::get('atasan-langsung/pengajuan-kegiatan', [PengajuanKegiatanController::class, 'index'])->name('atasan-langsung.pengajuan-kegiatan.index');
-        Route::post('atasan-langsung/pengajuan-kegiatan/{id}/load-data', [PengajuanKegiatanController::class, 'loadData'])->name('atasan-langsung.pengajuan-kegiatan.load-data');
-        Route::get('atasan-langsung/pengajuan-kegiatan/{id}/show', [PengajuanKegiatanController::class, 'show'])->name('atasan-langsung.pengajuan-kegiatan.show');
-        Route::post('atasan-langsung/pengajuan-kegiatan/{id}/{current_date}/tolak', [PengajuanKegiatanController::class, 'tolak'])->name('atasan-langsung.pengajuan-kegiatan.tolak');
-        Route::post('atasan-langsung/pengajuan-kegiatan/{id}/{current_date}/revisi', [PengajuanKegiatanController::class, 'revisi'])->name('atasan-langsung.pengajuan-kegiatan.revisi');
-        Route::post('atasan-langsung/pengajuan-kegiatan/{id}/{current_date}/verifikasi', [PengajuanKegiatanController::class, 'verifikasi'])->name('atasan-langsung.pengajuan-kegiatan.verifikasi');
-        Route::get('atasan-langsung/kegiatan-selesai', [AtasanLangsungKegiatanSelesaiController::class, 'index'])->name('atasan-langsung.kegiatan-selesai');
-        Route::get('atasan-langsung/kegiatan-selesai/{id}/show', [AtasanLangsungKegiatanSelesaiController::class, 'show'])->name('atasan-langsung.kegiatan-selesai.show');
-        Route::post('atasan-langsung/kegiatan-selesai/{id}/ttd', [AtasanLangsungKegiatanSelesaiController::class, 'ttd'])->name('atasan-langsung.kegiatan-selesai.ttd');
-
-        Route::get('atasan-langsung/verifikasi-kegiatan', [AtasanLangsungVerifikasiKegiatanController::class, 'index'])->name('atasan-langsung.verifikasi-kegiatan');
-        Route::get('atasan-langsung/verifikasi-kegiatan/{id}/kegiatan-jabatan', [AtasanLangsungVerifikasiKegiatanController::class, 'kegiatanJabatan'])->name('atasan-langsung.verifikasi-kegiatan.kegiatan-jabatan');
-        Route::post('atasan-langsung/verifikasi-kegiatan/kegiatan-jabatan/{id}/load-unsurs', [AtasanLangsungVerifikasiKegiatanController::class, 'loadUnsurs'])->name('atasan-langsung.verifikasi-kegiatan.kegiatan-jabatan.load-unsurs');
-        Route::get('atasan-langsung/verifikasi-kegiatan/{user}/kegiatan-jabatan/{butir}/show', [AtasanLangsungVerifikasiKegiatanController::class, 'kegiatanJabatanShow'])->name('atasan-langsung.verifikasi-kegiatan.kegiatan-jabatan.show');
-        Route::post('atasan-langsung/verifikasi-kegiatan/{id}/kegiatan-jabatan/verifikasi', [AtasanLangsungVerifikasiKegiatanController::class, 'verifikasi'])->name('atasan-langsung.verifikasi-kegiatan.kegiatan-jabatan.verifikasi');
-        Route::post('atasan-langsung/verifikasi-kegiatan/{laporan_id}/{user_id}/kegiatan-jabatan/revisi', [AtasanLangsungVerifikasiKegiatanController::class, 'revisi'])->name('atasan-langsung.verifikasi-kegiatan.kegiatan-jabatan.revisi');
-        Route::post('atasan-langsung/verifikasi-kegiatan/{id}/kegiatan-jabatan/tolak', [AtasanLangsungVerifikasiKegiatanController::class, 'tolak'])->name('atasan-langsung.verifikasi-kegiatan.kegiatan-jabatan.tolak');
-    });
-
-    Route::middleware(['role:penilai_ak_damkar|penilai_ak_analis'])->group(function () {
-        Route::get('data-penilai-ak/show-dockepeg/{id}', [DataAtasanLangsungController::class, 'showDocKepeg'])->name('data-penilai-ak.show-doc-kepeg');
-        Route::post('data-penilai-ak/store-dockepeg', [DataAtasanLangsungController::class, 'storeDocKepeg'])->name('data-penilai-ak.store-doc-kepeg');
-        Route::post('data-penilai-ak/store-dockom', [DataAtasanLangsungController::class, 'storeDocKom'])->name('data-penilai-ak.store-doc-kom');
-        Route::delete('data-penilai-ak/destroy-dockepeg/{id}', [DataAtasanLangsungController::class, 'destroyDocKepeg'])->name('data-penilai-ak.destroy-doc-kepeg');
-        Route::delete('data-penilai-ak/destroy-dockom/{id}', [DataAtasanLangsungController::class, 'destroyDocKom'])->name('data-penilai-ak.destroy-doc-kom');
-
-        Route::get('penilai-ak/data-pengajuan/internal', [InternalController::class, 'index'])->name('penilai-ak.data-pengajuan.internal');
-        Route::get('penilai-ak/data-pengajuan/internal/{id}/show', [InternalController::class, 'show'])->name('penilai-ak.data-pengajuan.internal.show');
-        Route::get('penilai-ak/data-pengajuan/external', [ExternalController::class, 'index'])->name('penilai-ak.data-pengajuan.external');
-        Route::get('penilai-ak/data-pengajuan/external/{id}/show', [ExternalController::class, 'show'])->name('penilai-ak.data-pengajuan.external.show');
-        Route::get('penilai-ak/kegiatan-selesai', [PenilaiAkKegiatanSelesaiController::class, 'index'])->name('penilai-ak.kegiatan-selesai');
-        Route::post('penilai-ak/data-pengajuan/internal/datatable', [InternalController::class, 'datatable'])->name('penilai-ak.data-pengajuan.internal.datatable');
-        Route::post('penilai-ak/data-pengajuan/external/datatable', [ExternalController::class, 'datatable'])->name('penilai-ak.data-pengajuan.external.datatable');
-    });
-    Route::middleware(['role:penetap_ak_damkar|penetap_ak_analis'])->group(function () {
-        Route::get('penetap-ak/overview', [OverviewPenetapAk::class, 'index'])->name('penetap-ak.overview');
-        Route::get('penetap-ak/data-pengajuan/kabkota-external/kabKota-external', [KabKotaExternal::class, 'index'])->name('penetap-ak.data-pengajuan.kabkota-external.kabKota-external');
-        Route::get('penetap-ak/data-pengajuan/kabkota-internal/kabKota-internal', [KabKotaInternal::class, 'index'])->name('penetap-ak.data-pengajuan.kabkota-internal.kabKota-internal');
-        // Route::get('penetap_ak/overview', [PenilaiAkOverviewController::class, 'index'])->name('penetap_ak.overview');
-        Route::get('data-penetap-ak', [DataPenetapAKController::class, 'index'])->name('data-penetap-ak');
-        Route::post('/data-penetap-ak-store', [DataPenetapAKController::class, 'store'])->name('data-penetap-ak-store');
-        Route::get('data-penetap-ak/show-dockepeg/{id}', [DataPenetapAKController::class, 'showDocKepeg'])->name('data-penetap-ak.show-doc-kepeg');
-        Route::post('data-penetap-ak/store-dockepeg', [DataAtasanLangsungController::class, 'storeDocKepeg'])->name('data-penetap-ak.store-doc-kepeg');
-        Route::post('data-penetap-ak/store-dockom', [DataAtasanLangsungController::class, 'storeDocKom'])->name('data-penetap-ak.store-doc-kom');
-        Route::delete('data-penetap-ak/destroy-dockepeg/{id}', [DataAtasanLangsungController::class, 'destroyDocKepeg'])->name('data-penetap-ak.destroy-doc-kepeg');
-        Route::delete('data-penetap-ak/destroy-dockom/{id}', [DataAtasanLangsungController::class, 'destroyDocKom'])->name('data-penetap-ak.destroy-doc-kom');
     });
 
     Route::middleware(['role:provinsi'])->group(function () {

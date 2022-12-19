@@ -240,8 +240,9 @@
             </tr>
             <tr>
                 <td class="bd right" colspan="8" height="100px">
-                    @if (isset($ttd))
-                        <img src="{{ $ttd }}" style="width: 150px;" alt="">
+                    @if ($is_ttd == true)
+                        <img src="{{ linkToBasePath($atasan_langsung->userPejabatStruktural->file_ttd) }}"
+                            style="width: 150px;" alt="">
                     @endif
                 </td>
             </tr>

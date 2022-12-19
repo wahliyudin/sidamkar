@@ -137,32 +137,28 @@
                 <th class="center">VOLUME</th>
                 <th class="center">JUMLAH AK</th>
             </tr>
-            @php
-                $total = 0;
-            @endphp
             @foreach ($rencanas as $rencana)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $rencana->nama }}</td>
+                    <td>{{ $rencana['rencana'] }}</td>
                     <td>1.1. Kegiatan sesuai jenjang jabatan</td>
                     <td><br></td>
                     <td><br></td>
                     <td><br></td>
                     <td><br></td>
                 </tr>
-                @foreach ($rencana->sesuai_jenjang as $sesuai_jenjang)
-                    <tr>
-                        <td><br></td>
-                        <td><br></td>
-                        <td>{{ $sesuai_jenjang['butir_kegiatan']->nama }}</td>
-                        <td>{{ $sesuai_jenjang['butir_kegiatan']->satuan_hasil }}</td>
-                        <td style="text-align: center;">{{ $sesuai_jenjang['butir_kegiatan']->score }}</td>
-                        <td style="text-align: center;">{{ $sesuai_jenjang['volume'] }}</td>
-                        <td style="text-align: center;">{{ $sesuai_jenjang['jumlah_ak'] }}</td>
-                        @php
-                            $total += $sesuai_jenjang['jumlah_ak'];
-                        @endphp
-                    </tr>
+                @foreach ($rencana['rencanas'] as $item)
+                    @if ($item['tingkat_role'] == 'sesuai_jenjang')
+                        <tr>
+                            <td><br></td>
+                            <td><br></td>
+                            <td>{{ $item['butir_kegiatan_nama'] }}</td>
+                            <td>{{ $item['satuan_hasil'] }}</td>
+                            <td style="text-align: center;">{{ $item['score'] }}</td>
+                            <td style="text-align: center;">{{ $item['volume'] }}</td>
+                            <td style="text-align: center;">{{ $item['jumlah_ak'] }}</td>
+                        </tr>
+                    @endif
                 @endforeach
                 <tr>
                     <td></td>
@@ -173,19 +169,18 @@
                     <td><br></td>
                     <td><br></td>
                 </tr>
-                @foreach ($rencana->jenjang_bawah as $jenjang_bawah)
-                    <tr>
-                        <td><br></td>
-                        <td><br></td>
-                        <td>{{ $jenjang_bawah['butir_kegiatan']->nama }}</td>
-                        <td>{{ $jenjang_bawah['butir_kegiatan']->satuan_hasil }}</td>
-                        <td style="text-align: center;">{{ $jenjang_bawah['butir_kegiatan']->score }}</td>
-                        <td style="text-align: center;">{{ $jenjang_bawah['volume'] }}</td>
-                        <td style="text-align: center;">{{ $jenjang_bawah['jumlah_ak'] }}</td>
-                        @php
-                            $total += $jenjang_bawah['jumlah_ak'];
-                        @endphp
-                    </tr>
+                @foreach ($rencana['rencanas'] as $item)
+                    @if ($item['tingkat_role'] == 'jenjang_bawah')
+                        <tr>
+                            <td><br></td>
+                            <td><br></td>
+                            <td>{{ $item['butir_kegiatan_nama'] }}</td>
+                            <td>{{ $item['satuan_hasil'] }}</td>
+                            <td style="text-align: center;">{{ $item['score'] }}</td>
+                            <td style="text-align: center;">{{ $item['volume'] }}</td>
+                            <td style="text-align: center;">{{ $item['jumlah_ak'] }}</td>
+                        </tr>
+                    @endif
                 @endforeach
                 <tr>
                     <td></td>
@@ -196,24 +191,23 @@
                     <td><br></td>
                     <td><br></td>
                 </tr>
-                @foreach ($rencana->jenjang_atas as $jenjang_atas)
-                    <tr>
-                        <td><br></td>
-                        <td><br></td>
-                        <td>{{ $jenjang_atas['butir_kegiatan']->nama }}</td>
-                        <td>{{ $jenjang_atas['butir_kegiatan']->satuan_hasil }}</td>
-                        <td style="text-align: center;">{{ $jenjang_atas['butir_kegiatan']->score }}</td>
-                        <td style="text-align: center;">{{ $jenjang_atas['volume'] }}</td>
-                        <td style="text-align: center;">{{ $jenjang_atas['jumlah_ak'] }}</td>
-                        @php
-                            $total += $jenjang_atas['jumlah_ak'];
-                        @endphp
-                    </tr>
+                @foreach ($rencana['rencanas'] as $item)
+                    @if ($item['tingkat_role'] == 'jenjang_atas')
+                        <tr>
+                            <td><br></td>
+                            <td><br></td>
+                            <td>{{ $item['butir_kegiatan_nama'] }}</td>
+                            <td>{{ $item['satuan_hasil'] }}</td>
+                            <td style="text-align: center;">{{ $item['score'] }}</td>
+                            <td style="text-align: center;">{{ $item['volume'] }}</td>
+                            <td style="text-align: center;">{{ $item['jumlah_ak'] }}</td>
+                        </tr>
+                    @endif
                 @endforeach
             @endforeach
             <tr>
                 <th class="center" colspan="6">TOTAL CAPAIAN ANGKA KREDIT</th>
-                <th>{{ $total }}</th>
+                <th>{{ $total_capaian }}</th>
             </tr>
         </tbody>
     </table>
@@ -228,11 +222,17 @@
             </tr>
             <tr>
                 <td class="bd center letter" colspan="3" height="100px">
-                    @if (isset($ttd))
-                        <img src="{{ $ttd }}" style="width: 150px;" alt="">
+                    @if ($is_ttd_aparatur == true)
+                        <img src="{{ linkToBasePath($user->userAparatur->file_ttd) }}" style="width: 150px;"
+                            alt="">
                     @endif
                 </td>
-                <td class="bd center letter" colspan="4" height="100px"><br></td>
+                <td class="bd center letter" colspan="4" height="100px">
+                    @if ($is_ttd_atasan == true)
+                        <img src="{{ linkToBasePath($atasan_langsung->userPejabatStruktural->file_ttd) }}"
+                            style="width: 150px;" alt="">
+                    @endif
+                </td>
             </tr>
             <tr>
                 <th class="bd center letter" colspan="3" width="350px" style="text-decoration: underline;">
