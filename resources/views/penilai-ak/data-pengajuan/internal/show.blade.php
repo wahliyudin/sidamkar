@@ -27,42 +27,50 @@
                                             <ul class="nav nav-tabs nav-justified bg-light rounded-top mb-0">
                                                 <li class="nav-item">
                                                     <a href="#surat-tab1"
-                                                        class="h-100 nav-link border-y-0 border-left-0 active d-flex justify-content-center align-items-center"
+                                                        class="h-100 nav-link border-y-0 border-left-0 px-2 active d-flex justify-content-center align-items-center"
                                                         data-toggle="tab" data-id="surat-tab1">
                                                         <h6 class="my-1">Rekapitulasi Capaian</h6>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item">
                                                     <a href="#surat-tab2"
-                                                        class="h-100 nav-link border-y-0 border-right-0 d-flex justify-content-center align-items-center"
+                                                        class="h-100 nav-link border-y-0 border-right-0 px-2 d-flex justify-content-center align-items-center"
                                                         data-toggle="tab" data-id="surat-tab2">
                                                         <h6 class="my-1">Penilaian Capaian</h6>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item">
                                                     <a href="#surat-tab3"
-                                                        class="h-100 nav-link border-y-0 border-left-0 d-flex justify-content-center align-items-center"
+                                                        class="h-100 nav-link border-y-0 border-left-0 px-2 d-flex justify-content-center align-items-center"
                                                         data-toggle="tab" data-id="surat-tab3">
                                                         <h6 class="my-1">Pengembangan & Penunjang</h6>
                                                     </a>
                                                 </li>
+                                                <li class="nav-item">
+                                                    <a href="#surat-tab4"
+                                                        class="h-100 nav-link border-y-0 border-left-0 px-2 d-flex justify-content-center align-items-center"
+                                                        data-toggle="tab" data-id="surat-tab4">
+                                                        <h6 class="my-1">Penetapan</h6>
+                                                    </a>
+                                                </li>
                                             </ul>
 
-                                            <div class="tab-content mt-2">
+                                            <div class="tab-content mt-2 relative">
+                                                <div class="bg-spin" style="display: none;">
+                                                    <img class="spin"
+                                                        src="{{ asset('assets/images/template/spinner.gif') }}"
+                                                        style="height: 3rem; object-fit: cover;" alt=""
+                                                        srcset="">
+                                                </div>
                                                 <div class="tab-pane fade show active" id="surat-tab1">
-                                                    <div class="d-flex flex-column align-items-end relative">
-                                                        <div class="bg-spin" style="display: none;">
-                                                            <img class="spin"
-                                                                src="{{ asset('assets/images/template/spinner.gif') }}"
-                                                                style="height: 3rem; object-fit: cover;" alt=""
-                                                                srcset="">
+                                                    <div class="card">
+                                                        <div class="card-body px-0">
+                                                            <iframe src="{{ $rekapitulasiKegiatan?->link_rekap_capaian }}"
+                                                                style="border-radius: 10px; overflow: hidden;"
+                                                                width="100%" height="500px"></iframe>
                                                         </div>
-                                                        <iframe src="{{ $rekapitulasiKegiatan?->link_rekap_capaian }}"
-                                                            style="border-radius: 10px; overflow: hidden;" width="100%"
-                                                            height="500px"></iframe>
                                                     </div>
                                                 </div>
-
                                                 <div class="tab-pane fade" id="surat-tab2">
                                                     <div class="card">
                                                         <div class="card-body px-0">
@@ -73,13 +81,58 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
                                                 <div class="tab-pane fade" id="surat-tab3">
                                                     <div class="card">
                                                         <div class="card-body px-0">
                                                             <iframe src="{{ $rekapitulasiKegiatan?->link_pengembang }}"
                                                                 style="border-radius: 10px; overflow: hidden;"
                                                                 width="100%" height="500px"></iframe>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane fade" id="surat-tab4">
+                                                    <div class="card">
+                                                        <div class="card-body px-0">
+                                                            <div class="row">
+                                                                <div class="col-md-8">
+                                                                    <iframe
+                                                                        src="{{ $rekapitulasiKegiatan?->link_pengembang }}"
+                                                                        style="border-radius: 10px; overflow: hidden;"
+                                                                        width="100%" height="500px"></iframe>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <form method="post">
+                                                                        <div class="form-group pe-1">
+                                                                            <label>AK Dasar Yang Diberikan/ Kelebihan
+                                                                                AK</label>
+                                                                            <input type="number" name=""
+                                                                                class="form-control" placeholder="">
+                                                                        </div>
+                                                                        <div class="form-group pe-1">
+                                                                            <label>AK Yang Diperoleh Dari Pengalaman</label>
+                                                                            <input type="number" name=""
+                                                                                class="form-control" placeholder="">
+                                                                        </div>
+                                                                        <div class="form-group pe-1">
+                                                                            <label>Mekanisme Pengangkatan</label>
+                                                                            <input type="number" name=""
+                                                                                class="form-control" placeholder="">
+                                                                        </div>
+                                                                        <div class="form-group pe-1">
+                                                                            <label>Nilai</label>
+                                                                            <input type="number" name=""
+                                                                                class="form-control" placeholder="">
+                                                                        </div>
+                                                                        <div
+                                                                            class="d-flex align-items-center justify-content-between">
+                                                                            <button type="reset"
+                                                                                class="btn btn-gray text-sm px-5 reset-data">Reset</button>
+                                                                            <button
+                                                                                class="btn btn-blue text-sm px-5 simpan-data">Simpan</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
