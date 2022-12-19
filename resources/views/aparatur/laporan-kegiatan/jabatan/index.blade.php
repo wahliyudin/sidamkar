@@ -36,8 +36,8 @@
                             </button>
                             @if ($user->rekapitulasiKegiatan?->is_send == true)
                                 <button data-bs-toggle="modal" data-bs-target="#historyRekap"
-                                    class="btn btn-blue btn-sm ps-3 pe-3 py-2">
-                                    History Laporan Rekapitulasi Capaian
+                                    class="btn btn-blue btn-sm ps-3 pe-3 py-2 btn-rekap">
+                                    History Laporan
                                 </button>
                             @else
                                 <button data-bs-toggle="modal" data-bs-target="#rekap"

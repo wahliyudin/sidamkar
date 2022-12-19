@@ -118,7 +118,7 @@ class FungsionalDataTable extends DataTable
         return [
             Column::make('username')
                 ->title('Nama'),
-            Column::make('no_hp'),
+            Column::make('no_hp')->addClass('nowrap'),
             Column::make('jabatan')
                 ->orderable(false),
             Column::make('tgl_registrasi')
