@@ -2,13 +2,17 @@
 
 namespace App\Repositories;
 
+use App\Facades\Modules\DestructRoleFacade;
 use App\Models\LaporanKegiatanJabatan;
 use App\Models\Rencana;
 use App\Models\User;
+use App\Traits\ScoringTrait;
 use Illuminate\Support\Facades\DB;
 
 class RencanaRepository
 {
+    use ScoringTrait;
+
     private Rencana $rencana;
 
     public function __construct(Rencana $rencana)
@@ -24,12 +28,17 @@ class RencanaRepository
     public function getDataRekapCapaian(User $user)
     {
         $total = 0;
+        $role = DestructRoleFacade::getRoleFungsionalFirst($user->roles);
+        $limitRole = $this->limiRole($role->id);
+        $sesuai_jenjang = isset($limitRole[2]) ? $limitRole[2] : '""';
+        $jenjang_atas = isset($limitRole[0]) ? $limitRole[0] : '""';
+        $jenjang_bawah = isset($limitRole[1]) ? $limitRole[1] : '""';
         $data = DB::select('SELECT
                 rencanas.id AS rencana_id,
 	            rencanas.nama AS rencana,
-                (CASE WHEN butir_kegiatans.role_id = 1 THEN "sesuai_jenjang"
-                    ELSE (CASE WHEN butir_kegiatans.role_id = 2 THEN "jenjang_atas"
-                        ELSE (CASE WHEN butir_kegiatans.role_id = -1 THEN "jenjang_bawah" END)END)END) AS tingkat_role,
+                (CASE WHEN butir_kegiatans.role_id = ' . $sesuai_jenjang . ' THEN "sesuai_jenjang"
+                    ELSE (CASE WHEN butir_kegiatans.role_id = ' . $jenjang_atas . ' THEN "jenjang_atas"
+                        ELSE (CASE WHEN butir_kegiatans.role_id = ' . $jenjang_bawah . ' THEN "jenjang_bawah" END)END)END) AS tingkat_role,
                 butir_kegiatans.nama AS butir_kegiatan_nama,
                 butir_kegiatans.satuan_hasil,
                 butir_kegiatans.score,
@@ -40,7 +49,7 @@ class RencanaRepository
             JOIN butir_kegiatans ON butir_kegiatans.id = laporan_kegiatan_jabatans.butir_kegiatan_id
             JOIN sub_unsurs ON sub_unsurs.id = butir_kegiatans.sub_unsur_id
             JOIN unsurs ON unsurs.id = sub_unsurs.unsur_id
-            WHERE rencanas.user_id = "97febcd8-f889-4376-b5c0-48867969ef31"
+            WHERE rencanas.user_id = ' . '"' . $user->id . '"' . '
                 AND laporan_kegiatan_jabatans.status = 3
             GROUP BY laporan_kegiatan_jabatans.butir_kegiatan_id');
         $rencanas = [];

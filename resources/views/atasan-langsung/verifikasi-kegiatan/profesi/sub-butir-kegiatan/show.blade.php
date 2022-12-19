@@ -57,7 +57,7 @@
                                     <div class="d-flex align-items-start item-attr">
                                         <i class="fa-solid fa-person-running" style="font-size: 1.3rem; width: 27px;"></i>
                                         <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
-                                            {{ $laporanKegiatanPenunjangProfesiStatusValidasi->butirKegiatan->nama }}
+                                            {{ $laporanKegiatanPenunjangProfesiStatusValidasi->subButirKegiatan->nama }}
                                         </p>
                                     </div>
                                 </div>
@@ -65,9 +65,10 @@
                                     data-bs-target="#riwayatKegiatan{{ $laporanKegiatanPenunjangProfesiStatusValidasi->id }}">Detail
                                     Laporan</button>
                             </div>
-                            @include('atasan-langsung.verifikasi-kegiatan.profesi.riwayat', [
-                                'laporanKegiatanPenunjangProfesi' => $laporanKegiatanPenunjangProfesiStatusValidasi,
-                            ])
+                            @include('atasan-langsung.verifikasi-kegiatan.profesi.sub-butir-kegiatan.riwayat',
+                                [
+                                    'laporanKegiatanPenunjangProfesi' => $laporanKegiatanPenunjangProfesiStatusValidasi,
+                                ])
                         @empty
                             <div class="d-flex justify-content-center mt-3">
                                 <p class="m-0" style="font-style: italic;">Tidak ada data untuk ditampilkan</p>
@@ -117,7 +118,7 @@
                                     <div class="d-flex align-items-start item-attr">
                                         <i class="fa-solid fa-person-running" style="font-size: 1.3rem; width: 27px;"></i>
                                         <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
-                                            {{ $laporanKegiatanPenunjangProfesiStatusRevisi->butirKegiatan->nama }}
+                                            {{ $laporanKegiatanPenunjangProfesiStatusRevisi->subButirKegiatan->nama }}
                                         </p>
                                     </div>
                                 </div>
@@ -127,9 +128,10 @@
                                     data-bs-target="#riwayatKegiatan{{ $laporanKegiatanPenunjangProfesiStatusRevisi->id }}">Detail
                                     Laporan</button>
                             </div>
-                            @include('atasan-langsung.verifikasi-kegiatan.profesi.riwayat', [
-                                'laporanKegiatanPenunjangProfesi' => $laporanKegiatanPenunjangProfesiStatusRevisi,
-                            ])
+                            @include('atasan-langsung.verifikasi-kegiatan.profesi.sub-butir-kegiatan.riwayat',
+                                [
+                                    'laporanKegiatanPenunjangProfesi' => $laporanKegiatanPenunjangProfesiStatusRevisi,
+                                ])
                         @empty
                             <div class="d-flex justify-content-center mt-3">
                                 <p class="m-0" style="font-style: italic;">Tidak ada data untuk ditampilkan</p>
@@ -185,7 +187,7 @@
                                     <div class="d-flex align-items-start item-attr">
                                         <i class="fa-solid fa-person-running" style="font-size: 1.3rem; width: 27px;"></i>
                                         <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
-                                            {{ $laporanKegiatanPenunjangProfesiStatusSelesai->butirKegiatan->nama }}
+                                            {{ $laporanKegiatanPenunjangProfesiStatusSelesai->subButirKegiatan->nama }}
                                         </p>
                                     </div>
                                 </div>
@@ -193,9 +195,10 @@
                                     data-bs-target="#riwayatKegiatan{{ $laporanKegiatanPenunjangProfesiStatusSelesai->id }}">Detail
                                     Laporan</button>
                             </div>
-                            @include('atasan-langsung.verifikasi-kegiatan.profesi.riwayat', [
-                                'laporanKegiatanPenunjangProfesi' => $laporanKegiatanPenunjangProfesiStatusSelesai,
-                            ])
+                            @include('atasan-langsung.verifikasi-kegiatan.profesi.sub-butir-kegiatan.riwayat',
+                                [
+                                    'laporanKegiatanPenunjangProfesi' => $laporanKegiatanPenunjangProfesiStatusSelesai,
+                                ])
                         @empty
                             <div class="d-flex justify-content-center mt-3">
                                 <p class="m-0" style="font-style: italic;">Tidak ada data untuk ditampilkan</p>
@@ -251,7 +254,7 @@
                                     <div class="d-flex align-items-start item-attr">
                                         <i class="fa-solid fa-person-running" style="font-size: 1.3rem; width: 27px;"></i>
                                         <p class="m-0 ms-3" style="font-weight: 600; max-width: 370px;">
-                                            {{ $laporanKegiatanPenunjangProfesiStatusTolak->butirKegiatan->nama }}
+                                            {{ $laporanKegiatanPenunjangProfesiStatusTolak->subButirKegiatan->nama }}
                                         </p>
                                     </div>
                                 </div>
@@ -259,9 +262,10 @@
                                     data-bs-target="#riwayatKegiatan{{ $laporanKegiatanPenunjangProfesiStatusTolak->id }}">Detail
                                     Laporan</button>
                             </div>
-                            @include('atasan-langsung.verifikasi-kegiatan.profesi.riwayat', [
-                                'laporanKegiatanPenunjangProfesi' => $laporanKegiatanPenunjangProfesiStatusTolak,
-                            ])
+                            @include('atasan-langsung.verifikasi-kegiatan.profesi.sub-butir-kegiatan.riwayat',
+                                [
+                                    'laporanKegiatanPenunjangProfesi' => $laporanKegiatanPenunjangProfesiStatusTolak,
+                                ])
                         @empty
                             <div class="d-flex justify-content-center mt-3">
                                 <p class="m-0" style="font-style: italic;">Tidak ada data untuk ditampilkan</p>

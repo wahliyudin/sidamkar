@@ -74,3 +74,9 @@ if (!function_exists('concatPriodeY')) {
         return Carbon::make($periode->awal)->format('Y') . " - " . Carbon::make($periode->awal)->format('Y');
     }
 }
+if (!function_exists('linkToBasePath')) {
+    function linkToBasePath($link)
+    {
+        return public_path(str($link)->replace(env('APP_URL') . '/', ''));
+    }
+}

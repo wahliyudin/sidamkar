@@ -6,11 +6,6 @@ use App\Models\Periode;
 use App\Models\RekapitulasiKegiatan;
 use App\Models\User;
 
-/**
- * @method static \App\Repositories\RekapitulasiKegiatanRepository getRekapByFungsionalAndPeriode(User $user, Periode $periode)
- * @method static \App\Repositories\RekapitulasiKegiatanRepository store($user_id, $periode_id, $url_rekap, $name_rekap, $url_capaian, $name_capaian)
- * @method static \App\Repositories\RekapitulasiKegiatanRepository update(RekapitulasiKegiatan $rekapitulasiKegiatan, $user_id, $periode_id, $url_rekap, $name_rekap, $url_capaian, $name_capaian)
- */
 class RekapitulasiKegiatanRepository
 {
     private RekapitulasiKegiatan $rekapitulasiKegiatan;
@@ -27,8 +22,52 @@ class RekapitulasiKegiatanRepository
             ->where('periode_id', $periode->id)->first();
     }
 
-    public function store($user_id, $periode_id, $link_pernyataan, $name_pernyataan, $link_rekap_capaian, $name_rekap_capaian, $link_pengembang, $name_pengembang, $link_penilaian_capaian, $name_penilaian_capaian): RekapitulasiKegiatan
+    public function sendToAtasanLangsung(RekapitulasiKegiatan $rekapitulasiKegiatan)
     {
+        return $rekapitulasiKegiatan->update(['is_send' => RekapitulasiKegiatan::IS_SEND_KE_ATASAN_LANGSUNG]);
+    }
+
+    public function sendToPenilai(RekapitulasiKegiatan $rekapitulasiKegiatan)
+    {
+        return $rekapitulasiKegiatan->update(['is_send' => RekapitulasiKegiatan::IS_SEND_KE_PENILAI]);
+    }
+
+    public function sendToPenetap(RekapitulasiKegiatan $rekapitulasiKegiatan)
+    {
+        return $rekapitulasiKegiatan->update(['is_send' => RekapitulasiKegiatan::IS_SEND_KE_PENETAP]);
+    }
+
+    public function ttdAtasanLangsung(RekapitulasiKegiatan $rekapitulasiKegiatan)
+    {
+        return $rekapitulasiKegiatan->update(['is_ttd_atasan_langsung' => true]);
+    }
+
+    public function ttdPenilai(RekapitulasiKegiatan $rekapitulasiKegiatan)
+    {
+        return $rekapitulasiKegiatan->update(['is_ttd_penilai' => true]);
+    }
+
+    public function ttdPenetap(RekapitulasiKegiatan $rekapitulasiKegiatan)
+    {
+        return $rekapitulasiKegiatan->update(['is_ttd_penetap' => true]);
+    }
+
+    public function store(
+        $user_id,
+        $periode_id,
+        $link_pernyataan,
+        $name_pernyataan,
+        $link_rekap_capaian,
+        $name_rekap_capaian,
+        $total_capaian,
+        $link_pengembang,
+        $name_pengembang,
+        $jml_ak_profesi,
+        $jml_ak_penunjang,
+        $link_penilaian_capaian,
+        $name_penilaian_capaian,
+        $capaian_ak
+    ): RekapitulasiKegiatan {
         return $this->rekapitulasiKegiatan->query()->create([
             'fungsional_id' => $user_id,
             'periode_id' => $periode_id,
@@ -36,15 +75,32 @@ class RekapitulasiKegiatanRepository
             'name_pernyataan' => $name_pernyataan,
             'link_rekap_capaian' => $link_rekap_capaian,
             'name_rekap_capaian' => $name_rekap_capaian,
+            'total_capaian' => $total_capaian,
             'link_pengembang' => $link_pengembang,
             'name_pengembang' => $name_pengembang,
+            'jml_ak_profesi' => $jml_ak_profesi,
+            'jml_ak_penunjang' => $jml_ak_penunjang,
             'link_penilaian_capaian' => $link_penilaian_capaian,
-            'name_penilaian_capaian' => $name_penilaian_capaian
+            'name_penilaian_capaian' => $name_penilaian_capaian,
+            'capaian_ak' => $capaian_ak
         ]);
     }
 
-    public function update(RekapitulasiKegiatan $rekapitulasiKegiatan, $link_pernyataan, $name_pernyataan, $link_rekap_capaian, $name_rekap_capaian, $link_pengembang, $name_pengembang, $link_penilaian_capaian, $name_penilaian_capaian)
-    {
+    public function update(
+        RekapitulasiKegiatan $rekapitulasiKegiatan,
+        $link_pernyataan,
+        $name_pernyataan,
+        $link_rekap_capaian,
+        $name_rekap_capaian,
+        $total_capaian,
+        $link_pengembang,
+        $name_pengembang,
+        $jml_ak_profesi,
+        $jml_ak_penunjang,
+        $link_penilaian_capaian,
+        $name_penilaian_capaian,
+        $capaian_ak
+    ) {
         $data = [];
         if (!is_null($link_pernyataan) && !is_null($name_pernyataan)) {
             deleteImage($rekapitulasiKegiatan->link_pernyataan);
@@ -55,17 +111,22 @@ class RekapitulasiKegiatanRepository
             deleteImage($rekapitulasiKegiatan->link_rekap_capaian);
             $data['link_rekap_capaian'] = $link_rekap_capaian;
             $data['name_rekap_capaian'] = $name_rekap_capaian;
+            $data['total_capaian'] = $total_capaian;
         }
         if (!is_null($link_pengembang) && !is_null($name_pengembang)) {
             deleteImage($rekapitulasiKegiatan->link_pengembang);
             $data['link_pengembang'] = $link_pengembang;
             $data['name_pengembang'] = $name_pengembang;
+            $data['jml_ak_profesi'] = $jml_ak_profesi;
+            $data['jml_ak_penunjang'] = $jml_ak_penunjang;
         }
         if (!is_null($link_penilaian_capaian) && !is_null($name_penilaian_capaian)) {
             deleteImage($rekapitulasiKegiatan->link_penilaian_capaian);
             $data['link_penilaian_capaian'] = $link_penilaian_capaian;
             $data['name_penilaian_capaian'] = $name_penilaian_capaian;
+            $data['capaian_ak'] = $capaian_ak;
         }
+        // dd($data);
         return $rekapitulasiKegiatan->update($data);
     }
 }

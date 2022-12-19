@@ -41,59 +41,6 @@ class CobaController extends Controller
 
     public function index()
     {
-        // '(CASE WHEN butir_kegiatans.percent IS NOT NULL
-        // THEN (butir_kegiatans.percent/100) * ketentuan_nilais.ak_kp
-        // ELSE butir_kegiatans.score
-        // END)';
-        $penunjangs = DB::select('SELECT
-                sub_unsurs.id AS sub_unsur_id,
-                sub_unsurs.nama AS sub_unsur_nama,
-                (CASE WHEN butir_kegiatans.score IS NOT NULL
-                    THEN butir_kegiatans.nama
-                    ELSE CONCAT(butir_kegiatans.nama, " ", UPPER(LEFT(sub_butir_kegiatans.nama,1)),
-                        LOWER(SUBSTRING(sub_butir_kegiatans.nama,2,LENGTH(sub_butir_kegiatans.nama)))) END) AS nama,
-                (CASE WHEN butir_kegiatans.score IS NOT NULL THEN butir_kegiatans.satuan_hasil ELSE sub_butir_kegiatans.satuan_hasil END) AS satuan_hasil,
-                (CASE WHEN butir_kegiatans.score IS NOT NULL THEN butir_kegiatans.score ELSE sub_butir_kegiatans.score END) AS angka_kredit,
-                (CASE WHEN laporan_kegiatan_penunjang_profesis.butir_kegiatan_id IS NOT NULL THEN COUNT(laporan_kegiatan_penunjang_profesis.butir_kegiatan_id) ELSE COUNT(laporan_kegiatan_penunjang_profesis.sub_butir_kegiatan_id) END) AS volume,
-                SUM(laporan_kegiatan_penunjang_profesis.score) AS jumlah_ak
-            FROM butir_kegiatans
-            JOIN sub_unsurs ON butir_kegiatans.sub_unsur_id = sub_unsurs.id
-            JOIN unsurs ON unsurs.id = sub_unsurs.unsur_id
-            LEFT JOIN sub_butir_kegiatans ON butir_kegiatans.id = sub_butir_kegiatans.butir_kegiatan_id
-            JOIN laporan_kegiatan_penunjang_profesis ON (laporan_kegiatan_penunjang_profesis.butir_kegiatan_id = butir_kegiatans.id OR laporan_kegiatan_penunjang_profesis.sub_butir_kegiatan_id = sub_butir_kegiatans.id)
-            WHERE unsurs.jenis_aparatur = "damkar"
-                AND unsurs.jenis_kegiatan_id = 2
-                AND laporan_kegiatan_penunjang_profesis.status = 3
-                AND laporan_kegiatan_penunjang_profesis.user_id = "97fe86b0-614a-42e2-9c92-5a060ff46e3d"
-                GROUP BY laporan_kegiatan_penunjang_profesis.butir_kegiatan_id, laporan_kegiatan_penunjang_profesis.sub_butir_kegiatan_id
-        ');
-        $profesis = DB::select('SELECT
-                sub_unsurs.id AS sub_unsur_id,
-                sub_unsurs.nama AS sub_unsur_nama,
-                (CASE WHEN butir_kegiatans.score IS NOT NULL
-                    THEN butir_kegiatans.nama
-                    ELSE CONCAT(butir_kegiatans.nama, " ", UPPER(LEFT(sub_butir_kegiatans.nama,1)),
-                        LOWER(SUBSTRING(sub_butir_kegiatans.nama,2,LENGTH(sub_butir_kegiatans.nama)))) END) AS nama,
-                (CASE WHEN butir_kegiatans.score IS NOT NULL THEN butir_kegiatans.satuan_hasil ELSE sub_butir_kegiatans.satuan_hasil END) AS satuan_hasil,
-                (CASE WHEN butir_kegiatans.score IS NOT NULL THEN butir_kegiatans.score ELSE sub_butir_kegiatans.score END) AS angka_kredit,
-                (CASE WHEN laporan_kegiatan_penunjang_profesis.butir_kegiatan_id IS NOT NULL THEN COUNT(laporan_kegiatan_penunjang_profesis.butir_kegiatan_id) ELSE COUNT(laporan_kegiatan_penunjang_profesis.sub_butir_kegiatan_id) END) AS volume,
-                SUM(laporan_kegiatan_penunjang_profesis.score) AS jumlah_ak
-            FROM butir_kegiatans
-            JOIN sub_unsurs ON butir_kegiatans.sub_unsur_id = sub_unsurs.id
-            JOIN unsurs ON unsurs.id = sub_unsurs.unsur_id
-            LEFT JOIN sub_butir_kegiatans ON butir_kegiatans.id = sub_butir_kegiatans.butir_kegiatan_id
-            JOIN laporan_kegiatan_penunjang_profesis ON (laporan_kegiatan_penunjang_profesis.butir_kegiatan_id = butir_kegiatans.id OR laporan_kegiatan_penunjang_profesis.sub_butir_kegiatan_id = sub_butir_kegiatans.id)
-            WHERE unsurs.jenis_aparatur = "damkar"
-                AND unsurs.jenis_kegiatan_id = 3
-                AND laporan_kegiatan_penunjang_profesis.status = 3
-                AND laporan_kegiatan_penunjang_profesis.user_id = "97fe86b0-614a-42e2-9c92-5a060ff46e3d"
-                GROUP BY laporan_kegiatan_penunjang_profesis.butir_kegiatan_id, laporan_kegiatan_penunjang_profesis.sub_butir_kegiatan_id
-        ');
-        return [$penunjangs, $penunjangs];
-        $pdf_rekap = PDF::loadView('generate-pdf.pengembang', compact('penunjangs', 'profesis'))
-            ->setPaper('A4');
-        unlink(public_path('storage/coba.pdf'));
-        Storage::put("coba.pdf", $pdf_rekap->output());
-        return response()->file(public_path('storage/coba.pdf'));
+        return response()->file(linkToBasePath('http://127.0.0.1:8000/storage/aparatur/paYmAvPc9o1671363573.jpg'));
     }
 }
