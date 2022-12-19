@@ -171,7 +171,7 @@ class GeneratePdfService
             $jml_ak_profesi += $profesi->jumlah_ak;
         }
         $ketentuanNilai = $this->ketentuanNilaiRepository->getByRolePangkat($role->id, $user->userAparatur->pangkat_golongan_tmt_id);
-        $result = $this->calculateAKPenunjangProfesi($ketentuanNilai?->ak_kp, ($jml_ak_penunjang + $jml_ak_penunjang));
+        $result = $this->calculateAKPenunjangProfesi($ketentuanNilai?->ak_kp, $jml_ak_penunjang);
         $pdf_rekap = PDF::loadView('generate-pdf.pengembang', compact(
             'penunjangs',
             'profesis',
