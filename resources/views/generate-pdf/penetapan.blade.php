@@ -112,32 +112,38 @@
             <tr>
                 <td width="20px" class="nomor">1</td>
                 <td class="keterangan">Nama</td>
-                <td class="inputan text-start" colspan="5">Lorem ipsum dolor sit amet.</td>
+                <td class="inputan text-start" colspan="5">{{ $user?->userAparatur?->nama }}</td>
             </tr>
             <tr>
                 <td width="20px" class="nomor">2</td>
                 <td class="keterangan">NIP</td>
-                <td class="inputan text-start" colspan="5">Lorem ipsum dolor sit amet.</td>
+                <td class="inputan text-start" colspan="5">{{ $user?->userAparatur?->nip }}</td>
             </tr>
             <tr>
                 <td width="20px" class="nomor">3</td>
                 <td class="keterangan">NOMOR SERI KAPREG</td>
-                <td class="inputan text-start" colspan="5">Lorem ipsum dolor sit amet.</td>
+                <td class="inputan text-start" colspan="5">{{ $user?->userAparatur?->nomor_karpeg }}</td>
             </tr>
             <tr>
                 <td width="20px" class="nomor">4</td>
                 <td class="keterangan">PANGKAT/GOL. RUANG/TMT</td>
-                <td class="inputan text-start" colspan="5">Lorem ipsum dolor sit amet.</td>
+                <td class="inputan text-start" colspan="5">
+                    {{ $user?->userAparatur?->pangkatGolonganTmt?->nama }}
+                </td>
             </tr>
             <tr>
                 <td width="20px" class="nomor">5</td>
                 <td class="keterangan">TEMPAT/TGL LAHIR</td>
-                <td class="inputan text-start" colspan="5">Lorem ipsum dolor sit amet.</td>
+                <td class="inputan text-start" colspan="5">
+                    {{ $user?->userAparatur?->tempat_lahir . ', ' . \Carbon\Carbon::make($user?->userAparatur->tanggal_lahir)->format('Y-m-d') }}
+                </td>
             </tr>
             <tr>
                 <td width="20px" class="nomor">6</td>
                 <td class="keterangan">JENIS KELAMIN</td>
-                <td class="inputan text-start" colspan="5">Lorem ipsum dolor sit amet.</td>
+                <td class="inputan text-start" colspan="5">
+                    {{ $user?->userAparatur?->jenis_kelamin == 'P' ? 'Perempuan' : 'Laki-Laki' }}
+                </td>
             </tr>
             <tr>
                 <td width="20px" class="nomor">7</td>
@@ -261,6 +267,10 @@
             <tr>
                 <td class="tb">3</td>
                 <td class="tb" colspan="3">Sekretaris Tim Penilai yang bersangkutan; dan</td>
+                <td class="bd" colspan="2" style="position: relative;">
+                    <img src="{{ public_path('storage/ttd.jpg') }}"
+                        style="width: 130px; position: absolute; right: 20%; top: -20px;" alt="">
+                </td>
             </tr>
             <tr>
                 <td class="tb">4</td>

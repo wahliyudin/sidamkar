@@ -66,7 +66,9 @@ class RekapitulasiKegiatanRepository
         $jml_ak_penunjang,
         $link_penilaian_capaian,
         $name_penilaian_capaian,
-        $capaian_ak
+        $capaian_ak,
+        $link_penetapan,
+        $name_penetapan
     ): RekapitulasiKegiatan {
         return $this->rekapitulasiKegiatan->query()->create([
             'fungsional_id' => $user_id,
@@ -82,7 +84,9 @@ class RekapitulasiKegiatanRepository
             'jml_ak_penunjang' => $jml_ak_penunjang,
             'link_penilaian_capaian' => $link_penilaian_capaian,
             'name_penilaian_capaian' => $name_penilaian_capaian,
-            'capaian_ak' => $capaian_ak
+            'capaian_ak' => $capaian_ak,
+            'link_penetapan' => $link_penetapan,
+            'name_penetapan' => $name_penetapan
         ]);
     }
 
@@ -99,7 +103,9 @@ class RekapitulasiKegiatanRepository
         $jml_ak_penunjang,
         $link_penilaian_capaian,
         $name_penilaian_capaian,
-        $capaian_ak
+        $capaian_ak,
+        $link_penetapan,
+        $name_penetapan
     ) {
         $data = [];
         if (!is_null($link_pernyataan) && !is_null($name_pernyataan)) {
@@ -126,7 +132,11 @@ class RekapitulasiKegiatanRepository
             $data['name_penilaian_capaian'] = $name_penilaian_capaian;
             $data['capaian_ak'] = $capaian_ak;
         }
-        // dd($data);
+        if (!is_null($link_penetapan) && !is_null($name_penetapan)) {
+            deleteImage($rekapitulasiKegiatan->link_penetapan);
+            $data['link_penetapan'] = $link_penetapan;
+            $data['name_penetapan'] = $name_penetapan;
+        }
         return $rekapitulasiKegiatan->update($data);
     }
 }

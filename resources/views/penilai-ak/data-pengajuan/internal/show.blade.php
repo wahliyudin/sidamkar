@@ -96,7 +96,7 @@
                                                             <div class="row">
                                                                 <div class="col-md-8">
                                                                     <iframe
-                                                                        src="{{ $rekapitulasiKegiatan?->link_pengembang }}"
+                                                                        src="{{ $rekapitulasiKegiatan?->link_penetapan }}"
                                                                         style="border-radius: 10px; overflow: hidden;"
                                                                         width="100%" height="500px"></iframe>
                                                                 </div>

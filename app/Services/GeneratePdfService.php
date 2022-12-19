@@ -214,6 +214,18 @@ class GeneratePdfService
         ];
     }
 
+    public function generatePenetapan(User $user)
+    {
+        $pdf_rekap = PDF::loadView('generate-pdf.penetapan', compact('user'))
+            ->setPaper('A4');
+        $file_name = uniqid();
+        Storage::put("rekapitulasi/$file_name.pdf", $pdf_rekap->output());
+        return [
+            asset("storage/rekapitulasi/$file_name.pdf"),
+            $file_name
+        ];
+    }
+
     public function ttdRekapitulasi(RekapitulasiKegiatan $rekapitulasiKegiatan, User $user, Periode $periode, User $atasan_langsung)
     {
         [$link_pernyataan, $name_pernyataan] = $this->generatePernyataan($user, $atasan_langsung, true);

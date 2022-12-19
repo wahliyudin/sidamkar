@@ -261,6 +261,7 @@
             } else {
                 swal('Error!', jqXHR.responseText, "error");
             }
+            $('#surat-tab1 .bg-spin').hide();
         };
     </script>
 @endsection

@@ -14,6 +14,7 @@ use App\Traits\AuthTrait;
 use App\Traits\DataTableTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
 use Yajra\DataTables\Facades\DataTables;
 
 class InternalController extends Controller
@@ -93,6 +94,9 @@ class InternalController extends Controller
         $user = $this->userRepository->getUserById($id)->load(['mente.atasanLangsung.userPejabatStruktural']);
         $atasan_langsung = $user->mente->atasanLangsung;
         $penilai_ak = $this->authUser()->load(['userPejabatStruktural']);
+        if (!isset($penilai_ak?->userPejabatStruktural?->file_ttd)) {
+            throw ValidationException::withMessages(['Maaf, Anda Belum Melengkapi Profil']);
+        }
         $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode);
         $this->internalService->ttdRekapitulasi($rekap, $user, $periode, $atasan_langsung, $penilai_ak);
         return response()->json([

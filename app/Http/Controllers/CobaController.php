@@ -41,6 +41,9 @@ class CobaController extends Controller
 
     public function index()
     {
-        return response()->file(linkToBasePath('http://127.0.0.1:8000/storage/aparatur/paYmAvPc9o1671363573.jpg'));
+        $pdf_rekap = PDF::loadView('generate-pdf.penetapan')
+            ->setPaper('A4');
+        Storage::put("coba.pdf", $pdf_rekap->output());
+        return response()->file(public_path('storage/coba.pdf'));
     }
 }
