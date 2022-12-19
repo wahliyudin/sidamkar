@@ -43,6 +43,7 @@ use App\Http\Controllers\Kemendagri\CMS\KegiatanPenunjangController;
 use App\Http\Controllers\Kemendagri\CMS\PeriodeController;
 use App\Http\Controllers\PenetapAK\DataPengajuan\ExternalController as DataPengajuanExternalController;
 use App\Http\Controllers\PenetapAK\DataPengajuan\InternalController as DataPengajuanInternalController;
+use App\Http\Controllers\PenilaiAK\DataPengajuan\ExternalController;
 use App\Http\Controllers\PenilaiAk\DataPengajuan\InternalController;
 use App\Http\Controllers\PenilaiAk\KegiatanSelesaiController as PenilaiAkKegiatanSelesaiController;
 use App\Http\Controllers\Provinsi\OverviewController as ProvinsiOverviewController;
@@ -209,8 +210,10 @@ Route::middleware(['auth'])->group(function () {
                 Route::get('penilai-ak/data-pengajuan/internal', 'index')->name('penilai-ak.data-pengajuan.internal');
                 Route::get('penilai-ak/data-pengajuan/internal/{id}/show', 'show')->name('penilai-ak.data-pengajuan.internal.show');
                 Route::post('penilai-ak/data-pengajuan/internal/datatable', 'datatable')->name('penilai-ak.data-pengajuan.internal.datatable');
+                Route::post('penilai-ak/data-pengajuan/internal/{id}/ttd', 'ttd')->name('penilai-ak.data-pengajuan.internal.ttd');
+                Route::post('penilai-ak/data-pengajuan/internal/{user_id}/send-to-penetap', 'sendToPenetap')->name('penilai-ak.data-pengajuan.internal.send-to-penetap');
             });
-            Route::controller(InternalController::class)->group(function () {
+            Route::controller(ExternalController::class)->group(function () {
                 Route::get('penilai-ak/data-pengajuan/external', 'index')->name('penilai-ak.data-pengajuan.external');
                 Route::get('penilai-ak/data-pengajuan/external/{id}/show', 'show')->name('penilai-ak.data-pengajuan.external.show');
                 Route::post('penilai-ak/data-pengajuan/external/datatable', 'datatable')->name('penilai-ak.data-pengajuan.external.datatable');

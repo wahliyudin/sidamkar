@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Repositories\PeriodeRepository;
 use App\Repositories\RekapitulasiKegiatanRepository;
 use App\Repositories\UserRepository;
+use App\Services\PenilaiAK\DataPengajuan\InternalService;
 use App\Traits\AuthTrait;
 use App\Traits\DataTableTrait;
 use Illuminate\Http\Request;
@@ -21,12 +22,14 @@ class InternalController extends Controller
     private UserRepository $userRepository;
     private PeriodeRepository $periodeRepository;
     private RekapitulasiKegiatanRepository $rekapitulasiKegiatanRepository;
+    private InternalService $internalService;
 
-    public function __construct(UserRepository $userRepository, PeriodeRepository $periodeRepository, RekapitulasiKegiatanRepository $rekapitulasiKegiatanRepository)
+    public function __construct(UserRepository $userRepository, PeriodeRepository $periodeRepository, RekapitulasiKegiatanRepository $rekapitulasiKegiatanRepository, InternalService $internalService)
     {
         $this->userRepository = $userRepository;
         $this->periodeRepository = $periodeRepository;
         $this->rekapitulasiKegiatanRepository = $rekapitulasiKegiatanRepository;
+        $this->internalService = $internalService;
     }
 
     public function index()
@@ -91,7 +94,7 @@ class InternalController extends Controller
         $atasan_langsung = $user->mente->atasanLangsung;
         $penilai_ak = $this->authUser()->load(['userPejabatStruktural']);
         $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode);
-        $this->generatePdfService->ttdRekapitulasi($rekap, $user, $periode, $penilai_ak);
+        $this->internalService->ttdRekapitulasi($rekap, $user, $periode, $atasan_langsung, $penilai_ak);
         return response()->json([
             'message' => 'Berhasil'
         ]);
@@ -104,6 +107,7 @@ class InternalController extends Controller
         $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode);
         $this->rekapitulasiKegiatanRepository->sendToPenetap($rekap);
         return response()->json([
+            'success' => 200,
             'message' => 'Berhasil dikirim ke Penetap'
         ]);
     }

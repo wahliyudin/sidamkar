@@ -173,7 +173,7 @@
                 <td class="bd" colspan="4">Tembusan disampaikan kepada:</td>
                 <td class="bd" colspan="2" style="position: relative;">
                     @if (isset($penilai))
-                        <img src="{{ linkToBasePath($penilai?->file_ttd) }}"
+                        <img src="{{ linkToBasePath($penilai?->userPejabatStruktural?->file_ttd) }}"
                             style="width: 100px; position: absolute; right: 35%; top: 10px;" alt="">
                     @endif
                 </td>
@@ -189,12 +189,16 @@
             <tr>
                 <td class="bd" colspan="4">3. Bagian yang membidangi kepegawaian yang bersangkutan</td>
                 <td class="bd" colspan="2" style="text-decoration: underline;">
-
+                    {{-- @if (isset($penilai))
+                        <img src="{{ linkToBasePath($penilai?->userPejabatStruktural?->file_ttd) }}"
+                            style="width: 150px;" alt="">
+                    @endif --}}
                 </td>
             </tr>
             <tr>
                 <td class="bd" colspan="4"></td>
-                <th class="bd" colspan="2">NIP....................................</th>
+                <th class="bd" colspan="2">NIP :
+                    {{ isset($penilai) ? $penilai?->userPejabatStruktural?->nip : '-' }}</th>
             </tr>
         </tbody>
     </table>
