@@ -6,6 +6,7 @@ use App\Facades\Modules\DestructRoleFacade;
 use App\Models\Periode;
 use App\Models\RekapitulasiKegiatan;
 use App\Models\User;
+use App\Repositories\KetentuanNilaiRepository;
 use App\Repositories\PenilaianCapaianRepository;
 use App\Repositories\PeriodeRepository;
 use App\Repositories\RekapitulasiKegiatanRepository;
@@ -25,14 +26,16 @@ class GeneratePdfService
     protected RencanaRepository $rencanaRepository;
     protected PenilaianCapaianRepository $penilaianCapaianRepository;
     protected RekapitulasiKegiatanRepository $rekapitulasiKegiatanRepository;
+    protected KetentuanNilaiRepository $ketentuanNilaiRepository;
 
-    public function __construct(PeriodeRepository $periodeRepository, UnsurRepository $unsurRepository, RencanaRepository $rencanaRepository, PenilaianCapaianRepository $penilaianCapaianRepository, RekapitulasiKegiatanRepository $rekapitulasiKegiatanRepository)
+    public function __construct(PeriodeRepository $periodeRepository, UnsurRepository $unsurRepository, RencanaRepository $rencanaRepository, PenilaianCapaianRepository $penilaianCapaianRepository, RekapitulasiKegiatanRepository $rekapitulasiKegiatanRepository, KetentuanNilaiRepository $ketentuanNilaiRepository)
     {
         $this->periodeRepository = $periodeRepository;
         $this->unsurRepository = $unsurRepository;
         $this->rencanaRepository = $rencanaRepository;
         $this->penilaianCapaianRepository = $penilaianCapaianRepository;
         $this->rekapitulasiKegiatanRepository = $rekapitulasiKegiatanRepository;
+        $this->ketentuanNilaiRepository = $ketentuanNilaiRepository;
     }
 
     public function generatePernyataan(User $user, User $atasan_langsung, $is_ttd = false)
@@ -159,15 +162,6 @@ class GeneratePdfService
                 AND laporan_kegiatan_penunjang_profesis.status = 3
                 AND laporan_kegiatan_penunjang_profesis.user_id = ' . '"' . $user->id . '"' . '
                 GROUP BY laporan_kegiatan_penunjang_profesis.butir_kegiatan_id, laporan_kegiatan_penunjang_profesis.sub_butir_kegiatan_id');
-        $pdf_rekap = PDF::loadView('generate-pdf.pengembang', compact(
-            'penunjangs',
-            'profesis',
-            'user',
-            'role',
-            'penilai'
-        ))->setPaper('A4');
-        $file_name = uniqid();
-        Storage::put("rekapitulasi/$file_name.pdf", $pdf_rekap->output());
         $jml_ak_penunjang = 0;
         $jml_ak_profesi = 0;
         foreach ($penunjangs as $penunjang) {
@@ -176,12 +170,34 @@ class GeneratePdfService
         foreach ($profesis as $profesi) {
             $jml_ak_profesi += $profesi->jumlah_ak;
         }
+        $ketentuanNilai = $this->ketentuanNilaiRepository->getByRolePangkat($role->id, $user->userAparatur->pangkat_golongan_tmt_id);
+        $result = $this->calculateAKPenunjangProfesi($ketentuanNilai?->ak_kp, ($jml_ak_penunjang + $jml_ak_penunjang));
+        $pdf_rekap = PDF::loadView('generate-pdf.pengembang', compact(
+            'penunjangs',
+            'profesis',
+            'user',
+            'role',
+            'penilai',
+            'result'
+        ))->setPaper('A4');
+        $file_name = uniqid();
+        Storage::put("rekapitulasi/$file_name.pdf", $pdf_rekap->output());
+
         return [
             asset("storage/rekapitulasi/$file_name.pdf"),
             $file_name,
             $jml_ak_penunjang,
             $jml_ak_profesi
         ];
+    }
+
+    public function calculateAKPenunjangProfesi($ak_kp, $total)
+    {
+        $percent = $ak_kp * (20 / 100);
+        if ($total <= $percent) {
+            return $total;
+        }
+        return $percent;
     }
 
     public function generatePenilaianCapaian(Periode $periode, User $user, $target_ak_skp, User $penilai = null)
