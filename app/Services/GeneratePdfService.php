@@ -35,12 +35,12 @@ class GeneratePdfService
         $this->rekapitulasiKegiatanRepository = $rekapitulasiKegiatanRepository;
     }
 
-    public function generatePernyataan(User $user, User $atasan_langsung, $ttd = null)
+    public function generatePernyataan(User $user, User $atasan_langsung, $is_ttd = false)
     {
         $pdf_rekap = PDF::loadView('generate-pdf.old', [
             'unsurs' => $this->unsurRepository->getRekapUnsurs($user),
             'user' => $user,
-            'ttd' => $ttd,
+            'is_ttd' => $is_ttd,
             'atasan_langsung' => $atasan_langsung,
             'role_atasan_langsung' => DestructRoleFacade::getRoleAtasanLangsung($atasan_langsung?->roles)
         ])->setPaper('A4');
@@ -52,11 +52,20 @@ class GeneratePdfService
         ];
     }
 
-    public function generateRekapCapaian(User $user, User $atasan_langsung, Periode $periode, $ttd = null)
+    public function generateRekapCapaian(User $user, User $atasan_langsung, Periode $periode, $is_ttd_aparatur = false, $is_ttd_atasan = false)
     {
         [$rencanas, $total_capaian] = $this->rencanaRepository->getDataRekapCapaian($user);
         $role_atasan_langsung = DestructRoleFacade::getRoleAtasanLangsung($atasan_langsung?->roles);
-        $pdf_rekap = PDF::loadView('generate-pdf.rekapitulasi-capaian', compact('rencanas', 'total_capaian', 'ttd', 'user', 'atasan_langsung', 'role_atasan_langsung', 'periode'))->setPaper('A4');
+        $pdf_rekap = PDF::loadView('generate-pdf.rekapitulasi-capaian', compact(
+            'rencanas',
+            'is_ttd_aparatur',
+            'is_ttd_atasan',
+            'total_capaian',
+            'user',
+            'atasan_langsung',
+            'role_atasan_langsung',
+            'periode'
+        ))->setPaper('A4');
         $file_name = uniqid();
         Storage::put("rekapitulasi/$file_name.pdf", $pdf_rekap->output());
         return [
@@ -66,7 +75,7 @@ class GeneratePdfService
         ];
     }
 
-    public function generatePengembang($user)
+    public function generatePengembang(User $user, User $penilai = null)
     {
         $role = DestructRoleFacade::getRoleFungsionalFirst($user->roles);
         $jenis = $this->groupRole($role);
@@ -150,7 +159,7 @@ class GeneratePdfService
                 AND laporan_kegiatan_penunjang_profesis.status = 3
                 AND laporan_kegiatan_penunjang_profesis.user_id = ' . '"' . $user->id . '"' . '
                 GROUP BY laporan_kegiatan_penunjang_profesis.butir_kegiatan_id, laporan_kegiatan_penunjang_profesis.sub_butir_kegiatan_id');
-        $pdf_rekap = PDF::loadView('generate-pdf.pengembang', compact('penunjangs', 'profesis', 'user', 'role'))
+        $pdf_rekap = PDF::loadView('generate-pdf.pengembang', compact('penunjangs', 'profesis', 'user', 'role', 'penilai'))
             ->setPaper('A4');
         $file_name = uniqid();
         Storage::put("rekapitulasi/$file_name.pdf", $pdf_rekap->output());
@@ -186,9 +195,14 @@ class GeneratePdfService
 
     public function ttdRekapitulasi(RekapitulasiKegiatan $rekapitulasiKegiatan, User $user, Periode $periode, User $atasan_langsung)
     {
-        $ttd = $atasan_langsung?->userPejabatStruktural?->file_ttd;
-        $this->generatePernyataan($user, $atasan_langsung, $ttd);
-        $this->generateRekapCapaian($user, $atasan_langsung, $periode, $ttd);
+        [$link_pernyataan, $name_pernyataan] = $this->generatePernyataan($user, $atasan_langsung, true);
+        [$link_rekap_capaian, $name_rekap_capaian, $total_capaian] = $this->generateRekapCapaian($user, $atasan_langsung, $periode, true, true);
+        $rekapitulasiKegiatan->update([
+            'link_pernyataan' => $link_pernyataan,
+            'name_pernyataan' => $name_pernyataan,
+            'link_rekap_capaian' => $link_rekap_capaian,
+            'name_rekap_capaian' => $name_rekap_capaian
+        ]);
         $this->rekapitulasiKegiatanRepository->ttdAtasanLangsung($rekapitulasiKegiatan);
         $rekapitulasiKegiatan->historyRekapitulasiKegiatans()->create([
             'content' => 'Rekapitulasi ditanda tangani Atasan Langsung'

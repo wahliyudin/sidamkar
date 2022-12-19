@@ -13,10 +13,12 @@ use Carbon\Carbon;
 class PenilaianCapaianRepository
 {
     protected PenilaianCapaian $penilaianCapaian;
+    protected KetentuanNilaiRepository $ketentuanNilaiRepository;
 
-    public function __construct(PenilaianCapaian $penilaianCapaian)
+    public function __construct(PenilaianCapaian $penilaianCapaian, KetentuanNilaiRepository $ketentuanNilaiRepository)
     {
         $this->penilaianCapaian = $penilaianCapaian;
+        $this->ketentuanNilaiRepository = $ketentuanNilaiRepository;
     }
 
     public function getByFungsionalAndPeriode(User $user, Periode $periode)
@@ -58,10 +60,7 @@ class PenilaianCapaianRepository
         $user = $user->load(['roles', 'userAparatur.pangkatGolonganTmt', 'ketentuanSkpFungsional.ketentuanSkp']);
         $capaian = $this->ketentuanSKPFungsional($user->ketentuanSkpFungsional);
         $role = DestructRoleFacade::getRoleFungsionalFirst($user->roles);
-        $ketentuan_nailai = KetentuanNilai::query()
-            ->where('role_id', $role?->id)
-            ->where('pangkat_golongan_tmt_id', $user->userAparatur->pangkat_golongan_tmt_id)
-            ->first();
+        $ketentuan_nilai = $this->ketentuanNilaiRepository->getByRolePangkat($role?->id, $user->userAparatur->pangkat_golongan_tmt_id);
         return [
             'user' => $user,
             'role' => $role,
@@ -69,10 +68,10 @@ class PenilaianCapaianRepository
             'target_ak_skp' => $target_ak_skp,
             'capaian' => $capaian,
             'persentase' => $capaian . '%',
-            'ak_min' => $ketentuan_nailai?->ak_min,
-            'ak_max' => $ketentuan_nailai?->ak_max,
+            'ak_min' => $ketentuan_nilai?->ak_min,
+            'ak_max' => $ketentuan_nilai?->ak_max,
             'total_ak' => $target_ak_skp * ($capaian / 100),
-            'result' => $this->calculateCapaian($target_ak_skp, $capaian, $ketentuan_nailai?->ak_max)
+            'result' => $this->calculateCapaian($target_ak_skp, $capaian, $ketentuan_nilai?->ak_max)
         ];
     }
 
