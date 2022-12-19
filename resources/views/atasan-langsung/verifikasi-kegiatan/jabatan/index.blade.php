@@ -118,7 +118,7 @@
                 return $.map(subUnsurs, function(subUnsur, indexOrKey) {
                     return `
                     <div class="accordion-item">
-                        <div class="d-flex justify-content-between accordion-header py-1 px-1"
+                        <div class="d-flex justify-content-between accordion-header py-1 px-1 overflow-auto"
                             id="subUnsur${subUnsur.id}">
                             <div class="d-flex align-items-center"
                                 style="color: #000000;">

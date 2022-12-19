@@ -31,13 +31,8 @@
                     </div>
                 </div>
                 <hr>
-                <div class="row align-items-center justify-content-between">
-                    <div class="form-group col-md-3 ms-3">
-                        <button class="btn btn-gray-reverse btn-sm ps-3 pe-3 py-2">
-                            <i class="fa-solid fa-clock-rotate-left me-1"></i> Riwayat Laporan
-                        </button>
-                    </div>
-                    <div class="form-group col-md-6">
+                <div class="row align-items-center justify-content-end">
+                    <div class="form-group col-md-4">
                         <label>Search</label>
                         <input type="text" name="search" placeholder="Search..." class="form-control">
                     </div>
