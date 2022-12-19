@@ -206,7 +206,7 @@
             </tr>
             <tr>
                 <th class="text-start" colspan="5">AK PENUNJANG YANG DIDAPATKAN</th>
-                <th>{{ $total_penunjang }}</th>
+                <th>{{ $result }}</th>
             </tr>
         </tbody>
     </table>
