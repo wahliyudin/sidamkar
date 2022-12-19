@@ -107,6 +107,7 @@ class InternalController extends Controller
         $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode);
         $this->rekapitulasiKegiatanRepository->sendToPenetap($rekap);
         return response()->json([
+            'success' => 200,
             'message' => 'Berhasil dikirim ke Penetap'
         ]);
     }

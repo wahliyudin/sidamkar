@@ -192,23 +192,54 @@
         });
         $('.send-to-penilai').click(function(e) {
             e.preventDefault();
-            $('#surat-tab1 .bg-spin').show();
-            $.ajax({
-                type: "POST",
-                url: url('/atasan-langsung/kegiatan-selesai/' + $(this).data('id') + '/send-to-penilai'),
-                dataType: "JSON",
-                success: function(response) {
-                    $('#surat-tab1 .bg-spin').hide();
+            swal({
+                title: "Kirim Ke Penilai?",
+                text: "Harap Pastikan Dan Kemudian Kirim Ke Penilai!",
+                type: "warning",
+                showCancelButton: !0,
+                confirmButtonText: "Ya, Kirim!",
+                cancelButtonText: "Batal",
+                reverseButtons: !0,
+                showLoaderOnConfirm: true,
+                preConfirm: async () => {
+                    return await $.ajax({
+                        type: "POST",
+                        url: url('/atasan-langsung/kegiatan-selesai/' + $(this).data('id') +
+                            '/send-to-penilai'),
+                        dataType: "JSON",
+                    });
+                },
+            }).then(function(e) {
+                if (e.value.success == 200) {
                     swal({
                         type: 'success',
                         title: 'Berhasil',
-                        html: response.message
+                        html: 'Dokumen Berhasil Dikirim Ke Penilai'
                     }).then(() => {
                         location.reload()
                     });
-                },
-                error: ajaxError
-            });
+                } else {
+                    swal("Error!", e.value.message, "error");
+                }
+            }, function(dismiss) {
+                return false;
+            })
+            // $.ajax({
+            //     type: "POST",
+            //     url: url('/atasan-langsung/kegiatan-selesai/' + $(this).data('id') + '/send-to-penilai'),
+            //     dataType: "JSON",
+            //     success: function(response) {
+            //         $('#surat-tab1 .bg-spin').hide();
+            //         swal({
+            //             type: 'success',
+            //             title: 'Berhasil',
+            //             html: response.message
+            //         }).then(() => {
+            //             location.reload()
+            //         });
+            //     },
+            //     error: ajaxError
+            // });
         });
         var ajaxError = function(jqXHR, xhr, textStatus, errorThrow, exception) {
             if (jqXHR.status === 0) {

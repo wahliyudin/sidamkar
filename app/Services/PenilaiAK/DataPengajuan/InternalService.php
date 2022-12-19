@@ -22,11 +22,17 @@ class InternalService
     public function ttdRekapitulasi(RekapitulasiKegiatan $rekapitulasiKegiatan, User $user, Periode $periode, User $atasan_langsung, User $penilai)
     {
         // $ttd = $atasan_langsung?->userPejabatStruktural?->file_ttd;
-        $this->generatePdfService->generatePengembang($user, $penilai);
-        $this->generatePdfService->generatePenilaianCapaian($periode, $user, $rekapitulasiKegiatan->total_capaian, $penilai);
+        [$link_pengembang, $name_pengembang, $jml_ak_penunjang, $jml_ak_profesi] = $this->generatePdfService->generatePengembang($user, $penilai);
+        [$link_penilaian_capaian, $name_penilaian_capaian, $capaian_ak] = $this->generatePdfService->generatePenilaianCapaian($periode, $user, $rekapitulasiKegiatan->total_capaian, $penilai);
+        $rekapitulasiKegiatan->update([
+            'link_pengembang' => $link_pengembang,
+            'name_pengembang' => $name_pengembang,
+            'link_penilaian_capaian' => $link_penilaian_capaian,
+            'name_penilaian_capaian' => $name_penilaian_capaian
+        ]);
         $this->rekapitulasiKegiatanRepository->ttdPenilai($rekapitulasiKegiatan);
         $rekapitulasiKegiatan->historyRekapitulasiKegiatans()->create([
-            'content' => 'Rekapitulasi ditanda tangani Atasan Langsung'
+            'content' => 'Rekapitulasi ditanda tangani Tim Penilai'
         ]);
     }
 }

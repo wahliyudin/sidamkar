@@ -159,8 +159,13 @@ class GeneratePdfService
                 AND laporan_kegiatan_penunjang_profesis.status = 3
                 AND laporan_kegiatan_penunjang_profesis.user_id = ' . '"' . $user->id . '"' . '
                 GROUP BY laporan_kegiatan_penunjang_profesis.butir_kegiatan_id, laporan_kegiatan_penunjang_profesis.sub_butir_kegiatan_id');
-        $pdf_rekap = PDF::loadView('generate-pdf.pengembang', compact('penunjangs', 'profesis', 'user', 'role', 'penilai'))
-            ->setPaper('A4');
+        $pdf_rekap = PDF::loadView('generate-pdf.pengembang', compact(
+            'penunjangs',
+            'profesis',
+            'user',
+            'role',
+            'penilai'
+        ))->setPaper('A4');
         $file_name = uniqid();
         Storage::put("rekapitulasi/$file_name.pdf", $pdf_rekap->output());
         $jml_ak_penunjang = 0;
