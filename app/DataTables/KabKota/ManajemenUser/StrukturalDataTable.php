@@ -123,7 +123,7 @@ class StrukturalDataTable extends DataTable
         return [
             Column::make('username')
                 ->title('Nama'),
-            Column::make('no_hp'),
+            Column::make('no_hp')->addClass('nowrap') ,
             Column::make('eselon'),
             Column::make('tgl_registrasi')
                 ->searchable(false),
