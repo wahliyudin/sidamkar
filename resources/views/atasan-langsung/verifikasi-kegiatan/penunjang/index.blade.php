@@ -84,7 +84,7 @@
                 if (unsurs.length > 0) {
                     return $.map(unsurs, function(unsur, indexOrKey) {
                         return `
-                            <div class="accordion-item">
+                            <div class="accordion-item overflow-item">
                                 <div class="d-flex justify-content-between align-items-center accordion-header py-3 px-2" id="unsur${unsur.id}">
                                     <div class="ps-2 pt-2">
                                         <h6 class="accordian-title" style="color: #000000;">${unsur.nama}</h6>
@@ -100,7 +100,7 @@
                                 <div id="contentUnsur${unsur.id}" class="accordion-collapse collapse"
                                     aria-labelledby="unsur${unsur.id}"
                                     style="">
-                                    <div class="accordion-body pt-0">
+                                    <div class="accordion-body overflow-auto pt-0">
                                         <div class="accordion" id="accordion-child">
                                             ${subUnsurs(unsur.sub_unsurs)}
                                         </div>
@@ -117,8 +117,8 @@
             function subUnsurs(subUnsurs) {
                 return $.map(subUnsurs, function(subUnsur, indexOrKey) {
                     return `
-                    <div class="accordion-item">
-                        <div class="d-flex justify-content-between accordion-header py-1 px-1"
+                    <div class="accordion-item overflow-item">
+                        <div class="d-flex justify-content-between accordion-header py-1 px-1 overflow-auto"
                             id="subUnsur${subUnsur.id}">
                             <div class="d-flex align-items-center"
                                 style="color: #000000;">
@@ -137,7 +137,7 @@
                             class="accordion-collapse collapse"
                             aria-labelledby="subUnsur${subUnsur.id}"
                             style="">
-                            <div class="accordion-body">
+                            <div class="accordion-body overflow-auto">
                                 <ul class="ms-0">
                                     ${butirKegiatans(subUnsur.butir_kegiatans)}
                                 </ul>
@@ -152,7 +152,7 @@
                 return $.map(butirKegiatans, function(butirKegiatan, indexOrKey) {
                     if (butirKegiatan.sub_butir_kegiatans.length != 0) {
                         return `
-                            <div class="accordion-item">
+                            <div class="accordion-item overflow-item">
                                 <div class="d-flex justify-content-between accordion-header py-1 px-2"
                                     id="butirKegiatan${butirKegiatan.id}">
                                     <div class="d-flex align-items-center"
@@ -172,7 +172,7 @@
                                     class="accordion-collapse collapse"
                                     aria-labelledby="butirKegiatan${butirKegiatan.id}"
                                     style="">
-                                    <div class="accordion-body">
+                                    <div class="accordion-body overflow-auto">
                                         <ul class="ms-0">
                                             ${subButirKegiatans(butirKegiatan.sub_butir_kegiatans)}
                                         </ul>
@@ -183,7 +183,7 @@
                     } else {
                         return `
                                 <li class="accordian-list ">
-                                    <div class="d-flex align-items-center justify-content-between">
+                                    <div class="d-flex align-items-center justify-content-between flex-wrap">
                                         <a href="${url('/atasan-langsung/verifikasi-kegiatan/penunjang/'+$('input[name="user"]').val()+'/'+butirKegiatan.id+'/butir-kegiatan/show')}" class="link-butir">
                                             <h6 class="accordian-title">
                                                 ${butirKegiatan.nama}
@@ -204,8 +204,8 @@
             function subButirKegiatans(sub_butir_kegiatans) {
                 return $.map(sub_butir_kegiatans, function(subButirKegiatan, indexOrKey) {
                     return `
-                        <li class="accordian-list ">
-                            <div class="d-flex align-items-center justify-content-between">
+                        <li class="accordian-list overflow-auto">
+                            <div class="d-flex align-items-center justify-content-between flex-wrap">
                                 <a href="${url('/atasan-langsung/verifikasi-kegiatan/penunjang/'+$('input[name="user"]').val()+'/'+subButirKegiatan.id+'/sub-butir-kegiatan/show')}" class="link-butir">
                                     <h6 class="accordian-title">
                                         ${subButirKegiatan.nama}
