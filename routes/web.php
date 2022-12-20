@@ -77,10 +77,11 @@ Route::delete('register/revert', [RegisterController::class, 'revert']);
 Route::get('ubah-password', [ChangePasswordController::class, 'index'])->name('ubah-password');
 Route::post('ubah-password', [ChangePasswordController::class, 'update'])->name('ubah-password.update');
 Route::middleware(['auth'])->group(function () {
-
+    Route::get('/informasi/{id}', [OverviewController::class, 'find'])->name('informasi.find');
     Route::middleware(['role:damkar_pemula|damkar_terampil|damkar_mahir|damkar_penyelia|analis_kebakaran_ahli_pertama|analis_kebakaran_ahli_muda|analis_kebakaran_ahli_madya'])->group(function () {
         Route::get('/overview', [OverviewController::class, 'index'])->name('overview');
         Route::get('/data-kegiatan', [DataKegiatanController::class, 'index'])->name('data-saya.data-kegiatan');
+
 
         Route::controller(DataSayaController::class)->group(function () {
             Route::get('/data-saya', 'index')->name('data-saya');
@@ -216,6 +217,7 @@ Route::middleware(['auth'])->group(function () {
                 Route::post('penilai-ak/data-pengajuan/internal/{user_id}/verifikasi', 'verified')->name('penilai-ak.data-pengajuan.internal.verifikasi');
                 Route::post('penilai-ak/data-pengajuan/internal/{user_id}/revisi', 'revision')->name('penilai-ak.data-pengajuan.internal.revisi');
                 Route::post('penilai-ak/data-pengajuan/internal/{user_id}/tolak', 'reject')->name('penilai-ak.data-pengajuan.internal.tolak');
+                Route::post('penilai-ak/data-pengajuan/internal/{user_id}/simpan-penetapan', 'storePenetapan')->name('penilai-ak.data-pengajuan.internal.simpan-penetapan');
             });
             Route::controller(ExternalController::class)->group(function () {
                 Route::get('penilai-ak/data-pengajuan/external', 'index')->name('penilai-ak.data-pengajuan.external');
