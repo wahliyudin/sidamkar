@@ -273,6 +273,9 @@
                 swal('Error!', jqXHR.responseText, "error");
             }
             $('.bg-spin').hide();
+            $('.spin').hide();
+            $('.ttd .icon').show();
+            $('.ttd span').show();
         };
     </script>
 @endsection

@@ -4,16 +4,19 @@ namespace App\Http\Controllers\PenilaiAK\DataPengajuan;
 
 use App\DataTables\PenilaiAK\DataPengajuan\InternalDataTable;
 use App\Http\Controllers\Controller;
+use App\Models\PenetapanAngkaKredit;
 use App\Models\RekapitulasiKegiatan;
 use App\Models\User;
 use App\Models\UserAparatur;
 use App\Repositories\PeriodeRepository;
 use App\Repositories\RekapitulasiKegiatanRepository;
 use App\Repositories\UserRepository;
+use App\Services\GeneratePdfService;
 use App\Services\PenilaiAK\DataPengajuan\InternalService;
 use App\Traits\AuthTrait;
 use App\Traits\DataTableTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 use Yajra\DataTables\Facades\DataTables;
@@ -25,13 +28,15 @@ class InternalController extends Controller
     private PeriodeRepository $periodeRepository;
     private RekapitulasiKegiatanRepository $rekapitulasiKegiatanRepository;
     private InternalService $internalService;
+    private GeneratePdfService $generatePdfService;
 
-    public function __construct(UserRepository $userRepository, PeriodeRepository $periodeRepository, RekapitulasiKegiatanRepository $rekapitulasiKegiatanRepository, InternalService $internalService)
+    public function __construct(UserRepository $userRepository, PeriodeRepository $periodeRepository, RekapitulasiKegiatanRepository $rekapitulasiKegiatanRepository, InternalService $internalService, GeneratePdfService $generatePdfService)
     {
         $this->userRepository = $userRepository;
         $this->periodeRepository = $periodeRepository;
         $this->rekapitulasiKegiatanRepository = $rekapitulasiKegiatanRepository;
         $this->internalService = $internalService;
+        $this->generatePdfService = $generatePdfService;
     }
 
     public function index()
@@ -93,8 +98,26 @@ class InternalController extends Controller
         $rekapitulasiKegiatan = RekapitulasiKegiatan::query()
             ->where('fungsional_id', $id)
             ->where('periode_id', $periode->id)->first();
-        $user = $this->userRepository->getUserById($id)->load('userAparatur');
+        $user = $this->userRepository->getUserById($id)->load('userAparatur', 'penetapanAngkaKredit');
         return view('penilai-ak.data-pengajuan.internal.show', compact('user', 'rekapitulasiKegiatan'));
+    }
+
+    public function storePenetapan(Request $request, $id)
+    {
+        $user = User::query()->with(['userAparatur.pangkatGolonganTmt'])->findOrFail($id);
+        $rules = [
+            'ak_pengalaman' => 'required'
+        ];
+        if ($user->userAparatur->expired_mekanisme) {
+            $rules['ak_kelebihan'] = 'required';
+        }
+        $request->validate($rules);
+        $periode = $this->periodeRepository->isActive();
+        $penetap = $this->authUser()->load(['userPejabatStruktural']);
+        $this->internalService->storePenetapan($user, $penetap, $periode, $request->ak_kelebihan, $request->ak_pengalaman);
+        return response()->json([
+            'message' => 'Berhasil'
+        ]);
     }
 
     public function ttd($id)
