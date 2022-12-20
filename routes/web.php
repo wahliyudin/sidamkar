@@ -231,6 +231,7 @@ Route::middleware(['auth'])->group(function () {
                 Route::get('penetap-ak/data-pengajuan/internal', 'index')->name('penetap-ak.data-pengajuan.internal');
                 Route::get('penetap-ak/data-pengajuan/internal/{id}/show', 'show')->name('penetap-ak.data-pengajuan.internal.show');
                 Route::post('penetap-ak/data-pengajuan/internal/datatable', 'datatable')->name('penetap-ak.data-pengajuan.internal.datatable');
+                Route::post('penetap-ak/data-pengajuan/internal/{id}/ttd', 'ttd')->name('penetap-ak.data-pengajuan.internal.ttd');
             });
             Route::controller(DataPengajuanExternalController::class)->group(function () {
                 Route::get('penetap-ak/data-pengajuan/external', 'index')->name('penetap-ak.data-pengajuan.external');

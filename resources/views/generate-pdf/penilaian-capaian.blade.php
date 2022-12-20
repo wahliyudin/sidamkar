@@ -197,8 +197,10 @@
             </tr>
             <tr>
                 <td class="bd" colspan="4"></td>
-                <th class="bd" colspan="2">NIP :
-                    {{ isset($penilai) ? $penilai?->userPejabatStruktural?->nip : '-' }}</th>
+                <th class="bd" colspan="2">
+                    {{ isset($penilai) ? $penilai?->userPejabatStruktural?->nama : '-' }} <br>
+                    NIP : {{ isset($penilai) ? $penilai?->userPejabatStruktural?->nip : '-' }}
+                </th>
             </tr>
         </tbody>
     </table>

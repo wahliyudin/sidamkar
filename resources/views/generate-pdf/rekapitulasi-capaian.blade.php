@@ -236,9 +236,15 @@
             </tr>
             <tr>
                 <th class="bd center letter" colspan="3" width="350px" style="text-decoration: underline;">
-                    ........................................................
+                    @if ($is_ttd_atasan == true)
+                        {{ $atasan_langsung->userPejabatStruktural->nama }}
+                    @endif
+                </th>
                 <th class="bd center letter" colspan="4" width="350px" style="text-decoration: underline;">
-                    ........................................................</th>
+                    @if ($is_ttd_aparatur == true)
+                        {{ $user->userAparatur->nama }}
+                    @endif
+                </th>
             </tr>
         </tbody>
     </table>
