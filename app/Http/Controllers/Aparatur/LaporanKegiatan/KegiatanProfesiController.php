@@ -70,7 +70,7 @@ class KegiatanProfesiController extends Controller
         $user = $this->authUser()->load(['userAparatur.provinsi.kabkotas', 'ketentuanSkpFungsional', 'dokKepegawaians', 'dokKompetensis', 'rencanas', 'rekapitulasiKegiatan.historyRekapitulasiKegiatans' => function ($query) {
             $query->orderBy('id', 'desc');
         }]);
-        $judul = 'Laporan Kegiatan Jabatan';
+        $judul = 'Laporan Kegiatan Profesi';
         $skp = $user?->ketentuanSkpFungsional;
         $ketentuan_ak = $this->kegiatanProfesiService->ketentuanNilai(DestructRoleFacade::getRoleFungsionalFirst($user->roles)?->id, $user?->userAparatur?->pangkat_golongan_tmt_id);
         $ak_diterima = $this->kegiatanProfesiService->sumScoreByUser($user->id);
