@@ -39,7 +39,7 @@ class InternalService
         ]);
     }
 
-    public function storePenetapan(User $user, User $penetap, Periode $periode, $ak_kelebihan = null, $ak_pengalaman)
+    public function storePenetapan(User $user, User $penetap = null, Periode $periode, $ak_kelebihan = null, $ak_pengalaman)
     {
         PenetapanAngkaKredit::query()->updateOrCreate([
             'periode_id' => $periode->id,

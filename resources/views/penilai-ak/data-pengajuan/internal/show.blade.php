@@ -10,7 +10,12 @@
                         <div class="d-flex align-items-center">
                             <button data-id="{{ $user?->id }}"
                                 class="btn {{ in_array($rekapitulasiKegiatan->is_send, [3]) || $rekapitulasiKegiatan->is_ttd_penilai == true ? 'disabled' : '' }} btn-blue me-3 ps-3 pe-4 text-sm ttd">
-                                <i class="fa-solid fa-pen-clip me-2"></i>TTD</button>
+                                <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
+                                    style="height: 25px; margin-left: 10px; object-fit: cover;display: none;" alt=""
+                                    srcset="">
+                                <i class="fa-solid fa-pen-clip me-2 icon"></i>
+                                <span>TTD</span>
+                            </button>
                             <button data-id="{{ $user?->id }}"
                                 class="btn btn-green btn-sm ps-3 {{ in_array($rekapitulasiKegiatan->is_send, [3]) || $rekapitulasiKegiatan->is_ttd_penilai == false ? 'disabled' : '' }} pe-4 text-sm send-to-penetap">
                                 <i class="fa-solid fa-paper-plane me-2"></i>Kirim Dokumen Ke
@@ -66,39 +71,40 @@
                                                     <div class="card">
                                                         <div class="card-body px-0">
                                                             <div class="row">
-                                                                <div
-                                                                    class="{{ !isset($user?->penetapanAngkaKredit) ? 'col-md-8' : 'col-md-12' }}">
+                                                                <div class="col-md-8">
                                                                     <iframe
                                                                         src="{{ $rekapitulasiKegiatan?->link_penetapan }}"
                                                                         style="border-radius: 10px; overflow: hidden;"
                                                                         width="100%" height="500px"></iframe>
                                                                 </div>
-                                                                @if (!isset($user?->penetapanAngkaKredit))
-                                                                    <div class="col-md-4">
-                                                                        <form method="post" class="form-nilai-ak">
-                                                                            <div class="form-group pe-1">
-                                                                                <label>AK Dasar Yang Diberikan/ Kelebihan
-                                                                                    AK</label>
-                                                                                <input type="number"
-                                                                                    {{ $user?->userAparatur?->status_mekanisme == 3 ? 'disabled' : '' }}
-                                                                                    name="ak_kelebihan"
-                                                                                    value="{{ $user?->userAparatur?->angka_mekanisme }}"
-                                                                                    class="form-control" placeholder="">
-                                                                            </div>
-                                                                            <div class="form-group pe-1">
-                                                                                <label>AK Yang Diperoleh Dari
-                                                                                    Pengalaman</label>
-                                                                                <input type="number" name="ak_pengalaman"
-                                                                                    class="form-control" placeholder="">
-                                                                            </div>
-                                                                            <div
-                                                                                class="d-flex align-items-center justify-content-end">
-                                                                                <button data-data="{{ $user?->id }}"
-                                                                                    class="btn btn-blue text-sm px-5 simpan-data">Simpan</button>
-                                                                            </div>
-                                                                        </form>
-                                                                    </div>
-                                                                @endif
+                                                                <div class="col-md-4">
+                                                                    <form method="post" class="form-nilai-ak">
+                                                                        <div class="form-group pe-1">
+                                                                            <label>AK Dasar Yang Diberikan/ Kelebihan
+                                                                                AK</label>
+                                                                            <input type="number"
+                                                                                {{ $user?->userAparatur?->status_mekanisme == 3 || $rekapitulasiKegiatan->is_send == 3 ? 'disabled' : '' }}
+                                                                                name="ak_kelebihan"
+                                                                                value="{{ $user?->userAparatur?->angka_mekanisme ?? $penetapanAngkaKredit?->ak_kelebihan }}"
+                                                                                class="form-control" placeholder="">
+                                                                        </div>
+                                                                        <div class="form-group pe-1">
+                                                                            <label>AK Yang Diperoleh Dari
+                                                                                Pengalaman</label>
+                                                                            <input
+                                                                                {{ $rekapitulasiKegiatan->is_send == 3 ? 'disabled' : '' }}
+                                                                                type="number"
+                                                                                value="{{ $penetapanAngkaKredit?->ak_pengalaman }}"
+                                                                                name="ak_pengalaman" class="form-control"
+                                                                                placeholder="">
+                                                                        </div>
+                                                                        <div
+                                                                            class="d-flex align-items-center justify-content-end">
+                                                                            <button data-data="{{ $user?->id }}"
+                                                                                class="btn btn-blue text-sm px-5 simpan-data">Simpan</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -266,13 +272,17 @@
         // penilai-ak/data-pengajuan/internal/{user_id}/simpan-penetapan
         $('.ttd').click(function(e) {
             e.preventDefault();
-            $('#surat-tab1 .bg-spin').show();
+            $('.spin').show();
+            $('.ttd .icon').hide();
+            $('.ttd span').hide();
             $.ajax({
                 type: "POST",
                 url: url('/penilai-ak/data-pengajuan/internal/' + $(this).data('id') + '/ttd'),
                 dataType: "JSON",
                 success: function(response) {
-                    $('#surat-tab1 .bg-spin').hide();
+                    $('.spin').hide();
+                    $('.ttd .icon').show();
+                    $('.ttd span').show();
                     swal({
                         type: 'success',
                         title: 'Berhasil',
@@ -340,6 +350,9 @@
             } else {
                 swal('Error!', jqXHR.responseText, "error");
             }
+            $('.spin').hide();
+            $('.ttd .icon').show();
+            $('.ttd span').show();
         };
     </script>
 @endsection

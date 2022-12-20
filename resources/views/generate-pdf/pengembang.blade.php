@@ -236,7 +236,8 @@
                 <td class="center" colspan="3" style="border-width: 0 !important; position: relative;">
                     @if (isset($penilai))
                         <img src="{{ linkToBasePath($penilai?->userPejabatStruktural?->file_ttd) }}"
-                            style="width: 100px; position: absolute; right: 20%; top: -40px;" alt="">
+                            style="width: 100px; max-height: 150px; position: absolute; right: 20%; top: -40px;"
+                            alt="">
                     @endif
                 </td>
             </tr>
@@ -244,7 +245,9 @@
                 <td style="border-width: 0 !important; font-style: italic;" colspan="2">paraf atasan langsung</td>
                 <td style="border-width: 0 !important;"><br></td>
                 <td style="border-width: 0 !important; padding-top: 10px;" colspan="3" class="center">
-                    NIP : {{ isset($penilai) ? $penilai?->userPejabatStruktural?->nip : '-' }}</td>
+                    {{ isset($penilai) ? $penilai?->userPejabatStruktural?->nama : '-' }} <br>
+                    NIP : {{ isset($penilai) ? $penilai?->userPejabatStruktural?->nip : '-' }}
+                </td>
             </tr>
         </tbody>
     </table>

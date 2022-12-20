@@ -284,12 +284,15 @@
             <tr>
                 <td class="tb" colspan="5"></td>
                 <td class="tr" colspan="2" style="text-decoration: underline;">
-                    ..............................
+                    @if ($is_ttd_penetap == true)
+                        {{ $penetap->userPejabatStruktural->nama }}
+                    @endif
                 </td>
             </tr>
             <tr>
                 <td class="tb" colspan="5"></td>
-                <td class="tr" colspan="2" style="">NIP ............................</td>
+                <td class="tr" colspan="2" style="">NIP :
+                    {{ $is_ttd_penetap == true ? $penetap->userPejabatStruktural->nip : '-' }}</td>
             </tr>
         </tbody>
     </table>
