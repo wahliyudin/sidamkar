@@ -24,6 +24,7 @@ use App\Http\Controllers\AtasanLangsung\VerifikasiKegiatan\KegiatanProfesiContro
 use App\Http\Controllers\AtasanLangsung\VerifikasiKegiatanController as AtasanLangsungVerifikasiKegiatanController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CobaController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\KabKota\ChatboxController;
 use App\Http\Controllers\KabKota\ManajemenUser\FungsionalController as KabKotaFungsionalController;
 use App\Http\Controllers\KabKota\ManajemenUser\FungsionalUmumController as KabKotaFungsionalUmumController;
@@ -374,6 +375,13 @@ Route::middleware(['auth'])->group(function () {
             Route::post('kemendagri/cms/periode/store', 'store')->name('kemendagri.cms.periode.store');
             Route::post('kemendagri/cms/periode/{id}/switch', 'switch')->name('kemendagri.cms.periode.switch');
         });
+    });
+
+    Route::controller(ChatController::class)->group(function () {
+        Route::get('chat', 'index')->name('chat');
+        Route::post('chat/store', 'store')->name('chat.store');
+        Route::post('chat/conversation', 'conversation')->name('chat.conversation');
+        Route::post('chat/chat-list', 'chatList')->name('chat.chat-list');
     });
 });
 

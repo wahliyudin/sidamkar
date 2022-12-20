@@ -23,20 +23,11 @@ use App\Traits\ScoringTrait;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Http\Request;
 use Barryvdh\Snappy\Facades\SnappyPdf as PDF;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\ImageManager;
 
 class CobaController extends Controller
 {
-    use ScoringTrait, AuthTrait, DataTableTrait;
-
-    private PeriodeRepository $periodeRepository;
-    private KegiatanProfesiService $kegiatanProfesiService;
-
-    public function __construct(PeriodeRepository $periodeRepository, KegiatanProfesiService $kegiatanProfesiService)
+    public function __construct()
     {
-        $this->periodeRepository = $periodeRepository;
     }
 
     public function index()
