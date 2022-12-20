@@ -23157,3 +23157,14 @@ label {
 .swal2-title{
     font-size: 20px !important;
 }
+
+@media screen and (max-width:495px) {
+            .btn-all {
+                justify-content: start !important;
+                gap: 10px;
+            }
+
+            .btn-akses {
+                margin-left: 0px !important;
+            }
+        }

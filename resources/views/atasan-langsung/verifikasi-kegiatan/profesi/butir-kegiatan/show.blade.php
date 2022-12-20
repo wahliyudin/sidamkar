@@ -3,6 +3,12 @@
 @section('content')
     <div class="section">
         <div class="d-flex px-4 mb-4 container-control justify-content-between align-items-center">
+            <div class="d-flex">
+                <div class="icon-back mb-2"><i class="fa-solid fa-arrow-left-long" style="cursor: pointer"></i>
+                </div>
+                <div class="ms-2">
+                </div>
+            </div>
             <div class="form-group mb-0">
                 <input class="form-control" type="date" value="{{ now()->format('Y-m-d') }}"
                     max="{{ Carbon\Carbon::make($periode->akhir)->format('Y-m-d') }}"

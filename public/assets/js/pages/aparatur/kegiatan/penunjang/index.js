@@ -176,7 +176,7 @@ $(document).ready(function () {
                         class="accordion-collapse collapse"
                         aria-labelledby="butirKegiatan${butirKegiatan.id}"
                         style="">
-                        <div class="accordion-body overflow-auto d-flex flex-wrap">
+                        <div class="accordion-body overflow-auto">
                             <ul class="ms-0">
                                 ${subButirKegiatans(
                                     butirKegiatan.sub_butir_kegiatans

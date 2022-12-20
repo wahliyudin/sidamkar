@@ -7,8 +7,12 @@
         <div class="row">
             <div class="card">
                 <div class="card-header">
-                    <div class="row">
-                        <h4>Kegiatan Penunjang {{ $user->userAparatur->nama }}</h4>
+                    <div class="d-flex">
+                        <div class="icon-back mb-2"><i class="fa-solid fa-arrow-left-long" style="cursor: pointer"></i>
+                        </div>
+                        <div class="ms-2">
+                            <h4>Kegiatan Penunjang {{ $user->userAparatur->nama }}</h4>
+                        </div>
                     </div>
                     <hr>
                     <div class="row align-items-center justify-content-between">
