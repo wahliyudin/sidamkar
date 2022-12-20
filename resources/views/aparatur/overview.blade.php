@@ -13,7 +13,7 @@
                     <div class="card-body py-3 px-3" style="height: 100px;">
                         <div class="d-flex align-items-center h-100">
                             <div class="circle circle-green">
-                                <i class="fa-solid
+                                <i class="fa-solid fafa
                                 fa-stopwatch"></i>
                             </div>
                             <div class="d-flex flex-column ms-2">
@@ -33,7 +33,7 @@
                     <div class="card-body py-3 px-3" style="height: 100px;">
                         <div class="d-flex align-items-center h-100">
                             <div class="circle circle-blue">
-                                <i class="fa-solid fa-copy"></i>
+                                <i class="fa-solid fafa fa-copy"></i>
                             </div>
                             <div class="d-flex flex-column ms-2">
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
@@ -51,7 +51,7 @@
                     <div class="card-body py-3 px-3" style="height: 100px;">
                         <div class="d-flex align-items-center h-100">
                             <div class="circle circle-purple">
-                                <i class="fa-solid fa-copy"></i>
+                                <i class="fa-solid fafa fa-copy"></i>
                             </div>
                             <div class="d-flex flex-column ms-2">
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
@@ -68,7 +68,7 @@
                     <div class="card-body py-3 px-3" style="height: 100px;">
                         <div class="d-flex align-items-center h-100">
                             <div class="circle circle-yellow-light">
-                                <i class="fa-solid fa-user"></i>
+                                <i class="fa-solid fafa fa-user"></i>
                             </div>
                             <div class="d-flex flex-column ms-2">
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;"
@@ -250,6 +250,8 @@
             .target-periode {
                 font-size: 14px !important;
             }
+
+
         }
 
         @media screen and (min-width: 750px) and (max-width: 1000px) {
@@ -260,7 +262,6 @@
             .target-periode {
                 font-size: 11px !important;
             }
-
         }
     </style>
 @endsection

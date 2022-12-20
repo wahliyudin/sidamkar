@@ -14,7 +14,7 @@
                     <div class="card-body py-3 px-3">
                         <div class="d-flex align-items-center h-100">
                             <div class="circle circle-blue">
-                                <i class="fa-solid fa-user"></i>
+                                <i class="fa-solid fafa fa-user"></i>
                             </div>
                             <div class="d-flex flex-column ms-2">
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
@@ -33,7 +33,7 @@
                     <div class="card-body py-3 px-3">
                         <div class="d-flex align-items-center h-100">
                             <div class="circle circle-blue">
-                                <i class="fa-solid fa-user"></i>
+                                <i class="fa-solid fafa fa-user"></i>
                             </div>
                             <div class="d-flex flex-column ms-2">
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
@@ -54,7 +54,7 @@
                     <div class="card-body py-3 px-3">
                         <div class="d-flex align-items-center h-100">
                             <div class="circle circle-blue">
-                                <i class="fa-solid fa-user"></i>
+                                <i class="fa-solid fafa fa-user"></i>
                             </div>
                             <div class="d-flex flex-column ms-2">
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
@@ -73,7 +73,7 @@
                     <div class="card-body py-3 px-3">
                         <div class="d-flex align-items-center h-100">
                             <div class="circle circle-blue">
-                                <i class="fa-solid fa-user"></i>
+                                <i class="fa-solid fafa fa-user"></i>
                             </div>
                             <div class="d-flex flex-column ms-2">
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">

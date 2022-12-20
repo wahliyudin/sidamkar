@@ -1,5 +1,5 @@
 <style>
-    .navbar-diam {
+    .navbar-fixtop {
         position: fixed;
         z-index: 9;
         width: 100%;
@@ -10,7 +10,7 @@
         width: fill-available;
     }
 </style>
-<header class='mb-3 bg-dark shadow-sm navbar-diam'>
+<header class='mb-3 bg-dark shadow-sm navbar-fixtop'>
     <nav class="navbar navbar-expand navbar-light navbar-top">
         <div class="container-fluid">
             <a href="#" class="burger-btn d-block">
