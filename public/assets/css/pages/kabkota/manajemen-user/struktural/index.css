@@ -2,6 +2,8 @@
     border: 0 !important;
 }
 
+
+
 .dataTable th {
     color: #809FB8 !important;
 }
@@ -52,3 +54,7 @@ tbody>tr:hover {
     background-color: darkgrey;
     border-radius: 10px !important;
 } */
+
+.nowrap {
+    white-space: nowrap;
+}

@@ -116,7 +116,7 @@
                                                 <label for="ttd">
                                                     <img src="{{ isset($user->userAparatur?->file_ttd) ? $user->userAparatur?->file_ttd : asset('assets/images/faces/3.jpg') }}"
                                                         alt="ttd" class="image preview-ttd"
-                                                        style="min-width:145px; min-height: 145px; max-width:145px; max-height: 145px; object-fit: cover; border-radius: 10px;">
+                                                        style="min-width:220px; min-height: 145px; max-width:220px; max-height: 145px; object-fit: cover; border-radius: 10px;">
                                                     <span class="middle">
                                                         <div class="text" style="cursor: pointer;"><i
                                                                 class="fa-regular fa-pen-to-square fa-xl"></i>
