@@ -136,7 +136,7 @@ class InternalController extends Controller
         ]);
         return response()->json([
             'status' => 200,
-            'message' => 'Berhasil direvisi'
+            'message' => 'Berhasil diverifikasi'
         ]);
     }
 
@@ -169,7 +169,7 @@ class InternalController extends Controller
         ]);
         return response()->json([
             'status' => 200,
-            'message' => 'Berhasil diverifikasi'
+            'message' => 'Berhasil direvisi'
         ]);
     }
 
@@ -189,7 +189,7 @@ class InternalController extends Controller
                 return '<span class="badge bg-black text-white text-sm py-2 px-3 rounded-md">Ditolak</span>';
                 break;
             default:
-                return '<span class="badge bg-gray text-white text-sm py-2 px-3 rounded-md">Belum</span>';
+                return '<span class="badge bg-gray text-white text-sm py-2 px-3 rounded-md">Belum Menginput</span>';
                 break;
         }
     }
