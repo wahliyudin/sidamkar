@@ -9,148 +9,30 @@
                     <div class="recent_heading">
                         <h4>Chat</h4>
                     </div>
-                    <div class="srch_bar">
-                        <div class="stylish-input-group">
-                            <input type="text" class="search-bar"  placeholder="Search" >
-                            <span class="input-group-addon">
-                            <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
-                            </span> 
-                        </div>
-                    </div>
                 </div>
-                <div class="inbox_chat">
+                <div class="inbox_chat" id="inbox_chat">
+                @role(['kab_kota', 'provinsi'])
                     <div class="chat_list active_chat">
                         <div class="chat_people">
                             <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
                             <div class="chat_ib">
-                                <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                                <p>Test, which is a new approach to have all solutions 
-                                    astrology under one roof.
-                                </p>
+                                <h5>Admin Kemendagri <span class="badge bg-danger">1</span></h5>
                             </div>
                         </div>
+                        <input type="hidden" class="user_to_id" value="97ef74a7-bb9d-40d5-9115-6311e76de570">
                     </div>
-                    <div class="chat_list">
-                        <div class="chat_people">
-                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                            <div class="chat_ib">
-                                <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                                <p>Test, which is a new approach to have all solutions 
-                                    astrology under one roof.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="chat_list">
-                        <div class="chat_people">
-                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                            <div class="chat_ib">
-                                <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                                <p>Test, which is a new approach to have all solutions 
-                                    astrology under one roof.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="chat_list">
-                        <div class="chat_people">
-                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                            <div class="chat_ib">
-                                <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                                <p>Test, which is a new approach to have all solutions 
-                                    astrology under one roof.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="chat_list">
-                        <div class="chat_people">
-                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                            <div class="chat_ib">
-                                <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                                <p>Test, which is a new approach to have all solutions 
-                                    astrology under one roof.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="chat_list">
-                        <div class="chat_people">
-                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                            <div class="chat_ib">
-                                <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                                <p>Test, which is a new approach to have all solutions 
-                                    astrology under one roof.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="chat_list">
-                        <div class="chat_people">
-                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                            <div class="chat_ib">
-                                <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                                <p>Test, which is a new approach to have all solutions 
-                                    astrology under one roof.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                @endrole
                 </div>
             </div>
             <div class="mesgs">
-                <div class="msg_history">
-                    <div class="incoming_msg">
-                        <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                        <div class="received_msg">
-                            <div class="received_withd_msg">
-                                <p>Test which is a new approach to have all
-                                    solutions
-                                </p>
-                                <span class="time_date"> 11:01 AM    |    June 9</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="outgoing_msg">
-                        <div class="sent_msg">
-                            <p>Test which is a new approach to have all
-                                solutions
-                            </p>
-                            <span class="time_date"> 11:01 AM    |    June 9</span> 
-                        </div>
-                    </div>
-                    <div class="incoming_msg">
-                        <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                        <div class="received_msg">
-                            <div class="received_withd_msg">
-                                <p>Test, which is a new approach to have</p>
-                                <span class="time_date"> 11:01 AM    |    Yesterday</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="outgoing_msg">
-                        <div class="sent_msg">
-                            <p>Apollo University, Delhi, India Test</p>
-                            <span class="time_date"> 11:01 AM    |    Today</span> 
-                        </div>
-                    </div>
-                    <div class="incoming_msg">
-                        <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                        <div class="received_msg">
-                            <div class="received_withd_msg">
-                                <p>We work directly with our designers and suppliers,
-                                    and sell direct to you, which means quality, exclusive
-                                    products, at a price anyone can afford.
-                                </p>
-                                <span class="time_date"> 11:01 AM    |    Today</span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="msg_history" id="msg_history">
+                    
                 </div>
                 <div class="type_msg">
                     <div class="input_msg_write">
-                        <textarea cols="5" rows="5" class="write_msg" placeholder="Type a message"></textarea>
-                        <button class="msg_send_btn" type="button"><i class="fa-solid fa-paper-plane fa-xs"></i></button>
+                        <textarea cols="5" rows="5" class="write_msg" id="write_msg" placeholder="Type a message"></textarea>
+                        <input type="hidden" id="msg_user_id">
+                        <button class="msg_send_btn" id="msg_send_btn" type="button"><i class="fa-solid fa-paper-plane fa-xs"></i></button>
                     </div>
                 </div>
             </div>
@@ -231,7 +113,12 @@
         .chat_ib p{
             font-size:14px;
             color:#989898;
-            margin:auto
+            margin:auto;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2; /* number of lines to show */
+                    line-clamp: 2; 
+            -webkit-box-orient: vertical;
         }
         .chat_img {
             float: left;
@@ -239,7 +126,7 @@
         }
         .chat_ib {
             float: left;
-            padding: 0 0 0 15px;
+            padding: 10px 0 0 15px;
             width: 88%;
         }
         .chat_people{
@@ -315,6 +202,10 @@
             font-size: 15px;
             min-height: 48px;
             width: 100%;
+            border: none;
+            outline: none;
+            overflow: hidden;
+            padding-right: 45px;
         }
         .type_msg {
             border-top: 1px solid #c4c4c4;
@@ -345,4 +236,181 @@
 @endsection
 @section('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
+    <script>
+        $("#msg_send_btn").on("click", function () {
+            let html = ''
+            
+            $.ajax({
+                type: "POST",
+                url: "{{ route('chat.store') }}",
+                data: {
+                    to: $("#msg_user_id").val(),
+                    message: $("#write_msg").val(),
+                    _token: `{{ csrf_token() }}`
+                },
+                dataType: "json",
+                success: function(response) {
+                    $("#write_msg").val('')
+                },
+                error: function(err) {
+                }
+            });
+        })
+
+        $("#inbox_chat").on("click", ".chat_list", function () {
+            let user_to_id = $(this).find('.user_to_id').val()
+
+            getConversation(user_to_id)
+        })
+
+        function getConversation(user_to_id) {
+            html = ''
+            $("#msg_user_id").val(user_to_id)
+
+            $.ajax({
+                type: "POST",
+                url: "{{ route('chat.conversation') }}",
+                data: {
+                    _token: `{{ csrf_token() }}`
+                },
+                dataType: "json",
+                success: function (response) {
+                    if (response.data) {
+                        $.each(response.data, function (index, val) {
+                            if (val.from == `{{ Auth::user()->id }}`) {
+                                html += `
+                                <div class="outgoing_msg" style="margin-top: 20px;">
+                                <div class="sent_msg">
+                                <p style="white-space: pre-line">${val.message}</p>
+                                <span class="time_date">${timeAgo(val.created_at)}</span> 
+                                </div>
+                                </div>
+                                `
+                            } else {
+                                html += `
+                                <div class="incoming_msg" style="margin-top: 20px;">
+                                    <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                    <div class="received_msg">
+                                        <div class="received_withd_msg">
+                                            <p style="white-space: pre-line">${val.message}</p>
+                                            <span class="time_date">${timeAgo(val.created_at)}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                `
+                            }
+                        });
+
+                        $("#msg_history").html(html)
+                    }
+                }
+            });
+        }
+
+        function getChatList() {
+            html = ''
+
+            $.ajax({
+                type: "POST",
+                url: "{{ route('chat.chat-list') }}",
+                data: {
+                    _token: `{{ csrf_token() }}`
+                },
+                dataType: "json",
+                success: function (response) {
+                    if (response.data) {
+                        $.each(response.data, function (index, val) {
+                            html += `
+                            <div class="chat_list active_chat">
+                                <div class="chat_people">
+                                    <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                    <div class="chat_ib">
+                                        <h5>${val.username} <span class="badge bg-danger">1</span></h5>
+                                    </div>
+                                </div>
+                                <input type="hidden" class="user_to_id" value="${val.id}">
+                            </div>
+                            `
+                        });
+
+                        $("#inbox_chat").html(html)
+                    }
+                }
+            });
+        }
+
+        @role(['kemendagri'])
+            getChatList();
+        @endrole
+
+        const MONTH_NAMES = [
+            'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
+        ];
+
+
+        function getFormattedDate(date, prefomattedDate = false, hideYear = false) {
+            const day = date.getDate();
+            const month = MONTH_NAMES[date.getMonth()];
+            const year = date.getFullYear();
+            const hours = date.getHours();
+            let minutes = date.getMinutes();
+
+            if (minutes < 10) {
+                // Adding leading zero to minutes
+                minutes = `0${ minutes }`;
+            }
+
+            if (prefomattedDate) {
+                // Today at 10:20
+                // Yesterday at 10:20
+                return `${ prefomattedDate } at ${ hours }:${ minutes }`;
+            }
+
+            if (hideYear) {
+                // 10. January at 10:20
+                return `${ day }. ${ month } at ${ hours }:${ minutes }`;
+            }
+
+            // 10. January 2017. at 10:20
+            return `${ day }. ${ month } ${ year }. at ${ hours }:${ minutes }`;
+        }
+
+
+        // --- Main function
+        function timeAgo(dateParam) {
+            if (!dateParam) {
+                return null;
+            }
+
+            const date = typeof dateParam === 'object' ? dateParam : new Date(dateParam);
+            console.log(date)
+            const DAY_IN_MS = 86400000; // 24 * 60 * 60 * 1000
+            const today = new Date();
+            const yesterday = new Date(today - DAY_IN_MS);
+            const seconds = Math.round((today - date) / 1000);
+            const minutes = Math.round(seconds / 60);
+            const isToday = today.toDateString() === date.toDateString();
+            const isYesterday = yesterday.toDateString() === date.toDateString();
+            const isThisYear = today.getFullYear() === date.getFullYear();
+
+
+            if (seconds < 5) {
+                return 'now';
+            } else if (seconds < 60) {
+                return `${ seconds } seconds ago`;
+            } else if (seconds < 90) {
+                return 'about a minute ago';
+            } else if (minutes < 60) {
+                return `${ minutes } minutes ago`;
+            } else if (isToday) {
+                return getFormattedDate(date, 'Today'); // Today at 10:20
+            } else if (isYesterday) {
+                return getFormattedDate(date, 'Yesterday'); // Yesterday at 10:20
+            } else if (isThisYear) {
+                return getFormattedDate(date, false, true); // 10. January at 10:20
+            }
+
+            return getFormattedDate(date); // 10. January 2017. at 10:20
+        }
+    </script>
 @endsection

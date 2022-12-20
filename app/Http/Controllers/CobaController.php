@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class CobaController extends Controller
 {
@@ -12,7 +13,5 @@ class CobaController extends Controller
 
     public function index()
     {
-        // dd(Auth::user()->roles()->first());
-        return view('chatbox');
     }
 }
