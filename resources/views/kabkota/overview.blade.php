@@ -10,7 +10,7 @@
                                 <div class="d-flex align-items-center h-100">
                                     <div class="circle circle-green">
                                         <i style="font-size: 20px;"
-                                            class="fa-solid
+                                            class="fa-solid fafa
                                         fa-stopwatch"></i>
                                     </div>
                                     <div class="d-flex flex-column ms-2">
@@ -31,7 +31,7 @@
                             <div class="card-body py-2 px-3">
                                 <div class="d-flex align-items-center h-100">
                                     <div class="circle circle-green">
-                                        <i style="font-size: 20px;" class="fa-solid fa-user-group"></i>
+                                        <i style="font-size: 20px;" class="fa-solid fafa fa-user-group"></i>
                                     </div>
                                     <div class="d-flex flex-column ms-3">
                                         <p
@@ -50,7 +50,7 @@
                             <div class="card-body py-2 px-3">
                                 <div class="d-flex align-items-center h-100">
                                     <div class="circle circle-yellow">
-                                        <i style="font-size: 20px;" class="fa-solid fa-user-large"></i>
+                                        <i style="font-size: 20px;" class="fa-solid fafa fa-user-large"></i>
                                     </div>
                                     <div class="d-flex flex-column ms-3">
                                         <p
@@ -90,7 +90,7 @@
                             <div class="card-body py-2 px-3">
                                 <div class="d-flex align-items-center h-100">
                                     <div class="circle circle-blue">
-                                        <i style="font-size: 20px;" class="fa-solid fa-user-tie"></i>
+                                        <i style="font-size: 20px;" class="fa-solid fafa fa-user-tie"></i>
                                     </div>
                                     <div class="d-flex flex-column ms-3">
                                         <p
@@ -109,7 +109,7 @@
                             <div class="card-body py-2 px-3">
                                 <div class="d-flex align-items-center h-100">
                                     <div class="circle circle-blue">
-                                        <i style="font-size: 20px;" class="fa-solid fa-user-tie"></i>
+                                        <i style="font-size: 20px;" class="fa-solid fafa fa-user-tie"></i>
                                     </div>
                                     <div class="d-flex flex-column ms-3">
                                         <p

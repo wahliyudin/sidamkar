@@ -228,24 +228,24 @@
                         </div>
                     </div>
                 </div>
-                <div class="d-flex wrapper-btn justify-content-end align-items-center mt-0 pb-2">
+                <div class="d-flex wrapper-btn justify-content-end align-items-center mt-0 pb-2 flex-wrap btn-all">
                     <button type="button" class="btn btn-danger btn-sm px-4" data-bs-dismiss="modal">Tutup</button>
                     @if (in_array($laporanKegiatanPenunjangProfesi->status, [1]))
                         <button type="button" data-laporan="{{ $laporanKegiatanPenunjangProfesi->id }}"
-                            class="btn btn-black px-4 btn-sm tolak-kegiatan ms-2">
+                            class="btn btn-black px-4 btn-sm tolak-kegiatan ms-2 btn-akses">
                             <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
                                 style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
                             <span>Tolak</span>
                         </button>
                         <button type="button" data-user="{{ $laporanKegiatanPenunjangProfesi->user->id }}"
                             data-laporan="{{ $laporanKegiatanPenunjangProfesi->id }}"
-                            class="btn btn-red-dark px-4 revisi-kegiatan ms-2">
+                            class="btn btn-red-dark px-4 revisi-kegiatan ms-2 btn-akses">
                             <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
                                 style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
                             <span>Revisi</span>
                         </button>
                         <button type="button" data-laporan="{{ $laporanKegiatanPenunjangProfesi->id }}"
-                            class="btn btn-green-dark px-4 btn-sm verifikasi-kegiatan ms-2">
+                            class="btn btn-green-dark px-4 btn-sm verifikasi-kegiatan ms-2 btn-akses">
                             <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
                                 style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
                             <span>Verifikasi</span>
@@ -256,3 +256,19 @@
         </div>
     </div>
 </div>
+
+
+@section('css')
+    <style>
+        @media screen and (max-width:495px) {
+            .btn-all {
+                justify-content: start !important;
+                gap: 10px;
+            }
+
+            .btn-akses {
+                margin-left: 0px !important;
+            }
+        }
+    </style>
+@endsection

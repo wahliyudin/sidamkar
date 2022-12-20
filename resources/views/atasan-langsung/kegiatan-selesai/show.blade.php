@@ -4,10 +4,10 @@
     <section class="section">
         <div class="row">
             <div class="col-md-12 px-2">
-                <div class="card mb-3">
-                    <div class="card-header d-flex justify-content-between align-items-center">
+                <div class="card mb-3 overflow-auto">
+                    <div class="card-header d-flex justify-content-between align-items-center flex-wrap">
                         <h4>Laporan/Dokumen {{ $user?->userAparatur->nama }}</h4>
-                        <div class="d-flex align-items-center">
+                        <div class="d-flex align-items-center flex-wrap">
                             <button data-id="{{ $user?->id }}"
                                 class="btn {{ in_array($rekapitulasiKegiatan->is_send, [2, 3]) || $rekapitulasiKegiatan->is_ttd_atasan_langsung == true ? 'disabled' : '' }} btn-blue me-3 ps-3 pe-4 text-sm ttd">
                                 <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
@@ -17,9 +17,8 @@
                                 <span>TTD</span>
                             </button>
                             <button data-id="{{ $user?->id }}"
-                                class="btn btn-green btn-sm ps-3 {{ in_array($rekapitulasiKegiatan->is_send, [2, 3]) || $rekapitulasiKegiatan->is_ttd_atasan_langsung == false ? 'disabled' : '' }} pe-4 text-sm send-to-penilai">
-                                <i class="fa-solid fa-paper-plane me-2"></i>Kirim Dokumen Ke
-                                Penilai</button>
+                                class="btn btn-green btn-sm ps-3 btn-kirim {{ in_array($rekapitulasiKegiatan->is_send, [2, 3]) || $rekapitulasiKegiatan->is_ttd_atasan_langsung == false ? 'disabled' : '' }} pe-4 text-sm send-to-penilai">
+                                <i class="fa-solid fa-paper-plane me-2"></i>Kirim Ke Penilai</button>
                         </div>
                     </div>
                     <div class="card-body">
@@ -126,6 +125,25 @@
 
         .nav-item:not(:first-child) {
             margin-left: 1rem;
+        }
+
+        @media screen and (max-width: 575px) {
+            .nav-item:not(:first-child) {
+                margin-left: 0;
+            }
+
+        }
+
+        @media screen and (max-width: 471px) {
+            .nav-item:not(:first-child) {
+                margin-left: 0;
+            }
+        }
+
+        @media screen and (max-width: 395px) {
+            .btn-kirim {
+                margin-top: 10px;
+            }
         }
 
         @media screen and (max-width: 750px) {

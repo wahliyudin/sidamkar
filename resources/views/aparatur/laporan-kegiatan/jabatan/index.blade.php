@@ -8,7 +8,7 @@
                     <div class="card-body py-3 px-3" style="height: 100px;">
                         <div class="d-flex align-items-center h-100">
                             <div class="circle circle-purple">
-                                <i class="fa-solid fa-copy"></i>
+                                <i class="fa-solid fafa fa-copy"></i>
                             </div>
                             <div class="d-flex flex-column ms-2">
                                 <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
@@ -219,7 +219,7 @@
             align-items: center;
         }
 
-        @media screen and (max-width: 433px) {
+        @media screen and (max-width: 399px) {
             .btn-rekap {
                 margin-top: 10px;
             }
