@@ -11,6 +11,7 @@ use App\Models\Periode;
 use Illuminate\Support\Facades\DB;
 use App\Models\Mente;
 use App\Traits\AuthTrait;
+use App\Models\Informasi;
 
 class OverviewController extends Controller
 {
@@ -28,7 +29,7 @@ class OverviewController extends Controller
 
         $role = DB::table('users')->join('role_user', 'role_user.user_id', '=', 'users.id')->where('users.id', '=', Auth::user()->id)->select('*')->get();
 
-        $informasi = DB::table('informasis')->join('role_informasis', 'role_informasis.informasi_id', '=', 'informasis.id')->where('role_informasis.role_id', $role[0]->role_id)->get();
+        $informasi = DB::table('informasis')->join('role_informasis', 'role_informasis.informasi_id', '=', 'informasis.id')->where('role_informasis.role_id', $role[0]->role_id)->orderBy('informasis.created_at', 'desc')->get();
 
         $ketentuan_ak = DB::table('ketentuan_nilais')->where('role_id', $role[0]->role_id)->where('pangkat_golongan_tmt_id', $user->userAparatur->pangkat_golongan_tmt_id)->get();
 
@@ -39,5 +40,11 @@ class OverviewController extends Controller
         $atasan_langsung = DB::table('mentes')->join('user_pejabat_strukturals', 'user_pejabat_strukturals.user_id', '=', 'mentes.atasan_langsung_id')->where('fungsional_id', Auth::user()->id)->get();
 
         return view('aparatur.overview', compact('user', 'judul', 'periode', 'informasi', 'ketentuan_ak', 'atasan_langsung', 'ak_total'));
+    }
+
+    public function find($id)
+    {
+        $informasi = DB::table('informasis')->where('id', $id)->get();
+        return $informasi;
     }
 }

@@ -152,16 +152,20 @@
                     </div>
                     <div class="card-body">
                         <ul>
-                            @foreach ($informasi as $informasis)
+                            @forelse ($informasi as $informasis)
                                 <li>
-                                    <p style="margin: 0 !important;"> {{ $informasis->judul }} ( <a href=""
-                                            data-bs-toggle="modal" data-bs-target="#informasi">Klik Disini</a> )
+                                    <p style="margin: 0 !important;"> {{ $informasis->judul }} ( <a href="#"
+                                            data-id="{{ $informasis->informasi_id }}" class="detail-informasi">Klik
+                                            Disini</a> )
                                     </p>
                                     <div class="footer-information">
-                                        <p style="font-size: 9px; margin-top: 10px; color: red;"> 11/2/2022</p>
+                                        <p style="font-size: 9px; margin-top: 10px; color: red;">
+                                            {{ $informasis->created_at }}</p>
                                     </div>
                                 </li>
-                            @endforeach
+                            @empty
+                                Data tidak tersedia
+                            @endforelse
                         </ul>
                     </div>
                 </div>
@@ -172,7 +176,11 @@
     <div class="modal fade" id="informasi" tabindex="-1" role="dialog" aria-labelledby="informasiTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-centered" role="document">
-            <div class="modal-content">
+            <div class="modal-content relative">
+                <div class="bg-spin" style="display: none;">
+                    <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
+                        style="height: 3rem; object-fit: cover;" alt="" srcset="">
+                </div>
                 <div class="modal-header">
                     <h5 class="modal-title" id="informasiTitle">
                         INFORMASI
@@ -217,6 +225,17 @@
         li::marker {
             font-size: 25px !important;
             color: black;
+        }
+
+        .bg-spin {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 99;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #00000075;
         }
     </style>
     <link rel="stylesheet" href="{{ asset('assets/extensions/simple-datatables/style.css') }}">
@@ -269,6 +288,28 @@
     <script src="{{ asset('assets/extensions/chart.js/Chart.min.js') }}"></script>
     {{-- <script src="{{ asset('assets/js/pages/ui-chartjs.js') }}"></script> --}}
     <script>
+        $(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $(".detail-informasi").click(function() {
+                $('#informasi').modal('show');
+
+                $('#informasi .bg-spin').show();
+                const id = $(this).data('id');
+                $.ajax({
+                    type: "get",
+                    url: url('/informasi/' + id),
+                    success: function(response) {
+                        $('#informasi .modal-title').html(response[0].judul);
+                        $('#informasi .bg-spin').hide();
+                        $('#informasi .modal-body').html(response[0].deskripsi);
+                    }
+                })
+            });
+        })
         var line = document.getElementById("line").getContext("2d");
         var myline = new Chart(line, {
             type: 'line',

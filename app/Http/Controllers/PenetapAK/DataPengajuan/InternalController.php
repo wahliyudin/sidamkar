@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\PenetapAK\DataPengajuan;
 
 use App\Http\Controllers\Controller;
+use App\Models\PenetapanAngkaKredit;
 use App\Repositories\PeriodeRepository;
 use App\Repositories\RekapitulasiKegiatanRepository;
 use App\Repositories\UserRepository;
 use App\Services\PenetapAK\DataPengajuan\InternalService;
 use App\Traits\AuthTrait;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use Yajra\DataTables\Facades\DataTables;
 
 class InternalController extends Controller
@@ -58,5 +60,20 @@ class InternalController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
+    }
+
+    public function ttd($id)
+    {
+        $periode = $this->periodeRepository->isActive();
+        $user = $this->userRepository->getUserById($id)->load(['userAparatur.pangkatGolonganTmt']);
+        $penetapAk = $this->authUser()->load(['userPejabatStruktural']);
+        if (!isset($penetapAk?->userPejabatStruktural?->file_ttd)) {
+            throw ValidationException::withMessages(['Maaf, Anda Belum Melengkapi Profil']);
+        }
+        $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode);
+        $this->internalService->ttdRekapitulasi($rekap, $user, $periode, $penetapAk);
+        return response()->json([
+            'message' => 'Berhasil'
+        ]);
     }
 }

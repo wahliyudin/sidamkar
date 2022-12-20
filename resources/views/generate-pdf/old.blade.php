@@ -242,13 +242,16 @@
                 <td class="bd right" colspan="8" height="100px">
                     @if ($is_ttd == true)
                         <img src="{{ linkToBasePath($atasan_langsung->userPejabatStruktural->file_ttd) }}"
-                            style="width: 150px;" alt="">
+                            style="width: 150px; max-height: 150px;" alt="">
                     @endif
                 </td>
             </tr>
             <tr>
                 <td class="bd" colspan="8" style="text-decoration: underline; text-align: right;">
-                    ......................................................</td>
+                    @if ($is_ttd == true)
+                        {{ $atasan_langsung->userPejabatStruktural->nama }}
+                    @endif
+                </td>
             </tr>
         </tbody>
     </table>

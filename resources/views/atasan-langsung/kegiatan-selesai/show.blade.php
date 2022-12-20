@@ -247,22 +247,6 @@
             }, function(dismiss) {
                 return false;
             })
-            // $.ajax({
-            //     type: "POST",
-            //     url: url('/atasan-langsung/kegiatan-selesai/' + $(this).data('id') + '/send-to-penilai'),
-            //     dataType: "JSON",
-            //     success: function(response) {
-            //         $('.bg-spin').hide();
-            //         swal({
-            //             type: 'success',
-            //             title: 'Berhasil',
-            //             html: response.message
-            //         }).then(() => {
-            //             location.reload()
-            //         });
-            //     },
-            //     error: ajaxError
-            // });
         });
         var ajaxError = function(jqXHR, xhr, textStatus, errorThrow, exception) {
             if (jqXHR.status === 0) {

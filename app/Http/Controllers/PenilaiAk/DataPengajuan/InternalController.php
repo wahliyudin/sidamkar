@@ -99,7 +99,8 @@ class InternalController extends Controller
             ->where('fungsional_id', $id)
             ->where('periode_id', $periode->id)->first();
         $user = $this->userRepository->getUserById($id)->load('userAparatur', 'penetapanAngkaKredit');
-        return view('penilai-ak.data-pengajuan.internal.show', compact('user', 'rekapitulasiKegiatan'));
+        $penetapanAngkaKredit = PenetapanAngkaKredit::query()->where('periode_id', $periode->id)->where('user_id', $user->id)->first();
+        return view('penilai-ak.data-pengajuan.internal.show', compact('user', 'rekapitulasiKegiatan', 'penetapanAngkaKredit'));
     }
 
     public function storePenetapan(Request $request, $id)
@@ -113,8 +114,7 @@ class InternalController extends Controller
         }
         $request->validate($rules);
         $periode = $this->periodeRepository->isActive();
-        $penetap = $this->authUser()->load(['userPejabatStruktural']);
-        $this->internalService->storePenetapan($user, $penetap, $periode, $request->ak_kelebihan, $request->ak_pengalaman);
+        $this->internalService->storePenetapan($user, null, $periode, $request->ak_kelebihan, $request->ak_pengalaman);
         return response()->json([
             'message' => 'Berhasil'
         ]);
@@ -159,7 +159,7 @@ class InternalController extends Controller
         ]);
         return response()->json([
             'status' => 200,
-            'message' => 'Berhasil direvisi'
+            'message' => 'Berhasil diverifikasi'
         ]);
     }
 
@@ -192,7 +192,7 @@ class InternalController extends Controller
         ]);
         return response()->json([
             'status' => 200,
-            'message' => 'Berhasil diverifikasi'
+            'message' => 'Berhasil direvisi'
         ]);
     }
 
@@ -212,7 +212,7 @@ class InternalController extends Controller
                 return '<span class="badge bg-black text-white text-sm py-2 px-3 rounded-md">Ditolak</span>';
                 break;
             default:
-                return '<span class="badge bg-gray text-white text-sm py-2 px-3 rounded-md">Belum</span>';
+                return '<span class="badge bg-gray text-white text-sm py-2 px-3 rounded-md">Belum Menginput</span>';
                 break;
         }
     }

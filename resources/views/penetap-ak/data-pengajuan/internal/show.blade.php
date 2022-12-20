@@ -10,11 +10,14 @@
                         <div class="d-flex flex-wrap align-items-center">
                             <button data-id="{{ $user?->id }}"
                                 class="btn {{ $rekapitulasiKegiatan->is_ttd_penetap == true ? 'disabled' : '' }} btn-blue me-3 ps-3 pe-4 text-sm ttd">
-                                <i class="fa-solid fa-pen-clip me-2"></i>TTD</button>
+                                <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
+                                    style="height: 25px; margin-left: 10px; object-fit: cover;display: none;" alt=""
+                                    srcset="">
+                                <i class="fa-solid fa-pen-clip me-2 icon"></i>
+                                <span>TTD</span></button>
                             <button data-id="{{ $user?->id }}"
                                 class="btn btn-green btn-sm ps-3 btn-kirim {{ $rekapitulasiKegiatan->is_ttd_penetap == false ? 'disabled' : '' }} pe-4 text-sm send-to-penetap">
-                                <i class="fa-solid fa-paper-plane me-2"></i>Kirim Dokumen Ke
-                                Penetap</button>
+                                <i class="fa-solid fa-paper-plane me-2"></i>Tetapkan Angka Kredit</button>
                         </div>
                     </div>
                     <div class="card-body">
@@ -79,8 +82,7 @@
                                                 <div class="tab-pane fade" id="surat-tab2">
                                                     <div class="card">
                                                         <div class="card-body px-0">
-                                                            <iframe
-                                                                src="{{ $rekapitulasiKegiatan?->link_penilaian_capaian }}"
+                                                            <iframe src="{{ $rekapitulasiKegiatan?->link_rekap_capaian }}"
                                                                 style="border-radius: 10px; overflow: hidden;"
                                                                 width="100%" height="500px"></iframe>
                                                         </div>
@@ -218,13 +220,17 @@
         });
         $('.ttd').click(function(e) {
             e.preventDefault();
-            $('#surat-tab1 .bg-spin').show();
+            $('.spin').show();
+            $('.ttd .icon').hide();
+            $('.ttd span').hide();
             $.ajax({
                 type: "POST",
-                url: url('/atasan-langsung/kegiatan-selesai/' + $(this).data('id') + '/ttd'),
+                url: url('/penetap-ak/data-pengajuan/internal/' + $(this).data('id') + '/ttd'),
                 dataType: "JSON",
                 success: function(response) {
-                    $('#surat-tab1 .bg-spin').hide();
+                    $('.spin').hide();
+                    $('.ttd .icon').show();
+                    $('.ttd span').show();
                     swal({
                         type: 'success',
                         title: 'Berhasil',
@@ -256,6 +262,9 @@
             } else {
                 swal('Error!', jqXHR.responseText, "error");
             }
+            $('.spin').hide();
+            $('.ttd .icon').show();
+            $('.ttd span').show();
         };
     </script>
 @endsection
