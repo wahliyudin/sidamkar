@@ -28,29 +28,29 @@
                                                 <li class="nav-item">
                                                     <a href="#surat-tab1"
                                                         class="h-100 nav-link border-y-0 border-left-0 px-2 active d-flex justify-content-center align-items-center"
+                                                        data-toggle="tab" data-id="surat-tab4">
+                                                        <h6 class="my-1">Penetapan</h6>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="#surat-tab2"
+                                                        class="h-100 nav-link border-y-0 border-left-0 px-2 d-flex justify-content-center align-items-center"
                                                         data-toggle="tab" data-id="surat-tab1">
                                                         <h6 class="my-1">Rekapitulasi Capaian</h6>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a href="#surat-tab2"
+                                                    <a href="#surat-tab3"
                                                         class="h-100 nav-link border-y-0 border-right-0 px-2 d-flex justify-content-center align-items-center"
                                                         data-toggle="tab" data-id="surat-tab2">
                                                         <h6 class="my-1">Penilaian Capaian</h6>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a href="#surat-tab3"
+                                                    <a href="#surat-tab4"
                                                         class="h-100 nav-link border-y-0 border-left-0 px-2 d-flex justify-content-center align-items-center"
                                                         data-toggle="tab" data-id="surat-tab3">
                                                         <h6 class="my-1">Pengembangan & Penunjang</h6>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="#surat-tab4"
-                                                        class="h-100 nav-link border-y-0 border-left-0 px-2 d-flex justify-content-center align-items-center"
-                                                        data-toggle="tab" data-id="surat-tab4">
-                                                        <h6 class="my-1">Penetapan</h6>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -65,13 +65,54 @@
                                                 <div class="tab-pane fade show active" id="surat-tab1">
                                                     <div class="card">
                                                         <div class="card-body px-0">
+                                                            <div class="row">
+                                                                <div
+                                                                    class="{{ !isset($user?->penetapanAngkaKredit) ? 'col-md-8' : 'col-md-12' }}">
+                                                                    <iframe
+                                                                        src="{{ $rekapitulasiKegiatan?->link_penetapan }}"
+                                                                        style="border-radius: 10px; overflow: hidden;"
+                                                                        width="100%" height="500px"></iframe>
+                                                                </div>
+                                                                @if (!isset($user?->penetapanAngkaKredit))
+                                                                    <div class="col-md-4">
+                                                                        <form method="post" class="form-nilai-ak">
+                                                                            <div class="form-group pe-1">
+                                                                                <label>AK Dasar Yang Diberikan/ Kelebihan
+                                                                                    AK</label>
+                                                                                <input type="number"
+                                                                                    {{ $user?->userAparatur?->status_mekanisme == 3 ? 'disabled' : '' }}
+                                                                                    name="ak_kelebihan"
+                                                                                    value="{{ $user?->userAparatur?->angka_mekanisme }}"
+                                                                                    class="form-control" placeholder="">
+                                                                            </div>
+                                                                            <div class="form-group pe-1">
+                                                                                <label>AK Yang Diperoleh Dari
+                                                                                    Pengalaman</label>
+                                                                                <input type="number" name="ak_pengalaman"
+                                                                                    class="form-control" placeholder="">
+                                                                            </div>
+                                                                            <div
+                                                                                class="d-flex align-items-center justify-content-end">
+                                                                                <button data-data="{{ $user?->id }}"
+                                                                                    class="btn btn-blue text-sm px-5 simpan-data">Simpan</button>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane fade" id="surat-tab2">
+                                                    <div class="card">
+                                                        <div class="card-body px-0">
                                                             <iframe src="{{ $rekapitulasiKegiatan?->link_rekap_capaian }}"
                                                                 style="border-radius: 10px; overflow: hidden;"
                                                                 width="100%" height="500px"></iframe>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="tab-pane fade" id="surat-tab2">
+                                                <div class="tab-pane fade" id="surat-tab3">
                                                     <div class="card">
                                                         <div class="card-body px-0">
                                                             <iframe
@@ -81,46 +122,12 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="tab-pane fade" id="surat-tab3">
+                                                <div class="tab-pane fade" id="surat-tab4">
                                                     <div class="card">
                                                         <div class="card-body px-0">
                                                             <iframe src="{{ $rekapitulasiKegiatan?->link_pengembang }}"
                                                                 style="border-radius: 10px; overflow: hidden;"
                                                                 width="100%" height="500px"></iframe>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="tab-pane fade" id="surat-tab4">
-                                                    <div class="card">
-                                                        <div class="card-body px-0">
-                                                            <div class="row">
-                                                                <div class="col-md-8">
-                                                                    <iframe
-                                                                        src="{{ $rekapitulasiKegiatan?->link_penetapan }}"
-                                                                        style="border-radius: 10px; overflow: hidden;"
-                                                                        width="100%" height="500px"></iframe>
-                                                                </div>
-                                                                <div class="col-md-4">
-                                                                    <form method="post">
-                                                                        <div class="form-group pe-1">
-                                                                            <label>AK Dasar Yang Diberikan/ Kelebihan
-                                                                                AK</label>
-                                                                            <input type="number" name=""
-                                                                                class="form-control" placeholder="">
-                                                                        </div>
-                                                                        <div class="form-group pe-1">
-                                                                            <label>AK Yang Diperoleh Dari Pengalaman</label>
-                                                                            <input type="number" name=""
-                                                                                class="form-control" placeholder="">
-                                                                        </div>
-                                                                        <div
-                                                                            class="d-flex align-items-center justify-content-between">
-                                                                            <button
-                                                                                class="btn btn-blue text-sm px-5 simpan-data">Simpan</button>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -212,6 +219,51 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+        $('.simpan-data').click(function(e) {
+            e.preventDefault();
+            var postData = new FormData($(".form-nilai-ak")[0]);
+            // $('.simpan-kegiatan span').hide();
+            // $('.simpan-kegiatan .spin').show();
+            id = $(this).data('data');
+            swal({
+                title: "Apakah Data Yang Anda Masukkan Sudah Benar?",
+                type: "warning",
+                showCancelButton: !0,
+                confirmButtonText: "Ya, Sudah Benar!",
+                cancelButtonText: "Batal",
+                reverseButtons: !0,
+                showLoaderOnConfirm: true,
+                preConfirm: () => {
+                    return new Promise(function(resolve) {
+                        $.ajax({
+                                type: 'POST',
+                                url: url('/penilai-ak/data-pengajuan/internal/' + id +
+                                    '/simpan-penetapan'),
+                                processData: false,
+                                contentType: false,
+                                data: postData
+                            })
+                            .done(function(myAjaxJsonResponse) {
+                                swal("Berhasil!", myAjaxJsonResponse.message, "success")
+                                    .then(function() {
+                                        location.reload();
+                                    });
+                            })
+                            .fail(function(erordata) {
+                                if (erordata.status == 422) {
+                                    swal('Warning!', erordata.responseJSON.message,
+                                        'warning');
+                                } else {
+                                    swal('Error!', erordata.responseJSON.message, 'error');
+                                }
+                            })
+                    })
+                },
+            })
+            // $('.simpan-kegiatan span').show();
+            // $('.simpan-kegiatan .spin').hide();
+        });
+        // penilai-ak/data-pengajuan/internal/{user_id}/simpan-penetapan
         $('.ttd').click(function(e) {
             e.preventDefault();
             $('#surat-tab1 .bg-spin').show();
@@ -246,7 +298,8 @@
                 preConfirm: async () => {
                     return await $.ajax({
                         type: "POST",
-                        url: url('/penilai-ak/data-pengajuan/internal/' + $(this).data('id') +
+                        url: url('/penilai-ak/data-pengajuan/internal/' + $(this).data(
+                                'id') +
                             '/send-to-penetap'),
                         dataType: "JSON",
                     });

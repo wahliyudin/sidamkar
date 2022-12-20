@@ -5,8 +5,17 @@
         <div class="row">
             <div class="col-md-12 px-2">
                 <div class="card mb-3">
-                    <div class="card-header">
+                    <div class="card-header d-flex justify-content-between align-items-center">
                         <h4>Laporan/Dokumen {{ $user?->userAparatur->nama }}</h4>
+                        <div class="d-flex align-items-center">
+                            <button data-id="{{ $user?->id }}"
+                                class="btn {{ $rekapitulasiKegiatan->is_ttd_penetap == true ? 'disabled' : '' }} btn-blue me-3 ps-3 pe-4 text-sm ttd">
+                                <i class="fa-solid fa-pen-clip me-2"></i>TTD</button>
+                            <button data-id="{{ $user?->id }}"
+                                class="btn btn-green btn-sm ps-3 {{ $rekapitulasiKegiatan->is_ttd_penetap == false ? 'disabled' : '' }} pe-4 text-sm send-to-penetap">
+                                <i class="fa-solid fa-paper-plane me-2"></i>Kirim Dokumen Ke
+                                Penetap</button>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="page-content">
@@ -42,6 +51,13 @@
                                                         class="h-100 nav-link border-y-0 border-left-0 px-2 d-flex justify-content-center align-items-center"
                                                         data-toggle="tab" data-id="surat-tab4">
                                                         <h6 class="my-1">Pengembangan & Penunjang</h6>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="#surat-tab5"
+                                                        class="h-100 nav-link border-y-0 border-left-0 px-2 d-flex justify-content-center align-items-center"
+                                                        data-toggle="tab" data-id="surat-tab5">
+                                                        <h6 class="my-1">Penetapan</h6>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -86,6 +102,15 @@
                                                     <div class="card">
                                                         <div class="card-body px-0">
                                                             <iframe src="{{ $rekapitulasiKegiatan?->link_pengembang }}"
+                                                                style="border-radius: 10px; overflow: hidden;"
+                                                                width="100%" height="500px"></iframe>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane fade" id="surat-tab5">
+                                                    <div class="card">
+                                                        <div class="card-body px-0">
+                                                            <iframe src="{{ $rekapitulasiKegiatan?->link_penetapan }}"
                                                                 style="border-radius: 10px; overflow: hidden;"
                                                                 width="100%" height="500px"></iframe>
                                                         </div>

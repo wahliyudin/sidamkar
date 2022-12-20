@@ -214,9 +214,9 @@ class GeneratePdfService
         ];
     }
 
-    public function generatePenetapan(User $user)
+    public function generatePenetapan(User $user, User $penetap = null, $data = null, $is_ttd_penetap = false)
     {
-        $pdf_rekap = PDF::loadView('generate-pdf.penetapan', compact('user'))
+        $pdf_rekap = PDF::loadView('generate-pdf.penetapan', compact('user', 'penetap', 'data', 'is_ttd_penetap'))
             ->setPaper('A4');
         $file_name = uniqid();
         Storage::put("rekapitulasi/$file_name.pdf", $pdf_rekap->output());
