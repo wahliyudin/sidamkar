@@ -10,7 +10,12 @@
                         <div class="d-flex align-items-center">
                             <button data-id="{{ $user?->id }}"
                                 class="btn {{ in_array($rekapitulasiKegiatan->is_send, [2, 3]) || $rekapitulasiKegiatan->is_ttd_atasan_langsung == true ? 'disabled' : '' }} btn-blue me-3 ps-3 pe-4 text-sm ttd">
-                                <i class="fa-solid fa-pen-clip me-2"></i>TTD</button>
+                                <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
+                                    style="height: 25px; margin-left: 10px; object-fit: cover;display: none;" alt=""
+                                    srcset="">
+                                <i class="fa-solid fa-pen-clip me-2 icon"></i>
+                                <span>TTD</span>
+                            </button>
                             <button data-id="{{ $user?->id }}"
                                 class="btn btn-green btn-sm ps-3 {{ in_array($rekapitulasiKegiatan->is_send, [2, 3]) || $rekapitulasiKegiatan->is_ttd_atasan_langsung == false ? 'disabled' : '' }} pe-4 text-sm send-to-penilai">
                                 <i class="fa-solid fa-paper-plane me-2"></i>Kirim Dokumen Ke
@@ -50,16 +55,12 @@
 
                                             <div class="tab-content mt-2">
                                                 <div class="tab-pane fade show active" id="surat-tab1">
-                                                    <div class="d-flex flex-column align-items-end relative">
-                                                        <div class="bg-spin" style="display: none;">
-                                                            <img class="spin"
-                                                                src="{{ asset('assets/images/template/spinner.gif') }}"
-                                                                style="height: 3rem; object-fit: cover;" alt=""
-                                                                srcset="">
+                                                    <div class="card">
+                                                        <div class="card-body px-0">
+                                                            <iframe src="{{ $rekapitulasiKegiatan?->link_rekap_capaian }}"
+                                                                style="border-radius: 10px; overflow: hidden;"
+                                                                width="100%" height="500px"></iframe>
                                                         </div>
-                                                        <iframe src="{{ $rekapitulasiKegiatan?->link_rekap_capaian }}"
-                                                            style="border-radius: 10px; overflow: hidden;" width="100%"
-                                                            height="500px"></iframe>
                                                     </div>
                                                 </div>
 
@@ -172,13 +173,17 @@
         });
         $('.ttd').click(function(e) {
             e.preventDefault();
-            $('#surat-tab1 .bg-spin').show();
+            $('.spin').show();
+            $('.ttd .icon').hide();
+            $('.ttd span').hide();
             $.ajax({
                 type: "POST",
                 url: url('/atasan-langsung/kegiatan-selesai/' + $(this).data('id') + '/ttd'),
                 dataType: "JSON",
                 success: function(response) {
-                    $('#surat-tab1 .bg-spin').hide();
+                    $('.spin').hide();
+                    $('.ttd .icon').show();
+                    $('.ttd span').show();
                     swal({
                         type: 'success',
                         title: 'Berhasil',
@@ -229,7 +234,7 @@
             //     url: url('/atasan-langsung/kegiatan-selesai/' + $(this).data('id') + '/send-to-penilai'),
             //     dataType: "JSON",
             //     success: function(response) {
-            //         $('#surat-tab1 .bg-spin').hide();
+            //         $('.bg-spin').hide();
             //         swal({
             //             type: 'success',
             //             title: 'Berhasil',
@@ -261,7 +266,7 @@
             } else {
                 swal('Error!', jqXHR.responseText, "error");
             }
-            $('#surat-tab1 .bg-spin').hide();
+            $('.bg-spin').hide();
         };
     </script>
 @endsection

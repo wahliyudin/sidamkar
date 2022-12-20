@@ -209,6 +209,7 @@ class KegiatanJabatanController extends Controller
         }
         $this->rekapitulasiKegiatanRepository->sendToAtasanLangsung($rekap);
         return response()->json([
+            'success' => 200,
             'message' => 'Berhasil dikirim'
         ]);
     }

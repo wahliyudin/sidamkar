@@ -113,20 +113,8 @@
                                                                             <input type="number" name=""
                                                                                 class="form-control" placeholder="">
                                                                         </div>
-                                                                        <div class="form-group pe-1">
-                                                                            <label>Mekanisme Pengangkatan</label>
-                                                                            <input type="number" name=""
-                                                                                class="form-control" placeholder="">
-                                                                        </div>
-                                                                        <div class="form-group pe-1">
-                                                                            <label>Nilai</label>
-                                                                            <input type="number" name=""
-                                                                                class="form-control" placeholder="">
-                                                                        </div>
                                                                         <div
                                                                             class="d-flex align-items-center justify-content-between">
-                                                                            <button type="reset"
-                                                                                class="btn btn-gray text-sm px-5 reset-data">Reset</button>
                                                                             <button
                                                                                 class="btn btn-blue text-sm px-5 simpan-data">Simpan</button>
                                                                         </div>
