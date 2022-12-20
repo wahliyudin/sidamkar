@@ -22,6 +22,7 @@ use App\Models\MekanismePengangkatan;
 use App\Models\PangkatGolonganTmt;
 use App\Traits\RoleTrait;
 use Carbon\Carbon;
+use Illuminate\Validation\ValidationException;
 
 class DataSayaController extends Controller
 {
@@ -54,6 +55,11 @@ class DataSayaController extends Controller
             'mekanisme_pengangkatan_id' => 'nullable',
             'angka_mekanisme' => 'nullable',
         ]);
+        if (isset($request->angka_mekanisme)) {
+            if ($request->angka_mekanisme > 56.25 || $request->angka_mekanisme < 0) {
+                throw ValidationException::withMessages(['Angka Mekanisme tidak boleh lebih dari 56.25 atau kurang dari 0']);
+            }
+        }
         $data = [
             'nama' => $request->nama,
             'nip' => $request->nip,

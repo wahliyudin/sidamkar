@@ -212,6 +212,9 @@ Route::middleware(['auth'])->group(function () {
                 Route::post('penilai-ak/data-pengajuan/internal/datatable', 'datatable')->name('penilai-ak.data-pengajuan.internal.datatable');
                 Route::post('penilai-ak/data-pengajuan/internal/{id}/ttd', 'ttd')->name('penilai-ak.data-pengajuan.internal.ttd');
                 Route::post('penilai-ak/data-pengajuan/internal/{user_id}/send-to-penetap', 'sendToPenetap')->name('penilai-ak.data-pengajuan.internal.send-to-penetap');
+                Route::post('penilai-ak/data-pengajuan/internal/{user_id}/verifikasi', 'verified')->name('penilai-ak.data-pengajuan.internal.verifikasi');
+                Route::post('penilai-ak/data-pengajuan/internal/{user_id}/revisi', 'revision')->name('penilai-ak.data-pengajuan.internal.revisi');
+                Route::post('penilai-ak/data-pengajuan/internal/{user_id}/tolak', 'reject')->name('penilai-ak.data-pengajuan.internal.tolak');
             });
             Route::controller(ExternalController::class)->group(function () {
                 Route::get('penilai-ak/data-pengajuan/external', 'index')->name('penilai-ak.data-pengajuan.external');

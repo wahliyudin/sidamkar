@@ -22710,6 +22710,10 @@ a {
     background-color: #1ad598 !important;
 }
 
+.bg-gray{
+    background-color: #6c757d !important;
+}
+
 .bg-red {
     background-color: #ea3a3d !important;
 }
@@ -23142,4 +23146,7 @@ label {
         padding: 4px;
         font-size: 14px;
     }
+}
+.swal2-title{
+    font-size: 20px !important;
 }
