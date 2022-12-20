@@ -73,6 +73,39 @@ $(document).ready(function () {
         e.preventDefault();
         $(".send-rekap span").hide();
         $(".send-rekap .spin").show();
+        // swal({
+        //     title: "Kirim Ke Atasan Langsung?",
+        //     text: "Harap Pastikan Dan Kemudian Kirim Ke Atasan Langsung!",
+        //     type: "warning",
+        //     showCancelButton: !0,
+        //     confirmButtonText: "Ya, Kirim!",
+        //     cancelButtonText: "Batal",
+        //     reverseButtons: !0,
+        //     showLoaderOnConfirm: true,
+        //     preConfirm: async () => {
+        //         return await $.ajax({
+        //             type: "POST",
+        //             url: url('/laporan-kegiatan/jabatan/rekapitulasi/send-rekap'),
+        //             dataType: "JSON",
+        //         });
+        //     },
+        // }).then(function (e) {
+        //     if (e.value.success == 200) {
+        //         swal({
+        //             type: 'success',
+        //             title: 'Berhasil',
+        //             html: 'Berhasil Di Kirim'
+        //         }).then(() => {
+        //             location.reload()
+        //         });
+        //     } else {
+        //         swal("Error!", e.value.message, "error");
+        //     }
+        // }, function (dismiss) {
+        //     $(".send-rekap span").show();
+        //     $(".send-rekap .spin").hide();
+        //     return false;
+        // })
         $.ajax({
             type: "POST",
             url: url("/laporan-kegiatan/jabatan/rekapitulasi/send-rekap"),

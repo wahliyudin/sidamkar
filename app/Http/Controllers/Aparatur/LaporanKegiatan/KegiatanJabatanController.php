@@ -186,7 +186,11 @@ class KegiatanJabatanController extends Controller
 
     public function rekapitulasi()
     {
-        $rekapitulasiKegiatan = $this->kegiatanJabatanService->generateDocuments($this->authUser());
+        $user = $this->authUser()->load(['userAparatur']);
+        if (!isset($user?->userAparatur?->file_ttd)) {
+            throw ValidationException::withMessages(['Maaf, Anda Belum Melengkapi Profil']);
+        }
+        $rekapitulasiKegiatan = $this->kegiatanJabatanService->generateDocuments($user);
         return response()->json([
             'message' => 'Berhasil',
             'data' => $rekapitulasiKegiatan?->link_pernyataan
@@ -205,6 +209,7 @@ class KegiatanJabatanController extends Controller
         }
         $this->rekapitulasiKegiatanRepository->sendToAtasanLangsung($rekap);
         return response()->json([
+            'success' => 200,
             'message' => 'Berhasil dikirim'
         ]);
     }

@@ -32,7 +32,9 @@ class RekapitulasiKegiatan extends Model
         'jml_ak_penunjang',
         'link_penilaian_capaian',
         'name_penilaian_capaian',
-        'capaian_ak'
+        'capaian_ak',
+        'link_penetapan',
+        'name_penetapan'
     ];
 
     public function fungsional()
