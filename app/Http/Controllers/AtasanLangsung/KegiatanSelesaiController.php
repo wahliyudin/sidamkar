@@ -12,6 +12,7 @@ use App\Repositories\UserRepository;
 use App\Services\GeneratePdfService;
 use App\Services\MenteService;
 use App\Traits\AuthTrait;
+use Illuminate\Validation\ValidationException;
 
 class KegiatanSelesaiController extends Controller
 {
@@ -80,6 +81,9 @@ class KegiatanSelesaiController extends Controller
         $periode = $this->periodeRepository->isActive();
         $user = $this->userRepository->getUserById($id);
         $atasan_langsung = $this->authUser()->load(['userPejabatStruktural']);
+        if (!isset($atasan_langsung?->userPejabatStruktural?->file_ttd)) {
+            throw ValidationException::withMessages(['Maaf, Anda Belum Melengkapi Profil']);
+        }
         $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode);
         $this->generatePdfService->ttdRekapitulasi($rekap, $user, $periode, $atasan_langsung);
         return response()->json([

@@ -188,4 +188,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(PenilaianCapaian::class, 'fungsional_id', 'id');
     }
+
+    public function penetapanAngkaKredit()
+    {
+        return $this->hasOne(PenetapanAngkaKredit::class);
+    }
 }

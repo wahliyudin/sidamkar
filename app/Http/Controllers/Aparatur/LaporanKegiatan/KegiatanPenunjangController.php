@@ -69,7 +69,7 @@ class KegiatanPenunjangController extends Controller
         $user = $this->authUser()->load(['userAparatur.provinsi.kabkotas', 'ketentuanSkpFungsional', 'dokKepegawaians', 'dokKompetensis', 'rencanas', 'rekapitulasiKegiatan.historyRekapitulasiKegiatans' => function ($query) {
             $query->orderBy('id', 'desc');
         }]);
-        $judul = 'Laporan Kegiatan Jabatan';
+        $judul = 'Laporan Kegiatan Penunjang';
         $skp = $user?->ketentuanSkpFungsional;
         $ketentuan_ak = $this->kegiatanPenunjangService->ketentuanNilai(DestructRoleFacade::getRoleFungsionalFirst($user->roles)?->id, $user?->userAparatur?->pangkat_golongan_tmt_id);
         $ak_diterima = $this->kegiatanPenunjangService->sumScoreByUser($user->id);

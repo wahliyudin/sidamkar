@@ -92,10 +92,10 @@
             <div class="col-md-9 col order-md-0 order-2">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title" style="color: #17181A; font-family: 'Roboto';">Daftar Kegiatan</h4>
+                        <h4 class="card-title" style="color: #17181A; font-family: 'Roboto';">HISTORI</h4>
                     </div>
                     <div class="card-body">
-                        <table class="table table-striped" id="table1">
+                        {{-- <table class="table table-striped" id="table1">
                             <thead>
                                 <tr>
                                     <th>Tugas/Kegiatan</th>
@@ -134,7 +134,7 @@
                                     </td>
                                 </tr>
                             </tbody>
-                        </table>
+                        </table> --}}
                     </div>
                 </div>
             </div>

@@ -185,43 +185,42 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-4 mekanisme-angka"
-                                    style="{{ !isset($user?->userAparatur->angka_mekanisme) ? 'display: none;' : '' }}">
+                                <div class="col-md-6 mekanisme-angka">
                                     <div class="form-group">
                                         <label>Angka Kredit Mekanisme</label>
                                         <input type="number"
                                             {{ in_array($user?->userAparatur?->status_mekanisme, [1, 3, 4]) ? 'disabled' : '' }}
                                             name="angka_mekanisme" class="form-control"
                                             value="{{ $user?->userAparatur->angka_mekanisme }}">
+                                        <div class="my-1 mekanisme-status"
+                                            style="display: flex; justify-content: end; align-items: center;">
+                                            @switch($user?->userAparatur?->status_mekanisme)
+                                                @case(1)
+                                                    <span style="width: 200px; font-style: italic; cursor: default;"
+                                                        class="btn btn-yellow-reverse px-2 py-1 text-sm">Menunggu</span>
+                                                @break
+
+                                                @case(2)
+                                                    <span style="width: 200px; font-style: italic; cursor: default;"
+                                                        class="btn btn-red-reverse px-2 py-1 text-sm">Revisi</span>
+                                                @break
+
+                                                @case(3)
+                                                    <span style="width: 200px; font-style: italic; cursor: default;"
+                                                        class="btn btn-green-reverse px-2 py-1 text-sm">Terverifikasi</span>
+                                                @break
+
+                                                @case(4)
+                                                    <span style="width: 200px; font-style: italic; cursor: default;"
+                                                        class="btn btn-black-reverse px-2 py-1 text-sm">Ditolak</span>
+                                                @break
+
+                                                @default
+                                                    <button style="width: 200px; font-style: italic; cursor: default;"
+                                                        class="btn btn-gray-reverse px-2 py-1 text-sm">Belum</button>
+                                            @endswitch
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-2 my-1 mekanisme-status"
-                                    style="display: flex; justify-content: end; align-items: center;{{ !isset($user?->userAparatur->angka_mekanisme) ? 'display: none;' : '' }}">
-                                    @switch($user?->userAparatur?->status_mekanisme)
-                                        @case(1)
-                                            <button style="width: 200px; font-style: italic; cursor: default;"
-                                                class="btn btn-yellow-reverse px-2 py-1 text-sm">Menunggu</button>
-                                        @break
-
-                                        @case(2)
-                                            <button style="width: 200px; font-style: italic; cursor: default;"
-                                                class="btn btn-red-reverse px-2 py-1 text-sm">Revisi</button>
-                                        @break
-
-                                        @case(3)
-                                            <button style="width: 200px; font-style: italic; cursor: default;"
-                                                class="btn btn-green-reverse px-2 py-1 text-sm">Terverifikasi</button>
-                                        @break
-
-                                        @case(4)
-                                            <button style="width: 200px; font-style: italic; cursor: default;"
-                                                class="btn btn-black-reverse px-2 py-1 text-sm">Ditolak</button>
-                                        @break
-
-                                        @default
-                                            <button style="width: 200px; font-style: italic; cursor: default;"
-                                                class="btn btn-gray-reverse px-2 py-1 text-sm">Belum</button>
-                                    @endswitch
                                 </div>
                             </div>
                         </div>
@@ -429,25 +428,38 @@
                 cancelButtonText: "Batal",
                 reverseButtons: !0,
                 showLoaderOnConfirm: true,
-                preConfirm: async () => {
-                    return await $.ajax({
-                        type: 'POST',
-                        url: url("/datasaya-store"),
-                        processData: false,
-                        contentType: false,
-                        data: postData,
-                    });
+                preConfirm: () => {
+                    return new Promise(function(resolve) {
+                        $.ajax({
+                                type: 'POST',
+                                url: url("/datasaya-store"),
+                                processData: false,
+                                contentType: false,
+                                data: postData
+                            })
+                            .done(function(myAjaxJsonResponse) {
+                                swal("Berhasil!", myAjaxJsonResponse.message, "success")
+                                    .then(function() {
+                                        location.reload();
+                                    });
+                            })
+                            .fail(function(erordata) {
+                                if (erordata.status == 422) {
+                                    swal('Warning!', erordata.responseJSON.message,
+                                        'warning');
+                                } else {
+                                    swal('Error!', erordata.responseJSON.message, 'error');
+                                }
+                            })
+                    })
+                    // return await $.ajax({
+                    //     type: 'POST',
+                    //     url: url("/datasaya-store"),
+                    //     processData: false,
+                    //     contentType: false,
+                    //     data: postData
+                    // });
                 },
-            }).then(function(e) {
-                if (e.value.status == 200) {
-                    swal("Selesai!", e.value.message, "success").then(() => {
-                        location.reload();
-                    });
-                } else {
-                    swal("Error!", e.value.message, "error");
-                }
-            }, function(dismiss) {
-                return false;
             })
         });
         $('select[name="provinsi_id"]').each(function(index, element) {
