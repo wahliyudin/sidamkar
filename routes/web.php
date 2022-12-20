@@ -215,6 +215,7 @@ Route::middleware(['auth'])->group(function () {
                 Route::post('penilai-ak/data-pengajuan/internal/{user_id}/verifikasi', 'verified')->name('penilai-ak.data-pengajuan.internal.verifikasi');
                 Route::post('penilai-ak/data-pengajuan/internal/{user_id}/revisi', 'revision')->name('penilai-ak.data-pengajuan.internal.revisi');
                 Route::post('penilai-ak/data-pengajuan/internal/{user_id}/tolak', 'reject')->name('penilai-ak.data-pengajuan.internal.tolak');
+                Route::post('penilai-ak/data-pengajuan/internal/{user_id}/simpan-penetapan', 'storePenetapan')->name('penilai-ak.data-pengajuan.internal.simpan-penetapan');
             });
             Route::controller(ExternalController::class)->group(function () {
                 Route::get('penilai-ak/data-pengajuan/external', 'index')->name('penilai-ak.data-pengajuan.external');

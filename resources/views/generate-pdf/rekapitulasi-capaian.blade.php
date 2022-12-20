@@ -222,15 +222,15 @@
             </tr>
             <tr>
                 <td class="bd center letter" colspan="3" height="100px">
-                    @if ($is_ttd_aparatur == true)
-                        <img src="{{ linkToBasePath($user->userAparatur->file_ttd) }}" style="width: 150px;"
-                            alt="">
-                    @endif
-                </td>
-                <td class="bd center letter" colspan="4" height="100px">
                     @if ($is_ttd_atasan == true)
                         <img src="{{ linkToBasePath($atasan_langsung->userPejabatStruktural->file_ttd) }}"
                             style="width: 150px;" alt="">
+                    @endif
+                </td>
+                <td class="bd center letter" colspan="4" height="100px">
+                    @if ($is_ttd_aparatur == true)
+                        <img src="{{ linkToBasePath($user->userAparatur->file_ttd) }}" style="width: 150px;"
+                            alt="">
                     @endif
                 </td>
             </tr>

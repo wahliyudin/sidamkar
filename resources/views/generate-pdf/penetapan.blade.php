@@ -148,12 +148,12 @@
             <tr>
                 <td width="20px" class="nomor">7</td>
                 <td class="keterangan">JABATAN/TMT</td>
-                <td class="inputan text-start" colspan="5">Lorem ipsum dolor sit amet.</td>
+                <td class="inputan text-start" colspan="5"></td>
             </tr>
             <tr>
                 <td width="20px" class="nomor">8</td>
                 <td class="keterangan">UNIT KERJA</td>
-                <td class="inputan text-start" colspan="5">Lorem ipsum dolor sit amet.</td>
+                <td class="inputan text-start" colspan="5"></td>
             </tr>
         </tbody>
         <tbody>
@@ -167,48 +167,48 @@
             <tr>
                 <td>1</td>
                 <td class="keterangan" colspan="2">AK Dasar yang diberikan/kelebihan AK</td>
+                <td>{{ isset($data['ak_kelebihan']) ? $data['ak_kelebihan'] : 0 }}</td>
                 <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td colspan="1" class="text-start">Lorem ipsum dolor sit amet.</td>
+                <td>{{ isset($data['ak_kelebihan']) ? $data['ak_kelebihan'] : 0 }}</td>
+                <td colspan="1" class="text-start"></td>
             </tr>
             <tr>
                 <td>2</td>
                 <td class="keterangan" colspan="2">AK yang diperoleh dari pengalaman</td>
                 <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td colspan="1" class="text-start">Lorem ipsum dolor sit amet.</td>
+                <td>{{ isset($data['ak_pengalaman']) ? $data['ak_pengalaman'] : 0 }}</td>
+                <td>{{ isset($data['ak_pengalaman']) ? $data['ak_pengalaman'] : 0 }}</td>
+                <td colspan="1" class="text-start"></td>
             </tr>
             <tr>
                 <td>3</td>
                 <td class="keterangan" colspan="2">AK Kegiatan Tugas Jabatan</td>
                 <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td colspan="1" class="text-start">Lorem ipsum dolor sit amet.</td>
+                <td>{{ isset($data['jabatan']) ? $data['jabatan'] : 0 }}</td>
+                <td>{{ isset($data['jabatan']) ? $data['jabatan'] : 0 }}</td>
+                <td colspan="1" class="text-start"></td>
             </tr>
             <tr>
                 <td>4</td>
                 <td class="keterangan" colspan="2">AK Kegiatan Pengembangan Profesi</td>
                 <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td colspan="1" class="text-start">Lorem ipsum dolor sit amet.</td>
+                <td>{{ isset($data['profesi']) ? $data['profesi'] : 0 }}</td>
+                <td>{{ isset($data['profesi']) ? $data['profesi'] : 0 }}</td>
+                <td colspan="1" class="text-start"></td>
             </tr>
             <tr>
                 <td>5</td>
                 <td class="keterangan" colspan="2">AK Kegiatan Penunjang</td>
                 <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td colspan="1" class="text-start">Lorem ipsum dolor sit amet.</td>
+                <td>{{ isset($data['penunjang']) ? $data['penunjang'] : 0 }}</td>
+                <td>{{ isset($data['penunjang']) ? $data['penunjang'] : 0 }}</td>
+                <td colspan="1" class="text-start"></td>
             </tr>
         </tbody>
         <tbody>
             <tr>
                 <th colspan="5">TOTAL ANGKA KREDIT KENAIKAN PANGKAT/KUMULATIF</th>
-                <th>0,00</th>
+                <th>{{ isset($data['total']) ? $data['total'] : 0 }}</th>
                 <th></th>
             </tr>
         </tbody>
@@ -217,29 +217,30 @@
                 <th colspan="4">KETERANGAN</th>
                 <th>PANGKAT</th>
                 <th>JENJANG JABATAN</th>
-                <th>Pengembangan PROFESI</th>
+                <th>PENGEMBANGAN PROFESI</th>
             </tr>
             <tr>
                 <td class="keterangan" colspan="4">Angka Kredit Minimal yang harus dipenuhi untuk kenaikan
                     pangkat/jenjang</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{{ isset($data['ak_kenaikan_pangkat']) ? $data['ak_kenaikan_pangkat'] : 0 }}</td>
+                <td>{{ isset($data['ak_kenaikan_jenjang']) ? $data['ak_kenaikan_jenjang'] : 0 }}</td>
+                <td>{{ isset($data['ak_min_profesi']) ? $data['ak_min_profesi'] : 0 }}</td>
             </tr>
             <tr>
                 <td class="keterangan" colspan="4">Kelebihan/Kekurangan* Angka Kredit yang harus dicapai untuk
                     kenaikan pangkat/jenjang
                 </td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{{ isset($data['kelebihan_kekurangan_jabatan']) ? $data['kelebihan_kekurangan_jabatan'] : 0 }}</td>
+                <td>{{ isset($data['kelebihan_kekurangan_jenjang']) ? $data['kelebihan_kekurangan_jenjang'] : 0 }}</td>
+                <td>{{ isset($data['kelebihan_kekurangan_profesi']) ? $data['kelebihan_kekurangan_profesi'] : 0 }}</td>
             </tr>
         </tbody>
     </table>
     <table style="width: 99% !important;" class="table table-light-none table-striped page-break">
         <tbody>
             <tr>
-                <th colspan="7" class="text-start py-1">III. DAPAT/TIDAK DAPAT*)
+                <th colspan="7" class="text-start py-1">III.
+                    {{ isset($data['status_pangkat']) ? ($data['status_pangkat'] == true ? 'DAPAT' : 'TIDAK DAPAT') : '' }}
                     DIPERTIMBANGKAN UNTUK KENAIKAN
                     PANGKAT/JENJANG JABATAN SETINGKAT
                     LEBIH TINGGI MENJADI JENJANG ….... PANGKAT/GOLONGAN RUANG…............</th>
@@ -268,8 +269,10 @@
                 <td class="tb">3</td>
                 <td class="tb" colspan="3">Sekretaris Tim Penilai yang bersangkutan; dan</td>
                 <td class="bd" colspan="2" style="position: relative;">
-                    <img src="{{ public_path('storage/ttd.jpg') }}"
-                        style="width: 130px; position: absolute; right: 20%; top: -20px;" alt="">
+                    @if ($is_ttd_penetap == true)
+                        <img src="{{ linkToBasePath($penetap->userPejabatStruktural->file_ttd) }}"
+                            style="width: 130px; position: absolute; right: 20%; top: -20px;" alt="">
+                    @endif
                 </td>
             </tr>
             <tr>
