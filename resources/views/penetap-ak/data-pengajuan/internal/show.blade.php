@@ -4,15 +4,15 @@
     <section class="section">
         <div class="row">
             <div class="col-md-12 px-2">
-                <div class="card mb-3">
-                    <div class="card-header d-flex justify-content-between align-items-center">
+                <div class="card overflow-auto mb-3">
+                    <div class="card-header d-flex flex-wrap justify-content-between align-items-center">
                         <h4>Laporan/Dokumen {{ $user?->userAparatur->nama }}</h4>
-                        <div class="d-flex align-items-center">
+                        <div class="d-flex flex-wrap align-items-center">
                             <button data-id="{{ $user?->id }}"
                                 class="btn {{ $rekapitulasiKegiatan->is_ttd_penetap == true ? 'disabled' : '' }} btn-blue me-3 ps-3 pe-4 text-sm ttd">
                                 <i class="fa-solid fa-pen-clip me-2"></i>TTD</button>
                             <button data-id="{{ $user?->id }}"
-                                class="btn btn-green btn-sm ps-3 {{ $rekapitulasiKegiatan->is_ttd_penetap == false ? 'disabled' : '' }} pe-4 text-sm send-to-penetap">
+                                class="btn btn-green btn-sm ps-3 btn-kirim {{ $rekapitulasiKegiatan->is_ttd_penetap == false ? 'disabled' : '' }} pe-4 text-sm send-to-penetap">
                                 <i class="fa-solid fa-paper-plane me-2"></i>Kirim Dokumen Ke
                                 Penetap</button>
                         </div>
@@ -159,6 +159,18 @@
 
         .nav-item:not(:first-child) {
             margin-left: 1rem;
+        }
+
+        @media screen and (max-width: 575px) {
+            .nav-item:not(:first-child) {
+                margin-left: 0;
+            }
+        }
+
+        @media screen and (max-width: 471px) {
+            .btn-kirim {
+                margin-top: 10px;
+            }
         }
 
         @media screen and (max-width: 750px) {
