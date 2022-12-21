@@ -16,7 +16,9 @@
                         <tr>
                             <th>Nama</th>
                             <th>NIP</th>
+                            <th>Pangkat</th>
                             <th>Jabatan</th>
+                            <th>Status Mekanisme</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -65,8 +67,18 @@
                     name: 'nip'
                 },
                 {
-                    data: 'display_name',
+                    data: 'pangkat',
+                    name: 'pangkat'
+                },
+                {
+                    data: 'jabatan',
                     name: 'jabatan'
+                },
+                {
+                    data: 'status',
+                    name: 'status',
+                    orderable: true,
+                    searchable: true
                 },
                 {
                     data: 'action',
