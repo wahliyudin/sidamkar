@@ -318,6 +318,7 @@ Route::middleware(['auth'])->group(function () {
             Route::post('kemendagri/verifikasi-data/admin-provinsi/{id}/verified', 'verified')->name('kemendagri.verifikasi-data.admin-provinsi.verified');
             Route::post('kemendagri/verifikasi-data/admin-provinsi/{id}/reject', 'reject')->name('kemendagri.verifikasi-data.admin-provinsi.reject');
             Route::post('kemendagri/verifikasi-data/admin-provinsi/{id}/hapus', 'hapus')->name('kemendagri.verifikasi-data.admin-provinsi.hapus');
+            Route::post('kemendagri/verifikasi-data/admin-provinsi/datatable', 'datatable')->name('kemendagri.verifikasi-data.admin-provinsi.datatable');
         });
 
         Route::controller(KemendagriAparaturController::class)->group(function () {
