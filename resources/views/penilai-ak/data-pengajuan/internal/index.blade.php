@@ -157,15 +157,6 @@
                                     }
                                 })
                         })
-                        // return await $.ajax({
-                        //     type: 'POST',
-                        //     url: url("/penilai-ak/data-pengajuan/internal/" + user_id +
-                        //         "/tolak"),
-                        //     data: {
-                        //         catatan: value
-                        //     },
-                        //     dataType: 'JSON'
-                        // });
                     },
                 })
             }

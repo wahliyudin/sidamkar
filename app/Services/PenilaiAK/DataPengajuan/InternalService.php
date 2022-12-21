@@ -51,6 +51,8 @@ class InternalService
             'ak_pengalaman' => $ak_pengalaman
         ]);
         $data = $this->processPenetapan($user, $periode);
+        $role = DestructRoleFacade::getRoleFungsionalFirst($user->roles);
+        $data['role'] = $role->display_name;
         [$link_penetapan, $name_penetapan] = $this->generatePdfService->generatePenetapan($user, $penetap, $data);
         RekapitulasiKegiatan::query()->where('periode_id', $periode->id)
             ->where('fungsional_id', $user->id)
@@ -91,16 +93,17 @@ class InternalService
         $ak_kelebihan = $this->checkMekanisme($user, $penetapan);
         $ak_pengalaman = $penetapan->ak_pengalaman;
         $ak_jabatan = $rekapitulasiKegiatan->total_capaian;
-        $total = $ak_kelebihan + $ak_pengalaman + $ak_jabatan;
+        $total = $ak_jabatan;
         $kenaikanPangkat = $ketentuanNilai->ak_kp;
         $kenaikanJenjang = $ketentuanNilai->akk_kj;
         $ak_dasar = $ketentuanNilai->ak_dasar ?? 0;
         $jenjang = $this->checkKenaikanJenjang($total, $kenaikanJenjang, $ak_dasar);
         $pengembangProfesi = $this->checkPengembangProfesi($total, $rekapitulasiKegiatan->jml_ak_profesi, $ketentuanNilai->ak_bangprof ?? 0);
-        $result = array_merge($this->checkKenaikanPangkat($rekapitulasiKegiatan, $total, $kenaikanPangkat, $kenaikanJenjang), [
+        $pangkat = $this->checkKenaikanPangkat($rekapitulasiKegiatan, $total, $kenaikanPangkat, $kenaikanJenjang);
+        $result = array_merge($pangkat, [
             'ak_kelebihan' => $ak_kelebihan,
             'ak_pengalaman' => $ak_pengalaman,
-            'total' => $total,
+            'total' => $ak_jabatan + $ak_kelebihan + $ak_pengalaman + (isset($pangkat['profesi']) ? $pangkat['profesi'] : 0) + (isset($pangkat['penunjang']) ? $pangkat['penunjang'] : 0),
             'ak_kenaikan_pangkat' => $kenaikanPangkat,
             'ak_kenaikan_jenjang' => $kenaikanJenjang
         ], $jenjang, $pengembangProfesi);
