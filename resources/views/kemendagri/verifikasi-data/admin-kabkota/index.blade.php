@@ -11,7 +11,20 @@
                 </div>
             </div>
             <div class="card-body overflow-auto">
-                {{ $dataTable->table() }}
+                <table id="admin-kab-kota" class="table dataTable no-footer dtr-inline">
+                    <thead>
+                        <tr>
+                            <th>Nama</th>
+                            <th>Provinsi</th>
+                            <th>Kab Kota</th>
+                            <th>File Permohonan</th>
+                            <th>Status</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
             </div>
         </div>
     </section>
@@ -50,13 +63,60 @@
 
 @section('js')
     <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
-    {{ $dataTable->scripts() }}
     <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
     <script type="text/javascript">
+        $('#admin-kab-kota').dataTable().fnDestroy();
+        table = $('#admin-kab-kota').DataTable({
+            responsive: true,
+            serverSide: true,
+            processing: true,
+            ajax: {
+                url: url('/kemendagri/verifikasi-data/admin-kabkota/datatable'),
+                type: "POST",
+                data: {
+                    "_token": "{{ csrf_token() }}"
+                }
+            },
+            columns: [{
+                    data: 'nama',
+                    name: 'nama'
+                },
+                {
+                    data: 'provinsi',
+                    name: 'provinsi'
+                },
+                {
+                    data: 'kab_kota',
+                    name: 'kab_kota'
+                },
+                {
+                    data: 'file_permohonan',
+                    name: 'file_permohonan'
+                },
+                {
+                    data: 'status',
+                    name: 'status',
+                    orderable: true,
+                    searchable: true
+                },
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: true,
+                    searchable: true
+                },
+            ],
+            pageLength: 10,
+            lengthMenu: [
+                [10, 20, 50, -1],
+                [10, 20, 50, 'All']
+            ]
+        });
+
         function tolak(id) {
             swal({
                 title: "Tolak?",
@@ -88,7 +148,11 @@
                 },
             }).then(function(e) {
                 if (e.value.success == true) {
-                    swal({type: 'success', title:'Berhasil', html:'Akun Dinyatakan <b style="font-weight: bold; color:red;">DITOLAK</b>'}).then(() => {
+                    swal({
+                        type: 'success',
+                        title: 'Berhasil',
+                        html: 'Akun Dinyatakan <b style="font-weight: bold; color:red;">DITOLAK</b>'
+                    }).then(() => {
                         $('#adminkabkota-table').DataTable().ajax
                             .reload()
                     });
@@ -122,7 +186,11 @@
                 },
             }).then(function(e) {
                 if (e.value.success == true) {
-                    swal({type: 'success', title:'Berhasil', html:'Akun Berhasil <b style="font-weight: bold; color:green;">DIVERIFIKASI</b>'}).then(() => {
+                    swal({
+                        type: 'success',
+                        title: 'Berhasil',
+                        html: 'Akun Berhasil <b style="font-weight: bold; color:green;">DIVERIFIKASI</b>'
+                    }).then(() => {
                         $('#adminkabkota-table').DataTable().ajax
                             .reload()
                     });
