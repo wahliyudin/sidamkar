@@ -21784,8 +21784,8 @@ body .bi:before {
     right: 15px;
     top: 12px;
 }
-.sidebar-wrapper .menu .sidebar-item.has-sub .sidebar-link.no-arrow:after{
-    content: '';
+.sidebar-wrapper .menu .sidebar-item.has-sub .sidebar-link.no-arrow:after {
+    content: "";
 }
 .sidebar-wrapper .menu .sidebar-item.has-sub .sidebar-link:hover:after {
     color: #25396f !important;
@@ -23029,6 +23029,9 @@ a {
         width: 1.85rem;
         height: 1.85rem;
     }
+    .fafa {
+        font-size: 12px !important;
+    }
 }
 
 @media screen and (min-width: 320px) and (max-width: 360px) {
@@ -23040,6 +23043,10 @@ a {
         align-items: center;
         width: 1.85rem;
         height: 1.85rem;
+    }
+
+    .fafa {
+        font-size: 12px !important;
     }
 }
 
@@ -23150,3 +23157,14 @@ label {
 .swal2-title{
     font-size: 20px !important;
 }
+
+@media screen and (max-width:495px) {
+            .btn-all {
+                justify-content: start !important;
+                gap: 10px;
+            }
+
+            .btn-akses {
+                margin-left: 0px !important;
+            }
+        }
