@@ -79,11 +79,10 @@ class KegiatanJabatanService
         $this->penilaianCapaianRepository = $penilaianCapaianRepository;
     }
 
-    public function loadUnsurs(Periode $periode, string $search, Role $role)
+    public function loadUnsurs(string $search, Role $role)
     {
         $unsurs = Unsur::query()
             ->where('jenis_kegiatan_id', 1)
-            ->where('periode_id', $periode->id)
             ->withWhereHas('subUnsurs', function ($query) use ($role) {
                 $query->withWhereHas('butirKegiatans', function ($query) use ($role) {
                     $query->withWhereHas('role', function ($query) use ($role) {

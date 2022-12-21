@@ -24,7 +24,6 @@ class KegiatanJabatanRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'periode_id' => 'required',
             'unsur' => 'required',
             'sub_unsurs' => 'required|array'
         ];

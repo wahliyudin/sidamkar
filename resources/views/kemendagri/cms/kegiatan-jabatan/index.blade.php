@@ -122,19 +122,6 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Periode</label>
-                                    <select class="form-select" name="periode_id">
-                                        <option disabled selected>- Pilih Periode -</option>
-                                        @foreach ($periodes as $periode)
-                                            <option value="{{ $periode->id }}">
-                                                {{ $periode->concat }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
                         </div>
                         <div class="row align-items-center">
                             <div class="col-md-11">
@@ -178,17 +165,6 @@
                 </div>
                 <div class="modal-body">
                     <form id="form-import" method="post" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <label>Periode</label>
-                            <select class="form-select" name="periode_id">
-                                <option disabled selected>- Pilih Periode -</option>
-                                @foreach ($periodes as $periode)
-                                    <option value="{{ $periode->id }}">
-                                        {{ $periode->concat }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
                         <div class="form-group">
                             <label>File (.xlsx)</label>
                             <input type="file" name="file_import_tmp" required />

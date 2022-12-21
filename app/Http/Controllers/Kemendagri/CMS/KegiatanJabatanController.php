@@ -22,8 +22,8 @@ class KegiatanJabatanController extends Controller
     {
         $judul = 'CMS Kegiatan Jabatan';
         $roles = Role::query()->whereIn('name', getAllRoleFungsional())->get(['id', 'display_name']);
-        $periodes = Periode::query()->get()->map(function(Periode $periode){
-            $periode->concat = Carbon::make($periode->awal)->format('F Y').' - '.Carbon::make($periode->akhir)->format('F Y');
+        $periodes = Periode::query()->get()->map(function (Periode $periode) {
+            $periode->concat = Carbon::make($periode->awal)->format('F Y') . ' - ' . Carbon::make($periode->akhir)->format('F Y');
             return $periode;
         });
         $kegiatan = JenisKegiatan::query()
@@ -80,7 +80,6 @@ class KegiatanJabatanController extends Controller
         $unsur = Unsur::query()->with('subUnsurs')->findOrFail($id);
         $unsur->update([
             'role_id' => $request->role_id ?? null,
-            'periode_id' => $request->periode_id,
             'nama' => $request->unsur
         ]);
         $tmpSubUnsurs = [];
