@@ -216,6 +216,10 @@ class GeneratePdfService
 
     public function generatePenetapan(User $user, User $penetap = null, $data = null, $is_ttd_penetap = false)
     {
+        // pangkat => ak_kp - total - total_sebelumnya
+        // jenjang => ak_kj - total - total_sebelumnya - ak_dasar
+        // total => ak_jabatan + ak_profesi + ak_penunjang
+        // jika setiap ak dicek dengna ak_max
         $pdf_rekap = PDF::loadView('generate-pdf.penetapan', compact('user', 'penetap', 'data', 'is_ttd_penetap'))
             ->setPaper('A4');
         $file_name = uniqid();
