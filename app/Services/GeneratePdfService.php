@@ -186,7 +186,7 @@ class GeneratePdfService
         return [
             asset("storage/rekapitulasi/$file_name.pdf"),
             $file_name,
-            $jml_ak_penunjang,
+            $result,
             $jml_ak_profesi
         ];
     }

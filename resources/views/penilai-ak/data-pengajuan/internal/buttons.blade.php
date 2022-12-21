@@ -2,7 +2,7 @@
     <buttun class="btn {{ in_array($row->status_mekanisme, [2, 3, 4]) ? 'btn-blue' : 'btn-green' }} text-sm me-1"
         data-bs-toggle="modal" data-bs-target="#mekanisme{{ $row->user_id }}">
         Mekanisme</buttun>
-    <a href="{{ route('penilai-ak.data-pengajuan.external.show', $row->user_id) }}"
+    <a href="{{ route('penilai-ak.data-pengajuan.internal.show', $row->user_id) }}"
         {{ $row->status_mekanisme != 3 ? 'disabled' : '' }} class="btn btn-blue btn-sm">Detail</a>
     <div class="modal fade" id="mekanisme{{ $row->user_id }}" data-bs-backdrop="static" tabindex="-1" role="dialog"
         aria-labelledby="mekanismeTitle" aria-hidden="true">

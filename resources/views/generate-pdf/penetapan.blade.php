@@ -148,7 +148,7 @@
             <tr>
                 <td width="20px" class="nomor">7</td>
                 <td class="keterangan">JABATAN/TMT</td>
-                <td class="inputan text-start" colspan="5"></td>
+                <td class="inputan text-start" colspan="5">{{ isset($data['role']) ? $data['role'] : '' }}</td>
             </tr>
             <tr>
                 <td width="20px" class="nomor">8</td>
