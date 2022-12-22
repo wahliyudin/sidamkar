@@ -50,7 +50,6 @@ class CrossPenilaiAndPenetapRepository
                 $penilai = isset($query->penilai_ak_id);
             })
             ->where('kab_kota_id', $kab_kota_id)
-            ->jenisAparaturIs($jenis_aparatur)
             ->first();
         return isset($result) || $penilai;
     }
@@ -63,7 +62,6 @@ class CrossPenilaiAndPenetapRepository
                 $penetap = isset($query->penetap_ak_id);
             })
             ->where('kab_kota_id', $kab_kota_id)
-            ->jenisAparaturIs($jenis_aparatur)
             ->first();
         return isset($result) && $penetap;
     }
@@ -76,7 +74,6 @@ class CrossPenilaiAndPenetapRepository
                 $penilai = isset($query->penilai_ak_id);
             })
             ->where('provinsi_id', $provinsi_id)
-            ->jenisAparaturIs($jenis_aparatur)
             ->first();
         return isset($result) || $penilai;
     }
@@ -89,7 +86,6 @@ class CrossPenilaiAndPenetapRepository
                 $penetap = isset($query->penetap_ak_id);
             })
             ->where('provinsi_id', $provinsi_id)
-            ->jenisAparaturIs($jenis_aparatur)
             ->first();
         return isset($result) && $penetap;
     }
