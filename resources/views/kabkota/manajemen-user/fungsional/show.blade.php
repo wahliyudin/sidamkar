@@ -144,7 +144,7 @@
                                     <div class="form-group">
                                         <label for="basicInput">Jabatan</label>
                                         <input disabled type="text" name="jabatan" disabled class="form-control"
-                                            placeholder="" value="{{ Auth::user()->roles()->first()->display_name }}">
+                                            placeholder="" value="{{ $user->roles[0]->display_name }}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">

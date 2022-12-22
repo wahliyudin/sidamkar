@@ -7,6 +7,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\VerifStrukturalRequest;
 use App\Services\Provinsi\StrukturalService;
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Provinsi;
+use App\Models\KabKota;
+use App\Models\PangkatGolonganTmt;
 
 class StrukturalController extends Controller
 {
@@ -48,5 +52,16 @@ class StrukturalController extends Controller
             'success' => 200,
             'message' => "Berhasil dihapus",
         ]);
+    }
+
+    public function show($id)
+    {
+        $judul = 'Data Struktural';
+        $user = User::query()->with(['userPejabatStruktural.provinsi.kabkotas', 'roles', 'dokKepegawaians', 'dokKompetensis'])->find($id);
+        $provinsis = Provinsi::query()->get();
+        $kab_kota = KabKota::query()->get();
+        $pangkats = PangkatGolonganTmt::query()->get();
+        // return $user;
+        return view('kabkota.manajemen-user.struktural.show', compact('user', 'provinsis', 'kab_kota', 'pangkats', 'judul'));
     }
 }

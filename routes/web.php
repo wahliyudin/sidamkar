@@ -278,6 +278,8 @@ Route::middleware(['auth'])->group(function () {
 
 
         Route::get('provinsi/manajemen-user/struktural', [ProvinsiStrukturalController::class, 'index'])->name('provinsi.manajemen-user.struktural');
+        Route::get('provinsi/manajemen-user/struktural/{id}/show', [ProvinsiStrukturalController::class, 'show'])->name('provinsi.manajemen-user.struktural.show');
+        Route::get('provinsi/manajemen-user/fungsional/{id}/show', [ProvinsiFungsionalController::class, 'show'])->name('provinsi.manajemen-user.fungsional.show');
         Route::post('provinsi/manajemen-user/struktural/{id}/reject', [ProvinsiStrukturalController::class, 'reject'])->name('provinsi.manajemen-user.struktural.reject');
         Route::post('provinsi/manajemen-user/struktural/{id}/verification', [ProvinsiStrukturalController::class, 'verification'])->name('provinsi.manajemen-user.struktural.verification');
         Route::delete('provinsi/manajemen-user/struktural/{id}/destroy', [ProvinsiStrukturalController::class, 'destroy'])->name('provinsi.manajemen-user.struktural.destroy');
