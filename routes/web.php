@@ -243,6 +243,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('kab-kota/overview', [KabKotaOverviewController::class, 'index'])->name('kab-kota.overview');
 
         Route::get('kab-kota/manajemen-user/struktural', [KabKotaStrukturalController::class, 'index'])->name('kab-kota.manajemen-user.struktural');
+
+        Route::get('kab-kota/manajemen-user/struktural/{id}/show', [KabKotaStrukturalController::class, 'show'])->name('kab-kota.manajemen-user.struktural.show');
+        Route::get('kab-kota/manajemen-user/fungsional/{id}/show', [KabKotaFungsionalController::class, 'show'])->name('kab-kota.manajemen-user.fungsional.show');
         Route::post('kab-kota/manajemen-user/struktural/{id}/reject', [KabKotaStrukturalController::class, 'reject'])->name('kab-kota.manajemen-user.struktural.reject');
         Route::post('kab-kota/manajemen-user/struktural/{id}/verification', [KabKotaStrukturalController::class, 'verification'])->name('kab-kota.manajemen-user.struktural.verification');
         Route::delete('kab-kota/manajemen-user/struktural/{id}/destroy', [KabKotaStrukturalController::class, 'destroy'])->name('kab-kota.manajemen-user.struktural.destroy');
