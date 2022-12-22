@@ -22,6 +22,44 @@
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/pages/kabkota/manajemen-user/fungsional/index.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/shared/sweetalert2.min.css') }}">
+    <style>
+        <style>.dataTable>thead>tr>th {
+            border: 0 !important;
+        }
+
+        .dataTable th {
+            color: #809FB8 !important;
+        }
+
+        .table-striped-columns>:not(caption)>tr>:nth-child(2n),
+        .table-striped>tbody>tr:nth-of-type(odd)>* {
+            border-color: #F1F4F9 !important;
+        }
+
+        .table-striped>tbody>tr,
+        .table-striped>tbody>tr:nth-of-type(odd)>* {
+            color: #06152B !important;
+        }
+
+        @media screen and (max-width:780px) {
+            .card {
+                padding: 0 !important;
+            }
+        }
+
+        tbody>tr>td:not(:nth-child(6)) {
+            cursor: pointer;
+        }
+
+        tbody>tr>td,
+        tbody>tr>th {
+            white-space: nowrap;
+        }
+
+        tbody>tr:hover {
+            background-color: rgb(250, 250, 250);
+        }
+    </style>
 @endsection
 
 @section('js')
@@ -33,4 +71,14 @@
     <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/js/pages/kabkota/manajemen-user/fungsional/index.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#User-table').on('click', 'tbody > tr > td:not(:nth-child(6))',
+                function() {
+                    window.location.replace(url(
+                        `/kab-kota/manajemen-user/fungsional/${$($(this.parentElement).find('.username')).data('detail')}/show`
+                    ));
+                });
+        });
+    </script>
 @endsection
