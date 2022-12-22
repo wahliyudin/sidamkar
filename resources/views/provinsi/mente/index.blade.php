@@ -16,7 +16,7 @@
                                 </p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h2 style="font-family: 'Roboto';color: #06152B; font-size: 16px" class="target">
-                                        {{ $penilaiPenetapDamkar?->penilaiAngkaKredit?->userPejabatStruktural?->nama ?? '-' }}
+                                        {{ $penilaiAndPenetap?->penilaiAngkaKreditDamkar?->userPejabatStruktural?->nama ?? '-' }}
                                     </h2>
                                     <button class="penilai-damkar" data-bs-toggle="modal" data-bs-target="#tambahPenilai">
                                         <i class="fa-solid fa-plus"></i>
@@ -40,7 +40,7 @@
                                 </p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h2 style="font-family: 'Roboto';color: #06152B; font-size: 16px" class="target">
-                                        {{ $penilaiPenetapDamkar?->penetapAngkaKredit?->userPejabatStruktural?->nama ?? '-' }}
+                                        {{ $penilaiAndPenetap?->penetapAngkaKreditDamkar?->userPejabatStruktural?->nama ?? '-' }}
                                     </h2>
                                     <button class="penetap-damkar" data-bs-toggle="modal" data-bs-target="#tambahPenetap">
                                         <i class="fa-solid fa-plus"></i>
@@ -86,7 +86,7 @@
                                 </p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h2 style="font-family: 'Roboto';color: #06152B; font-size: 16px" class="target">
-                                        {{ $penilaiPenetapAnalis?->penilaiAngkaKredit?->userPejabatStruktural?->nama ?? '-' }}
+                                        {{ $penilaiAndPenetap?->penilaiAngkaKreditAnalis?->userPejabatStruktural?->nama ?? '-' }}
                                     </h2>
                                     <button class="penilai-analis" data-bs-toggle="modal" data-bs-target="#tambahPenilai">
                                         <i class="fa-solid fa-plus"></i>
@@ -110,7 +110,7 @@
                                 </p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h2 style="font-family: 'Roboto';color: #06152B; font-size: 16px" class="target">
-                                        {{ $penilaiPenetapAnalis?->penetapAngkaKredit?->userPejabatStruktural?->nama ?? '-' }}
+                                        {{ $penilaiAndPenetap?->penetapAngkaKreditAnalis?->userPejabatStruktural?->nama ?? '-' }}
                                     </h2>
                                     <button class="penetap-analis" data-bs-toggle="modal" data-bs-target="#tambahPenetap">
                                         <i class="fa-solid fa-plus"></i>
@@ -175,7 +175,7 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <div class="card mt-3 mb-0 overflow-auto"
+                                <div class="card mt-3 mb-0"
                                     style="border: var(--bs-modal-header-border-width) solid var(--bs-modal-header-border-color); overflow: hidden;">
                                     <div class="card-header py-3">
                                         <div class="row justify-content-between">
@@ -281,6 +281,7 @@
                     <form method="post">
                         <input type="hidden" name="jenis_aparatur">
                         <input type="hidden" name="penilai_penetap" value="penilai">
+                        <input type="hidden" name="kab_prov_penilai_penetap">
                         <div class="row justify-content-center">
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -329,10 +330,10 @@
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
                         <span>Batal</span>
                     </button>
-                    <button type="button" class="btn btn-green ml-1 simpan-penilai-penetap">
+                    <button type="button" data-jenis="penilai" class="btn btn-green ml-1 simpan-penilai-penetap">
                         <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
                             style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
-                        <span>Simpan</span>
+                        Simpan
                     </button>
                 </div>
             </div>
@@ -355,6 +356,7 @@
                     <form method="post">
                         <input type="hidden" name="jenis_aparatur">
                         <input type="hidden" name="penilai_penetap" value="penetap">
+                        <input type="hidden" name="kab_prov_penilai_penetap">
                         <div class="row justify-content-center">
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -403,10 +405,10 @@
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
                         <span>Batal</span>
                     </button>
-                    <button type="button" class="btn btn-green ml-1 simpan-penilai-penetap">
+                    <button type="button" data-jenis="penetap" class="btn btn-green ml-1 simpan-penilai-penetap">
                         <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
                             style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
-                        <span>Simpan</span>
+                        Simpan
                     </button>
                 </div>
             </div>
@@ -541,18 +543,18 @@
                                     if (penilai_penetap == 'penilai') {
                                         $('#tambahPenilai input[name="penilai"]')
                                             .val(
-                                                response.penilai.id);
+                                                response.id);
                                         $('#tambahPenilai input[name="penilai_ak"]')
                                             .val(
-                                                response.penilai.nama);
+                                                response.nama);
                                     }
                                     if (penilai_penetap == 'penetap') {
                                         $('#tambahPenetap input[name="penetap"]')
                                             .val(
-                                                response.penetap.id);
+                                                response.id);
                                         $('#tambahPenetap input[name="penetap_ak"]')
                                             .val(
-                                                response.penetap.nama);
+                                                response.nama);
                                     }
                                 },
                                 error: ajaxError
@@ -563,17 +565,17 @@
                         .find('select[name="kab_kota_id"]'))
                 });
             });
-            $('select[name="kab_kota_id"]').each(function(index, element) {
-                $(element).change(function(e) {
+            $('select[name="kab_kota_id"]').each(function(index, kab_kota) {
+                $(kab_kota).change(function(e) {
                     e.preventDefault();
-                    penilai_penetap = $($(element.parentElement.parentElement
+                    penilai_penetap = $($(kab_kota.parentElement.parentElement
                         .parentElement.parentElement).find(
                         'input[name="penilai_penetap"]')).val();
                     $('select[name="tingkat"]').each(function(index, element) {
                         if ($(element).val() == 'kab_kota') {
                             $.ajax({
                                 type: "POST",
-                                url: url('/provinsi/data-mente/' + $(element)
+                                url: url('/provinsi/data-mente/' + $(kab_kota)
                                     .val() +
                                     '/tingkat-kabkota'),
                                 data: {
@@ -586,20 +588,20 @@
                                 dataType: "JSON",
                                 success: function(response) {
                                     if (penilai_penetap == 'penilai') {
-                                        $('#tambahPenilai input[name="penilai"]')
+                                        $('#tambahPenilai input[name="kab_prov_penilai_penetap"]')
                                             .val(
-                                                response.penilai.id);
+                                                response.id);
                                         $('#tambahPenilai input[name="penilai_ak"]')
                                             .val(
-                                                response.penilai.nama);
+                                                response.nama);
                                     }
                                     if (penilai_penetap == 'penetap') {
-                                        $('#tambahPenetap input[name="penetap"]')
+                                        $('#tambahPenetap input[name="kab_prov_penilai_penetap"]')
                                             .val(
-                                                response.penetap.id);
+                                                response.id);
                                         $('#tambahPenetap input[name="penetap_ak"]')
                                             .val(
-                                                response.penetap.nama);
+                                                response.nama);
                                     }
                                 },
                                 error: ajaxError
@@ -626,57 +628,6 @@
                 $($(element).find('select[name="kab_kota_id"]')).prop('selectedIndex', 0);
             }
 
-            $('.simpan-penilai-penetap').click(function(e) {
-                e.preventDefault();
-                swal({
-                    title: "Simpan?",
-                    text: "Pastikan Data Yang Dipilih Sudah Benar!",
-                    type: "warning",
-                    showCancelButton: !0,
-                    confirmButtonText: "Ya, simpan!",
-                    cancelButtonText: "Batal",
-                    reverseButtons: !0,
-                    showLoaderOnConfirm: true,
-                    preConfirm: async () => {
-                        kab_kota_id = null;
-                        if ($('select[name="tingkat"]').val() == 'kab_kota') {
-                            kab_kota_id = $('select[name="kab_kota_id"]').val();
-                        }
-                        data = null;
-                        await $.ajax({
-                            type: 'POST',
-                            url: url("/provinsi/data-mente/store-penilai-penetap"),
-                            data: {
-                                "penilai": $('input[name="penilai"]').val(),
-                                "penetap": $('input[name="penetap"]').val(),
-                                "tingkat": $('select[name="tingkat"]').val(),
-                                "kab_kota_id": kab_kota_id,
-                                "provinsi_id": $('select[name="provinsi_id"]').val(),
-                            },
-                            dataType: 'JSON',
-                            success: function(res) {
-                                data = res;
-                            },
-                            error: function(jqXHR, xhr, textStatus, errorThrow,
-                                exception) {
-                                data = jqXHR;
-                            }
-                        });
-                        return data
-                    },
-                }).then(function(e) {
-                    if (e?.value?.status == 200) {
-                        swal({
-                            type: 'success',
-                            title: 'Berhasil',
-                            html: e.value.message
-                        }).then(() => {
-                            location.reload()
-                        });
-                    }
-                })
-            });
-
             function loadKabKota(val, kabupaten, kabupaten_id = null) {
                 return new Promise(resolve => {
                     $(kabupaten).html('<option value="">Memuat...</option>');
@@ -695,6 +646,60 @@
                 })
             }
 
+            $('.simpan-penilai-penetap').click(function(e) {
+                e.preventDefault();
+                swal({
+                    title: "Simpan?",
+                    type: "warning",
+                    text: "Pastikan Data Yang Dipilih Sudah Benar!",
+                    showCancelButton: !0,
+                    confirmButtonText: "Ya, simpan!",
+                    cancelButtonText: "Batal",
+                    reverseButtons: !0,
+                    showLoaderOnConfirm: true,
+                    preConfirm: () => {
+                        return new Promise(function(resolve) {
+                            $.ajax({
+                                    type: 'POST',
+                                    url: url(
+                                        '/provinsi/data-mente/store-penilai-penetap'
+                                    ),
+                                    data: {
+                                        "kab_prov_penilai_penetap": $(e.target)
+                                            .data(
+                                                'jenis') == 'penilai' ? $(
+                                                '#tambahPenilai input[name="kab_prov_penilai_penetap"]'
+                                            ).val() : $(
+                                                '#tambahPenetap input[name="kab_prov_penilai_penetap"]'
+                                            ).val(),
+                                        "jenis_aparatur": $($(e.target.parentElement
+                                                .parentElement).find(
+                                                'input[name="jenis_aparatur"]'))
+                                            .val()
+                                    },
+                                    dataType: 'JSON',
+                                })
+                                .done(function(myAjaxJsonResponse) {
+                                    swal("Berhasil!", myAjaxJsonResponse.message,
+                                            "success")
+                                        .then(function() {
+                                            location.reload();
+                                        });
+                                })
+                                .fail(function(erordata) {
+                                    if (erordata.status == 422) {
+                                        swal('Warning!', erordata.responseJSON
+                                            .message,
+                                            'warning');
+                                    } else {
+                                        swal('Error!', erordata.responseJSON
+                                            .message, 'error');
+                                    }
+                                })
+                        })
+                    },
+                })
+            });
             var ajaxError = function(jqXHR, xhr, textStatus, errorThrow, exception) {
                 if (jqXHR.status === 0) {
                     swal("Error!", 'Not connect.\n Verify Network.', "error");

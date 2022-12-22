@@ -8,7 +8,8 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex">
-                        <div class="icon-back mb-2"><i class="fa-solid fa-arrow-left-long" style="cursor: pointer"></i>
+                        <div class="icon-back mb-2"><a href="{{ route('atasan-langsung.verifikasi-kegiatan') }}"> <i
+                                    class="fa-solid fa-arrow-left-long" style="cursor: pointer"></i></a>
                         </div>
                         <div class="ms-2">
                             <h4>Kegiatan Jabatan {{ $user->userAparatur->nama }}</h4>

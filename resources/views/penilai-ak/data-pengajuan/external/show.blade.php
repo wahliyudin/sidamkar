@@ -4,10 +4,10 @@
     <section class="section">
         <div class="row">
             <div class="col-md-12 px-2">
-                <div class="card mb-3">
-                    <div class="card-header d-flex justify-content-between align-items-center">
+                <div class="card mb-3 overflow-auto">
+                    <div class="card-header d-flex flex-wrap justify-content-between align-items-center">
                         <h4>Laporan/Dokumen {{ $user?->userAparatur->nama }}</h4>
-                        <div class="d-flex align-items-center">
+                        <div class="d-flex align-items-center flex-wrap">
                             <button data-id="{{ $user?->id }}"
                                 class="btn {{ in_array($rekapitulasiKegiatan->is_send, [3]) || $rekapitulasiKegiatan->is_ttd_penilai == true ? 'disabled' : '' }} btn-blue me-3 ps-3 pe-4 text-sm ttd">
                                 <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
@@ -17,7 +17,7 @@
                                 <span>TTD</span>
                             </button>
                             <button data-id="{{ $user?->id }}"
-                                class="btn btn-green btn-sm ps-3 {{ in_array($rekapitulasiKegiatan->is_send, [3]) || $rekapitulasiKegiatan->is_ttd_penilai == false ? 'disabled' : '' }} pe-4 text-sm send-to-penetap">
+                                class="btn btn-green btn-sm ps-3 btn-kirim {{ in_array($rekapitulasiKegiatan->is_send, [3]) || $rekapitulasiKegiatan->is_ttd_penilai == false ? 'disabled' : '' }} pe-4 text-sm send-to-penetap">
                                 <i class="fa-solid fa-paper-plane me-2"></i>Kirim Dokumen Ke
                                 Penetap</button>
                         </div>
@@ -182,6 +182,18 @@
             margin-left: 1rem;
         }
 
+        @media screen and (max-width: 575px) {
+            .nav-item:not(:first-child) {
+                margin-left: 0;
+            }
+        }
+
+        @media screen and (max-width: 471px) {
+            .btn-kirim {
+                margin-top: 10px;
+            }
+        }
+
         @media screen and (max-width: 750px) {
             .nav-item a h6 {
                 font-size: 14px !important;
@@ -243,7 +255,7 @@
                     return new Promise(function(resolve) {
                         $.ajax({
                                 type: 'POST',
-                                url: url('/penilai-ak/data-pengajuan/internal/' + id +
+                                url: url('/penilai-ak/data-pengajuan/external/' + id +
                                     '/simpan-penetapan'),
                                 processData: false,
                                 contentType: false,
@@ -269,7 +281,7 @@
             // $('.simpan-kegiatan span').show();
             // $('.simpan-kegiatan .spin').hide();
         });
-        // penilai-ak/data-pengajuan/internal/{user_id}/simpan-penetapan
+        // penilai-ak/data-pengajuan/external/{user_id}/simpan-penetapan
         $('.ttd').click(function(e) {
             e.preventDefault();
             $('.spin').show();
@@ -277,7 +289,7 @@
             $('.ttd span').hide();
             $.ajax({
                 type: "POST",
-                url: url('/penilai-ak/data-pengajuan/internal/' + $(this).data('id') + '/ttd'),
+                url: url('/penilai-ak/data-pengajuan/external/' + $(this).data('id') + '/ttd'),
                 dataType: "JSON",
                 success: function(response) {
                     $('.spin').hide();
@@ -308,7 +320,7 @@
                 preConfirm: async () => {
                     return await $.ajax({
                         type: "POST",
-                        url: url('/penilai-ak/data-pengajuan/internal/' + $(this).data(
+                        url: url('/penilai-ak/data-pengajuan/external/' + $(this).data(
                                 'id') +
                             '/send-to-penetap'),
                         dataType: "JSON",

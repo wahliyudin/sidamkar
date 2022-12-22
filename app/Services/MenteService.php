@@ -84,13 +84,11 @@ class MenteService
         $kabProvPenilaiAndPenetap = KabProvPenilaiAndPenetap::query()
             ->with(['penetapAngkaKredit.userPejabatStruktural'])
             ->where('provinsi_id', $provinsi_id)
-            ->jenisAparaturIs($jenis_aparatur)
             ->first();
         if (!isset($kabProvPenilaiAndPenetap)) {
             $kabProvPenilaiAndPenetap = CrossPenilaiAndPenetap::query()
                 ->with(['kabProvPenilaiAndPenetap.penetapAngkaKredit.userPejabatStruktural'])
                 ->where('provinsi_id', $provinsi_id)
-                ->jenisAparaturIs($jenis_aparatur)
                 ->first();
             $kabProvPenilaiAndPenetap = $kabProvPenilaiAndPenetap?->kabProvPenilaiAndPenetap;
         }
@@ -102,13 +100,11 @@ class MenteService
         $kabProvPenilaiAndPenetap = KabProvPenilaiAndPenetap::query()
             ->with(['penilaiAngkaKredit.userPejabatStruktural'])
             ->where('kab_kota_id', $kab_kota_id)
-            ->jenisAparaturIs($jenis_aparatur)
             ->first();
         if (!isset($kabProvPenilaiAndPenetap)) {
             $kabProvPenilaiAndPenetap = CrossPenilaiAndPenetap::query()
                 ->with(['kabProvPenilaiAndPenetap.penilaiAngkaKredit.userPejabatStruktural'])
                 ->where('kab_kota_id', $kab_kota_id)
-                ->jenisAparaturIs($jenis_aparatur)
                 ->first();
             $kabProvPenilaiAndPenetap = $kabProvPenilaiAndPenetap?->kabProvPenilaiAndPenetap;
         }
@@ -217,5 +213,117 @@ class MenteService
                 ]);
         }
         return $kabProvPenilaiAndPenetap;
+    }
+
+    public function getKabKotaPenilaiAKDamkar($kab_kota_id)
+    {
+        $kabProvPenilaiAndPenetap = KabProvPenilaiAndPenetap::query()
+            ->with(['penilaiAngkaKreditDamkar.userPejabatStruktural'])
+            ->where('kab_kota_id', $kab_kota_id)
+            ->where('tingkat_aparatur', 'kab_kota')
+            ->first();
+        if (!isset($kabProvPenilaiAndPenetap->penilaiAngkaKreditDamkar)) throw ValidationException::withMessages(['message' => 'Belum mempunyai tim penilai ak damkar']);
+        return [
+            'id' => $kabProvPenilaiAndPenetap->penilai_ak_damkar_id,
+            'nama' => $kabProvPenilaiAndPenetap->penilaiAngkaKreditDamkar->userPejabatStruktural->nama
+        ];
+    }
+
+    public function getKabKotaPenetapAKDamkar($kab_kota_id)
+    {
+        $kabProvPenilaiAndPenetap = KabProvPenilaiAndPenetap::query()
+            ->with(['penetapAngkaKreditDamkar.userPejabatStruktural'])
+            ->where('kab_kota_id', $kab_kota_id)
+            ->where('tingkat_aparatur', 'kab_kota')
+            ->first();
+        if (!isset($kabProvPenilaiAndPenetap->penetapAngkaKreditDamkar)) throw ValidationException::withMessages(['message' => 'Belum mempunyai tim penetap ak damkar']);
+        return [
+            'id' => $kabProvPenilaiAndPenetap->penetap_ak_damkar_id,
+            'nama' => $kabProvPenilaiAndPenetap->penetapAngkaKreditDamkar->userPejabatStruktural->nama
+        ];
+    }
+
+    public function getKabKotaPenilaiAKAnalis($kab_kota_id)
+    {
+        $kabProvPenilaiAndPenetap = KabProvPenilaiAndPenetap::query()
+            ->with(['penilaiAngkaKreditAnalis.userPejabatStruktural'])
+            ->where('kab_kota_id', $kab_kota_id)
+            ->where('tingkat_aparatur', 'kab_kota')
+            ->first();
+        if (!isset($kabProvPenilaiAndPenetap->penilaiAngkaKreditAnalis)) throw ValidationException::withMessages(['message' => 'Belum mempunyai tim penilai ak analis']);
+        return [
+            'id' => $kabProvPenilaiAndPenetap->penilai_ak_analis_id,
+            'nama' => $kabProvPenilaiAndPenetap->penilaiAngkaKreditAnalis->userPejabatStruktural->nama
+        ];
+    }
+
+    public function getKabKotaPenetapAKAnalis($kab_kota_id)
+    {
+        $kabProvPenilaiAndPenetap = KabProvPenilaiAndPenetap::query()
+            ->with(['penetapAngkaKreditAnalis.userPejabatStruktural'])
+            ->where('kab_kota_id', $kab_kota_id)
+            ->where('tingkat_aparatur', 'kab_kota')
+            ->first();
+        if (!isset($kabProvPenilaiAndPenetap->penetapAngkaKreditAnalis)) throw ValidationException::withMessages(['message' => 'Belum mempunyai tim penetap ak analis']);
+        return [
+            'id' => $kabProvPenilaiAndPenetap->penetap_ak_analis_id,
+            'nama' => $kabProvPenilaiAndPenetap->penetapAngkaKreditAnalis->userPejabatStruktural->nama
+        ];
+    }
+
+    public function getProvinsiPenilaiAKDamkar($provinsi_id)
+    {
+        $kabProvPenilaiAndPenetap = KabProvPenilaiAndPenetap::query()
+            ->with(['penilaiAngkaKreditDamkar.userPejabatStruktural'])
+            ->where('provinsi_id', $provinsi_id)
+            ->where('tingkat_aparatur', 'provinsi')
+            ->first();
+        if (!isset($kabProvPenilaiAndPenetap->penilaiAngkaKreditDamkar)) throw ValidationException::withMessages(['message' => 'Belum mempunyai tim penilai ak damkar']);
+        return [
+            'id' => $kabProvPenilaiAndPenetap->penilai_ak_damkar_id,
+            'nama' => $kabProvPenilaiAndPenetap->penilaiAngkaKreditDamkar->userPejabatStruktural->nama
+        ];
+    }
+
+    public function getProvinsiPenetapAKDamkar($provinsi_id)
+    {
+        $kabProvPenilaiAndPenetap = KabProvPenilaiAndPenetap::query()
+            ->with(['penetapAngkaKreditDamkar.userPejabatStruktural'])
+            ->where('provinsi_id', $provinsi_id)
+            ->where('tingkat_aparatur', 'provinsi')
+            ->first();
+        if (!isset($kabProvPenilaiAndPenetap->penetapAngkaKreditDamkar)) throw ValidationException::withMessages(['message' => 'Belum mempunyai tim penetap ak damkar']);
+        return [
+            'id' => $kabProvPenilaiAndPenetap->penetap_ak_damkar_id,
+            'nama' => $kabProvPenilaiAndPenetap->penetapAngkaKreditDamkar->userPejabatStruktural->nama
+        ];
+    }
+
+    public function getProvinsiPenilaiAKAnalis($provinsi_id)
+    {
+        $kabProvPenilaiAndPenetap = KabProvPenilaiAndPenetap::query()
+            ->with(['penilaiAngkaKreditAnalis.userPejabatStruktural'])
+            ->where('provinsi_id', $provinsi_id)
+            ->where('tingkat_aparatur', 'provinsi')
+            ->first();
+        if (!isset($kabProvPenilaiAndPenetap->penilaiAngkaKreditAnalis)) throw ValidationException::withMessages(['message' => 'Belum mempunyai tim penilai ak analis']);
+        return [
+            'id' => $kabProvPenilaiAndPenetap->penilai_ak_analis_id,
+            'nama' => $kabProvPenilaiAndPenetap->penilaiAngkaKreditAnalis->userPejabatStruktural->nama
+        ];
+    }
+
+    public function getProvinsiPenetapAKAnalis($provinsi_id)
+    {
+        $kabProvPenilaiAndPenetap = KabProvPenilaiAndPenetap::query()
+            ->with(['penetapAngkaKreditAnalis.userPejabatStruktural'])
+            ->where('provinsi_id', $provinsi_id)
+            ->where('tingkat_aparatur', 'provinsi')
+            ->first();
+        if (!isset($kabProvPenilaiAndPenetap->penetapAngkaKreditAnalis)) throw ValidationException::withMessages(['message' => 'Belum mempunyai tim penetap ak analis']);
+        return [
+            'id' => $kabProvPenilaiAndPenetap->penetap_ak_analis_id,
+            'nama' => $kabProvPenilaiAndPenetap->penetapAngkaKreditAnalis->userPejabatStruktural->nama
+        ];
     }
 }

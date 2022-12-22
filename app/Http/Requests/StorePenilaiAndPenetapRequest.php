@@ -23,6 +23,7 @@ class StorePenilaiAndPenetapRequest extends FormRequest
      */
     public function rules()
     {
+        dd(request()->all());
         $rules = [
             'tingkat' => 'required',
             'penilai' => 'required',
