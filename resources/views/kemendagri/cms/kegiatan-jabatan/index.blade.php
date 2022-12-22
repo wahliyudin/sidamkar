@@ -25,6 +25,10 @@
                                             <h6 class="accordian-title" style="color: #000000;">{{ $unsur->nama }}</h6>
                                         </div>
                                         <div class="d-flex align-items-center">
+                                            <i class="fa-regular fa-pen-to-square me-2 cursor-pointer text-green btn-edit-kegiatan"
+                                                data-id="{{ $unsur->id }}"></i>
+                                            <i class="fa-solid fa-trash-can me-2 cursor-pointer text-red btn-hapus-kegiatan"
+                                                data-id="{{ $unsur->id }}"></i>
                                             <button class="accordion-button collapsed" type="button"
                                                 data-bs-toggle="collapse" data-bs-target="#contentUnsur{{ $unsur->id }}"
                                                 aria-expanded="false" aria-controls="contentUnsur{{ $unsur->id }}">
@@ -67,7 +71,7 @@
                                                                                     <span
                                                                                         class="bg-green text-sm text-center text-white font-bold py-1 px-2 rounded-md label-role"
                                                                                         style="white-space: nowrap;">
-                                                                                        {{ $butir_kegiatan->role?->display_name }}
+                                                                                        {{ $butir_kegiatan->role?->display_name ?? 'Semua Jenjang' }}
                                                                                     </span>
                                                                                 </div>
                                                                             </div>
@@ -91,8 +95,8 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="tambahDataModal" tabindex="-1" role="dialog" aria-labelledby="tambahDataModalTitle"
-        aria-hidden="true">
+    <div class="modal fade" id="tambahDataModal" tabindex="-1" role="dialog" data-bs-backdrop="static"
+        aria-labelledby="tambahDataModalTitle" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-centered modal-dialog-scrollable"
             role="document">
             <div class="modal-content relative">
@@ -110,32 +114,6 @@
                 </div>
                 <div class="modal-body">
                     <form method="post" enctype="multipart/form-data" class="container-unsur">
-                        <div class="row justify-content-center">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Pelaksana Jabatan</label>
-                                    <select class="form-select" name="role_id">
-                                        <option disabled selected>Semua Jenjang</option>
-                                        @foreach ($roles as $role)
-                                            <option value="{{ $role->id }}">{{ $role->display_name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Periode</label>
-                                    <select class="form-select" name="periode_id">
-                                        <option disabled selected>- Pilih Periode -</option>
-                                        @foreach ($periodes as $periode)
-                                            <option value="{{ $periode->id }}">
-                                                {{ $periode->concat }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
                         <div class="row align-items-center">
                             <div class="col-md-11">
                                 <div class="form-group">
@@ -178,17 +156,6 @@
                 </div>
                 <div class="modal-body">
                     <form id="form-import" method="post" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <label>Periode</label>
-                            <select class="form-select" name="periode_id">
-                                <option disabled selected>- Pilih Periode -</option>
-                                @foreach ($periodes as $periode)
-                                    <option value="{{ $periode->id }}">
-                                        {{ $periode->concat }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
                         <div class="form-group">
                             <label>File (.xlsx)</label>
                             <input type="file" name="file_import_tmp" required />

@@ -156,10 +156,9 @@ class KegiatanProfesiController extends Controller
     public function loadData(Request $request): JsonResponse|null
     {
         if ($request->ajax()) {
-            $periode = $this->periodeRepository->isActive();
             $role = $this->getFirstRole();
             $search = str($request->search)->lower()->trim();
-            $unsurs = $this->kegiatanProfesiService->loadUnsurs($periode, $search, $role);
+            $unsurs = $this->kegiatanProfesiService->loadUnsurs($search, $role);
             return response()->json([
                 'unsurs' => $unsurs
             ]);

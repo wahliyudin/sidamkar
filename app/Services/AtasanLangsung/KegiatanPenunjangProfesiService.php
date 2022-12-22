@@ -69,11 +69,10 @@ class KegiatanPenunjangProfesiService
         return $this->subButirKegiatanRepository->getById($id);
     }
 
-    public function loadUnsurs(Periode $periode, string $search, Role $role, $jenis_kegiatan_id)
+    public function loadUnsurs(string $search, Role $role, $jenis_kegiatan_id)
     {
         $unsurs = Unsur::query()
             ->where('jenis_kegiatan_id', $jenis_kegiatan_id)
-            ->where('periode_id', $periode->id)
             ->where('jenis_aparatur', $this->groupRole($role))
             ->withWhereHas('subUnsurs', function ($query) use ($role) {
                 $query->withWhereHas('butirKegiatans', function ($query) use ($role) {
