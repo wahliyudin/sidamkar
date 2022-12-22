@@ -70,7 +70,6 @@ class KegiatanProfesiController extends Controller
         $unsur = Unsur::query()->with('subUnsurs')->findOrFail($id);
         $unsur->update([
             'role_id' => $request->role_id ?? null,
-            'periode_id' => $request->periode_id,
             'nama' => $request->unsur
         ]);
         $tmpSubUnsurs = [];
@@ -84,25 +83,7 @@ class KegiatanProfesiController extends Controller
             }
             $tmpbutirKegiatans = [];
             for ($j = 0; $j < count($request->sub_unsurs[$i]['butir_kegiatans']); $j++) {
-                if (!isset($request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'])) {
-                    if (isset($request->sub_unsurs[$i]['butir_kegiatans'][$j]['id'])) {
-                        $butirKegiatan = $this->updatebutirKegiatan(
-                            $subUnsur,
-                            $request->sub_unsurs[$i]['butir_kegiatans'][$j]['id'],
-                            $request->sub_unsurs[$i]['butir_kegiatans'][$j]['name'],
-                            $request->sub_unsurs[$i]['butir_kegiatans'][$j]['angka_kredit']
-                        );
-                        $butirKegiatan->subButirKegiatans()->delete();
-                        array_push($tmpbutirKegiatans, $request->sub_unsurs[$i]['butir_kegiatans'][$j]['id']);
-                    } else {
-                        $butirKegiatan = $this->storeButirKegiatan(
-                            $subUnsur,
-                            $request->sub_unsurs[$i]['butir_kegiatans'][$j]['name'],
-                            $request->sub_unsurs[$i]['butir_kegiatans'][$j]['angka_kredit']
-                        );
-                        array_push($tmpbutirKegiatans, $butirKegiatan->id);
-                    }
-                } else {
+                if (isset($request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'])) {
                     if (isset($request->sub_unsurs[$i]['butir_kegiatans'][$j]['id'])) {
                         $butirKegiatan = $this->updateButirKegiatan(
                             $subUnsur,
@@ -117,27 +98,25 @@ class KegiatanProfesiController extends Controller
                         );
                         array_push($tmpbutirKegiatans, $butirKegiatan->id);
                     }
-                    if (isset($butirKegiatan->subButirKegiatans)) {
-                        $tmpSubButirKegiatans = [];
-                        for ($k = 0; $k < count($request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans']); $k++) {
-                            if (isset($request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'][$k]['id'])) {
-                                $subButirKegiatan = $this->updateSubButirKegiatan(
-                                    $butirKegiatan,
-                                    $request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'][$k]['id'],
-                                    $request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'][$k]['name'],
-                                    $request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'][$k]['angka_kredit']
-                                );
-                                array_push($tmpSubButirKegiatans, $request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'][$k]['id']);
-                            } else {
-                                $subButirKegiatan = $this->storeSubButirKegiatan(
-                                    $butirKegiatan,
-                                    $request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'][$k]['name'],
-                                    $request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'][$k]['angka_kredit']
-                                );
-                                array_push($tmpSubButirKegiatans, $subButirKegiatan->id);
-                            }
+                    $tmpSubButirKegiatans = [];
+                    for ($k = 0; $k < count($request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans']); $k++) {
+                        if (isset($request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'][$k]['id'])) {
+                            $subButirKegiatan = $this->kegiatanSubButirKegiatanService->updateSubButirKegiatan($butirKegiatan, $request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'][$k]);
+                            array_push($tmpSubButirKegiatans, $request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'][$k]['id']);
+                        } else {
+                            $subButirKegiatan = $this->kegiatanSubButirKegiatanService->storeSubButirKegiatan($butirKegiatan, $request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'][$k]);
+                            array_push($tmpSubButirKegiatans, $subButirKegiatan->id);
                         }
-                        $butirKegiatan->subButirKegiatans()->whereNotIn('id', $tmpSubButirKegiatans)->delete();
+                    }
+                    $butirKegiatan->subButirKegiatans()->whereNotIn('id', $tmpSubButirKegiatans)->delete();
+                } else {
+                    if (isset($request->sub_unsurs[$i]['butir_kegiatans'][$j]['id'])) {
+                        $butirKegiatan = $this->kegiatanSubButirKegiatanService->updateButirKegiatan($subUnsur, $request->sub_unsurs[$i]['butir_kegiatans'][$j]);
+                        $butirKegiatan->subButirKegiatans()->delete();
+                        array_push($tmpbutirKegiatans, $request->sub_unsurs[$i]['butir_kegiatans'][$j]['id']);
+                    } else {
+                        $butirKegiatan = $this->kegiatanSubButirKegiatanService->storeButirKegiatan($subUnsur, $request->sub_unsurs[$i]['butir_kegiatans'][$j]);
+                        array_push($tmpbutirKegiatans, $butirKegiatan->id);
                     }
                 }
             }
@@ -166,39 +145,47 @@ class KegiatanProfesiController extends Controller
         return $subUnsur;
     }
 
-    public function storeButirKegiatan(SubUnsur $subUnsur, string $name, $angka_kredit = null)
+    public function storeButirKegiatan(SubUnsur $subUnsur, string $name, $satuan_hasil = null, $angka_kredit = null, $role_id = null)
     {
         $butirKegiatan = $subUnsur->butirKegiatans()->create([
             'nama' => $name,
+            'satuan_hasil' => $satuan_hasil,
             'score' => $angka_kredit,
+            'role_id' => $role_id
         ]);
         return $butirKegiatan;
     }
 
-    public function updateButirKegiatan(SubUnsur $subUnsur, $id, string $name, $angka_kredit = null)
+    public function updateButirKegiatan(SubUnsur $subUnsur, $id, string $name, $satuan_hasil = null, $angka_kredit = null, $role_id = null)
     {
         $butirKegiatan = $subUnsur->butirKegiatans()->find($id);
         $butirKegiatan->update([
             'nama' => $name,
+            'satuan_hasil' => $satuan_hasil,
             'score' => $angka_kredit,
+            'role_id' => $role_id,
         ]);
         return $butirKegiatan;
     }
 
-    public function storeSubButirKegiatan(ButirKegiatan $butirKegiatan, string $name, $angka_kredit)
+    public function storeSubButirKegiatan(ButirKegiatan $butirKegiatan, string $name, $satuan_hasil = null, $angka_kredit = null, $role_id = null)
     {
         $subButirKegiatan = $butirKegiatan->subButirKegiatans()->create([
             'nama' => $name,
+            'satuan_hasil' => $satuan_hasil,
             'score' => $angka_kredit,
+            'role_id' => $role_id,
         ]);
         return $subButirKegiatan;
     }
 
-    public function updateSubButirKegiatan(ButirKegiatan $butirKegiatan, $id, string $name, $angka_kredit)
+    public function updateSubButirKegiatan(ButirKegiatan $butirKegiatan, $id, string $name, $satuan_hasil = null, $angka_kredit = null, $role_id = null)
     {
         return $butirKegiatan->subButirKegiatans()->find($id)->update([
             'nama' => $name,
+            'satuan_hasil' => $satuan_hasil,
             'score' => $angka_kredit,
+            'role_id' => $role_id,
         ]);
     }
 

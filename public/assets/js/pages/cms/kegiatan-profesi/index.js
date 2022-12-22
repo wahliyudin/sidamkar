@@ -107,7 +107,7 @@ $(function () {
     $('.container-unsur').on('click', '.tambah-butir', function () {
         $(this.parentElement.parentElement.parentElement.querySelector('.container-butir')).append(`
             <div class="row align-items-start justify-content-end">
-                <div class="col-md-2 butir-input">
+                <div class="col-md-2 input-butir-kegiatan">
                     <div class="form-group">
                         <label>Butir Kegiatan</label>
                         <textarea name="butir_kegiatan[]" class="form-control w-100" rows="1"></textarea>
@@ -169,9 +169,9 @@ $(function () {
             $($(this.parentElement.parentElement).find('.butir-nilai-kredit')).remove();
             $($(this.parentElement.parentElement).find('> .butir-jabatan')).remove();
             $($(this.parentElement.parentElement).find('.butir-persen')).remove();
-            $($(this.parentElement.parentElement).find('.butir-input')).addClass(
+            $($(this.parentElement.parentElement).find('.input-butir-kegiatan')).addClass(
                 'col-md-9');
-            $($(this.parentElement.parentElement).find('.butir-input')).removeClass(
+            $($(this.parentElement.parentElement).find('.input-butir-kegiatan')).removeClass(
                 'col-md-2');
         }
         $($(this.parentElement.parentElement).find('.container-sub-butir'))
@@ -203,7 +203,7 @@ $(function () {
                         </label>
                     </div>
                 </div>
-                <div class="col-md-3 butir-jabatan">
+                <div class="col-md-3">
                     <div class="form-group">
                         <label>Pelaksana Jabatan</label>
                         <select class="form-select" name="role_id[]">
@@ -230,7 +230,7 @@ $(function () {
         $($('.container-unsur').find('.hapus-sub-butir')).each(function (index, element) {
             if (e.target == element || element == e.target.parentElement) {
                 if ($(this.parentElement.parentElement.parentElement).children().length == 1) {
-                    el = $(this.parentElement.parentElement.parentElement.parentElement).find('.butir-input');
+                    el = $(this.parentElement.parentElement.parentElement.parentElement).find('.input-butir-kegiatan');
                     $(el).addClass('col-md-2');
                     $(el).removeClass('col-md-9');
                     el.after(`
@@ -249,7 +249,7 @@ $(function () {
                     <div class="col-md-1 align-self-center butir-persen">
                         <div class="form-group">
                             <label>
-                                <input class="form-check-input" name="" type="checkbox">
+                                <input class="form-check-input" name="is_percent[]" type="checkbox">
                                 Persen
                             </label>
                         </div>
@@ -550,25 +550,25 @@ $(function () {
             }
             return `
             <div class="row align-items-start justify-content-end">
-                <div class="col-md-2">
+                <div class="col-md-2 input-butir-kegiatan">
                     <div class="form-group">
-                        <label>Sub Butir Kegiatan</label>
-                        <textarea name="sub_butir_kegiatan[]" data-id="${butirKegiatan.id}" class="form-control w-100" rows="1">${butirKegiatan.nama}</textarea>
+                        <label>Butir Kegiatan</label>
+                        <textarea name="butir_kegiatan[]" data-id="${butirKegiatan.id}" class="form-control w-100" rows="1">${butirKegiatan.nama}</textarea>
                     </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2 butir-satuan-hasil">
                     <div class="form-group">
                         <label>Satuan Hasil</label>
                         <textarea name="satuan_hasil[]" class="form-control w-100" rows="1">${butirKegiatan.satuan_hasil}</textarea>
                     </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2 butir-nilai-kredit">
                     <div class="form-group">
                         <label>Nilai Kredit</label>
                         <input class="form-control w-100" step="0.01" type="number" value="${butirKegiatan.score ?? butirKegiatan.percent}" name="angka_kredit[]">
                     </div>
                 </div>
-                <div class="col-md-1 align-self-center">
+                <div class="col-md-1 align-self-center butir-persen">
                     <div class="form-group">
                         <label>
                             <input class="form-check-input" name="is_percent[]" ${butirKegiatan.percent != null ? 'checked' : ''} type="checkbox">
@@ -592,9 +592,15 @@ $(function () {
                     </div>
                 </div>
                 <div class="col-md-1 d-flex align-items-center align-self-center">
-                    <button type="button" class="hapus-sub-butir"
+                    <button type="button" class="hapus-butir"
                     style="transform: translateY(8px); color: #EA3A3D; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #EA3A3D; background-color: transparent !important;"><i
                         class="fa-solid fa-x"></i></button>
+                    <button type="button" class="ms-2 tambah-sub-butir"
+                                    style="transform: translateY(8px); color: #1ad598; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #1ad598; background-color: transparent !important;"><i
+                                        class="fa-solid fa-plus"></i></button>
+                </div>
+                <div class="d-flex flex-column container-sub-butir">
+
                 </div>
             </div>
             `
@@ -608,7 +614,7 @@ $(function () {
                 <div class="col-md-2">
                     <div class="form-group">
                         <label>Sub Butir Kegiatan</label>
-                        <textarea name="sub_butir_kegiatan[]" class="form-control w-100" rows="1">${subButirKegiatan.nama}</textarea>
+                        <textarea name="sub_butir_kegiatan[]" data-id="${subButirKegiatan.id}" class="form-control w-100" rows="1">${subButirKegiatan.nama}</textarea>
                     </div>
                 </div>
                 <div class="col-md-2">
