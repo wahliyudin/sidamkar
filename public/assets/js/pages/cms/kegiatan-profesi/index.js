@@ -532,7 +532,7 @@ $(function () {
                     <div class="col-md-9 input-butir-kegiatan">
                         <div class="form-group">
                             <label>Butir Kegiatan</label>
-                            <input class="form-control w-100" type="text" data-id="${butirKegiatan.id}" value="${butirKegiatan.nama}" name="butir_kegiatan[]">
+                            <textarea class="form-control w-100" rows="1" type="text" data-id="${butirKegiatan.id}" name="butir_kegiatan[]">${butirKegiatan.nama}</textarea>
                         </div>
                     </div>
                     <div class="col-md-1 d-flex">
@@ -548,63 +548,111 @@ $(function () {
                     </div>
                 </div>`
             }
-            return `<div class="row align-items-center justify-content-end">
-                <div class="col-md-6 input-butir-kegiatan">
-                    <div class="form-group">
-                        <label>Butir Kegiatan</label>
-                        <input class="form-control w-100" type="text" data-id="${butirKegiatan.id}" value="${butirKegiatan.nama}" name="butir_kegiatan[]">
-                    </div>
-                </div>
-                <div class="col-md-3 d-flex gap-2 justify-content-between ps-0 pe-3 butir-nilai-kredit">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Nilai Kredit</label>
-                            <input class="form-control w-100" step="0.01" min="0" value="${butirKegiatan.score}" type="number" name="angka_kredit[]">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Nilai Kredit(%)</label>
-                            <input class="form-control w-100" min="0" type="number" name="percent[]">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-1 d-flex">
-                    <button type="button" class="hapus-butir"
-                        style="transform: translateY(8px); color: #EA3A3D; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #EA3A3D; background-color: transparent !important;"><i
-                            class="fa-solid fa-x"></i></button>
-                    <button type="button" class="ms-2 tambah-sub-butir" style="transform: translateY(8px); color: #1ad598; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #1ad598; background-color: transparent !important;"><i
-                            class="fa-solid fa-plus"></i></button>
-                </div>
-
-                <div class="d-flex flex-column container-sub-butir">
-
-                </div>
-            </div>`
-        }).join('')
-    }
-
-    function htmlSubButirKegiatan(sub_butir_kegiatans) {
-        return $.map(sub_butir_kegiatans, function (subButirKegiatan, indexOrKey) {
-            return `<div class="row align-items-center justify-content-end sub-butir">
-                <div class="col-md-6">
+            return `
+            <div class="row align-items-start justify-content-end">
+                <div class="col-md-2">
                     <div class="form-group">
                         <label>Sub Butir Kegiatan</label>
-                        <input class="form-control w-100" data-id="${subButirKegiatan.id}" value="${subButirKegiatan.nama}" type="text" name="sub_butir_kegiatan[]">
+                        <textarea name="sub_butir_kegiatan[]" data-id="${butirKegiatan.id}" class="form-control w-100" rows="1">${butirKegiatan.nama}</textarea>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>Satuan Hasil</label>
+                        <textarea name="satuan_hasil[]" class="form-control w-100" rows="1">${butirKegiatan.satuan_hasil}</textarea>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="form-group">
                         <label>Nilai Kredit</label>
-                        <input class="form-control w-100" step="0.01" min="0" value="${subButirKegiatan.score}" type="number" name="angka_kredit[]">
+                        <input class="form-control w-100" step="0.01" type="number" value="${butirKegiatan.score ?? butirKegiatan.percent}" name="angka_kredit[]">
                     </div>
                 </div>
-                <div class="col-md-1 d-flex align-items-center">
+                <div class="col-md-1 align-self-center">
+                    <div class="form-group">
+                        <label>
+                            <input class="form-check-input" name="is_percent[]" ${butirKegiatan.percent != null ? 'checked' : ''} type="checkbox">
+                            Persen
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-3 butir-jabatan">
+                    <div class="form-group">
+                        <label>Pelaksana Jabatan</label>
+                        <select class="form-select" name="role_id[]">
+                            <option value="">Semua Jenjang</option>
+                            <option ${butirKegiatan.role_id == 1 ? 'selected' : ''} value="1">Damkar Pemula</option>
+                            <option ${butirKegiatan.role_id == 2 ? 'selected' : ''} value="2">Damkar Terampil</option>
+                            <option ${butirKegiatan.role_id == 3 ? 'selected' : ''} value="3">Damkar Mahir</option>
+                            <option ${butirKegiatan.role_id == 4 ? 'selected' : ''} value="4">Damkar Penyelia</option>
+                            <option ${butirKegiatan.role_id == 5 ? 'selected' : ''} value="5">Analis Kebakaran Ahli Pertama</option>
+                            <option ${butirKegiatan.role_id == 6 ? 'selected' : ''} value="6">Analis Kebakaran Ahli Muda</option>
+                            <option ${butirKegiatan.role_id == 7 ? 'selected' : ''} value="7">Analis Kebakaran Ahli Madya</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-1 d-flex align-items-center align-self-center">
                     <button type="button" class="hapus-sub-butir"
                     style="transform: translateY(8px); color: #EA3A3D; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #EA3A3D; background-color: transparent !important;"><i
                         class="fa-solid fa-x"></i></button>
                 </div>
-            </div>`
+            </div>
+            `
+        }).join('')
+    }
+
+    function htmlSubButirKegiatan(sub_butir_kegiatans) {
+        return $.map(sub_butir_kegiatans, function (subButirKegiatan, indexOrKey) {
+            return `
+            <div class="row align-items-start justify-content-end">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>Sub Butir Kegiatan</label>
+                        <textarea name="sub_butir_kegiatan[]" class="form-control w-100" rows="1">${subButirKegiatan.nama}</textarea>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>Satuan Hasil</label>
+                        <textarea name="satuan_hasil[]" class="form-control w-100" rows="1">${subButirKegiatan.satuan_hasil}</textarea>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>Nilai Kredit</label>
+                        <input class="form-control w-100" step="0.01" type="number" value="${subButirKegiatan.score ?? subButirKegiatan.percent}" name="angka_kredit[]">
+                    </div>
+                </div>
+                <div class="col-md-1 align-self-center">
+                    <div class="form-group">
+                        <label>
+                            <input class="form-check-input" name="is_percent[]" ${subButirKegiatan.percent != null ? 'checked' : ''} type="checkbox">
+                            Persen
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-3 butir-jabatan">
+                    <div class="form-group">
+                        <label>Pelaksana Jabatan</label>
+                        <select class="form-select" name="role_id[]">
+                            <option value="">Semua Jenjang</option>
+                            <option ${subButirKegiatan.role_id == 1 ? 'selected' : ''} value="1">Damkar Pemula</option>
+                            <option ${subButirKegiatan.role_id == 2 ? 'selected' : ''} value="2">Damkar Terampil</option>
+                            <option ${subButirKegiatan.role_id == 3 ? 'selected' : ''} value="3">Damkar Mahir</option>
+                            <option ${subButirKegiatan.role_id == 4 ? 'selected' : ''} value="4">Damkar Penyelia</option>
+                            <option ${subButirKegiatan.role_id == 5 ? 'selected' : ''} value="5">Analis Kebakaran Ahli Pertama</option>
+                            <option ${subButirKegiatan.role_id == 6 ? 'selected' : ''} value="6">Analis Kebakaran Ahli Muda</option>
+                            <option ${subButirKegiatan.role_id == 7 ? 'selected' : ''} value="7">Analis Kebakaran Ahli Madya</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-1 d-flex align-items-center align-self-center">
+                    <button type="button" class="hapus-sub-butir"
+                    style="transform: translateY(8px); color: #EA3A3D; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #EA3A3D; background-color: transparent !important;"><i
+                        class="fa-solid fa-x"></i></button>
+                </div>
+            </div>
+            `
         }).join('')
     }
 

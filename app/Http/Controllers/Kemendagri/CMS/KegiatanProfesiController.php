@@ -29,10 +29,6 @@ class KegiatanProfesiController extends Controller
     public function index()
     {
         $roles = Role::query()->whereIn('name', getAllRoleFungsional())->get(['id', 'display_name']);
-        $periodes = Periode::query()->get()->map(function (Periode $periode) {
-            $periode->concat = Carbon::make($periode->awal)->format('F Y') . ' - ' . Carbon::make($periode->akhir)->format('F Y');
-            return $periode;
-        });
         $kegiatan = JenisKegiatan::query()
             ->with([
                 'unsurs' => function ($query) {
@@ -41,7 +37,7 @@ class KegiatanProfesiController extends Controller
                 'unsurs.subUnsurs.butirKegiatans.subButirKegiatans',
             ])
             ->findOrFail(3);
-        return view('kemendagri.cms.kegiatan-profesi.index', compact('roles', 'kegiatan', 'periodes'));
+        return view('kemendagri.cms.kegiatan-profesi.index', compact('roles', 'kegiatan'));
     }
 
     public function store(KegiatanProfesiRequest $request)
@@ -61,7 +57,6 @@ class KegiatanProfesiController extends Controller
     {
         $unsur = Unsur::query()->with([
             'jenisKegiatan',
-            'role',
             'subUnsurs.butirKegiatans.subButirKegiatans'
         ])->findOrFail($id);
         return response()->json([

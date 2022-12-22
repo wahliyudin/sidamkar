@@ -14,10 +14,10 @@ class KegiatanSubButirKegiatanService
             'satuan_hasil' => $butirKegiatan['satuan_hasil'],
             'role_id' => isset($butirKegiatan['role_id']) ? $butirKegiatan['role_id'] : null
         ];
-        if ($butirKegiatan['is_percent'] == false) {
-            $data['score'] = $butirKegiatan['angka_kredit'];
-        } else {
+        if (filter_var($butirKegiatan['is_percent'], FILTER_VALIDATE_BOOLEAN)) {
             $data['percent'] = $butirKegiatan['angka_kredit'];
+        } else {
+            $data['score'] = $butirKegiatan['angka_kredit'];
         }
         $subUnsur->butirKegiatans()->create($data);
     }
@@ -30,10 +30,10 @@ class KegiatanSubButirKegiatanService
                 'satuan_hasil' => $subButirKegiatans[$i]['satuan_hasil'],
                 'role_id' => isset($subButirKegiatans[$i]['role_id']) ? $subButirKegiatans[$i]['role_id'] : null
             ];
-            if ($subButirKegiatans[$i]['is_percent'] == false) {
-                $data['score'] = $subButirKegiatans[$i]['angka_kredit'];
-            } else {
+            if (filter_var($subButirKegiatans[$i]['is_percent'], FILTER_VALIDATE_BOOLEAN)) {
                 $data['percent'] = $subButirKegiatans[$i]['angka_kredit'];
+            } else {
+                $data['score'] = $subButirKegiatans[$i]['angka_kredit'];
             }
             $butirKegiatan->subButirKegiatans()->create($data);
         }
