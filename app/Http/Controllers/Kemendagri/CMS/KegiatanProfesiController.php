@@ -28,6 +28,7 @@ class KegiatanProfesiController extends Controller
 
     public function index()
     {
+        $judul = 'CMS Kegiatan Profesi';
         $roles = Role::query()->whereIn('name', getAllRoleFungsional())->get(['id', 'display_name']);
         $kegiatan = JenisKegiatan::query()
             ->with([
@@ -37,7 +38,7 @@ class KegiatanProfesiController extends Controller
                 'unsurs.subUnsurs.butirKegiatans.subButirKegiatans',
             ])
             ->findOrFail(3);
-        return view('kemendagri.cms.kegiatan-profesi.index', compact('roles', 'kegiatan'));
+        return view('kemendagri.cms.kegiatan-profesi.index', compact('roles', 'kegiatan', 'judul'));
     }
 
     public function store(KegiatanProfesiRequest $request)

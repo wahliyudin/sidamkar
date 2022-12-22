@@ -27,6 +27,7 @@ class KegiatanPenunjangController extends Controller
 
     public function index()
     {
+        $judul = 'CMS Kegiatan Penunjang';
         $roles = Role::query()->whereIn('name', getAllRoleFungsional())->get(['id', 'display_name']);
         $kegiatan = JenisKegiatan::query()
             ->with([
@@ -36,7 +37,7 @@ class KegiatanPenunjangController extends Controller
                 'unsurs.subUnsurs.butirKegiatans.subButirKegiatans',
             ])
             ->findOrFail(2);
-        return view('kemendagri.cms.kegiatan-penunjang.index', compact('roles', 'kegiatan'));
+        return view('kemendagri.cms.kegiatan-penunjang.index', compact('roles', 'kegiatan', 'judul'));
     }
 
     public function store(KegiatanPenunjangRequest $request)
