@@ -59,76 +59,79 @@
                                                             class="accordion-collapse collapse"
                                                             aria-labelledby="subUnsur{{ $sub_unsur->id }}" style="">
                                                             <div class="accordion-body">
-                                                                @foreach ($sub_unsur->butirKegiatans as $butir_kegiatan)
-                                                                    @if (count($butir_kegiatan->subButirKegiatans) > 0)
-                                                                        <div class="accordion-item">
-                                                                            <div class="d-flex justify-content-between accordion-header py-1 px-2"
-                                                                                id="butirKegiatan{{ $butir_kegiatan->id }}">
-                                                                                <div class="d-flex align-items-center"
-                                                                                    style="color: #000000;">
+                                                                <ul class="ms-0">
+                                                                    @foreach ($sub_unsur->butirKegiatans as $butir_kegiatan)
+                                                                        @if (count($butir_kegiatan->subButirKegiatans) > 0)
+                                                                            <li class="accordian-list">
+                                                                                <div class="accordion-item">
+                                                                                    <div class="d-flex justify-content-between accordion-header py-1 px-2"
+                                                                                        id="butirKegiatan{{ $butir_kegiatan->id }}">
+                                                                                        <div class="d-flex align-items-center"
+                                                                                            style="color: #000000;">
+                                                                                            <h6 class="accordian-title">
+                                                                                                {{ $butir_kegiatan->nama }}
+                                                                                            </h6>
+                                                                                        </div>
+                                                                                        <button
+                                                                                            class="accordion-button collapsed"
+                                                                                            type="button"
+                                                                                            data-bs-toggle="collapse"
+                                                                                            data-bs-target="#contentchildButirKegiatan{{ $butir_kegiatan->id }}"
+                                                                                            aria-expanded="false"
+                                                                                            aria-controls="contentchildButirKegiatan{{ $butir_kegiatan->id }}">
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div id="contentchildButirKegiatan{{ $butir_kegiatan->id }}"
+                                                                                        class="accordion-collapse collapse"
+                                                                                        aria-labelledby="butirKegiatan{{ $butir_kegiatan->id }}"
+                                                                                        style="">
+                                                                                        <div class="accordion-body">
+                                                                                            <ul class="ms-0">
+                                                                                                @foreach ($butir_kegiatan->subButirkegiatans as $subButirKegiatan)
+                                                                                                    <li
+                                                                                                        class="accordian-list ">
+                                                                                                        <div
+                                                                                                            class="d-flex align-items-center justify-content-between flex-wrap">
+                                                                                                            <h6
+                                                                                                                class="accordian-title">
+                                                                                                                {{ $subButirKegiatan->nama }}
+                                                                                                            </h6>
+                                                                                                            <div
+                                                                                                                class="d-flex align-items-center">
+                                                                                                                <span
+                                                                                                                    class="bg-green text-sm text-center text-white font-bold py-1 px-2 rounded-md label-role"
+                                                                                                                    style="white-space: nowrap;">
+                                                                                                                    {{ $subButirKegiatan->role?->display_name ?? 'Semua Jenjang' }}
+                                                                                                                </span>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </li>
+                                                                                                @endforeach
+                                                                                            </ul>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </li>
+                                                                        @else
+                                                                            <li class="accordian-list ">
+                                                                                <div
+                                                                                    class="d-flex align-items-center justify-content-between flex-wrap">
                                                                                     <h6 class="accordian-title">
                                                                                         {{ $butir_kegiatan->nama }}
                                                                                     </h6>
-                                                                                </div>
-                                                                                <button class="accordion-button collapsed"
-                                                                                    type="button" data-bs-toggle="collapse"
-                                                                                    data-bs-target="#contentchildButirKegiatan{{ $butir_kegiatan->id }}"
-                                                                                    aria-expanded="false"
-                                                                                    aria-controls="contentchildButirKegiatan{{ $butir_kegiatan->id }}">
-                                                                                </button>
-                                                                            </div>
-                                                                            <div id="contentchildButirKegiatan{{ $butir_kegiatan->id }}"
-                                                                                class="accordion-collapse collapse"
-                                                                                aria-labelledby="butirKegiatan{{ $butir_kegiatan->id }}"
-                                                                                style="">
-                                                                                <div class="accordion-body">
-                                                                                    <ul class="ms-0">
-                                                                                        @foreach ($butir_kegiatan->subButirkegiatans as $subButirKegiatan)
-                                                                                            <li class="accordian-list ">
-                                                                                                <div
-                                                                                                    class="d-flex align-items-center justify-content-between flex-wrap">
-                                                                                                    <h6
-                                                                                                        class="accordian-title">
-                                                                                                        {{ $subButirKegiatan->nama }}
-                                                                                                    </h6>
-                                                                                                    <div
-                                                                                                        class="d-flex align-items-center">
-                                                                                                        <span
-                                                                                                            class="bg-green text-sm text-center text-white font-bold py-1 px-2 rounded-md label-role"
-                                                                                                            style="white-space: nowrap;">
-                                                                                                            {{ $subButirKegiatan->role?->display_name ?? 'Semua Jenjang' }}
-                                                                                                        </span>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </li>
-                                                                                        @endforeach
-                                                                                    </ul>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    @else
-                                                                        <ul class="ms-0">
-                                                                            @foreach ($sub_unsur->butirKegiatans as $butir_kegiatan)
-                                                                                <li class="accordian-list ">
-                                                                                    <div
-                                                                                        class="d-flex align-items-center justify-content-between flex-wrap">
-                                                                                        <h6 class="accordian-title">
-                                                                                            {{ $butir_kegiatan->nama }}
-                                                                                        </h6>
-                                                                                        <div
-                                                                                            class="d-flex align-items-center">
-                                                                                            <span
-                                                                                                class="bg-green text-sm text-center text-white font-bold py-1 px-2 rounded-md label-role"
-                                                                                                style="white-space: nowrap;">
-                                                                                                {{ $butir_kegiatan->role?->display_name ?? 'Semua Jenjang' }}
-                                                                                            </span>
-                                                                                        </div>
+                                                                                    <div class="d-flex align-items-center">
+                                                                                        <span
+                                                                                            class="bg-green text-sm text-center text-white font-bold py-1 px-2 rounded-md label-role"
+                                                                                            style="white-space: nowrap;">
+                                                                                            {{ $butir_kegiatan->role?->display_name ?? 'Semua Jenjang' }}
+                                                                                        </span>
                                                                                     </div>
-                                                                                </li>
-                                                                            @endforeach
-                                                                        </ul>
-                                                                    @endif
-                                                                @endforeach
+                                                                                </div>
+                                                                            </li>
+                                                                        @endif
+                                                                    @endforeach
+                                                                </ul>
+
                                                             </div>
                                                         </div>
                                                     </div>
@@ -165,32 +168,6 @@
                 </div>
                 <div class="modal-body">
                     <form method="post" enctype="multipart/form-data" class="container-unsur">
-                        <div class="row justify-content-center">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Pelaksana Jabatan</label>
-                                    <select class="form-select" name="role_id">
-                                        <option disabled selected>Semua Jenjang</option>
-                                        @foreach ($roles as $role)
-                                            <option value="{{ $role->id }}">{{ $role->display_name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Periode</label>
-                                    <select class="form-select" name="periode_id">
-                                        <option disabled selected>- Pilih Periode -</option>
-                                        @foreach ($periodes as $periode)
-                                            <option value="{{ $periode->id }}">
-                                                {{ $periode->concat }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
                         <div class="row align-items-center">
                             <div class="col-md-11">
                                 <div class="form-group">

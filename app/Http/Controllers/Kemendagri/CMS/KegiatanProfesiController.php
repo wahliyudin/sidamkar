@@ -12,12 +12,20 @@ use App\Models\Periode;
 use App\Models\Role;
 use App\Models\SubUnsur;
 use App\Models\Unsur;
+use App\Services\Kemendagri\KegiatanSubButirKegiatanService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
 class KegiatanProfesiController extends Controller
 {
+    protected KegiatanSubButirKegiatanService $kegiatanSubButirKegiatanService;
+
+    public function __construct(KegiatanSubButirKegiatanService $kegiatanSubButirKegiatanService)
+    {
+        $this->kegiatanSubButirKegiatanService = $kegiatanSubButirKegiatanService;
+    }
+
     public function index()
     {
         $roles = Role::query()->whereIn('name', getAllRoleFungsional())->get(['id', 'display_name']);
@@ -202,9 +210,7 @@ class KegiatanProfesiController extends Controller
     public function storeKegiatan($request)
     {
         $unsur = Unsur::query()->create([
-            'role_id' => $request->role_id ?? null,
             'jenis_kegiatan_id' => 3,
-            'periode_id' => $request->periode_id,
             'nama' => $request->unsur
         ]);
         for ($i = 0; $i < count($request->sub_unsurs); $i++) {
@@ -212,35 +218,13 @@ class KegiatanProfesiController extends Controller
                 'nama' => $request->sub_unsurs[$i]['name']
             ]);
             for ($j = 0; $j < count($request->sub_unsurs[$i]['butir_kegiatans']); $j++) {
-                if (!isset($request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'])) {
-                    if (isset($request->sub_unsurs[$i]['butir_kegiatans'][$j]['angka_kredit'])) {
-                        $sub_unsur->butirKegiatans()->create([
-                            'nama' => $request->sub_unsurs[$i]['butir_kegiatans'][$j]['name'],
-                            'score' => $request->sub_unsurs[$i]['butir_kegiatans'][$j]['angka_kredit']
-                        ]);
-                    } else {
-                        $sub_unsur->butirKegiatans()->create([
-                            'nama' => $request->sub_unsurs[$i]['butir_kegiatans'][$j]['name'],
-                            'percent' => $request->sub_unsurs[$i]['butir_kegiatans'][$j]['percent']
-                        ]);
-                    }
-                } else {
+                if (isset($request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'])) {
                     $butir_kegiatan = $sub_unsur->butirKegiatans()->create([
                         'nama' => $request->sub_unsurs[$i]['butir_kegiatans'][$j]['name']
                     ]);
-                    for ($k = 0; $k < count($request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans']); $k++) {
-                        if (isset($request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'][$k]['angka_kredit'])) {
-                            $butir_kegiatan->subButirKegiatans()->create([
-                                'nama' => $request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'][$k]['name'],
-                                'score' => $request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'][$k]['angka_kredit']
-                            ]);
-                        } else {
-                            $butir_kegiatan->subButirKegiatans()->create([
-                                'nama' => $request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'][$k]['name'],
-                                'percent' => $request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans'][$k]['percent']
-                            ]);
-                        }
-                    }
+                    $this->kegiatanSubButirKegiatanService->storeSubButirKegiatans($butir_kegiatan, $request->sub_unsurs[$i]['butir_kegiatans'][$j]['sub_butir_kegiatans']);
+                } else {
+                    $this->kegiatanSubButirKegiatanService->storeButirKegiatan($sub_unsur, $request->sub_unsurs[$i]['butir_kegiatans'][$j]);
                 }
             }
         }
