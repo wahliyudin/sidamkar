@@ -390,17 +390,7 @@ class UserSeeder extends Seeder
 
 
         //ini adalah seeder user yang dari request client
-        $adminProvinsiDkiJakarta = User::query()->create([
-            'username' => 'Admin Provinsi DKI Jakarta',
-            'email' => 'adminprovdkijakarta1@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 1
-        ])->attachRole('provinsi');
-        $adminProvinsiDkiJakarta->userProvKabKota()->create([
-            'nomenklatur_perangkat_daerah_id' => 1,
-            'provinsi_id' => 31,
-        ]);
+       
 
         $adminProvinsiBanten = User::query()->create([
             'username' => 'Admin Provinsi Banten',
@@ -583,15 +573,35 @@ class UserSeeder extends Seeder
             'provinsi_id' => 31,
         ]);
 
-        $atasanLangsungProvDKI1 = User::query()->create([
-            'username' => 'Atasan Langsung DKI Jakarta1',
-            'email' => 'asasatasanprovdki.com',
+        // $atasanLangsungProvDKI1 = User::query()->create([
+        //     'username' => 'Atasan Langsung DKI Jakarta1',
+        //     'email' => 'asasatgfdjhgasanprovdki.com',
+        //     'password' => Hash::make('123456789'),
+        //     'email_verified_at' => now(),
+        //     'status_akun' => 1
+        // ])->attachRole('atasan_langsung');
+        // $atasanLangsungProvDKI1->userPejabatStruktural()->create([
+        //     'nama' => 'Atasan Langsung DKI Jakarta1',
+        //     'nip' => '2020020088',
+        //     'nomor_karpeg' => '2020020088',
+        //     'pangkat_golongan_tmt_id' => 5,
+        //     'tempat_lahir' => 'Jakarta',
+        //     'tanggal_lahir' => Carbon::now(),
+        //     'tingkat_aparatur' => 'provinsi',
+        //     'jenis_kelamin' => 'L',
+        //     'pendidikan_terakhir' => 2,
+        //     'provinsi_id' => 31,
+        // ]);
+
+        $penilaiAKDamkarDKI = User::query()->create([
+            'username' => 'Penilai AK Damkar DKI Jakarta',
+            'email' => 'asasatasahghjthasasanprovdki.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 0
-        ])->attachRole('atasan_langsung');
-        $atasanLangsungProvDKI1->userPejabatStruktural()->create([
-            'nama' => 'Atasan Langsung DKI Jakarta1',
+        ])->attachRole('penilai_ak_damkar');
+        $penilaiAKDamkarDKI->userPejabatStruktural()->create([
+            'nama' => 'Penilai AK Damkar DKI Jakarta',
             'nip' => '2020020088',
             'nomor_karpeg' => '2020020088',
             'pangkat_golongan_tmt_id' => 5,
@@ -603,15 +613,15 @@ class UserSeeder extends Seeder
             'provinsi_id' => 31,
         ]);
 
-        $penilaiAKDamkarDKI = User::query()->create([
-            'username' => 'Penilai AK DamkarDKI Jakarta1',
-            'email' => 'asasatasaasasanprovdki.com',
+        $penilaiAKAnalisDKI = User::query()->create([
+            'username' => 'Penilai AK Analis DKI Jakarta',
+            'email' => 'asahjthasasasaasasaasanprovdki.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 0
-        ])->attachRole('penilai_ak_damkar');
-        $penilaiAKDamkarDKI->userPejabatStruktural()->create([
-            'nama' => 'Atasan Langsung DKI Jakarta1',
+        ])->attachRole('penilai_ak_analis');
+        $penilaiAKAnalisDKI->userPejabatStruktural()->create([
+            'nama' => 'Penilai AK Analis DKI Jakarta',
             'nip' => '2020020088',
             'nomor_karpeg' => '2020020088',
             'pangkat_golongan_tmt_id' => 5,
@@ -621,27 +631,851 @@ class UserSeeder extends Seeder
             'jenis_kelamin' => 'L',
             'pendidikan_terakhir' => 2,
             'provinsi_id' => 31,
+        ]);
+
+        // $penilaiAKDamkarDKI1 = User::query()->create([
+        //     'username' => 'Penilai AK Damkar DKI Jakarta1',
+        //     'email' => 'asasataasadfdgsaasasanprovdki.com',
+        //     'password' => Hash::make('123456789'),
+        //     'email_verified_at' => now(),
+        //     'status_akun' => 1
+        // ])->attachRole('penilai_ak_damkar');
+        // $penilaiAKDamkarDKI1->userPejabatStruktural()->create([
+        //     'nama' => 'Penilai AK Damkar DKI Jakarta1',
+        //     'nip' => '2020020088',
+        //     'nomor_karpeg' => '2020020088',
+        //     'pangkat_golongan_tmt_id' => 5,
+        //     'tempat_lahir' => 'Jakarta',
+        //     'tanggal_lahir' => Carbon::now(),
+        //     'tingkat_aparatur' => 'provinsi',
+        //     'jenis_kelamin' => 'L',
+        //     'pendidikan_terakhir' => 2,
+        //     'provinsi_id' => 31,
+        // ]);
+
+        // $penilaiAKAnalisDKI1 = User::query()->create([
+        //     'username' => 'Penilai AK Analis DKI Jakarta1',
+        //     'email' => 'asahjthasasawewewnprovdki.com',
+        //     'password' => Hash::make('123456789'),
+        //     'email_verified_at' => now(),
+        //     'status_akun' => 1
+        // ])->attachRole('penilai_ak_analis');
+        // $penilaiAKAnalisDKI1->userPejabatStruktural()->create([
+        //     'nama' => 'Penilai AK Analis DKI Jakarta1',
+        //     'nip' => '2020020088',
+        //     'nomor_karpeg' => '2020020088',
+        //     'pangkat_golongan_tmt_id' => 5,
+        //     'tempat_lahir' => 'Jakarta',
+        //     'tanggal_lahir' => Carbon::now(),
+        //     'tingkat_aparatur' => 'provinsi',
+        //     'jenis_kelamin' => 'L',
+        //     'pendidikan_terakhir' => 2,
+        //     'provinsi_id' => 31,
+        // ]);
+
+        $penetapAKDamkarDKI = User::query()->create([
+            'username' => 'Penetap AK Damkar DKI Jakarta',
+            'email' => 'asasataasadfasasadgasasaasasanprovdki.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ])->attachRole('penetap_ak_damkar');
+        $penetapAKDamkarDKI->userPejabatStruktural()->create([
+            'nama' => 'Penetap AK Damkar DKI Jakarta',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'provinsi',
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 31,
+        ]);
+
+        $penetapAKAnalisDKI = User::query()->create([
+            'username' => 'Penetap AK Analis DKI Jakarta1',
+            'email' => 'asafdgasasasasasasad3saasasanprovdki.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('penetap_ak_damkar');
+        $penetapAKAnalisDKI->userPejabatStruktural()->create([
+            'nama' => 'Penetap AK Analis DKI Jakarta1',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'provinsi',
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 31,
+        ]);
+
+        //Dki Jakarta
+
+        $adminProvinsiDkiJakarta = User::query()->create([
+            'username' => 'Admin Provinsi DKI Jakarta',
+            'email' => 'adminprovdkijakarta1@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('provinsi');
+        $adminProvinsiDkiJakarta->userProvKabKota()->create([
+            'nomenklatur_perangkat_daerah_id' => 1,
+            'provinsi_id' => 31,
+        ]);
+
+        $KabKotJakartaPusat = User::query()->create([
+            'username' => 'Admin Kota Jakarta Pusat',
+            'email' => 'adminkotaJakartaPusat@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('kab_kota');
+        $KabKotJakartaPusat->userProvKabKota()->create([
+            'nomenklatur_perangkat_daerah_id' => 1,
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3171,
+        ]);
+
+        $atasanLangsungKotaJakpus = User::query()->create([
+            'username' => 'Atasan Langsung Jakarta Pusat',
+            'email' => 'atasanasasaKotaJakpus@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ])->attachRole('atasan_langsung');
+        $atasanLangsungKotaJakpus->userPejabatStruktural()->create([
+            'nama' => 'Atasan Langsung Jakarta Pusat',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'kab_kota',
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3171,
+        ]);
+
+        $penilai_ak_damkarKotaJakpus = User::query()->create([
+            'username' => 'Penilai AK Damkar Jakarta Pusat',
+            'email' => 'atasanKsdasasasasdsotaJakpus@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ])->attachRole('penilai_ak_damkar');
+        $penilai_ak_damkarKotaJakpus->userPejabatStruktural()->create([
+            'nama' => 'Penilai AK Damkar Jakarta Pusat',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'kab_kota',
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3171,
+        ]);
+        $penilai_ak_analisKotaJakpus = User::query()->create([
+            'username' => 'Penilai AK Analis Jakarta Pusat',
+            'email' => 'atasanKsdsdasADSDsqwqasasotaJakpus@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ])->attachRole('penilai_ak_analis');
+        $penilai_ak_analisKotaJakpus->userPejabatStruktural()->create([
+            'nama' => 'Penilai AK Analis Jakarta Pusat',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'kab_kota',
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3171,
+        ]);
+        $penetap_ak_damkarKotaJakpus = User::query()->create([
+            'username' => 'Penetap AK Damkar Jakarta Pusat',
+            'email' => 'atasaasasanKsdsASASASAdsqwqasasotaJakpus@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ])->attachRole('penetap_ak_damkar');
+        $penetap_ak_damkarKotaJakpus->userPejabatStruktural()->create([
+            'nama' => 'Penetap AK Damkar Jakarta Pusat',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'kab_kota',
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3171,
+        ]);
+        $penetap_ak_analisKotaJakpus = User::query()->create([
+            'username' => 'Penetap AK Analis Jakarta Pusat',
+            'email' => 'atasaasasanKsdsdasasadadasqwqasasotaJakpus@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ])->attachRole('penetap_ak_analis');
+        $penetap_ak_analisKotaJakpus->userPejabatStruktural()->create([
+            'nama' => 'Penetap AK Analis Jakarta Pusat',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'kab_kota',
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3171,
+        ]);
+
+        $atasanLangsungKotaJakpus1 = User::query()->create([
+            'username' => 'Atasan Langsung Jakarta Pusat1',
+            'email' => 'atasanasasaKotaJsasasakpus@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('atasan_langsung');
+        $atasanLangsungKotaJakpus1->userPejabatStruktural()->create([
+            'nama' => 'Atasan Langsung Jakarta Pusat1',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'kab_kota',
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3171,
+        ]);
+
+        $penilai_ak_damkarKotaJakpus1 = User::query()->create([
+            'username' => 'Penilai AK Damkar Jakarta Pusat1',
+            'email' => 'atasanwewqefrtradadadwqeKotaJakpus@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('penilai_ak_damkar');
+        $penilai_ak_damkarKotaJakpus1->userPejabatStruktural()->create([
+            'nama' => 'Penilai AK Damkar Jakarta Pusat1',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'kab_kota',
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3171,
+        ]);
+
+        $penilai_ak_analisKotaJakpus1 = User::query()->create([
+            'username' => 'Penilai AK Analis Jakarta Pusat1',
+            'email' => 'atasanKsqwasasqasadsfswdsdsasasotaJakpus@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('penilai_ak_analis');
+        $penilai_ak_analisKotaJakpus1->userPejabatStruktural()->create([
+            'nama' => 'Penilai AK Analis Jakarta Pusat1',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'kab_kota',
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3171,
+        ]);
+
+        $penetap_ak_damkarKotaJakpus1 = User::query()->create([
+            'username' => 'Penetap AK Damkar Jakarta Pusat1',
+            'email' => 'atasaasadfdgfsaadadanKsdsdsqwqasasotaJakpus@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('penetap_ak_damkar');
+        $penetap_ak_damkarKotaJakpus1->userPejabatStruktural()->create([
+            'nama' => 'Penetap AK Damkar Jakarta Pusat1',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'kab_kota',
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3171,
+        ]);
+
+        $penetap_ak_analisKotaJakpus1 = User::query()->create([
+            'username' => 'Penetap AK Analis Jakarta Pusat1',
+            'email' => 'atasaaasasassasaqsfganKsdsdsqwqasasotaJakpus@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('penetap_ak_analis');
+        $penetap_ak_analisKotaJakpus1->userPejabatStruktural()->create([
+            'nama' => 'Penetap AK Analis Jakarta Pusat1',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'kab_kota',
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3171,
+        ]);
+
+        $damkarpemulaJakpus = User::query()->create([
+            'username' => 'Damkar Pemula Jakpus',
+            'email' => 'pemulaJakpus@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ])->attachRole('damkar_pemula');
+        $damkarpemulaJakpus->userAparatur()->create([
+            'nama' => 'Damkar Pemula Jakpus',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'jenis_kelamin' => 'L',
+            'tingkat_aparatur' => 'kab_kota',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3171,
+        ]);
+
+        $damkarterampilJakpus = User::query()->create([
+            'username' => 'Damkar Terampil Jakpus',
+            'email' => 'TerampilJakpus@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ])->attachRole('damkar_terampil');
+        $damkarterampilJakpus->userAparatur()->create([
+            'nama' => 'Damkar Terampil Jakpus',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'jenis_kelamin' => 'L',
+            'tingkat_aparatur' => 'kab_kota',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3171,
+        ]);
+
+        $damkarmahirJakpus = User::query()->create([
+            'username' => 'Damkar Mahir Jakpus',
+            'email' => 'MahirJakpus@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ])->attachRole('damkar_mahir');
+        $damkarmahirJakpus->userAparatur()->create([
+            'nama' => 'Damkar Mahir Jakpus',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'jenis_kelamin' => 'L',
+            'tingkat_aparatur' => 'kab_kota',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3171,
+        ]);
+
+        $damkarpenyeliaJakpus = User::query()->create([
+            'username' => 'Damkar Penyelia Jakpus',
+            'email' => 'PenyeliaJakpus@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ])->attachRole('damkar_penyelia');
+        $damkarpenyeliaJakpus->userAparatur()->create([
+            'nama' => 'Damkar Penyelia Jakpus',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'jenis_kelamin' => 'L',
+            'tingkat_aparatur' => 'kab_kota',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3171,
+        ]);
+
+        $analis_kebakaran_ahli_pertamaJakpus = User::query()->create([
+            'username' => 'Analis Kebakaran Ahli Pertama Jakpus',
+            'email' => 'analis_kebakaran_ahli_pertama@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ])->attachRole('analis_kebakaran_ahli_pertama');
+        $analis_kebakaran_ahli_pertamaJakpus->userAparatur()->create([
+            'nama' => 'Analis Kebakaran Ahli Pertama Jakpus',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'jenis_kelamin' => 'L',
+            'tingkat_aparatur' => 'kab_kota',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3171,
         ]);
         
-        $penilaiAKDamkarDKI = User::query()->create([
-            'username' => 'Penilai AK DamkarDKI Jakarta1',
-            'email' => 'asasatasaasasanprovdki.com',
+        $analis_kebakaran_ahli_mudaJakpus = User::query()->create([
+            'username' => 'Analis Kebakaran Ahli Muda Jakpus',
+            'email' => 'analis_kebakaran_ahli_muda@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 0
-        ])->attachRole('penilai_ak_damkar');
-        $penilaiAKDamkarDKI->userPejabatStruktural()->create([
-            'nama' => 'Atasan Langsung DKI Jakarta1',
+        ])->attachRole('analis_kebakaran_ahli_muda');
+        $analis_kebakaran_ahli_mudaJakpus->userAparatur()->create([
+            'nama' => 'Analis Kebakaran Ahli Pertama Jakpus',
             'nip' => '2020020088',
             'nomor_karpeg' => '2020020088',
             'pangkat_golongan_tmt_id' => 5,
             'tempat_lahir' => 'Jakarta',
             'tanggal_lahir' => Carbon::now(),
-            'tingkat_aparatur' => 'provinsi',
             'jenis_kelamin' => 'L',
+            'tingkat_aparatur' => 'kab_kota',
             'pendidikan_terakhir' => 2,
             'provinsi_id' => 31,
+            'kab_kota_id' => 3171,
         ]);
+
+        $analis_kebakaran_ahli_madyaJakpus = User::query()->create([
+            'username' => 'Analis Kebakaran Ahli Madya Jakpus',
+            'email' => 'analis_kebakaran_ahli_madya@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ])->attachRole('analis_kebakaran_ahli_madya');
+        $analis_kebakaran_ahli_madyaJakpus->userAparatur()->create([
+            'nama' => 'Analis Kebakaran Ahli Pertama Jakpus',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'jenis_kelamin' => 'L',
+            'tingkat_aparatur' => 'kab_kota',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3171,
+        ]);
+
+        //End Dki Jakarta
+
+        //Nangro Aceh Darusallam
+        $adminNangroAcehDarusallam = User::query()->create([
+            'username' => 'Admin Provinsi Aceh',
+            'email' => 'adminprovAceh@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('provinsi');
+        $adminNangroAcehDarusallam->userProvKabKota()->create([
+            'nomenklatur_perangkat_daerah_id' => 1,
+            'provinsi_id' => 11,
+        ]);
+
+        $KabKotAcehSelatan = User::query()->create([
+            'username' => 'Admin Kabupaten Aceh Selatan',
+            'email' => 'adminacehselatan@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('kab_kota');
+        $KabKotAcehSelatan->userProvKabKota()->create([
+            'nomenklatur_perangkat_daerah_id' => 1,
+            'provinsi_id' => 11,
+            'kab_kota_id' => 1101,
+        ]);
+        $atasanLangsungAcehSelatan = User::query()->create([
+            'username' => 'Atasan Langsung Aceh Selatan',
+            'email' => 'asasasaq323243435@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ])->attachRole('atasan_langsung');
+        $atasanLangsungAcehSelatan->userPejabatStruktural()->create([
+            'nama' => 'Atasan Langsung Aceh Selatan',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'kab_kota',
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 11,
+            'kab_kota_id' => 1101,
+        ]);
+
+        $penilai_ak_damkarAcehSelatan = User::query()->create([
+            'username' => 'Penilai AK Damkar Aceh Selatan',
+            'email' => 'atasanKsdasasasaasasaawrwesdsotaJakpus@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ])->attachRole('penilai_ak_damkar');
+        $penilai_ak_damkarAcehSelatan->userPejabatStruktural()->create([
+            'nama' => 'Penilai AK Damkar Aceh Selatan',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'kab_kota',
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 11,
+            'kab_kota_id' => 1101,
+        ]);
+        $penilai_ak_analisAcehSelatan = User::query()->create([
+            'username' => 'Penilai AK Analis Aceh Selatan',
+            'email' => 'atasanKsdsdasADSDsqwawqew1232kpus@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ])->attachRole('penilai_ak_analis');
+        $penilai_ak_analisAcehSelatan->userPejabatStruktural()->create([
+            'nama' => 'Penilai AK Analis Aceh Selatan',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'kab_kota',
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 11,
+            'kab_kota_id' => 1101,
+        ]);
+        $penetap_ak_damkarAcehSelatan = User::query()->create([
+            'username' => 'Penetap AK Damkar Aceh Selatan',
+            'email' => 'atasaa31321sasotaJakpus@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ])->attachRole('penetap_ak_damkar');
+        $penetap_ak_damkarAcehSelatan->userPejabatStruktural()->create([
+            'nama' => 'Penetap AK Damkar Aceh Selatan',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'kab_kota',
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 11,
+            'kab_kota_id' => 1101,
+        ]);
+        $penetap_ak_analisacehselatan = User::query()->create([
+            'username' => 'Penetap AK Analis Aceh Selatan',
+            'email' => 'atasaasasa32132otaJakpus@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ])->attachRole('penetap_ak_analis');
+        $penetap_ak_analisacehselatan->userPejabatStruktural()->create([
+            'nama' => 'Penetap AK Analis Aceh Selatan',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'kab_kota',
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 11,
+            'kab_kota_id' => 1101,
+        ]);
+
+        $atasanLangsungAcehSelatan1 = User::query()->create([
+            'username' => 'Atasan Langsung Aceh Selatan1',
+            'email' => 'atasanasasaKotaJsasasaasasakpus@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('atasan_langsung');
+        $atasanLangsungAcehSelatan1->userPejabatStruktural()->create([
+            'nama' => 'Atasan Langsung Aceh Selatan1',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'kab_kota',
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 11,
+            'kab_kota_id' => 1101,
+        ]);
+
+        $penilai_ak_damkarAcehSelatan1 = User::query()->create([
+            'username' => 'Penilai AK Damkar Aceh Selatan1',
+            'email' => 'atasanwewqefrtradasasadadwqeKotaJakpus@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('penilai_ak_damkar');
+        $penilai_ak_damkarAcehSelatan1->userPejabatStruktural()->create([
+            'nama' => 'Penilai AK Damkar Aceh Selatan1',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'kab_kota',
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 11,
+            'kab_kota_id' => 1101,
+        ]);
+
+        $penilai_ak_analisAcehSelatan1 = User::query()->create([
+            'username' => 'Penilai AK Analis AcehSelatan1',
+            'email' => 'atasanKsqwaasasaJakpusass@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('penilai_ak_analis');
+        $penilai_ak_analisAcehSelatan1->userPejabatStruktural()->create([
+            'nama' => 'Penilai AK Analis AcehSelatan1',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'kab_kota',
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 11,
+            'kab_kota_id' => 1101,
+        ]);
+
+        $penetap_ak_damkaracehselatan1 = User::query()->create([
+            'username' => 'Penetap AK Damkar Aceh Selatan1',
+            'email' => 'atasaasadfdgfsaadadanKsdsdsqwqasasotasasaaJakpus@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('penetap_ak_damkar');
+        $penetap_ak_damkaracehselatan1->userPejabatStruktural()->create([
+            'nama' => 'Penetap AK Damkar Aceh Selatan1',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'kab_kota',
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 11,
+            'kab_kota_id' => 1101,
+        ]);
+
+        $penetap_ak_analisAcehSelatan1 = User::query()->create([
+            'username' => 'Penetap AK Analis Aceh Selatan1',
+            'email' => 'atasaaasasassaasasasaqsfganKsdsdsqwqasasotaJakpus@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('penetap_ak_analis');
+        $penetap_ak_analisAcehSelatan1->userPejabatStruktural()->create([
+            'nama' => 'Penetap AK Analis Aceh Selatan1',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'kab_kota',
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 11,
+            'kab_kota_id' => 1101,
+        ]);
+
+        $damkarpemulaAcehSelatan = User::query()->create([
+            'username' => 'Damkar Pemula Aceh Selatan',
+            'email' => 'pemulaJaakpasasaus@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ])->attachRole('damkar_pemula');
+        $damkarpemulaAcehSelatan->userAparatur()->create([
+            'nama' => 'Damkar Pemula Aceh Selatan',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'jenis_kelamin' => 'L',
+            'tingkat_aparatur' => 'kab_kota',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 11,
+            'kab_kota_id' => 1101,
+        ]);
+
+        $damkarterampilAcehSelatan = User::query()->create([
+            'username' => 'Damkar Terampil Aceh Selatan',
+            'email' => 'asasa@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ])->attachRole('damkar_terampil');
+        $damkarterampilAcehSelatan->userAparatur()->create([
+            'nama' => 'Damkar Terampil Aceh Selatan',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'jenis_kelamin' => 'L',
+            'tingkat_aparatur' => 'kab_kota',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 11,
+            'kab_kota_id' => 1101,
+        ]);
+
+        $damkarmahirAcehSelatan = User::query()->create([
+            'username' => 'Damkar Mahir Aceh Selatan',
+            'email' => 'asasasa@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ])->attachRole('damkar_mahir');
+        $damkarmahirAcehSelatan->userAparatur()->create([
+            'nama' => 'Damkar Mahir Aceh Selatan',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'jenis_kelamin' => 'L',
+            'tingkat_aparatur' => 'kab_kota',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 11,
+            'kab_kota_id' => 1101,
+        ]);
+
+        $damkarpenyeliaAcehSelatan = User::query()->create([
+            'username' => 'Damkar Penyelia Aceh Selatan',
+            'email' => 'dsafdsgfs@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ])->attachRole('damkar_penyelia');
+        $damkarpenyeliaAcehSelatan->userAparatur()->create([
+            'nama' => 'Damkar Penyelia Aceh Selatan',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'jenis_kelamin' => 'L',
+            'tingkat_aparatur' => 'kab_kota',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 11,
+            'kab_kota_id' => 1101,
+        ]);
+
+        $analis_kebakaran_ahli_pertamaAcehSelatan = User::query()->create([
+            'username' => 'Analis Kebakaran Ahli Pertama Aceh Selatan',
+            'email' => 'sdsgfdsgfdg@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ])->attachRole('analis_kebakaran_ahli_pertama');
+        $analis_kebakaran_ahli_pertamaAcehSelatan->userAparatur()->create([
+            'nama' => 'Analis Kebakaran Ahli Pertama Aceh Selatan',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'jenis_kelamin' => 'L',
+            'tingkat_aparatur' => 'kab_kota',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 11,
+            'kab_kota_id' => 1101,
+        ]);
+
+        $analis_kebakaran_ahli_mudaAcehselatan = User::query()->create([
+            'username' => 'Analis Kebakaran Ahli Muda Aceh Selatan',
+            'email' => 'safdsgsgfdhdfh@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ])->attachRole('analis_kebakaran_ahli_muda');
+        $analis_kebakaran_ahli_mudaAcehselatan->userAparatur()->create([
+            'nama' => 'Analis Kebakaran Ahli Muda Aceh Selatan',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'jenis_kelamin' => 'L',
+            'tingkat_aparatur' => 'kab_kota',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 11,
+            'kab_kota_id' => 1101,
+        ]);
+
+        $analis_kebakaran_ahli_madyaAcehSelatan = User::query()->create([
+            'username' => 'Analis Kebakaran Ahli Madya Aceh Selatan',
+            'email' => 'safdshggjuyr@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ])->attachRole('analis_kebakaran_ahli_madya');
+        $analis_kebakaran_ahli_madyaAcehSelatan->userAparatur()->create([
+            'nama' => 'Analis Kebakaran Ahli Madya Aceh Selatan',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'jenis_kelamin' => 'L',
+            'tingkat_aparatur' => 'kab_kota',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 11,
+            'kab_kota_id' => 1101,
+        ]);
+        //End Nangro Aceh Darusallam
+
 
         $atasanLangsungProvBanten = User::query()->create([
             'username' => 'Atasan Langsung Banten',
