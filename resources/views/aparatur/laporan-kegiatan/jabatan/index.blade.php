@@ -97,7 +97,22 @@
                 <div class="modal-body">
                     @if ($skp)
                         <form id="form-skp" method="post" enctype="multipart/form-data">
-                            <p>Status SKP : <strong class="text-red"> Menunggu Verifikasi</strong>
+                            {{-- @switch($skp?->status)
+                                @case(0)
+                                    <p>Status SKP : <strong class="text-warning">Menunggu Verifikasi </strong>
+                                    @break
+
+                                    @case(1)
+                                    <p>Status SKP : <strong class="text-success">Terverifikasi </strong>
+                                    @break
+
+                                    @case(2)
+                                    <p>Status SKP : <strong class="text-red">Revisi</strong>
+                                    @break
+
+                                    @default
+                                    <p>Status SKP : <strong class="text">Tidak Diketahui</strong>
+                                @endswitch --}}
                             </p>
                             <div class="form-group">
                                 <label>Jenis SKP</label>
@@ -136,8 +151,6 @@
                         </div>
                     @else
                         <form id="form-skp" method="post" enctype="multipart/form-data">
-                            <p>Status SKP : <strong class="text-black"> Menunggu Input</strong>
-                            </p>
                             <div class="form-group">
                                 <label>Jenis SKP</label>
                                 <select class="form-select skp">

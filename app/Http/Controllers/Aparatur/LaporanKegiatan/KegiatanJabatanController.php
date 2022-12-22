@@ -20,6 +20,7 @@ use App\Models\KetentuanSkpFungsional;
 use App\Repositories\RekapitulasiKegiatanRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\Periode;
 
 class KegiatanJabatanController extends Controller
 {
@@ -215,6 +216,7 @@ class KegiatanJabatanController extends Controller
 
     public function sendSKP(Request $request)
     {
+        $periode = Periode::query()->where('is_active', true)->first();
         try {
             $data = [
                 'jenis_skp' => $request->jenis_skp,
@@ -227,6 +229,7 @@ class KegiatanJabatanController extends Controller
                     'user_id' => auth()->user()->id,
                     'nilai_skp' => null,
                     'status' => 0,
+                    'periode_id' => $periode->id,
                     'file' => null
                 ]);
             } else {
