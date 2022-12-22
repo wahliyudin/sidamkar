@@ -4,12 +4,16 @@ namespace App\Http\Controllers\PenilaiAK\DataPengajuan;
 
 use App\Http\Controllers\Controller;
 use App\Models\RekapitulasiKegiatan;
+use App\Models\User;
+use App\Models\UserAparatur;
 use App\Repositories\PeriodeRepository;
 use App\Repositories\UserRepository;
+use App\Services\PenilaiAK\DataPengajuan\ExternalService;
 use App\Traits\AuthTrait;
 use App\Traits\DataTableTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
 use Yajra\DataTables\Facades\DataTables;
 
 class ExternalController extends Controller
@@ -17,11 +21,13 @@ class ExternalController extends Controller
     use AuthTrait, DataTableTrait;
     private UserRepository $userRepository;
     private PeriodeRepository $periodeRepository;
+    private ExternalService $externalService;
 
-    public function __construct(UserRepository $userRepository, PeriodeRepository $periodeRepository)
+    public function __construct(UserRepository $userRepository, PeriodeRepository $periodeRepository, ExternalService $externalService)
     {
         $this->userRepository = $userRepository;
         $this->periodeRepository = $periodeRepository;
+        $this->externalService = $externalService;
     }
 
     public function index()
@@ -85,6 +91,100 @@ class ExternalController extends Controller
             ->where('periode_id', $periode->id)->first();
         $user = $this->userRepository->getUserById($id)->load('userAparatur');
         return view('penilai-ak.data-pengajuan.external.show', compact('user', 'rekapitulasiKegiatan'));
+    }
+
+
+    public function storePenetapan(Request $request, $id)
+    {
+        $user = User::query()->with(['userAparatur.pangkatGolonganTmt'])->findOrFail($id);
+        $rules = [
+            'ak_pengalaman' => 'required'
+        ];
+        if ($user->userAparatur->expired_mekanisme) {
+            $rules['ak_kelebihan'] = 'required';
+        }
+        $request->validate($rules);
+        $periode = $this->periodeRepository->isActive();
+        $this->externalService->storePenetapan($user, null, $periode, $request->ak_kelebihan, $request->ak_pengalaman);
+        return response()->json([
+            'message' => 'Berhasil'
+        ]);
+    }
+
+    public function ttd($id)
+    {
+        $periode = $this->periodeRepository->isActive();
+        $user = $this->userRepository->getUserById($id)->load(['mente.atasanLangsung.userPejabatStruktural']);
+        $atasan_langsung = $user->mente->atasanLangsung;
+        $penilai_ak = $this->authUser()->load(['userPejabatStruktural']);
+        if (!isset($penilai_ak?->userPejabatStruktural?->file_ttd)) {
+            throw ValidationException::withMessages(['Maaf, Anda Belum Melengkapi Profil']);
+        }
+        $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode);
+        $this->externalService->ttdRekapitulasi($rekap, $user, $periode, $atasan_langsung, $penilai_ak);
+        return response()->json([
+            'message' => 'Berhasil'
+        ]);
+    }
+
+    public function sendToPenetap($user_id)
+    {
+        $periode = $this->periodeRepository->isActive();
+        $user = $this->userRepository->getUserById($user_id);
+        $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode);
+        $this->rekapitulasiKegiatanRepository->sendToPenetap($rekap);
+        return response()->json([
+            'success' => 200,
+            'message' => 'Berhasil dikirim ke Penetap'
+        ]);
+    }
+
+    public function verified($id)
+    {
+        $userAparatur = UserAparatur::query()->where('user_id', $id)->first();
+        if (!$userAparatur) {
+            abort(404);
+        }
+        $userAparatur->update([
+            'status_mekanisme' => 3
+        ]);
+        return response()->json([
+            'status' => 200,
+            'message' => 'Berhasil diverifikasi'
+        ]);
+    }
+
+    public function reject(Request $request, $id)
+    {
+        $request->validate([
+            'catatan' => 'required'
+        ]);
+        $userAparatur = UserAparatur::query()->where('user_id', $id)->first();
+        if (!$userAparatur) {
+            abort(404);
+        }
+        $userAparatur->update([
+            'status_mekanisme' => 4
+        ]);
+        return response()->json([
+            'status' => 200,
+            'message' => 'Berhasil ditolak'
+        ]);
+    }
+
+    public function revision(Request $request, $id)
+    {
+        $userAparatur = UserAparatur::query()->where('user_id', $id)->first();
+        if (!$userAparatur) {
+            abort(404);
+        }
+        $userAparatur->update([
+            'status_mekanisme' => 2
+        ]);
+        return response()->json([
+            'status' => 200,
+            'message' => 'Berhasil direvisi'
+        ]);
     }
 
     public function statusMekanisme($status)
