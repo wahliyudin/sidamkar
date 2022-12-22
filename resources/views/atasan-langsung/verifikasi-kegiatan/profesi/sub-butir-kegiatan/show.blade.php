@@ -8,7 +8,7 @@
                             style="cursor: pointer"></i></a>
                 </div>
                 <div class="ms-2">
-                    <h5>{{ $butirKegiatan->nama }}</h5>
+                    <h5>{{ $subButirKegiatan->nama }}</h5>
                 </div>
             </div>
             <div class="form-group mb-0">
