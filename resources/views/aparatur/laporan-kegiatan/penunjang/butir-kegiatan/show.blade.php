@@ -3,7 +3,7 @@
 @section('content')
     <div class="section">
         <div class="row">
-            <div class="d-flex px-4 mb-4 container-control justify-content-between align-items-center">
+            <div class="d-flex flex-wrap px-4 mb-4 container-control justify-content-between align-items-center">
                 <h5>{{ $butirKegiatan->nama }}</h5>
                 <button class="btn btn-red" data-bs-toggle="modal" data-bs-target="#laporkan">Laporkan</button>
             </div>
