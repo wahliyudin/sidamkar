@@ -583,6 +583,66 @@ class UserSeeder extends Seeder
             'provinsi_id' => 31,
         ]);
 
+        $atasanLangsungProvDKI1 = User::query()->create([
+            'username' => 'Atasan Langsung DKI Jakarta1',
+            'email' => 'asasatasanprovdki.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ])->attachRole('atasan_langsung');
+        $atasanLangsungProvDKI1->userPejabatStruktural()->create([
+            'nama' => 'Atasan Langsung DKI Jakarta1',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'provinsi',
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 31,
+        ]);
+
+        $penilaiAKDamkarDKI = User::query()->create([
+            'username' => 'Penilai AK DamkarDKI Jakarta1',
+            'email' => 'asasatasaasasanprovdki.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ])->attachRole('penilai_ak_damkar');
+        $penilaiAKDamkarDKI->userPejabatStruktural()->create([
+            'nama' => 'Atasan Langsung DKI Jakarta1',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'provinsi',
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 31,
+        ]);
+        
+        $penilaiAKDamkarDKI = User::query()->create([
+            'username' => 'Penilai AK DamkarDKI Jakarta1',
+            'email' => 'asasatasaasasanprovdki.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ])->attachRole('penilai_ak_damkar');
+        $penilaiAKDamkarDKI->userPejabatStruktural()->create([
+            'nama' => 'Atasan Langsung DKI Jakarta1',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'provinsi',
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 31,
+        ]);
+
         $atasanLangsungProvBanten = User::query()->create([
             'username' => 'Atasan Langsung Banten',
             'email' => 'atasanprovbanten.com',
