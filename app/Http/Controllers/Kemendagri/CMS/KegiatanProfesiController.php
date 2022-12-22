@@ -27,7 +27,9 @@ class KegiatanProfesiController extends Controller
         });
         $kegiatan = JenisKegiatan::query()
             ->with([
-                'unsurs.role',
+                'unsurs' => function ($query) {
+                    $query->orderBy('created_at', 'desc');
+                },
                 'unsurs.subUnsurs.butirKegiatans.subButirKegiatans',
             ])
             ->findOrFail(3);

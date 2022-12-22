@@ -24,7 +24,9 @@ class KegiatanJabatanController extends Controller
         $roles = Role::query()->whereIn('name', getAllRoleFungsional())->get(['id', 'display_name']);
         $kegiatan = JenisKegiatan::query()
             ->with([
-                'unsurs',
+                'unsurs' => function ($query) {
+                    $query->orderBy('created_at', 'desc');
+                },
                 'unsurs.subUnsurs.butirKegiatans.role',
             ])
             ->findOrFail(1);

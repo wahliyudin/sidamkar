@@ -26,7 +26,7 @@ class KegiatanPenunjangController extends Controller
         });
         $kegiatan = JenisKegiatan::query()
             ->with([
-                'unsurs.role',
+                'unsurs',
                 'unsurs.subUnsurs.butirKegiatans.subButirKegiatans',
             ])
             ->findOrFail(2);
@@ -50,7 +50,6 @@ class KegiatanPenunjangController extends Controller
     {
         $unsur = Unsur::query()->with([
             'jenisKegiatan',
-            'role',
             'subUnsurs.butirKegiatans.subButirKegiatans'
         ])->findOrFail($id);
         return response()->json([
