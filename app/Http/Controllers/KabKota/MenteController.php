@@ -94,49 +94,41 @@ class MenteController extends Controller
             case 'penilai_ak_damkar':
                 KabProvPenilaiAndPenetap::query()->updateOrCreate([
                     'kab_kota_id' => $user->userProvKabKota->kab_kota_id,
-                    'tingkat_aparatur' => 'kab_kota',
-                    'periode_id' => $periode->id
+                    'tingkat_aparatur' => 'kab_kota'
                 ], [
                     'penilai_ak_damkar_id' => $request->kab_prov_penilai_penetap,
                     'kab_kota_id' => $user->userProvKabKota->kab_kota_id,
-                    'tingkat_aparatur' => 'kab_kota',
-                    'periode_id' => $periode->id
+                    'tingkat_aparatur' => 'kab_kota'
                 ]);
                 break;
             case 'penetap_ak_damkar':
                 KabProvPenilaiAndPenetap::query()->updateOrCreate([
                     'kab_kota_id' => $user->userProvKabKota->kab_kota_id,
-                    'tingkat_aparatur' => 'kab_kota',
-                    'periode_id' => $periode->id
+                    'tingkat_aparatur' => 'kab_kota'
                 ], [
                     'penetap_ak_damkar_id' => $request->kab_prov_penilai_penetap,
                     'kab_kota_id' => $user->userProvKabKota->kab_kota_id,
-                    'tingkat_aparatur' => 'kab_kota',
-                    'periode_id' => $periode->id
+                    'tingkat_aparatur' => 'kab_kota'
                 ]);
                 break;
             case 'penilai_ak_analis':
                 KabProvPenilaiAndPenetap::query()->updateOrCreate([
                     'kab_kota_id' => $user->userProvKabKota->kab_kota_id,
-                    'tingkat_aparatur' => 'kab_kota',
-                    'periode_id' => $periode->id
+                    'tingkat_aparatur' => 'kab_kota'
                 ], [
                     'penilai_ak_analis_id' => $request->kab_prov_penilai_penetap,
                     'kab_kota_id' => $user->userProvKabKota->kab_kota_id,
-                    'tingkat_aparatur' => 'kab_kota',
-                    'periode_id' => $periode->id
+                    'tingkat_aparatur' => 'kab_kota'
                 ]);
                 break;
             case 'penetap_ak_analis':
                 KabProvPenilaiAndPenetap::query()->updateOrCreate([
                     'kab_kota_id' => $user->userProvKabKota->kab_kota_id,
-                    'tingkat_aparatur' => 'kab_kota',
-                    'periode_id' => $periode->id
+                    'tingkat_aparatur' => 'kab_kota'
                 ], [
                     'penetap_ak_analis_id' => $request->kab_prov_penilai_penetap,
                     'kab_kota_id' => $user->userProvKabKota->kab_kota_id,
-                    'tingkat_aparatur' => 'kab_kota',
-                    'periode_id' => $periode->id
+                    'tingkat_aparatur' => 'kab_kota'
                 ]);
                 break;
         }

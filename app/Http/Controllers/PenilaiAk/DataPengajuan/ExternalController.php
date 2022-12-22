@@ -52,17 +52,16 @@ class ExternalController extends Controller
                 JOIN role_user ON role_user.user_id = users.id
                 JOIN roles ON roles.id = role_user.role_id
                 LEFT JOIN mekanisme_pengangkatans ON user_aparaturs.mekanisme_pengangkatan_id = mekanisme_pengangkatans.id
-                JOIN kab_prov_penilai_and_penetaps
-                    ON (kab_prov_penilai_and_penetaps.penilai_ak_analis_id = ' . '"' . $auth->id . '"' . '
-                        OR kab_prov_penilai_and_penetaps.penilai_ak_damkar_id = ' . '"' . $auth->id . '"' . ')
-                RIGHT JOIN cross_penilai_and_penetaps
-                    ON cross_penilai_and_penetaps.kab_prov_penilai_and_penetap_id = kab_prov_penilai_and_penetaps.id
+                JOIN kab_prov_penilai_and_penetaps AS internal ON internal.kab_kota_id = ' . $auth->userPejabatStruktural->kab_kota_id . '
                 WHERE users.status_akun = 1
-                    AND roles.name IN (' . join(',', $this->getRoles($this->authUser()->roles()->pluck('name')->toArray())) . ')
-                    AND kab_prov_penilai_and_penetaps.kab_kota_id = ' . $auth->userPejabatStruktural->kab_kota_id . '
-                    AND kab_prov_penilai_and_penetaps.tingkat_aparatur = "kab_kota"
-                    AND user_aparaturs.kab_kota_id = cross_penilai_and_penetaps.kab_kota_id
-                    AND user_aparaturs.tingkat_aparatur = "kab_kota"
+                    AND roles.id IN (' . join(',', $this->getRoles($this->authUser()->roles()->pluck('name')->toArray())) . ')
+                    AND user_aparaturs.kab_kota_id != ' . $auth->userPejabatStruktural->kab_kota_id . '
+                    AND user_aparaturs.kab_kota_id IN (SELECT ex_kab_kota.kab_kota_id
+                        FROM kab_prov_penilai_and_penetaps AS ex_kab_kota
+                            WHERE ex_kab_kota.penilai_ak_damkar_id = internal.penilai_ak_damkar_id)
+                    OR user_aparaturs.provinsi_id IN (SELECT ex_provinsi.provinsi_id
+                        FROM kab_prov_penilai_and_penetaps AS ex_provinsi
+                            WHERE ex_provinsi.penilai_ak_damkar_id = internal.penilai_ak_damkar_id)
                     AND EXISTS (SELECT * FROM rekapitulasi_kegiatans WHERE rekapitulasi_kegiatans.fungsional_id = users.id AND rekapitulasi_kegiatans.is_send IN (2, 3))
                     ORDER BY roles.display_name ' . $role_order);
             return DataTables::of($data)
