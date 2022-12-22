@@ -9,6 +9,7 @@ use App\Models\KabProvPenilaiAndPenetap;
 use App\Models\Mente;
 use App\Models\Provinsi;
 use App\Models\User;
+use App\Repositories\PeriodeRepository;
 use App\Services\MenteService;
 use App\Traits\AuthTrait;
 use Illuminate\Http\Request;
@@ -18,98 +19,118 @@ class MenteController extends Controller
 {
     use AuthTrait;
 
-    private MenteService $menteService;
+    protected MenteService $menteService;
+    protected PeriodeRepository $periodeRepository;
 
-    public function __construct(MenteService $menteService)
+    public function __construct(MenteService $menteService, PeriodeRepository $periodeRepository)
     {
         $this->menteService = $menteService;
+        $this->periodeRepository = $periodeRepository;
     }
 
     public function index(MenteDataTable $dataTable)
     {
         $judul = 'Data Mentee';
         $periode = $this->menteService->getPeriodeActive();
-        $fungsionals = $this->menteService->getFungsionalProvinsi();
-        $atasanLangsungs = $this->menteService->getAtasanLangsungProvinsi();
+        $fungsionals = $this->menteService->getFungsionalKabKota();
+        $atasanLangsungs = $this->menteService->getAtasanLangsungKabKota();
         $user = $this->authUser()->load(['userProvKabKota']);
-        $penilaiAndPenetaps = $this->menteService->getCurrentPenilaiAndPenetapByProvinsi($user->userProvKabKota->provinsi_id, ['damkar', 'analis']);
-        if (!isset($penilaiAndPenetaps)) {
-            $penilaiAndPenetaps = $this->menteService->getCurrentPenilaiAndPenetapByKabKota($user->userProvKabKota->kab_kota_id, ['damkar', 'analis']);
+        $penilaiAndPenetap = $this->menteService->getCurrentPenilaiAndPenetapByKabKota($user->userProvKabKota->kab_kota_id);
+        if (!isset($penilaiAndPenetap)) {
+            $penilaiAndPenetap = $this->menteService->getCurrentPenilaiAndPenetapByKabKota($user->userProvKabKota->kab_kota_id);
         }
-        $penilaiPenetapDamkar = null;
-        $penilaiPenetapAnalis = null;
-        $penilaiAndPenetaps->map(function(KabProvPenilaiAndPenetap $kabProvPenilaiAndPenetap) use (&$penilaiPenetapDamkar, &$penilaiPenetapAnalis){
-            if ($kabProvPenilaiAndPenetap->jenis_aparatur == 'damkar') {
-                $penilaiPenetapDamkar = $kabProvPenilaiAndPenetap;
-            } else {
-                $penilaiPenetapAnalis = $kabProvPenilaiAndPenetap;
-            }
-        });
         $provinsis = Provinsi::query()->get(['id', 'nama']);
-        return $dataTable->render('provinsi.mente.index', compact('fungsionals', 'atasanLangsungs', 'penilaiPenetapDamkar', 'penilaiPenetapAnalis', 'provinsis', 'periode', 'judul'));
+        return $dataTable->render('provinsi.mente.index', compact('fungsionals', 'penilaiAndPenetap', 'atasanLangsungs', 'provinsis', 'periode', 'judul'));
     }
 
     public function tingkatKabKota(Request $request, $kab_kota_id)
     {
         $request->validate(['penilai_penetap' => 'required|in:penilai,penetap', 'jenis_aparatur' => 'required']);
-        if ($request->penilai_penetap == 'penilai') {
-            $penilai = $this->menteService->getCurrentPenilaiByKabKota($kab_kota_id, $request->jenis_aparatur);
-            if (!isset($penilai?->penilaiAngkaKredit)) {
-                throw ValidationException::withMessages(['message' => 'Belum mempunyai tim penilai']);
-            }
-            return response()->json([
-                'penilai' => [
-                    'id' => $penilai?->penilai_ak_id,
-                    'nama' => $penilai?->penilaiAngkaKredit?->userPejabatStruktural?->nama,
-                ]
-            ]);
+        $data = [];
+        switch ($request->jenis_aparatur) {
+            case 'penilai_ak_damkar':
+                $data = $this->menteService->getKabKotaPenilaiAKDamkar($kab_kota_id);
+                break;
+            case 'penetap_ak_damkar':
+                $data = $this->menteService->getKabKotaPenetapAKDamkar($kab_kota_id);
+                break;
+            case 'penilai_ak_analis':
+                $data = $this->menteService->getKabKotaPenilaiAKAnalis($kab_kota_id);
+                break;
+            case 'penetap_ak_analis':
+                $data = $this->menteService->getKabKotaPenetapAKAnalis($kab_kota_id);
+                break;
         }
-        if ($request->penilai_penetap == 'penetap') {
-            $penetap = $this->menteService->getCurrentPenetapByKabKota($kab_kota_id, $request->jenis_aparatur);
-            if (!isset($penetap?->penetapAngkaKredit)) {
-                throw ValidationException::withMessages(['message' => 'Belum mempunyai tim penetap']);
-            }
-            return response()->json([
-                'penetap' => [
-                    'id' => $penetap?->penetap_ak_id,
-                    'nama' => $penetap?->penetapAngkaKredit?->userPejabatStruktural?->nama,
-                ]
-            ]);
-        }
+        return response()->json($data);
     }
 
     public function tingkatProvinsi(Request $request, $provinsi_id)
     {
         $request->validate(['penilai_penetap' => 'required|in:penilai,penetap', 'jenis_aparatur' => 'required']);
-        if ($request->penilai_penetap == 'penilai') {
-            $penilai = $this->menteService->getCurrentPenilaiByProvinsi($provinsi_id, $request->jenis_aparatur);
-            if (!isset($penilai?->penilaiAngkaKredit)) {
-                throw ValidationException::withMessages(['message' => 'Belum mempunyai tim penilai']);
-            }
-            return response()->json([
-                'penilai' => [
-                    'id' => $penilai?->penilai_ak_id,
-                    'nama' => $penilai?->penilaiAngkaKredit?->userPejabatStruktural?->nama,
-                ]
-            ]);
+        $data = [];
+        switch ($request->jenis_aparatur) {
+            case 'penilai_ak_damkar':
+                $data = $this->menteService->getProvinsiPenilaiAKDamkar($provinsi_id);
+                break;
+            case 'penetap_ak_damkar':
+                $data = $this->menteService->getProvinsiPenetapAKDamkar($provinsi_id);
+                break;
+            case 'penilai_ak_analis':
+                $data = $this->menteService->getProvinsiPenilaiAKAnalis($provinsi_id);
+                break;
+            case 'penetap_ak_analis':
+                $data = $this->menteService->getProvinsiPenetapAKAnalis($provinsi_id);
+                break;
         }
-        if ($request->penilai_penetap == 'penetap') {
-            $penetap = $this->menteService->getCurrentPenetapByProvinsi($provinsi_id, $request->jenis_aparatur);
-            if (!isset($penetap?->penetapAngkaKredit)) {
-                throw ValidationException::withMessages(['message' => 'Belum mempunyai tim penetap']);
-            }
-            return response()->json([
-                'penetap' => [
-                    'id' => $penetap?->penetap_ak_id,
-                    'nama' => $penetap?->penetapAngkaKredit?->userPejabatStruktural?->nama,
-                ]
-            ]);
-        }
+        return response()->json($data);
     }
-    public function storePenilaiAndPenetap(StorePenilaiAndPenetapRequest $request)
+
+    public function storePenilaiAndPenetap(Request $request)
     {
-        $user = $this->authUser()->load('userProvKabKota')->userProvKabKota;
-        $this->menteService->storePenilaiAndPenetapProvinsi($request->penilai, $request->penetap, $request->tingkat_aparatur, $request->kab_kota_id, $request->provinsi_id, $user->kab_kota_id, $user->provinsi_id);
+        $user = $this->authUser()->load('userProvKabKota');
+        $periode = $this->periodeRepository->isActive();
+        switch ($request->jenis_aparatur) {
+            case 'penilai_ak_damkar':
+                KabProvPenilaiAndPenetap::query()->updateOrCreate([
+                    'kab_kota_id' => $user->userProvKabKota->kab_kota_id,
+                    'tingkat_aparatur' => 'kab_kota'
+                ], [
+                    'penilai_ak_damkar_id' => $request->kab_prov_penilai_penetap,
+                    'kab_kota_id' => $user->userProvKabKota->kab_kota_id,
+                    'tingkat_aparatur' => 'kab_kota'
+                ]);
+                break;
+            case 'penetap_ak_damkar':
+                KabProvPenilaiAndPenetap::query()->updateOrCreate([
+                    'kab_kota_id' => $user->userProvKabKota->kab_kota_id,
+                    'tingkat_aparatur' => 'kab_kota'
+                ], [
+                    'penetap_ak_damkar_id' => $request->kab_prov_penilai_penetap,
+                    'kab_kota_id' => $user->userProvKabKota->kab_kota_id,
+                    'tingkat_aparatur' => 'kab_kota'
+                ]);
+                break;
+            case 'penilai_ak_analis':
+                KabProvPenilaiAndPenetap::query()->updateOrCreate([
+                    'kab_kota_id' => $user->userProvKabKota->kab_kota_id,
+                    'tingkat_aparatur' => 'kab_kota'
+                ], [
+                    'penilai_ak_analis_id' => $request->kab_prov_penilai_penetap,
+                    'kab_kota_id' => $user->userProvKabKota->kab_kota_id,
+                    'tingkat_aparatur' => 'kab_kota'
+                ]);
+                break;
+            case 'penetap_ak_analis':
+                KabProvPenilaiAndPenetap::query()->updateOrCreate([
+                    'kab_kota_id' => $user->userProvKabKota->kab_kota_id,
+                    'tingkat_aparatur' => 'kab_kota'
+                ], [
+                    'penetap_ak_analis_id' => $request->kab_prov_penilai_penetap,
+                    'kab_kota_id' => $user->userProvKabKota->kab_kota_id,
+                    'tingkat_aparatur' => 'kab_kota'
+                ]);
+                break;
+        }
         return response()->json([
             'status' => 200,
             'message' => 'Berhasil diterapkan'

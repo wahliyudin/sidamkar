@@ -7,7 +7,7 @@
                 <div class="icon-back mb-2"><i class="fa-solid fa-arrow-left-long" style="cursor: pointer"></i>
                 </div>
                 <div class="ms-2">
-                    <h5></h5>
+                    <h5>{{ $butirKegiatan->nama }}</h5>
                 </div>
             </div>
             <div class="form-group mb-0">

@@ -19,7 +19,6 @@ class KabProvPenilaiAndPenetapRepository
     {
         return $this->kabProvPenilaiAndPenetap->query()
             ->where('kab_kota_id', $kab_kota_id)
-            ->jenisAparaturIs($jenis_aparatur)
             ->first();
     }
 
@@ -71,7 +70,6 @@ class KabProvPenilaiAndPenetapRepository
     {
         return $this->kabProvPenilaiAndPenetap->query()
             ->where('provinsi_id', $provinsi_id)
-            ->jenisAparaturIs($jenis_aparatur)
             ->first();
     }
 

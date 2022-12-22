@@ -223,6 +223,12 @@ Route::middleware(['auth'])->group(function () {
                 Route::get('penilai-ak/data-pengajuan/external', 'index')->name('penilai-ak.data-pengajuan.external');
                 Route::get('penilai-ak/data-pengajuan/external/{id}/show', 'show')->name('penilai-ak.data-pengajuan.external.show');
                 Route::post('penilai-ak/data-pengajuan/external/datatable', 'datatable')->name('penilai-ak.data-pengajuan.external.datatable');
+                Route::post('penilai-ak/data-pengajuan/external/{id}/ttd', 'ttd')->name('penilai-ak.data-pengajuan.external.ttd');
+                Route::post('penilai-ak/data-pengajuan/external/{user_id}/send-to-penetap', 'sendToPenetap')->name('penilai-ak.data-pengajuan.external.send-to-penetap');
+                Route::post('penilai-ak/data-pengajuan/external/{user_id}/verifikasi', 'verified')->name('penilai-ak.data-pengajuan.external.verifikasi');
+                Route::post('penilai-ak/data-pengajuan/external/{user_id}/revisi', 'revision')->name('penilai-ak.data-pengajuan.external.revisi');
+                Route::post('penilai-ak/data-pengajuan/external/{user_id}/tolak', 'reject')->name('penilai-ak.data-pengajuan.external.tolak');
+                Route::post('penilai-ak/data-pengajuan/external/{user_id}/simpan-penetapan', 'storePenetapan')->name('penilai-ak.data-pengajuan.external.simpan-penetapan');
             });
             Route::get('penilai-ak/kegiatan-selesai', [PenilaiAkKegiatanSelesaiController::class, 'index'])->name('penilai-ak.kegiatan-selesai');
         });
@@ -235,6 +241,9 @@ Route::middleware(['auth'])->group(function () {
             });
             Route::controller(DataPengajuanExternalController::class)->group(function () {
                 Route::get('penetap-ak/data-pengajuan/external', 'index')->name('penetap-ak.data-pengajuan.external');
+                Route::get('penetap-ak/data-pengajuan/external/{id}/show', 'show')->name('penetap-ak.data-pengajuan.external.show');
+                Route::post('penetap-ak/data-pengajuan/external/datatable', 'datatable')->name('penetap-ak.data-pengajuan.external.datatable');
+                Route::post('penetap-ak/data-pengajuan/external/{id}/ttd', 'ttd')->name('penetap-ak.data-pengajuan.external.ttd');
             });
         });
     });
