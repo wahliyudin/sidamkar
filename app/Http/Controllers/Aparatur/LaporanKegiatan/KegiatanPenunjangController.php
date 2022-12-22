@@ -83,7 +83,7 @@ class KegiatanPenunjangController extends Controller
         $user = $this->authUser()->load(['rekapitulasiKegiatan.historyRekapitulasiKegiatans' => function ($query) {
             $query->orderBy('id', 'desc');
         }]);
-        $judul = 'Laporan Kegiatan Jabatan';
+        $judul = 'Laporan Kegiatan Penunjang';
         [
             $laporanKegiatanPenunjangProfesiStatusValidasis,
             $laporanKegiatanPenunjangProfesiStatusRevisis,
@@ -116,7 +116,7 @@ class KegiatanPenunjangController extends Controller
         $user = $this->authUser()->load(['rekapitulasiKegiatan.historyRekapitulasiKegiatans' => function ($query) {
             $query->orderBy('id', 'desc');
         }]);
-        $judul = 'Laporan Kegiatan Jabatan';
+        $judul = 'Laporan Kegiatan Penunjang';
         [
             $laporanKegiatanPenunjangProfesiStatusValidasis,
             $laporanKegiatanPenunjangProfesiStatusRevisis,
