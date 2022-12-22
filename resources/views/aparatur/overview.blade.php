@@ -86,64 +86,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-9 col order-md-0 order-2">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title" style="color: #17181A; font-family: 'Roboto';">Data Graph Angka Kredit</h4>
-                    </div>
-                    <div class="card-body">
-                        <canvas id="line"></canvas>
-                    </div>
-                </div>
-                {{--  <div class="card overflow-auto">
-                    <div class="card-header">
-                        <h4 class="card-title" style="color: #17181A; font-family: 'Roboto';">Butir Kegiatan</h4>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-striped" id="table1">
-                            <thead>
-                                <tr>
-                                    <th>Tugas/Kegiatan</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <a href="" style="color: #06152B;">Kesiapsiagaan petugas pemadam kebakaran
-                                            dan penyelamatan</a>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-yellow-reverse btn-status ms-3 px-3 text-sm"
-                                            type="button">diproses</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="" style="color: #06152B;">Pelaksanaan prosedur pelaporan informasi
-                                            kejadian kebakaran</a>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-red-reverse btn-status ms-3 px-3 text-sm"
-                                            type="button">revisi</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="" style="color: #06152B;">Pelaksanaan operasional pemadaman
-                                            kebakaran</a>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-green-reverse btn-status ms-3 px-3 text-sm"
-                                            type="button">selesai</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>  --}}
-            </div>
-            <div class="col-md-3 col">
+            <div class="col-md-12 col">
                 <div class="card overflow-auto" style="overflow: auto; height: 550px">
                     <div class="card-header">
                         <h4 class="card-title text-center" style="color: #17181A; font-family: 'Roboto';">
@@ -154,13 +97,14 @@
                         <ul>
                             @forelse ($informasi as $informasis)
                                 <li>
-                                    <p style="margin: 0 !important;"> {{ $informasis->judul }} ( <a href="#"
-                                            data-id="{{ $informasis->informasi_id }}" class="detail-informasi">Klik
+                                    <h4 style="margin: 0 !important;" class="header-information"> {{ $informasis->judul }} (
+                                        <a href="#" data-id="{{ $informasis->informasi_id }}" class="detail-informasi"
+                                            style="font-size: 18px;">Klik
                                             Disini</a> )
-                                    </p>
+                                    </h4>
                                     <div class="footer-information">
-                                        <p style="font-size: 9px; margin-top: 10px; color: red;">
-                                            {{ $informasis->created_at }}</p>
+                                        <h5 style="font-size: 14px; margin-top: 10px; color: red;" class="tgl-info">
+                                            {{ $informasis->created_at }}</h5>
                                     </div>
                                 </li>
                             @empty

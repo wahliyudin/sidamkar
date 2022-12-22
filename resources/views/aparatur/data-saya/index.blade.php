@@ -187,7 +187,7 @@
                                 </div>
                                 <div class="col-md-6 mekanisme-angka">
                                     <div class="form-group">
-                                        <label>Angka Kredit Mekanisme</label>
+                                        <label>Angka Kredit Awal</label>
                                         <input type="number"
                                             {{ in_array($user?->userAparatur?->status_mekanisme, [1, 3, 4]) ? 'disabled' : '' }}
                                             name="angka_mekanisme" class="form-control"

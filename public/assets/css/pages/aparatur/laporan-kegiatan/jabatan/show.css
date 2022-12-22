@@ -11,7 +11,7 @@
 }
 
 .item-attr:not(:first-child) {
-    margin-top: .4rem;
+    margin-top: 0.4rem;
 }
 
 @media screen and (max-width: 750px) {
@@ -25,7 +25,7 @@
 }
 
 .filepond--item {
-    width: calc(50% - .5em);
+    width: calc(50% - 0.5em);
 }
 
 @media screen and (max-width: 750px) {
@@ -75,7 +75,7 @@
 }
 
 .container-laporan::-webkit-scrollbar {
-    width: .6rem;
+    width: 0.6rem;
 }
 
 .container-laporan::-webkit-scrollbar-track {

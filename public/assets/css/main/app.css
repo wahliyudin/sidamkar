@@ -22710,7 +22710,7 @@ a {
     background-color: #1ad598 !important;
 }
 
-.bg-gray{
+.bg-gray {
     background-color: #6c757d !important;
 }
 
@@ -23154,17 +23154,29 @@ label {
         font-size: 14px;
     }
 }
-.swal2-title{
+.swal2-title {
     font-size: 20px !important;
 }
 
-@media screen and (max-width:495px) {
-            .btn-all {
-                justify-content: start !important;
-                gap: 10px;
-            }
+@media screen and (max-width: 495px) {
+    .btn-all {
+        justify-content: start !important;
+        gap: 10px;
+    }
 
-            .btn-akses {
-                margin-left: 0px !important;
-            }
-        }
+    .btn-akses {
+        margin-left: 0px !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .header-information {
+        font-size: 14px;
+    }
+    .detail-informasi {
+        font-size: 10px !important;
+    }
+    .tgl-info {
+        font-size: 8px !important;
+    }
+}
