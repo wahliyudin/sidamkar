@@ -155,10 +155,9 @@ class KegiatanPenunjangController extends Controller
     public function loadData(Request $request): JsonResponse|null
     {
         if ($request->ajax()) {
-            $periode = $this->periodeRepository->isActive();
             $role = $this->getFirstRole();
             $search = str($request->search)->lower()->trim();
-            $unsurs = $this->kegiatanPenunjangService->loadUnsurs($periode, $search, $role);
+            $unsurs = $this->kegiatanPenunjangService->loadUnsurs($search, $role);
             return response()->json([
                 'unsurs' => $unsurs
             ]);

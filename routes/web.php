@@ -243,6 +243,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('kab-kota/overview', [KabKotaOverviewController::class, 'index'])->name('kab-kota.overview');
 
         Route::get('kab-kota/manajemen-user/struktural', [KabKotaStrukturalController::class, 'index'])->name('kab-kota.manajemen-user.struktural');
+
+        Route::get('kab-kota/manajemen-user/struktural/{id}/show', [KabKotaStrukturalController::class, 'show'])->name('kab-kota.manajemen-user.struktural.show');
+        Route::get('kab-kota/manajemen-user/fungsional/{id}/show', [KabKotaFungsionalController::class, 'show'])->name('kab-kota.manajemen-user.fungsional.show');
         Route::post('kab-kota/manajemen-user/struktural/{id}/reject', [KabKotaStrukturalController::class, 'reject'])->name('kab-kota.manajemen-user.struktural.reject');
         Route::post('kab-kota/manajemen-user/struktural/{id}/verification', [KabKotaStrukturalController::class, 'verification'])->name('kab-kota.manajemen-user.struktural.verification');
         Route::delete('kab-kota/manajemen-user/struktural/{id}/destroy', [KabKotaStrukturalController::class, 'destroy'])->name('kab-kota.manajemen-user.struktural.destroy');
@@ -275,6 +278,8 @@ Route::middleware(['auth'])->group(function () {
 
 
         Route::get('provinsi/manajemen-user/struktural', [ProvinsiStrukturalController::class, 'index'])->name('provinsi.manajemen-user.struktural');
+        Route::get('provinsi/manajemen-user/struktural/{id}/show', [ProvinsiStrukturalController::class, 'show'])->name('provinsi.manajemen-user.struktural.show');
+        Route::get('provinsi/manajemen-user/fungsional/{id}/show', [ProvinsiFungsionalController::class, 'show'])->name('provinsi.manajemen-user.fungsional.show');
         Route::post('provinsi/manajemen-user/struktural/{id}/reject', [ProvinsiStrukturalController::class, 'reject'])->name('provinsi.manajemen-user.struktural.reject');
         Route::post('provinsi/manajemen-user/struktural/{id}/verification', [ProvinsiStrukturalController::class, 'verification'])->name('provinsi.manajemen-user.struktural.verification');
         Route::delete('provinsi/manajemen-user/struktural/{id}/destroy', [ProvinsiStrukturalController::class, 'destroy'])->name('provinsi.manajemen-user.struktural.destroy');
@@ -318,11 +323,12 @@ Route::middleware(['auth'])->group(function () {
             Route::post('kemendagri/verifikasi-data/admin-provinsi/{id}/verified', 'verified')->name('kemendagri.verifikasi-data.admin-provinsi.verified');
             Route::post('kemendagri/verifikasi-data/admin-provinsi/{id}/reject', 'reject')->name('kemendagri.verifikasi-data.admin-provinsi.reject');
             Route::post('kemendagri/verifikasi-data/admin-provinsi/{id}/hapus', 'hapus')->name('kemendagri.verifikasi-data.admin-provinsi.hapus');
+            Route::post('kemendagri/verifikasi-data/admin-provinsi/datatable', 'datatable')->name('kemendagri.verifikasi-data.admin-provinsi.datatable');
         });
 
         Route::controller(KemendagriAparaturController::class)->group(function () {
             Route::get('kemendagri/verifikasi-data/aparatur', 'index')->name('kemendagri.verifikasi-data.aparatur.aparatur');
-            // Route::get('kemendagri/verifikasi-data/admin-provinsi/{id}/document', 'showDoc')->name('kemendagri.verifikasi-data.admin-provinsi.showdoc');
+            Route::post('kemendagri/verifikasi-data/aparatur/datatable', 'datatable')->name('kemendagri.verifikasi-data.aparatur.datatable');
         });
 
         Route::controller(KemendagriPejabatStrukturalController::class)->group(function () {

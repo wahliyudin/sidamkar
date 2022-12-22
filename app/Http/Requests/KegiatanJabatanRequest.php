@@ -24,7 +24,6 @@ class KegiatanJabatanRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'periode_id' => 'required',
             'unsur' => 'required',
             'sub_unsurs' => 'required|array'
         ];
@@ -34,6 +33,7 @@ class KegiatanJabatanRequest extends FormRequest
                 if (isset(request()->sub_unsurs[$a]['butir_kegiatans'])) {
                     foreach (request()->sub_unsurs[$a]['butir_kegiatans'] as $b => $value) {
                         $rules['sub_unsurs.' . $a . '.butir_kegiatans.' . $b . '.name'] = "required";
+                        $rules['sub_unsurs.' . $a . '.butir_kegiatans.' . $b . '.satuan_hasil'] = "required";
                         $rules['sub_unsurs.' . $a . '.butir_kegiatans.' . $b . '.angka_kredit'] = "required";
                     }
                 } else {
@@ -59,6 +59,7 @@ class KegiatanJabatanRequest extends FormRequest
                     foreach (request()->sub_unsurs[$a]['butir_kegiatans'] as $b => $value) {
                         $urutb = $b + 1;
                         $messages['sub_unsurs.' . $a . '.butir_kegiatans.' . $b . '.name.required'] = "Butir Kegiatan ke-$urutb harus diisi";
+                        $messages['sub_unsurs.' . $a . '.butir_kegiatans.' . $b . '.satuan_hasil.required'] = "Butir Kegiatan Satuan Hasil ke-$urutb harus diisi";
                         $messages['sub_unsurs.' . $a . '.butir_kegiatans.' . $b . '.angka_kredit.required'] = "Butir Kegiatan Angka Kredit ke-$urutb harus diisi";
                     }
                 } else {

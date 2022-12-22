@@ -86,10 +86,9 @@ class KegiatanProfesiController extends Controller
     public function loadUnsurs(Request $request, $id)
     {
         if ($request->ajax()) {
-            $periode = $this->kegiatanPenunjangProfesiService->periodeActive();
             $search = str($request->search)->lower()->trim();
             $role = Role::query()->find($id);
-            $unsurs = $this->kegiatanPenunjangProfesiService->loadUnsurs($periode, $search, $role, JenisKegiatan::JENIS_KEGIATAN_PROFESI);
+            $unsurs = $this->kegiatanPenunjangProfesiService->loadUnsurs($search, $role, JenisKegiatan::JENIS_KEGIATAN_PROFESI);
             return response()->json([
                 'unsurs' => $unsurs
             ]);

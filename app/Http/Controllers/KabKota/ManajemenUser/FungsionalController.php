@@ -6,9 +6,16 @@ use App\DataTables\KabKota\ManajemenUser\FungsionalDataTable;
 use App\Http\Controllers\Controller;
 use App\Services\FungsionalService;
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Provinsi;
+use App\Models\KabKota;
+use App\Models\PangkatGolonganTmt;
+use App\Models\MekanismePengangkatan;
+use App\Traits\RoleTrait;
 
 class FungsionalController extends Controller
 {
+    use RoleTrait;
     private FungsionalService $fungsionalService;
 
     public function __construct(FungsionalService $fungsionalService)
@@ -46,5 +53,16 @@ class FungsionalController extends Controller
             'success' => 200,
             'message' => "Berhasil dihapus",
         ]);
+    }
+    public function show($id)
+    {
+        $user = User::query()->with(['roles', 'userAparatur.provinsi.kabkotas', 'dokKepegawaians', 'dokKompetensis'])->find($id);
+        $provinsis = Provinsi::query()->get();
+        $kab_kota = KabKota::query()->get();
+        $pangkats = PangkatGolonganTmt::query()->whereIn('nama', $this->getPangkatByRole($user->roles()->first()->name))->get();
+        $mekanismePengangkatans = MekanismePengangkatan::query()->get();
+        $judul = 'Data Fungsional';
+
+        return view('kabkota.manajemen-user.fungsional.show', compact('user', 'provinsis', 'kab_kota', 'pangkats', 'judul', 'mekanismePengangkatans'));
     }
 }

@@ -301,45 +301,13 @@
     </div>
 @endsection
 
-@section('css')
+@push('atasan_css')
     <link rel="stylesheet" href="{{ asset('assets/css/pages/aparatur/laporan-kegiatan/jabatan/show.css') }}">
     {{-- <link rel="stylesheet" href="{{ asset('assets/css/pages/atasan-langsung/verifikasi-kegiatan/jabatan.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('assets/css/pages/aparatur/timeline.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/shared/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/plugins/swiper/swiper-bundle.min.css') }}" />
-    <style>
-        @media screen and (max-width: 450px) {
-            .btn-kirim {
-                margin-top: 10px;
-            }
-        }
-
-        .container {
-            max-width: --px;
-            width 100%;
-            overflow: auto;
-        }
-
-        .container-kegiatan::-webkit-scrollbar {
-            height: .6rem;
-        }
-
-        .container-kegiatan::-webkit-scrollbar-track {
-            box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-            border-radius: 10px !important;
-        }
-
-        .container-kegiatan::-webkit-scrollbar-thumb {
-            background-color: darkgrey;
-            border-radius: 10px !important;
-        }
-
-        li::marker {
-            font-size: 25px !important;
-            color: black;
-        }
-    </style>
-@endsection
+@endpush
 @section('js')
     <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/extensions/sweetalert2.all.min.js') }}"></script>

@@ -14,48 +14,21 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-body" style="overflow: auto;">
-                        {{ $dataTable->table() }}
-                        {{-- <table class="table table-striped" id="table1">
+                    <div class="card-body overflow-auto">
+                        <table id="aparatur" class="table dataTable no-footer dtr-inline">
                             <thead>
                                 <tr>
                                     <th>Nama</th>
                                     <th>NIP</th>
                                     <th>Provinsi</th>
-                                    <th>Kab/Kota</th>
+                                    <th>Kab Kota</th>
                                     <th>Jabatan</th>
-                                    <th>Golongan</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
+                                    <th>Pangkat/Golongan</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <a href="" style="color: #06152B;">Iqbal</a>
-                                    </td>
-                                    <td>
-                                        15615151115
-                                    </td>
-                                    <td>
-                                        DKI Jakarta
-                                    </td>
-                                    <td>
-                                        Jakarta Barat
-                                    </td>
-                                    <td>
-                                        Seksi Prasarana
-                                    </td>
-                                    <td>
-                                        III A
-                                    </td>
-                                    <td style="color: #1cd926">Aktif</td>
-                                    <td>
-                                        <a class="btn btn-primary btn-status px-3 text-sm">Detail</a>
-                                    </td>
-                                </tr>
                             </tbody>
-                        </table> --}}
+                        </table>
                     </div>
                 </div>
             </div>
@@ -95,9 +68,54 @@
 @endsection
 @section('js')
     <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
-    {{ $dataTable->scripts() }}
+    {{-- {{ $dataTable->scripts() }} --}}
     <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+    <script>
+        $('#aparatur').dataTable().fnDestroy();
+        table = $('#aparatur').DataTable({
+            responsive: true,
+            serverSide: true,
+            processing: true,
+            ajax: {
+                url: url('/kemendagri/verifikasi-data/aparatur/datatable'),
+                type: "POST",
+                data: {
+                    "_token": "{{ csrf_token() }}"
+                }
+            },
+            columns: [{
+                    data: 'nama',
+                    name: 'nama'
+                },
+                {
+                    data: 'nip',
+                    name: 'nip'
+                },
+                {
+                    data: 'provinsi',
+                    name: 'provinsi'
+                },
+                {
+                    data: 'kab_kota',
+                    name: 'kab_kota'
+                },
+                {
+                    data: 'jabatan',
+                    name: 'jabatan'
+                },
+                {
+                    data: 'pangkat',
+                    name: 'pangkat'
+                }
+            ],
+            pageLength: 10,
+            lengthMenu: [
+                [10, 20, 50, -1],
+                [10, 20, 50, 'All']
+            ]
+        });
+    </script>
 @endsection

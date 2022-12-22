@@ -67,11 +67,10 @@ class KegiatanProfesiService
         $this->ketentuanNilaiRepository = $ketentuanNilaiRepository;
     }
 
-    public function loadUnsurs(Periode $periode, string $search, Role $role)
+    public function loadUnsurs(string $search, Role $role)
     {
         $unsurs = Unsur::query()
             ->where('jenis_kegiatan_id', JenisKegiatan::JENIS_KEGIATAN_PROFESI)
-            ->where('periode_id', $periode->id)
             ->where('jenis_aparatur', $this->groupRole($role))
             ->withWhereHas('subUnsurs', function ($query) use ($role) {
                 $query->withWhereHas('butirKegiatans', function ($query) use ($role) {
