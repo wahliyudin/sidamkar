@@ -95,8 +95,8 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="tambahDataModal" tabindex="-1" role="dialog" aria-labelledby="tambahDataModalTitle"
-        aria-hidden="true">
+    <div class="modal fade" id="tambahDataModal" tabindex="-1" role="dialog" data-bs-backdrop="static"
+        aria-labelledby="tambahDataModalTitle" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-centered modal-dialog-scrollable"
             role="document">
             <div class="modal-content relative">
@@ -114,19 +114,6 @@
                 </div>
                 <div class="modal-body">
                     <form method="post" enctype="multipart/form-data" class="container-unsur">
-                        <div class="row justify-content-center">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Pelaksana Jabatan</label>
-                                    <select class="form-select" name="role_id">
-                                        <option disabled selected>Semua Jenjang</option>
-                                        @foreach ($roles as $role)
-                                            <option value="{{ $role->id }}">{{ $role->display_name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
                         <div class="row align-items-center">
                             <div class="col-md-11">
                                 <div class="form-group">

@@ -107,7 +107,7 @@ $(function () {
     $('.container-unsur').on('click', '.tambah-butir', function () {
         $(this.parentElement.parentElement.parentElement.querySelector('.container-butir')).append(`
             <div class="row align-items-start justify-content-end">
-                <div class="col-md-5">
+                <div class="col-md-3">
                     <div class="form-group">
                         <label>Butir Kegiatan</label>
                         <textarea name="butir_kegiatan[]" class="form-control w-100" rows="1"></textarea>
@@ -123,6 +123,21 @@ $(function () {
                     <div class="form-group">
                         <label>Nilai Kredit</label>
                         <input class="form-control w-100" step="0.01" type="number" name="angka_kredit[]">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Pelaksana Jabatan</label>
+                        <select class="form-select" name="role_id[]">
+                            <option value="">Semua Jenjang</option>
+                            <option value="1">Damkar Pemula</option>
+                            <option value="2">Damkar Terampil</option>
+                            <option value="3">Damkar Mahir</option>
+                            <option value="4">Damkar Penyelia</option>
+                            <option value="5">Analis Kebakaran Ahli Pertama</option>
+                            <option value="6">Analis Kebakaran Ahli Muda</option>
+                            <option value="7">Analis Kebakaran Ahli Madya</option>
+                        </select>
                     </div>
                 </div>
                 <div class="col-md-1 d-flex align-self-center">
@@ -168,7 +183,8 @@ $(function () {
                     return {
                         name: $(elementOrValue).val(),
                         satuan_hasil: $($(elementOrValue.parentElement.parentElement.parentElement).find('textarea[name="satuan_hasil[]"]')).val(),
-                        angka_kredit: $($(elementOrValue.parentElement.parentElement.parentElement).find('input[name="angka_kredit[]"]')).val()
+                        angka_kredit: $($(elementOrValue.parentElement.parentElement.parentElement).find('input[name="angka_kredit[]"]')).val(),
+                        role_id: $($(elementOrValue.parentElement.parentElement.parentElement).find('select[name="role_id[]"]')).val()
                     }
                 })
             })
@@ -295,7 +311,7 @@ $(function () {
         return $.map(butir_kegiatans, function (butirKegiatan, indexOrKey) {
             return `
             <div class="row align-items-start justify-content-end">
-                <div class="col-md-5">
+                <div class="col-md-3">
                     <div class="form-group">
                         <label>Butir Kegiatan</label>
                         <textarea name="butir_kegiatan[]" data-id="${butirKegiatan.id}" class="form-control w-100" rows="1">${butirKegiatan.nama}</textarea>
@@ -311,6 +327,21 @@ $(function () {
                     <div class="form-group">
                         <label>Nilai Kredit</label>
                         <input class="form-control w-100" step="0.01" value="${butirKegiatan.score}" type="number" name="angka_kredit[]">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Pelaksana Jabatan</label>
+                        <select class="form-select" name="role_id[]">
+                            <option value="">Semua Jenjang</option>
+                            <option ${butirKegiatan.role_id == 1 ? 'selected' : ''} value="1">Damkar Pemula</option>
+                            <option ${butirKegiatan.role_id == 2 ? 'selected' : ''} value="2">Damkar Terampil</option>
+                            <option ${butirKegiatan.role_id == 3 ? 'selected' : ''} value="3">Damkar Mahir</option>
+                            <option ${butirKegiatan.role_id == 4 ? 'selected' : ''} value="4">Damkar Penyelia</option>
+                            <option ${butirKegiatan.role_id == 5 ? 'selected' : ''} value="5">Analis Kebakaran Ahli Pertama</option>
+                            <option ${butirKegiatan.role_id == 6 ? 'selected' : ''} value="6">Analis Kebakaran Ahli Muda</option>
+                            <option ${butirKegiatan.role_id == 7 ? 'selected' : ''} value="7">Analis Kebakaran Ahli Madya</option>
+                        </select>
                     </div>
                 </div>
                 <div class="col-md-1 d-flex align-self-center">
@@ -336,7 +367,8 @@ $(function () {
                         id: $(elementOrValue).data('id'),
                         name: $(elementOrValue).val(),
                         satuan_hasil: $($(elementOrValue.parentElement.parentElement.parentElement).find('textarea[name="satuan_hasil[]"]')).val(),
-                        angka_kredit: $($(elementOrValue.parentElement.parentElement.parentElement).find('input[name="angka_kredit[]"]')).val()
+                        angka_kredit: $($(elementOrValue.parentElement.parentElement.parentElement).find('input[name="angka_kredit[]"]')).val(),
+                        role_id: $($(elementOrValue.parentElement.parentElement.parentElement).find('select[name="role_id[]"]')).val()
                     }
                 })
             })
