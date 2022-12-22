@@ -25,6 +25,10 @@
                                             <h6 class="accordian-title" style="color: #000000;">{{ $unsur->nama }}</h6>
                                         </div>
                                         <div class="d-flex align-items-center">
+                                            <i class="fa-regular fa-pen-to-square me-2 cursor-pointer text-green btn-edit-kegiatan"
+                                                data-id="{{ $unsur->id }}"></i>
+                                            <i class="fa-solid fa-trash-can me-2 cursor-pointer text-red btn-hapus-kegiatan"
+                                                data-id="{{ $unsur->id }}"></i>
                                             <button class="accordion-button collapsed" type="button"
                                                 data-bs-toggle="collapse" data-bs-target="#contentUnsur{{ $unsur->id }}"
                                                 aria-expanded="false" aria-controls="contentUnsur{{ $unsur->id }}">

@@ -65,7 +65,6 @@ class KegiatanJabatanController extends Controller
     {
         $unsur = Unsur::query()->with([
             'jenisKegiatan',
-            'role',
             'subUnsurs.butirKegiatans'
         ])->findOrFail($id);
         return response()->json([
