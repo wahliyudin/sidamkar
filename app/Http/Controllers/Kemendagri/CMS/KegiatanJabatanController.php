@@ -41,13 +41,12 @@ class KegiatanJabatanController extends Controller
             $unsur = Unsur::query()->create([
                 'role_id' => $request->role_id ?? null,
                 'jenis_kegiatan_id' => 1,
-                'periode_id' => $request->periode_id,
                 'nama' => $request->unsur
             ]);
             for ($i = 0; $i < count($request->sub_unsurs); $i++) {
                 $sub_unsur = $this->storeSubUnsur($unsur, $request->sub_unsurs[$i]['name']);
                 for ($j = 0; $j < count($request->sub_unsurs[$i]['butir_kegiatans']); $j++) {
-                    $this->storeButirKegiatan($sub_unsur, $request->sub_unsurs[$i]['butir_kegiatans'][$j]['name'], $request->sub_unsurs[$i]['butir_kegiatans'][$j]['angka_kredit']);
+                    $this->storeButirKegiatan($sub_unsur, $request->sub_unsurs[$i]['butir_kegiatans'][$j]['name'], $request->sub_unsurs[$i]['butir_kegiatans'][$j]['satuan_hasil'], $request->sub_unsurs[$i]['butir_kegiatans'][$j]['angka_kredit']);
                 }
             }
             return response()->json([
@@ -102,7 +101,7 @@ class KegiatanJabatanController extends Controller
                     );
                     array_push($tmpbutirKegiatans, $request->sub_unsurs[$i]['butir_kegiatans'][$j]['id']);
                 } else {
-                    $butirKegiatan = $this->storebutirKegiatan($subUnsur, $request->sub_unsurs[$i]['butir_kegiatans'][$j]['name'], $request->sub_unsurs[$i]['butir_kegiatans'][$j]['angka_kredit']);
+                    $butirKegiatan = $this->storebutirKegiatan($subUnsur, $request->sub_unsurs[$i]['butir_kegiatans'][$j]['name'], $request->sub_unsurs[$i]['butir_kegiatans'][$j]['satuan_hasil'], $request->sub_unsurs[$i]['butir_kegiatans'][$j]['angka_kredit']);
                     array_push($tmpbutirKegiatans, $butirKegiatan->id);
                 }
             }
@@ -132,11 +131,12 @@ class KegiatanJabatanController extends Controller
         return $subUnsur;
     }
 
-    public function storeButirKegiatan(SubUnsur $subUnsur, string $name, $angka_kredit)
+    public function storeButirKegiatan(SubUnsur $subUnsur, string $name, $satuan_hasil, $angka_kredit)
     {
         $butirKegiatan = $subUnsur->butirKegiatans()->create([
             'nama' => $name,
-            'score' => $angka_kredit,
+            'satuan_hasil' => $satuan_hasil,
+            'score' => $angka_kredit
         ]);
         return $butirKegiatan;
     }

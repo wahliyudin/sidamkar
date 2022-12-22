@@ -14,6 +14,39 @@ $(function () {
                 resolve(type);
             }),
     });
+    // <div class="row align-items-start justify-content-end">
+    //             <div class="col-md-4">
+    //                 <div class="form-group">
+    //                     <label>Butir Kegiatan</label>
+    //                     <textarea name="butir_kegiatan[]" class="form-control w-100" rows="1"></textarea>
+    //                 </div>
+    //             </div>
+    //             <div class="col-md-2">
+    //                 <div class="form-group">
+    //                     <label>Satuan Hasil</label>
+    //                     <textarea name="satuan_hasil[]" class="form-control w-100" rows="1"></textarea>
+    //                 </div>
+    //             </div>
+    //             <div class="col-md-2">
+    //                 <div class="form-group">
+    //                     <label>Nilai Kredit</label>
+    //                     <input class="form-control w-100" step="0.01" type="number" name="angka_kredit[]">
+    //                 </div>
+    //             </div>
+    //             <div class="col-md-1 align-self-center">
+    //                 <div class="form-group">
+    //                     <label>
+    //                         <input class="form-check-input" name="" type="checkbox">
+    //                         Persen
+    //                     </label>
+    //                 </div>
+    //             </div>
+    //             <div class="col-md-1 d-flex align-self-center">
+    //                 <button class="hapus-butir"
+    //                     style="transform: translateY(8px); color: #EA3A3D; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #EA3A3D; background-color: transparent !important;"><i
+    //                         class="fa-solid fa-x"></i></button>
+    //             </div>
+    //         </div>
     pond.setOptions({
         server: {
             process: (fieldName, file, metadata, load, error, progress, abort, transfer,

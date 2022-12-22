@@ -106,11 +106,17 @@ $(function () {
     });
     $('.container-unsur').on('click', '.tambah-butir', function () {
         $(this.parentElement.parentElement.parentElement.querySelector('.container-butir')).append(`
-            <div class="row align-items-center justify-content-end">
-                <div class="col-md-7">
+            <div class="row align-items-start justify-content-end">
+                <div class="col-md-5">
                     <div class="form-group">
                         <label>Butir Kegiatan</label>
-                        <input class="form-control w-100" type="text" name="butir_kegiatan[]">
+                        <textarea name="butir_kegiatan[]" class="form-control w-100" rows="1"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>Satuan Hasil</label>
+                        <textarea name="satuan_hasil[]" class="form-control w-100" rows="1"></textarea>
                     </div>
                 </div>
                 <div class="col-md-2">
@@ -119,7 +125,7 @@ $(function () {
                         <input class="form-control w-100" step="0.01" type="number" name="angka_kredit[]">
                     </div>
                 </div>
-                <div class="col-md-1 d-flex">
+                <div class="col-md-1 d-flex align-self-center">
                     <button class="hapus-butir"
                         style="transform: translateY(8px); color: #EA3A3D; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #EA3A3D; background-color: transparent !important;"><i
                             class="fa-solid fa-x"></i></button>
@@ -153,15 +159,15 @@ $(function () {
     });
     $('#tambahDataModal').on('click', '.simpan-kegiatan.simpan', function () {
         var role_id = $('select[name="role_id"]').val();
-        var periode_id = $('select[name="periode_id"]').val();
         var unsur = $('input[name="unsur"]').val();
         result = [];
         $.each($('input[name="sub_unsur[]"]'), function (indexInArray, valueOfElement) {
             result.push({
                 name: $(valueOfElement).val(),
-                butir_kegiatans: $.map($(this.parentElement.parentElement.parentElement.parentElement).find('input[name="butir_kegiatan[]"]'), function (elementOrValue, indexOrKey) {
+                butir_kegiatans: $.map($(this.parentElement.parentElement.parentElement.parentElement).find('textarea[name="butir_kegiatan[]"]'), function (elementOrValue, indexOrKey) {
                     return {
                         name: $(elementOrValue).val(),
+                        satuan_hasil: $($(elementOrValue.parentElement.parentElement.parentElement).find('textarea[name="satuan_hasil[]"]')).val(),
                         angka_kredit: $($(elementOrValue.parentElement.parentElement.parentElement).find('input[name="angka_kredit[]"]')).val()
                     }
                 })
@@ -174,7 +180,6 @@ $(function () {
             url: url("/kemendagri/cms/kegiatan-jabatan"),
             data: {
                 role_id: role_id,
-                periode_id: periode_id,
                 unsur: unsur,
                 sub_unsurs: result
             },

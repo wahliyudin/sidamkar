@@ -67,7 +67,7 @@
                                                                                     <span
                                                                                         class="bg-green text-sm text-center text-white font-bold py-1 px-2 rounded-md label-role"
                                                                                         style="white-space: nowrap;">
-                                                                                        {{ $butir_kegiatan->role?->display_name }}
+                                                                                        {{ $butir_kegiatan->role?->display_name ?? 'Semua Jenjang' }}
                                                                                     </span>
                                                                                 </div>
                                                                             </div>
