@@ -241,6 +241,9 @@ Route::middleware(['auth'])->group(function () {
             });
             Route::controller(DataPengajuanExternalController::class)->group(function () {
                 Route::get('penetap-ak/data-pengajuan/external', 'index')->name('penetap-ak.data-pengajuan.external');
+                Route::get('penetap-ak/data-pengajuan/external/{id}/show', 'show')->name('penetap-ak.data-pengajuan.external.show');
+                Route::post('penetap-ak/data-pengajuan/external/datatable', 'datatable')->name('penetap-ak.data-pengajuan.external.datatable');
+                Route::post('penetap-ak/data-pengajuan/external/{id}/ttd', 'ttd')->name('penetap-ak.data-pengajuan.external.ttd');
             });
         });
     });
