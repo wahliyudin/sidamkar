@@ -58,9 +58,8 @@ class KegiatanJabatanController extends Controller
     public function loadUnsurs(Request $request, $id)
     {
         if ($request->ajax()) {
-            $periode = $this->verifikasiKegiatanService->periodeActive();
             $search = str($request->search)->lower()->trim();
-            $unsurs = $this->verifikasiKegiatanService->loadUnsurs($periode, $search, $id);
+            $unsurs = $this->verifikasiKegiatanService->loadUnsurs($search, $id);
             return response()->json([
                 'unsurs' => $unsurs
             ]);

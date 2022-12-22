@@ -106,11 +106,17 @@ $(function () {
     });
     $('.container-unsur').on('click', '.tambah-butir', function () {
         $(this.parentElement.parentElement.parentElement.querySelector('.container-butir')).append(`
-            <div class="row align-items-center justify-content-end">
-                <div class="col-md-7">
+            <div class="row align-items-start justify-content-end">
+                <div class="col-md-3">
                     <div class="form-group">
                         <label>Butir Kegiatan</label>
-                        <input class="form-control w-100" type="text" name="butir_kegiatan[]">
+                        <textarea name="butir_kegiatan[]" class="form-control w-100" rows="1"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>Satuan Hasil</label>
+                        <textarea name="satuan_hasil[]" class="form-control w-100" rows="1"></textarea>
                     </div>
                 </div>
                 <div class="col-md-2">
@@ -119,7 +125,22 @@ $(function () {
                         <input class="form-control w-100" step="0.01" type="number" name="angka_kredit[]">
                     </div>
                 </div>
-                <div class="col-md-1 d-flex">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Pelaksana Jabatan</label>
+                        <select class="form-select" name="role_id[]">
+                            <option value="">Semua Jenjang</option>
+                            <option value="1">Damkar Pemula</option>
+                            <option value="2">Damkar Terampil</option>
+                            <option value="3">Damkar Mahir</option>
+                            <option value="4">Damkar Penyelia</option>
+                            <option value="5">Analis Kebakaran Ahli Pertama</option>
+                            <option value="6">Analis Kebakaran Ahli Muda</option>
+                            <option value="7">Analis Kebakaran Ahli Madya</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-1 d-flex align-self-center">
                     <button class="hapus-butir"
                         style="transform: translateY(8px); color: #EA3A3D; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #EA3A3D; background-color: transparent !important;"><i
                             class="fa-solid fa-x"></i></button>
@@ -153,16 +174,17 @@ $(function () {
     });
     $('#tambahDataModal').on('click', '.simpan-kegiatan.simpan', function () {
         var role_id = $('select[name="role_id"]').val();
-        var periode_id = $('select[name="periode_id"]').val();
         var unsur = $('input[name="unsur"]').val();
         result = [];
         $.each($('input[name="sub_unsur[]"]'), function (indexInArray, valueOfElement) {
             result.push({
                 name: $(valueOfElement).val(),
-                butir_kegiatans: $.map($(this.parentElement.parentElement.parentElement.parentElement).find('input[name="butir_kegiatan[]"]'), function (elementOrValue, indexOrKey) {
+                butir_kegiatans: $.map($(this.parentElement.parentElement.parentElement.parentElement).find('textarea[name="butir_kegiatan[]"]'), function (elementOrValue, indexOrKey) {
                     return {
                         name: $(elementOrValue).val(),
-                        angka_kredit: $($(elementOrValue.parentElement.parentElement.parentElement).find('input[name="angka_kredit[]"]')).val()
+                        satuan_hasil: $($(elementOrValue.parentElement.parentElement.parentElement).find('textarea[name="satuan_hasil[]"]')).val(),
+                        angka_kredit: $($(elementOrValue.parentElement.parentElement.parentElement).find('input[name="angka_kredit[]"]')).val(),
+                        role_id: $($(elementOrValue.parentElement.parentElement.parentElement).find('select[name="role_id[]"]')).val()
                     }
                 })
             })
@@ -174,7 +196,6 @@ $(function () {
             url: url("/kemendagri/cms/kegiatan-jabatan"),
             data: {
                 role_id: role_id,
-                periode_id: periode_id,
                 unsur: unsur,
                 sub_unsurs: result
             },
@@ -288,11 +309,18 @@ $(function () {
 
     function funButirKegiatan(butir_kegiatans) {
         return $.map(butir_kegiatans, function (butirKegiatan, indexOrKey) {
-            return `<div class="row align-items-center justify-content-end">
-                <div class="col-md-7">
+            return `
+            <div class="row align-items-start justify-content-end">
+                <div class="col-md-3">
                     <div class="form-group">
                         <label>Butir Kegiatan</label>
-                        <input class="form-control w-100" type="text" data-id="${butirKegiatan.id}" value="${butirKegiatan.nama}" name="butir_kegiatan[]">
+                        <textarea name="butir_kegiatan[]" data-id="${butirKegiatan.id}" class="form-control w-100" rows="1">${butirKegiatan.nama}</textarea>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>Satuan Hasil</label>
+                        <textarea name="satuan_hasil[]" class="form-control w-100" rows="1">${butirKegiatan.satuan_hasil}</textarea>
                     </div>
                 </div>
                 <div class="col-md-2">
@@ -301,29 +329,46 @@ $(function () {
                         <input class="form-control w-100" step="0.01" value="${butirKegiatan.score}" type="number" name="angka_kredit[]">
                     </div>
                 </div>
-                <div class="col-md-1 d-flex">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Pelaksana Jabatan</label>
+                        <select class="form-select" name="role_id[]">
+                            <option value="">Semua Jenjang</option>
+                            <option ${butirKegiatan.role_id == 1 ? 'selected' : ''} value="1">Damkar Pemula</option>
+                            <option ${butirKegiatan.role_id == 2 ? 'selected' : ''} value="2">Damkar Terampil</option>
+                            <option ${butirKegiatan.role_id == 3 ? 'selected' : ''} value="3">Damkar Mahir</option>
+                            <option ${butirKegiatan.role_id == 4 ? 'selected' : ''} value="4">Damkar Penyelia</option>
+                            <option ${butirKegiatan.role_id == 5 ? 'selected' : ''} value="5">Analis Kebakaran Ahli Pertama</option>
+                            <option ${butirKegiatan.role_id == 6 ? 'selected' : ''} value="6">Analis Kebakaran Ahli Muda</option>
+                            <option ${butirKegiatan.role_id == 7 ? 'selected' : ''} value="7">Analis Kebakaran Ahli Madya</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-1 d-flex align-self-center">
                     <button class="hapus-butir"
                         style="transform: translateY(8px); color: #EA3A3D; display: flex; height: 2rem; width: 2rem; justify-content: center; align-items:center; border-radius: 100%; border: 2px solid #EA3A3D; background-color: transparent !important;"><i
                             class="fa-solid fa-x"></i></button>
                 </div>
-            </div>`
+            </div>
+            `
         }).join('')
     }
 
     $('#tambahDataModal').on('click', '.simpan-kegiatan.update', function () {
         var role_id = $('select[name="role_id"]').val();
         var unsur = $('input[name="unsur"]').val();
-        var periode_id = $('select[name="periode_id"]').val();
         result = [];
         $.each($('input[name="sub_unsur[]"]'), function (indexInArray, valueOfElement) {
             result.push({
                 id: $(valueOfElement).data('id'),
                 name: $(valueOfElement).val(),
-                butir_kegiatans: $.map($(this.parentElement.parentElement.parentElement.parentElement).find('input[name="butir_kegiatan[]"]'), function (elementOrValue, indexOrKey) {
+                butir_kegiatans: $.map($(this.parentElement.parentElement.parentElement.parentElement).find('textarea[name="butir_kegiatan[]"]'), function (elementOrValue, indexOrKey) {
                     return {
                         id: $(elementOrValue).data('id'),
                         name: $(elementOrValue).val(),
-                        angka_kredit: $($(elementOrValue.parentElement.parentElement.parentElement).find('input[name="angka_kredit[]"]')).val()
+                        satuan_hasil: $($(elementOrValue.parentElement.parentElement.parentElement).find('textarea[name="satuan_hasil[]"]')).val(),
+                        angka_kredit: $($(elementOrValue.parentElement.parentElement.parentElement).find('input[name="angka_kredit[]"]')).val(),
+                        role_id: $($(elementOrValue.parentElement.parentElement.parentElement).find('select[name="role_id[]"]')).val()
                     }
                 })
             })
@@ -335,7 +380,6 @@ $(function () {
             url: url('/kemendagri/cms/kegiatan-jabatan/' + $(this).data('id') + '/update'),
             data: {
                 role_id: role_id,
-                periode_id: periode_id,
                 unsur: unsur,
                 sub_unsurs: result
             },

@@ -24,7 +24,6 @@ class KegiatanPenunjangRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'periode_id' => 'required',
             'unsur' => 'required',
             'sub_unsurs' => 'required|array'
         ];
@@ -37,18 +36,12 @@ class KegiatanPenunjangRequest extends FormRequest
                         if (isset(request()->sub_unsurs[$a]['butir_kegiatans'][$b]['sub_butir_kegiatans'])) {
                             foreach (request()->sub_unsurs[$a]['butir_kegiatans'][$b]['sub_butir_kegiatans'] as $d => $l) {
                                 $rules['sub_unsurs.' . $a . '.butir_kegiatans.' . $b . '.sub_butir_kegiatans.' . $d . '.name'] = "required";
-                                if (isset(request()->sub_unsurs[$a]['butir_kegiatans'][$b]['sub_butir_kegiatans'][$d]['angka_kredit'])) {
-                                    $rules['sub_unsurs.' . $a . '.butir_kegiatans.' . $b . '.sub_butir_kegiatans.' . $d . '.angka_kredit'] = "required";
-                                } else {
-                                    $rules['sub_unsurs.' . $a . '.butir_kegiatans.' . $b . '.sub_butir_kegiatans.' . $d . '.percent'] = "required";
-                                }
+                                $rules['sub_unsurs.' . $a . '.butir_kegiatans.' . $b . '.sub_butir_kegiatans.' . $d . '.satuan_hasil'] = "required";
+                                $rules['sub_unsurs.' . $a . '.butir_kegiatans.' . $b . '.sub_butir_kegiatans.' . $d . '.angka_kredit'] = "required";
                             }
                         } else {
-                            if (isset(request()->sub_unsurs[$a]['butir_kegiatans'][$b]['angka_kredit'])) {
-                                $rules['sub_unsurs.' . $a . '.butir_kegiatans.' . $b . '.angka_kredit'] = "required";
-                            } else {
-                                $rules['sub_unsurs.' . $a . '.butir_kegiatans.' . $b . '.percent'] = "required";
-                            }
+                            $rules['sub_unsurs.' . $a . '.butir_kegiatans.' . $b . '.satuan_hasil'] = "required";
+                            $rules['sub_unsurs.' . $a . '.butir_kegiatans.' . $b . '.angka_kredit'] = "required";
                         }
                     }
                 } else {
@@ -78,19 +71,12 @@ class KegiatanPenunjangRequest extends FormRequest
                             foreach (request()->sub_unsurs[$a]['butir_kegiatans'][$b]['sub_butir_kegiatans'] as $d => $l) {
                                 $urutd = $d + 1;
                                 $messages['sub_unsurs.' . $a . '.butir_kegiatans.' . $b . '.sub_butir_kegiatans.' . $d . '.name.required'] = "Sub Butir Kegiatan ke-$urutd harus diisi";
+                                $messages['sub_unsurs.' . $a . '.butir_kegiatans.' . $b . '.sub_butir_kegiatans.' . $d . '.satuan_hasil.required'] = "Sub Butir Kegiatan Satuan Hasil ke-$urutd harus diisi";
                                 $messages['sub_unsurs.' . $a . '.butir_kegiatans.' . $b . '.sub_butir_kegiatans.' . $d . '.angka_kredit.required'] = "Sub Butir Kegiatan Angka Kredit ke-$urutd harus diisi";
-                                if (isset(request()->sub_unsurs[$a]['butir_kegiatans'][$b]['sub_butir_kegiatans'][$d]['angka_kredit'])) {
-                                    $messages['sub_unsurs.' . $a . '.butir_kegiatans.' . $b . '.sub_butir_kegiatans.' . $d . '.angka_kredit.required'] = "Butir Kegiatan Angka Kredit ke-$urutd harus diisi";
-                                } else {
-                                    $messages['sub_unsurs.' . $a . '.butir_kegiatans.' . $b . '.sub_butir_kegiatans.' . $d . '.percent.required'] = "Butir Kegiatan Angka Kredit(%) ke-$urutd harus diisi";
-                                }
                             }
                         } else {
-                            if (isset(request()->sub_unsurs[$a]['butir_kegiatans'][$b]['angka_kredit'])) {
-                                $messages['sub_unsurs.' . $a . '.butir_kegiatans.' . $b . '.angka_kredit.required'] = "Butir Kegiatan Angka Kredit ke-$urutb harus diisi";
-                            } else {
-                                $messages['sub_unsurs.' . $a . '.butir_kegiatans.' . $b . '.percent.required'] = "Butir Kegiatan Angka Kredit(%) ke-$urutb harus diisi";
-                            }
+                            $messages['sub_unsurs.' . $a . '.butir_kegiatans.' . $b . '.satuan_hasil.required'] = "Butir Kegiatan Angka Kredit ke-$urutb harus diisi";
+                            $messages['sub_unsurs.' . $a . '.butir_kegiatans.' . $b . '.angka_kredit.required'] = "Butir Kegiatan Angka Kredit ke-$urutb harus diisi";
                         }
                     }
                 } else {
