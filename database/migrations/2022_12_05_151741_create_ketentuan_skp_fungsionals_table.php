@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignUuid('user_id');
             $table->integer('nilai_skp')->nullable();
             $table->string('status')->nullable();
+            $table->foreignId('periode_id');
             $table->string('file')->nullable();
             $table->timestamps();
         });

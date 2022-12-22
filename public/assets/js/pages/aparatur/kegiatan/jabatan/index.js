@@ -295,7 +295,7 @@ $(document).ready(function () {
             swal("Error!", "Ada Data Yang Belum Di Input", "error");
         } else if (nilai_skp == "") {
             swal("Error!", "Ada Data Yang Belum Di Input", "error");
-        } else {
+        } else if(nilai_skp != null & jenis_skp != null ) {
             $.ajax({
                 type: "POST",
                 url: url("/laporan-kegiatan/jabatan/send-skp"),
