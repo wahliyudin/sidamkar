@@ -13,6 +13,7 @@ class KetentuanSkpFungsional extends Model
         'status',
         'user_id',
         'nilai_skp',
+        'periode_id',
         'file'
     ];
 

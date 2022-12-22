@@ -285,13 +285,13 @@
     </div>
 @endsection
 
-@section('css')
+@push('atasan_css')
     <link rel="stylesheet" href="{{ asset('assets/css/pages/aparatur/laporan-kegiatan/jabatan/show.css') }}">
     {{-- <link rel="stylesheet" href="{{ asset('assets/css/pages/atasan-langsung/verifikasi-kegiatan/jabatan.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('assets/css/pages/aparatur/timeline.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/shared/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/plugins/swiper/swiper-bundle.min.css') }}" />
-@endsection
+@endpush
 @section('js')
     <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/extensions/sweetalert2.all.min.js') }}"></script>
