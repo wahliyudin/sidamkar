@@ -61,7 +61,6 @@ class StrukturalController extends Controller
         $provinsis = Provinsi::query()->get();
         $kab_kota = KabKota::query()->get();
         $pangkats = PangkatGolonganTmt::query()->get();
-        // return $user;
         return view('kabkota.manajemen-user.struktural.show', compact('user', 'provinsis', 'kab_kota', 'pangkats', 'judul'));
     }
 }
