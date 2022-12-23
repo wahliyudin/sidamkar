@@ -24,7 +24,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mempersiapkan kelengkapan pemadaman',
                 'satuan_hasil' => 'Dokumen kelengkapan',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 2
             [
@@ -33,7 +33,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melaksanakan Apel Pagi',
                 'satuan_hasil' => 'Laporan Apel Pagi',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 3
             [
@@ -42,7 +42,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melaksanakan serah terima tugas jaga',
                 'satuan_hasil' => 'Laporan serah terima tugas jaga',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 4
             [
@@ -51,7 +51,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melaksanakan pemeriksaan jumlah peralatan operasional',
                 'satuan_hasil' => 'Laporan pemeriksaan jumlah peralatan operasional',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 5
             [
@@ -60,7 +60,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melaksanakan pengecekan fungsi peralatan operasional',
                 'satuan_hasil' => 'Laporan pengecekan fungsi peralatan operasional',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 6
             [
@@ -69,7 +69,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Membuat laporan sesuai dengan form check list',
                 'satuan_hasil' => 'Dokumen sesuai dengan form check list',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 7
             [
@@ -78,7 +78,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melaksanakan piket sesuai dengan consignus jaga (tata kelola)',
                 'satuan_hasil' => 'Laporan piket sesuai dengan consignus jaga (tata kelola)',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 8
             [
@@ -87,7 +87,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melakukan Monitoring kejadian kebakaran dan penyelamatan',
                 'satuan_hasil' => 'Laporan Monitoring kejadian kebakaran dan penyelamatan',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 9
             [
@@ -96,7 +96,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mempersiapkan kelengkapan operasional pemadaman dan penyelamatan',
                 'satuan_hasil' => 'Laporan kelengkapan',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 10
             [
@@ -105,7 +105,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melaksanakan apel malam',
                 'satuan_hasil' => 'Laporan apel malam',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 11
             [
@@ -114,7 +114,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melaksanakan pemeriksaan jumlah peralatan operasional',
                 'satuan_hasil' => 'Laporan pemeriksaan jumlah peralatan operasional',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 12
             [
@@ -123,7 +123,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melaksanakan pengecekan fungsi peralatan operasional',
                 'satuan_hasil' => 'Laporan pengecekan fungsi peralatan operasional',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 13
             [
@@ -132,7 +132,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Membuat laporan sesuai dengan form check list',
                 'satuan_hasil' => 'Dokumen sesuai dengan form check list',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 14
             [
@@ -141,7 +141,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mempersiapkan peralatan latihan',
                 'satuan_hasil' => 'Laporan peralatan latihan ',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 15
             [
@@ -150,7 +150,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melakukan latihan penggunaan peralatan',
                 'satuan_hasil' => 'Laporan latihan penggunaan peralatan',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 16
             [
@@ -159,7 +159,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Merapikan kembali peralatan yang digunakan',
                 'satuan_hasil' => 'Laporan kembali peralatan yang digunakan',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 17
             [
@@ -168,7 +168,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melaksanakan kegiatan pembinaan fisik',
                 'satuan_hasil' => 'Laporan kegiatan pembinaan fisik',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 18
             [
@@ -177,7 +177,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melaksanakan korve di lingkungan kerja',
                 'satuan_hasil' => 'Laporan korve di lingkungan kerja',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 19
             [
@@ -186,7 +186,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melaksanakan pembersihan unit mobil',
                 'satuan_hasil' => 'Laporan pembersihan unit mobil',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             //20
             [
@@ -195,7 +195,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mencatat informasi kejadian kebakaran',
                 'satuan_hasil' => 'Laporan informasi kejadian kebakaran',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 21
             [
@@ -204,7 +204,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melaporkan informasi kejadian kebakaran',
                 'satuan_hasil' => 'Laporan informasi kejadian kebakaran',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 22
             [
@@ -213,7 +213,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Menerima perintah dari Kepala Regu pasca Informasi kejadian kebakaran',
                 'satuan_hasil' => 'Laporan saat diperintah oleh Kepala Regu pasca Informasi kejadian kebakaran',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 23
             [
@@ -222,7 +222,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melaksanakan perintah dari Kepala Regu pasca Informasi kejadian kebakaran',
                 'satuan_hasil' => 'Laporan dalam melaksanakan perintah dari Kepala Regu pasca Informasi kejadian kebakaran',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 24
             [
@@ -231,7 +231,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melakukan koordinasi dengan tim atau dengan anggota tim lain',
                 'satuan_hasil' => 'Laporan koordinasi dengan tim atau dengan anggota tim lain',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 25
             [
@@ -240,7 +240,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Memakai alat pelindung diri',
                 'satuan_hasil' => 'Laporan alat pelindung diri',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 26
             [
@@ -249,7 +249,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Menempati posisi duduk sesuai dengan formasi unit',
                 'satuan_hasil' => 'Laporan posisi duduk sesuai dengan formasi unit',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 27
             [
@@ -258,7 +258,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melakukan koordinasi internal unit',
                 'satuan_hasil' => 'Laporan koordinasi internal unit',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 28
             [
@@ -267,7 +267,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengeluarkan peralatan pemadaman kebakaran dari unit mobil',
                 'satuan_hasil' => 'Laporan peralatan pemadaman kebakaran dari unit mobil',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 29
             [
@@ -294,7 +294,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melakukan penyiraman untuk pendinginan',
                 'satuan_hasil' => 'Laporan penyiraman untuk pendinginan',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 32
             [
@@ -303,7 +303,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melakukan penyisiran titik api yang tersisa',
                 'satuan_hasil' => 'Laporan penyisiran titik api yang tersisa',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 33
             [
@@ -312,7 +312,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melaporkan kepada kepala regu',
                 'satuan_hasil' => 'Laporan kepada kepala regu',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 34
             [
@@ -321,7 +321,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengemas peralatan yang telah digunakan',
                 'satuan_hasil' => 'Laporan pengemasan peralatan yang telah digunakan',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 35
             [
@@ -330,7 +330,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengecek kelengkapan peralatan',
                 'satuan_hasil' => 'Laporan kelengkapan peralatan',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 36
             [
@@ -339,7 +339,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'mengikuti apel pengecekan personil',
                 'satuan_hasil' => 'Laporan apel pengecekan personil',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 37
             [
@@ -348,7 +348,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Membersihkan unit, APD dan peralatan',
                 'satuan_hasil' => 'Laporan pembersihan unit, APD dan peralatan',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 38
             [
@@ -357,7 +357,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Menempatkan kembali peralatan yang telah digunakan',
                 'satuan_hasil' => 'Laporan penempatan kembali peralatan yang telah digunakan',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 39
             [
@@ -366,7 +366,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Menerima informasi evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan informasi evakuasi dan penyelamatan',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 40
             [
@@ -375,7 +375,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mencatat informasi evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Dokumen informasi evakuasi dan penyelamatan',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 41
             [
@@ -384,7 +384,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melaporkan kejadian evakuasi dan penyelamatan kepada kepala regu',
                 'satuan_hasil' => 'Laporan kejadian evakuasi dan penyelamatan kepada kepala regu',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 42
             [
@@ -393,7 +393,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melaksanakan perintah dari Kepala Reguu',
                 'satuan_hasil' => 'Laporan menerima perintah dari kepala regu',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 43
             [
@@ -402,7 +402,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melakukan koordinasi dengan anggota Tim',
                 'satuan_hasil' => 'Laporan koordinasi dengan anggota Tim',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 44
             [
@@ -411,7 +411,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'menggunakan APD dan berangkat menuju TKP',
                 'satuan_hasil' => 'Laporan menggunakan APD dan berangkat menuju TKP',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 45
             [
@@ -420,7 +420,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melaksanakan Evakuasi dan Penyelamatan',
                 'satuan_hasil' => 'Laporan Evakuasi dan Penyelamatan',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 46
             [
@@ -429,7 +429,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Menghimpun data evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan data evakuasi dan penyelamatan',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 47
             [
@@ -438,7 +438,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Menyusun laporan kejadian evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Menyusun laporan kejadian evakuasi dan penyelamatan',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ],
             // 48
             [
@@ -447,7 +447,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mendokumentasikan dan melaporkan kejadian evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan kejadian evakuasi dan penyelamatan',
                 'percent' => null,
-                'score' => 0.02
+                'score' => 0.002
             ]
         ];
         ButirKegiatan::query()->upsert($damkarPemula, 'id');
@@ -462,7 +462,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mempersiapkan personil',
                 'satuan_hasil' => 'Laporan kesiapan personil',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 50
             [
@@ -471,7 +471,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengkoordinir Apel Tingkat Regu',
                 'satuan_hasil' => 'Laporan Apel Tingkat Regu',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 51
             [
@@ -480,7 +480,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Memeriksa kondisi volume air tangki unit',
                 'satuan_hasil' => 'Laporan kondisi volume air tangki unit',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 52
             [
@@ -489,7 +489,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melaksanakan pengecekan peralatan unit mobil',
                 'satuan_hasil' => 'Laporan pengecekan peralatan unit mobil',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 53
             [
@@ -498,7 +498,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Memeriksa fungsi Pompa/ PTO, rem, level bahan bakar, Oli, Radiator, Accu, Minyak Kopling, tekanan angin roda',
                 'satuan_hasil' => 'Laporan fungsi Pompa/ PTO, rem, level bahan bakar, Oli, Radiator, Accu,Minyak Kopling, tekanan angin roda',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 54
             [
@@ -507,7 +507,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Memanaskan mesin kendaraan',
                 'satuan_hasil' => 'Laporan mesin kendaraan',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 55
             [
@@ -516,7 +516,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Memeriksa fungsi lampu rotary, sirine, dan lampu kendaraan',
                 'satuan_hasil' => 'Memeriksa fungsi lampu rotary, sirine,dan lampu kendaraan',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 56
             [
@@ -525,7 +525,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Memeriksa fungsi alat komunikasi Rig dan HT',
                 'satuan_hasil' => 'Memeriksa fungsi alat komunikasi Rig dan HT',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 57
             [
@@ -534,7 +534,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melaksanakan serah terima unit mobil',
                 'satuan_hasil' => 'Laporan serah terima unit mobil',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 58
             [
@@ -543,7 +543,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Membuat laporan sesuai dengan form check list',
                 'satuan_hasil' => 'Dokumen sesuai dengan form check list',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 59
             [
@@ -552,7 +552,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melaksanakan piket sesuai dengan consignus jaga (tata kelola)',
                 'satuan_hasil' => 'Laporan piket sesuai dengan consignus jaga (tata kelola)',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 60
             [
@@ -570,7 +570,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mempersiapkan kelengkapan unit mobil',
                 'satuan_hasil' => 'Laporan kelengkapan unit mobil',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 62
             [
@@ -579,7 +579,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melaksanakan apel malam',
                 'satuan_hasil' => 'Laporan apel malam',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 63
             [
@@ -588,7 +588,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melaksanakan pengecekan fungsi peralatan unit mobil',
                 'satuan_hasil' => 'Laporan pengecekan fungsi peralatan unit mobil',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 64
             [
@@ -597,7 +597,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Memanaskan mesin unit mobil',
                 'satuan_hasil' => 'Laporan mesin unit mobil',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 65
             [
@@ -606,7 +606,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Memeriksa fungsi lampu rotary, sirine, dan lampu kendaraan',
                 'satuan_hasil' => 'Laporan fungsi lampu rotary, sirine, dan lampu kendaraan',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 66
             [
@@ -615,7 +615,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Memeriksa fungsi alat komunikasi Rig dan HT',
                 'satuan_hasil' => 'Laporan fungsi alat komunikasi Rig dan HT',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 67
             [
@@ -624,7 +624,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Memeriksa kondisi volume air tangki unit mobil',
                 'satuan_hasil' => 'Laporan kondisi volume air tangki unit mobil',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 68
             [
@@ -633,7 +633,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Membuat laporan sesuai dengan form check list.',
                 'satuan_hasil' => 'Dokumen sesuai dengan form check list.',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 69
             [
@@ -642,7 +642,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mempersiapkan peralatan latihan',
                 'satuan_hasil' => 'Laporan peralatan latihan',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 70
             [
@@ -651,7 +651,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melakukan latihan penggunaan peralatan khusus',
                 'satuan_hasil' => 'Laporan latihan penggunaan peralatan khusus',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 71
             [
@@ -660,7 +660,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Merapikan kembali peralatan yang',
                 'satuan_hasil' => 'Laporan peralatan yang digunakan',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 72
             [
@@ -669,7 +669,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melaksanakan kegiatan pembinaan fisik',
                 'satuan_hasil' => 'Laporan kegiatan pembinaan fisik',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 73
             [
@@ -678,7 +678,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melaksanakan korve di lingkungan kerja',
                 'satuan_hasil' => 'Laporan korve di lingkungan kerja',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 74
             [
@@ -687,7 +687,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melaksanakan kebersihan unit',
                 'satuan_hasil' => 'Laporan kebersihan unit',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 75
             [
@@ -696,7 +696,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mencatat kondisi sistem pengendalian komunikasi penanggulangan kebakaran',
                 'satuan_hasil' => 'Dokumen kondisi sistem pengendalian komunikasi penanggulangan kebakaran',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 76
             [
@@ -705,7 +705,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Menyiapkan kelengkapan Poskotis (Pos Komando Taktis) penanggulangan kebakaran',
                 'satuan_hasil' => 'Laporan kelengkapan Poskotis (Pos Komando Taktis) penanggulangan kebakaran',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 77
             [
@@ -714,7 +714,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengumpulkan data untuk kebutuhan poskotis penanggulangan kebakaran',
                 'satuan_hasil' => 'Dokumen data untuk kebutuhan poskotis penanggulangan kebakaran',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 78
             [
@@ -723,7 +723,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melaporkan data dan informasi penanggulangan kebakaran',
                 'satuan_hasil' => 'Dokumen data dan informasi penanggulangan kebakaran',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 79
             [
@@ -732,7 +732,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melaksanakan inventarisasi sarana prasarana komunikasi penanggulangan kebakaran',
                 'satuan_hasil' => 'Laporan inventarisasi sarana prasarana komunikasi penanggulangan kebakaran',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 80
             [
@@ -741,7 +741,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melaksanakan pengecekan sarana prasarana komunikasi penanggulangan kebakaran',
                 'satuan_hasil' => 'Laporan pengecekan sarana prasarana komunikasi penanggulangan kebakaran',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 81
             [
@@ -750,7 +750,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melakukan pemeliharaan peralatan komunikasi penanggulangan kebakaran',
                 'satuan_hasil' => 'Laporan pemeliharaan peralatan komunikasi penanggulangan kebakaran',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 82
             [
@@ -759,7 +759,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Memakai alat pelindung diri pengemudi',
                 'satuan_hasil' => 'Laporan alat pelindung diri pengemudi',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 83
             [
@@ -768,7 +768,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Menyiapkan peralatan komunikasi pengemudi',
                 'satuan_hasil' => 'Laporan peralatan komunikasi pengemudi',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 84
             [
@@ -777,7 +777,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengemudikan Mobil Pemadam Kebakaran menuju TKP',
                 'satuan_hasil' => 'Laporan Mobil Pemadam Kebakaran menuju TKP',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 85
             [
@@ -786,7 +786,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengatur posisi Unit Mobil Pemadam Kebakaran di TKP',
                 'satuan_hasil' => 'Laporan posisi Unit Mobil Pemadam Kebakaran di TKP',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 86
             [
@@ -795,7 +795,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melakukan koordinasi internal unit',
                 'satuan_hasil' => 'Laporan koordinasi internal unit',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 87
             [
@@ -804,7 +804,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mempersiapkan sistem pompa/PTO unit',
                 'satuan_hasil' => 'Laporan sistem pompa/PTO unit ',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 88
             [
@@ -813,7 +813,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengoperasikan pompa / PTO unit',
                 'satuan_hasil' => 'Laporan pompa / PTO unit',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 89
             [
@@ -822,7 +822,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Menyambung kopling selang ke kopling unit',
                 'satuan_hasil' => 'Laporan kopling selang ke kopling unit ',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 90
             [
@@ -831,7 +831,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melayani kebutuhan air dan tekanan pompa yang diperlukan',
                 'satuan_hasil' => 'Laporan kebutuhan air dan tekanan pompa yang diperlukan',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 91
             [
@@ -840,7 +840,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melaksanakan pengisian tangki air',
                 'satuan_hasil' => 'Laporan pengisian tangki air',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 92
             [
@@ -849,7 +849,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melaksanakan suplai air',
                 'satuan_hasil' => 'Laporan suplai air',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 93
             [
@@ -858,7 +858,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengemas peralatan yang digunakan',
                 'satuan_hasil' => 'Laporan peralatan yang digunakan',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 94
             [
@@ -867,7 +867,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengecek kelengkapan peralatan',
                 'satuan_hasil' => 'Laporan kelengkapan peralatan',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 95
             [
@@ -876,7 +876,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengikuti apel pengecekan personil',
                 'satuan_hasil' => 'Laporan apel pengecekan personil',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 96
             [
@@ -885,7 +885,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melakukan pengisian tangki air unit',
                 'satuan_hasil' => 'Laporan pengisian tangki air unit',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 97
             [
@@ -894,7 +894,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengemudikan unit menuju pos pemadam kebakaran',
                 'satuan_hasil' => 'Laporan unit menuju pos pemadam kebakaran',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 98
             [
@@ -903,7 +903,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Membersihkan unit, APD dan peralatan',
                 'satuan_hasil' => 'Laporan unit, APD dan peralatan',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 99
             [
@@ -912,7 +912,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Menguras dan mengisi tangki air mobil pemadam kebakaran',
                 'satuan_hasil' => 'Laporan tangki air mobil pemadam kebakaran',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 100
             [
@@ -921,7 +921,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Memeriksa kondisi mobil pemadam kebakaran',
                 'satuan_hasil' => 'Laporan kondisi mobil pemadam kebakaran',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 101
             [
@@ -930,7 +930,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Menempatkan kembali mobil pemada kebakaran pada posisi yang telah ditentukan',
                 'satuan_hasil' => 'Laporan mobil pemadam kebakaran pada posisi yang telah ditentukan',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 102
             [
@@ -939,7 +939,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'mencatat data informasi kejadian evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Dokumen data informasi kejadian evakuasi dan penyelamatan',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 103
             [
@@ -948,7 +948,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Membuat poskotis evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan poskotis evakuasi dan penyelamatan',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 104
             [
@@ -957,7 +957,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengumpulkan dan mengolah data untuk kebutuhan poskotis evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Dokumen data untuk kebutuhan poskotis evakuasi dan penyelamatan',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 105
             [
@@ -966,7 +966,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melaporkan data dan informasi evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan data dan informasi evakuasi dan penyelamatan',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 106
             [
@@ -975,7 +975,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melaksanakan inventarisasi sarana prasarana komunikasi evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Dokumen inventarisasi sarana prasarana komunikasi evakuasi dan penyelamatan',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 107
             [
@@ -984,7 +984,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melaksanakan pengecekan sarana prasarana komunikasi evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Dokumen pengecekan sarana prasarana komunikasi evakuasi dan penyelamatan',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 108
             [
@@ -993,7 +993,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melakukan pemeliharaan peralatan komunikasi evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan pemeliharaan peralatan komunikasi evakuasi dan penyelamatan',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 109
             [
@@ -1002,7 +1002,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Memakai alat pelindung diri pengemudi',
                 'satuan_hasil' => 'Laporan alat pelindung diri pengemudi',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 110
             [
@@ -1011,7 +1011,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Menyiapkan peralatan komunikasi pengemudi',
                 'satuan_hasil' => 'Laporan peralatan komunikasi pengemudi',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 111
             [
@@ -1020,7 +1020,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengemudikan Unit Evakuasi dan Penyelamatan menuju TKP',
                 'satuan_hasil' => 'Laporan Unit Evakuasi dan Penyelamatan menuju TKP',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 112
             [
@@ -1029,7 +1029,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengatur posisi Unit Evakuasi dan Penyelamatan di TKP',
                 'satuan_hasil' => 'Laporan posisi Unit Evakuasi dan Penyelamatan di TKP',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 113
             [
@@ -1038,7 +1038,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melakukan koordinasi internal unit Evakuasi dan Penyelamatan',
                 'satuan_hasil' => 'Laporan koordinasi internal unit Evakuasi dan Penyelamatan',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 114
             [
@@ -1047,7 +1047,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mempersiapkan peralatan Evakuasi dan Penyelamatan',
                 'satuan_hasil' => 'Laporan peralatan Evakuasi dan Penyelamatan',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 115
             [
@@ -1056,7 +1056,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Menentukan peralatan Evakuasi dan Penyelamatan yang akan digunakan',
                 'satuan_hasil' => 'Laporan peralatan Evakuasi dan Penyelamatan yang akan digunakan',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 116
             [
@@ -1065,7 +1065,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengoperasikan peralatan Evakuasi dan Penyelamatan',
                 'satuan_hasil' => 'Laporan peralatan Evakuasi dan Penyelamatan',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 117
             [
@@ -1074,7 +1074,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengevakuasi dan Penyelamatan korban',
                 'satuan_hasil' => 'Laporan evakuasi dan Penyelamatan korban',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 118
             [
@@ -1083,7 +1083,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengemas peralatan Evakuasi dan Penyelamatan yang digunakan',
                 'satuan_hasil' => 'Laporan peralatan Evakuasi dan Penyelamatan yang digunakan',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 119
             [
@@ -1092,7 +1092,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengecek kelengkapan peralatan Evakuasi dan Penyelamatan',
                 'satuan_hasil' => 'Laporan kelengkapan peralatan Evakuasi dan Penyelamatan',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 120
             [
@@ -1101,7 +1101,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengembalikan Peralatan Evakuasi dan Penyelamatan pada unit yang telah ditentukan',
                 'satuan_hasil' => 'Laporan Peralatan Evakuasi dan Penyelamatan pada unit yang telah ditentukan',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 121
             [
@@ -1110,7 +1110,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengikuti apel pengecekan personil dalam operasi Evakuasi dan Penyelamatan',
                 'satuan_hasil' => 'Laporan apel pengecekan personil dalam operasi Evakuasi dan Penyelamatan',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 122
             [
@@ -1119,7 +1119,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengemudikan unit menuju pos pemadam kebakaran dan penyelamatan',
                 'satuan_hasil' => 'Laporan unit menuju pos pemadam kebakaran dan penyelamatan',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 123
             [
@@ -1128,7 +1128,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Membersihkan unit, APD dan peralatan evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan unit, APD dan peralatan evakuasi dan penyelamatan',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
             // 124
             [
@@ -1137,7 +1137,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengembalikan unit mobil evakuasi dan penyelamatan pada posisi yang telah ditentukan',
                 'satuan_hasil' => 'Laporan unit mobil evakuasi dan penyelamatan pada posisi yang telah ditentukan',
                 'percent' => null,
-                'score' => 0.04
+                'score' => 0.004
             ],
         ];
         ButirKegiatan::query()->upsert($terampil, 'id');
@@ -1150,7 +1150,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melakukan verifikasi kelengkapan',
                 'satuan_hasil' => 'Laporan verifikasi kelengkapan',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 126
             [
@@ -1159,7 +1159,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Memimpin Apel Pagi',
                 'satuan_hasil' => 'Laporan Apel Pagi',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 127
             [
@@ -1168,7 +1168,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Memimpin serah terima tugas jaga',
                 'satuan_hasil' => 'Laporan serah terima tugas jaga',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 128
             [
@@ -1177,7 +1177,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Memimpin pemeriksaan jumlah peralatan operasional',
                 'satuan_hasil' => 'Laporan pemeriksaan jumlah peralatan operasional',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 129
             [
@@ -1186,7 +1186,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Memimpin pengecekan fungsi peralatan operasional',
                 'satuan_hasil' => 'Laporan pengecekan fungsi peralatan operasional',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 130
             [
@@ -1195,7 +1195,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Memeriksa laporan sesuai dengan form check list',
                 'satuan_hasil' => 'Dokumen sesuai dengan form check list',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 131
             [
@@ -1204,7 +1204,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melakukan verifikasi fungsi alat komunikasi Rig dan HT',
                 'satuan_hasil' => 'Dokumen verifikasi fungsi alat komunikasi Rig dan HT',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 132
             [
@@ -1213,7 +1213,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melakukan verifikasi kondisi volume air tangki unit mobil',
                 'satuan_hasil' => 'Dokumen verifikasi kondisi volume air tangki unit mobil',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 133
             [
@@ -1222,7 +1222,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Memvalidasi laporan sesuai dengan form check list',
                 'satuan_hasil' => 'Dokumen validasi sesuai dengan form check list',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 134
             [
@@ -1231,7 +1231,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melakukan verifikasi kelengkapan personil dalam regu',
                 'satuan_hasil' => 'Laporan verifikasi kelengkapan personil dalam regu',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 135
             [
@@ -1240,7 +1240,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengatur anggota regu pada pelaksanaan apel malam',
                 'satuan_hasil' => 'Laporan pelaksanaan apel malam',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 136
             [
@@ -1249,7 +1249,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengatur anggota regu pada pemeriksaan peralatan unit mobil',
                 'satuan_hasil' => 'Laporan pelaksanaan apel malam',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 137
             [
@@ -1258,7 +1258,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengatur anggota regu pada pengecekan peralatan unit mobil',
                 'satuan_hasil' => 'Laporan pengecekan peralatan unit mobil',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 138
             [
@@ -1267,7 +1267,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengatur anggota regu pada pemeriksaan kondisi unit',
                 'satuan_hasil' => 'Laporan pemeriksaan kondisi unit',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 139
             [
@@ -1276,7 +1276,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengatur anggota regu pada Memimpin persiapan peralatan latihan',
                 'satuan_hasil' => 'Laporan persiapan peralatan latihan',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 140
             [
@@ -1285,7 +1285,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengatur anggota regu pada latihan penggunaan peralatan',
                 'satuan_hasil' => 'Laporan latihan penggunaan peralatan',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 141
             [
@@ -1294,7 +1294,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengatur anggota regu pada proses pengemasan peralatan yang telah digunakan',
                 'satuan_hasil' => 'Laporan proses pengemasan peralatan yang telah digunakan',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 142
             [
@@ -1303,7 +1303,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengatur anggota regu pada kegiatan',
                 'satuan_hasil' => 'Laporan kegiatan pembinaan fisik',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 143
             [
@@ -1312,7 +1312,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengatur anggota regu pada korve di lingkungan kerja',
                 'satuan_hasil' => 'Laporan korve di lingkungan kerja',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 144
             [
@@ -1321,7 +1321,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengatur anggota regu pada kebersihan unit',
                 'satuan_hasil' => 'Laporan kebersihan unit',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 145
             [
@@ -1330,7 +1330,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melakukan validasi informasi kejadian kebakaran',
                 'satuan_hasil' => 'Laporan validasi informasi kejadian kebakaran',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 146
             [
@@ -1339,7 +1339,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Menginformasikan kejadian kebakaran',
                 'satuan_hasil' => 'Laporan informasi kejadian kebakaran',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 147
             [
@@ -1348,7 +1348,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melaporkan tindak lanjut informasi kejadian kebakaran',
                 'satuan_hasil' => 'Laporan tindak lanjut informasi kejadian kebakaran',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 148
             [
@@ -1357,7 +1357,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melakukan koordinasi dengan regu lainnya',
                 'satuan_hasil' => 'Laporan koordinasi dengan regu lainnya',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 149
             [
@@ -1366,7 +1366,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melakukan Koordinasi dengan instansi lainnya',
                 'satuan_hasil' => 'Laporan Koordinasi dengan instansi lainnya',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 150
             [
@@ -1375,7 +1375,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Memakai alat pelindung diri dan mengawasi pemakaian APD',
                 'satuan_hasil' => 'Laporan alat pelindung diri dan mengawasi pemakaian APD',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 151
             [
@@ -1384,7 +1384,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengatur anggota regu pada penempatanposisi duduk anggota regu sesuai dengan formasi unit',
                 'satuan_hasil' => 'Laporan penempatan posisi duduk anggota regu sesuai dengan formasi unit ',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 152
             [
@@ -1393,7 +1393,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Memerintahkan regu menuju ke tempat kejadian kebakaran',
                 'satuan_hasil' => 'Laporan regu menuju ke tempat kejadian kebakaran',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 153
             [
@@ -1402,7 +1402,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengatur anggota regu pada Memimpin koordinasi internal unit',
                 'satuan_hasil' => 'Laporan koordinasi internal unit',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 154
             [
@@ -1411,7 +1411,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengatur anggota regu pada size up (penilaian awal) pada saat di perjalanan',
                 'satuan_hasil' => 'Laporan size up (penilaian awal) pada saat di perjalanan',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 155
             [
@@ -1420,7 +1420,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengatur anggota regu pada size up (penilaian awal) situasi kondisi kejadian kebakaran',
                 'satuan_hasil' => 'Laporan size up (penilaian awal) situasi kondisi kejadian kebakaran',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 156
             [
@@ -1429,7 +1429,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengatur anggota regu pada teknik taktik strategi operasional pemadaman',
                 'satuan_hasil' => 'Laporan teknik taktik strategi operasional pemadaman',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 157
             [
@@ -1438,7 +1438,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengatur prosedur pemadaman dari sumber air ke titik api',
                 'satuan_hasil' => 'Laporan prosedur pemadaman dari sumber air ke titik api',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 158
             [
@@ -1447,7 +1447,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengatur anggota regu untuk peran dan tugas anggota regu',
                 'satuan_hasil' => 'Laporan peran dan tugas anggota regu',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 159
             [
@@ -1456,7 +1456,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengatur anggota regu pada kebutuhan penggunaan peralatan operasional kebakaran',
                 'satuan_hasil' => 'Laporan kebutuhan penggunaan peralatan operasional kebakaran',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 160
             [
@@ -1465,7 +1465,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengendalikan prosedur dan keselamatan kerja anggota regu',
                 'satuan_hasil' => 'Laporan prosedur dan keselamatan kerja anggota regu',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 161
             [
@@ -1474,7 +1474,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Memantau dan melaporkan perkembangan situasi kondisi kejadian kebakaran',
                 'satuan_hasil' => 'Laporan perkembangan situasi kondisi kejadian kebakaran',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 162
             [
@@ -1483,7 +1483,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengatur anggota regu pada pendataan awal di tempat kejadian kebakaran',
                 'satuan_hasil' => 'Laporan pendataan awal di tempat kejadian kebakaran',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 163
             [
@@ -1492,7 +1492,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengatur anggota regu pada proses pendinginan',
                 'satuan_hasil' => 'Laporan proses pendinginan',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 164
             [
@@ -1501,7 +1501,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengatur anggota regu pada pelaksanaan Over Houl (pemeriksaan titik api yang tersisa)',
                 'satuan_hasil' => 'Laporan pelaksanaan Over Houl (pemeriksaan titik api yang tersisa)',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 165
             [
@@ -1510,7 +1510,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melaporkan hasil over houl kepada atasan',
                 'satuan_hasil' => 'Laporan hasil over houl kepada atasan',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 166
             [
@@ -1519,7 +1519,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melaporkan situasi akhir kondisi kebakaran',
                 'satuan_hasil' => 'Laporan situasi akhir kondisi kebakaran',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 167
             [
@@ -1528,7 +1528,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengatur anggota regu pada proses pengemasan peralatan yang digunakan',
                 'satuan_hasil' => 'Laporan proses pengemasan peralatan yang digunakan',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 168
             [
@@ -1546,7 +1546,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengatur anggota regu pada apel pengecekan personil',
                 'satuan_hasil' => 'Laporan apel pengecekan personil',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 170
             [
@@ -1555,7 +1555,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengatur anggota regu pada proses kebersihan unit, APD dan peralatan',
                 'satuan_hasil' => 'Laporan proses kebersihan unit, APD dan peralatan',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 171
             [
@@ -1564,7 +1564,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengatur anggota regu pada proses pengurasan dan pengisi tangki air unit',
                 'satuan_hasil' => 'Laporan proses pengurasan dan pengisi tangki air unit',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 172
             [
@@ -1573,7 +1573,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengatur anggota regu pada penempatan kembali peralatan yang telah digunakan',
                 'satuan_hasil' => 'Laporan penempatan kembali peralatan yang telah digunakan',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 173
             [
@@ -1582,7 +1582,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengolah laporan kejadian kebakaran',
                 'satuan_hasil' => 'Laporan kejadian kebakaran',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 174
             [
@@ -1591,7 +1591,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Memakai dan mengawasi pemakaian alat pelindung diri evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan pemakaian alat pelindung diri evakuasi dan penyelamatan',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 175
             [
@@ -1600,7 +1600,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengatur anggota regu pada penempatan posisi duduk anggota regu sesuai dengan formasi unit',
                 'satuan_hasil' => 'Laporan penempatan posisi duduk anggota regu sesuai dengan formasi unit',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 176
             [
@@ -1609,7 +1609,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Memerintahkan regu menuju ke tempat kejadian evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan regu menuju ke tempat kejadian evakuasi dan penyelamatan',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 177
             [
@@ -1618,7 +1618,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengatur anggota regu pada koordinasi internal unit',
                 'satuan_hasil' => 'Laporan koordinasi internal unit',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 178
             [
@@ -1627,7 +1627,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Menyusun pra size up (penilaian situasi awal ) pada saat di perjalan',
                 'satuan_hasil' => 'Laporan pra size up (penilaian situasi awal ) pada saat di perjalan',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 179
             [
@@ -1636,7 +1636,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Memimpin size up (penilaian situasi) kondisi evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan size up (penilaian situasi) kondisi evakuasi dan penyelamatan',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 180
             [
@@ -1645,7 +1645,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengatur teknik taktik strategi operasional evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan teknik taktik strategi operasional evakuasi dan penyelamatan',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 181
             [
@@ -1654,7 +1654,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengatur prosedur evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan prosedur evakuasi dan penyelamatan',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 182
             [
@@ -1663,7 +1663,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengatur peran dan tugas anggota regu evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan peran dan tugas anggota regu evakuasi dan penyelamatan',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 183
             [
@@ -1672,7 +1672,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengatur kebutuhan penggunaan peralatan operasional evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan kebutuhan penggunaan peralatan operasional evakuasi dan penyelamatan',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 184
             [
@@ -1681,7 +1681,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengendalikan prosedur kerja dan keselamatan anggota regu evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan prosedur kerja dan keselamatan anggota regu evakuasi dan penyelamatan',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 185
             [
@@ -1690,7 +1690,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melaporkan perkembangan situasi kondisi kejadian evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan perkembangan situasi kondisi kejadian evakuasi dan penyelamatan',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 186
             [
@@ -1699,7 +1699,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengatur anggota regu pada pelaksanaan Over Houl (pemeriksaan dengan seksama) terhadap evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan pelaksanaan Over Houl (pemeriksaan dengan seksama) terhadap evakuasi dan penyelamatan',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 187
             [
@@ -1708,7 +1708,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengatur anggota regu pada pendataan awal di tempat kejadian evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan pendataan awal di tempat kejadian evakuasi dan penyelamatan',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 188
             [
@@ -1717,7 +1717,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengatur anggota regu pada proses pengemasan peralatan yang digunakan untuk evakuasi dan penyelamata',
                 'satuan_hasil' => 'Laporan proses pengemasan peralatan yang digunakan untuk evakuasi dan penyelamatan',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 189
             [
@@ -1735,7 +1735,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengatur anggota regu pada apel pengecekan personil evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan apel pengecekan personil evakuasi dan penyelamatan',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
             // 191
             [
@@ -1744,7 +1744,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengatur anggota regu pada proses kebersihan unit, APD dan peralatan evakuasi dan penyelamatan',
                 'satuan_hasil' => 'Laporan proses kebersihan unit, APD dan peralatan evakuasi dan penyelamatan',
                 'percent' => null,
-                'score' => 0.001
+                'score' => 0.01
             ],
         ];
         ButirKegiatan::query()->upsert($mahir, 'id');
@@ -3750,7 +3750,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengevaluasi pre test',
                 'satuan_hasil' => 'Laporan evaluasi pre test',
                 'percent' => null,
-                'score' => 0.1
+                'score' => 0.10
             ],
             //408
             [
@@ -3759,7 +3759,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Menginventrisasi literatur sebagai bahan ajar',
                 'satuan_hasil' => 'Laporan literatur sebagai bahan ajar',
                 'percent' => null,
-                'score' => 0.1
+                'score' => 0.10
             ],
             //409
             [
@@ -3768,7 +3768,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengolah bahan ajar dengan aplikasi perangkat lunak',
                 'satuan_hasil' => 'Laporan aplikasi software untuk bahan ajar',
                 'percent' => null,
-                'score' => 0.1
+                'score' => 0.10
             ],
             //410
             [
@@ -3777,7 +3777,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Menginventrisasi alat simulasi peraga pembelajaran',
                 'satuan_hasil' => 'Laporan alat simulasi peraga pembelajaran',
                 'percent' => null,
-                'score' => 0.1
+                'score' => 0.10
             ],
             //411
             [
@@ -3786,7 +3786,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengajar materi pencegahan kebakaran',
                 'satuan_hasil' => 'Laporan materi pencegahan kebakaran',
                 'percent' => null,
-                'score' => 0.1
+                'score' => 0.10
             ],
             //412
             [
@@ -3795,7 +3795,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengajar materi penanggulangan kebakaran',
                 'satuan_hasil' => 'Laporan materi penanggulangan kebakaran',
                 'percent' => null,
-                'score' => 0.1
+                'score' => 0.10
             ],
             //413
             [
@@ -3804,7 +3804,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengajar materi penyelamatan',
                 'satuan_hasil' => 'Laporan materi penyelamatan',
                 'percent' => null,
-                'score' => 0.1
+                'score' => 0.10
             ],
             //414
             [
@@ -3813,7 +3813,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengajar materi tentang B3',
                 'satuan_hasil' => 'Laporan materi tentang B3',
                 'percent' => null,
-                'score' => 0.1
+                'score' => 0.10
             ],
             //415
             [
@@ -3822,7 +3822,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Mengajar materi penunjang lainnya',
                 'satuan_hasil' => 'Laporan materi penunjang lainnya',
                 'percent' => null,
-                'score' => 0.1
+                'score' => 0.10
             ],
             //416
             [
@@ -3831,7 +3831,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'mengevaluasi post test',
                 'satuan_hasil' => 'Laporan post test',
                 'percent' => null,
-                'score' => 0.1
+                'score' => 0.10
             ],
 
             //
@@ -3966,7 +3966,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'mengidentifikasi jumlah, jenis dan lokasi keberadaan B3',
                 'satuan_hasil' => 'Laporan identifikasi jumlah, jenis dan lokasi keberadaan B3',
                 'percent' => null,
-                'score' => 0.6
+                'score' => 0.60
             ],
             //431
             [
@@ -3975,7 +3975,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'mengklasifikasi jenis B3',
                 'satuan_hasil' => 'mengklasifikasi jenis B3',
                 'percent' => null,
-                'score' => 0.6
+                'score' => 0.60
             ],
             //432
             [
@@ -3984,7 +3984,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'mengkaji MSDS (material safety data sheet) jenis B3',
                 'satuan_hasil' => 'Dokumen MSDS (material safety data sheet) jenis B3',
                 'percent' => null,
-                'score' => 0.6
+                'score' => 0.60
             ],
             //433
             [
@@ -3993,7 +3993,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'mengevaluasi SOP penanganan B3',
                 'satuan_hasil' => 'Dokumen SOP penanganan B3',
                 'percent' => null,
-                'score' => 0.6
+                'score' => 0.60
             ],
             //434
             [
@@ -4002,7 +4002,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'menganalisis kebutuhan APD dalam penanganan B3',
                 'satuan_hasil' => 'Dokumen kebutuhan APD dalam penanganan B3',
                 'percent' => null,
-                'score' => 0.6
+                'score' => 0.60
             ],
             //435
             [
@@ -4011,7 +4011,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'mengkaji pengendalian B3 kepada masing-masing perusahaan',
                 'satuan_hasil' => 'Laporan pengendalian B3 kepada masing-masing perusahaan',
                 'percent' => null,
-                'score' => 0.6
+                'score' => 0.60
             ],
             //436
             [
@@ -4020,7 +4020,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'mengkaji pengawasan pola angkut dan penempatan B3',
                 'satuan_hasil' => 'Laporan pengawasan pola angkut dan penempatan B3',
                 'percent' => null,
-                'score' => 0.6
+                'score' => 0.60
             ],
             //437
             [
@@ -4029,7 +4029,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'mengindetifikasi data sosialisasi bahaya B',
                 'satuan_hasil' => 'Laporan indetifikasi data sosialisasi bahaya B',
                 'percent' => null,
-                'score' => 0.6
+                'score' => 0.60
             ],
 
             //
@@ -4041,7 +4041,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'memverifikasi data hasil pemeriksaan',
                 'satuan_hasil' => 'Laporan verifikasi data hasil pemeriksaan',
                 'percent' => null,
-                'score' => 0.6
+                'score' => 0.60
             ],
             //439
             [
@@ -4050,7 +4050,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'memverifikasi data hasil pemeriksaan ke lapangan',
                 'satuan_hasil' => 'Laporan verifikasi data hasil pemeriksaan ke lapangan',
                 'percent' => null,
-                'score' => 0.6
+                'score' => 0.60
             ],
             //440
             [
@@ -4059,7 +4059,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'mengevaluasi hasil pemeriksaan keselamatan kebakaran dengan instansi terkait',
                 'satuan_hasil' => 'Laporan evaluasi dengan instansi terkait',
                 'percent' => null,
-                'score' => 0.6
+                'score' => 0.60
             ],
             //441
             [
@@ -4068,7 +4068,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'melaksanakan rapat koordinasi tentang tindak lanjut hasil verifikasi',
                 'satuan_hasil' => 'Laporan rapat koordinasi tentang tindak lanjut hasil verifikasi',
                 'percent' => null,
-                'score' => 0.6
+                'score' => 0.60
             ],
             //442
             [
@@ -4077,7 +4077,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'memberikan tindakan sanksi terhadap pelanggaran keselamatan gedung.',
                 'satuan_hasil' => 'Laporan tindakan sanksi terhadap pelanggaran keselamatan gedung.',
                 'percent' => null,
-                'score' => 0.6
+                'score' => 0.60
             ],
 
             //
@@ -4213,7 +4213,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Menerjemahkan/menyadur buku atau karya ilmiah di bidang pemadaman kebakaran dan penyelamatan yang dipublikasikan:',
                 'satuan_hasil' => 'Artikel',
                 'percent' => null,
-                'score' => 2
+                'score' => null
             ],
             //457
             [
