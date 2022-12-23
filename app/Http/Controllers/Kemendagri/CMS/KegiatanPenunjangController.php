@@ -69,7 +69,7 @@ class KegiatanPenunjangController extends Controller
     {
         $unsur = Unsur::query()->with('subUnsurs')->findOrFail($id);
         $unsur->update([
-            'role_id' => $request->role_id ?? null,
+            'jenis_aparatur' => $request->jenis_aparatur,
             'nama' => $request->unsur
         ]);
         $tmpSubUnsurs = [];
@@ -193,6 +193,7 @@ class KegiatanPenunjangController extends Controller
     {
         $unsur = Unsur::query()->create([
             'jenis_kegiatan_id' => 2,
+            'jenis_aparatur' => $request->jenis_aparatur,
             'nama' => $request->unsur
         ]);
         for ($i = 0; $i < count($request->sub_unsurs); $i++) {
