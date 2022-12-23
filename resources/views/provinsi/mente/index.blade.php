@@ -541,7 +541,7 @@
                                 dataType: "JSON",
                                 success: function(response) {
                                     if (penilai_penetap == 'penilai') {
-                                        $('#tambahPenilai input[name="penilai"]')
+                                        $('#tambahPenilai input[name="kab_prov_penilai_penetap"]')
                                             .val(
                                                 response.id);
                                         $('#tambahPenilai input[name="penilai_ak"]')
@@ -549,7 +549,7 @@
                                                 response.nama);
                                     }
                                     if (penilai_penetap == 'penetap') {
-                                        $('#tambahPenetap input[name="penetap"]')
+                                        $('#tambahPenetap input[name="kab_prov_penilai_penetap"]')
                                             .val(
                                                 response.id);
                                         $('#tambahPenetap input[name="penetap_ak"]')

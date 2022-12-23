@@ -32,7 +32,6 @@ class VerificationUserService
         $user = $this->userRepository->getUserById($id);
         $provinsi_id = $this->authUser()->load('userProvKabKota')?->userProvKabKota->provinsi_id;
         $kabProvPenilaiAndPenetap = $this->kabProvPenilaiAndPenetapRepository->getPenilaiAndPenetapByProvinsi($provinsi_id);
-        dd($kabProvPenilaiAndPenetap);
         if (isset($kabProvPenilaiAndPenetap)) {
             foreach ($request->jabatans as $jabatan) {
                 if ($jabatan == 'penilai_ak_damkar' && isset($kabProvPenilaiAndPenetap->penilai_ak_damkar_id)) {
@@ -53,41 +52,41 @@ class VerificationUserService
             if ($jabatan == 'penilai_ak_damkar') {
                 KabProvPenilaiAndPenetap::query()->updateOrCreate([
                     'provinsi_id' => $provinsi_id,
-                    'tingkat_aparatur' => 'kab_kota'
+                    'tingkat_aparatur' => 'provinsi'
                 ], [
                     'penilai_ak_damkar_id' => $user->id,
                     'provinsi_id' => $provinsi_id,
-                    'tingkat_aparatur' => 'kab_kota'
+                    'tingkat_aparatur' => 'provinsi'
                 ]);
             }
             if ($jabatan == 'penilai_ak_analis') {
                 KabProvPenilaiAndPenetap::query()->updateOrCreate([
                     'provinsi_id' => $provinsi_id,
-                    'tingkat_aparatur' => 'kab_kota'
+                    'tingkat_aparatur' => 'provinsi'
                 ], [
                     'penilai_ak_analis_id' => $user->id,
                     'provinsi_id' => $provinsi_id,
-                    'tingkat_aparatur' => 'kab_kota'
+                    'tingkat_aparatur' => 'provinsi'
                 ]);
             }
             if ($jabatan == 'penetap_ak_damkar') {
                 KabProvPenilaiAndPenetap::query()->updateOrCreate([
                     'provinsi_id' => $provinsi_id,
-                    'tingkat_aparatur' => 'kab_kota'
+                    'tingkat_aparatur' => 'provinsi'
                 ], [
                     'penetap_ak_damkar_id' => $user->id,
                     'provinsi_id' => $provinsi_id,
-                    'tingkat_aparatur' => 'kab_kota'
+                    'tingkat_aparatur' => 'provinsi'
                 ]);
             }
             if ($jabatan == 'penetap_ak_analis') {
                 KabProvPenilaiAndPenetap::query()->updateOrCreate([
                     'provinsi_id' => $provinsi_id,
-                    'tingkat_aparatur' => 'kab_kota'
+                    'tingkat_aparatur' => 'provinsi'
                 ], [
                     'penetap_ak_analis_id' => $user->id,
                     'provinsi_id' => $provinsi_id,
-                    'tingkat_aparatur' => 'kab_kota'
+                    'tingkat_aparatur' => 'provinsi'
                 ]);
             }
         }
