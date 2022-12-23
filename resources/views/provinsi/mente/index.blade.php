@@ -631,7 +631,7 @@
             function loadKabKota(val, kabupaten, kabupaten_id = null) {
                 return new Promise(resolve => {
                     $(kabupaten).html('<option value="">Memuat...</option>');
-                    fetch('/api/provinsi/' + val)
+                    fetch('/api/kab-kota/' + val)
                         .then(res => res.json())
                         .then(res => {
                             $(kabupaten).html(

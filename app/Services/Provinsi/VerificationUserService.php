@@ -32,6 +32,7 @@ class VerificationUserService
         $user = $this->userRepository->getUserById($id);
         $provinsi_id = $this->authUser()->load('userProvKabKota')?->userProvKabKota->provinsi_id;
         $kabProvPenilaiAndPenetap = $this->kabProvPenilaiAndPenetapRepository->getPenilaiAndPenetapByProvinsi($provinsi_id);
+        dd($kabProvPenilaiAndPenetap);
         if (isset($kabProvPenilaiAndPenetap)) {
             foreach ($request->jabatans as $jabatan) {
                 if ($jabatan == 'penilai_ak_damkar' && isset($kabProvPenilaiAndPenetap->penilai_ak_damkar_id)) {

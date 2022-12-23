@@ -35,9 +35,9 @@ class MenteController extends Controller
         $fungsionals = $this->menteService->getFungsionalKabKota();
         $atasanLangsungs = $this->menteService->getAtasanLangsungKabKota();
         $user = $this->authUser()->load(['userProvKabKota']);
-        $penilaiAndPenetap = $this->menteService->getCurrentPenilaiAndPenetapByKabKota($user->userProvKabKota->kab_kota_id);
+        $penilaiAndPenetap = $this->menteService->getCurrentPenilaiAndPenetapByProvinsi($user->userProvKabKota->provinsi_id);
         if (!isset($penilaiAndPenetap)) {
-            $penilaiAndPenetap = $this->menteService->getCurrentPenilaiAndPenetapByKabKota($user->userProvKabKota->kab_kota_id);
+            $penilaiAndPenetap = $this->menteService->getCurrentPenilaiAndPenetapByProvinsi($user->userProvKabKota->provinsi_id);
         }
         $provinsis = Provinsi::query()->get(['id', 'nama']);
         return $dataTable->render('provinsi.mente.index', compact('fungsionals', 'penilaiAndPenetap', 'atasanLangsungs', 'provinsis', 'periode', 'judul'));
@@ -92,42 +92,42 @@ class MenteController extends Controller
         switch ($request->jenis_aparatur) {
             case 'penilai_ak_damkar':
                 KabProvPenilaiAndPenetap::query()->updateOrCreate([
-                    'kab_kota_id' => $user->userProvKabKota->kab_kota_id,
-                    'tingkat_aparatur' => 'kab_kota'
+                    'provinsi_id' => $user->userProvKabKota->provinsi_id,
+                    'tingkat_aparatur' => 'provinsi'
                 ], [
                     'penilai_ak_damkar_id' => $request->kab_prov_penilai_penetap,
-                    'kab_kota_id' => $user->userProvKabKota->kab_kota_id,
-                    'tingkat_aparatur' => 'kab_kota'
+                    'provinsi_id' => $user->userProvKabKota->provinsi_id,
+                    'tingkat_aparatur' => 'provinsi'
                 ]);
                 break;
             case 'penetap_ak_damkar':
                 KabProvPenilaiAndPenetap::query()->updateOrCreate([
-                    'kab_kota_id' => $user->userProvKabKota->kab_kota_id,
-                    'tingkat_aparatur' => 'kab_kota'
+                    'provinsi_id' => $user->userProvKabKota->provinsi_id,
+                    'tingkat_aparatur' => 'provinsi'
                 ], [
                     'penetap_ak_damkar_id' => $request->kab_prov_penilai_penetap,
-                    'kab_kota_id' => $user->userProvKabKota->kab_kota_id,
-                    'tingkat_aparatur' => 'kab_kota'
+                    'provinsi_id' => $user->userProvKabKota->provinsi_id,
+                    'tingkat_aparatur' => 'provinsi'
                 ]);
                 break;
             case 'penilai_ak_analis':
                 KabProvPenilaiAndPenetap::query()->updateOrCreate([
-                    'kab_kota_id' => $user->userProvKabKota->kab_kota_id,
-                    'tingkat_aparatur' => 'kab_kota'
+                    'provinsi_id' => $user->userProvKabKota->provinsi_id,
+                    'tingkat_aparatur' => 'provinsi'
                 ], [
                     'penilai_ak_analis_id' => $request->kab_prov_penilai_penetap,
-                    'kab_kota_id' => $user->userProvKabKota->kab_kota_id,
-                    'tingkat_aparatur' => 'kab_kota'
+                    'provinsi_id' => $user->userProvKabKota->provinsi_id,
+                    'tingkat_aparatur' => 'provinsi'
                 ]);
                 break;
             case 'penetap_ak_analis':
                 KabProvPenilaiAndPenetap::query()->updateOrCreate([
-                    'kab_kota_id' => $user->userProvKabKota->kab_kota_id,
-                    'tingkat_aparatur' => 'kab_kota'
+                    'provinsi_id' => $user->userProvKabKota->provinsi_id,
+                    'tingkat_aparatur' => 'provinsi'
                 ], [
                     'penetap_ak_analis_id' => $request->kab_prov_penilai_penetap,
-                    'kab_kota_id' => $user->userProvKabKota->kab_kota_id,
-                    'tingkat_aparatur' => 'kab_kota'
+                    'provinsi_id' => $user->userProvKabKota->provinsi_id,
+                    'tingkat_aparatur' => 'provinsi'
                 ]);
                 break;
         }

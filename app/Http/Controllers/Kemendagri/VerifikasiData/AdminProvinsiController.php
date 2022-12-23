@@ -23,14 +23,17 @@ class AdminProvinsiController extends Controller
     {
         if ($request->ajax()) {
             $data = DB::select('SELECT
-                users.id,
-                users.username AS nama,
-                provinsis.nama AS provinsi,
-                user_prov_kab_kotas.file_permohonan,
-                users.status_akun
+                    users.id,
+                    users.username AS nama,
+                    provinsis.nama AS provinsi,
+                    user_prov_kab_kotas.file_permohonan,
+                    users.status_akun
             FROM users
             JOIN user_prov_kab_kotas ON user_prov_kab_kotas.user_id = users.id
-            JOIN provinsis ON provinsis.id = user_prov_kab_kotas.provinsi_id');
+            JOIN provinsis ON provinsis.id = user_prov_kab_kotas.provinsi_id
+            JOIN role_user ON role_user.user_id = users.id
+            JOIN roles ON roles.id = role_user.role_id
+            WHERE roles.name = "provinsi"');
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('file_permohonan', function ($row) {
