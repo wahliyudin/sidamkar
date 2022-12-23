@@ -23,20 +23,18 @@ class ExternalService
         $this->rekapitulasiKegiatanRepository = $rekapitulasiKegiatanRepository;
     }
 
-    public function ttdRekapitulasi(RekapitulasiKegiatan $rekapitulasiKegiatan, User $user, Periode $periode, User $atasan_langsung, User $penilai)
+    public function ttdRekapitulasi(RekapitulasiKegiatan $rekapitulasiKegiatan, User $user, Periode $periode, User $penetap)
     {
         // $ttd = $atasan_langsung?->userPejabatStruktural?->file_ttd;
-        [$link_pengembang, $name_pengembang, $jml_ak_penunjang, $jml_ak_profesi] = $this->generatePdfService->generatePengembang($user, $penilai);
-        [$link_penilaian_capaian, $name_penilaian_capaian, $capaian_ak] = $this->generatePdfService->generatePenilaianCapaian($periode, $user, $rekapitulasiKegiatan->total_capaian, $penilai);
+        $data = $this->processPenetapan($user, $periode);
+        [$link_penetapan, $name_penetapan] = $this->generatePdfService->generatePenetapan($user, $penetap, $data, true);
         $rekapitulasiKegiatan->update([
-            'link_pengembang' => $link_pengembang,
-            'name_pengembang' => $name_pengembang,
-            'link_penilaian_capaian' => $link_penilaian_capaian,
-            'name_penilaian_capaian' => $name_penilaian_capaian
+            'link_penetapan' => $link_penetapan,
+            'name_penetapan' => $name_penetapan
         ]);
-        $this->rekapitulasiKegiatanRepository->ttdPenilai($rekapitulasiKegiatan);
+        $this->rekapitulasiKegiatanRepository->ttdPenetap($rekapitulasiKegiatan);
         $rekapitulasiKegiatan->historyRekapitulasiKegiatans()->create([
-            'content' => 'Rekapitulasi ditanda tangani Tim Penilai'
+            'content' => 'Rekapitulasi ditanda tangani Tim Penetap'
         ]);
     }
 

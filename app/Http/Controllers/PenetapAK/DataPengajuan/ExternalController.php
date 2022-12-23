@@ -48,14 +48,11 @@ class ExternalController extends Controller
             }
             $auth = $this->authUser()->load(['userPejabatStruktural']);
             $data = DB::select('SELECT
-                    users.id AS user_id,
+                    users.id,
                     user_aparaturs.nama,
                     user_aparaturs.nip,
-                    pangkat_golongan_tmts.nama AS pangkat,
-                    roles.display_name AS jabatan,
-                    user_aparaturs.status_mekanisme,
-                    user_aparaturs.angka_mekanisme,
-                    mekanisme_pengangkatans.nama AS mekanisme
+                    roles.display_name,
+                    (CASE WHEN user_aparaturs.jenis_kelamin = "P" THEN "Perempuan" ELSE "Laki-Laki" END) AS jenis_kelamin
                 FROM users
                 LEFT JOIN user_aparaturs ON user_aparaturs.user_id = users.id
                 LEFT JOIN pangkat_golongan_tmts ON pangkat_golongan_tmts.id = user_aparaturs.pangkat_golongan_tmt_id
@@ -69,20 +66,17 @@ class ExternalController extends Controller
                     AND user_aparaturs.kab_kota_id != ' . $auth->userPejabatStruktural->kab_kota_id . '
                     AND user_aparaturs.kab_kota_id IN (SELECT ex_kab_kota.kab_kota_id
                         FROM kab_prov_penilai_and_penetaps AS ex_kab_kota
-                            WHERE ex_kab_kota.penilai_ak_damkar_id = internal.penilai_ak_damkar_id)
+                            WHERE ex_kab_kota.penetap_ak_damkar_id = internal.penetap_ak_damkar_id)
                     OR user_aparaturs.provinsi_id IN (SELECT ex_provinsi.provinsi_id
                         FROM kab_prov_penilai_and_penetaps AS ex_provinsi
-                            WHERE ex_provinsi.penilai_ak_damkar_id = internal.penilai_ak_damkar_id)
+                            WHERE ex_provinsi.penetap_ak_damkar_id = internal.penetap_ak_damkar_id)
                     ORDER BY roles.display_name ' . $role_order);
             return DataTables::of($data)
                 ->addIndexColumn()
-                ->addColumn('status', function ($row) {
-                    return $this->statusMekanisme($row->status_mekanisme);
-                })
                 ->addColumn('action', function ($row) {
-                    return view('penetap-ak.data-pengajuan.external.buttons', compact('row'))->render();
+                    return '<a href="' . route('penetap-ak.data-pengajuan.external.show', $row->id) . '" class="btn btn-blue btn-sm">Detail</a>';
                 })
-                ->rawColumns(['action', 'status'])
+                ->rawColumns(['action'])
                 ->make(true);
         }
     }
@@ -98,118 +92,18 @@ class ExternalController extends Controller
         return view('penetap-ak.data-pengajuan.external.show', compact('user', 'rekapitulasiKegiatan', 'penetapanAngkaKredit'));
     }
 
-
-    public function storePenetapan(Request $request, $id)
-    {
-        $user = User::query()->with(['userAparatur.pangkatGolonganTmt'])->findOrFail($id);
-        $rules = [
-            'ak_pengalaman' => 'required'
-        ];
-        if ($user->userAparatur->expired_mekanisme) {
-            $rules['ak_kelebihan'] = 'required';
-        }
-        $request->validate($rules);
-        $periode = $this->periodeRepository->isActive();
-        $this->externalService->storePenetapan($user, null, $periode, $request->ak_kelebihan, $request->ak_pengalaman);
-        return response()->json([
-            'message' => 'Berhasil'
-        ]);
-    }
-
     public function ttd($id)
     {
         $periode = $this->periodeRepository->isActive();
-        $user = $this->userRepository->getUserById($id)->load(['mente.atasanLangsung.userPejabatStruktural']);
-        $atasan_langsung = $user->mente->atasanLangsung;
-        $penilai_ak = $this->authUser()->load(['userPejabatStruktural']);
-        if (!isset($penilai_ak?->userPejabatStruktural?->file_ttd)) {
+        $user = $this->userRepository->getUserById($id)->load(['userAparatur.pangkatGolonganTmt']);
+        $penetapAk = $this->authUser()->load(['userPejabatStruktural']);
+        if (!isset($penetapAk?->userPejabatStruktural?->file_ttd)) {
             throw ValidationException::withMessages(['Maaf, Anda Belum Melengkapi Profil']);
         }
         $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode);
-        $this->externalService->ttdRekapitulasi($rekap, $user, $periode, $atasan_langsung, $penilai_ak);
+        $this->externalService->ttdRekapitulasi($rekap, $user, $periode, $penetapAk);
         return response()->json([
             'message' => 'Berhasil'
         ]);
-    }
-
-    public function sendToPenetap($user_id)
-    {
-        $periode = $this->periodeRepository->isActive();
-        $user = $this->userRepository->getUserById($user_id);
-        $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode);
-        $this->rekapitulasiKegiatanRepository->sendToPenetap($rekap);
-        return response()->json([
-            'success' => 200,
-            'message' => 'Berhasil dikirim ke Penetap'
-        ]);
-    }
-
-    public function verified($id)
-    {
-        $userAparatur = UserAparatur::query()->where('user_id', $id)->first();
-        if (!$userAparatur) {
-            abort(404);
-        }
-        $userAparatur->update([
-            'status_mekanisme' => 3
-        ]);
-        return response()->json([
-            'status' => 200,
-            'message' => 'Berhasil diverifikasi'
-        ]);
-    }
-
-    public function reject(Request $request, $id)
-    {
-        $request->validate([
-            'catatan' => 'required'
-        ]);
-        $userAparatur = UserAparatur::query()->where('user_id', $id)->first();
-        if (!$userAparatur) {
-            abort(404);
-        }
-        $userAparatur->update([
-            'status_mekanisme' => 4
-        ]);
-        return response()->json([
-            'status' => 200,
-            'message' => 'Berhasil ditolak'
-        ]);
-    }
-
-    public function revision(Request $request, $id)
-    {
-        $userAparatur = UserAparatur::query()->where('user_id', $id)->first();
-        if (!$userAparatur) {
-            abort(404);
-        }
-        $userAparatur->update([
-            'status_mekanisme' => 2
-        ]);
-        return response()->json([
-            'status' => 200,
-            'message' => 'Berhasil direvisi'
-        ]);
-    }
-
-    public function statusMekanisme($status)
-    {
-        switch ($status) {
-            case 1:
-                return '<span class="badge bg-yellow text-white text-sm py-2 px-3 rounded-md">Menunggu</span>';
-                break;
-            case 2:
-                return '<span class="badge bg-red text-white text-sm py-2 px-3 rounded-md">Revisi</span>';
-                break;
-            case 3:
-                return '<span class="badge bg-green text-white text-sm py-2 px-3 rounded-md">Verified</span>';
-                break;
-            case 4:
-                return '<span class="badge bg-black text-white text-sm py-2 px-3 rounded-md">Ditolak</span>';
-                break;
-            default:
-                return '<span class="badge bg-gray text-white text-sm py-2 px-3 rounded-md">Belum Menginput</span>';
-                break;
-        }
     }
 }

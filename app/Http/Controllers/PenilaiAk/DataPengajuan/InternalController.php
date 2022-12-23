@@ -53,31 +53,58 @@ class InternalController extends Controller
             }
             $user = $this->authUser()->load(['userPejabatStruktural', 'roles']);
             $data = DB::select('SELECT
-                        users.id AS user_id,
-                        user_aparaturs.nama,
-                        user_aparaturs.nip,
-                        roles.display_name,
-                        user_aparaturs.status_mekanisme,
-                        user_aparaturs.angka_mekanisme,
-                        mekanisme_pengangkatans.nama AS mekanisme,
-                        pangkat_golongan_tmts.nama AS golongan
-                    FROM users
-                        JOIN kab_prov_penilai_and_penetaps
-                            ON (
-                                kab_prov_penilai_and_penetaps.penilai_ak_analis_id = "' . $user->id . '"
-                                OR kab_prov_penilai_and_penetaps.penilai_ak_damkar_id = "' . $user->id . '"
-                                )
-                    JOIN user_aparaturs ON user_aparaturs.user_id = users.id
-                    JOIN role_user ON role_user.user_id = users.id
-                    JOIN roles ON role_user.role_id = roles.id
-                    LEFT JOIN mekanisme_pengangkatans ON user_aparaturs.mekanisme_pengangkatan_id = mekanisme_pengangkatans.id
-                    LEFT JOIN pangkat_golongan_tmts ON pangkat_golongan_tmts.id = user_aparaturs.pangkat_golongan_tmt_id
-                    WHERE user_aparaturs.kab_kota_id = kab_prov_penilai_and_penetaps.kab_kota_id
-                        AND users.status_akun = 1
-                        AND roles.name IN (' . join(',', $this->getRoles($this->authUser()->roles()->pluck('name')->toArray())) . ')
-                        AND user_aparaturs.tingkat_aparatur = "kab_kota"
-                        AND EXISTS (SELECT * FROM rekapitulasi_kegiatans WHERE rekapitulasi_kegiatans.fungsional_id = users.id AND rekapitulasi_kegiatans.is_send IN (2, 3))
-                        ORDER BY roles.display_name ' . $role_order);
+                    users.id AS user_id,
+                    user_aparaturs.nama,
+                    user_aparaturs.nip,
+                    pangkat_golongan_tmts.nama AS pangkat,
+                    roles.display_name AS jabatan,
+                    user_aparaturs.status_mekanisme,
+                    user_aparaturs.angka_mekanisme,
+                    mekanisme_pengangkatans.nama AS mekanisme
+                FROM users
+                LEFT JOIN user_aparaturs ON user_aparaturs.user_id = users.id
+                LEFT JOIN pangkat_golongan_tmts ON pangkat_golongan_tmts.id = user_aparaturs.pangkat_golongan_tmt_id
+                JOIN role_user ON role_user.user_id = users.id
+                JOIN roles ON roles.id = role_user.role_id
+                LEFT JOIN mekanisme_pengangkatans ON user_aparaturs.mekanisme_pengangkatan_id = mekanisme_pengangkatans.id
+                JOIN kab_prov_penilai_and_penetaps AS internal ON internal.kab_kota_id = ' . $user->userPejabatStruktural->kab_kota_id . '
+                JOIN rekapitulasi_kegiatans ON (rekapitulasi_kegiatans.fungsional_id = users.id AND rekapitulasi_kegiatans.is_send IN (2, 3))
+                WHERE users.status_akun = 1
+                    AND roles.id IN (1,2,3,4,5,6,7)
+                    AND user_aparaturs.kab_kota_id = ' . $user->userPejabatStruktural->kab_kota_id . '
+                    AND user_aparaturs.kab_kota_id NOT IN (SELECT ex_kab_kota.kab_kota_id
+                        FROM kab_prov_penilai_and_penetaps AS ex_kab_kota
+                            WHERE ex_kab_kota.penilai_ak_damkar_id = internal.penilai_ak_damkar_id)
+                    OR user_aparaturs.provinsi_id NOT IN (SELECT ex_provinsi.provinsi_id
+                        FROM kab_prov_penilai_and_penetaps AS ex_provinsi
+                            WHERE ex_provinsi.penilai_ak_damkar_id = internal.penilai_ak_damkar_id)
+                    ORDER BY roles.display_name ' . $role_order);
+            // $data = DB::select('SELECT
+            //             users.id AS user_id,
+            //             user_aparaturs.nama,
+            //             user_aparaturs.nip,
+            //             roles.display_name,
+            //             user_aparaturs.status_mekanisme,
+            //             user_aparaturs.angka_mekanisme,
+            //             mekanisme_pengangkatans.nama AS mekanisme,
+            //             pangkat_golongan_tmts.nama AS golongan
+            //         FROM users
+            //             JOIN kab_prov_penilai_and_penetaps
+            //                 ON (
+            //                     kab_prov_penilai_and_penetaps.penilai_ak_analis_id = "' . $user->id . '"
+            //                     OR kab_prov_penilai_and_penetaps.penilai_ak_damkar_id = "' . $user->id . '"
+            //                     )
+            //         JOIN user_aparaturs ON user_aparaturs.user_id = users.id
+            //         JOIN role_user ON role_user.user_id = users.id
+            //         JOIN roles ON role_user.role_id = roles.id
+            //         LEFT JOIN mekanisme_pengangkatans ON user_aparaturs.mekanisme_pengangkatan_id = mekanisme_pengangkatans.id
+            //         LEFT JOIN pangkat_golongan_tmts ON pangkat_golongan_tmts.id = user_aparaturs.pangkat_golongan_tmt_id
+            //         WHERE user_aparaturs.kab_kota_id = kab_prov_penilai_and_penetaps.kab_kota_id
+            //             AND users.status_akun = 1
+            //             AND roles.name IN (' . join(',', $this->getRoles($this->authUser()->roles()->pluck('name')->toArray())) . ')
+            //             AND user_aparaturs.tingkat_aparatur = "kab_kota"
+            //             AND EXISTS (SELECT * FROM rekapitulasi_kegiatans WHERE rekapitulasi_kegiatans.fungsional_id = users.id AND rekapitulasi_kegiatans.is_send IN (2, 3))
+            //             ORDER BY roles.display_name ' . $role_order);
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('status', function ($row) {
