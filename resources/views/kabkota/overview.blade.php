@@ -126,44 +126,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-9 px-2 col order-md-0 order-2">
-                    <div class="card overflow-auto mb-3">
-                        <div class="card-header">
-                            <h4 class="card-title" style="color: #17181A; font-family: 'Roboto';">Butir Kegiatan</h4>
-                        </div>
-                        <div class="card-body">
-                            <table class="table table-striped" id="table1">
-                                <thead>
-                                    <tr>
-                                        <th>Atasan Langsung</th>
-                                        <th>Penilai AK</th>
-                                        <th>Penetap AK</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <a href="" style="color: #06152B;">Iqbal Imran</a>
-                                        </td>
-                                        <td>
-                                            <a href="" style="color: #06152B;">Okan Bihaqi</a>
-                                        </td>
-                                        <td>
-                                            <a href="" style="color: #06152B;">Budi S</a>
-                                        </td>
-                                        <td>
-                                            <div class="periode border border-primary " style="text-align: center;">
-                                                Januari 2020 - Juli 2020
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col">
+                <div class="col-md-12 col">
                     <div class="card" style="overflow: auto; height: 550px">
                         <div class="card-header">
                             <h4 class="card-title text-center" style="color: #17181A; font-family: 'Roboto';">
@@ -174,12 +137,14 @@
                             <ul>
                                 @forelse ($informasi as $informasis)
                                     <li>
-                                        <p style="margin: 0 !important;"> {{ $informasis->judul }} ( <a href="#"
-                                                data-id="{{ $informasis->informasi_id }}" class="detail-informasi">Klik
+                                        <h4 style="margin: 0 !important;" class="header-information">
+                                            {{ $informasis->judul }} ( <a href="#"
+                                                data-id="{{ $informasis->informasi_id }}" class="detail-informasi"
+                                                style="font-size: 18px;">Klik
                                                 Disini</a> )
-                                        </p>
+                                        </h4>
                                         <div class="footer-information">
-                                            <p style="font-size: 9px; margin-top: 10px; color: red;">
+                                            <p style="font-size: 14px; margin-top: 10px; color: red;" class="tgl-info">
                                                 {{ $informasis->created_at }}</p>
                                         </div>
                                     </li>

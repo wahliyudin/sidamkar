@@ -2,6 +2,17 @@
 @section('content')
     <section class="section">
         <div class="card mt-4 overflow-auto">
+            <div class="d-flex px-4 container-control justify-content-between align-items-center">
+                <div class="d-flex mt-4">
+                    <div class="icon-back mb-2"><a
+                            href=" {{ $user->userAparatur->tingkat_aparatur == 'provinsi' ? route('provinsi.manajemen-user.struktural') : route('kab-kota.manajemen-user.struktural') }}">
+                            <i class="fa-solid fa-arrow-left-long" style="cursor: pointer"></i></a>
+                    </div>
+                    <div class="ms-2">
+                        <h5>Data {{ old('nama', $user->userAparatur?->nama) }}</h5>
+                    </div>
+                </div>
+            </div>
             <div class="card-body" style="padding-top: 3rem;">
                 <form action="" method="post" class="form-data">
                     <div class="row">

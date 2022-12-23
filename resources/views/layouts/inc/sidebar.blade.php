@@ -180,7 +180,7 @@
                                     <li
                                         class="submenu-item {{ request()->is('penilai-ak/data-pengajuan/external*') ? 'active' : '' }}">
                                         <a href="{{ route('penilai-ak.data-pengajuan.external') }}">
-                                            External</a>
+                                            Pejabat Daerah Lain</a>
                                     </li>
                                 </ul>
                             </li>
@@ -217,7 +217,7 @@
                                     <li
                                         class="submenu-item {{ request()->is('penetap-ak/data-pengajuan/external*') ? 'active' : '' }}">
                                         <a href="{{ route('penetap-ak.data-pengajuan.external') }}">
-                                            External</a>
+                                            Pejabat Daerah Lain</a>
                                     </li>
                                 </ul>
                             </li>
