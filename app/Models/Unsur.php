@@ -12,6 +12,7 @@ class Unsur extends Model
 
     protected $fillable = [
         'jenis_kegiatan_id',
+        'jenis_aparatur',
         'nama'
     ];
 

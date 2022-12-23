@@ -49,7 +49,7 @@ class StrukturalDataTable extends DataTable
                 });
             })
             ->addColumn('eselon', function (User $user) {
-                return 'Eselon '.$user->userPejabatStruktural->eselon;
+                return 'Eselon ' . $user->userPejabatStruktural->eselon;
             })
             ->filterColumn('eselon', function ($query, $keyword) {
                 return $query->whereHas('userPejabatStruktural', function ($query) use ($keyword) {
@@ -62,7 +62,7 @@ class StrukturalDataTable extends DataTable
                 });
             })
             ->addColumn('tgl_registrasi', function (User $user) {
-                return $user->created_at->translatedFormat('H:i') . ' WIB, ' . $user->created_at->translatedFormat('d F Y');
+                return $user->created_at->translatedFormat('H:i') . ' WIB, ' . $user->created_at->translatedFormat('d-m-Y');
             })
             ->orderColumn('tgl_registrasi', function ($query, $order) {
                 $query->orderBy('created_at', $order);
@@ -99,18 +99,18 @@ class StrukturalDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('User-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    ->dom('lfrtip')
-                    ->orderBy(2, 'desc')
-                    ->buttons(
-                        Button::make('create'),
-                        Button::make('export'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    );
+            ->setTableId('User-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->dom('lfrtip')
+            ->orderBy(2, 'desc')
+            ->buttons(
+                Button::make('create'),
+                Button::make('export'),
+                Button::make('print'),
+                Button::make('reset'),
+                Button::make('reload')
+            );
     }
 
     /**
@@ -123,7 +123,7 @@ class StrukturalDataTable extends DataTable
         return [
             Column::make('username')
                 ->title('Nama'),
-            Column::make('no_hp')->addClass('nowrap') ,
+            Column::make('no_hp')->addClass('nowrap'),
             Column::make('eselon'),
             Column::make('tgl_registrasi')
                 ->searchable(false),

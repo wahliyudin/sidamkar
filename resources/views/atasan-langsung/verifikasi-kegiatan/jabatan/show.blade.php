@@ -4,7 +4,7 @@
     <div class="section">
         <div class="d-flex px-4 mb-4 container-control justify-content-between align-items-center">
             <div class="d-flex">
-                <div class="icon-back mb-2"><a href="{{ url()->previous() }}"> <i class="fa-solid fa-arrow-left-long"
+                <div class="icon-back mb-2"><a href="javascript:history.back()"> <i class="fa-solid fa-arrow-left-long"
                             style="cursor: pointer"></i></a>
                 </div>
                 <div class="ms-2">

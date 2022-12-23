@@ -89,7 +89,6 @@ class MenteController extends Controller
     public function storePenilaiAndPenetap(Request $request)
     {
         $user = $this->authUser()->load('userProvKabKota');
-        $periode = $this->periodeRepository->isActive();
         switch ($request->jenis_aparatur) {
             case 'penilai_ak_damkar':
                 KabProvPenilaiAndPenetap::query()->updateOrCreate([

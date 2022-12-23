@@ -32,27 +32,44 @@ class InternalService
                 roles.display_name,
                 (CASE WHEN user_aparaturs.jenis_kelamin = "P" THEN "Perempuan" ELSE "Laki-Laki" END) AS jenis_kelamin
             FROM users
-            JOIN user_aparaturs ON user_aparaturs.user_id = users.id
-            LEFT JOIN kab_prov_penilai_and_penetaps ON (
-                kab_prov_penilai_and_penetaps.penetap_ak_damkar_id = ' . '"' . $user->id . '"' . '
-                OR kab_prov_penilai_and_penetaps.penetap_ak_analis_id = ' . '"' . $user->id . '"' . '
-            )
+            LEFT JOIN user_aparaturs ON user_aparaturs.user_id = users.id
+            LEFT JOIN pangkat_golongan_tmts ON pangkat_golongan_tmts.id = user_aparaturs.pangkat_golongan_tmt_id
             JOIN role_user ON role_user.user_id = users.id
-            JOIN roles ON role_user.role_id = roles.id
-            JOIN rekapitulasi_kegiatans ON rekapitulasi_kegiatans.fungsional_id = users.id
+            JOIN roles ON roles.id = role_user.role_id
+            LEFT JOIN mekanisme_pengangkatans ON user_aparaturs.mekanisme_pengangkatan_id = mekanisme_pengangkatans.id
+            JOIN kab_prov_penilai_and_penetaps AS internal ON internal.kab_kota_id = ' . $user->userPejabatStruktural->kab_kota_id . '
+            JOIN rekapitulasi_kegiatans ON (rekapitulasi_kegiatans.fungsional_id = users.id AND rekapitulasi_kegiatans.is_send IN (2, 3))
             WHERE users.status_akun = 1
-                AND rekapitulasi_kegiatans.is_send = 3
-                AND user_aparaturs.tingkat_aparatur = kab_prov_penilai_and_penetaps.tingkat_aparatur
-                AND (CASE WHEN kab_prov_penilai_and_penetaps.tingkat_aparatur = "kab_kota" THEN
-                    kab_prov_penilai_and_penetaps.kab_kota_id = user_aparaturs.kab_kota_id
-                    ELSE
-                    kab_prov_penilai_and_penetaps.provinsi_id = user_aparaturs.provinsi_id END)
-                AND (CASE WHEN kab_prov_penilai_and_penetaps.penetap_ak_damkar_id IS NOT NULL THEN
-                    roles.id IN (1,2,3,4) ELSE
-                    (CASE WHEN kab_prov_penilai_and_penetaps.penetap_ak_damkar_id
-                        AND kab_prov_penilai_and_penetaps.penetap_ak_analis_id IS NOT NULL THEN
-                        roles.id IN (1,2,3,4,5,6,7) ELSE
-                        roles.id IN (5,6,7) END) END)');
+                AND roles.id IN (1,2,3,5,6)
+                AND user_aparaturs.kab_kota_id = ' . $user->userPejabatStruktural->kab_kota_id);
+        // return DB::select('SELECT
+        //         users.id,
+        //         user_aparaturs.nama,
+        //         user_aparaturs.nip,
+        //         roles.display_name,
+        //         (CASE WHEN user_aparaturs.jenis_kelamin = "P" THEN "Perempuan" ELSE "Laki-Laki" END) AS jenis_kelamin
+        //     FROM users
+        //     JOIN user_aparaturs ON user_aparaturs.user_id = users.id
+        //     LEFT JOIN kab_prov_penilai_and_penetaps ON (
+        //         kab_prov_penilai_and_penetaps.penetap_ak_damkar_id = ' . '"' . $user->id . '"' . '
+        //         OR kab_prov_penilai_and_penetaps.penetap_ak_analis_id = ' . '"' . $user->id . '"' . '
+        //     )
+        //     JOIN role_user ON role_user.user_id = users.id
+        //     JOIN roles ON role_user.role_id = roles.id
+        //     JOIN rekapitulasi_kegiatans ON rekapitulasi_kegiatans.fungsional_id = users.id
+        //     WHERE users.status_akun = 1
+        //         AND rekapitulasi_kegiatans.is_send = 3
+        //         AND user_aparaturs.tingkat_aparatur = kab_prov_penilai_and_penetaps.tingkat_aparatur
+        //         AND (CASE WHEN kab_prov_penilai_and_penetaps.tingkat_aparatur = "kab_kota" THEN
+        //             kab_prov_penilai_and_penetaps.kab_kota_id = user_aparaturs.kab_kota_id
+        //             ELSE
+        //             kab_prov_penilai_and_penetaps.provinsi_id = user_aparaturs.provinsi_id END)
+        //         AND (CASE WHEN kab_prov_penilai_and_penetaps.penetap_ak_damkar_id IS NOT NULL THEN
+        //             roles.id IN (1,2,3,4) ELSE
+        //             (CASE WHEN kab_prov_penilai_and_penetaps.penetap_ak_damkar_id
+        //                 AND kab_prov_penilai_and_penetaps.penetap_ak_analis_id IS NOT NULL THEN
+        //                 roles.id IN (1,2,3,4,5,6,7) ELSE
+        //                 roles.id IN (5,6,7) END) END)');
     }
 
     public function ttdRekapitulasi(RekapitulasiKegiatan $rekapitulasiKegiatan, User $user, Periode $periode, User $penetap)

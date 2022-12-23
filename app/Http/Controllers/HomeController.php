@@ -49,6 +49,10 @@ class HomeController extends Controller
             return to_route('struktural.dashboard');
         } elseif (auth()->user()->hasRole('kemendagri')) {
             return to_route('kemendagri.overview.index');
+        } elseif (auth()->user()->hasRole('penilai_ak_kemendagri')) {
+            return to_route('penilai-ak-kemendagri.data-pengajuan');
+        } elseif (auth()->user()->hasRole('penetap_ak_kemendagri')) {
+            return to_route('penetap-ak-kemendagri.data-pengajuan');
         } else {
             return to_route('login')->with('warning', 'Kamu Tidak Dapat Mengakses Sistem');
         }

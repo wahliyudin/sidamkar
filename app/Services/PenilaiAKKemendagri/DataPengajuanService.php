@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\PenilaiAK\DataPengajuan;
+namespace App\Services\PenilaiAKKemendagri;
 
 use App\Facades\Modules\DestructRoleFacade;
 use App\Models\KetentuanNilai;
@@ -10,9 +10,8 @@ use App\Models\RekapitulasiKegiatan;
 use App\Models\User;
 use App\Repositories\RekapitulasiKegiatanRepository;
 use App\Services\GeneratePdfService;
-use Illuminate\Support\Facades\DB;
 
-class ExternalService
+class DataPengajuanService
 {
     protected GeneratePdfService $generatePdfService;
     protected RekapitulasiKegiatanRepository $rekapitulasiKegiatanRepository;

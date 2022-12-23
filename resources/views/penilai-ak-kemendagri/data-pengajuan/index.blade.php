@@ -11,7 +11,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <table id="external" class="table table-bordered table-striped">
+                <table id="penilai-kemndagri" class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th>Nama</th>
@@ -39,20 +39,19 @@
 
 @section('js')
     <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
-    {{-- {{ $dataTable->scripts() }} --}}
     <script src="{{ asset('assets/js/extensions/sweetalert2.all.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
     <script>
-        $('#external').dataTable().fnDestroy();
-        table = $('#external').DataTable({
+        $('#penilai-kemndagri').dataTable().fnDestroy();
+        table = $('#penilai-kemndagri').DataTable({
             responsive: true,
             serverSide: true,
             processing: true,
             ajax: {
-                url: url('/penilai-ak/data-pengajuan/external/datatable'),
+                url: url('/penilai-ak-kemendagri/data-pengajuan/datatable'),
                 type: "POST",
                 data: {
                     "_token": "{{ csrf_token() }}"
@@ -136,7 +135,7 @@
                         return new Promise(function(resolve) {
                             $.ajax({
                                     type: 'POST',
-                                    url: url("/penilai-ak/data-pengajuan/external/" +
+                                    url: url("/penilai-ak-kemendagri/data-pengajuan/" +
                                         user_id +
                                         "/tolak"),
                                     data: {
@@ -188,7 +187,7 @@
                         return new Promise(function(resolve) {
                             $.ajax({
                                     type: 'POST',
-                                    url: url("/penilai-ak/data-pengajuan/external/" +
+                                    url: url("/penilai-ak-kemendagri/data-pengajuan/" +
                                         user_id +
                                         "/revisi"),
                                     data: {
@@ -234,7 +233,7 @@
                         return new Promise(function(resolve) {
                             $.ajax({
                                     type: 'POST',
-                                    url: url("/penilai-ak/data-pengajuan/external/" +
+                                    url: url("/penilai-ak-kemendagri/data-pengajuan/" +
                                         user_id +
                                         "/verifikasi"),
                                     dataType: 'JSON'

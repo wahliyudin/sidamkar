@@ -46,9 +46,12 @@ use App\Http\Controllers\Kemendagri\CMS\KegiatanPenunjangController;
 use App\Http\Controllers\Kemendagri\CMS\PeriodeController;
 use App\Http\Controllers\PenetapAK\DataPengajuan\ExternalController as DataPengajuanExternalController;
 use App\Http\Controllers\PenetapAK\DataPengajuan\InternalController as DataPengajuanInternalController;
+use App\Http\Controllers\PenetapAKKemendagri\PengajuanController as PenetapAKKemendagriPengajuanController;
 use App\Http\Controllers\PenilaiAK\DataPengajuan\ExternalController;
 use App\Http\Controllers\PenilaiAk\DataPengajuan\InternalController;
 use App\Http\Controllers\PenilaiAk\KegiatanSelesaiController as PenilaiAkKegiatanSelesaiController;
+use App\Http\Controllers\PenilaiAKKemendagri\KegiatanSelesaiController;
+use App\Http\Controllers\PenilaiAKKemendagri\PengajuanController;
 use App\Http\Controllers\Provinsi\OverviewController as ProvinsiOverviewController;
 use App\Http\Controllers\Provinsi\HistoriPenetapanController as  ProvinsiHistoriPenetapanController;
 use App\Http\Controllers\Provinsi\PengangkatanController as ProvinsiPengangkatanController;
@@ -74,6 +77,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('coba', [CobaController::class, 'index']);
+Route::post('coba/store', [CobaController::class, 'store']);
 Route::redirect('/', 'login');
 Auth::routes(['verify' => true]);
 Route::post('register/file', [RegisterController::class, 'storeFile']);
@@ -156,7 +160,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/laporan-jabatan', [LaporanJabatanController::class, 'index'])->name('laporan-jabatan');
     });
 
-    Route::middleware(['role:atasan_langsung|penilai_ak_damkar|penetap_ak_damkar|penilai_ak_analis|penetap_ak_analis'])->group(function () {
+    Route::middleware(['role:atasan_langsung|penilai_ak_damkar|penetap_ak_damkar|penilai_ak_analis|penetap_ak_analis|penilai_ak_kemendagri|penetap_ak_kemendagri'])->group(function () {
         Route::get('struktural/dashboard', [ControllersStrukturalDashboardController::class, 'index'])->name('struktural.dashboard');
 
         Route::controller(DataStrukturalController::class)->group(function () {
@@ -404,6 +408,30 @@ Route::middleware(['auth'])->group(function () {
             Route::get('kemendagri/cms/periode', 'index')->name('kemendagri.cms.periode.index');
             Route::post('kemendagri/cms/periode/store', 'store')->name('kemendagri.cms.periode.store');
             Route::post('kemendagri/cms/periode/{id}/switch', 'switch')->name('kemendagri.cms.periode.switch');
+        });
+    });
+
+    Route::middleware(['role:penilai_ak_kemendagri'])->group(function () {
+        Route::controller(PengajuanController::class)->group(function () {
+            Route::get('penilai-ak-kemendagri/data-pengajuan', 'index')->name('penilai-ak-kemendagri.data-pengajuan');
+            Route::get('penilai-ak-kemendagri/data-pengajuan/{id}/show', 'show')->name('penilai-ak-kemendagri.data-pengajuan.show');
+            Route::post('penilai-ak-kemendagri/data-pengajuan/datatable', 'datatable')->name('penilai-ak-kemendagri.data-pengajuan.datatable');
+            Route::post('penilai-ak-kemendagri/data-pengajuan/{id}/ttd', 'ttd')->name('penilai-ak-kemendagri.data-pengajuan.ttd');
+            Route::post('penilai-ak-kemendagri/data-pengajuan/{user_id}/send-to-penetap', 'sendToPenetap')->name('penilai-ak-kemendagri.data-pengajuan.send-to-penetap');
+            Route::post('penilai-ak-kemendagri/data-pengajuan/{user_id}/verifikasi', 'verified')->name('penilai-ak-kemendagri.data-pengajuan.verifikasi');
+            Route::post('penilai-ak-kemendagri/data-pengajuan/{user_id}/revisi', 'revision')->name('penilai-ak-kemendagri.data-pengajuan.revisi');
+            Route::post('penilai-ak-kemendagri/data-pengajuan/{user_id}/tolak', 'reject')->name('penilai-ak-kemendagri.data-pengajuan.tolak');
+            Route::post('penilai-ak-kemendagri/data-pengajuan/{user_id}/simpan-penetapan', 'storePenetapan')->name('penilai-ak-kemendagri.data-pengajuan.simpan-penetapan');
+        });
+        Route::get('penilai-ak-kemendagri/kegiatan-selesai', [KegiatanSelesaiController::class, 'index'])->name('penilai-ak-kemendagri.kegiatan-selesai');
+    });
+
+    Route::middleware(['role:penetap_ak_kemendagri'])->group(function () {
+        Route::controller(PenetapAKKemendagriPengajuanController::class)->group(function () {
+            Route::get('penetap-ak-kemendagri/data-pengajuan', 'index')->name('penetap-ak-kemendagri.data-pengajuan');
+            Route::get('penetap-ak-kemendagri/data-pengajuan/{id}/show', 'show')->name('penetap-ak-kemendagri.data-pengajuan.show');
+            Route::post('penetap-ak-kemendagri/data-pengajuan/datatable', 'datatable')->name('penetap-ak-kemendagri.data-pengajuan.datatable');
+            Route::post('penetap-ak-kemendagri/data-pengajuan/{id}/ttd', 'ttd')->name('penetap-ak.data-pengajuan.ttd');
         });
     });
 

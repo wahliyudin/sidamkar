@@ -318,8 +318,8 @@ $(function () {
     });
 
     $('#tambahDataModal').on('click', '.simpan-kegiatan.simpan', function () {
-        var role_id = $('select[name="role_id"]').val();
         var unsur = $('input[name="unsur"]').val();
+        var jenis_aparatur = $('select[name="jenis_aparatur"]').val();
         result = [];
         $.each($('input[name="sub_unsur[]"]'), function (indexInArray, valueOfElement) {
             result.push({
@@ -333,8 +333,8 @@ $(function () {
             type: "POST",
             url: url("/kemendagri/cms/kegiatan-profesi"),
             data: {
-                role_id: role_id,
                 unsur: unsur,
+                jenis_aparatur: jenis_aparatur,
                 sub_unsurs: result
             },
             dataType: "json",
@@ -380,7 +380,7 @@ $(function () {
                         .trigger('change');
                 }
                 $('input[name="unsur"]').val(response.data.nama);
-                $('select[name="periode_id"]').val(response.data.periode_id);
+                $('select[name="jenis_aparatur"]').val(response.data.jenis_aparatur);
                 response.data.sub_unsurs.forEach(subUnsur => {
                     $('.container-unsur').append(htmlSubUnsur(subUnsur));
                 });
@@ -390,7 +390,7 @@ $(function () {
     });
 
     $('#tambahDataModal').on('click', '.simpan-kegiatan.update', function () {
-        var role_id = $('select[name="role_id"]').val();
+        var jenis_aparatur = $('select[name="jenis_aparatur"]').val();
         var unsur = $('input[name="unsur"]').val();
         result = [];
         $.each($('input[name="sub_unsur[]"]'), function (indexInArray, valueOfElement) {
@@ -406,7 +406,7 @@ $(function () {
             type: "PUT",
             url: url('/kemendagri/cms/kegiatan-profesi/' + $(this).data('id') + '/update'),
             data: {
-                role_id: role_id,
+                jenis_aparatur: jenis_aparatur,
                 unsur: unsur,
                 sub_unsurs: result
             },

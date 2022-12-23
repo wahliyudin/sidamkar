@@ -37,7 +37,10 @@ class AdminKabKotaController extends Controller
             FROM users
             JOIN user_prov_kab_kotas ON user_prov_kab_kotas.user_id = users.id
             JOIN provinsis ON provinsis.id = user_prov_kab_kotas.provinsi_id
-            JOIN kab_kotas ON kab_kotas.id = user_prov_kab_kotas.kab_kota_id');
+            JOIN kab_kotas ON kab_kotas.id = user_prov_kab_kotas.kab_kota_id
+            JOIN role_user ON role_user.user_id = users.id
+            JOIN roles ON roles.id = role_user.role_id
+            WHERE roles.name = "kab_kota"');
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('file_permohonan', function ($row) {

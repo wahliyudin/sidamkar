@@ -57,7 +57,7 @@ class FungsionalUmumDataTable extends DataTable
                 });
             })
             ->addColumn('tgl_registrasi', function (User $user) {
-                return $user->created_at->translatedFormat('H:i') . ' WIB, ' . $user->created_at->translatedFormat('d F Y');
+                return $user->created_at->translatedFormat('H:i') . ' WIB, ' . $user->created_at->translatedFormat('d-m-Y');
             })
             ->orderColumn('tgl_registrasi', function ($query, $order) {
                 $query->orderBy('created_at', $order);
