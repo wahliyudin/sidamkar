@@ -26,11 +26,13 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CobaController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\KabKota\ChatboxController;
+use App\Http\Controllers\KabKota\HistoriPenetapanController;
 use App\Http\Controllers\KabKota\ManajemenUser\FungsionalController as KabKotaFungsionalController;
 use App\Http\Controllers\KabKota\ManajemenUser\FungsionalUmumController as KabKotaFungsionalUmumController;
 use App\Http\Controllers\KabKota\ManajemenUser\StrukturalController as KabKotaStrukturalController;
 use App\Http\Controllers\KabKota\MenteController as KabKotaMenteController;
 use App\Http\Controllers\KabKota\OverviewController as KabKotaOverviewController;
+use App\Http\Controllers\KabKota\PengangkatanController;
 use App\Http\Controllers\Kemendagri\CMS\KegiatanJabatanController;
 use App\Http\Controllers\Kemendagri\CMS\KegiatanProfesiController;
 use App\Http\Controllers\Kemendagri\DataProvKabKotaController;
@@ -48,6 +50,8 @@ use App\Http\Controllers\PenilaiAK\DataPengajuan\ExternalController;
 use App\Http\Controllers\PenilaiAk\DataPengajuan\InternalController;
 use App\Http\Controllers\PenilaiAk\KegiatanSelesaiController as PenilaiAkKegiatanSelesaiController;
 use App\Http\Controllers\Provinsi\OverviewController as ProvinsiOverviewController;
+use App\Http\Controllers\Provinsi\HistoriPenetapanController as  ProvinsiHistoriPenetapanController;
+use App\Http\Controllers\Provinsi\PengangkatanController as ProvinsiPengangkatanController;
 use App\Http\Controllers\provinsi\ChatboxController as ProvinsiChatboxController;
 use App\Http\Controllers\Provinsi\ManajemenUser\FungsionalController as ProvinsiFungsionalController;
 use App\Http\Controllers\Provinsi\ManajemenUser\FungsionalUmumController as ProvinsiFungsionalUmumController;
@@ -278,6 +282,10 @@ Route::middleware(['auth'])->group(function () {
         Route::post('kab-kota/data-mente/{provinsi_id}/tingkat-provinsi', [KabKotaMenteController::class, 'tingkatProvinsi'])->name('kab-kota.data-mente.tingkat-provinsi');
         Route::post('kab-kota/data-mente/store-penilai-penetap', [KabKotaMenteController::class, 'storePenilaiAndPenetap'])->name('kab-kota.data-mente.store-penilai-penetap');
 
+        Route::get('kab-kota/histori-penetapan', [HistoriPenetapanController::class, 'index'])->name('kab-kota.histori-penetapan');
+
+        Route::get('kab-kota/pengangkatan', [PengangkatanController::class, 'index'])->name('kab-kota.pengangkatan');
+
         Route::get('kab-kota/chatbox', [ChatboxController::class, 'index'])->name('kab-kota.chatbox');
     });
 
@@ -304,6 +312,10 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('provinsi/manajemen-user/umum/{id}/destroy', [ProvinsiFungsionalUmumController::class, 'destroy'])->name('kab-kota.manajemen-user.fungsional-umum.destroy');
 
         Route::get('provinsi/manajemen-user/user-kab-kota', [UserKabKotaController::class, 'index'])->name('provinsi.manajemen-user.user-kab-kota');
+
+        Route::get('provinsi/histori-penetapan', [ProvinsiHistoriPenetapanController::class, 'index'])->name('provinsi.histori-penetapan');
+
+        Route::get('provinsi/pengangkatan', [ProvinsiPengangkatanController::class, 'index'])->name('provinsi.pengangkatan');
 
         Route::get('provinsi/data-mente', [ProvinsiMenteController::class, 'index'])->name('provinsi.data-mente');
         Route::post('provinsi/data-mente/store', [ProvinsiMenteController::class, 'store'])->name('provinsi.data-mente.store');

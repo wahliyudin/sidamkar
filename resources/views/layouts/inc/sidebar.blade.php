@@ -110,6 +110,23 @@
                             <span>Data Mentee</span>
                         </a>
                     </li>
+                    <li class="sidebar-item {{ request()->routeIs('kab-kota.histori-penetapan') ? 'active' : '' }}">
+                        <a href="{{ route('kab-kota.histori-penetapan') }}" class='sidebar-link'>
+                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                                <i class="fa-solid fa-table"></i>
+                            </div>
+                            <span>Histori Penetapan</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item {{ request()->routeIs('kab-kota.pengangkatan') ? 'active' : '' }}">
+                        <a href="{{ route('kab-kota.pengangkatan') }}" class='sidebar-link'>
+                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                                <i class="fa-solid fa-user-plus"></i>
+                            </div>
+                            <span>Pengangkatan</span>
+                        </a>
+                    </li>
+
                     <li class="sidebar-item {{ request()->routeIs('kab-kota.chatbox') ? 'active' : '' }}">
                         <a href="{{ route('kab-kota.chatbox') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
@@ -267,6 +284,22 @@
                                 <i class="fa-solid fa-clipboard-user"></i>
                             </div>
                             <span>Data Mentee</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item {{ request()->routeIs('provinsi.histori-penetapan') ? 'active' : '' }}">
+                        <a href="{{ route('provinsi.histori-penetapan') }}" class='sidebar-link'>
+                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                                <i class="fa-solid fa-table"></i>
+                            </div>
+                            <span>Histori Penetapan</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item {{ request()->routeIs('provinsi.pengangkatan') ? 'active' : '' }}">
+                        <a href="{{ route('provinsi.pengangkatan') }}" class='sidebar-link'>
+                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                                <i class="fa-solid fa-user-plus"></i>
+                            </div>
+                            <span>Pengangkatan</span>
                         </a>
                     </li>
                     <li class="sidebar-item {{ request()->routeIs('provinsi.chatbox') ? 'active' : '' }}">
