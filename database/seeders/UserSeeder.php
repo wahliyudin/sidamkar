@@ -527,7 +527,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 0
-        ])->attachRole('atasan_langsung');
+        ]);
         $atasanLangsungKabBogor->userPejabatStruktural()->create([
             'nama' => 'Atasan Langsung Kota Bogor',
             'nip' => '2020020088',

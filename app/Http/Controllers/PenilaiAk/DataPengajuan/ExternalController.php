@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\PenilaiAK\DataPengajuan;
 
 use App\Http\Controllers\Controller;
+use App\Models\PenetapanAngkaKredit;
 use App\Models\RekapitulasiKegiatan;
 use App\Models\User;
 use App\Models\UserAparatur;
 use App\Repositories\PeriodeRepository;
+use App\Repositories\RekapitulasiKegiatanRepository;
 use App\Repositories\UserRepository;
 use App\Services\PenilaiAK\DataPengajuan\ExternalService;
 use App\Traits\AuthTrait;
@@ -22,12 +24,14 @@ class ExternalController extends Controller
     private UserRepository $userRepository;
     private PeriodeRepository $periodeRepository;
     private ExternalService $externalService;
+    private RekapitulasiKegiatanRepository $rekapitulasiKegiatanRepository;
 
-    public function __construct(UserRepository $userRepository, PeriodeRepository $periodeRepository, ExternalService $externalService)
+    public function __construct(UserRepository $userRepository, PeriodeRepository $periodeRepository, ExternalService $externalService, RekapitulasiKegiatanRepository $rekapitulasiKegiatanRepository)
     {
         $this->userRepository = $userRepository;
         $this->periodeRepository = $periodeRepository;
         $this->externalService = $externalService;
+        $this->rekapitulasiKegiatanRepository = $rekapitulasiKegiatanRepository;
     }
 
     public function index()
@@ -59,8 +63,9 @@ class ExternalController extends Controller
                 JOIN roles ON roles.id = role_user.role_id
                 LEFT JOIN mekanisme_pengangkatans ON user_aparaturs.mekanisme_pengangkatan_id = mekanisme_pengangkatans.id
                 JOIN kab_prov_penilai_and_penetaps AS internal ON internal.kab_kota_id = ' . $auth->userPejabatStruktural->kab_kota_id . '
+                JOIN rekapitulasi_kegiatans ON (rekapitulasi_kegiatans.fungsional_id = users.id AND rekapitulasi_kegiatans.is_send IN (2, 3))
                 WHERE users.status_akun = 1
-                    AND roles.id IN (' . join(',', $this->getRoles($this->authUser()->roles()->pluck('name')->toArray())) . ')
+                    AND roles.id IN (1,2,3,4,5,6,7)
                     AND user_aparaturs.kab_kota_id != ' . $auth->userPejabatStruktural->kab_kota_id . '
                     AND user_aparaturs.kab_kota_id IN (SELECT ex_kab_kota.kab_kota_id
                         FROM kab_prov_penilai_and_penetaps AS ex_kab_kota
@@ -68,7 +73,6 @@ class ExternalController extends Controller
                     OR user_aparaturs.provinsi_id IN (SELECT ex_provinsi.provinsi_id
                         FROM kab_prov_penilai_and_penetaps AS ex_provinsi
                             WHERE ex_provinsi.penilai_ak_damkar_id = internal.penilai_ak_damkar_id)
-                    AND EXISTS (SELECT * FROM rekapitulasi_kegiatans WHERE rekapitulasi_kegiatans.fungsional_id = users.id AND rekapitulasi_kegiatans.is_send IN (2, 3))
                     ORDER BY roles.display_name ' . $role_order);
             return DataTables::of($data)
                 ->addIndexColumn()
@@ -76,7 +80,7 @@ class ExternalController extends Controller
                     return $this->statusMekanisme($row->status_mekanisme);
                 })
                 ->addColumn('action', function ($row) {
-                    return view('penilai-ak.data-pengajuan.internal.buttons', compact('row'))->render();
+                    return view('penilai-ak.data-pengajuan.external.buttons', compact('row'))->render();
                 })
                 ->rawColumns(['action', 'status'])
                 ->make(true);
@@ -90,7 +94,8 @@ class ExternalController extends Controller
             ->where('fungsional_id', $id)
             ->where('periode_id', $periode->id)->first();
         $user = $this->userRepository->getUserById($id)->load('userAparatur');
-        return view('penilai-ak.data-pengajuan.external.show', compact('user', 'rekapitulasiKegiatan'));
+        $penetapanAngkaKredit = PenetapanAngkaKredit::query()->where('periode_id', $periode->id)->where('user_id', $user->id)->first();
+        return view('penilai-ak.data-pengajuan.external.show', compact('user', 'rekapitulasiKegiatan', 'penetapanAngkaKredit'));
     }
 
 
