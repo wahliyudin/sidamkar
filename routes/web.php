@@ -70,6 +70,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('coba', [CobaController::class, 'index']);
+Route::post('coba/store', [CobaController::class, 'store']);
 Route::redirect('/', 'login');
 Auth::routes(['verify' => true]);
 Route::post('register/file', [RegisterController::class, 'storeFile']);

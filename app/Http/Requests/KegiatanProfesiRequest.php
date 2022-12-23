@@ -25,6 +25,7 @@ class KegiatanProfesiRequest extends FormRequest
     {
         $rules = [
             'unsur' => 'required',
+            'jenis_aparatur' => 'required',
             'sub_unsurs' => 'required|array'
         ];
         if (isset(request()->sub_unsurs)) {

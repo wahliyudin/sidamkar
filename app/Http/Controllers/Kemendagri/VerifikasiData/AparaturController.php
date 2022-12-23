@@ -31,7 +31,8 @@ class AparaturController extends Controller
             JOIN kab_kotas ON kab_kotas.id = user_aparaturs.kab_kota_id
             JOIN role_user ON role_user.user_id = users.id
             JOIN roles ON roles.id = role_user.role_id
-            JOIN pangkat_golongan_tmts ON user_aparaturs.pangkat_golongan_tmt_id');
+            JOIN pangkat_golongan_tmts ON user_aparaturs.pangkat_golongan_tmt_id
+            LIMIT 10');
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->make(true);

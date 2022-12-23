@@ -60,7 +60,7 @@ class UserSeeder extends Seeder
         //         'email' => fake()->email(),
         //         'password' => Hash::make('123456789'),
         //         'email_verified_at' => now(),
-        //         'status_akun' => fake()->boolean()
+        //         'status_akun' => 1
         //     ])->attachRole('damkar_pemula');
         //     $damkarPemula1->userAparatur()->create([
         //         'nama' => $damkarPemula1Name,
@@ -104,7 +104,7 @@ class UserSeeder extends Seeder
         //         'email' => fake()->email(),
         //         'password' => Hash::make('123456789'),
         //         'email_verified_at' => now(),
-        //         'status_akun' => fake()->boolean()
+        //         'status_akun' => 1
         //     ])->attachRole('damkar_terampil');
         //     $damkarTerampil1->userAparatur()->create([
         //         'nama' => $damkarTerampil1Name,
@@ -148,7 +148,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 0
-        ])->attachRole('analis_kebakaran_ahli_pertama');
+        ]);
         $analisKebakaranAhliPertama->userAparatur()->create([
             'nama' => 'Analis Kebakaran Ahli Pertama',
             'nip' => '2020020088',
@@ -168,7 +168,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 0
-        ])->attachRole('analis_kebakaran_ahli_muda');
+        ]);
         $analisKebakaranAhliMuda->userAparatur()->create([
             'nama' => 'Analis Kebakaran Ahli Muda',
             'nip' => '2020020088',
@@ -188,7 +188,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 0
-        ])->attachRole('analis_kebakaran_ahli_muda');
+        ]);
         $analisKebakaranAhliMadya->userAparatur()->create([
             'nama' => 'Analis Kebakaran Ahli Madya',
             'nip' => '2020020088',
@@ -202,18 +202,18 @@ class UserSeeder extends Seeder
             'kab_kota_id' => 1116,
         ]);
 
-        // $kabKota = User::query()->create([
-        //     'username' => 'Kab Kota',
-        //     'email' => 'admin4@gmail.com',
-        //     'password' => Hash::make('123456789'),
-        //     'email_verified_at' => now(),
-        //     'status_akun' => 1
-        // ])->attachRole('kab_kota');
-        // $kabKota->userProvKabKota()->create([
-        //     'nomenklatur_perangkat_daerah_id' => 1,
-        //     'provinsi_id' => 11,
-        //     'kab_kota_id' => 1101,
-        // ]);
+        $kabKota = User::query()->create([
+            'username' => 'Kab Kota',
+            'email' => 'admin4@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('kab_kota');
+        $kabKota->userProvKabKota()->create([
+            'nomenklatur_perangkat_daerah_id' => 1,
+            'provinsi_id' => 11,
+            'kab_kota_id' => 1101,
+        ]);
 
         for ($i = 0; $i < 5; $i++) {
             $kabKota1 = User::query()->create([
@@ -221,7 +221,7 @@ class UserSeeder extends Seeder
                 'email' => fake()->email(),
                 'password' => Hash::make('123456789'),
                 'email_verified_at' => now(),
-                'status_akun' => fake()->boolean()
+                'status_akun' => 1
             ])->attachRole('kab_kota');
             $kabKota1->userProvKabKota()->create([
                 'nomenklatur_perangkat_daerah_id' => 1,
@@ -248,7 +248,7 @@ class UserSeeder extends Seeder
                 'email' => fake()->email(),
                 'password' => Hash::make('123456789'),
                 'email_verified_at' => now(),
-                'status_akun' => fake()->boolean()
+                'status_akun' => 1
             ])->attachRole('provinsi');
             $provinsi1->userProvKabKota()->create([
                 'nomenklatur_perangkat_daerah_id' => 1,
@@ -284,7 +284,7 @@ class UserSeeder extends Seeder
         //         'email' => fake()->email(),
         //         'password' => Hash::make('123456789'),
         //         'email_verified_at' => now(),
-        //         'status_akun' => fake()->boolean()
+        //         'status_akun' => 1
         //     ])->attachRole('atasan_langsung');
         //     $atasanLangsung1->userPejabatStruktural()->create([
         //         'nama' => $atasanLangsung1Name,
@@ -390,7 +390,7 @@ class UserSeeder extends Seeder
 
 
         //ini adalah seeder user yang dari request client
-       
+
 
         $adminProvinsiBanten = User::query()->create([
             'username' => 'Admin Provinsi Banten',
@@ -475,7 +475,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 0
-        ])->attachRole('atasan_langsung');
+        ]);
         $atasanLangsungKotaTanggerangSelatan->userPejabatStruktural()->create([
             'nama' => 'Atasan Langsung Kota Tanggerang Selatan',
             'nip' => '2020020088',
@@ -496,7 +496,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 0
-        ])->attachRole('atasan_langsung');
+        ]);
         $atasanLangsungKotaBekasi->userPejabatStruktural()->create([
             'nama' => 'Atasan Langsung Kota Bekasi',
             'nip' => '2020020088',
@@ -517,7 +517,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 0
-        ])->attachRole('atasan_langsung');
+        ]);
         $atasanLangsungKabBogor->userPejabatStruktural()->create([
             'nama' => 'Atasan Langsung Kota Bogor',
             'nip' => '2020020088',
@@ -538,7 +538,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 0
-        ])->attachRole('atasan_langsung');
+        ]);
         $atasanLangsungKotaSukabumi->userPejabatStruktural()->create([
             'nama' => 'Atasan Langsung Kabupaten Sukabumi',
             'nip' => '2020020088',
@@ -559,7 +559,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 0
-        ])->attachRole('atasan_langsung');
+        ]);
         $atasanLangsungProvDKI->userPejabatStruktural()->create([
             'nama' => 'Atasan Langsung DKI Jakarta',
             'nip' => '2020020088',
@@ -599,7 +599,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 0
-        ])->attachRole('penilai_ak_damkar');
+        ]);
         $penilaiAKDamkarDKI->userPejabatStruktural()->create([
             'nama' => 'Penilai AK Damkar DKI Jakarta',
             'nip' => '2020020088',
@@ -619,7 +619,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 0
-        ])->attachRole('penilai_ak_analis');
+        ]);
         $penilaiAKAnalisDKI->userPejabatStruktural()->create([
             'nama' => 'Penilai AK Analis DKI Jakarta',
             'nip' => '2020020088',
@@ -679,7 +679,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 0
-        ])->attachRole('penetap_ak_damkar');
+        ]);
         $penetapAKDamkarDKI->userPejabatStruktural()->create([
             'nama' => 'Penetap AK Damkar DKI Jakarta',
             'nip' => '2020020088',
@@ -955,7 +955,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 0
-        ])->attachRole('damkar_pemula');
+        ]);
         $damkarpemulaJakpus->userAparatur()->create([
             'nama' => 'Damkar Pemula Jakpus',
             'nip' => '2020020088',
@@ -976,7 +976,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 0
-        ])->attachRole('damkar_terampil');
+        ]);
         $damkarterampilJakpus->userAparatur()->create([
             'nama' => 'Damkar Terampil Jakpus',
             'nip' => '2020020088',
@@ -997,7 +997,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 0
-        ])->attachRole('damkar_mahir');
+        ]);
         $damkarmahirJakpus->userAparatur()->create([
             'nama' => 'Damkar Mahir Jakpus',
             'nip' => '2020020088',
@@ -1018,7 +1018,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 0
-        ])->attachRole('damkar_penyelia');
+        ]);
         $damkarpenyeliaJakpus->userAparatur()->create([
             'nama' => 'Damkar Penyelia Jakpus',
             'nip' => '2020020088',
@@ -1039,7 +1039,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 0
-        ])->attachRole('analis_kebakaran_ahli_pertama');
+        ]);
         $analis_kebakaran_ahli_pertamaJakpus->userAparatur()->create([
             'nama' => 'Analis Kebakaran Ahli Pertama Jakpus',
             'nip' => '2020020088',
@@ -1053,14 +1053,14 @@ class UserSeeder extends Seeder
             'provinsi_id' => 31,
             'kab_kota_id' => 3171,
         ]);
-        
+
         $analis_kebakaran_ahli_mudaJakpus = User::query()->create([
             'username' => 'Analis Kebakaran Ahli Muda Jakpus',
             'email' => 'analis_kebakaran_ahli_muda@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 0
-        ])->attachRole('analis_kebakaran_ahli_muda');
+        ]);
         $analis_kebakaran_ahli_mudaJakpus->userAparatur()->create([
             'nama' => 'Analis Kebakaran Ahli Muda Jakpus',
             'nip' => '2020020088',
@@ -1081,7 +1081,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 0
-        ])->attachRole('analis_kebakaran_ahli_madya');
+        ]);
         $analis_kebakaran_ahli_madyaJakpus->userAparatur()->create([
             'nama' => 'Analis Kebakaran Ahli Madya Jakpus',
             'nip' => '2020020088',
@@ -1251,8 +1251,8 @@ class UserSeeder extends Seeder
             'email' => 'atasanwewqefrtradasasadadwqeKotaJakpus@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'status_akun' => 1
-        ])->attachRole('penilai_ak_damkar');
+            'status_akun' => 0
+        ]);
         $penilai_ak_damkarAcehSelatan1->userPejabatStruktural()->create([
             'nama' => 'Penilai AK Damkar Aceh Selatan1',
             'nip' => '2020020088',
@@ -1272,8 +1272,8 @@ class UserSeeder extends Seeder
             'email' => 'atasanKsqwaasasaJakpusass@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'status_akun' => 1
-        ])->attachRole('penilai_ak_analis');
+            'status_akun' => 0
+        ]);
         $penilai_ak_analisAcehSelatan1->userPejabatStruktural()->create([
             'nama' => 'Penilai AK Analis AcehSelatan1',
             'nip' => '2020020088',
@@ -1293,8 +1293,8 @@ class UserSeeder extends Seeder
             'email' => 'atasaasadfdgfsaadadanKsdsdsqwqasasotasasaaJakpus@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'status_akun' => 1
-        ])->attachRole('penetap_ak_damkar');
+            'status_akun' => 0
+        ]);
         $penetap_ak_damkaracehselatan1->userPejabatStruktural()->create([
             'nama' => 'Penetap AK Damkar Aceh Selatan1',
             'nip' => '2020020088',
@@ -1314,8 +1314,8 @@ class UserSeeder extends Seeder
             'email' => 'atasaaasasassaasasasaqsfganKsdsdsqwqasasotaJakpus@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
-            'status_akun' => 1
-        ])->attachRole('penetap_ak_analis');
+            'status_akun' => 0
+        ]);
         $penetap_ak_analisAcehSelatan1->userPejabatStruktural()->create([
             'nama' => 'Penetap AK Analis Aceh Selatan1',
             'nip' => '2020020088',
@@ -1336,7 +1336,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 0
-        ])->attachRole('damkar_pemula');
+        ]);
         $damkarpemulaAcehSelatan->userAparatur()->create([
             'nama' => 'Damkar Pemula Aceh Selatan',
             'nip' => '2020020088',
@@ -1357,7 +1357,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 0
-        ])->attachRole('damkar_terampil');
+        ]);
         $damkarterampilAcehSelatan->userAparatur()->create([
             'nama' => 'Damkar Terampil Aceh Selatan',
             'nip' => '2020020088',
@@ -1378,7 +1378,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 0
-        ])->attachRole('damkar_mahir');
+        ]);
         $damkarmahirAcehSelatan->userAparatur()->create([
             'nama' => 'Damkar Mahir Aceh Selatan',
             'nip' => '2020020088',
@@ -1399,7 +1399,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 0
-        ])->attachRole('damkar_penyelia');
+        ]);
         $damkarpenyeliaAcehSelatan->userAparatur()->create([
             'nama' => 'Damkar Penyelia Aceh Selatan',
             'nip' => '2020020088',
@@ -1420,7 +1420,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 0
-        ])->attachRole('analis_kebakaran_ahli_pertama');
+        ]);
         $analis_kebakaran_ahli_pertamaAcehSelatan->userAparatur()->create([
             'nama' => 'Analis Kebakaran Ahli Pertama Aceh Selatan',
             'nip' => '2020020088',
@@ -1441,7 +1441,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 0
-        ])->attachRole('analis_kebakaran_ahli_muda');
+        ]);
         $analis_kebakaran_ahli_mudaAcehselatan->userAparatur()->create([
             'nama' => 'Analis Kebakaran Ahli Muda Aceh Selatan',
             'nip' => '2020020088',
@@ -1462,7 +1462,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 0
-        ])->attachRole('analis_kebakaran_ahli_madya');
+        ]);
         $analis_kebakaran_ahli_madyaAcehSelatan->userAparatur()->create([
             'nama' => 'Analis Kebakaran Ahli Madya Aceh Selatan',
             'nip' => '2020020088',
@@ -1485,7 +1485,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 0
-        ])->attachRole('atasan_langsung');
+        ]);
         $atasanLangsungProvBanten->userPejabatStruktural()->create([
             'nama' => 'Atasan Langsung Banten',
             'nip' => '2020020088',
@@ -1505,7 +1505,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 0
-        ])->attachRole('atasan_langsung');
+        ]);
         $atasanLangsungProvJawaBarat->userPejabatStruktural()->create([
             'nama' => 'Atasan Langsung Jawa Barat',
             'nip' => '2020020088',
@@ -1609,7 +1609,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 0
-        ])->attachRole('damkar_pemula');
+        ]);
         $damkarPemulaBogor->userAparatur()->create([
             'nama' => 'Damkar Pemula Bogor',
             'nip' => '2020020088',
@@ -1630,7 +1630,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 0
-        ])->attachRole('damkar_terampil');
+        ]);
         $damkarTerampilBogor->userAparatur()->create([
             'nama' => 'Damkar Terampil Bogor',
             'nip' => '2020020088',
@@ -1651,7 +1651,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 0
-        ])->attachRole('damkar_penyelia');
+        ]);
         $damkarPenyeliaBogor->userAparatur()->create([
             'nama' => 'Damkar Penyelia Bogor',
             'nip' => '2020020088',
@@ -1673,7 +1673,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 0
-        ])->attachRole('analis_kebakaran_ahli_pertama');
+        ]);
         $analisKebakaranAhliPertamaBogor->userAparatur()->create([
             'nama' => 'Analis Kebakaran Ahli Pertama Bogor',
             'nip' => '2020020088',
@@ -1694,7 +1694,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 0
-        ])->attachRole('analis_kebakaran_ahli_muda');
+        ]);
         $analisKebakaranAhliMuda->userAparatur()->create([
             'nama' => 'Analis Kebakaran Ahli Muda Bogor',
             'nip' => '2020020088',
@@ -1715,7 +1715,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 0
-        ])->attachRole('analis_kebakaran_ahli_muda');
+        ]);
         $analisKebakaranAhliMadyaBogor->userAparatur()->create([
             'nama' => 'Analis Kebakaran Ahli Madya Bogor',
             'nip' => '2020020088',

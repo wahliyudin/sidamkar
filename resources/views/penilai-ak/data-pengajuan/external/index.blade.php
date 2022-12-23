@@ -93,5 +93,175 @@
                 [10, 20, 50, 'All']
             ]
         });
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $(document).on('click', '.tolak', function(e) {
+                e.preventDefault();
+                $('#mekanisme' + $(this).data('id')).modal('hide');
+                tolak($(this).data('id'))
+            });
+            $(document).on('click', '.revisi', function(e) {
+                e.preventDefault();
+                $('#mekanisme' + $(this).data('id')).modal('hide');
+                revisi($(this).data('id'), $(this).data('user'))
+            });
+            $(document).on('click', '.verifikasi', function(e) {
+                e.preventDefault();
+                verifikasi($(this).data('id'));
+            });
+
+            function tolak(user_id, current_date) {
+                swal({
+                    title: "Tolak?",
+                    text: "Masukan alasan kenapa ditolak!",
+                    type: "warning",
+                    input: 'text',
+                    inputPlaceholder: 'Catatan',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ya, tolak!',
+                    cancelButtonText: "Batal",
+                    reverseButtons: true,
+                    showLoaderOnConfirm: true,
+                    inputValidator: (value) => {
+                        if (!value) {
+                            return 'Catatan tidak boleh kosong!'
+                        }
+                    },
+                    preConfirm: async (value) => {
+                        return new Promise(function(resolve) {
+                            $.ajax({
+                                    type: 'POST',
+                                    url: url("/penilai-ak/data-pengajuan/external/" +
+                                        user_id +
+                                        "/tolak"),
+                                    data: {
+                                        catatan: value
+                                    },
+                                    dataType: 'JSON'
+                                })
+                                .done(function(myAjaxJsonResponse) {
+                                    swal("Berhasil!", myAjaxJsonResponse.message, "success")
+                                        .then(function() {
+                                            location.reload();
+                                        });
+                                })
+                                .fail(function(erordata) {
+                                    if (erordata.status == 422) {
+                                        swal('Warning!', erordata.responseJSON?.message,
+                                            'warning');
+                                    } else if (erordata.status == 404) {
+                                        swal('Warning!', 'Data tidak ditemukan',
+                                            'warning');
+                                    } else {
+                                        swal('Error!', erordata.responseJSON?.message,
+                                            'error');
+                                    }
+                                })
+                        })
+                    },
+                })
+            }
+
+            function revisi(user_id, current_date) {
+                swal({
+                    title: "Revisi?",
+                    text: "Masukan alasan kenapa harus direvisi!",
+                    type: "warning",
+                    input: 'textarea',
+                    inputPlaceholder: 'Catatan',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ya, Revisi!',
+                    cancelButtonText: "Batal",
+                    reverseButtons: true,
+                    showLoaderOnConfirm: true,
+                    inputValidator: (value) => {
+                        if (!value) {
+                            return 'Catatan tidak boleh kosong!'
+                        }
+                    },
+                    preConfirm: async (value) => {
+                        return new Promise(function(resolve) {
+                            $.ajax({
+                                    type: 'POST',
+                                    url: url("/penilai-ak/data-pengajuan/external/" +
+                                        user_id +
+                                        "/revisi"),
+                                    data: {
+                                        catatan: value
+                                    },
+                                    dataType: 'JSON'
+                                })
+                                .done(function(myAjaxJsonResponse) {
+                                    swal("Berhasil!", myAjaxJsonResponse?.message,
+                                            "success")
+                                        .then(function() {
+                                            location.reload();
+                                        });
+                                })
+                                .fail(function(erordata) {
+                                    if (erordata.status == 422) {
+                                        swal('Warning!', erordata.responseJSON?.message,
+                                            'warning');
+                                    } else if (erordata.status == 404) {
+                                        swal('Warning!', 'Data tidak ditemukan',
+                                            'warning');
+                                    } else {
+                                        swal('Error!', erordata.responseJSON?.message,
+                                            'error');
+                                    }
+                                })
+                        })
+                    },
+                })
+            }
+
+            function verifikasi(user_id, current_date) {
+                swal({
+                    title: "Verifikasi?",
+                    text: "Pastikan Data Yang Dicek Sudah Benar!",
+                    type: "warning",
+                    showCancelButton: !0,
+                    confirmButtonText: "Ya, verfikasi!",
+                    cancelButtonText: "Batal",
+                    reverseButtons: !0,
+                    showLoaderOnConfirm: true,
+                    preConfirm: async () => {
+                        return new Promise(function(resolve) {
+                            $.ajax({
+                                    type: 'POST',
+                                    url: url("/penilai-ak/data-pengajuan/external/" +
+                                        user_id +
+                                        "/verifikasi"),
+                                    dataType: 'JSON'
+                                })
+                                .done(function(myAjaxJsonResponse) {
+                                    swal("Berhasil!", myAjaxJsonResponse?.message,
+                                            "success")
+                                        .then(function() {
+                                            location.reload();
+                                        });
+                                })
+                                .fail(function(erordata) {
+                                    if (erordata.status == 422) {
+                                        swal('Warning!', erordata.responseJSON?.message,
+                                            'warning');
+                                    } else if (erordata.status == 404) {
+                                        swal('Warning!', 'Data tidak ditemukan',
+                                            'warning');
+                                    } else {
+                                        swal('Error!', erordata.responseJSON?.message,
+                                            'error');
+                                    }
+                                })
+                        })
+                    },
+                })
+            }
+        });
     </script>
 @endsection

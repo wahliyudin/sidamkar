@@ -4,8 +4,9 @@
     <div class="section">
         <div class="d-flex px-4 mb-4 container-control justify-content-between align-items-center">
             <div class="d-flex">
-                <div class="icon-back mb-2"><i class="fa-solid fa-arrow-left-long" style="cursor: pointer"></i>
-                </div>
+                <a href="javascript:history.back()" class="icon-back mb-2">
+                    <i class="fa-solid fa-arrow-left-long"></i>
+                </a>
                 <div class="ms-2">
                     <h5>{{ $butirKegiatan->nama }}</h5>
                 </div>
