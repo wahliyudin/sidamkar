@@ -169,10 +169,19 @@
                 <div class="modal-body">
                     <form method="post" enctype="multipart/form-data" class="container-unsur">
                         <div class="row align-items-center">
-                            <div class="col-md-11">
+                            <div class="col-md-8">
                                 <div class="form-group">
                                     <label>Unsur Kegiatan</label>
                                     <input class="form-control" type="text" name="unsur">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Jenis Aparatur</label>
+                                    <select name="jenis_aparatur" class="form-select" id="">
+                                        <option value="damkar">Pemadam Kebakaran</option>
+                                        <option value="analis">Analis Kebakaran</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-1">
