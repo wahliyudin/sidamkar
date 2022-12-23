@@ -1,16 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\PenetapAK\DataPengajuan;
+namespace App\Http\Controllers\PenetapAKKemendagri;
 
 use App\Http\Controllers\Controller;
 use App\Models\PenetapanAngkaKredit;
 use App\Models\RekapitulasiKegiatan;
-use App\Models\User;
-use App\Models\UserAparatur;
 use App\Repositories\PeriodeRepository;
 use App\Repositories\RekapitulasiKegiatanRepository;
 use App\Repositories\UserRepository;
-use App\Services\PenetapAK\DataPengajuan\ExternalService;
+use App\Services\PenetapAKKemendagri\DataPengajuanService;
 use App\Traits\AuthTrait;
 use App\Traits\DataTableTrait;
 use Illuminate\Http\Request;
@@ -18,25 +16,26 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 use Yajra\DataTables\Facades\DataTables;
 
-class ExternalController extends Controller
+class PengajuanController extends Controller
 {
     use AuthTrait, DataTableTrait;
+
     private UserRepository $userRepository;
     private PeriodeRepository $periodeRepository;
-    private ExternalService $externalService;
+    private DataPengajuanService $dataPengajuanService;
     private RekapitulasiKegiatanRepository $rekapitulasiKegiatanRepository;
 
-    public function __construct(UserRepository $userRepository, PeriodeRepository $periodeRepository, ExternalService $externalService, RekapitulasiKegiatanRepository $rekapitulasiKegiatanRepository)
+    public function __construct(UserRepository $userRepository, PeriodeRepository $periodeRepository, DataPengajuanService $dataPengajuanService, RekapitulasiKegiatanRepository $rekapitulasiKegiatanRepository)
     {
         $this->userRepository = $userRepository;
         $this->periodeRepository = $periodeRepository;
-        $this->externalService = $externalService;
+        $this->dataPengajuanService = $dataPengajuanService;
         $this->rekapitulasiKegiatanRepository = $rekapitulasiKegiatanRepository;
     }
 
     public function index()
     {
-        return view('penetap-ak.data-pengajuan.external.index');
+        return view('penetap-ak-kemendagri.data-pengajuan.index');
     }
 
     public function datatable(Request $request)
@@ -46,7 +45,6 @@ class ExternalController extends Controller
             if (isset($request->order) && $request->order[0]['column'] == 2) {
                 $role_order =  $request->order[0]['dir'];
             }
-            $auth = $this->authUser()->load(['userPejabatStruktural']);
             $data = DB::select('SELECT
                     users.id,
                     user_aparaturs.nama,
@@ -59,22 +57,13 @@ class ExternalController extends Controller
                 JOIN role_user ON role_user.user_id = users.id
                 JOIN roles ON roles.id = role_user.role_id
                 LEFT JOIN mekanisme_pengangkatans ON user_aparaturs.mekanisme_pengangkatan_id = mekanisme_pengangkatans.id
-                JOIN kab_prov_penilai_and_penetaps AS internal ON internal.kab_kota_id = ' . $auth->userPejabatStruktural->kab_kota_id . '
                 JOIN rekapitulasi_kegiatans ON (rekapitulasi_kegiatans.fungsional_id = users.id AND rekapitulasi_kegiatans.is_send IN (2, 3))
                 WHERE users.status_akun = 1
-                    AND roles.id IN (1,2,3,5,6)
-                    AND user_aparaturs.kab_kota_id != ' . $auth->userPejabatStruktural->kab_kota_id . '
-                    AND user_aparaturs.kab_kota_id IN (SELECT ex_kab_kota.kab_kota_id
-                        FROM kab_prov_penilai_and_penetaps AS ex_kab_kota
-                            WHERE ex_kab_kota.penetap_ak_damkar_id = internal.penetap_ak_damkar_id)
-                    OR user_aparaturs.provinsi_id IN (SELECT ex_provinsi.provinsi_id
-                        FROM kab_prov_penilai_and_penetaps AS ex_provinsi
-                            WHERE ex_provinsi.penetap_ak_damkar_id = internal.penetap_ak_damkar_id)
-                    ORDER BY roles.display_name ' . $role_order);
+                    AND roles.id IN (4,7)');
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    return '<a href="' . route('penetap-ak.data-pengajuan.external.show', $row->id) . '" class="btn btn-blue btn-sm">Detail</a>';
+                    return '<a href="' . route('penetap-ak-kemendagri.data-pengajuan.show', $row->id) . '" class="btn btn-blue btn-sm">Detail</a>';
                 })
                 ->rawColumns(['action'])
                 ->make(true);
@@ -89,7 +78,7 @@ class ExternalController extends Controller
             ->where('periode_id', $periode->id)->first();
         $user = $this->userRepository->getUserById($id)->load('userAparatur');
         $penetapanAngkaKredit = PenetapanAngkaKredit::query()->where('periode_id', $periode->id)->where('user_id', $user->id)->first();
-        return view('penetap-ak.data-pengajuan.external.show', compact('user', 'rekapitulasiKegiatan', 'penetapanAngkaKredit'));
+        return view('penetap-ak-kemendagri.data-pengajuan.show', compact('user', 'rekapitulasiKegiatan', 'penetapanAngkaKredit'));
     }
 
     public function ttd($id)
@@ -101,7 +90,7 @@ class ExternalController extends Controller
             throw ValidationException::withMessages(['Maaf, Anda Belum Melengkapi Profil']);
         }
         $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode);
-        $this->externalService->ttdRekapitulasi($rekap, $user, $periode, $penetapAk);
+        $this->dataPengajuanService->ttdRekapitulasi($rekap, $user, $periode, $penetapAk);
         return response()->json([
             'message' => 'Berhasil'
         ]);

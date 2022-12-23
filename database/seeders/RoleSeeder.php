@@ -97,6 +97,16 @@ class RoleSeeder extends Seeder
                 'name' => 'penetap_ak_analis',
                 'display_name' => 'Penetap AK Analis',
                 'description' => ''
+            ],
+            [
+                'name' => 'penetap_ak_kemendagri',
+                'display_name' => 'Penetap Kemendagri',
+                'description' => ''
+            ],
+            [
+                'name' => 'penilai_ak_kemendagri',
+                'display_name' => 'Penilai Kemendagri',
+                'description' => ''
             ]
         ];
         Role::query()->upsert($roles, 'id');
