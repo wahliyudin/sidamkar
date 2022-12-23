@@ -19,22 +19,30 @@ use App\Repositories\PeriodeRepository;
 use App\Services\Aparatur\LaporanKegiatan\KegiatanProfesiService;
 use App\Traits\AuthTrait;
 use App\Traits\DataTableTrait;
+use App\Traits\ImageTrait;
 use App\Traits\ScoringTrait;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Http\Request;
 use Barryvdh\Snappy\Facades\SnappyPdf as PDF;
+use Illuminate\Http\File;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Storage;
 
 class CobaController extends Controller
 {
+    use ImageTrait;
     public function __construct()
     {
     }
 
     public function index()
     {
-        $pdf_rekap = PDF::loadView('generate-pdf.penetapan')
-            ->setPaper('A4');
-        Storage::put("coba.pdf", $pdf_rekap->output());
-        return response()->file(public_path('storage/coba.pdf'));
+        return view('remove-bg');
+    }
+
+    public function store(Request $request)
+    {
+        return $this->fromBase64($request->image)->storeAs('/', 'coba.jpg');
     }
 }
