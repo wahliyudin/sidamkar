@@ -188,7 +188,6 @@
                     </li>
                 @endrole
 
-
                 @role(['penetap_ak_damkar', 'penetap_ak_analis'])
                     <li class="sidebar-item has-sub ">
                         <a href="javascript(0)" class='sidebar-link'>
@@ -314,45 +313,6 @@
                             </li>
                         </ul>
                     </li>
-                    {{--  <li class="sidebar-item {{ request()->is('kemendagri/pejabat-struktural*') ? 'active' : '' }}">
-                        <a href="{{ route('kemendagri.pejabat-struktural.index') }}" class='sidebar-link'>
-                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
-                                <i class="fa-solid fa-user-tie"></i>
-                            </div>
-                            <span>Pejabat Struktural</span>
-                        </a>
-                    </li>
-                    <li
-                        class="sidebar-item {{ request()->routeIs('kemendagri.data-prov-kab-kota.index') ? 'active' : '' }}">
-                        <a href="{{ route('kemendagri.data-prov-kab-kota.index') }}" class='sidebar-link'>
-                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
-                                <i class="fa-solid fa-table"></i>
-                            </div>
-                            <span>Data Prov/Kabupaten / Kota</span>
-                        </a>
-                    </li>
-                    <li
-                        class="sidebar-item has-sub {{ request()->is('kemendagri/data-admin-daerah/admin-kabkota*') || request()->is('kemendagri/data-admin-daerah/admin-provinsi*') ? 'active' : '' }}">
-                        <a href="javascript(0)" class='sidebar-link'>
-                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
-                                <i class="fa-solid fa-user-group"></i>
-                            </div>
-                            <span>Data Admin Daerah</span>
-                        </a>
-                        <ul
-                            class="submenu {{ request()->is('kemendagri/data-admin-daerah/admin-kabkota*') || request()->is('kemendagri/data-admin-daerah/admin-provinsi*') ? 'active' : '' }}">
-                            <li
-                                class="submenu-item {{ request()->is('kemendagri/data-admin-daerah/admin-kabkota*') ? 'active' : '' }}">
-                                <a href="{{ route('kemendagri.data-admin-daerah.admin-kabkota.index') }}">Admin
-                                    KabKota</a>
-                            </li>
-                            <li
-                                class="submenu-item {{ request()->is('kemendagri/data-admin-daerah/admin-provinsi*') ? 'active' : '' }}">
-                                <a href="{{ route('kemendagri.data-admin-daerah.admin-provinsi.index') }}">Admin
-                                    Provinsi</a>
-                            </li>
-                        </ul>
-                    </li>  --}}
                     <li
                         class="sidebar-item has-sub {{ request()->is('kemendagri/cms/kegiatan-profesi*') || request()->is('kemendagri/cms/informasi*') || request()->is('kemendagri/cms/kegiatan-jabatan*') || request()->is('kemendagri/cms/kegiatan-penunjang*') || request()->is('kemendagri/cms/periode*') ? 'active' : '' }}">
                         <a href="javascript(0)" class='sidebar-link'>
@@ -390,6 +350,28 @@
                                 <i class="fa-regular fa-comments"></i>
                             </div>
                             <span>Chatbox</span>
+                        </a>
+                    </li>
+                @endrole
+
+                @role('penilai_ak_kemendagri')
+                    <li class="sidebar-item {{ request()->is('penilai-ak-kemendagri/data-pengajuan*') ? 'active' : '' }}">
+                        <a href="{{ route('penilai-ak-kemendagri.data-pengajuan') }}" class='sidebar-link'>
+                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                                <i class="fa-solid fa-square-poll-vertical"></i>
+                            </div>
+                            <span>Data Pengajuan</span>
+                        </a>
+                    </li>
+                @endrole
+
+                @role('penetap_ak_kemendagri')
+                    <li class="sidebar-item {{ request()->is('penetap-ak-kemendagri/data-pengajuan*') ? 'active' : '' }}">
+                        <a href="{{ route('penetap-ak-kemendagri.data-pengajuan') }}" class='sidebar-link'>
+                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                                <i class="fa-solid fa-square-poll-vertical"></i>
+                            </div>
+                            <span>Data Pengajuan</span>
                         </a>
                     </li>
                 @endrole

@@ -70,7 +70,7 @@ class InternalController extends Controller
                 JOIN kab_prov_penilai_and_penetaps AS internal ON internal.kab_kota_id = ' . $user->userPejabatStruktural->kab_kota_id . '
                 JOIN rekapitulasi_kegiatans ON (rekapitulasi_kegiatans.fungsional_id = users.id AND rekapitulasi_kegiatans.is_send IN (2, 3))
                 WHERE users.status_akun = 1
-                    AND roles.id IN (1,2,3,4,5,6,7)
+                    AND roles.id IN (1,2,3,5,6)
                     AND user_aparaturs.kab_kota_id = ' . $user->userPejabatStruktural->kab_kota_id . '
                     ORDER BY roles.display_name ' . $role_order);
             // $data = DB::select('SELECT

@@ -33,7 +33,7 @@ return new class extends Migration
             $table->boolean('is_active')->default(true);
             $table->string('catatan')->nullable();
             $table->foreignUuid('kab_kota_id')->nullable();
-            $table->foreignUuid('provinsi_id');
+            $table->foreignUuid('provinsi_id')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->on('users')->references('id')->cascadeOnDelete();
