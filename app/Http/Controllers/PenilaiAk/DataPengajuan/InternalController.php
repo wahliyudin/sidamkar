@@ -57,7 +57,7 @@ class InternalController extends Controller
                     user_aparaturs.nama,
                     user_aparaturs.nip,
                     pangkat_golongan_tmts.nama AS pangkat,
-                    roles.display_name AS jabatan,
+                    roles.display_name,
                     user_aparaturs.status_mekanisme,
                     user_aparaturs.angka_mekanisme,
                     mekanisme_pengangkatans.nama AS mekanisme
@@ -72,12 +72,6 @@ class InternalController extends Controller
                 WHERE users.status_akun = 1
                     AND roles.id IN (1,2,3,4,5,6,7)
                     AND user_aparaturs.kab_kota_id = ' . $user->userPejabatStruktural->kab_kota_id . '
-                    AND user_aparaturs.kab_kota_id NOT IN (SELECT ex_kab_kota.kab_kota_id
-                        FROM kab_prov_penilai_and_penetaps AS ex_kab_kota
-                            WHERE ex_kab_kota.penilai_ak_damkar_id = internal.penilai_ak_damkar_id)
-                    OR user_aparaturs.provinsi_id NOT IN (SELECT ex_provinsi.provinsi_id
-                        FROM kab_prov_penilai_and_penetaps AS ex_provinsi
-                            WHERE ex_provinsi.penilai_ak_damkar_id = internal.penilai_ak_damkar_id)
                     ORDER BY roles.display_name ' . $role_order);
             // $data = DB::select('SELECT
             //             users.id AS user_id,

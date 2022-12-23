@@ -41,13 +41,7 @@ class InternalService
             JOIN rekapitulasi_kegiatans ON (rekapitulasi_kegiatans.fungsional_id = users.id AND rekapitulasi_kegiatans.is_send IN (2, 3))
             WHERE users.status_akun = 1
                 AND roles.id IN (1,2,3,4,5,6,7)
-                AND user_aparaturs.kab_kota_id = ' . $user->userPejabatStruktural->kab_kota_id . '
-                AND user_aparaturs.kab_kota_id NOT IN (SELECT ex_kab_kota.kab_kota_id
-                    FROM kab_prov_penilai_and_penetaps AS ex_kab_kota
-                        WHERE ex_kab_kota.penetap_ak_damkar_id = internal.penetap_ak_damkar_id)
-                OR user_aparaturs.provinsi_id NOT IN (SELECT ex_provinsi.provinsi_id
-                    FROM kab_prov_penilai_and_penetaps AS ex_provinsi
-                        WHERE ex_provinsi.penetap_ak_damkar_id = internal.penetap_ak_damkar_id)');
+                AND user_aparaturs.kab_kota_id = ' . $user->userPejabatStruktural->kab_kota_id);
         // return DB::select('SELECT
         //         users.id,
         //         user_aparaturs.nama,
