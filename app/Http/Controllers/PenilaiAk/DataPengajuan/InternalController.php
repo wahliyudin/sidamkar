@@ -126,7 +126,6 @@ class InternalController extends Controller
         ]);
         $periode = $this->periodeRepository->isActive();
         $user = $this->userRepository->getUserById($id)->load(['mente.atasanLangsung.userPejabatStruktural']);
-        $atasan_langsung = $user->mente->atasanLangsung;
         $penilai_ak = $this->authUser()->load(['userPejabatStruktural']);
         if (!isset($penilai_ak?->userPejabatStruktural?->file_ttd)) {
             throw ValidationException::withMessages(['Maaf, Anda Belum Melengkapi Profil']);
