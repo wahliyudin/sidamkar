@@ -4249,7 +4249,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'seminar/lokakarya/konferensi/simposium/studi banding-lapangan',
                 'satuan_hasil' => 'Sertifikat/laporan',
                 'percent' => null,
-                'score' => 0.5
+                'score' => 3
             ],
             //461
             [
@@ -4534,7 +4534,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Memperoleh ijazah/gelar yang tidak sesuai bidang tugasnya:',
                 'satuan_hasil' => 'Laporan',
                 'percent' => null,
-                'score' => 0.4
+                'score' => null
             ],
             //492
             [
@@ -4543,7 +4543,7 @@ class ButirKegiatanSeeder extends Seeder
                 'nama' => 'Melakukan kegiatan yang mendukung pelaksanaan tugas Jabatan Fungsional Analis Kebakaran',
                 'satuan_hasil' => 'Laporan',
                 'percent' => null,
-                'score' => 0.4
+                'score' => 0.04
             ],
         ];
 
