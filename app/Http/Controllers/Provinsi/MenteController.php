@@ -32,8 +32,8 @@ class MenteController extends Controller
     {
         $judul = 'Data Mentee';
         $periode = $this->menteService->getPeriodeActive();
-        $fungsionals = $this->menteService->getFungsionalKabKota();
-        $atasanLangsungs = $this->menteService->getAtasanLangsungKabKota();
+        $fungsionals = $this->menteService->getFungsionalProvinsi();
+        $atasanLangsungs = $this->menteService->getAtasanLangsungProvinsi();
         $user = $this->authUser()->load(['userProvKabKota']);
         $penilaiAndPenetap = $this->menteService->getCurrentPenilaiAndPenetapByProvinsi($user->userProvKabKota->provinsi_id);
         if (!isset($penilaiAndPenetap)) {

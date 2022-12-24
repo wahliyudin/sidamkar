@@ -179,6 +179,7 @@ Route::middleware(['auth'])->group(function () {
                 Route::get('atasan-langsung/kegiatan-selesai/{id}/show', 'show')->name('atasan-langsung.kegiatan-selesai.show');
                 Route::post('atasan-langsung/kegiatan-selesai/{id}/ttd', 'ttd')->name('atasan-langsung.kegiatan-selesai.ttd');
                 Route::post('atasan-langsung/kegiatan-selesai/{user_id}/send-to-penilai', 'sendToPenilai')->name('atasan-langsung.kegiatan-selesai.send-to-penilai');
+                Route::post('atasan-langsung/kegiatan-selesai/datatable', 'datatable')->name('atasan-langsung.kegiatan-selesai.datatable');
             });
             Route::get('atasan-langsung/verifikasi-kegiatan', [AtasanLangsungVerifikasiKegiatanController::class, 'index'])->name('atasan-langsung.verifikasi-kegiatan');
 

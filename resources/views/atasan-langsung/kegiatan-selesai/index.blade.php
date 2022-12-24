@@ -22,7 +22,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($fungsionals as $fungsional)
+                                {{-- @foreach ($fungsionals as $fungsional)
                                     <tr>
                                         <td>
                                             <a href=""
@@ -46,7 +46,7 @@
                                                 class="btn btn-primary btn-status px-3 text-sm">Detail</a>
                                         </td>
                                     </tr>
-                                @endforeach
+                                @endforeach --}}
                             </tbody>
                         </table>
                     </div>
@@ -118,6 +118,50 @@
     <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script>
-        $('#fungsionals').DataTable();
+        $('#fungsionals').dataTable().fnDestroy();
+        table = $('#fungsionals').DataTable({
+            responsive: true,
+            serverSide: true,
+            processing: true,
+            ajax: {
+                url: url('/atasan-langsung/kegiatan-selesai/datatable'),
+                type: "POST",
+                data: {
+                    "_token": "{{ csrf_token() }}"
+                }
+            },
+            columns: [{
+                    data: 'nama',
+                    name: 'nama'
+                },
+                {
+                    data: 'nomor_karpeg',
+                    name: 'nomor_karpeg'
+                },
+                {
+                    data: 'jabatan',
+                    name: 'jabatan'
+                },
+                {
+                    data: 'pangkat',
+                    name: 'pangkat'
+                },
+                {
+                    data: 'total',
+                    name: 'angka_kredit'
+                },
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: true,
+                    searchable: true
+                },
+            ],
+            pageLength: 10,
+            lengthMenu: [
+                [10, 20, 50, -1],
+                [10, 20, 50, 'All']
+            ]
+        });
     </script>
 @endsection
