@@ -220,9 +220,9 @@ class GeneratePdfService
         ];
     }
 
-    public function generatePenetapan(User $user, User $penetap = null, $data = null, $is_ttd_penetap = false)
+    public function generatePenetapan(User $user, User $penetap = null, $data = null, $is_ttd_penetap = false, $no_surat = null)
     {
-        $pdf_rekap = PDF::loadView('generate-pdf.penetapan', compact('user', 'penetap', 'data', 'is_ttd_penetap'))
+        $pdf_rekap = PDF::loadView('generate-pdf.penetapan', compact('user', 'penetap', 'data', 'is_ttd_penetap', 'no_surat'))
             ->setPaper('A4');
         $file_name = uniqid();
         Storage::put("rekapitulasi/$file_name.pdf", $pdf_rekap->output());
@@ -248,7 +248,7 @@ class GeneratePdfService
         ]);
     }
 
-    public function storePenetapan(User $user, User $penetap = null, Periode $periode)
+    public function storePenetapan(User $user, User $penetap = null, Periode $periode, $is_ttd_penetap = false, $no_surat_penetapan = null)
     {
         $data = $this->processPenetapan($user, $periode);
         $role = DestructRoleFacade::getRoleFungsionalFirst($user->roles);
@@ -256,7 +256,7 @@ class GeneratePdfService
             $data['role_selanjutnya'] = $this->getJenjangSelanjutnya($role?->name);
         }
         $data['role'] = $role->display_name;
-        [$link_penetapan, $name_penetapan] = $this->generatePenetapan($user, $penetap, $data);
+        [$link_penetapan, $name_penetapan] = $this->generatePenetapan($user, $penetap, $data, $is_ttd_penetap, $no_surat_penetapan);
         RekapitulasiKegiatan::query()->where('periode_id', $periode->id)
             ->where('fungsional_id', $user->id)
             ->first()

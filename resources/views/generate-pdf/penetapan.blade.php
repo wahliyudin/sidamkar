@@ -97,7 +97,7 @@
             </tr>
             <tr>
                 <th class="tb" colspan="7">
-                    <h4 style="text-align: center;">NOMOR : </h3>
+                    <h4 style="text-align: center;">NOMOR : {{ $no_surat }}</h3>
                 </th>
             </tr>
         </thead>
