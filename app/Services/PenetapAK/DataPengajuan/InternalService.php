@@ -25,6 +25,13 @@ class InternalService
 
     public function getUsers(User $user)
     {
+        if ($user->userPejabatStruktural->tingkat_aparatur == 'kab_kota') {
+            $internal = 'internal.kab_kota_id = ' . $user->userPejabatStruktural->kab_kota_id;
+            $aparatur = 'user_aparaturs.kab_kota_id = ' . $user->userPejabatStruktural->kab_kota_id;
+        } else {
+            $internal = 'internal.provinsi_id = ' . $user->userPejabatStruktural->provinsi_id;
+            $aparatur = 'user_aparaturs.provinsi_id = ' . $user->userPejabatStruktural->provinsi_id;
+        }
         return DB::select('SELECT
                 users.id,
                 user_aparaturs.nama,
@@ -37,11 +44,12 @@ class InternalService
             JOIN role_user ON role_user.user_id = users.id
             JOIN roles ON roles.id = role_user.role_id
             LEFT JOIN mekanisme_pengangkatans ON user_aparaturs.mekanisme_pengangkatan_id = mekanisme_pengangkatans.id
-            JOIN kab_prov_penilai_and_penetaps AS internal ON internal.kab_kota_id = ' . $user->userPejabatStruktural->kab_kota_id . '
+            JOIN kab_prov_penilai_and_penetaps AS internal ON ' . $internal . '
             JOIN rekapitulasi_kegiatans ON (rekapitulasi_kegiatans.fungsional_id = users.id AND rekapitulasi_kegiatans.is_send IN (2, 3))
             WHERE users.status_akun = 1
+                AND user_aparaturs.tingkat_aparatur = "' . $user->userPejabatStruktural->tingkat_aparatur . '"
                 AND roles.id IN (1,2,3,5,6)
-                AND user_aparaturs.kab_kota_id = ' . $user->userPejabatStruktural->kab_kota_id);
+                AND ' . $aparatur);
     }
 
     public function ttdRekapitulasi(RekapitulasiKegiatan $rekapitulasiKegiatan, User $user, Periode $periode, User $penetap, $no_surat_penetapan = null)
