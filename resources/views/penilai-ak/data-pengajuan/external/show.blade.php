@@ -82,7 +82,7 @@
                                                                             <input type="number"
                                                                                 {{ $user?->userAparatur?->status_mekanisme == 3 || $rekapitulasiKegiatan->is_send == 3 ? 'disabled' : '' }}
                                                                                 name="ak_kelebihan"
-                                                                                value="{{ $user?->userAparatur?->angka_mekanisme ?? $penetapanAngkaKredit?->ak_kelebihan }}"
+                                                                                value="{{ $user?->userAparatur?->status_mekanisme == 3 ? $user?->userAparatur?->angka_mekanisme : $penetapanAngkaKredit?->ak_kelebihan }}"
                                                                                 class="form-control" placeholder="">
                                                                         </div>
                                                                         <div class="form-group pe-1">

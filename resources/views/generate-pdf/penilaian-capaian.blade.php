@@ -156,7 +156,7 @@
             <tr>
                 <td class="bd" colspan="4">Asli Penilaian Angka Kredit untuk:</td>
                 <td class="bd" style="padding-left: 120px;" colspan="2">Ditetapkan di
-                    {{ isset($penilai) ? ((isset($penilai->userPejabatStruktural->kabKota) ? $penilai->userPejabatStruktural->kabKota->nama : isset($penilai->userPejabatStruktural->provinsi)) ? $penilai->userPejabatStruktural->provinsi->nama : '') : '' }}
+                    {{ isset($penilai) ? ((isset($penilai->userPejabatStruktural->kabKota) ? $penilai->userPejabatStruktural->kabKota->nama : isset($penilai->userPejabatStruktural->provinsi)) ? $penilai->userPejabatStruktural->provinsi->nama : 'Pusat') : '' }}
                 </td>
             </tr>
             <tr>

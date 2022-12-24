@@ -82,7 +82,7 @@ class Penetapan
     public function akDasarAtauKelebihan()
     {
         $result = [];
-        if ($this->user->userAparatur->expired_mekanisme) {
+        if ($this->user->userAparatur->expired_mekanisme || $this->user->userAparatur->status_mekanisme != 3) {
             $result['akDasarAtauKelebihan'] = $this->penetapanAngkaKredit->ak_kelebihan;
         } else {
             if ($this->user->userAparatur->status_mekanisme == 3) {
