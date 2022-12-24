@@ -121,7 +121,7 @@
                     <li class="sidebar-item {{ request()->routeIs('kab-kota.pengangkatan') ? 'active' : '' }}">
                         <a href="{{ route('kab-kota.pengangkatan') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
-                                <i class="fa-solid fa-user-plus"></i>
+                                <i class="fa-solid fa-arrow-right-arrow-left"></i>
                             </div>
                             <span>Pengangkatan</span>
                         </a>
@@ -296,7 +296,7 @@
                     <li class="sidebar-item {{ request()->routeIs('provinsi.pengangkatan') ? 'active' : '' }}">
                         <a href="{{ route('provinsi.pengangkatan') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
-                                <i class="fa-solid fa-user-plus"></i>
+                                <i class="fa-solid fa-arrow-right-arrow-left"></i>
                             </div>
                             <span>Pengangkatan</span>
                         </a>
