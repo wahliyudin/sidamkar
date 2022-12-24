@@ -25,11 +25,11 @@ class InternalService
         $this->rekapitulasiKegiatanRepository = $rekapitulasiKegiatanRepository;
     }
 
-    public function ttdRekapitulasi(RekapitulasiKegiatan $rekapitulasiKegiatan, User $user, Periode $periode, User $atasan_langsung, User $penilai)
+    public function ttdRekapitulasi(RekapitulasiKegiatan $rekapitulasiKegiatan, User $user, Periode $periode, User $penilai, $no_surat_pengembang = null, $no_surat_capaian = null)
     {
         // $ttd = $atasan_langsung?->userPejabatStruktural?->file_ttd;
-        [$link_pengembang, $name_pengembang, $jml_ak_penunjang, $jml_ak_profesi] = $this->generatePdfService->generatePengembang($user, $penilai);
-        [$link_penilaian_capaian, $name_penilaian_capaian, $capaian_ak] = $this->generatePdfService->generatePenilaianCapaian($periode, $user, $rekapitulasiKegiatan->total_capaian, $penilai);
+        [$link_pengembang, $name_pengembang, $jml_ak_penunjang, $jml_ak_profesi] = $this->generatePdfService->generatePengembang($user, $penilai, $no_surat_pengembang);
+        [$link_penilaian_capaian, $name_penilaian_capaian, $capaian_ak] = $this->generatePdfService->generatePenilaianCapaian($periode, $user, $rekapitulasiKegiatan->total_capaian, $penilai, $no_surat_capaian);
         $rekapitulasiKegiatan->update([
             'link_pengembang' => $link_pengembang,
             'name_pengembang' => $name_pengembang,

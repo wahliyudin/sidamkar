@@ -57,9 +57,7 @@
                     PENUNJANG</th>
             </tr>
             <tr>
-                <th class="center" style=" padding-bottom: 2rem;" colspan="6">NOMOR :
-                    …............................................................
-                </th>
+                <th class="center" style=" padding-bottom: 2rem;" colspan="6">NOMOR : {{ $no_surat }}</th>
             </tr>
             <tr>
                 <td style="width: 150px;">Nama</td>

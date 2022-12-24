@@ -82,7 +82,7 @@ class GeneratePdfService
         ];
     }
 
-    public function generatePengembang(User $user, User $penilai = null)
+    public function generatePengembang(User $user, User $penilai = null, $no_surat = null)
     {
         $role = DestructRoleFacade::getRoleFungsionalFirst($user->roles);
         $jenis = $this->groupRole($role);
@@ -182,7 +182,8 @@ class GeneratePdfService
             'user',
             'role',
             'penilai',
-            'result'
+            'result',
+            'no_surat'
         ))->setPaper('A4');
         $file_name = uniqid();
         Storage::put("rekapitulasi/$file_name.pdf", $pdf_rekap->output());
@@ -204,10 +205,11 @@ class GeneratePdfService
         return $percent;
     }
 
-    public function generatePenilaianCapaian(Periode $periode, User $user, $target_ak_skp, User $penilai = null)
+    public function generatePenilaianCapaian(Periode $periode, User $user, $target_ak_skp, User $penilai = null, $no_surat = null)
     {
         $data = $this->penilaianCapaianRepository->generatePenilaianCapaian($periode, $user, $target_ak_skp);
-        $pdf_rekap = PDF::loadView('generate-pdf.penilaian-capaian', compact('data', 'penilai'))
+        $group_role = $this->groupRole(DestructRoleFacade::getRoleFungsionalFirst($user->roles));
+        $pdf_rekap = PDF::loadView('generate-pdf.penilaian-capaian', compact('data', 'penilai', 'group_role', 'no_surat'))
             ->setPaper('A4');
         $file_name = uniqid();
         Storage::put("rekapitulasi/$file_name.pdf", $pdf_rekap->output());
