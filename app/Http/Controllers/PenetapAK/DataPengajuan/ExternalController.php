@@ -92,8 +92,13 @@ class ExternalController extends Controller
         return view('penetap-ak.data-pengajuan.external.show', compact('user', 'rekapitulasiKegiatan', 'penetapanAngkaKredit'));
     }
 
-    public function ttd($id)
+    public function ttd(Request $request, $id)
     {
+        $request->validate([
+            'no_penetapan' => 'required',
+        ], [
+            'no_penetapan.required' => 'Nomor Surat Penetapan Wajib Diisi',
+        ]);
         $periode = $this->periodeRepository->isActive();
         $user = $this->userRepository->getUserById($id)->load(['userAparatur.pangkatGolonganTmt']);
         $penetapAk = $this->authUser()->load(['userPejabatStruktural']);
@@ -101,7 +106,7 @@ class ExternalController extends Controller
             throw ValidationException::withMessages(['Maaf, Anda Belum Melengkapi Profil']);
         }
         $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode);
-        $this->externalService->ttdRekapitulasi($rekap, $user, $periode, $penetapAk);
+        $this->externalService->ttdRekapitulasi($rekap, $user, $periode, $penetapAk, $request->no_penetapan);
         return response()->json([
             'message' => 'Berhasil'
         ]);
