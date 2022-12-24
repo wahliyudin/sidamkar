@@ -81,8 +81,13 @@ class PengajuanController extends Controller
         return view('penetap-ak-kemendagri.data-pengajuan.show', compact('user', 'rekapitulasiKegiatan', 'penetapanAngkaKredit'));
     }
 
-    public function ttd($id)
+    public function ttd(Request $request, $id)
     {
+        $request->validate([
+            'no_penetapan' => 'required',
+        ], [
+            'no_penetapan.required' => 'Nomor Surat Penetapan Wajib Diisi',
+        ]);
         $periode = $this->periodeRepository->isActive();
         $user = $this->userRepository->getUserById($id)->load(['userAparatur.pangkatGolonganTmt']);
         $penetapAk = $this->authUser()->load(['userPejabatStruktural']);
@@ -90,7 +95,7 @@ class PengajuanController extends Controller
             throw ValidationException::withMessages(['Maaf, Anda Belum Melengkapi Profil']);
         }
         $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode);
-        $this->dataPengajuanService->ttdRekapitulasi($rekap, $user, $periode, $penetapAk);
+        $this->dataPengajuanService->ttdRekapitulasi($rekap, $user, $periode, $penetapAk, $request->no_penetapan);
         return response()->json([
             'message' => 'Berhasil'
         ]);

@@ -254,7 +254,7 @@
                     Pengusul dan Pejabat
                     Fungsional yang bersangkutan, tembusan disampaikan kepada:</td>
                 <td class="tr" colspan="3" style="text-align: start !important;">Ditetapkan di
-                    {{ isset($penetap) ? ((isset($penetap->userPejabatStruktural->kabKota) ? $penetap->userPejabatStruktural->kabKota->nama : isset($penetap->userPejabatStruktural->provinsi)) ? $penetap->userPejabatStruktural->provinsi->nama : '') : '' }}
+                    {{ isset($penetap) ? ((isset($penetap->userPejabatStruktural->kabKota) ? $penetap->userPejabatStruktural->kabKota->nama : isset($penetap->userPejabatStruktural->provinsi)) ? $penetap->userPejabatStruktural->provinsi->nama : 'Pusat') : '' }}
                     <br>Pada tanggal
                     {{ $is_ttd_penetap == true ? now()->translatedFormat('d F Y') : '' }}
                 </td>
