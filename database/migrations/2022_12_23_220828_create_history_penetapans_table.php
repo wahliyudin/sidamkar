@@ -20,9 +20,9 @@ return new class extends Migration
             $table->foreignUuid('fungsional_id');
             $table->timestamps();
 
-            $table->foreign('penetap_id')->on('users')->references('id')->cascadeOnDelete();
-            $table->foreign('periode_id')->on('periodes')->references('id')->cascadeOnDelete();
-            $table->foreign('fungsional_id')->on('users')->references('id')->cascadeOnDelete();
+            // $table->foreign('penetap_id')->on('users')->references('id')->cascadeOnDelete();
+            // $table->foreign('periode_id')->on('periodes')->references('id')->cascadeOnDelete();
+            // $table->foreign('fungsional_id')->on('users')->references('id')->cascadeOnDelete();
         });
     }
 

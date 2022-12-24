@@ -14,7 +14,8 @@ class PenetapanAngkaKredit extends Model
         'periode_id',
         'user_id',
         'ak_kelebihan',
-        'ak_pengalaman'
+        'ak_pengalaman',
+        'total_ak_kumulatif'
     ];
 
     public function periode()

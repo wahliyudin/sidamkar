@@ -242,7 +242,7 @@
                 </td>
             </tr>
             <tr>
-                <td style="border-width: 0 !important; font-style: italic;" colspan="2">paraf atasan langsung</td>
+                <td style="border-width: 0 !important; font-style: italic;" colspan="2"></td>
                 <td style="border-width: 0 !important;"><br></td>
                 <td style="border-width: 0 !important; padding-top: 10px;" colspan="3" class="center">
                     {{ isset($penilai) ? $penilai?->userPejabatStruktural?->nama : '-' }} <br>

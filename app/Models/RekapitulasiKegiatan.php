@@ -34,7 +34,7 @@ class RekapitulasiKegiatan extends Model
         'name_penilaian_capaian',
         'capaian_ak',
         'link_penetapan',
-        'name_penetapan'
+        'name_penetapan',
     ];
 
     public function fungsional()
