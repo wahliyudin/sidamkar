@@ -292,6 +292,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('kab-kota/histori-penetapan/datatable', [HistoriPenetapanController::class, 'datatable'])->name('kab-kota.histori-penetapan.datatable');
 
         Route::get('kab-kota/pengangkatan', [PengangkatanController::class, 'index'])->name('kab-kota.pengangkatan');
+        Route::post('kab-kota/pengangkatan/datatable', [PengangkatanController::class, 'datatable'])->name('kab-kota.pengangkatan.datatable');
 
         Route::get('kab-kota/chatbox', [ChatboxController::class, 'index'])->name('kab-kota.chatbox');
     });
@@ -324,6 +325,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('provinsi/histori-penetapan/datatable', [ProvinsiHistoriPenetapanController::class, 'datatable'])->name('provinsi.histori-penetapan.datatable');
 
         Route::get('provinsi/pengangkatan', [ProvinsiPengangkatanController::class, 'index'])->name('provinsi.pengangkatan');
+        Route::post('provinsi/pengangkatan/datatable', [ProvinsiPengangkatanController::class, 'datatable'])->name('provinsi.pengangkatan.datatable');
 
         Route::get('provinsi/data-mente', [ProvinsiMenteController::class, 'index'])->name('provinsi.data-mente');
         Route::post('provinsi/data-mente/store', [ProvinsiMenteController::class, 'store'])->name('provinsi.data-mente.store');

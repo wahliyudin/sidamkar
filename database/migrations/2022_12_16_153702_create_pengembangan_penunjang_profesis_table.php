@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('periode_id');
             $table->float('jml_ak_profesi', places: 4, unsigned: true)->nullable();
             $table->float('jml_ak_penunjang', places: 4, unsigned: true)->nullable();
-            $table->boolean('is_send')->default(false);
+            $table->integer('status')->default(0);
             $table->string('name');
             $table->string('link');
             $table->timestamps();
