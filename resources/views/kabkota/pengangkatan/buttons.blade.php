@@ -8,11 +8,7 @@
     <div class="modal fade" id="pengangkatan{{ $row->id }}" tabindex="-1" role="dialog"
         aria-labelledby="pengangkatan{{ $row->id }}Title" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-centered" role="document">
-            <div class="modal-content relative">
-                <div class="bg-spin" style="display: none;">
-                    <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
-                        style="height: 3rem; object-fit: cover;" alt="" srcset="">
-                </div>
+            <div class="modal-content">
                 <div class="modal-header">
                     <h6 style="color: red;"><i class="fa-solid fa-bookmark me-2" style="font-size: 16px;"></i>Kenaikan
                         Pangkat/Jenjang
@@ -35,7 +31,7 @@
                     <div class="text-center mt-4">
                         <button class="btn btn-danger px-5 py-2" data-bs-dismiss="modal"
                             style="text-transform: capitalize; background-color: rgb(136, 136, 136); border: 0 !important;">Batal</button>
-                        <button type="button" class="btn btn-blue px-4 verifikasi py-2"
+                        <button type="button" data-data="{{ $row->id }}" class="btn btn-blue px-4 verifikasi py-2"
                             style="text-transform: capitalize; border: 0 !important; width: 142px;">
                             <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
                                 style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">

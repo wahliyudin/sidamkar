@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\KabKota;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Traits\AuthTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -25,6 +26,7 @@ class PengangkatanController extends Controller
             }
             $auth = $this->authUser()->load(['userProvKabKota']);
             $data = DB::select('SELECT
+                user_aparaturs.user_id AS id,
                 user_aparaturs.nama,
                 CONCAT(MONTHNAME(periodes.awal), " ", YEAR(periodes.awal), " - ", MONTHNAME(periodes.akhir), " ", YEAR(periodes.akhir))
                     AS periode,
@@ -63,5 +65,15 @@ class PengangkatanController extends Controller
                 return '<span class="badge bg-black text-white text-sm py-2 px-3 rounded-md">Ditolak</span>';
                 break;
         }
+    }
+
+    public function verifikasi($id)
+    {
+        $user = User::query()->where('id', $id)->first();
+        $user->syncRoles([]);
+        return response()->json([
+            'status' => 200,
+            'message' => 'Berhasil diterapkan'
+        ]);
     }
 }

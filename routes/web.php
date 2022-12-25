@@ -293,6 +293,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('kab-kota/pengangkatan', [PengangkatanController::class, 'index'])->name('kab-kota.pengangkatan');
         Route::post('kab-kota/pengangkatan/datatable', [PengangkatanController::class, 'datatable'])->name('kab-kota.pengangkatan.datatable');
+        Route::post('kab-kota/pengangkatan/{id}/verifikasi', [PengangkatanController::class, 'verifikasi'])->name('kab-kota.pengangkatan.verifikasi');
 
         Route::get('kab-kota/chatbox', [ChatboxController::class, 'index'])->name('kab-kota.chatbox');
     });
@@ -300,7 +301,6 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['role:provinsi'])->group(function () {
         Route::get('provinsi/overview', [ProvinsiOverviewController::class, 'index'])->name('provinsi.overview.index');
         Route::get('provinsi/chatbox', [ProvinsiChatboxController::class, 'index'])->name('provinsi.chatbox');
-
 
         Route::get('provinsi/manajemen-user/struktural', [ProvinsiStrukturalController::class, 'index'])->name('provinsi.manajemen-user.struktural');
         Route::get('provinsi/manajemen-user/struktural/{id}/show', [ProvinsiStrukturalController::class, 'show'])->name('provinsi.manajemen-user.struktural.show');
