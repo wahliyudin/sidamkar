@@ -198,8 +198,8 @@ class MenteController extends Controller
         ], [
             'email_penetapan.required' => 'Email wajib diisi'
         ]);
-        $this->authUser()->userProvKabKota()->update([
-            'email_penetapan' => $request->email_penetapan
+        $this->authUser()->update([
+            'email' => $request->email_penetapan
         ]);
         return response()->json([
             'status' => 200,

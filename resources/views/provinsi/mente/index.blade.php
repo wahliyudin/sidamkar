@@ -134,7 +134,7 @@
                                 </p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h2 style="font-family: 'Roboto';color: #06152B; font-size: 16px" class="target">
-                                        {{ $user->userProvKabKota->email_penetapan ?? '-' }}
+                                        {{ $user->email ?? '-' }}
                                     </h2>
                                     <button class="btn-email" data-bs-toggle="modal" data-bs-target="#modalEmail">
                                         <i class="fa-solid fa-plus"></i>

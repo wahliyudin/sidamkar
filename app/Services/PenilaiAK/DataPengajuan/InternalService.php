@@ -50,7 +50,7 @@ class InternalService
         ], [
             'periode_id' => $periode->id,
             'user_id' => $user->id,
-            'ak_kelebihan' => isset($ak_kelebihan) ? $ak_kelebihan : $user->userAparatur->angka_mekanisme,
+            'ak_kelebihan' => isset($ak_kelebihan) ? $ak_kelebihan : $user->userAparatur->angka_mekanisme ?? 0,
             'ak_pengalaman' => $ak_pengalaman
         ]);
         $this->generatePdfService->storePenetapan($user, $penetap, $periode);

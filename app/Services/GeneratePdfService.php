@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Facades\Modules\DestructRoleFacade;
 use App\Models\KetentuanNilai;
 use App\Models\PenetapanAngkaKredit;
+use App\Models\PenetapanKenaikanPangkatJenjang;
 use App\Models\Periode;
 use App\Models\RekapitulasiKegiatan;
 use App\Models\User;
@@ -254,6 +255,11 @@ class GeneratePdfService
         $role = DestructRoleFacade::getRoleFungsionalFirst($user->roles);
         if (isset($data['statusKenaikanPangkat']) && $data['statusKenaikanPangkat'] == true) {
             $data['role_selanjutnya'] = $this->getJenjangSelanjutnya($role?->name);
+            PenetapanKenaikanPangkatJenjang::query()->create([
+                'fungsional_id' => $user->id,
+                'periode_id' => $periode->id,
+                'is_naik' => false
+            ]);
         }
         $data['role'] = $role->display_name;
         [$link_penetapan, $name_penetapan] = $this->generatePenetapan($user, $penetap, $data, $is_ttd_penetap, $no_surat_penetapan);

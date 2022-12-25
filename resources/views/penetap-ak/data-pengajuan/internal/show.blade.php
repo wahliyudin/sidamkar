@@ -136,6 +136,10 @@
                     <div class="pt-2 pb-3">
                         <form action="" class="form-surat">
                             <div class="form-group">
+                                <label>Nama Yang Menetapkan</label>
+                                <input type="text" name="nama_penetap" class="form-control">
+                            </div>
+                            <div class="form-group">
                                 <label>Nomor Surat Penetapan</label>
                                 <input type="text" name="no_penetapan" class="form-control">
                             </div>
