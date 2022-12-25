@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 
 class TransformPeriode extends Command
 {
@@ -27,6 +28,6 @@ class TransformPeriode extends Command
      */
     public function handle()
     {
-        return Command::SUCCESS;
+        Log::info("Cron is working fine!");
     }
 }
