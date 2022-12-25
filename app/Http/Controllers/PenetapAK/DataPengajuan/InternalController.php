@@ -62,8 +62,15 @@ class InternalController extends Controller
         }
     }
 
-    public function ttd($id)
+    public function ttd(Request $request, $id)
     {
+        $request->validate([
+            'no_penetapan' => 'required',
+            'nama_penetap' => 'required',
+        ], [
+            'no_penetapan.required' => 'Nomor Surat Penetapan Wajib Diisi',
+            'nama_penetap.required' => 'Nama Yang Menetapkan Wajib Diisi',
+        ]);
         $periode = $this->periodeRepository->isActive();
         $user = $this->userRepository->getUserById($id)->load(['userAparatur.pangkatGolonganTmt']);
         $penetapAk = $this->authUser()->load(['userPejabatStruktural']);
@@ -71,7 +78,7 @@ class InternalController extends Controller
             throw ValidationException::withMessages(['Maaf, Anda Belum Melengkapi Profil']);
         }
         $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode);
-        $this->internalService->ttdRekapitulasi($rekap, $user, $periode, $penetapAk);
+        $this->internalService->ttdRekapitulasi($rekap, $user, $periode, $penetapAk, $request->no_penetapan, $request->nama_penetap);
         return response()->json([
             'message' => 'Berhasil'
         ]);

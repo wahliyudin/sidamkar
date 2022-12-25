@@ -12,7 +12,10 @@ use App\Repositories\UserRepository;
 use App\Services\GeneratePdfService;
 use App\Services\MenteService;
 use App\Traits\AuthTrait;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
+use Yajra\DataTables\Facades\DataTables;
 
 class KegiatanSelesaiController extends Controller
 {
@@ -36,36 +39,64 @@ class KegiatanSelesaiController extends Controller
     public function index()
     {
         $judul = 'Kegiatan Selesai';
-        $periode = $this->periodeRepository->isActive();
         $user = $this->authUser()->load('userPejabatStruktural');
-        $fungsionals = User::query()
-            ->where('status_akun', User::STATUS_ACTIVE)
-            ->whereRoleIs(getAllRoleFungsional())
-            ->with(['roles'])
-            ->withWhereHas('userAparatur', function ($query) use ($user) {
-                $query->where('tingkat_aparatur', 'kab_kota')
-                    ->where('kab_kota_id', $user?->userPejabatStruktural?->kab_kota_id)
-                    ->with(['pangkatGolonganTmt']);
-            })
-            ->withWhereHas('rekapitulasiKegiatan', function ($query) {
-                $query->whereIn('is_send', [RekapitulasiKegiatan::IS_SEND_KE_ATASAN_LANGSUNG, RekapitulasiKegiatan::IS_SEND_KE_PENILAI, RekapitulasiKegiatan::IS_SEND_KE_PENETAP]);
-            })
-            ->withSum(['laporanKegiatanJabatans' => function ($query) use ($periode) {
-                $query->where('status', LaporanKegiatanJabatan::SELESAI)->whereBetween('current_date', [$periode->awal, $periode->akhir]);
-            }], 'score')
-            ->get()->map(function (User $user) {
-                foreach ($user->roles as $role) {
-                    if (in_array($role->name, getAllRoleFungsional())) {
-                        $user->role = $role;
-                    }
-                }
-                return $user;
-            });
         $penilaiAndPenetap = $this->menteService->getCurrentPenilaiAndPenetapByKabKota($user->userPejabatStruktural->kab_kota_id, ['damkar', 'analis']);
         if (!isset($penilaiAndPenetap)) {
             $penilaiAndPenetap = $this->menteService->getCurrentPenilaiAndPenetapByProvinsi($user->userPejabatStruktural->provinsi_id, ['damkar', 'analis']);
         }
-        return view('atasan-langsung.kegiatan-selesai.index', compact('fungsionals', 'penilaiAndPenetap', 'judul'));
+        return view('atasan-langsung.kegiatan-selesai.index', compact('penilaiAndPenetap', 'judul'));
+    }
+
+
+    public function datatable(Request $request)
+    {
+        if ($request->ajax()) {
+            $role_order = 'ASC';
+            if (isset($request->order) && $request->order[0]['column'] == 2) {
+                $role_order =  $request->order[0]['dir'];
+            }
+            $user = $this->authUser()->load(['userPejabatStruktural']);
+            $periode = $this->periodeRepository->isActive();
+            if ($user->userPejabatStruktural->tingkat_aparatur == 'kab_kota') {
+                $tingkat_aparatur = 'AND user_aparaturs.tingkat_aparatur = "kab_kota"';
+                $kab_prov = 'AND user_aparaturs.kab_kota_id = ' . $user->userPejabatStruktural->kab_kota_id;
+            } else {
+                $tingkat_aparatur = 'AND user_aparaturs.tingkat_aparatur = "provinsi"';
+                $kab_prov = 'AND user_aparaturs.provinsi_id = ' . $user->userPejabatStruktural->provinsi_id;
+            }
+
+            $data = DB::select('SELECT
+                    users.id,
+                    user_aparaturs.nama,
+                    user_aparaturs.nomor_karpeg,
+                    roles.display_name AS jabatan,
+                    pangkat_golongan_tmts.nama AS pangkat,
+                    ROUND(SUM(laporan_kegiatan_jabatans.score), 3) AS total
+                FROM users
+                JOIN user_aparaturs ON user_aparaturs.user_id = users.id
+                JOIN role_user ON role_user.user_id = users.id
+                JOIN roles ON roles.id = role_user.role_id
+                JOIN pangkat_golongan_tmts ON pangkat_golongan_tmts.id = user_aparaturs.pangkat_golongan_tmt_id
+                JOIN rekapitulasi_kegiatans ON rekapitulasi_kegiatans.fungsional_id = users.id
+                JOIN laporan_kegiatan_jabatans ON laporan_kegiatan_jabatans.user_id = users.id
+                WHERE rekapitulasi_kegiatans.is_send IN (1, 2, 3)
+                    AND users.status_akun = 1
+                    AND laporan_kegiatan_jabatans.status = 3
+                    ' . $tingkat_aparatur . '
+                    ' . $kab_prov . '
+                    AND roles.id IN (1,2,3,4,5,6,7)
+                    AND laporan_kegiatan_jabatans.current_date BETWEEN ' . '"' . $periode->awal . '"' . ' AND ' . '"' . $periode->akhir . '"' . '
+                    GROUP BY users.id
+                    ORDER BY rekapitulasi_kegiatans.created_at DESC, roles.display_name ' . $role_order);
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+                    return '<a href="' . route('atasan-langsung.kegiatan-selesai.show', $row->id) . '"
+                    class="btn btn-primary btn-status px-3 text-sm">Detail</a>';
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
     }
 
     public function show($id)

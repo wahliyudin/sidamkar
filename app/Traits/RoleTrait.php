@@ -90,4 +90,31 @@ trait RoleTrait
             'Pembina Muda (IV/c)'
         ];
     }
+
+    public function getJenjangSelanjutnya($role_name)
+    {
+        switch ($role_name) {
+            case 'damkar_pemula':
+                return 'Damkar Terampil';
+                break;
+            case 'damkar_terampil':
+                return 'Damkar Mahir';
+                break;
+            case 'damkar_mahir':
+                return 'Damkar Penyelia';
+                break;
+            case 'damkar_penyelia':
+                return 'Damkar Penyelia';
+                break;
+            case 'analis_kebakaran_ahli_pertama':
+                return 'Analis Kebekaran Ahli Muda';
+                break;
+            case 'analis_kebakaran_ahli_muda':
+                return 'Analis Kebekaran Ahli Madya';
+                break;
+            case 'analis_kebakaran_ahli_madya':
+                return 'Analis Kebekaran Ahli Madya';
+                break;
+        }
+    }
 }

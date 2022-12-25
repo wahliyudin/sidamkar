@@ -8,11 +8,8 @@
                     <div class="card-header d-flex flex-wrap justify-content-between align-items-center">
                         <h4>Laporan/Dokumen {{ $user?->userAparatur->nama }}</h4>
                         <div class="d-flex align-items-center flex-wrap">
-                            <button data-id="{{ $user?->id }}"
-                                class="btn {{ in_array($rekapitulasiKegiatan->is_send, [3]) || $rekapitulasiKegiatan->is_ttd_penilai == true ? 'disabled' : '' }} btn-blue me-3 ps-3 pe-4 text-sm ttd">
-                                <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
-                                    style="height: 25px; margin-left: 10px; object-fit: cover;display: none;" alt=""
-                                    srcset="">
+                            <button data-bs-toggle="modal" data-bs-target="#ttd"
+                                class="btn {{ in_array($rekapitulasiKegiatan->is_send, [3]) || $rekapitulasiKegiatan->is_ttd_penilai == true ? 'disabled' : '' }} btn-blue me-3 ps-3 pe-4 text-sm">
                                 <i class="fa-solid fa-pen-clip me-2 icon"></i>
                                 <span>TTD</span>
                             </button>
@@ -85,7 +82,7 @@
                                                                             <input type="number"
                                                                                 {{ $user?->userAparatur?->status_mekanisme == 3 || $rekapitulasiKegiatan->is_send == 3 ? 'disabled' : '' }}
                                                                                 name="ak_kelebihan"
-                                                                                value="{{ $user?->userAparatur?->angka_mekanisme ?? $penetapanAngkaKredit?->ak_kelebihan }}"
+                                                                                value="{{ $user?->userAparatur?->status_mekanisme == 3 ? $user?->userAparatur?->angka_mekanisme : $penetapanAngkaKredit?->ak_kelebihan }}"
                                                                                 class="form-control" placeholder="">
                                                                         </div>
                                                                         <div class="form-group pe-1">
@@ -148,6 +145,38 @@
             </div>
         </div>
     </section>
+    <div class="modal fade" id="ttd" data-bs-backdrop="static" tabindex="-1" role="dialog"
+        aria-labelledby="ttdTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body px-4 pb-0 pt-4">
+                    <h5 class="text-center">Masukan Nomor Surat</h5>
+                    <div class="pt-2 pb-3">
+                        <form action="" class="form-surat">
+                            <div class="form-group">
+                                <label>Nomor Surat Penilaian Capaian</label>
+                                <input type="text" name="no_penilaian_capaian" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Nomor Surat Pengembang & Penunjang</label>
+                                <input type="text" name="no_pengembang" class="form-control">
+                            </div>
+                        </form>
+                        <div class="d-flex wrapper-btn justify-content-end align-items-center mt-0 pb-2">
+                            <button type="button" class="btn btn-danger btn-sm px-4"
+                                data-bs-dismiss="modal">Tutup</button>
+                            <button type="button" data-id="{{ $user?->id }}"
+                                class="btn btn-green-dark px-4 btn-sm verifikasi ms-2 ttd">
+                                <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
+                                    style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
+                                <span>Simpan</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('css')
@@ -255,7 +284,7 @@
                     return new Promise(function(resolve) {
                         $.ajax({
                                 type: 'POST',
-                                url: url('/penilai-ak/data-pengajuan/external/' + id +
+                                url: url('/penilai-ak/data-pengajuan/internal/' + id +
                                     '/simpan-penetapan'),
                                 processData: false,
                                 contentType: false,
@@ -281,16 +310,19 @@
             // $('.simpan-kegiatan span').show();
             // $('.simpan-kegiatan .spin').hide();
         });
-        // penilai-ak/data-pengajuan/external/{user_id}/simpan-penetapan
+        // penilai-ak/data-pengajuan/internal/{user_id}/simpan-penetapan
         $('.ttd').click(function(e) {
             e.preventDefault();
+            var postData = new FormData($(".form-surat")[0]);
             $('.spin').show();
             $('.ttd .icon').hide();
             $('.ttd span').hide();
             $.ajax({
                 type: "POST",
-                url: url('/penilai-ak/data-pengajuan/external/' + $(this).data('id') + '/ttd'),
-                dataType: "JSON",
+                url: url('/penilai-ak/data-pengajuan/internal/' + $(this).data('id') + '/ttd'),
+                processData: false,
+                contentType: false,
+                data: postData,
                 success: function(response) {
                     $('.spin').hide();
                     $('.ttd .icon').show();
@@ -320,7 +352,7 @@
                 preConfirm: async () => {
                     return await $.ajax({
                         type: "POST",
-                        url: url('/penilai-ak/data-pengajuan/external/' + $(this).data(
+                        url: url('/penilai-ak/data-pengajuan/internal/' + $(this).data(
                                 'id') +
                             '/send-to-penetap'),
                         dataType: "JSON",

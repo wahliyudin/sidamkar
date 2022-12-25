@@ -32,15 +32,15 @@ class MenteController extends Controller
     {
         $judul = 'Data Mentee';
         $periode = $this->menteService->getPeriodeActive();
-        $fungsionals = $this->menteService->getFungsionalKabKota();
-        $atasanLangsungs = $this->menteService->getAtasanLangsungKabKota();
+        $fungsionals = $this->menteService->getFungsionalProvinsi();
+        $atasanLangsungs = $this->menteService->getAtasanLangsungProvinsi();
         $user = $this->authUser()->load(['userProvKabKota']);
         $penilaiAndPenetap = $this->menteService->getCurrentPenilaiAndPenetapByProvinsi($user->userProvKabKota->provinsi_id);
         if (!isset($penilaiAndPenetap)) {
             $penilaiAndPenetap = $this->menteService->getCurrentPenilaiAndPenetapByProvinsi($user->userProvKabKota->provinsi_id);
         }
         $provinsis = Provinsi::query()->get(['id', 'nama']);
-        return $dataTable->render('provinsi.mente.index', compact('fungsionals', 'penilaiAndPenetap', 'atasanLangsungs', 'provinsis', 'periode', 'judul'));
+        return $dataTable->render('provinsi.mente.index', compact('fungsionals', 'user', 'penilaiAndPenetap', 'atasanLangsungs', 'provinsis', 'periode', 'judul'));
     }
 
     public function tingkatKabKota(Request $request, $kab_kota_id)
@@ -188,6 +188,22 @@ class MenteController extends Controller
         return response()->json([
             'status' => 200,
             'message' => 'Berhasil diubah'
+        ]);
+    }
+
+    public function emailPenetapan(Request $request)
+    {
+        $request->validate([
+            'email_penetapan' => 'required'
+        ], [
+            'email_penetapan.required' => 'Email wajib diisi'
+        ]);
+        $this->authUser()->update([
+            'email' => $request->email_penetapan
+        ]);
+        return response()->json([
+            'status' => 200,
+            'message' => 'Berhasil disimpan'
         ]);
     }
 }

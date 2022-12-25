@@ -97,7 +97,7 @@
             </tr>
             <tr>
                 <th class="tb" colspan="7">
-                    <h4 style="text-align: center;">NOMOR : </h3>
+                    <h4 style="text-align: center;">NOMOR : {{ $no_surat }}</h3>
                 </th>
             </tr>
         </thead>
@@ -167,17 +167,17 @@
             <tr>
                 <td>1</td>
                 <td class="keterangan" colspan="2">AK Dasar yang diberikan/kelebihan AK</td>
-                <td>{{ isset($data['ak_kelebihan']) ? $data['ak_kelebihan'] : 0 }}</td>
+                <td>{{ isset($data['akDasarAtauKelebihan']) ? $data['akDasarAtauKelebihan'] : 0 }}</td>
                 <td>0</td>
-                <td>{{ isset($data['ak_kelebihan']) ? $data['ak_kelebihan'] : 0 }}</td>
+                <td>{{ isset($data['akDasarAtauKelebihan']) ? $data['akDasarAtauKelebihan'] : 0 }}</td>
                 <td colspan="1" class="text-start"></td>
             </tr>
             <tr>
                 <td>2</td>
                 <td class="keterangan" colspan="2">AK yang diperoleh dari pengalaman</td>
                 <td>0</td>
-                <td>{{ isset($data['ak_pengalaman']) ? $data['ak_pengalaman'] : 0 }}</td>
-                <td>{{ isset($data['ak_pengalaman']) ? $data['ak_pengalaman'] : 0 }}</td>
+                <td>{{ isset($data['akPengalaman']) ? $data['akPengalaman'] : 0 }}</td>
+                <td>{{ isset($data['akPengalaman']) ? $data['akPengalaman'] : 0 }}</td>
                 <td colspan="1" class="text-start"></td>
             </tr>
             <tr>
@@ -222,16 +222,18 @@
             <tr>
                 <td class="keterangan" colspan="4">Angka Kredit Minimal yang harus dipenuhi untuk kenaikan
                     pangkat/jenjang</td>
-                <td>{{ isset($data['ak_kenaikan_pangkat']) ? $data['ak_kenaikan_pangkat'] : 0 }}</td>
-                <td>{{ isset($data['ak_kenaikan_jenjang']) ? $data['ak_kenaikan_jenjang'] : 0 }}</td>
+                <td>{{ isset($data['angkaKenaikanPangkat']) ? $data['angkaKenaikanPangkat'] : 0 }}</td>
+                <td>{{ isset($data['angkaKenaikanJenjang']) ? $data['angkaKenaikanJenjang'] : 0 }}</td>
                 <td>{{ isset($data['ak_min_profesi']) ? $data['ak_min_profesi'] : 0 }}</td>
             </tr>
             <tr>
-                <td class="keterangan" colspan="4">Kelebihan/Kekurangan* Angka Kredit yang harus dicapai untuk
+                <td class="keterangan" colspan="4">
+                    {{ isset($data['statusKelebihanKekuranganPangkat']) ? ($data['statusKelebihanKekuranganPangkat'] == true ? 'Kelebihan' : 'Kekurangan') : '' }}
+                    Angka Kredit yang harus dicapai untuk
                     kenaikan pangkat/jenjang
                 </td>
-                <td>{{ isset($data['kelebihan_kekurangan_jabatan']) ? $data['kelebihan_kekurangan_jabatan'] : 0 }}</td>
-                <td>{{ isset($data['kelebihan_kekurangan_jenjang']) ? $data['kelebihan_kekurangan_jenjang'] : 0 }}</td>
+                <td>{{ isset($data['kelebihanKekuranganPangkat']) ? $data['kelebihanKekuranganPangkat'] : 0 }}</td>
+                <td>{{ isset($data['kelebihanKekuranganJenjang']) ? $data['kelebihanKekuranganJenjang'] : 0 }}</td>
                 <td>{{ isset($data['kelebihan_kekurangan_profesi']) ? $data['kelebihan_kekurangan_profesi'] : 0 }}</td>
             </tr>
         </tbody>
@@ -239,20 +241,22 @@
     <table style="width: 99% !important;" class="table table-light-none table-striped page-break">
         <tbody>
             <tr>
-                <th colspan="7" class="text-start py-1">III.
-                    {{ isset($data['status_pangkat']) ? ($data['status_pangkat'] == true ? 'DAPAT' : 'TIDAK DAPAT') : '' }}
+                <th colspan="7" class="text-start py-1" style="text-transform: uppercase;">III.
+                    {{ isset($data['statusKenaikanPangkat']) ? ($data['statusKenaikanPangkat'] == true ? 'DAPAT' : 'TIDAK DAPAT') : '' }}
                     DIPERTIMBANGKAN UNTUK KENAIKAN
                     PANGKAT/JENJANG JABATAN SETINGKAT
-                    LEBIH TINGGI MENJADI JENJANG ….... PANGKAT/GOLONGAN RUANG…............</th>
+                    LEBIH TINGGI MENJADI JENJANG
+                    {{ isset($data['role_selanjutnya']) ? $data['role_selanjutnya'] : '-' }} PANGKAT/GOLONGAN
+                    RUANG…............</th>
             </tr>
             <tr>
                 <td class="tb py-2" colspan="4">Asli Penetapan Angka Kredit disampaikan kepada Pimpinan Instansi
                     Pengusul dan Pejabat
                     Fungsional yang bersangkutan, tembusan disampaikan kepada:</td>
                 <td class="tr" colspan="3" style="text-align: start !important;">Ditetapkan di
-                    …....................
+                    {{ isset($penetap) ? ((isset($penetap->userPejabatStruktural->kabKota) ? $penetap->userPejabatStruktural->kabKota->nama : isset($penetap->userPejabatStruktural->provinsi)) ? $penetap->userPejabatStruktural->provinsi->nama : 'Pusat') : '' }}
                     <br>Pada tanggal
-                    …...................
+                    {{ $is_ttd_penetap == true ? now()->translatedFormat('d F Y') : '' }}
                 </td>
             </tr>
             <tr>

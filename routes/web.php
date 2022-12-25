@@ -179,6 +179,7 @@ Route::middleware(['auth'])->group(function () {
                 Route::get('atasan-langsung/kegiatan-selesai/{id}/show', 'show')->name('atasan-langsung.kegiatan-selesai.show');
                 Route::post('atasan-langsung/kegiatan-selesai/{id}/ttd', 'ttd')->name('atasan-langsung.kegiatan-selesai.ttd');
                 Route::post('atasan-langsung/kegiatan-selesai/{user_id}/send-to-penilai', 'sendToPenilai')->name('atasan-langsung.kegiatan-selesai.send-to-penilai');
+                Route::post('atasan-langsung/kegiatan-selesai/datatable', 'datatable')->name('atasan-langsung.kegiatan-selesai.datatable');
             });
             Route::get('atasan-langsung/verifikasi-kegiatan', [AtasanLangsungVerifikasiKegiatanController::class, 'index'])->name('atasan-langsung.verifikasi-kegiatan');
 
@@ -285,10 +286,13 @@ Route::middleware(['auth'])->group(function () {
         Route::post('kab-kota/data-mente/{kab_kota_id}/tingkat-kabkota', [KabKotaMenteController::class, 'tingkatKabKota'])->name('kab-kota.data-mente.tingkat-kabkota');
         Route::post('kab-kota/data-mente/{provinsi_id}/tingkat-provinsi', [KabKotaMenteController::class, 'tingkatProvinsi'])->name('kab-kota.data-mente.tingkat-provinsi');
         Route::post('kab-kota/data-mente/store-penilai-penetap', [KabKotaMenteController::class, 'storePenilaiAndPenetap'])->name('kab-kota.data-mente.store-penilai-penetap');
+        Route::post('kab-kota/data-mente/email-penetapan', [KabKotaMenteController::class, 'emailPenetapan'])->name('kab-kota.data-mente.email-penetapan');
 
         Route::get('kab-kota/histori-penetapan', [HistoriPenetapanController::class, 'index'])->name('kab-kota.histori-penetapan');
+        Route::post('kab-kota/histori-penetapan/datatable', [HistoriPenetapanController::class, 'datatable'])->name('kab-kota.histori-penetapan.datatable');
 
         Route::get('kab-kota/pengangkatan', [PengangkatanController::class, 'index'])->name('kab-kota.pengangkatan');
+        Route::post('kab-kota/pengangkatan/datatable', [PengangkatanController::class, 'datatable'])->name('kab-kota.pengangkatan.datatable');
 
         Route::get('kab-kota/chatbox', [ChatboxController::class, 'index'])->name('kab-kota.chatbox');
     });
@@ -318,8 +322,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('provinsi/manajemen-user/user-kab-kota', [UserKabKotaController::class, 'index'])->name('provinsi.manajemen-user.user-kab-kota');
 
         Route::get('provinsi/histori-penetapan', [ProvinsiHistoriPenetapanController::class, 'index'])->name('provinsi.histori-penetapan');
+        Route::post('provinsi/histori-penetapan/datatable', [ProvinsiHistoriPenetapanController::class, 'datatable'])->name('provinsi.histori-penetapan.datatable');
 
         Route::get('provinsi/pengangkatan', [ProvinsiPengangkatanController::class, 'index'])->name('provinsi.pengangkatan');
+        Route::post('provinsi/pengangkatan/datatable', [ProvinsiPengangkatanController::class, 'datatable'])->name('provinsi.pengangkatan.datatable');
 
         Route::get('provinsi/data-mente', [ProvinsiMenteController::class, 'index'])->name('provinsi.data-mente');
         Route::post('provinsi/data-mente/store', [ProvinsiMenteController::class, 'store'])->name('provinsi.data-mente.store');
@@ -329,6 +335,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('provinsi/data-mente/{kab_kota_id}/tingkat-kabkota', [ProvinsiMenteController::class, 'tingkatKabKota'])->name('provinsi.data-mente.tingkat-kabkota');
         Route::post('provinsi/data-mente/{provinsi_id}/tingkat-provinsi', [ProvinsiMenteController::class, 'tingkatProvinsi'])->name('provinsi.data-mente.tingkat-provinsi');
         Route::post('provinsi/data-mente/store-penilai-penetap', [ProvinsiMenteController::class, 'storePenilaiAndPenetap'])->name('provinsi.data-mente.store-penilai-penetap');
+        Route::post('provinsi/data-mente/email-penetapan', [ProvinsiMenteController::class, 'emailPenetapan'])->name('provinsi.data-mente.email-penetapan');
     });
 
     Route::middleware(['role:kemendagri'])->group(function () {

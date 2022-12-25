@@ -3,15 +3,20 @@
 namespace App\Services;
 
 use App\Facades\Modules\DestructRoleFacade;
+use App\Models\KetentuanNilai;
+use App\Models\PenetapanAngkaKredit;
+use App\Models\PenetapanKenaikanPangkatJenjang;
 use App\Models\Periode;
 use App\Models\RekapitulasiKegiatan;
 use App\Models\User;
+use App\Modules\Dokumen\Penetapan;
 use App\Repositories\KetentuanNilaiRepository;
 use App\Repositories\PenilaianCapaianRepository;
 use App\Repositories\PeriodeRepository;
 use App\Repositories\RekapitulasiKegiatanRepository;
 use App\Repositories\RencanaRepository;
 use App\Repositories\UnsurRepository;
+use App\Traits\RoleTrait;
 use App\Traits\ScoringTrait;
 use Barryvdh\Snappy\Facades\SnappyPdf as PDF;
 use Illuminate\Support\Facades\DB;
@@ -19,7 +24,7 @@ use Illuminate\Support\Facades\Storage;
 
 class GeneratePdfService
 {
-    use ScoringTrait;
+    use ScoringTrait, RoleTrait;
 
     protected PeriodeRepository $periodeRepository;
     protected UnsurRepository $unsurRepository;
@@ -78,7 +83,7 @@ class GeneratePdfService
         ];
     }
 
-    public function generatePengembang(User $user, User $penilai = null)
+    public function generatePengembang(User $user, User $penilai = null, $no_surat = null)
     {
         $role = DestructRoleFacade::getRoleFungsionalFirst($user->roles);
         $jenis = $this->groupRole($role);
@@ -178,7 +183,8 @@ class GeneratePdfService
             'user',
             'role',
             'penilai',
-            'result'
+            'result',
+            'no_surat'
         ))->setPaper('A4');
         $file_name = uniqid();
         Storage::put("rekapitulasi/$file_name.pdf", $pdf_rekap->output());
@@ -200,10 +206,11 @@ class GeneratePdfService
         return $percent;
     }
 
-    public function generatePenilaianCapaian(Periode $periode, User $user, $target_ak_skp, User $penilai = null)
+    public function generatePenilaianCapaian(Periode $periode, User $user, $target_ak_skp, User $penilai = null, $no_surat = null)
     {
         $data = $this->penilaianCapaianRepository->generatePenilaianCapaian($periode, $user, $target_ak_skp);
-        $pdf_rekap = PDF::loadView('generate-pdf.penilaian-capaian', compact('data', 'penilai'))
+        $group_role = $this->groupRole(DestructRoleFacade::getRoleFungsionalFirst($user->roles));
+        $pdf_rekap = PDF::loadView('generate-pdf.penilaian-capaian', compact('data', 'penilai', 'group_role', 'no_surat'))
             ->setPaper('A4');
         $file_name = uniqid();
         Storage::put("rekapitulasi/$file_name.pdf", $pdf_rekap->output());
@@ -214,13 +221,9 @@ class GeneratePdfService
         ];
     }
 
-    public function generatePenetapan(User $user, User $penetap = null, $data = null, $is_ttd_penetap = false)
+    public function generatePenetapan(User $user, User $penetap = null, $data = null, $is_ttd_penetap = false, $no_surat = null)
     {
-        // pangkat => ak_kp - total - total_sebelumnya
-        // jenjang => ak_kj - total - total_sebelumnya - ak_dasar
-        // total => ak_jabatan + ak_profesi + ak_penunjang
-        // jika setiap ak dicek dengna ak_max
-        $pdf_rekap = PDF::loadView('generate-pdf.penetapan', compact('user', 'penetap', 'data', 'is_ttd_penetap'))
+        $pdf_rekap = PDF::loadView('generate-pdf.penetapan', compact('user', 'penetap', 'data', 'is_ttd_penetap', 'no_surat'))
             ->setPaper('A4');
         $file_name = uniqid();
         Storage::put("rekapitulasi/$file_name.pdf", $pdf_rekap->output());
@@ -244,5 +247,44 @@ class GeneratePdfService
         $rekapitulasiKegiatan->historyRekapitulasiKegiatans()->create([
             'content' => 'Rekapitulasi ditanda tangani Atasan Langsung'
         ]);
+    }
+
+    public function storePenetapan(User $user, User $penetap = null, Periode $periode, $is_ttd_penetap = false, $no_surat_penetapan = null)
+    {
+        $data = $this->processPenetapan($user, $periode);
+        $role = DestructRoleFacade::getRoleFungsionalFirst($user->roles);
+        if (isset($data['statusKenaikanPangkat']) && $data['statusKenaikanPangkat'] == true) {
+            $data['role_selanjutnya'] = $this->getJenjangSelanjutnya($role?->name);
+            PenetapanKenaikanPangkatJenjang::query()->create([
+                'fungsional_id' => $user->id,
+                'periode_id' => $periode->id,
+                'is_naik' => false
+            ]);
+        }
+        $data['role'] = $role->display_name;
+        [$link_penetapan, $name_penetapan] = $this->generatePenetapan($user, $penetap, $data, $is_ttd_penetap, $no_surat_penetapan);
+        RekapitulasiKegiatan::query()->where('periode_id', $periode->id)
+            ->where('fungsional_id', $user->id)
+            ->first()
+            ->update([
+                'link_penetapan' => $link_penetapan,
+                'name_penetapan' => $name_penetapan
+            ]);
+    }
+
+    public function processPenetapan(User $user, Periode $periode)
+    {
+        $user = $user->load(['roles', 'userAparatur']);
+        $penetapan = PenetapanAngkaKredit::query()
+            ->where('user_id', $user->id)
+            ->where('periode_id', $periode->id)
+            ->first();
+        $role = DestructRoleFacade::getRoleFungsionalFirst($user->roles);
+        $rekapitulasiKegiatan = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode);
+        $ketentuanNilai = KetentuanNilai::query()
+            ->where('pangkat_golongan_tmt_id', $user->userAparatur->pangkat_golongan_tmt_id)
+            ->where('role_id', $role->id)
+            ->first();
+        return (new Penetapan($user, $rekapitulasiKegiatan, $ketentuanNilai, $penetapan))->process()->getResult();
     }
 }

@@ -57,8 +57,7 @@
                 <th class="bd center" style="font-size: 16px;" colspan="6">PENILAIAN CAPAIAN ANGKA KREDIT</th>
             </tr>
             <tr>
-                <th class="bd center" style="font-size: 16px;" colspan="6">NOMOR …................................
-                </th>
+                <th class="bd center" style="font-size: 16px;" colspan="6">NOMOR : {{ $no_surat }}</th>
             </tr>
             <tr>
                 <th class="bd" colspan="6"> <br></th>
@@ -68,7 +67,8 @@
     <table width="98%" class="table table-light-none table-striped page-break">
         <tbody>
             <tr>
-                <td class="center" colspan="6">ANALIS KEBAKARAN/PEMADAM KEBAKARAN*) YANG DINILAI</td>
+                <td class="center" colspan="6">
+                    {{ $group_role == 'analis' ? 'ANALIS KEBAKARAN' : 'PEMADAM KEBAKARAN' }} YANG DINILAI</td>
             </tr>
             <tr>
                 <td style="width: 150px;">Nama</td>
@@ -155,11 +155,14 @@
             </tr>
             <tr>
                 <td class="bd" colspan="4">Asli Penilaian Angka Kredit untuk:</td>
-                <td class="bd" colspan="2">Ditetapkan di …...........</td>
+                <td class="bd" style="padding-left: 120px;" colspan="2">Ditetapkan di
+                    {{ isset($penilai) ? ((isset($penilai->userPejabatStruktural->kabKota) ? $penilai->userPejabatStruktural->kabKota->nama : isset($penilai->userPejabatStruktural->provinsi)) ? $penilai->userPejabatStruktural->provinsi->nama : 'Pusat') : '' }}
+                </td>
             </tr>
             <tr>
                 <td class="bd" colspan="4">1. Pimpinan Instansi Pengusul; dan</td>
-                <td class="bd" colspan="2">Pada tanggal ….........................</td>
+                <td class="bd" style="padding-left: 120px;" colspan="2">Pada tanggal
+                    {{ isset($penilai) ? now()->translatedFormat('d F Y') : '' }}</td>
             </tr>
             <tr>
                 <td class="bd" colspan="4">2. Pejabat Fungsional Yang Bersangkutan</td>

@@ -13,15 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pengembangan_penunjang_profesis', function (Blueprint $table) {
+        Schema::create('penetapan_kenaikan_pangkat_jenjangs', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('fungsional_id');
-            $table->unsignedBigInteger('periode_id');
-            $table->float('jml_ak_profesi', places: 4, unsigned: true)->nullable();
-            $table->float('jml_ak_penunjang', places: 4, unsigned: true)->nullable();
-            $table->integer('status')->default(0);
-            $table->string('name');
-            $table->string('link');
+            $table->foreignUuid('periode_id');
+            $table->boolean('is_naik')->default(false);
             $table->timestamps();
         });
     }
@@ -33,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pengembangan_penunjang_profesis');
+        Schema::dropIfExists('penetapan_kenaikan_pangkat_jenjangs');
     }
 };

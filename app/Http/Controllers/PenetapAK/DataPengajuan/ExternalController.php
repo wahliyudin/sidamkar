@@ -47,6 +47,13 @@ class ExternalController extends Controller
                 $role_order =  $request->order[0]['dir'];
             }
             $auth = $this->authUser()->load(['userPejabatStruktural']);
+            if ($auth->userPejabatStruktural->tingkat_aparatur == 'kab_kota') {
+                $internal = 'internal.kab_kota_id = ' . $auth->userPejabatStruktural->kab_kota_id;
+                $aparatur = 'user_aparaturs.kab_kota_id = ' . $auth->userPejabatStruktural->kab_kota_id;
+            } else {
+                $internal = 'internal.provinsi_id = ' . $auth->userPejabatStruktural->provinsi_id;
+                $aparatur = 'user_aparaturs.provinsi_id = ' . $auth->userPejabatStruktural->provinsi_id;
+            }
             $data = DB::select('SELECT
                     users.id,
                     user_aparaturs.nama,
@@ -59,17 +66,33 @@ class ExternalController extends Controller
                 JOIN role_user ON role_user.user_id = users.id
                 JOIN roles ON roles.id = role_user.role_id
                 LEFT JOIN mekanisme_pengangkatans ON user_aparaturs.mekanisme_pengangkatan_id = mekanisme_pengangkatans.id
-                JOIN kab_prov_penilai_and_penetaps AS internal ON internal.kab_kota_id = ' . $auth->userPejabatStruktural->kab_kota_id . '
+                JOIN kab_prov_penilai_and_penetaps AS internal ON ' . $internal . '
                 JOIN rekapitulasi_kegiatans ON (rekapitulasi_kegiatans.fungsional_id = users.id AND rekapitulasi_kegiatans.is_send IN (2, 3))
                 WHERE users.status_akun = 1
-                    AND roles.id IN (1,2,3,5,6)
-                    AND user_aparaturs.kab_kota_id != ' . $auth->userPejabatStruktural->kab_kota_id . '
                     AND user_aparaturs.kab_kota_id IN (SELECT ex_kab_kota.kab_kota_id
                         FROM kab_prov_penilai_and_penetaps AS ex_kab_kota
-                            WHERE ex_kab_kota.penetap_ak_damkar_id = internal.penetap_ak_damkar_id)
+                            WHERE ex_kab_kota.penetap_ak_damkar_id = internal.penetap_ak_damkar_id
+                                OR ex_kab_kota.penetap_ak_analis_id = internal.penetap_ak_analis_id)
                     OR user_aparaturs.provinsi_id IN (SELECT ex_provinsi.provinsi_id
                         FROM kab_prov_penilai_and_penetaps AS ex_provinsi
-                            WHERE ex_provinsi.penetap_ak_damkar_id = internal.penetap_ak_damkar_id)
+                            WHERE ex_provinsi.penetap_ak_damkar_id = internal.penetap_ak_damkar_id
+                                OR ex_provinsi.penetap_ak_analis_id = internal.penetap_ak_analis_id)
+                    AND roles.id IN (1,2,3,5,6)
+                    AND users.id NOT IN (SELECT
+                                users.id
+                            FROM users
+                            LEFT JOIN user_aparaturs ON user_aparaturs.user_id = users.id
+                            LEFT JOIN pangkat_golongan_tmts ON pangkat_golongan_tmts.id = user_aparaturs.pangkat_golongan_tmt_id
+                            JOIN role_user ON role_user.user_id = users.id
+                            JOIN roles ON roles.id = role_user.role_id
+                            LEFT JOIN mekanisme_pengangkatans ON user_aparaturs.mekanisme_pengangkatan_id = mekanisme_pengangkatans.id
+                            JOIN kab_prov_penilai_and_penetaps AS internal ON ' . $internal . '
+                            JOIN rekapitulasi_kegiatans ON (rekapitulasi_kegiatans.fungsional_id = users.id
+                                AND rekapitulasi_kegiatans.is_send IN (2, 3))
+                            WHERE users.status_akun = 1
+                                    AND user_aparaturs.tingkat_aparatur = "' . $auth->userPejabatStruktural->tingkat_aparatur . '"
+                                    AND roles.id IN (1,2,3,5,6)
+                                    AND ' . $aparatur . ')
                     ORDER BY roles.display_name ' . $role_order);
             return DataTables::of($data)
                 ->addIndexColumn()
@@ -92,8 +115,15 @@ class ExternalController extends Controller
         return view('penetap-ak.data-pengajuan.external.show', compact('user', 'rekapitulasiKegiatan', 'penetapanAngkaKredit'));
     }
 
-    public function ttd($id)
+    public function ttd(Request $request, $id)
     {
+        $request->validate([
+            'no_penetapan' => 'required',
+            'nama_penetap' => 'required',
+        ], [
+            'no_penetapan.required' => 'Nomor Surat Penetapan Wajib Diisi',
+            'nama_penetap.required' => 'Nama Yang Menetapkan Wajib Diisi',
+        ]);
         $periode = $this->periodeRepository->isActive();
         $user = $this->userRepository->getUserById($id)->load(['userAparatur.pangkatGolonganTmt']);
         $penetapAk = $this->authUser()->load(['userPejabatStruktural']);
@@ -101,7 +131,7 @@ class ExternalController extends Controller
             throw ValidationException::withMessages(['Maaf, Anda Belum Melengkapi Profil']);
         }
         $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode);
-        $this->externalService->ttdRekapitulasi($rekap, $user, $periode, $penetapAk);
+        $this->externalService->ttdRekapitulasi($rekap, $user, $periode, $penetapAk, $request->no_penetapan, $request->nama_penetap);
         return response()->json([
             'message' => 'Berhasil'
         ]);
