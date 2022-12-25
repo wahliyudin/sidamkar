@@ -9,6 +9,7 @@ class Kernel extends ConsoleKernel
 {
     protected $commands = [
         Commands\CleanTemporaryDaily::class,
+        Commands\TransformPeriode::class,
     ];
     /**
      * Define the application's command schedule.
