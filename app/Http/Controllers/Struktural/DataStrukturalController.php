@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Struktural;
 
 use Illuminate\Http\Request;
@@ -20,7 +21,7 @@ use App\Http\Requests\DataAparatur\StoreDataAparatur;
 use App\Models\PangkatGolonganTmt;
 use App\Traits\AuthTrait;
 use Carbon\Carbon;
-
+use App\Models\NomenKlaturPerangkatDaerah;
 
 class DataStrukturalController extends Controller
 {
@@ -33,7 +34,8 @@ class DataStrukturalController extends Controller
         $provinsis = Provinsi::query()->get();
         $kab_kota = KabKota::query()->get();
         $pangkats = PangkatGolonganTmt::query()->get();
-        return view('struktural.data-saya.index', compact('user', 'provinsis', 'kab_kota', 'pangkats', 'judul'));
+        $nomenklatur = NomenKlaturPerangkatDaerah::query()->get();
+        return view('struktural.data-saya.index', compact('user', 'provinsis', 'kab_kota', 'pangkats', 'judul', 'nomenklatur'));
     }
 
     public function store(Request $request)
@@ -47,6 +49,8 @@ class DataStrukturalController extends Controller
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
             'jenis_kelamin' => 'required',
+            'tmt' => 'required',
+            'nomenklatur_perangkat_daerah_id' => 'required',
             // 'provinsi_id' => 'required'
         ];
         if ($this->authUser()->tingkat_aparatur == 'kab_kota') {
@@ -57,6 +61,8 @@ class DataStrukturalController extends Controller
             'nama' => $request->nama,
             'nip' => $request->nip,
             'pangkat_golongan_tmt_id' => $request->pangkat_golongan_tmt_id,
+            'tmt' => $request->tmt,
+            'nomenklatur_perangkat_daerah_id' => $request->nomenklatur_perangkat_daerah_id,
             'nomor_karpeg' => $request->nomor_karpeg,
             'pendidikan_terakhir' => $request->pendidikan_terakhir,
             'tempat_lahir' => $request->tempat_lahir,

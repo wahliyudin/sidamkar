@@ -155,10 +155,10 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="basicInput">Pangkat / Golongan / TMT</label>
+                                        <label for="basicInput">Pangkat / Golongan </label>
                                         <select class="pangkat_golongan form-select" name="pangkat_golongan_tmt_id"
                                             name="pangkat">
-                                            <option disabled selected>- Pilih Pangkat / Golongan / TMT -</option>
+                                            <option disabled selected>- Pilih Pangkat / Golongan -</option>
                                             @foreach ($pangkats as $pangkat)
                                                 <option @selected(old('pangkat_golongan_tmt_id', $user->userAparatur?->pangkat_golongan_tmt_id) == $pangkat->id) value="{{ $pangkat->id }}">
                                                     {{ $pangkat->nama }}
@@ -171,6 +171,14 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">TMT</label>
+                                        <input type="date" name="tmt" class="form-control"
+                                            value="{{ old('tmt', $user->userAparatur?->tmt) }}">
+                                        @error('tmt')
+                                            <span class="text-danger text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
                                     <div class="form-group">
                                         <label>Mekanisme Pengangkatan</label>
                                         <select class="form-select"
@@ -185,7 +193,22 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-6 mekanisme-angka">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">Unit Kerja </label>
+                                        <select class="nomenklatur_perangkat_daerah form-select"
+                                            name="nomenklatur_perangkat_daerah_id" name="nomenklatur">
+                                            <option disabled selected>- Pilih Unit Kerja -</option>
+                                            @foreach ($nomenklatur as $unit_kerja)
+                                                <option @selected(old('nomenklatur_perangkat_daerah_id', $user->userAparatur?->nomenklatur_perangkat_daerah_id) == $unit_kerja->id) value="{{ $unit_kerja->id }}">
+                                                    {{ $unit_kerja->nama }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('nomenklatur_perangkat_daerah_id')
+                                            <span class="text-danger text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
                                     <div class="form-group">
                                         <label>Angka Kredit Awal</label>
                                         <input type="number"
@@ -222,6 +245,43 @@
                                         </div>
                                     </div>
                                 </div>
+                                {{-- <div class="col-md-6 mekanisme-angka">
+                                    <div class="form-group">
+                                        <label>Angka Kredit Awal</label>
+                                        <input type="number"
+                                            {{ in_array($user?->userAparatur?->status_mekanisme, [1, 3, 4]) ? 'disabled' : '' }}
+                                            name="angka_mekanisme" class="form-control"
+                                            value="{{ $user?->userAparatur->angka_mekanisme }}">
+                                        <div class="my-1 mekanisme-status"
+                                            style="display: flex; justify-content: end; align-items: center;">
+                                            @switch($user?->userAparatur?->status_mekanisme)
+                                                @case(1)
+                                                    <span style="width: 200px; font-style: italic; cursor: default;"
+                                                        class="btn btn-yellow-reverse px-2 py-1 text-sm">Menunggu</span>
+                                                @break
+
+                                                @case(2)
+                                                    <span style="width: 200px; font-style: italic; cursor: default;"
+                                                        class="btn btn-red-reverse px-2 py-1 text-sm">Revisi</span>
+                                                @break
+
+                                                @case(3)
+                                                    <span style="width: 200px; font-style: italic; cursor: default;"
+                                                        class="btn btn-green-reverse px-2 py-1 text-sm">Terverifikasi</span>
+                                                @break
+
+                                                @case(4)
+                                                    <span style="width: 200px; font-style: italic; cursor: default;"
+                                                        class="btn btn-black-reverse px-2 py-1 text-sm">Ditolak</span>
+                                                @break
+
+                                                @default
+                                                    <button style="width: 200px; font-style: italic; cursor: default;"
+                                                        class="btn btn-gray-reverse px-2 py-1 text-sm">Belum</button>
+                                            @endswitch
+                                        </div>
+                                    </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
