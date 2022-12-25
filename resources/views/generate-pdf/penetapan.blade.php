@@ -250,7 +250,7 @@
                     PANGKAT/JENJANG JABATAN SETINGKAT
                     LEBIH TINGGI MENJADI JENJANG
                     {{ isset($data['role_selanjutnya']) ? $data['role_selanjutnya'] : '-' }} PANGKAT/GOLONGAN
-                    RUANG…............</th>
+                    RUANG {{ isset($data['pangkat_selanjutnya']) ? $data['pangkat_selanjutnya'] : '-' }}</th>
             </tr>
             <tr>
                 <td class="tb py-2" colspan="4">Asli Penetapan Angka Kredit disampaikan kepada Pimpinan Instansi

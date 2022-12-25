@@ -103,7 +103,7 @@ class InternalController extends Controller
 
     public function storePenetapan(Request $request, $id)
     {
-        $user = User::query()->with(['userAparatur.pangkatGolonganTmt'])->findOrFail($id);
+        $user = User::query()->with(['userAparatur.pangkatGolonganTmt', 'roles'])->findOrFail($id);
         $rules = [
             'ak_pengalaman' => 'nullable'
         ];

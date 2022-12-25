@@ -84,7 +84,7 @@ class KegiatanSelesaiController extends Controller
                     AND laporan_kegiatan_jabatans.status = 3
                     ' . $tingkat_aparatur . '
                     ' . $kab_prov . '
-                    AND roles.id IN (1,2,3,5,6)
+                    AND roles.id IN (1,2,3,4,5,6,7)
                     AND laporan_kegiatan_jabatans.current_date BETWEEN ' . '"' . $periode->awal . '"' . ' AND ' . '"' . $periode->akhir . '"' . '
                     GROUP BY users.id
                     ORDER BY rekapitulasi_kegiatans.created_at DESC, roles.display_name ' . $role_order);

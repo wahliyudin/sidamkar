@@ -35,7 +35,7 @@ class Penetapan
         $this->akPengalaman();
         $this->processKenaikanPangkat();
         $this->processKenaikanJenjang();
-        // $this->processPengembangProfesi();
+        $this->processPengembangProfesi();
         return $this;
     }
 
@@ -120,7 +120,7 @@ class Penetapan
     {
         // pangkat => ak_kp - total - total_sebelumnya
         $akKP = $this->ketentuanNilai->ak_kp;
-        $total = $akKP - $this->total - 0;
+        $total = $akKP - $this->total - $this->penetapanAngkaKredit->total_ak_kumulatif ?? 0;
         if ($akKP == 0) {
             $this->result = array_merge($this->result, ['statusKenaikanPangkat' => false]);
             $this->result = array_merge($this->result, ['kelebihanKekuranganPangkat' => 0]);
@@ -143,7 +143,7 @@ class Penetapan
         // jenjang => ak_kj - total - total_sebelumnya - ak_dasar
         $akKJ = $this->ketentuanNilai->akk_kj;
         $akDasar = $this->ketentuanNilai->ak_dasar;
-        $total = $akKJ - $this->total - 0 - $akDasar;
+        $total = $akKJ - $this->total - $this->penetapanAngkaKredit->total_ak_kumulatif ?? 0 - $akDasar;
         if ($akKJ == 0) {
             $this->result = array_merge($this->result, ['statusKenaikanJenjang' => false]);
             $this->result = array_merge($this->result, ['kelebihanKekuranganJenjang' => 0]);
@@ -159,12 +159,16 @@ class Penetapan
         }
     }
 
-    public function processPengembangProfesi($total, $ak_profesi, $ak_bangprof)
+    public function processPengembangProfesi()
     {
-        return [
-            'ak_min_profesi' => $ak_bangprof,
-            'kelebihan_kekurangan_profesi' => $total - $ak_profesi
-        ];
+        $ak_bangprof = $this->ketentuanNilai->ak_bangprof;
+        if ($ak_bangprof <= 0) {
+            $this->result = array_merge($this->result, ['akPengembangProfesi' => 0]);
+            $this->result = array_merge($this->result, ['kelebihanKekuranganProfesi' => 0]);
+        } else {
+            $this->result = array_merge($this->result, ['akPengembangProfesi' => $ak_bangprof]);
+            $this->result = array_merge($this->result, ['kelebihanKekuranganProfesi' => $ak_bangprof - $this->result['profesi']]);
+        }
     }
 
     public function getResult()

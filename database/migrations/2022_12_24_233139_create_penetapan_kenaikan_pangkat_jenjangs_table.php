@@ -17,6 +17,8 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->foreignUuid('fungsional_id');
             $table->foreignUuid('periode_id');
+            $table->boolean('naik_jenjang')->default(false);
+            $table->boolean('naik_pangkat')->default(false);
             $table->boolean('is_naik')->default(false);
             $table->timestamps();
         });

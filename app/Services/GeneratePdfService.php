@@ -11,6 +11,7 @@ use App\Models\RekapitulasiKegiatan;
 use App\Models\User;
 use App\Modules\Dokumen\Penetapan;
 use App\Repositories\KetentuanNilaiRepository;
+use App\Repositories\PenetapanKenaikanPangkatJenjangRepository;
 use App\Repositories\PenilaianCapaianRepository;
 use App\Repositories\PeriodeRepository;
 use App\Repositories\RekapitulasiKegiatanRepository;
@@ -32,15 +33,24 @@ class GeneratePdfService
     protected PenilaianCapaianRepository $penilaianCapaianRepository;
     protected RekapitulasiKegiatanRepository $rekapitulasiKegiatanRepository;
     protected KetentuanNilaiRepository $ketentuanNilaiRepository;
+    protected PenetapanKenaikanPangkatJenjangRepository $penetapanKenaikanPangkatJenjangRepository;
 
-    public function __construct(PeriodeRepository $periodeRepository, UnsurRepository $unsurRepository, RencanaRepository $rencanaRepository, PenilaianCapaianRepository $penilaianCapaianRepository, RekapitulasiKegiatanRepository $rekapitulasiKegiatanRepository, KetentuanNilaiRepository $ketentuanNilaiRepository)
-    {
+    public function __construct(
+        PeriodeRepository $periodeRepository,
+        UnsurRepository $unsurRepository,
+        RencanaRepository $rencanaRepository,
+        PenilaianCapaianRepository $penilaianCapaianRepository,
+        RekapitulasiKegiatanRepository $rekapitulasiKegiatanRepository,
+        KetentuanNilaiRepository $ketentuanNilaiRepository,
+        PenetapanKenaikanPangkatJenjangRepository $penetapanKenaikanPangkatJenjangRepository
+    ) {
         $this->periodeRepository = $periodeRepository;
         $this->unsurRepository = $unsurRepository;
         $this->rencanaRepository = $rencanaRepository;
         $this->penilaianCapaianRepository = $penilaianCapaianRepository;
         $this->rekapitulasiKegiatanRepository = $rekapitulasiKegiatanRepository;
         $this->ketentuanNilaiRepository = $ketentuanNilaiRepository;
+        $this->penetapanKenaikanPangkatJenjangRepository = $penetapanKenaikanPangkatJenjangRepository;
     }
 
     public function generatePernyataan(User $user, User $atasan_langsung, $is_ttd = false)
@@ -254,12 +264,24 @@ class GeneratePdfService
     {
         $data = $this->processPenetapan($user, $periode);
         $role = DestructRoleFacade::getRoleFungsionalFirst($user->roles);
-        if (isset($data['statusKenaikanPangkat']) && $data['statusKenaikanPangkat'] == true) {
-            $data['role_selanjutnya'] = $this->getJenjangSelanjutnya($role?->name);
+        if (isset($data['angkaKenaikanJenjang']) && $data['angkaKenaikanJenjang'] > 0 && isset($data['angkaKenaikanPangkat']) && $data['angkaKenaikanPangkat'] > 0) {
+            if (isset($data['kelebihanKekuranganPangkat']) && $data['kelebihanKekuranganPangkat'] > 0 && isset($data['kelebihanKekuranganJenjang']) && $data['kelebihanKekuranganJenjang'] > 0) {
+                $data['role_selanjutnya'] = $this->getJenjangSelanjutnya($role?->name);
+                $data['pangkat_selanjutnya'] = $this->getPangkatSelanjutnya($user?->userAparatur->pangkatGolonganTmt->nama);
+                $this->penetapanKenaikanPangkatJenjangRepository->storeNaikPangkatJenjang($user, $periode);
+            }
+        } elseif (isset($data['angkaKenaikanJenjang']) && $data['angkaKenaikanJenjang'] > 0 && isset($data['angkaKenaikanPangkat']) && $data['angkaKenaikanPangkat'] == 0) {
+            if (isset($data['kelebihanKekuranganPangkat']) && $data['kelebihanKekuranganPangkat'] > 0) {
+                $data['role_selanjutnya'] = $this->getJenjangSelanjutnya($role?->name);
+                $data['ropangkatelanjutnya'] = $this->getPangkatSelanjutnya($user?->userAparatur->pangkatGolonganTmt->nama);
+                $this->penetapanKenaikanPangkatJenjangRepository->storeNaikPangkatJenjang($user, $periode);
+            }
+        } else {
             PenetapanKenaikanPangkatJenjang::query()->create([
                 'fungsional_id' => $user->id,
                 'periode_id' => $periode->id,
-                'is_naik' => false
+                'naik_jenjang' => false,
+                'naik_pangkat' => false
             ]);
         }
         $data['role'] = $role->display_name;
