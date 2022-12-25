@@ -14,7 +14,7 @@
                             <thead>
                                 <tr>
                                     <th>Nama</th>
-                                    <th>Nomor Karpeg</th>
+                                    <th>NIP</th>
                                     <th>Jabatan</th>
                                     <th>Golongan</th>
                                     <th>Angka Kredit</th>
@@ -135,8 +135,8 @@
                     name: 'nama'
                 },
                 {
-                    data: 'nomor_karpeg',
-                    name: 'nomor_karpeg'
+                    data: 'nip',
+                    name: 'nip'
                 },
                 {
                     data: 'jabatan',

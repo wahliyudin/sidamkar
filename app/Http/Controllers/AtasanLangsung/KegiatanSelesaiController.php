@@ -68,7 +68,7 @@ class KegiatanSelesaiController extends Controller
             $data = DB::select('SELECT
                     users.id,
                     user_aparaturs.nama,
-                    user_aparaturs.nomor_karpeg,
+                    user_aparaturs.nip,
                     roles.display_name AS jabatan,
                     pangkat_golongan_tmts.nama AS pangkat,
                     ROUND(SUM(laporan_kegiatan_jabatans.score), 3) AS total

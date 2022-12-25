@@ -89,55 +89,57 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-9 col order-md-0 order-2">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title" style="color: #17181A; font-family: 'Roboto';">HISTORI</h4>
-                    </div>
-                    <div class="card-body">
-                        {{-- <table class="table table-striped" id="table1">
-                            <thead>
-                                <tr>
-                                    <th>Tugas/Kegiatan</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <a href="" style="color: #06152B;">Kesiapsiagaan petugas pemadam kebakaran
-                                            dan penyelamatan</a>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-yellow-reverse btn-status ms-3 px-3 text-sm"
-                                            type="button">diproses</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="" style="color: #06152B;">Pelaksanaan prosedur pelaporan informasi
-                                            kejadian kebakaran</a>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-red-reverse btn-status ms-3 px-3 text-sm"
-                                            type="button">revisi</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="" style="color: #06152B;">Pelaksanaan operasional pemadaman
-                                            kebakaran</a>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-green-reverse btn-status ms-3 px-3 text-sm"
-                                            type="button">selesai</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table> --}}
+            @role(['atasan_langsung'])
+                <div class="col-md-9 col order-md-0 order-2">
+                    <div class="card overflow-auto">
+                        <div class="card-header">
+                            <h4 class="card-title" style="color: #17181A; font-family: 'Roboto';">HISTORI PENGAJUAN REKAPITULASI
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-striped" id="fungsionals">
+                                <thead>
+                                    <tr>
+                                        <th>Nama</th>
+                                        <th>NIP</th>
+                                        <th>Jabatan</th>
+                                        <th>Golongan</th>
+                                        <th>Angka Kredit</th>
+                                        <th>Tanggal</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endrole
+            @role(['penilai_ak_damkar', 'penilai_ak_analis'])
+                <div class="col-md-9 col order-md-0 order-2">
+                    <div class="card overflow-auto">
+                        <div class="card-header">
+                            <h4 class="card-title" style="color: #17181A; font-family: 'Roboto';">HISTORI PENGAJUAN PENILAIAN
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <table id="internal" class="table dataTable no-footer dtr-inline">
+                                <thead>
+                                    <tr>
+                                        <th>Nama</th>
+                                        <th>NIP</th>
+                                        <th>Jabatan</th>
+                                        <th>Status Mekanisme</th>
+                                        <th>Tanggal</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            @endrole
             <div class="col-md-3">
                 <div class="card">
                     <div class="card-header">
@@ -263,6 +265,8 @@
 
 @section('js')
     <script src="{{ asset('assets/extensions/chart.js/Chart.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     {{-- <script src="{{ asset('assets/js/pages/ui-chartjs.js') }}"></script> --}}
     <script>
         $(function() {
@@ -285,6 +289,98 @@
                         $('#informasi .modal-body').html(response[0].deskripsi);
                     }
                 })
+            });
+            $('#fungsionals').dataTable().fnDestroy();
+            table = $('#fungsionals').DataTable({
+                responsive: true,
+                // serverSide: true,
+                // processing: true,
+                show: false,
+                searching: false,
+                lengthChange: false,
+                bPaginate: false,
+                info: false,
+                order: [
+                    [5, 'desc']
+                ],
+                ajax: {
+                    url: url('/struktural/atasan-langsung/histori'),
+                    type: "POST",
+                    data: {
+                        "_token": "{{ csrf_token() }}"
+                    }
+                },
+                columns: [{
+                        data: 'nama',
+                        name: 'nama'
+                    },
+                    {
+                        data: 'nip',
+                        name: 'nip'
+                    },
+                    {
+                        data: 'jabatan',
+                        name: 'jabatan'
+                    },
+                    {
+                        data: 'pangkat',
+                        name: 'pangkat'
+                    },
+                    {
+                        data: 'total',
+                        name: 'angka_kredit'
+                    },
+                    {
+                        data: 'tanggal',
+                        name: 'tanggal',
+                    },
+                ],
+            });
+            $('#internal').dataTable().fnDestroy();
+            table = $('#internal').DataTable({
+                responsive: true,
+                // serverSide: true,
+                // processing: true,
+                show: false,
+                searching: false,
+                lengthChange: false,
+                bPaginate: false,
+                info: false,
+                order: [
+                    [4, 'desc']
+                ],
+                ajax: {
+                    url: url('/struktural/penilai_ak/histori'),
+                    type: "POST",
+                    data: {
+                        "_token": "{{ csrf_token() }}"
+                    }
+                },
+                columns: [{
+                        data: 'nama',
+                        name: 'nama'
+                    },
+                    {
+                        data: 'nip',
+                        name: 'nip'
+                    },
+                    {
+                        data: 'display_name',
+                        name: 'jabatan'
+                    },
+                    {
+                        data: 'status',
+                        name: 'status',
+                        orderable: true,
+                        searchable: true
+                    },
+                    {
+                        data: 'tanggal',
+                        name: 'tanggal',
+                        orderable: true,
+                        searchable: true
+                    },
+                ],
             });
         });
     </script>
