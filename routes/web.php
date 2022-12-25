@@ -162,6 +162,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['role:atasan_langsung|penilai_ak_damkar|penetap_ak_damkar|penilai_ak_analis|penetap_ak_analis|penilai_ak_kemendagri|penetap_ak_kemendagri'])->group(function () {
         Route::get('struktural/dashboard', [ControllersStrukturalDashboardController::class, 'index'])->name('struktural.dashboard');
+        Route::post('struktural/atasan-langsung/histori', [ControllersStrukturalDashboardController::class, 'atasan_langsung_datatable'])->name('struktural.atasan-langsung.histori');
+        Route::post('struktural/penilai_ak/histori', [ControllersStrukturalDashboardController::class, 'datatable'])->name('struktural.penilai_ak.histori');
 
         Route::controller(DataStrukturalController::class)->group(function () {
             Route::get('/data-struktural', 'index')->name('data-struktural');
