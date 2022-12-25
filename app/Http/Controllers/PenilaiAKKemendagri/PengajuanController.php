@@ -47,6 +47,7 @@ class PengajuanController extends Controller
             if (isset($request->order) && $request->order[0]['column'] == 2) {
                 $role_order =  $request->order[0]['dir'];
             }
+            $periode = $this->periodeRepository->isActive();
             $data = DB::select('SELECT
                     users.id AS user_id,
                     user_aparaturs.nama,
@@ -62,7 +63,7 @@ class PengajuanController extends Controller
                 JOIN role_user ON role_user.user_id = users.id
                 JOIN roles ON roles.id = role_user.role_id
                 LEFT JOIN mekanisme_pengangkatans ON user_aparaturs.mekanisme_pengangkatan_id = mekanisme_pengangkatans.id
-                JOIN rekapitulasi_kegiatans ON (rekapitulasi_kegiatans.fungsional_id = users.id AND rekapitulasi_kegiatans.is_send IN (2, 3))
+                JOIN rekapitulasi_kegiatans ON (rekapitulasi_kegiatans.fungsional_id = users.id AND rekapitulasi_kegiatans.is_send IN (2, 3) AND rekapitulasi_kegiatans.periode_id = ' . $periode->id . ')
                 WHERE users.status_akun = 1
                     AND roles.id IN (4,7)
                     ORDER BY roles.display_name ' . $role_order);

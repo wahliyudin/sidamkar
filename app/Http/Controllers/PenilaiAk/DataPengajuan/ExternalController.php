@@ -54,6 +54,7 @@ class ExternalController extends Controller
                 $internal = 'internal.provinsi_id = ' . $auth->userPejabatStruktural->provinsi_id;
                 $aparatur = 'user_aparaturs.provinsi_id = ' . $auth->userPejabatStruktural->provinsi_id;
             }
+            $periode = $this->periodeRepository->isActive();
             $data = DB::select('SELECT
                     users.id AS user_id,
                     user_aparaturs.nama,
@@ -70,7 +71,7 @@ class ExternalController extends Controller
                 JOIN roles ON roles.id = role_user.role_id
                 LEFT JOIN mekanisme_pengangkatans ON user_aparaturs.mekanisme_pengangkatan_id = mekanisme_pengangkatans.id
                 JOIN kab_prov_penilai_and_penetaps AS internal ON ' . $internal . '
-                JOIN rekapitulasi_kegiatans ON (rekapitulasi_kegiatans.fungsional_id = users.id AND rekapitulasi_kegiatans.is_send IN (2, 3))
+                JOIN rekapitulasi_kegiatans ON (rekapitulasi_kegiatans.fungsional_id = users.id AND rekapitulasi_kegiatans.is_send IN (2, 3) AND rekapitulasi_kegiatans.periode_id = ' . $periode->id . ')
                 WHERE users.status_akun = 1
                     AND user_aparaturs.kab_kota_id IN (SELECT ex_kab_kota.kab_kota_id
                         FROM kab_prov_penilai_and_penetaps AS ex_kab_kota
@@ -91,7 +92,7 @@ class ExternalController extends Controller
                         LEFT JOIN mekanisme_pengangkatans ON user_aparaturs.mekanisme_pengangkatan_id = mekanisme_pengangkatans.id
                         JOIN kab_prov_penilai_and_penetaps AS internal ON internal.kab_kota_id = 1101
                         JOIN rekapitulasi_kegiatans ON (rekapitulasi_kegiatans.fungsional_id = users.id
-                                AND rekapitulasi_kegiatans.is_send IN (2, 3))
+                                AND rekapitulasi_kegiatans.is_send IN (2, 3) AND rekapitulasi_kegiatans.periode_id = ' . $periode->id . ')
                         WHERE users.status_akun = 1
                                 AND user_aparaturs.tingkat_aparatur = "kab_kota"
                                 AND roles.id IN (1,2,3,5,6)
