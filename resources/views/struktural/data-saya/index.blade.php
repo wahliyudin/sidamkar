@@ -143,6 +143,14 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
+                                        <label for="basicInput">TMT</label>
+                                        <input type="date" class="form-control" name="tmt"
+                                            value="{{ old('tmt', $user->userPejabatStruktural?->tmt) }}">
+                                        @error('tmt')
+                                            <span class="text-danger text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
                                         <label for="basicInput">Jabatan</label>
                                         <ul>
                                             @foreach (Auth::user()->roles as $role)
@@ -161,10 +169,25 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="basicInput">Pangkat / Golongan / TMT</label>
+                                        <label for="basicInput">Unit Kerja </label>
+                                        <select class="nomenklatur_perangkat_daerah form-select"
+                                            name="nomenklatur_perangkat_daerah_id" name="nomenklatur">
+                                            <option disabled selected>- Pilih Unit Kerja -</option>
+                                            @foreach ($nomenklatur as $unit_kerja)
+                                                <option @selected(old('nomenklatur_perangkat_daerah_id', $user->userPejabatStruktural?->nomenklatur_perangkat_daerah_id) == $unit_kerja->id) value="{{ $unit_kerja->id }}">
+                                                    {{ $unit_kerja->nama }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('nomenklatur_perangkat_daerah_id')
+                                            <span class="text-danger text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="basicInput">Pangkat / Golongan </label>
                                         <select class="pangkat_golongan form-select" name="pangkat_golongan_tmt_id"
                                             name="pangkat">
-                                            <option disabled selected>- Pilih Pangkat / Golongan / TMT -</option>
+                                            <option disabled selected>- Pilih Pangkat / Golongan -</option>
                                             @foreach ($pangkats as $pangkat)
                                                 <option @selected(old('pangkat_golongan_tmt_id', $user->userPejabatStruktural?->pangkat_golongan_tmt_id) == $pangkat->id) value="{{ $pangkat->id }}">
                                                     {{ $pangkat->nama }}
@@ -175,6 +198,7 @@
                                             <span class="text-danger text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
+
                                 </div>
                             </div>
                         </div>
