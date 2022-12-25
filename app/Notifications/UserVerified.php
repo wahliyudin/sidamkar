@@ -41,9 +41,10 @@ class UserVerified extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->greeting('Selamat!')
-                    ->line('Akun anda sudah di verifikasi oleh admin')
-                    ->action('Silahkan login!', route('login'));
+            ->subject('Verifikasi Akun')
+            ->greeting('Selamat!')
+            ->line('Akun anda sudah di verifikasi oleh admin')
+            ->action('Silahkan login!', route('login'));
     }
 
     /**
