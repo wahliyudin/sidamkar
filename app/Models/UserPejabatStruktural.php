@@ -53,4 +53,9 @@ class UserPejabatStruktural extends Model
     {
         return $this->belongsTo(PangkatGolonganTmt::class);
     }
+
+    public function nomenklaturPerangkatDaerah()
+    {
+        return $this->belongsTo(NomenKlaturPerangkatDaerah::class);
+    }
 }

@@ -186,7 +186,7 @@ class KegiatanJabatanController extends Controller
 
     public function rekapitulasi()
     {
-        $user = $this->authUser()->load(['userAparatur', 'laporanKegiatanJabatans' => function ($query) {
+        $user = $this->authUser()->load(['userAparatur.nomenklaturPerangkatDaerah', 'laporanKegiatanJabatans' => function ($query) {
             $query->where('status', LaporanKegiatanJabatan::SELESAI);
         }]);
         if (!isset($user?->userAparatur?->file_ttd)) {

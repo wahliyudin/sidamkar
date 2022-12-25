@@ -128,7 +128,7 @@
                 <td width="20px" class="nomor">4</td>
                 <td class="keterangan">PANGKAT/GOL. RUANG/TMT</td>
                 <td class="inputan text-start" colspan="5">
-                    {{ $user?->userAparatur?->pangkatGolonganTmt?->nama }}
+                    {{ $user->userAparatur->pangkatGolonganTmt->nama . ' / ' . $user->userAparatur->tmt }}
                 </td>
             </tr>
             <tr>
@@ -148,12 +148,15 @@
             <tr>
                 <td width="20px" class="nomor">7</td>
                 <td class="keterangan">JABATAN/TMT</td>
-                <td class="inputan text-start" colspan="5">{{ isset($data['role']) ? $data['role'] : '' }}</td>
+                <td class="inputan text-start" colspan="5">
+                    {{ $role?->display_name . ' / ' . $user->userAparatur->tmt }}</td>
             </tr>
             <tr>
                 <td width="20px" class="nomor">8</td>
                 <td class="keterangan">UNIT KERJA</td>
-                <td class="inputan text-start" colspan="5"></td>
+                <td class="inputan text-start" colspan="5">
+                    {{ $user?->userAparatur?->nomenklaturPerangkatDaerah?->nama }}
+                </td>
             </tr>
         </tbody>
         <tbody>

@@ -104,6 +104,9 @@ class KegiatanSelesaiController extends Controller
         $periode = $this->periodeRepository->isActive();
         $user = User::query()->findOrFail($id);
         $rekapitulasiKegiatan = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode);
+        if (!isset($rekapitulasiKegiatan)) {
+            abort(404);
+        }
         return view('atasan-langsung.kegiatan-selesai.show', compact('rekapitulasiKegiatan', 'user'));
     }
 

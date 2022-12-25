@@ -93,6 +93,9 @@ class InternalController extends Controller
         $rekapitulasiKegiatan = RekapitulasiKegiatan::query()
             ->where('fungsional_id', $id)
             ->where('periode_id', $periode->id)->first();
+        if (!isset($rekapitulasiKegiatan)) {
+            abort(404);
+        }
         $user = $this->userRepository->getUserById($id)->load('userAparatur', 'penetapanAngkaKredit');
         $penetapanAngkaKredit = PenetapanAngkaKredit::query()->where('periode_id', $periode->id)->where('user_id', $user->id)->first();
         return view('penilai-ak.data-pengajuan.internal.show', compact('user', 'rekapitulasiKegiatan', 'penetapanAngkaKredit'));

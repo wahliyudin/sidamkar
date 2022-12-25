@@ -88,17 +88,18 @@
             <tr>
                 <td style="width: 150px;">Pangkat/Gol. Ruang/TMT</td>
                 <td style="width: 10px;">:</td>
-                <td>{{ $user?->userAparatur?->pangkatGolonganTmt?->nama }}</td>
+                <td>{{ $user->userAparatur->pangkatGolonganTmt->nama . ' / ' . $user->userAparatur->tmt }}
+                </td>
             </tr>
             <tr>
                 <td style="width: 150px;">Jabatan/TMT</td>
                 <td style="width: 10px;">:</td>
-                <td>{{ $role?->display_name }}</td>
+                <td>{{ $role?->display_name . ' / ' . $user->userAparatur->tmt }}</td>
             </tr>
             <tr>
                 <td style="width: 150px;">Unit Kerja</td>
                 <td style="width: 10px;">:</td>
-                <td>Lorem, ipsum. Lorem, ipsum.</td>
+                <td>{{ $user?->userAparatur?->nomenklaturPerangkatDaerah?->nama }}</td>
             </tr>
         </tbody>
     </table>

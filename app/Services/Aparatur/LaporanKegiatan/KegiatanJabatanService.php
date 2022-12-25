@@ -355,8 +355,10 @@ class KegiatanJabatanService
             'ketentuanSkpFungsional',
             'mente.atasanLangsung.roles',
             'mente.atasanLangsung.userPejabatStruktural.pangkatGolonganTmt',
+            'mente.atasanLangsung.userPejabatStruktural.nomenklaturPerangkatDaerah',
             'roles',
-            'userAparatur.pangkatGolonganTmt'
+            'userAparatur.pangkatGolonganTmt',
+            'userAparatur.nomenklaturPerangkatDaerah',
         ]);
         if (!isset($user?->ketentuanSkpFungsional)) {
             throw ValidationException::withMessages(['Maaf Anda Belum Menginput SKP']);
