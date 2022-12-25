@@ -289,6 +289,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('kab-kota/data-mente/email-penetapan', [KabKotaMenteController::class, 'emailPenetapan'])->name('kab-kota.data-mente.email-penetapan');
 
         Route::get('kab-kota/histori-penetapan', [HistoriPenetapanController::class, 'index'])->name('kab-kota.histori-penetapan');
+        Route::post('kab-kota/histori-penetapan/datatable', [HistoriPenetapanController::class, 'datatable'])->name('kab-kota.histori-penetapan.datatable');
 
         Route::get('kab-kota/pengangkatan', [PengangkatanController::class, 'index'])->name('kab-kota.pengangkatan');
 
@@ -320,6 +321,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('provinsi/manajemen-user/user-kab-kota', [UserKabKotaController::class, 'index'])->name('provinsi.manajemen-user.user-kab-kota');
 
         Route::get('provinsi/histori-penetapan', [ProvinsiHistoriPenetapanController::class, 'index'])->name('provinsi.histori-penetapan');
+        Route::post('provinsi/histori-penetapan/datatable', [ProvinsiHistoriPenetapanController::class, 'datatable'])->name('provinsi.histori-penetapan.datatable');
 
         Route::get('provinsi/pengangkatan', [ProvinsiPengangkatanController::class, 'index'])->name('provinsi.pengangkatan');
 
