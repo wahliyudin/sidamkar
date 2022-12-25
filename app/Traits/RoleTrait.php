@@ -117,4 +117,55 @@ trait RoleTrait
                 break;
         }
     }
+
+    public function getPangkatSelanjutnya($pangkat)
+    {
+        switch ($pangkat) {
+            case 'Juru Muda (I/a)':
+                return 'Juru Muda Tingkat I (I/b)';
+                break;
+            case 'Juru Muda Tingkat I (I/b)':
+                return 'Juru (I/c)';
+                break;
+            case 'Juru (I/c)':
+                return 'Juru Tingkat I (I/d)';
+                break;
+            case 'Juru Tingkat I (I/d)':
+                return 'Pengatur Muda (II/a)';
+                break;
+            case 'Pengatur Muda (II/a)':
+                return 'Pengatur Muda Tingkat I (II/b)';
+                break;
+            case 'Pengatur Muda Tingkat I (II/b)':
+                return 'Pengatur (II/c)';
+                break;
+            case 'Pengatur (II/c)':
+                return 'Pengatur Tingkat I (II/d)';
+                break;
+            case 'Pengatur Tingkat I (II/d)':
+                return 'Penata Muda (III/a)';
+                break;
+            case 'Penata Muda (III/a)':
+                return 'Penata Muda Tingkat I (III/b)';
+                break;
+            case 'Penata Muda Tingkat I (III/b)':
+                return 'Penata (III/c)';
+                break;
+            case 'Penata Tingkat I (III/d)':
+                return 'Pembina (IV/a)';
+                break;
+            case 'Pembina (IV/a)':
+                return 'Pembina Tingkat I (IV/b)';
+                break;
+            case 'Pembina Tingkat I (IV/b)':
+                return 'Pembina Muda (IV/c)';
+                break;
+            case 'Pembina Muda (IV/c)':
+                return 'Pembina Madya (IV/d)';
+                break;
+            case 'Pembina Madya (IV/d)':
+                return 'Pembina Utama (IV/e)';
+                break;
+        }
+    }
 }

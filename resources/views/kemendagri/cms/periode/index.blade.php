@@ -53,7 +53,9 @@
                     <form method="post" class="form-periode">
                         <div class="form-group">
                             <label>Awal</label>
-                            <input class="form-control" type="date" name="awal">
+                            <input class="form-control"
+                                min="{{ \Carbon\Carbon::make($periodeLast->akhir)->addDay()->format('Y-m-d') }}"
+                                type="date" name="awal">
                         </div>
                         <div class="form-group">
                             <label>Akhir</label>

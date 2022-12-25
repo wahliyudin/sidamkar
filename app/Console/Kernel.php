@@ -9,6 +9,7 @@ class Kernel extends ConsoleKernel
 {
     protected $commands = [
         Commands\CleanTemporaryDaily::class,
+        Commands\TransformPeriode::class,
     ];
     /**
      * Define the application's command schedule.
@@ -19,6 +20,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('clean:temporary')->dailyAt('09:57');
+        $schedule->command('periode:transform')->everyMinute();
     }
 
     /**
@@ -28,7 +30,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }

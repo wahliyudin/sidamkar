@@ -504,6 +504,7 @@
                                     });
                             })
                             .fail(function(erordata) {
+                                console.log(erordata);
                                 if (erordata.status == 422) {
                                     swal('Warning!', erordata.responseJSON.message,
                                         'warning');
@@ -512,13 +513,6 @@
                                 }
                             })
                     })
-                    // return await $.ajax({
-                    //     type: 'POST',
-                    //     url: url("/datasaya-store"),
-                    //     processData: false,
-                    //     contentType: false,
-                    //     data: postData
-                    // });
                 },
             })
         });

@@ -13,6 +13,8 @@ class PenetapanKenaikanPangkatJenjang extends Model
     protected $fillable = [
         'fungsional_id',
         'periode_id',
+        'naik_jenjang',
+        'naik_pangkat',
         'is_naik'
     ];
 
