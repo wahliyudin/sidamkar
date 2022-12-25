@@ -58,6 +58,8 @@ class DataSayaController extends Controller
             'angka_mekanisme' => 'nullable',
             'tmt' => 'required',
             'nomenklatur_perangkat_daerah_id' => 'required',
+        ], [
+            'nomenklatur_perangkat_daerah_id.required' => "Unit Kerja Wajib Diisi."
         ]);
         if (isset($request->angka_mekanisme)) {
             if ($request->angka_mekanisme > 56.25 || $request->angka_mekanisme < 0) {
