@@ -263,6 +263,7 @@ class GeneratePdfService
     public function storePenetapan(User $user, User $penetap = null, Periode $periode, $is_ttd_penetap = false, $no_surat_penetapan = null)
     {
         $data = $this->processPenetapan($user, $periode);
+        dd($data);
         $role = DestructRoleFacade::getRoleFungsionalFirst($user->roles);
         if (isset($data['angkaKenaikanJenjang']) && $data['angkaKenaikanJenjang'] > 0 && isset($data['angkaKenaikanPangkat']) && $data['angkaKenaikanPangkat'] > 0) {
             if (isset($data['kelebihanKekuranganPangkat']) && $data['kelebihanKekuranganPangkat'] > 0 && isset($data['kelebihanKekuranganJenjang']) && $data['kelebihanKekuranganJenjang'] > 0) {
@@ -277,7 +278,10 @@ class GeneratePdfService
                 $this->penetapanKenaikanPangkatJenjangRepository->storeNaikPangkatJenjang($user, $periode);
             }
         } else {
-            PenetapanKenaikanPangkatJenjang::query()->create([
+            PenetapanKenaikanPangkatJenjang::query()->updateOrCreate([
+                'fungsional_id' => $user->id,
+                'periode_id' => $periode->id
+            ], [
                 'fungsional_id' => $user->id,
                 'periode_id' => $periode->id,
                 'naik_jenjang' => false,
