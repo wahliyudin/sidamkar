@@ -94,7 +94,7 @@ class PengajuanController extends Controller
     {
         $user = User::query()->with(['userAparatur.pangkatGolonganTmt'])->findOrFail($id);
         $rules = [
-            'ak_pengalaman' => 'required'
+            'ak_pengalaman' => 'nullable'
         ];
         if ($user->userAparatur->expired_mekanisme) {
             $rules['ak_kelebihan'] = 'required';
