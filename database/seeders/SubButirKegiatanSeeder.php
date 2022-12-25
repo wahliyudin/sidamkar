@@ -310,7 +310,7 @@ class SubButirKegiatanSeeder extends Seeder
                 'butir_kegiatan_id' => 468,
                 'nama' => 'Tingkat lokal',
                 'satuan_hasil' => 'Sertifikat/Piagam',
-                'percent' => 25,
+                'percent' => 15,
                 'score' => null
             ],
             //33
