@@ -23,6 +23,7 @@ use App\Models\PangkatGolonganTmt;
 use App\Traits\RoleTrait;
 use Carbon\Carbon;
 use Illuminate\Validation\ValidationException;
+use App\Models\NomenKlaturPerangkatDaerah;
 
 class DataSayaController extends Controller
 {
@@ -35,8 +36,9 @@ class DataSayaController extends Controller
         $kab_kota = KabKota::query()->get();
         $pangkats = PangkatGolonganTmt::query()->whereIn('nama', $this->getPangkatByRole($user->roles()->first()->name))->get();
         $mekanismePengangkatans = MekanismePengangkatan::query()->get();
+        $nomenklatur = NomenKlaturPerangkatDaerah::query()->get();
         $judul = 'Data Saya';
-        return view('aparatur.data-saya.index', compact('user', 'provinsis', 'kab_kota', 'pangkats', 'judul', 'mekanismePengangkatans'));
+        return view('aparatur.data-saya.index', compact('user', 'provinsis', 'kab_kota', 'pangkats', 'judul', 'mekanismePengangkatans', 'nomenklatur'));
     }
 
     public function store(Request $request)
@@ -54,6 +56,8 @@ class DataSayaController extends Controller
             // 'provinsi_id' => 'required',
             'mekanisme_pengangkatan_id' => 'nullable',
             'angka_mekanisme' => 'nullable',
+            'tmt' => 'required',
+            'nomenklatur_perangkat_daerah_id' => 'required',
         ]);
         if (isset($request->angka_mekanisme)) {
             if ($request->angka_mekanisme > 56.25 || $request->angka_mekanisme < 0) {
@@ -64,6 +68,8 @@ class DataSayaController extends Controller
             'nama' => $request->nama,
             'nip' => $request->nip,
             'pangkat_golongan_tmt_id' => $request->pangkat_golongan_tmt_id,
+            'tmt' => $request->tmt,
+            'nomenklatur_perangkat_daerah_id' => $request->nomenklatur_perangkat_daerah_id,
             'nomor_karpeg' => $request->nomor_karpeg,
             'pendidikan_terakhir' => $request->pendidikan_terakhir,
             'tempat_lahir' => $request->tempat_lahir,
