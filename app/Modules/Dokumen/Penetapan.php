@@ -30,9 +30,10 @@ class Penetapan
     public function process()
     {
         $this->logicTotal();
-        $this->total = $this->result['total'];
         $this->akDasarAtauKelebihan();
         $this->akPengalaman();
+        $this->result['total'] = $this->result['total'] + $this->result['akPengalaman'] + $this->result['akDasarAtauKelebihan'];
+        $this->total = $this->result['total'];
         $this->processKenaikanPangkat();
         $this->processKenaikanJenjang();
         $this->processPengembangProfesi();
@@ -143,7 +144,7 @@ class Penetapan
         // jenjang => ak_kj - total - total_sebelumnya - ak_dasar
         $akKJ = $this->ketentuanNilai->akk_kj;
         $akDasar = $this->ketentuanNilai->ak_dasar;
-        $total = $akKJ - $this->total - $this->penetapanAngkaKredit->total_ak_kumulatif ?? 0 - $akDasar;
+        $total = $akKJ - $this->total - ($this->penetapanAngkaKredit->total_ak_kumulatif ?? 0) - $akDasar;
         if ($akKJ == 0) {
             $this->result = array_merge($this->result, ['statusKenaikanJenjang' => false]);
             $this->result = array_merge($this->result, ['kelebihanKekuranganJenjang' => 0]);

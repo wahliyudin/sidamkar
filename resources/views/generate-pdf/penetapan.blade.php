@@ -231,7 +231,7 @@
             </tr>
             <tr>
                 <td class="keterangan" colspan="4">
-                    {{ isset($data['statusKelebihanKekuranganPangkat']) ? ($data['statusKelebihanKekuranganPangkat'] == true ? 'Kelebihan' : 'Kekurangan') : '' }}
+                    {{ isset($data['statusKenaikanPangkat']) ? ($data['statusKenaikanPangkat'] == true ? 'Kelebihan' : 'Kekurangan') : '' }}
                     Angka Kredit yang harus dicapai untuk
                     kenaikan pangkat/jenjang
                 </td>
