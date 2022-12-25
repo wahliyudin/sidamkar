@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Facades\Repositories\RekapitulasiKegiatanFacade;
+use App\Jobs\SendTTDPenetapan;
 use App\Models\CrossPenilaiAndPenetap;
 use App\Models\JenisKegiatan;
 use App\Models\KabProvPenilaiAndPenetap;
@@ -38,7 +39,9 @@ class CobaController extends Controller
 
     public function index()
     {
-        return view('remove-bg');
+        $user = User::query()->where('username', 'Kab Kota')->first();
+        SendTTDPenetapan::dispatch($user);
+        dd('success');
     }
 
     public function store(Request $request)

@@ -43,7 +43,8 @@ class UserReject extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->greeting('Ooops!')
+            ->subject('Verifikasi Akun')
+            ->greeting('Ooops! Akun Anda Ditolak')
             ->line($this->message)
             ->action('Silahkan register ulang!', route('register'));
     }

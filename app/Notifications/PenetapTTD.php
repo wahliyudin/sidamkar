@@ -11,14 +11,24 @@ class PenetapTTD extends Notification
 {
     use Queueable;
 
+    protected $nama_penetap;
+    protected $nama_fungsional;
+    protected $jabatan;
+    protected $periode;
+    protected $tgl_ttd;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(string $nama_penetap, string $nama_fungsional, string $jabatan, string $periode, string $tgl_ttd)
     {
-        //
+        $this->nama_penetap = $nama_penetap;
+        $this->nama_fungsional = $nama_fungsional;
+        $this->jabatan = $jabatan;
+        $this->periode = $periode;
+        $this->tgl_ttd = $tgl_ttd;
     }
 
     /**
@@ -41,9 +51,10 @@ class PenetapTTD extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+            ->subject('Tanda Tangan Digital Dokumen Penetapan')
+            ->greeting('Hallo!')
+            ->line("{$this->nama_penetap} telah melakukan tanda tangan penetapan dokumen {$this->nama_fungsional} {$this->jabatan}
+            periode {$this->periode} pada tanggal {$this->tgl_ttd}");
     }
 
     /**

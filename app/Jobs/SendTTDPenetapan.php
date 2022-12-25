@@ -34,6 +34,6 @@ class SendTTDPenetapan implements ShouldQueue
      */
     public function handle()
     {
-        $this->user->notify(new PenetapTTD());
+        $this->user->notify(new PenetapTTD('Wahliyudin', 'Damkar Aceh', 'Damkar Pemula', 'Januari 2022 - Desember 2022', '25 Desember 2022'));
     }
 }
