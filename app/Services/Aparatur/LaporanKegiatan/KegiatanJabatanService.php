@@ -216,19 +216,19 @@ class KegiatanJabatanService
         ];
     }
 
-    public function laporanKegiatanJabatanByUser($butirKegiatan, $user)
+    public function laporanKegiatanJabatanByUser($butirKegiatan, $user, $periode)
     {
-        return $this->kegiatanJabatanService->laporanKegiatanJabatanByUser($butirKegiatan, $user);
+        return $this->kegiatanJabatanService->laporanKegiatanJabatanByUser($butirKegiatan, $user, $periode);
     }
 
-    public function laporanKegiatanJabatanCount(ButirKegiatan $butirKegiatan, User $user): int
+    public function laporanKegiatanJabatanCount(ButirKegiatan $butirKegiatan, User $user, $periode): int
     {
-        return $this->kegiatanJabatanService->laporanKegiatanJabatanCount($butirKegiatan, $user);
+        return $this->kegiatanJabatanService->laporanKegiatanJabatanCount($butirKegiatan, $user, $periode);
     }
 
-    public function laporanLast(ButirKegiatan $butirKegiatan, User $user)
+    public function laporanLast(ButirKegiatan $butirKegiatan, User $user, $periode)
     {
-        return $this->kegiatanJabatanService->laporanLast($butirKegiatan, $user);
+        return $this->kegiatanJabatanService->laporanLast($butirKegiatan, $user, $periode);
     }
 
     public function generateDocuments(User $userAuth)

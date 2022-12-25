@@ -44,14 +44,18 @@ class KegiatanJabatanController extends Controller
     public function index()
     {
         $periode = $this->periodeRepository->isActive();
-        $user = $this->authUser()->load(['userAparatur.provinsi.kabkotas', 'ketentuanSkpFungsional', 'dokKepegawaians', 'dokKompetensis', 'rencanas', 'rekapitulasiKegiatan.historyRekapitulasiKegiatans' => function ($query) {
+        $user = $this->authUser()->load(['userAparatur.provinsi.kabkotas', 'ketentuanSkpFungsional' => function ($query) use ($periode) {
+            $query->where('periode_id', $periode->id);
+        }, 'dokKepegawaians', 'dokKompetensis', 'rencanas', 'rekapitulasiKegiatan' => function ($query) use ($periode) {
+            $query->where('periode_id', $periode->id);
+        }, 'rekapitulasiKegiatan.historyRekapitulasiKegiatans' => function ($query) {
             $query->orderBy('id', 'desc');
         }]);
         $judul = 'Laporan Kegiatan Jabatan';
         $skp = $user?->ketentuanSkpFungsional;
         $ketentuan_ak = $this->kegiatanJabatanService->ketentuanNilai(DestructRoleFacade::getRoleFungsionalFirst($user->roles)?->id, $user?->userAparatur?->pangkat_golongan_tmt_id);
         $ak_diterima = $this->kegiatanJabatanService->sumScoreByUser($user->id);
-        $ak_jabatan = DB::table('laporan_kegiatan_jabatans')->where('user_id', Auth::user()->id)->where('status', 3)->sum('score');
+        $ak_jabatan = DB::table('laporan_kegiatan_jabatans')->where('periode_id', $periode->id)->where('user_id', Auth::user()->id)->where('status', 3)->sum('score');
         $historyRekapitulasiKegiatans = $user?->rekapitulasiKegiatan?->historyRekapitulasiKegiatans ?? [];
         return view('aparatur.laporan-kegiatan.jabatan.index', compact('periode', 'user', 'judul', 'historyRekapitulasiKegiatans', 'skp', 'ketentuan_ak', 'ak_diterima', 'ak_jabatan'));
     }
@@ -73,9 +77,9 @@ class KegiatanJabatanController extends Controller
             $laporanKegiatanJabatanStatusRevisis,
             $laporanKegiatanJabatanStatusSelesais,
             $laporanKegiatanJabatanStatusTolaks,
-        ] = $this->kegiatanJabatanService->laporanKegiatanJabatanByUser($butirKegiatan, $user);
-        $laporanKegiatanJabatanLast = $this->kegiatanJabatanService->laporanLast($butirKegiatan, $user);
-        $laporanKegiatanJabatanCount = $this->kegiatanJabatanService->laporanKegiatanJabatanCount($butirKegiatan, $user);
+        ] = $this->kegiatanJabatanService->laporanKegiatanJabatanByUser($butirKegiatan, $user, $periode);
+        $laporanKegiatanJabatanLast = $this->kegiatanJabatanService->laporanLast($butirKegiatan, $user, $periode);
+        $laporanKegiatanJabatanCount = $this->kegiatanJabatanService->laporanKegiatanJabatanCount($butirKegiatan, $user, $periode);
         $rencanas = $this->kegiatanJabatanService->rencanas($user);
         $historyRekapitulasiKegiatans = $user?->rekapitulasiKegiatan?->historyRekapitulasiKegiatans ?? [];
         return view('aparatur.laporan-kegiatan.jabatan.show', compact(
