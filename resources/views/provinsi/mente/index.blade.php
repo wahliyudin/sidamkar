@@ -121,6 +121,30 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-4 px-2">
+                <div class="card">
+                    <div class="card-body py-3 px-3" style="height: 80px;">
+                        <div class="d-flex align-items-center h-100">
+                            <div class="circle circle-green">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div class="d-flex flex-column ms-2" style="flex-grow: 1;">
+                                <p style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
+                                    Email Info Penetapan
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h2 style="font-family: 'Roboto';color: #06152B; font-size: 16px" class="target">
+                                        {{ $user->userProvKabKota->email_penetapan ?? '-' }}
+                                    </h2>
+                                    <button class="btn-email" data-bs-toggle="modal" data-bs-target="#modalEmail">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="col">
@@ -131,8 +155,9 @@
                                 <h5>Tabel Data Aparatur</h5>
                             </div>
                             <div class="col-md-3 d-flex justify-content-end">
-                                <a href="" class="btn-tambah-mente btn-sm" style="right: 0;" data-bs-toggle="modal"
-                                    data-bs-target="#tambahMentee"><i class="fa-solid fa-user-group"></i> Tambah Mentee</a>
+                                <a href="" class="btn-tambah-mente btn-sm" style="right: 0;"
+                                    data-bs-toggle="modal" data-bs-target="#tambahMentee"><i
+                                        class="fa-solid fa-user-group"></i> Tambah Mentee</a>
                             </div>
                         </div>
                     </div>
@@ -414,6 +439,41 @@
             </div>
         </div>
     </div>
+
+
+    <div class="modal fade" id="modalEmail" tabindex="-1" role="dialog" aria-labelledby="modalEmailTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalEmailTitle">
+                        Email Info Penetapan
+                    </h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <i data-feather="x"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-email">
+                        <div class="form-group">
+                            <label for="email_penetapan">Email</label>
+                            <input type="email" name="email_penetapan" id="email_penetapan" class="form-control">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                        <span>Batal</span>
+                    </button>
+                    <button type="button" class="btn btn-green ml-1 simpan-email">
+                        <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
+                            style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
+                        Simpan
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 
@@ -467,6 +527,7 @@
             background-color: #00000075;
         }
 
+        .btn-email,
         .penetap-analis,
         .penilai-analis,
         .penilai-damkar,
@@ -486,6 +547,11 @@
         .penetap-analis {
             border: 2px solid #0D6EF8;
             color: #0D6EF8;
+        }
+
+        .btn-email {
+            border: 2px solid #1ad598;
+            color: #1ad598;
         }
     </style>
     <link rel="stylesheet" href="{{ asset('assets/css/shared/sweetalert2.min.css') }}">
@@ -678,6 +744,50 @@
                                             .val()
                                     },
                                     dataType: 'JSON',
+                                })
+                                .done(function(myAjaxJsonResponse) {
+                                    swal("Berhasil!", myAjaxJsonResponse.message,
+                                            "success")
+                                        .then(function() {
+                                            location.reload();
+                                        });
+                                })
+                                .fail(function(erordata) {
+                                    if (erordata.status == 422) {
+                                        swal('Warning!', erordata.responseJSON
+                                            .message,
+                                            'warning');
+                                    } else {
+                                        swal('Error!', erordata.responseJSON
+                                            .message, 'error');
+                                    }
+                                })
+                        })
+                    },
+                })
+            });
+            $('.simpan-email').click(function(e) {
+                e.preventDefault();
+                var postData = new FormData($(".form-email")[0]);
+                swal({
+                    title: "Simpan?",
+                    type: "warning",
+                    text: "Pastikan Data Yang Dimasukkan Sudah Benar!",
+                    showCancelButton: !0,
+                    confirmButtonText: "Ya, simpan!",
+                    cancelButtonText: "Batal",
+                    reverseButtons: !0,
+                    showLoaderOnConfirm: true,
+                    preConfirm: () => {
+                        return new Promise(function(resolve) {
+                            $.ajax({
+                                    type: 'POST',
+                                    url: url(
+                                        '/provinsi/data-mente/email-penetapan'
+                                    ),
+                                    processData: false,
+                                    contentType: false,
+                                    data: postData
                                 })
                                 .done(function(myAjaxJsonResponse) {
                                     swal("Berhasil!", myAjaxJsonResponse.message,

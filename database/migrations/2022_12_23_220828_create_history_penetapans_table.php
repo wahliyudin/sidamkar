@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('history_penetapans', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('penetap_id');
+            $table->string('nama_penetap');
             $table->foreignUuid('periode_id');
             $table->foreignUuid('fungsional_id');
+            $table->timestamp('tgl_ttd');
             $table->timestamps();
 
             // $table->foreign('penetap_id')->on('users')->references('id')->cascadeOnDelete();

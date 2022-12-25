@@ -286,6 +286,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('kab-kota/data-mente/{kab_kota_id}/tingkat-kabkota', [KabKotaMenteController::class, 'tingkatKabKota'])->name('kab-kota.data-mente.tingkat-kabkota');
         Route::post('kab-kota/data-mente/{provinsi_id}/tingkat-provinsi', [KabKotaMenteController::class, 'tingkatProvinsi'])->name('kab-kota.data-mente.tingkat-provinsi');
         Route::post('kab-kota/data-mente/store-penilai-penetap', [KabKotaMenteController::class, 'storePenilaiAndPenetap'])->name('kab-kota.data-mente.store-penilai-penetap');
+        Route::post('kab-kota/data-mente/email-penetapan', [KabKotaMenteController::class, 'emailPenetapan'])->name('kab-kota.data-mente.email-penetapan');
 
         Route::get('kab-kota/histori-penetapan', [HistoriPenetapanController::class, 'index'])->name('kab-kota.histori-penetapan');
 
@@ -330,6 +331,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('provinsi/data-mente/{kab_kota_id}/tingkat-kabkota', [ProvinsiMenteController::class, 'tingkatKabKota'])->name('provinsi.data-mente.tingkat-kabkota');
         Route::post('provinsi/data-mente/{provinsi_id}/tingkat-provinsi', [ProvinsiMenteController::class, 'tingkatProvinsi'])->name('provinsi.data-mente.tingkat-provinsi');
         Route::post('provinsi/data-mente/store-penilai-penetap', [ProvinsiMenteController::class, 'storePenilaiAndPenetap'])->name('provinsi.data-mente.store-penilai-penetap');
+        Route::post('provinsi/data-mente/email-penetapan', [ProvinsiMenteController::class, 'emailPenetapan'])->name('provinsi.data-mente.email-penetapan');
     });
 
     Route::middleware(['role:kemendagri'])->group(function () {
