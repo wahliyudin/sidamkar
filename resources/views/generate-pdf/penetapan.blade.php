@@ -128,7 +128,7 @@
                 <td width="20px" class="nomor">4</td>
                 <td class="keterangan">PANGKAT/GOL. RUANG/TMT</td>
                 <td class="inputan text-start" colspan="5">
-                    {{ $user?->userAparatur?->pangkatGolonganTmt?->nama }}
+                    {{ $user->userAparatur->pangkatGolonganTmt->nama . ' / ' . $user->userAparatur->tmt }}
                 </td>
             </tr>
             <tr>
@@ -148,12 +148,15 @@
             <tr>
                 <td width="20px" class="nomor">7</td>
                 <td class="keterangan">JABATAN/TMT</td>
-                <td class="inputan text-start" colspan="5">{{ isset($data['role']) ? $data['role'] : '' }}</td>
+                <td class="inputan text-start" colspan="5">
+                    {{ $role?->display_name . ' / ' . $user->userAparatur->tmt }}</td>
             </tr>
             <tr>
                 <td width="20px" class="nomor">8</td>
                 <td class="keterangan">UNIT KERJA</td>
-                <td class="inputan text-start" colspan="5"></td>
+                <td class="inputan text-start" colspan="5">
+                    {{ $user?->userAparatur?->nomenklaturPerangkatDaerah?->nama }}
+                </td>
             </tr>
         </tbody>
         <tbody>
@@ -228,7 +231,7 @@
             </tr>
             <tr>
                 <td class="keterangan" colspan="4">
-                    {{ isset($data['statusKelebihanKekuranganPangkat']) ? ($data['statusKelebihanKekuranganPangkat'] == true ? 'Kelebihan' : 'Kekurangan') : '' }}
+                    {{ isset($data['statusKenaikanPangkat']) ? ($data['statusKenaikanPangkat'] == true ? 'Kelebihan' : 'Kekurangan') : '' }}
                     Angka Kredit yang harus dicapai untuk
                     kenaikan pangkat/jenjang
                 </td>
@@ -247,7 +250,7 @@
                     PANGKAT/JENJANG JABATAN SETINGKAT
                     LEBIH TINGGI MENJADI JENJANG
                     {{ isset($data['role_selanjutnya']) ? $data['role_selanjutnya'] : '-' }} PANGKAT/GOLONGAN
-                    RUANG…............</th>
+                    RUANG {{ isset($data['pangkat_selanjutnya']) ? $data['pangkat_selanjutnya'] : '-' }}</th>
             </tr>
             <tr>
                 <td class="tb py-2" colspan="4">Asli Penetapan Angka Kredit disampaikan kepada Pimpinan Instansi

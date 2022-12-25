@@ -16,7 +16,8 @@ class PeriodeController extends Controller
     {
         $judul = 'CMS Periode';
         $periode = Periode::query()->where('is_active', true)->first();
-        return $dataTable->render('kemendagri.cms.periode.index', compact('periode', 'judul'));
+        $periodeLast = Periode::query()->get()->last();
+        return $dataTable->render('kemendagri.cms.periode.index', compact('periode', 'periodeLast', 'judul'));
     }
 
     public function store(Request $request)

@@ -119,10 +119,11 @@
             <tr>
                 <td width="70px" style="padding-bottom: 10px;">Unit Kerja</td>
                 <td width="5px">:</td>
-                <td width="200px">Lorem ipsum dolor sit amet.</td>
+                <td width="200px">{{ $user?->userAparatur?->nomenklaturPerangkatDaerah?->nama }}</td>
                 <td width="70px" style="padding-bottom: 10px;">Unit Kerja</td>
                 <td width="5px">:</td>
-                <td width="200px">Lorem ipsum dolor sit amet.</td>
+                <td width="200px">{{ $atasan_langsung?->userPejabatStruktural?->nomenklaturPerangkatDaerah?->nama }}
+                </td>
             </tr>
         </tbody>
     </table>

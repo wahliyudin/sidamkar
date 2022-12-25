@@ -116,6 +116,9 @@ class ExternalController extends Controller
         $rekapitulasiKegiatan = RekapitulasiKegiatan::query()
             ->where('fungsional_id', $id)
             ->where('periode_id', $periode->id)->first();
+        if (!isset($rekapitulasiKegiatan)) {
+            abort(404);
+        }
         $user = $this->userRepository->getUserById($id)->load('userAparatur');
         $penetapanAngkaKredit = PenetapanAngkaKredit::query()->where('periode_id', $periode->id)->where('user_id', $user->id)->first();
         return view('penilai-ak.data-pengajuan.external.show', compact('user', 'rekapitulasiKegiatan', 'penetapanAngkaKredit'));

@@ -235,6 +235,9 @@ class KegiatanJabatanService
     {
         $periode = $this->periodeRepository->isActive();
         [$user, $atasan_langsung] = $this->validateDocument($userAuth);
+        if (!isset($user->mente->atasanLangsung->userPejabatStruktural->tmt) || !isset($user->mente->atasanLangsung->userPejabatStruktural->nomenklaturPerangkatDaerah)) {
+            throw ValidationException::withMessages(['Maaf, Atasan Langsung Anda Belum Melengkapi Profil']);
+        }
         [$link_pernyataan, $name_pernyataan] = $this->generatePdfService->generatePernyataan($user, $atasan_langsung);
         [$link_rekap_capaian, $name_rekap_capaian, $total_capaian] = $this->generatePdfService->generateRekapCapaian($user, $atasan_langsung, $periode, true);
         [$link_pengembang, $name_pengembang, $jml_ak_penunjang, $jml_ak_profesi] = $this->generatePdfService->generatePengembang($user);
@@ -355,8 +358,10 @@ class KegiatanJabatanService
             'ketentuanSkpFungsional',
             'mente.atasanLangsung.roles',
             'mente.atasanLangsung.userPejabatStruktural.pangkatGolonganTmt',
+            'mente.atasanLangsung.userPejabatStruktural.nomenklaturPerangkatDaerah',
             'roles',
-            'userAparatur.pangkatGolonganTmt'
+            'userAparatur.pangkatGolonganTmt',
+            'userAparatur.nomenklaturPerangkatDaerah',
         ]);
         if (!isset($user?->ketentuanSkpFungsional)) {
             throw ValidationException::withMessages(['Maaf Anda Belum Menginput SKP']);

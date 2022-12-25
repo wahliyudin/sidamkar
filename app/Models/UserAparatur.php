@@ -66,4 +66,9 @@ class UserAparatur extends Model
     {
         return $this->belongsTo(MekanismePengangkatan::class);
     }
+
+    public function nomenklaturPerangkatDaerah()
+    {
+        return $this->belongsTo(NomenKlaturPerangkatDaerah::class);
+    }
 }

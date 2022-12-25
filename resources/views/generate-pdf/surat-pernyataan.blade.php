@@ -69,7 +69,8 @@
                 <td class="bd"><br></td>
                 <td class="bd" style="padding-left: 1.5rem;">Pangkat/Golongan Ruang/TMT </td>
                 <td class="bd" style="padding-left: 1rem; padding-right: .5rem;">:</td>
-                <td class="bd">{{ $user->mente->atasanLangsung->userPejabatStruktural->pangkatGolonganTmt->nama }}
+                <td class="bd">
+                    {{ $user->mente->atasanLangsung->userPejabatStruktural->pangkatGolonganTmt->nama . '/' . $user->mente->atasanLangsung->userPejabatStruktural->tmt }}
                 </td>
             </tr>
             <tr>
@@ -79,12 +80,13 @@
                 <td class="bd">{{ $user->mente->atasanLangsung->roles()->first()->display_name }}
                 </td>
             </tr>
-            {{-- <tr>
+            <tr>
                 <td class="bd"><br></td>
                 <td class="bd" style="padding-left: 1.5rem;">Unit Kerja</td>
                 <td class="bd" style="padding-left: 1rem; padding-right: .5rem;">:</td>
-                <td class="bd">Fadila Prasetyo Yudho</td>
-            </tr> --}}
+                <td class="bd">
+                    {{ $user->mente->atasanLangsung->userPejabatStruktural?->nomenklaturPerangkatDaerah?->nama }}</td>
+            </tr>
         </tbody>
     </table>
     <table>
@@ -108,7 +110,9 @@
                 <td class="bd"><br></td>
                 <td class="bd" style="padding-left: 2rem;">Pangkat/Golongan Ruang/TMT </td>
                 <td class="bd" style="padding-left: 1rem; padding-right: .5rem;">:</td>
-                <td class="bd">{{ $user->userAparatur->pangkatGolonganTmt->nama }}</td>
+                <td class="bd">
+                    {{ $user->userAparatur->pangkatGolonganTmt->nama . '/' . $user->userAparatur->tmt }}
+                </td>
             </tr>
             <tr>
                 <td class="bd"><br></td>
@@ -116,12 +120,12 @@
                 <td class="bd" style="padding-left: 1rem; padding-right: .5rem;">:</td>
                 <td class="bd">{{ $user->roles()->first()->display_name }}</td>
             </tr>
-            {{-- <tr>
+            <tr>
                 <td class="bd"><br></td>
                 <td class="bd" style="padding-left: 2rem;">Unit Kerja</td>
                 <td class="bd" style="padding-left: 1rem; padding-right: .5rem;">:</td>
-                <td class="bd">Fadila Prasetyo Yudho</td>
-            </tr> --}}
+                <td class="bd">{{ $user?->userAparatur?->nomenklaturPerangkatDaerah?->nama }}</td>
+            </tr>
         </tbody>
     </table>
     <table width="700px">

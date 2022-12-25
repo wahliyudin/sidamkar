@@ -410,24 +410,31 @@
                 reverseButtons: !0,
                 showLoaderOnConfirm: true,
                 preConfirm: async () => {
-                    return await $.ajax({
-                        type: 'POST',
-                        url: url("/data-struktural-store"),
-                        processData: false,
-                        contentType: false,
-                        data: postData,
-                    });
+                    return new Promise(function(resolve) {
+                        $.ajax({
+                                type: 'POST',
+                                url: url("/data-struktural-store"),
+                                processData: false,
+                                contentType: false,
+                                data: postData
+                            })
+                            .done(function(myAjaxJsonResponse) {
+                                swal("Berhasil!", myAjaxJsonResponse.message, "success")
+                                    .then(function() {
+                                        location.reload();
+                                    });
+                            })
+                            .fail(function(erordata) {
+                                console.log(erordata);
+                                if (erordata.status == 422) {
+                                    swal('Warning!', erordata.responseJSON.message,
+                                        'warning');
+                                } else {
+                                    swal('Error!', erordata.responseJSON.message, 'error');
+                                }
+                            })
+                    })
                 },
-            }).then(function(e) {
-                if (e.value.status == 200) {
-                    swal("Selesai!", e.value.message, "success").then(() => {
-                        location.reload();
-                    });
-                } else {
-                    swal("Error!", e.value.message, "error");
-                }
-            }, function(dismiss) {
-                return false;
             })
         });
         $('select[name="provinsi_id"]').each(function(index, element) {
