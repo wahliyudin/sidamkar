@@ -16,10 +16,10 @@
                         <div class="chat_people">
                             <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
                             <div class="chat_ib">
-                                <h5>Admin Kemendagri <span class="badge bg-danger">1</span></h5>
+                                <h5>Admin {{ $data->username }} <span class="badge bg-danger"></span></h5>
                             </div>
                         </div>
-                        <input type="hidden" class="user_to_id" value="97ef74a7-bb9d-40d5-9115-6311e76de570">
+                        <input type="hidden" class="user_to_id" value="{{ $data->id }}">
                     </div>
                 @endrole
                 </div>
@@ -28,7 +28,7 @@
                 <div class="msg_history" id="msg_history">
                     
                 </div>
-                <div class="type_msg">
+                <div class="type_msg" style="display: none;">
                     <div class="input_msg_write">
                         <textarea cols="5" rows="5" class="write_msg" id="write_msg" placeholder="Type a message"></textarea>
                         <input type="hidden" id="msg_user_id">
@@ -236,7 +236,29 @@
 @endsection
 @section('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
+    <script src="//js.pusher.com/3.1/pusher.min.js"></script>
     <script>
+        Pusher.logToConsole = true;
+
+        var pusher = new Pusher('8065b88b38209d3beaa9', {
+            cluster: 'ap1'
+        });
+
+        var channel = pusher.subscribe('channel-chat');
+        
+        channel.bind('chat-in-out', function(data) {
+            @role(['kemendagri'])
+            getChatList();
+            if ($("#msg_user_id").val()) {
+                getConversation($("#msg_user_id").val());
+            }
+            @endrole
+
+            @role(['kab_kota', 'provinsi'])
+                getConversation($("#msg_user_id").val());
+            @endrole
+        });
+
         $("#msg_send_btn").on("click", function () {
             let html = ''
             
@@ -261,21 +283,25 @@
             let user_to_id = $(this).find('.user_to_id').val()
 
             getConversation(user_to_id)
+            $(".type_msg").show()
         })
 
         function getConversation(user_to_id) {
-            html = ''
             $("#msg_user_id").val(user_to_id)
 
             $.ajax({
                 type: "POST",
                 url: "{{ route('chat.conversation') }}",
                 data: {
+                    from: $("#msg_user_id").val(),
                     _token: `{{ csrf_token() }}`
                 },
                 dataType: "json",
                 success: function (response) {
                     if (response.data) {
+                        $("#msg_history").html('')
+                        html = ''
+
                         $.each(response.data, function (index, val) {
                             if (val.from == `{{ Auth::user()->id }}`) {
                                 html += `
@@ -308,8 +334,6 @@
         }
 
         function getChatList() {
-            html = ''
-
             $.ajax({
                 type: "POST",
                 url: "{{ route('chat.chat-list') }}",
@@ -318,6 +342,8 @@
                 },
                 dataType: "json",
                 success: function (response) {
+                    html = ''
+
                     if (response.data) {
                         $.each(response.data, function (index, val) {
                             html += `
