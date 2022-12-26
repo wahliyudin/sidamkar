@@ -72,7 +72,7 @@
                                                                     <iframe
                                                                         src="{{ $rekapitulasiKegiatan?->link_penetapan }}"
                                                                         style="border-radius: 10px; overflow: hidden;"
-                                                                        width="100%" height="500px"></iframe>
+                                                                        width="100%" height="600px"></iframe>
                                                                 </div>
                                                                 <div class="col-md-4">
                                                                     <form method="post" class="form-nilai-ak">
@@ -94,6 +94,36 @@
                                                                                 value="{{ $penetapanAngkaKredit?->ak_pengalaman }}"
                                                                                 name="ak_pengalaman" class="form-control"
                                                                                 placeholder="">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label>AK Lama Kegiatan Tugas Jabatan</label>
+                                                                            <input type="number" name="ak_lama_jabatan"
+                                                                                class="form-control">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label>Keterangan No 1</label>
+                                                                            <input type="text" name="keterngan_1"
+                                                                                class="form-control">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label>Keterangan No 2</label>
+                                                                            <input type="text" name="keterngan_2"
+                                                                                class="form-control">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label>Keterangan No 3</label>
+                                                                            <input type="text" name="keterngan_3"
+                                                                                class="form-control">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label>Keterangan No 4</label>
+                                                                            <input type="text" name="keterngan_4"
+                                                                                class="form-control">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label>Keterangan No 5</label>
+                                                                            <input type="text" name="keterngan_5"
+                                                                                class="form-control">
                                                                         </div>
                                                                         <div
                                                                             class="d-flex align-items-center justify-content-end">

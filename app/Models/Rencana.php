@@ -12,6 +12,7 @@ class Rencana extends Model
 
     protected $fillable = [
         'user_id',
+        'periode_id',
         'nama'
     ];
 

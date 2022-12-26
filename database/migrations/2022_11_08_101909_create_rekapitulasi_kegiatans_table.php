@@ -35,6 +35,11 @@ return new class extends Migration
             $table->float('capaian_ak', places: 4, unsigned: true)->nullable();
             $table->string('link_penetapan')->nullable();
             $table->string('name_penetapan')->nullable();
+            $table->string('keterangan_1')->nullable();
+            $table->string('keterangan_2')->nullable();
+            $table->string('keterangan_3')->nullable();
+            $table->string('keterangan_4')->nullable();
+            $table->string('keterangan_5')->nullable();
             $table->timestamps();
 
             $table->foreign('fungsional_id')->on('users')->references('id')->cascadeOnDelete();

@@ -42,7 +42,7 @@ class KegiatanJabatanController extends Controller
             $laporanKegiatanJabatanStatusRevisis,
             $laporanKegiatanJabatanStatusSelesais,
             $laporanKegiatanJabatanStatusTolaks,
-        ] = $this->verifikasiKegiatanService->laporanKegiatanJabatanByUser($butirKegiatan, $user);
+        ] = $this->verifikasiKegiatanService->laporanKegiatanJabatanByUser($butirKegiatan, $user, $periode);
         return view('atasan-langsung.verifikasi-kegiatan.jabatan.show', compact(
             'laporanKegiatanJabatanStatusValidasis',
             'laporanKegiatanJabatanStatusRevisis',

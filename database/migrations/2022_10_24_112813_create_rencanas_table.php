@@ -16,10 +16,12 @@ return new class extends Migration
         Schema::create('rencanas', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('user_id');
+            $table->unsignedBigInteger('periode_id');
             $table->text('nama')->fulltext();
             $table->timestamps();
 
             $table->foreign('user_id')->on('users')->references('id')->cascadeOnDelete();
+            $table->foreign('periode_id')->on('periodes')->references('id')->cascadeOnDelete();
         });
     }
 

@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\LaporanKegiatanPenunjangProfesi;
+use App\Models\Periode;
 
 class LaporanKegiatanPenunjangProfesiRepository
 {
@@ -18,10 +19,11 @@ class LaporanKegiatanPenunjangProfesiRepository
         return $this->laporanKegiatanPenunjangProfesi->query()->findOrFail($id);
     }
 
-    public function sumScoreByUser($user_id)
+    public function sumScoreByUser($user_id, Periode $periode)
     {
         return $this->laporanKegiatanPenunjangProfesi->query()
             ->where('user_id', $user_id)
+            ->where('periode_id', $periode->id)
             ->where('status', 3)
             ->sum('score');
     }

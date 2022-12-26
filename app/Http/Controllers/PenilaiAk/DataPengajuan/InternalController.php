@@ -52,6 +52,7 @@ class InternalController extends Controller
                 $role_order =  $request->order[0]['dir'];
             }
             $user = $this->authUser()->load(['userPejabatStruktural', 'roles']);
+            $periode = $this->periodeRepository->isActive();
             $data = DB::select('SELECT
                     users.id AS user_id,
                     user_aparaturs.nama,
@@ -68,7 +69,7 @@ class InternalController extends Controller
                 JOIN roles ON roles.id = role_user.role_id
                 LEFT JOIN mekanisme_pengangkatans ON user_aparaturs.mekanisme_pengangkatan_id = mekanisme_pengangkatans.id
                 JOIN kab_prov_penilai_and_penetaps AS internal ON internal.kab_kota_id = ' . $user->userPejabatStruktural->kab_kota_id . '
-                JOIN rekapitulasi_kegiatans ON (rekapitulasi_kegiatans.fungsional_id = users.id AND rekapitulasi_kegiatans.is_send IN (2, 3))
+                JOIN rekapitulasi_kegiatans ON (rekapitulasi_kegiatans.fungsional_id = users.id AND rekapitulasi_kegiatans.is_send IN (2, 3) AND rekapitulasi_kegiatans.periode_id = ' . $periode->id . ')
                 WHERE users.status_akun = 1
                     AND roles.id IN (1,2,3,5,6)
                     AND user_aparaturs.kab_kota_id = ' . $user->userPejabatStruktural->kab_kota_id . '
@@ -98,21 +99,40 @@ class InternalController extends Controller
         }
         $user = $this->userRepository->getUserById($id)->load('userAparatur', 'penetapanAngkaKredit');
         $penetapanAngkaKredit = PenetapanAngkaKredit::query()->where('periode_id', $periode->id)->where('user_id', $user->id)->first();
-        return view('penilai-ak.data-pengajuan.internal.show', compact('user', 'rekapitulasiKegiatan', 'penetapanAngkaKredit'));
+        $penetapanAngkaKreditOld = PenetapanAngkaKredit::query()->where('periode_id', $periode->id - 1)->where('user_id', $user->id)->first();
+        return view('penilai-ak.data-pengajuan.internal.show', compact('user', 'rekapitulasiKegiatan', 'penetapanAngkaKredit', 'penetapanAngkaKreditOld'));
     }
 
     public function storePenetapan(Request $request, $id)
     {
         $user = User::query()->with(['userAparatur.pangkatGolonganTmt', 'roles'])->findOrFail($id);
         $rules = [
-            'ak_pengalaman' => 'nullable'
+            'ak_pengalaman' => 'nullable',
+            'ak_lama_jabatan' => 'required',
+            'keterangan_1' => 'nullable',
+            'keterangan_2' => 'nullable',
+            'keterangan_3' => 'nullable',
+            'keterangan_4' => 'nullable',
+            'keterangan_5' => 'nullable',
         ];
         if ($user->userAparatur->expired_mekanisme) {
             $rules['ak_kelebihan'] = 'required';
         }
         $request->validate($rules);
         $periode = $this->periodeRepository->isActive();
-        $this->internalService->storePenetapan($user, null, $periode, $request->ak_kelebihan, $request->ak_pengalaman);
+        $this->internalService->storePenetapan(
+            $user,
+            null,
+            $periode,
+            $request->ak_kelebihan,
+            $request->ak_pengalaman,
+            $request->ak_lama_jabatan,
+            $request->keterangan_1,
+            $request->keterangan_2,
+            $request->keterangan_3,
+            $request->keterangan_4,
+            $request->keterangan_5
+        );
         return response()->json([
             'message' => 'Berhasil'
         ]);

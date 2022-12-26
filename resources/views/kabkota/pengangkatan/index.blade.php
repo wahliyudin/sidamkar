@@ -15,7 +15,7 @@
                                         <th>Nama</th>
                                         <th>Periode</th>
                                         <th>Jabatan</th>
-                                        <th>Status Pengangkatan</th>
+                                        {{-- <th>Status Pengangkatan</th> --}}
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -74,12 +74,12 @@
                     data: 'jabatan',
                     name: 'jabatan'
                 },
-                {
-                    data: 'status',
-                    name: 'status',
-                    orderable: true,
-                    searchable: true
-                },
+                // {
+                //     data: 'status',
+                //     name: 'status',
+                //     orderable: true,
+                //     searchable: true
+                // },
                 {
                     data: 'action',
                     name: 'action',
@@ -107,6 +107,10 @@
             $.ajax({
                 type: 'POST',
                 url: url('/kab-kota/pengangkatan/' + $(this).data('data') + '/verifikasi'),
+                data: {
+                    "penetapan": $(this).data('penetapan')
+                },
+                dataType: 'JSON',
                 success: function(response) {
                     $(span).show();
                     $(spin).hide();

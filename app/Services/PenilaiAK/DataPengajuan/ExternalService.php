@@ -28,7 +28,7 @@ class ExternalService
     public function ttdRekapitulasi(RekapitulasiKegiatan $rekapitulasiKegiatan, User $user, Periode $periode, User $penilai, $no_surat_pengembang = null, $no_surat_capaian = null)
     {
         // $ttd = $atasan_langsung?->userPejabatStruktural?->file_ttd;
-        [$link_pengembang, $name_pengembang, $jml_ak_penunjang, $jml_ak_profesi] = $this->generatePdfService->generatePengembang($user, $penilai, $no_surat_pengembang);
+        [$link_pengembang, $name_pengembang, $jml_ak_penunjang, $jml_ak_profesi] = $this->generatePdfService->generatePengembang($user, $penilai, $no_surat_pengembang, $periode);
         [$link_penilaian_capaian, $name_penilaian_capaian, $capaian_ak] = $this->generatePdfService->generatePenilaianCapaian($periode, $user, $rekapitulasiKegiatan->total_capaian, $penilai, $no_surat_capaian);
         $rekapitulasiKegiatan->update([
             'link_pengembang' => $link_pengembang,
@@ -42,7 +42,7 @@ class ExternalService
         ]);
     }
 
-    public function storePenetapan(User $user, User $penetap = null, Periode $periode, $ak_kelebihan = null, $ak_pengalaman)
+    public function storePenetapan(User $user, User $penetap = null, Periode $periode, $ak_kelebihan = null, $ak_pengalaman, $ak_lama_jabatan = null, $keterangan_1 = null, $keterangan_2 = null, $keterangan_3 = null, $keterangan_4 = null, $keterangan_5 = null)
     {
         PenetapanAngkaKredit::query()->updateOrCreate([
             'periode_id' => $periode->id,
@@ -53,6 +53,6 @@ class ExternalService
             'ak_kelebihan' => isset($ak_kelebihan) ? $ak_kelebihan : $user->userAparatur->angka_mekanisme ?? 0,
             'ak_pengalaman' => $ak_pengalaman
         ]);
-        $this->generatePdfService->storePenetapan($user, $penetap, $periode);
+        $this->generatePdfService->storePenetapan($user, $penetap, $periode, false, null, $ak_lama_jabatan, $keterangan_1, $keterangan_2, $keterangan_3, $keterangan_4, $keterangan_5);
     }
 }

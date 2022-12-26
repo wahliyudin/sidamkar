@@ -47,6 +47,7 @@ class PengajuanController extends Controller
             if (isset($request->order) && $request->order[0]['column'] == 2) {
                 $role_order =  $request->order[0]['dir'];
             }
+            $periode = $this->periodeRepository->isActive();
             $data = DB::select('SELECT
                     users.id AS user_id,
                     user_aparaturs.nama,
@@ -62,7 +63,7 @@ class PengajuanController extends Controller
                 JOIN role_user ON role_user.user_id = users.id
                 JOIN roles ON roles.id = role_user.role_id
                 LEFT JOIN mekanisme_pengangkatans ON user_aparaturs.mekanisme_pengangkatan_id = mekanisme_pengangkatans.id
-                JOIN rekapitulasi_kegiatans ON (rekapitulasi_kegiatans.fungsional_id = users.id AND rekapitulasi_kegiatans.is_send IN (2, 3))
+                JOIN rekapitulasi_kegiatans ON (rekapitulasi_kegiatans.fungsional_id = users.id AND rekapitulasi_kegiatans.is_send IN (2, 3) AND rekapitulasi_kegiatans.periode_id = ' . $periode->id . ')
                 WHERE users.status_akun = 1
                     AND roles.id IN (4,7)
                     ORDER BY roles.display_name ' . $role_order);
@@ -90,21 +91,40 @@ class PengajuanController extends Controller
         }
         $user = $this->userRepository->getUserById($id)->load('userAparatur');
         $penetapanAngkaKredit = PenetapanAngkaKredit::query()->where('periode_id', $periode->id)->where('user_id', $user->id)->first();
-        return view('penilai-ak-kemendagri.data-pengajuan.show', compact('user', 'rekapitulasiKegiatan', 'penetapanAngkaKredit'));
+        $penetapanAngkaKreditOld = PenetapanAngkaKredit::query()->where('periode_id', $periode->id - 1)->where('user_id', $user->id)->first();
+        return view('penilai-ak-kemendagri.data-pengajuan.show', compact('user', 'rekapitulasiKegiatan', 'penetapanAngkaKredit', 'penetapanAngkaKreditOld'));
     }
 
     public function storePenetapan(Request $request, $id)
     {
-        $user = User::query()->with(['userAparatur.pangkatGolonganTmt'])->findOrFail($id);
+        $user = User::query()->with(['userAparatur.pangkatGolonganTmt', 'roles'])->findOrFail($id);
         $rules = [
-            'ak_pengalaman' => 'nullable'
+            'ak_pengalaman' => 'nullable',
+            'ak_lama_jabatan' => 'required',
+            'keterangan_1' => 'nullable',
+            'keterangan_2' => 'nullable',
+            'keterangan_3' => 'nullable',
+            'keterangan_4' => 'nullable',
+            'keterangan_5' => 'nullable',
         ];
         if ($user->userAparatur->expired_mekanisme) {
             $rules['ak_kelebihan'] = 'required';
         }
         $request->validate($rules);
         $periode = $this->periodeRepository->isActive();
-        $this->dataPengajuanservice->storePenetapan($user, null, $periode, $request->ak_kelebihan, $request->ak_pengalaman);
+        $this->dataPengajuanservice->storePenetapan(
+            $user,
+            null,
+            $periode,
+            $request->ak_kelebihan,
+            $request->ak_pengalaman,
+            $request->ak_lama_jabatan,
+            $request->keterangan_1,
+            $request->keterangan_2,
+            $request->keterangan_3,
+            $request->keterangan_4,
+            $request->keterangan_5
+        );
         return response()->json([
             'message' => 'Berhasil'
         ]);
