@@ -44,9 +44,9 @@ class PengangkatanController extends Controller
                 AND user_aparaturs.kab_kota_id = ' . $auth->userProvKabKota->kab_kota_id);
             return DataTables::of($data)
                 ->addIndexColumn()
-                // ->addColumn('status', function ($row) {
-                //     return $this->statusPengangkatan($row->is_naik);
-                // })
+                ->addColumn('status', function ($row) {
+                    return $this->statusPengangkatan($row->is_naik);
+                })
                 ->addColumn('action', function ($row) {
                     return view('kabkota.pengangkatan.buttons', compact('row'))->render();
                 })
@@ -81,10 +81,27 @@ class PengangkatanController extends Controller
                 'pangkat_golongan_tmt_id' => $user->userAparatur->pangkat_golongan_tmt_id + 1
             ]);
         }
-        $penetapan->delete();
+        $penetapan->update([
+            'is_naik' => 1
+        ]);
         return response()->json([
             'status' => 200,
             'message' => 'Berhasil diterapkan'
+        ]);
+    }
+
+    public function tolak(Request $request)
+    {
+        $request->validate([
+            'penetapan' => 'required'
+        ]);
+        $penetapan = PenetapanKenaikanPangkatJenjang::query()->where('id', $request->penetapan)->first();
+        $penetapan->update([
+            'is_naik' => 2
+        ]);
+        return response()->json([
+            'status' => 200,
+            'message' => 'Berhasil Ditolak'
         ]);
     }
 }

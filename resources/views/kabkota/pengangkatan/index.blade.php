@@ -15,7 +15,7 @@
                                         <th>Nama</th>
                                         <th>Periode</th>
                                         <th>Jabatan</th>
-                                        {{-- <th>Status Pengangkatan</th> --}}
+                                        <th>Status Pengangkatan</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -74,12 +74,12 @@
                     data: 'jabatan',
                     name: 'jabatan'
                 },
-                // {
-                //     data: 'status',
-                //     name: 'status',
-                //     orderable: true,
-                //     searchable: true
-                // },
+                {
+                    data: 'status',
+                    name: 'status',
+                    orderable: true,
+                    searchable: true
+                },
                 {
                     data: 'action',
                     name: 'action',
@@ -120,6 +120,49 @@
                 },
                 error: ajaxError
             });
+        });
+        $(document).on('click', '.tolak', function(e) {
+            e.preventDefault();
+            penetapan = $(this).data('penetapan');
+            span = $(this).find('span');
+            spin = $(this).find('.spin');
+            $(span).hide();
+            $(spin).show();
+            swal({
+                title: "Pastikan Keputusan Anda Benar?",
+                type: "warning",
+                showCancelButton: !0,
+                confirmButtonText: "Ya, Benar!",
+                cancelButtonText: "Batal",
+                reverseButtons: !0,
+                showLoaderOnConfirm: true,
+                preConfirm: () => {
+                    return new Promise(function(resolve) {
+                        $.ajax({
+                                type: 'POST',
+                                url: url('/kab-kota/pengangkatan/tolak'),
+                                data: {
+                                    "penetapan": penetapan
+                                },
+                                dataType: "JSON"
+                            })
+                            .done(function(myAjaxJsonResponse) {
+                                swal("Berhasil!", myAjaxJsonResponse.message, "success")
+                                    .then(function() {
+                                        location.reload();
+                                    });
+                            })
+                            .fail(function(erordata) {
+                                if (erordata.status == 422) {
+                                    swal('Warning!', erordata.responseJSON.message,
+                                        'warning');
+                                } else {
+                                    swal('Error!', erordata.responseJSON.message, 'error');
+                                }
+                            })
+                    })
+                },
+            })
         });
         var ajaxError = function(jqXHR, xhr, textStatus, errorThrow, exception) {
             if (jqXHR.status === 0) {
