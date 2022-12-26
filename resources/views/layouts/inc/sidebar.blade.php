@@ -315,7 +315,7 @@
                     <li class="sidebar-item {{ request()->routeIs('kemendagri.overview.index') ? 'active' : '' }}">
                         <a href="{{ route('kemendagri.overview.index') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
-                                <i class="fa-solid fa-table-columns"></i>
+                                <i class="bi bi-grid-fill"></i>
                             </div>
                             <span>Dashboard</span>
                         </a>
