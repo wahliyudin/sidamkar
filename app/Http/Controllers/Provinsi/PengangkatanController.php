@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Provinsi;
 
+use App\Facades\Modules\DestructRoleFacade;
 use App\Http\Controllers\Controller;
+use App\Models\PenetapanKenaikanPangkatJenjang;
+use App\Models\User;
 use App\Traits\AuthTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -30,7 +33,8 @@ class PengangkatanController extends Controller
                 CONCAT(MONTHNAME(periodes.awal), " ", YEAR(periodes.awal), " - ", MONTHNAME(periodes.akhir), " ", YEAR(periodes.akhir))
                     AS periode,
                 roles.display_name AS jabatan,
-                penetapan_kenaikan_pangkat_jenjangs.is_naik
+                penetapan_kenaikan_pangkat_jenjangs.is_naik,
+                penetapan_kenaikan_pangkat_jenjangs.id AS penetapan
             FROM user_aparaturs
             JOIN penetapan_kenaikan_pangkat_jenjangs ON penetapan_kenaikan_pangkat_jenjangs.fungsional_id = user_aparaturs.user_id
             JOIN periodes ON periodes.id = penetapan_kenaikan_pangkat_jenjangs.periode_id
@@ -64,5 +68,40 @@ class PengangkatanController extends Controller
                 return '<span class="badge bg-black text-white text-sm py-2 px-3 rounded-md">Ditolak</span>';
                 break;
         }
+    }
+
+    public function verifikasi(Request $request, $id)
+    {
+        $user = User::query()->with(['roles', 'userAparatur'])->where('id', $id)->first();
+        $penetapan = PenetapanKenaikanPangkatJenjang::query()->where('id', $request->penetapan)->first();
+        $role = DestructRoleFacade::getRoleFungsionalFirst($user->roles);
+        if ($penetapan->naik_jenjang && $penetapan->naik_pangkat) {
+            $user->syncRoles([$role->id + 1]);
+            $user->userAparatur()->update([
+                'pangkat_golongan_tmt_id' => $user->userAparatur->pangkat_golongan_tmt_id + 1
+            ]);
+        }
+        $penetapan->update([
+            'is_naik' => 1
+        ]);
+        return response()->json([
+            'status' => 200,
+            'message' => 'Berhasil diterapkan'
+        ]);
+    }
+
+    public function tolak(Request $request)
+    {
+        $request->validate([
+            'penetapan' => 'required'
+        ]);
+        $penetapan = PenetapanKenaikanPangkatJenjang::query()->where('id', $request->penetapan)->first();
+        $penetapan->update([
+            'is_naik' => 2
+        ]);
+        return response()->json([
+            'status' => 200,
+            'message' => 'Berhasil Ditolak'
+        ]);
     }
 }

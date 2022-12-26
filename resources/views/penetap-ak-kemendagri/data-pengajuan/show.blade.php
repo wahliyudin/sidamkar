@@ -11,11 +11,8 @@
                             <button data-bs-toggle="modal" data-bs-target="#ttd"
                                 class="btn {{ $rekapitulasiKegiatan->is_ttd_penetap == true ? 'disabled' : '' }} btn-blue me-3 ps-3 pe-4 text-sm">
                                 <i class="fa-solid fa-pen-clip me-2 icon"></i>
-                                <span>TTD</span>
+                                <span>TTD & Tetapkan AK</span>
                             </button>
-                            <button data-id="{{ $user?->id }}"
-                                class="btn btn-green btn-sm ps-3 btn-kirim {{ $rekapitulasiKegiatan->is_ttd_penetap == false ? 'disabled' : '' }} pe-4 text-sm send-to-penetap">
-                                <i class="fa-solid fa-paper-plane me-2"></i>Tetapkan Angka Kredit</button>
                         </div>
                     </div>
                     <div class="card-body">

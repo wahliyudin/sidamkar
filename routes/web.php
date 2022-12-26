@@ -296,6 +296,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('kab-kota/pengangkatan', [PengangkatanController::class, 'index'])->name('kab-kota.pengangkatan');
         Route::post('kab-kota/pengangkatan/datatable', [PengangkatanController::class, 'datatable'])->name('kab-kota.pengangkatan.datatable');
         Route::post('kab-kota/pengangkatan/{id}/verifikasi', [PengangkatanController::class, 'verifikasi'])->name('kab-kota.pengangkatan.verifikasi');
+        Route::post('kab-kota/pengangkatan/tolak', [PengangkatanController::class, 'tolak'])->name('kab-kota.pengangkatan.tolak');
 
         Route::get('kab-kota/chatbox', [ChatboxController::class, 'index'])->name('kab-kota.chatbox');
     });
@@ -328,6 +329,8 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('provinsi/pengangkatan', [ProvinsiPengangkatanController::class, 'index'])->name('provinsi.pengangkatan');
         Route::post('provinsi/pengangkatan/datatable', [ProvinsiPengangkatanController::class, 'datatable'])->name('provinsi.pengangkatan.datatable');
+        Route::post('provinsi/pengangkatan/{id}/verifikasi', [ProvinsiPengangkatanController::class, 'verifikasi'])->name('provinsi.pengangkatan.verifikasi');
+        Route::post('provinsi/pengangkatan/tolak', [ProvinsiPengangkatanController::class, 'tolak'])->name('provinsi.pengangkatan.tolak');
 
         Route::get('provinsi/data-mente', [ProvinsiMenteController::class, 'index'])->name('provinsi.data-mente');
         Route::post('provinsi/data-mente/store', [ProvinsiMenteController::class, 'store'])->name('provinsi.data-mente.store');

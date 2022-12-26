@@ -1,5 +1,5 @@
 <div class="d-flex align-items-cen">
-    <button class="btn btn-dark-reverse me-2">
+    <button class="btn btn-dark-reverse me-2 tolak">
         <i class="fas fa-xmark"></i>
     </button>
     <button class="btn btn-green-reverse me-2" data-bs-toggle="modal" data-bs-target="#pengangkatan{{ $row->id }}">
