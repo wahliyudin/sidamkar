@@ -62,33 +62,25 @@ class KegiatanProfesiController extends Controller
     public function index(): View|Factory
     {
         $periode = $this->periodeRepository->isActive();
-        $user = $this->authUser()->load(['userAparatur.provinsi.kabkotas', 'ketentuanSkpFungsional', 'dokKepegawaians', 'dokKompetensis', 'rencanas', 'rekapitulasiKegiatan.historyRekapitulasiKegiatans' => function ($query) {
-            $query->orderBy('id', 'desc');
-        }]);
+        $user = $this->authUser()->load(['userAparatur.provinsi.kabkotas', 'dokKepegawaians', 'dokKompetensis', 'rencanas']);
         $judul = 'Laporan Kegiatan Profesi';
-        $skp = $user?->ketentuanSkpFungsional;
-        $ketentuan_ak = $this->kegiatanProfesiService->ketentuanNilai(DestructRoleFacade::getRoleFungsionalFirst($user->roles)?->id, $user?->userAparatur?->pangkat_golongan_tmt_id);
-        $ak_diterima = $this->kegiatanProfesiService->sumScoreByUser($user->id);
-        $historyRekapitulasiKegiatans = $user?->rekapitulasiKegiatan?->historyRekapitulasiKegiatans ?? [];
-        return view('aparatur.laporan-kegiatan.profesi.index', compact('periode', 'user', 'judul', 'historyRekapitulasiKegiatans', 'skp', 'ketentuan_ak', 'ak_diterima'));
+        $ak_diterima = $this->kegiatanProfesiService->sumScoreByUser($user->id, $periode);
+        return view('aparatur.laporan-kegiatan.profesi.index', compact('periode', 'user', 'judul', 'ak_diterima'));
     }
 
     public function showButir(ButirKegiatan $butirKegiatan)
     {
         $periode = $this->periodeRepository->isActive();
-        $user = $this->authUser()->load(['rekapitulasiKegiatan.historyRekapitulasiKegiatans' => function ($query) {
-            $query->orderBy('id', 'desc');
-        }]);
+        $user = $this->authUser();
         $judul = 'Laporan Kegiatan Profesi';
         [
             $laporanKegiatanPenunjangProfesiStatusValidasis,
             $laporanKegiatanPenunjangProfesiStatusRevisis,
             $laporanKegiatanPenunjangProfesiStatusSelesais,
             $laporanKegiatanPenunjangProfesiStatusTolaks,
-        ] = $this->kegiatanProfesiService->laporanKegiatanPenunjangProfesiByUser($butirKegiatan, null, $user);
-        $laporanKegiatanPenunjangProfesiLast = $this->kegiatanProfesiService->laporanLast($butirKegiatan, null, $user);
-        $laporanKegiatanPenunjangProfesiCount = $this->kegiatanProfesiService->laporanKegiatanPenunjangProfesiCount($butirKegiatan, null, $user);
-        $rencanas = $this->kegiatanProfesiService->rencanas($user);
+        ] = $this->kegiatanProfesiService->laporanKegiatanPenunjangProfesiByUser($butirKegiatan, null, $user, $periode);
+        $laporanKegiatanPenunjangProfesiLast = $this->kegiatanProfesiService->laporanLast($butirKegiatan, null, $user, $periode);
+        $laporanKegiatanPenunjangProfesiCount = $this->kegiatanProfesiService->laporanKegiatanPenunjangProfesiCount($butirKegiatan, null, $user, $periode);
         $historyRekapitulasiKegiatans = $user?->rekapitulasiKegiatan?->historyRekapitulasiKegiatans ?? [];
         return view('aparatur.laporan-kegiatan.profesi.butir-kegiatan.show', compact(
             'laporanKegiatanPenunjangProfesiStatusValidasis',
@@ -98,7 +90,6 @@ class KegiatanProfesiController extends Controller
             'laporanKegiatanPenunjangProfesiCount',
             'laporanKegiatanPenunjangProfesiLast',
             'user',
-            'rencanas',
             'butirKegiatan',
             'periode',
             'judul',
@@ -118,10 +109,9 @@ class KegiatanProfesiController extends Controller
             $laporanKegiatanPenunjangProfesiStatusRevisis,
             $laporanKegiatanPenunjangProfesiStatusSelesais,
             $laporanKegiatanPenunjangProfesiStatusTolaks,
-        ] = $this->kegiatanProfesiService->laporanKegiatanPenunjangProfesiByUser(null, $subButirKegiatan, $user);
-        $laporanKegiatanPenunjangProfesiLast = $this->kegiatanProfesiService->laporanLast(null, $subButirKegiatan, $user);
-        $laporanKegiatanPenunjangProfesiCount = $this->kegiatanProfesiService->laporanKegiatanPenunjangProfesiCount(null, null, $user);
-        $rencanas = $this->kegiatanProfesiService->rencanas($user);
+        ] = $this->kegiatanProfesiService->laporanKegiatanPenunjangProfesiByUser(null, $subButirKegiatan, $user, $periode);
+        $laporanKegiatanPenunjangProfesiLast = $this->kegiatanProfesiService->laporanLast(null, $subButirKegiatan, $user, $periode);
+        $laporanKegiatanPenunjangProfesiCount = $this->kegiatanProfesiService->laporanKegiatanPenunjangProfesiCount(null, null, $user, $periode);
         $historyRekapitulasiKegiatans = $user?->rekapitulasiKegiatan?->historyRekapitulasiKegiatans ?? [];
         return view('aparatur.laporan-kegiatan.profesi.sub-butir-kegiatan.show', compact(
             'laporanKegiatanPenunjangProfesiStatusValidasis',
@@ -131,7 +121,6 @@ class KegiatanProfesiController extends Controller
             'laporanKegiatanPenunjangProfesiCount',
             'laporanKegiatanPenunjangProfesiLast',
             'user',
-            'rencanas',
             'subButirKegiatan',
             'periode',
             'judul',

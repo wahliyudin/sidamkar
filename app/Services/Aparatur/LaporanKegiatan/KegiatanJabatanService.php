@@ -111,9 +111,9 @@ class KegiatanJabatanService
     }
 
 
-    public function rencanas(User $user)
+    public function rencanas(User $user, Periode $periode)
     {
-        return $this->rencanaRepository->getAllByUser($user);
+        return $this->rencanaRepository->getAllByUser($user, $periode);
     }
 
     public function storeLaporan(Request $request, User $user, ButirKegiatan $butirKegiatan): LaporanKegiatanJabatan
@@ -216,19 +216,19 @@ class KegiatanJabatanService
         ];
     }
 
-    public function laporanKegiatanJabatanByUser($butirKegiatan, $user)
+    public function laporanKegiatanJabatanByUser($butirKegiatan, $user, $periode)
     {
-        return $this->kegiatanJabatanService->laporanKegiatanJabatanByUser($butirKegiatan, $user);
+        return $this->kegiatanJabatanService->laporanKegiatanJabatanByUser($butirKegiatan, $user, $periode);
     }
 
-    public function laporanKegiatanJabatanCount(ButirKegiatan $butirKegiatan, User $user): int
+    public function laporanKegiatanJabatanCount(ButirKegiatan $butirKegiatan, User $user, $periode): int
     {
-        return $this->kegiatanJabatanService->laporanKegiatanJabatanCount($butirKegiatan, $user);
+        return $this->kegiatanJabatanService->laporanKegiatanJabatanCount($butirKegiatan, $user, $periode);
     }
 
-    public function laporanLast(ButirKegiatan $butirKegiatan, User $user)
+    public function laporanLast(ButirKegiatan $butirKegiatan, User $user, $periode)
     {
-        return $this->kegiatanJabatanService->laporanLast($butirKegiatan, $user);
+        return $this->kegiatanJabatanService->laporanLast($butirKegiatan, $user, $periode);
     }
 
     public function generateDocuments(User $userAuth)
@@ -238,9 +238,9 @@ class KegiatanJabatanService
         if (!isset($user->mente->atasanLangsung->userPejabatStruktural->tmt) || !isset($user->mente->atasanLangsung->userPejabatStruktural->nomenklaturPerangkatDaerah)) {
             throw ValidationException::withMessages(['Maaf, Atasan Langsung Anda Belum Melengkapi Profil']);
         }
-        [$link_pernyataan, $name_pernyataan] = $this->generatePdfService->generatePernyataan($user, $atasan_langsung);
+        [$link_pernyataan, $name_pernyataan] = $this->generatePdfService->generatePernyataan($user, $atasan_langsung, false, $periode);
         [$link_rekap_capaian, $name_rekap_capaian, $total_capaian] = $this->generatePdfService->generateRekapCapaian($user, $atasan_langsung, $periode, true);
-        [$link_pengembang, $name_pengembang, $jml_ak_penunjang, $jml_ak_profesi] = $this->generatePdfService->generatePengembang($user);
+        [$link_pengembang, $name_pengembang, $jml_ak_penunjang, $jml_ak_profesi] = $this->generatePdfService->generatePengembang($user, null, null, $periode);
         [$link_penilaian_capaian, $name_penilaian_capaian, $capaian_ak] = $this->generatePdfService->generatePenilaianCapaian($periode, $user, $total_capaian);
         [$link_penetapan, $name_penetapan] = $this->generatePdfService->generatePenetapan($user);
         return $this->updateOrCreateRekapitulasi(
@@ -346,10 +346,10 @@ class KegiatanJabatanService
         return $this->generatePdfService->generateRekapCapaian($user, $atasan_langsung, $periode);
     }
 
-    public function generatePernyataan(User $userAuth)
+    public function generatePernyataan(User $userAuth, Periode $periode)
     {
         [$user, $atasan_langsung] = $this->validateDocument($userAuth);
-        return $this->generatePdfService->generatePernyataan($user, $atasan_langsung);
+        return $this->generatePdfService->generatePernyataan($user, $atasan_langsung, false, $periode);
     }
 
     private function validateDocument(User $user)
@@ -381,9 +381,9 @@ class KegiatanJabatanService
         ];
     }
 
-    public function sumScoreByUser($user_id)
+    public function sumScoreByUser($user_id, $periode)
     {
-        return $this->laporanKegiatanPenunjangProfesiRepository->sumScoreByUser($user_id);
+        return $this->laporanKegiatanPenunjangProfesiRepository->sumScoreByUser($user_id, $periode);
     }
 
     public function ketentuanNilai($role_id, $pangkat_id)

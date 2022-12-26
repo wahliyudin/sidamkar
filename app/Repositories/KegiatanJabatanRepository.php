@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\ButirKegiatan;
 use App\Models\LaporanKegiatanJabatan;
+use App\Models\Periode;
 use App\Models\User;
 
 class KegiatanJabatanRepository
@@ -15,7 +16,7 @@ class KegiatanJabatanRepository
         $this->laporanKegiatanJabatan = $laporanKegiatanJabatan;
     }
 
-    private function laporanKegiatanJabatanByUser(ButirKegiatan $butirKegiatan, User $user)
+    private function laporanKegiatanJabatanByUser(ButirKegiatan $butirKegiatan, User $user, Periode $periode)
     {
         return $this->laporanKegiatanJabatan->query()
             ->with(['rencana', 'dokumenKegiatanJabatans', 'butirKegiatan.subUnsur.unsur', 'historyKegiatanJabatans.historyDokumenKegiatanJabatans'])
@@ -23,37 +24,38 @@ class KegiatanJabatanRepository
                 $query->where('user_id', $user->id)->with(['user.roles', 'user.userAparatur']);
             })
             ->where('butir_kegiatan_id', $butirKegiatan->id)
+            ->where('periode_id', $periode->id)
             ->orderBy('id', 'desc')
             ->get();
     }
 
-    public function laporanKegiatanJabatanCount(ButirKegiatan $butirKegiatan, User $user): int
+    public function laporanKegiatanJabatanCount(ButirKegiatan $butirKegiatan, User $user, Periode $periode): int
     {
-        return $this->laporanKegiatanJabatanByUser($butirKegiatan, $user)->count();
+        return $this->laporanKegiatanJabatanByUser($butirKegiatan, $user, $periode)->count();
     }
 
-    public function laporanKegiatanJabatanStatusValidasi(ButirKegiatan $butirKegiatan, User $user)
+    public function laporanKegiatanJabatanStatusValidasi(ButirKegiatan $butirKegiatan, User $user, Periode $periode)
     {
-        return $this->laporanKegiatanJabatanByUser($butirKegiatan, $user)->where('status', LaporanKegiatanJabatan::VALIDASI);
+        return $this->laporanKegiatanJabatanByUser($butirKegiatan, $user, $periode)->where('status', LaporanKegiatanJabatan::VALIDASI);
     }
 
-    public function laporanKegiatanJabatanStatusRevisi(ButirKegiatan $butirKegiatan, User $user)
+    public function laporanKegiatanJabatanStatusRevisi(ButirKegiatan $butirKegiatan, User $user, Periode $periode)
     {
-        return $this->laporanKegiatanJabatanByUser($butirKegiatan, $user)->where('status', LaporanKegiatanJabatan::REVISI);
+        return $this->laporanKegiatanJabatanByUser($butirKegiatan, $user, $periode)->where('status', LaporanKegiatanJabatan::REVISI);
     }
 
-    public function laporanKegiatanJabatanStatusSelesai(ButirKegiatan $butirKegiatan, User $user)
+    public function laporanKegiatanJabatanStatusSelesai(ButirKegiatan $butirKegiatan, User $user, Periode $periode)
     {
-        return $this->laporanKegiatanJabatanByUser($butirKegiatan, $user)->where('status', LaporanKegiatanJabatan::SELESAI);
+        return $this->laporanKegiatanJabatanByUser($butirKegiatan, $user, $periode)->where('status', LaporanKegiatanJabatan::SELESAI);
     }
 
-    public function laporanKegiatanJabatanStatusTolak(ButirKegiatan $butirKegiatan, User $user)
+    public function laporanKegiatanJabatanStatusTolak(ButirKegiatan $butirKegiatan, User $user, Periode $periode)
     {
-        return $this->laporanKegiatanJabatanByUser($butirKegiatan, $user)->where('status', LaporanKegiatanJabatan::TOLAK);
+        return $this->laporanKegiatanJabatanByUser($butirKegiatan, $user, $periode)->where('status', LaporanKegiatanJabatan::TOLAK);
     }
 
-    public function laporanLast(ButirKegiatan $butirKegiatan, User $user)
+    public function laporanLast(ButirKegiatan $butirKegiatan, User $user, Periode $periode)
     {
-        return $this->laporanKegiatanJabatanByUser($butirKegiatan, $user)->first();
+        return $this->laporanKegiatanJabatanByUser($butirKegiatan, $user, $periode)->first();
     }
 }

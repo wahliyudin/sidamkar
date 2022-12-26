@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\Periode;
 use App\Models\Unsur;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -15,20 +16,8 @@ class UnsurRepository
         $this->unsur = $unsur;
     }
 
-    public function getRekapUnsurs(User $user)
+    public function getRekapUnsurs(User $user, Periode $periode)
     {
-        // return $this->unsur->query()
-        //     ->kegiatanJabatan()
-        //     ->withWhereHas('subUnsurs', function ($query) use ($user) {
-        //         $query->withWhereHas('butirKegiatans', function ($query) use ($user) {
-        //             $query->withSum('laporanKegiatanJabatans', 'score')
-        //                 ->withCount('laporanKegiatanJabatans')
-        //                 ->withWhereHas('laporanKegiatanJabatans', function ($query) use ($user) {
-        //                     $query->where('user_id', $user->id);
-        //                 });
-        //         });
-        //     })
-        //     ->get();
         return DB::select("SELECT laporan_kegiatan_jabatans.id as laporan_jabatan_id,
             unsurs.id as unsur_id,
             unsurs.nama as unsur,
@@ -44,7 +33,9 @@ class UnsurRepository
             JOIN sub_unsurs ON unsurs.id = sub_unsurs.unsur_id
             JOIN butir_kegiatans ON sub_unsurs.id = butir_kegiatans.sub_unsur_id
             JOIN laporan_kegiatan_jabatans ON butir_kegiatans.id = laporan_kegiatan_jabatans.butir_kegiatan_id
-            WHERE laporan_kegiatan_jabatans.status = 3 AND laporan_kegiatan_jabatans.user_id = '$user->id'
+            WHERE laporan_kegiatan_jabatans.status = 3
+            AND laporan_kegiatan_jabatans.user_id = '$user->id'
+            AND laporan_kegiatan_jabatans.periode_id = $periode->id
             GROUP BY butir_kegiatans.id,
             DATE(laporan_kegiatan_jabatans.current_date)
             ORDER BY DATE(laporan_kegiatan_jabatans.current_date) DESC, butir_kegiatans.id ASC");

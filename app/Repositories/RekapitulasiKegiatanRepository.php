@@ -15,11 +15,11 @@ class RekapitulasiKegiatanRepository
         $this->rekapitulasiKegiatan = $rekapitulasiKegiatan;
     }
 
-    public function getRekapByFungsionalAndPeriode(User $user, Periode $periode)
+    public function getRekapByFungsionalAndPeriode(User $user, $periode_id)
     {
         return $this->rekapitulasiKegiatan->query()
             ->where('fungsional_id', $user->id)
-            ->where('periode_id', $periode->id)->first();
+            ->where('periode_id', $periode_id)->first();
     }
 
     public function sendToAtasanLangsung(RekapitulasiKegiatan $rekapitulasiKegiatan)

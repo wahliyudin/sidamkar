@@ -11,6 +11,7 @@ use App\Models\PenetapanKenaikanPangkatJenjang;
 use App\Models\Periode;
 use App\Models\RekapitulasiKegiatan;
 use App\Models\User;
+use App\Repositories\PeriodeRepository;
 use App\Repositories\RekapitulasiKegiatanRepository;
 use App\Services\GeneratePdfService;
 use Illuminate\Support\Facades\DB;
@@ -19,11 +20,13 @@ class InternalService
 {
     protected RekapitulasiKegiatanRepository $rekapitulasiKegiatanRepository;
     protected GeneratePdfService $generatePdfService;
+    protected PeriodeRepository $periodeRepository;
 
-    public function __construct(RekapitulasiKegiatanRepository $rekapitulasiKegiatanRepository, GeneratePdfService $generatePdfService)
+    public function __construct(RekapitulasiKegiatanRepository $rekapitulasiKegiatanRepository, GeneratePdfService $generatePdfService, PeriodeRepository $periodeRepository)
     {
         $this->rekapitulasiKegiatanRepository = $rekapitulasiKegiatanRepository;
         $this->generatePdfService = $generatePdfService;
+        $this->periodeRepository = $periodeRepository;
     }
 
     public function getUsers(User $user)
@@ -35,6 +38,7 @@ class InternalService
             $internal = 'internal.provinsi_id = ' . $user->userPejabatStruktural->provinsi_id;
             $aparatur = 'user_aparaturs.provinsi_id = ' . $user->userPejabatStruktural->provinsi_id;
         }
+        $periode = $this->periodeRepository->isActive();
         return DB::select('SELECT
                 users.id,
                 user_aparaturs.nama,
@@ -48,7 +52,7 @@ class InternalService
             JOIN roles ON roles.id = role_user.role_id
             LEFT JOIN mekanisme_pengangkatans ON user_aparaturs.mekanisme_pengangkatan_id = mekanisme_pengangkatans.id
             JOIN kab_prov_penilai_and_penetaps AS internal ON ' . $internal . '
-            JOIN rekapitulasi_kegiatans ON (rekapitulasi_kegiatans.fungsional_id = users.id AND rekapitulasi_kegiatans.is_send IN (2, 3))
+            JOIN rekapitulasi_kegiatans ON (rekapitulasi_kegiatans.fungsional_id = users.id AND rekapitulasi_kegiatans.is_send IN (2, 3) AND rekapitulasi_kegiatans.periode_id = ' . $periode->id . ')
             WHERE users.status_akun = 1
                 AND user_aparaturs.tingkat_aparatur = "' . $user->userPejabatStruktural->tingkat_aparatur . '"
                 AND roles.id IN (1,2,3,5,6)

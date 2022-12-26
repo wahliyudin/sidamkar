@@ -18,10 +18,12 @@ class Penetapan
     protected RekapitulasiKegiatan $rekapitulasiKegiatan;
     protected KetentuanNilai $ketentuanNilai;
     protected PenetapanAngkaKredit $penetapanAngkaKredit;
+    protected $akLamaJabatan;
 
-    public function __construct(User $user, RekapitulasiKegiatan $rekapitulasiKegiatan, KetentuanNilai $ketentuanNilai, PenetapanAngkaKredit $penetapanAngkaKredit)
+    public function __construct(User $user, RekapitulasiKegiatan $rekapitulasiKegiatan, KetentuanNilai $ketentuanNilai, PenetapanAngkaKredit $penetapanAngkaKredit, $akLamaJabatan)
     {
         $this->rekapitulasiKegiatan = $rekapitulasiKegiatan;
+        $this->akLamaJabatan = $akLamaJabatan;
         $this->ketentuanNilai = $ketentuanNilai;
         $this->penetapanAngkaKredit = $penetapanAngkaKredit;
         $this->user = $user;
@@ -32,7 +34,8 @@ class Penetapan
         $this->logicTotal();
         $this->akDasarAtauKelebihan();
         $this->akPengalaman();
-        $this->result['total'] = $this->result['total'] + $this->result['akPengalaman'] + $this->result['akDasarAtauKelebihan'];
+        $this->akJabatanOld();
+        $this->result['total'] = $this->result['total'] + (isset($this->result['akJabatanOld']) ? $this->result['akJabatanOld'] : 0) + $this->result['akPengalaman'] + $this->result['akDasarAtauKelebihan'];
         $this->total = $this->result['total'];
         $this->processKenaikanPangkat();
         $this->processKenaikanJenjang();
@@ -43,7 +46,7 @@ class Penetapan
     public function logicTotal()
     {
         $results = [];
-        $akJabatan = $this->akJabatan($this->rekapitulasiKegiatan);
+        $akJabatan = $this->akJabatan($this->rekapitulasiKegiatan) + (isset($this->result['akJabatanOld']) ? $this->result['akJabatanOld'] : 0);
         $total = $akJabatan;
         if ($total < $this->ketentuanNilai->ak_max) {
             // masih kurang dari 150% ak_min
@@ -95,6 +98,15 @@ class Penetapan
         $this->result = array_merge($this->result, $result);
     }
 
+    public function akJabatanOld()
+    {
+        if (isset($this->penetapanAngkaKreditOld->ak_lama_jabatan)) {
+            $this->result = array_merge($this->result, ['akJabatanOld' => $this->penetapanAngkaKreditOld->ak_lama_jabatan]);
+        } else {
+            $this->result = array_merge($this->result, ['akJabatanOld' => 0]);
+        }
+    }
+
     public function akPengalaman()
     {
         // ambil dari inputan (optional)
@@ -121,7 +133,7 @@ class Penetapan
     {
         // pangkat => ak_kp - total - total_sebelumnya
         $akKP = $this->ketentuanNilai->ak_kp;
-        $total = $akKP - $this->total - $this->penetapanAngkaKredit->total_ak_kumulatif ?? 0;
+        $total = $akKP - $this->total - (isset($this->penetapanAngkaKreditOld?->total_ak_kumulatif) ? $this->penetapanAngkaKreditOld?->total_ak_kumulatif ?? 0 : 0);
         if ($akKP == 0) {
             $this->result = array_merge($this->result, ['statusKenaikanPangkat' => false]);
             $this->result = array_merge($this->result, ['kelebihanKekuranganPangkat' => 0]);
@@ -144,7 +156,7 @@ class Penetapan
         // jenjang => ak_kj - total - total_sebelumnya - ak_dasar
         $akKJ = $this->ketentuanNilai->akk_kj;
         $akDasar = $this->ketentuanNilai->ak_dasar;
-        $total = $akKJ - $this->total - ($this->penetapanAngkaKredit->total_ak_kumulatif ?? 0) - $akDasar;
+        $total = $akKJ - $this->total - (isset($this->penetapanAngkaKreditOld?->total_ak_kumulatif) ? $this->penetapanAngkaKreditOld->total_ak_kumulatif : 0) - $akDasar;
         if ($akKJ == 0) {
             $this->result = array_merge($this->result, ['statusKenaikanJenjang' => false]);
             $this->result = array_merge($this->result, ['kelebihanKekuranganJenjang' => 0]);

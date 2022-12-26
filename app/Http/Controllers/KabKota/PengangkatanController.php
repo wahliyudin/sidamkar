@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\KabKota;
 
+use App\Facades\Modules\DestructRoleFacade;
 use App\Http\Controllers\Controller;
+use App\Models\PenetapanKenaikanPangkatJenjang;
 use App\Models\User;
 use App\Traits\AuthTrait;
 use Illuminate\Http\Request;
@@ -31,7 +33,8 @@ class PengangkatanController extends Controller
                 CONCAT(MONTHNAME(periodes.awal), " ", YEAR(periodes.awal), " - ", MONTHNAME(periodes.akhir), " ", YEAR(periodes.akhir))
                     AS periode,
                 roles.display_name AS jabatan,
-                penetapan_kenaikan_pangkat_jenjangs.is_naik
+                penetapan_kenaikan_pangkat_jenjangs.is_naik,
+                penetapan_kenaikan_pangkat_jenjangs.id AS penetapan
             FROM user_aparaturs
             JOIN penetapan_kenaikan_pangkat_jenjangs ON penetapan_kenaikan_pangkat_jenjangs.fungsional_id = user_aparaturs.user_id
             JOIN periodes ON periodes.id = penetapan_kenaikan_pangkat_jenjangs.periode_id
@@ -41,9 +44,9 @@ class PengangkatanController extends Controller
                 AND user_aparaturs.kab_kota_id = ' . $auth->userProvKabKota->kab_kota_id);
             return DataTables::of($data)
                 ->addIndexColumn()
-                ->addColumn('status', function ($row) {
-                    return $this->statusPengangkatan($row->is_naik);
-                })
+                // ->addColumn('status', function ($row) {
+                //     return $this->statusPengangkatan($row->is_naik);
+                // })
                 ->addColumn('action', function ($row) {
                     return view('kabkota.pengangkatan.buttons', compact('row'))->render();
                 })
@@ -67,10 +70,18 @@ class PengangkatanController extends Controller
         }
     }
 
-    public function verifikasi($id)
+    public function verifikasi(Request $request, $id)
     {
-        $user = User::query()->where('id', $id)->first();
-        $user->syncRoles([]);
+        $user = User::query()->with(['roles', 'userAparatur'])->where('id', $id)->first();
+        $penetapan = PenetapanKenaikanPangkatJenjang::query()->where('id', $request->penetapan)->first();
+        $role = DestructRoleFacade::getRoleFungsionalFirst($user->roles);
+        if ($penetapan->naik_jenjang && $penetapan->naik_pangkat) {
+            $user->syncRoles([$role->id + 1]);
+            $user->userAparatur()->update([
+                'pangkat_golongan_tmt_id' => $user->userAparatur->pangkat_golongan_tmt_id + 1
+            ]);
+        }
+        $penetapan->delete();
         return response()->json([
             'status' => 200,
             'message' => 'Berhasil diterapkan'
