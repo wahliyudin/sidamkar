@@ -99,7 +99,7 @@
                                                                             <label>AK Lama Kegiatan Tugas Jabatan</label>
                                                                             <input type="number"
                                                                                 {{ $rekapitulasiKegiatan->is_send == 3 ? 'disabled' : '' }}
-                                                                                value="{{ $penetapanAngkaKreditOld?->ak_lama_jabatan }}"
+                                                                                value="{{ $penetapanAngkaKreditOld?->ak_lama_jabatan ?? $penetapanAngkaKredit?->ak_lama_jabatan }}"
                                                                                 name="ak_lama_jabatan"
                                                                                 {{ isset($penetapanAngkaKreditOld?->ak_lama_jabatan) ? 'disabled' : '' }}
                                                                                 class="form-control">
