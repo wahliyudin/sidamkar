@@ -153,14 +153,35 @@
                                             <span class="text-danger text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
+                                </div>
+                                <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="basicInput">Jabatan TMT</label>
-                                        <input type="date" disabled name="jabatan_tmt" class="form-control"
-                                            value="{{ old('jabatan_tmt', $user->userPejabatStruktural?->jabatan_tmt) }}">
-                                        @error('jabatan_tmt')
+                                        <label for="basicInput">Nomor Karpeg</label>
+                                        <input disabled type="number" name="nomor_karpeg" class="form-control"
+                                            value="{{ old('nomor_karpeg', $user->userPejabatStruktural?->nomor_karpeg) }}">
+                                        @error('nomor_karpeg')
                                             <span class="text-danger text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">Pangkat / Golongan </label>
+                                        <select disabled class="pangkat_golongan form-select"
+                                            name="pangkat_golongan_tmt_id" name="pangkat">
+                                            <option disabled selected>- Pilih Pangkat / Golongan -</option>
+                                            @foreach ($pangkats as $pangkat)
+                                                <option @selected(old('pangkat_golongan_tmt_id', $user->userPejabatStruktural?->pangkat_golongan_tmt_id) == $pangkat->id) value="{{ $pangkat->id }}">
+                                                    {{ $pangkat->nama }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('pangkat_golongan_tmt_id')
+                                            <span class="text-danger text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="basicInput">GOLONGAN TMT</label>
                                         <input type="date" disabled name="golongan_tmt" class="form-control"
@@ -169,6 +190,8 @@
                                             <span class="text-danger text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
+                                </div>
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="basicInput">Jabatan</label>
                                         <ul>
@@ -182,25 +205,10 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="basicInput">Nomor Karpeg</label>
-                                        <input disabled type="number" name="nomor_karpeg" class="form-control"
-                                            value="{{ old('nomor_karpeg', $user->userPejabatStruktural?->nomor_karpeg) }}">
-                                        @error('nomor_karpeg')
-                                            <span class="text-danger text-sm">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="basicInput">Pangkat / Golongan </label>
-                                        <select disabled class="pangkat_golongan form-select"
-                                            name="pangkat_golongan_tmt_id" name="pangkat">
-                                            <option disabled selected>- Pilih Pangkat / Golongan -</option>
-                                            @foreach ($pangkats as $pangkat)
-                                                <option @selected(old('pangkat_golongan_tmt_id', $user->userPejabatStruktural?->pangkat_golongan_tmt_id) == $pangkat->id) value="{{ $pangkat->id }}">
-                                                    {{ $pangkat->nama }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                        @error('pangkat_golongan_tmt_id')
+                                        <label for="basicInput">Jabatan TMT</label>
+                                        <input type="date" disabled name="jabatan_tmt" class="form-control"
+                                            value="{{ old('jabatan_tmt', $user->userPejabatStruktural?->jabatan_tmt) }}">
+                                        @error('jabatan_tmt')
                                             <span class="text-danger text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>

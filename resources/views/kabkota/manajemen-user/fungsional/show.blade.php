@@ -152,27 +152,6 @@
                                             <span class="text-danger text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
-                                    <div class="form-group">
-                                        <label for="basicInput">Jabatan TMT</label>
-                                        <input type="date" disabled name="jabatan_tmt" class="form-control"
-                                            value="{{ old('jabatan_tmt', $user->userAparatur?->jabatan_tmt) }}">
-                                        @error('jabatan_tmt')
-                                            <span class="text-danger text-sm">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="basicInput">GOLONGAN TMT</label>
-                                        <input type="date" disabled name="golongan_tmt" class="form-control"
-                                            value="{{ old('golongan_tmt', $user->userAparatur?->golongan_tmt) }}">
-                                        @error('golongan_tmt')
-                                            <span class="text-danger text-sm">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="basicInput">Jabatan</label>
-                                        <input disabled type="text" name="jabatan" disabled class="form-control"
-                                            placeholder="" value="{{ $user->roles[0]->display_name }}">
-                                    </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -183,6 +162,25 @@
                                             <span class="text-danger text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">Jabatan</label>
+                                        <input disabled type="text" name="jabatan" disabled class="form-control"
+                                            placeholder="" value="{{ $user->roles[0]->display_name }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">Jabatan TMT</label>
+                                        <input type="date" disabled name="jabatan_tmt" class="form-control"
+                                            value="{{ old('jabatan_tmt', $user->userAparatur?->jabatan_tmt) }}">
+                                        @error('jabatan_tmt')
+                                            <span class="text-danger text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="basicInput">Pangkat / Golongan / TMT</label>
                                         <select disabled class="pangkat_golongan form-select"
@@ -199,6 +197,22 @@
                                         @enderror
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">GOLONGAN TMT</label>
+                                        <input type="date" disabled name="golongan_tmt" class="form-control"
+                                            value="{{ old('golongan_tmt', $user->userAparatur?->golongan_tmt) }}">
+                                        @error('golongan_tmt')
+                                            <span class="text-danger text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+
+
+
+
+
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Mekanisme Pengangkatan</label>
@@ -254,7 +268,6 @@
                             </div>
                         </div>
                     </div>
-
                 </form>
             </div>
         </div>
