@@ -288,6 +288,14 @@ class GeneratePdfService
                 'naik_pangkat' => false
             ]);
         }
+        PenetapanAngkaKredit::query()->updateOrCreate([
+            'periode_id' => $periode->id,
+            'user_id' => $user->id
+        ], [
+            'periode_id' => $periode->id,
+            'user_id' => $user->id,
+            'total_ak_kumulatif' => isset($data['total']) ? $data['total'] : 0
+        ]);
         $data['role'] = $role->display_name;
         [$link_penetapan, $name_penetapan] = $this->generatePenetapan($user, $penetap, $data, $is_ttd_penetap, $no_surat_penetapan);
         RekapitulasiKegiatan::query()->where('periode_id', $periode->id)
@@ -306,12 +314,17 @@ class GeneratePdfService
             ->where('user_id', $user->id)
             ->where('periode_id', $periode->id)
             ->first();
+        $penetapanOld = PenetapanAngkaKredit::query()
+            ->where('user_id', $user->id)
+            ->where('periode_id', $periode->id - 1)
+            ->first();
         $role = DestructRoleFacade::getRoleFungsionalFirst($user->roles);
-        $rekapitulasiKegiatan = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode);
+        $rekapitulasiKegiatan = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode->id);
         $ketentuanNilai = KetentuanNilai::query()
             ->where('pangkat_golongan_tmt_id', $user->userAparatur->pangkat_golongan_tmt_id)
             ->where('role_id', $role->id)
             ->first();
-        return (new Penetapan($user, $rekapitulasiKegiatan, $ketentuanNilai, $penetapan))->process()->getResult();
+        $rekapitulasiKegiatanOld = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode->id - 1);
+        return (new Penetapan($user, $rekapitulasiKegiatan, $ketentuanNilai, $penetapan, $rekapitulasiKegiatanOld))->process()->getResult();
     }
 }
