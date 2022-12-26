@@ -18,7 +18,8 @@ return new class extends Migration
             $table->foreignUuid('user_id');
             $table->string('nama');
             $table->unsignedBigInteger('pangkat_golongan_tmt_id')->nullable();
-            $table->date('tmt')->nullable();
+            $table->date('golongan_tmt')->nullable();
+            $table->date('jabatan_tmt')->nullable();
             $table->unsignedBigInteger('nomenklatur_perangkat_daerah_id')->nullable();
             $table->enum('nomenklatur_jabatan', ['1', '2', '3', '4'])->nullable();
             $table->bigInteger('nip')->nullable();

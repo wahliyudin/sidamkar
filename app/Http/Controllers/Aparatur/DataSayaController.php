@@ -56,7 +56,8 @@ class DataSayaController extends Controller
             // 'provinsi_id' => 'required',
             'mekanisme_pengangkatan_id' => 'nullable',
             'angka_mekanisme' => 'nullable',
-            'tmt' => 'required',
+            'jabatan_tmt' => 'required',
+            'golongan_tmt' => 'required',
             'nomenklatur_perangkat_daerah_id' => 'required',
         ], [
             'nomenklatur_perangkat_daerah_id.required' => "Unit Kerja Wajib Diisi."
@@ -70,7 +71,8 @@ class DataSayaController extends Controller
             'nama' => $request->nama,
             'nip' => $request->nip,
             'pangkat_golongan_tmt_id' => $request->pangkat_golongan_tmt_id,
-            'tmt' => $request->tmt,
+            'jabatan_tmt' => $request->jabatan_tmt,
+            'golongan_tmt' => $request->golongan_tmt,
             'nomenklatur_perangkat_daerah_id' => $request->nomenklatur_perangkat_daerah_id,
             'nomor_karpeg' => $request->nomor_karpeg,
             'pendidikan_terakhir' => $request->pendidikan_terakhir,

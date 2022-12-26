@@ -16,7 +16,7 @@
                         <div class="chat_people">
                             <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
                             <div class="chat_ib">
-                                <h5>Admin {{ $data->username }} <span class="badge bg-danger">{{ $new ? $new->count : 0 }}</span></h5>
+                                <h5>Admin {{ $data->username }} <span class="badge bg-danger">{{ $new ? $new[0]->count : 0 }}</span></h5>
                             </div>
                         </div>
                         <input type="hidden" class="user_to_id" value="{{ $data->id }}">
@@ -346,6 +346,7 @@
 
                     if (response.data) {
                         $.each(response.data, function (index, val) {
+                            console.log(index)
                             html += `
                             <div class="chat_list active_chat">
                                 <div class="chat_people">
