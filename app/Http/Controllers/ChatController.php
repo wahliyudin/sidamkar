@@ -92,25 +92,6 @@ class ChatController extends Controller
             ->where('to', Auth::user()->id)
             ->update(['status' => 1]);
 
-            $chat = [
-                "from" => $request->from,
-                "to" => Auth::user()->id
-            ];
-
-            $options = array(
-                'cluster' => 'ap1',
-                'useTLS' => true
-            );
-
-            $pusher = new Pusher(
-                '8065b88b38209d3beaa9',
-                '72aba97b9fc11a0ae4aa',
-                '1529126',
-                $options
-            );
-    
-            $pusher->trigger('channel-chat', 'chat-in-out', $chat);
-
             return response()->json([
                 'status' => 200,
                 'data' => $conversation,
