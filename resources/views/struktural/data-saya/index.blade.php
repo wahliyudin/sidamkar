@@ -143,10 +143,18 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="basicInput">TMT</label>
-                                        <input type="date" class="form-control" name="tmt"
-                                            value="{{ old('tmt', $user->userPejabatStruktural?->tmt) }}">
-                                        @error('tmt')
+                                        <label for="basicInput">Jabatan TMT</label>
+                                        <input type="date" name="jabatan_tmt" class="form-control"
+                                            value="{{ old('jabatan_tmt', $user->userPejabatStruktural?->jabatan_tmt) }}">
+                                        @error('jabatan_tmt')
+                                            <span class="text-danger text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="basicInput">GOLONGAN TMT</label>
+                                        <input type="date" name="golongan_tmt" class="form-control"
+                                            value="{{ old('golongan_tmt', $user->userPejabatStruktural?->golongan_tmt) }}">
+                                        @error('golongan_tmt')
                                             <span class="text-danger text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>

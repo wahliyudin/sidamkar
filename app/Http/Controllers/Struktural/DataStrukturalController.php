@@ -49,7 +49,8 @@ class DataStrukturalController extends Controller
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
             'jenis_kelamin' => 'required',
-            'tmt' => 'required',
+            'jabatan_tmt' => 'required',
+            'golongan_tmt' => 'required',
             'nomenklatur_perangkat_daerah_id' => 'required',
             // 'provinsi_id' => 'required'
         ];
@@ -61,7 +62,8 @@ class DataStrukturalController extends Controller
             'nama' => $request->nama,
             'nip' => $request->nip,
             'pangkat_golongan_tmt_id' => $request->pangkat_golongan_tmt_id,
-            'tmt' => $request->tmt,
+            'jabatan_tmt' => $request->jabatan_tmt,
+            'golongan_tmt' => $request->golongan_tmt,
             'nomenklatur_perangkat_daerah_id' => $request->nomenklatur_perangkat_daerah_id,
             'nomor_karpeg' => $request->nomor_karpeg,
             'pendidikan_terakhir' => $request->pendidikan_terakhir,
