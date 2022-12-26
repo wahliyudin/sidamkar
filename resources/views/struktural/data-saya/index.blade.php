@@ -142,30 +142,6 @@
                                             <span class="text-danger text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
-                                    <div class="form-group">
-                                        <label for="basicInput">Jabatan TMT</label>
-                                        <input type="date" name="jabatan_tmt" class="form-control"
-                                            value="{{ old('jabatan_tmt', $user->userPejabatStruktural?->jabatan_tmt) }}">
-                                        @error('jabatan_tmt')
-                                            <span class="text-danger text-sm">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="basicInput">GOLONGAN TMT</label>
-                                        <input type="date" name="golongan_tmt" class="form-control"
-                                            value="{{ old('golongan_tmt', $user->userPejabatStruktural?->golongan_tmt) }}">
-                                        @error('golongan_tmt')
-                                            <span class="text-danger text-sm">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="basicInput">Jabatan</label>
-                                        <ul>
-                                            @foreach (Auth::user()->roles as $role)
-                                                <li>{{ $role->display_name }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -176,6 +152,28 @@
                                             <span class="text-danger text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">Jabatan TMT</label>
+                                        <input type="date" name="jabatan_tmt" class="form-control"
+                                            value="{{ old('jabatan_tmt', $user->userPejabatStruktural?->jabatan_tmt) }}">
+                                        @error('jabatan_tmt')
+                                            <span class="text-danger text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">GOLONGAN TMT</label>
+                                        <input type="date" name="golongan_tmt" class="form-control"
+                                            value="{{ old('golongan_tmt', $user->userPejabatStruktural?->golongan_tmt) }}">
+                                        @error('golongan_tmt')
+                                            <span class="text-danger text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="basicInput">Unit Kerja </label>
                                         <select class="nomenklatur_perangkat_daerah form-select"
@@ -191,6 +189,18 @@
                                             <span class="text-danger text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">Jabatan</label>
+                                        <ul>
+                                            @foreach (Auth::user()->roles as $role)
+                                                <li>{{ $role->display_name }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="basicInput">Pangkat / Golongan </label>
                                         <select class="pangkat_golongan form-select" name="pangkat_golongan_tmt_id"
@@ -206,17 +216,19 @@
                                             <span class="text-danger text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
-
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="mt-2 text-end btn-bwh">
-                        <button type="reset" class="btn btn-gray text-sm px-5 reset-data" id="reset">Reset</button>
-                        <button class="btn btn-blue text-sm ms-3 px-5 simpan-data" id="simpan">Simpan</button>
-                    </div>
                 </form>
             </div>
+        </div>
+        <div class="mt-2 text-end btn-bwh">
+            <button type="reset" class="btn btn-gray text-sm px-5 reset-data" id="reset">Reset</button>
+            <button class="btn btn-blue text-sm ms-3 px-5 simpan-data" id="simpan">Simpan</button>
+        </div>
+        </form>
+        </div>
         </div>
         <div class="row">
             <div class="col-md-6">
