@@ -18,13 +18,11 @@ class Penetapan
     protected RekapitulasiKegiatan $rekapitulasiKegiatan;
     protected KetentuanNilai $ketentuanNilai;
     protected PenetapanAngkaKredit $penetapanAngkaKredit;
-    protected ?RekapitulasiKegiatan $rekapitulasiKegiatanOld;
     protected ?PenetapanAngkaKredit $penetapanAngkaKreditOld;
 
-    public function __construct(User $user, RekapitulasiKegiatan $rekapitulasiKegiatan, KetentuanNilai $ketentuanNilai, PenetapanAngkaKredit $penetapanAngkaKredit, ?RekapitulasiKegiatan $rekapitulasiKegiatanOld = null, ?PenetapanAngkaKredit $penetapanAngkaKreditOld = null)
+    public function __construct(User $user, RekapitulasiKegiatan $rekapitulasiKegiatan, KetentuanNilai $ketentuanNilai, PenetapanAngkaKredit $penetapanAngkaKredit, ?PenetapanAngkaKredit $penetapanAngkaKreditOld = null)
     {
         $this->rekapitulasiKegiatan = $rekapitulasiKegiatan;
-        $this->rekapitulasiKegiatanOld = $rekapitulasiKegiatanOld;
         $this->penetapanAngkaKreditOld = $penetapanAngkaKreditOld;
         $this->ketentuanNilai = $ketentuanNilai;
         $this->penetapanAngkaKredit = $penetapanAngkaKredit;
@@ -102,8 +100,8 @@ class Penetapan
 
     public function akJabatanOld()
     {
-        if (isset($this->rekapitulasiKegiatanOld->capaian_ak)) {
-            $this->result = array_merge($this->result, ['akJabatanOld' => $this->rekapitulasiKegiatanOld->capaian_ak]);
+        if (isset($this->penetapanAngkaKreditOld->ak_lama_jabatan)) {
+            $this->result = array_merge($this->result, ['akJabatanOld' => $this->penetapanAngkaKreditOld->ak_lama_jabatan]);
         } else {
             $this->result = array_merge($this->result, ['akJabatanOld' => 0]);
         }

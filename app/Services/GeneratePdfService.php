@@ -340,7 +340,6 @@ class GeneratePdfService
             ->where('pangkat_golongan_tmt_id', $user->userAparatur->pangkat_golongan_tmt_id)
             ->where('role_id', $role->id)
             ->first();
-        $rekapitulasiKegiatanOld = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode->id - 1);
-        return (new Penetapan($user, $rekapitulasiKegiatan, $ketentuanNilai, $penetapan, $rekapitulasiKegiatanOld))->process()->getResult();
+        return (new Penetapan($user, $rekapitulasiKegiatan, $ketentuanNilai, $penetapan, $penetapanOld))->process()->getResult();
     }
 }
