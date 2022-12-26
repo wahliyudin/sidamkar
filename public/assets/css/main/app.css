@@ -23171,7 +23171,7 @@ label {
 
 @media screen and (max-width: 768px) {
     .header-information {
-        font-size: 14px;
+        font-size: 14px !important;
     }
     .detail-informasi {
         font-size: 10px !important;

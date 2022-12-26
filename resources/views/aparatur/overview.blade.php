@@ -89,17 +89,18 @@
             <div class="col-md-12 col">
                 <div class="card overflow-auto" style="overflow: auto; height: 550px">
                     <div class="card-header">
-                        <h4 class="card-title text-center" style="color: #17181A; font-family: 'Roboto';">
+                        <h2 class="card-title text-center" style="color: #17181A; font-family: 'Roboto'; font-size: 24px;">
                             INFORMASI
-                        </h4>
+                        </h2>
                     </div>
                     <div class="card-body">
                         <ul>
                             @forelse ($informasi as $informasis)
                                 <li>
-                                    <h4 style="margin: 0 !important;" class="header-information"> {{ $informasis->judul }} (
+                                    <h4 style="margin: 0 !important; font-size: 20px;" class="header-information">
+                                        {{ $informasis->judul }} (
                                         <a href="#" data-id="{{ $informasis->informasi_id }}" class="detail-informasi"
-                                            style="font-size: 18px;">Klik
+                                            style="font-size: 16px;">Klik
                                             Disini</a> )
                                     </h4>
                                     <div class="footer-information">
