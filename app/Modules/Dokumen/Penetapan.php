@@ -100,11 +100,7 @@ class Penetapan
 
     public function akJabatanOld()
     {
-        if (isset($this->penetapanAngkaKreditOld->ak_lama_jabatan)) {
-            $this->result = array_merge($this->result, ['akJabatanOld' => $this->penetapanAngkaKreditOld->ak_lama_jabatan]);
-        } else {
-            $this->result = array_merge($this->result, ['akJabatanOld' => 0]);
-        }
+        $this->result = array_merge($this->result, ['akJabatanOld' => $this->akLamaJabatan]);
     }
 
     public function akPengalaman()
