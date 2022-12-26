@@ -209,7 +209,7 @@ class KegiatanJabatanController extends Controller
     public function sendRekap()
     {
         $periode = $this->periodeRepository->isActive();
-        $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode(auth()->user(), $periode);
+        $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode(auth()->user(), $periode->id);
         if (!$rekap) {
             throw ValidationException::withMessages(['Data Rekapitulasi Belum Dibuat']);
         }
