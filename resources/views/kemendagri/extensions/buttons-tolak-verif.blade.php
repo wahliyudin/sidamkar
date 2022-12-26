@@ -4,9 +4,9 @@
             <i class="fas fa-trash"></i>
         </button>
     @elseif ($row->status_akun == 1)
-        <button class="btn btn-blue-reverse me-2">
+        {{-- <button class="btn btn-blue-reverse me-2">
             <i class="fas fa-edit"></i>
-        </button>
+        </button> --}}
         <button class="btn btn-red-reverse me-2" onclick="hapus('{{ $row->id }}')">
             <i class="fas fa-trash"></i>
         </button>
