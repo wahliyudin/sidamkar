@@ -16,7 +16,7 @@
                         <div class="chat_people">
                             <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
                             <div class="chat_ib">
-                                <h5>Admin {{ $data->username }} <span class="badge bg-danger"></span></h5>
+                                <h5>Admin {{ $data->username }} <span class="badge bg-danger">{{ $new->count }}</span></h5>
                             </div>
                         </div>
                         <input type="hidden" class="user_to_id" value="{{ $data->id }}">
@@ -351,7 +351,7 @@
                                 <div class="chat_people">
                                     <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
                                     <div class="chat_ib">
-                                        <h5>${val.username} <span class="badge bg-danger">1</span></h5>
+                                        <h5>${val.username} <span class="badge bg-danger">${response.new.count}</span></h5>
                                     </div>
                                 </div>
                                 <input type="hidden" class="user_to_id" value="${val.id}">

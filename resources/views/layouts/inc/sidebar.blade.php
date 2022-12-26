@@ -127,8 +127,8 @@
                         </a>
                     </li>
 
-                    <li class="sidebar-item {{ request()->routeIs('kab-kota.chatbox') ? 'active' : '' }}">
-                        <a href="{{ route('kab-kota.chatbox') }}" class='sidebar-link'>
+                    <li class="sidebar-item {{ request()->routeIs('chat') ? 'active' : '' }}">
+                        <a href="{{ route('chat') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="fa-solid fa-message"></i>
                             </div>
@@ -301,8 +301,8 @@
                             <span>Pengangkatan</span>
                         </a>
                     </li>
-                    <li class="sidebar-item {{ request()->routeIs('provinsi.chatbox') ? 'active' : '' }}">
-                        <a href="{{ route('provinsi.chatbox') }}" class='sidebar-link'>
+                    <li class="sidebar-item {{ request()->routeIs('chat') ? 'active' : '' }}">
+                        <a href="{{ route('chat') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="bi bi-grid-fill"></i>
                             </div>
@@ -377,8 +377,8 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="sidebar-item">
-                        <a href="" class='sidebar-link'>
+                    <li class="sidebar-item {{ request()->routeIs('chat') ? 'active' : '' }}">
+                        <a href="{{ route('chat') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="fa-regular fa-comments"></i>
                             </div>

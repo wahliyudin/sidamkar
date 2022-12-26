@@ -19,7 +19,9 @@ class ChatController extends Controller
     {
         $chat_list = DB::table('users')->join('role_user', 'users.id', '=', 'role_user.user_id')->where('role_user.role_id', '=', 10)->select('users.id', 'users.username')->first();
 
-        return view('chatbox', ["data" => $chat_list]);
+        $new_massage = DB::table('chats')->join('users', 'chats.to', '=', 'users.id')->where('chats.to', '!=', Auth::user()->id)->select(DB::raw('COUNT(chats.id) as count'))->whereStatus(0)->groupBy('users.id')->orderBy('chats.created_at', 'DESC')->first();
+
+        return view('chatbox', ["data" => $chat_list, "new" => $new_massage]);
     }
 
     public function store(Request $request)
@@ -98,9 +100,12 @@ class ChatController extends Controller
         if ($request->ajax()) {
             $chat_list = DB::table('chats')->join('users', 'chats.from', '=', 'users.id')->where('chats.from', '!=', Auth::user()->id)->select('users.id', 'users.username')->groupBy('users.id')->orderBy('chats.created_at', 'DESC')->get();
 
+            $new_massage = DB::table('chats')->join('users', 'chats.to', '=', 'users.id')->where('chats.to', '!=', Auth::user()->id)->select(DB::raw('COUNT(chats.id) as count'))->whereStatus(0)->groupBy('users.id')->orderBy('chats.created_at', 'DESC')->first();
+
             return response()->json([
                 'status' => 200,
                 'data' => $chat_list,
+                'new' => $new_massage,
                 'message' => 'Berhasil mendapatkan chat list'
             ]);
         }
