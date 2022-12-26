@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Kemendagri\CMS;
 
+use App\Exports\KegiatanPenunjangExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\KegiatanPenunjangRequest;
 use App\Imports\UnsurPenunjangImport;
@@ -235,7 +236,7 @@ class KegiatanPenunjangController extends Controller
 
     public function downloadTemplate()
     {
-        return response()->download(public_path('assets/import-penunjang.xlsx'), 'template.xlsx');
+        return Excel::download(new KegiatanPenunjangExport(), 'kegiatan-penunjang.xlsx');
     }
 
     public function destroy($id)

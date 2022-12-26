@@ -6,9 +6,9 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-end flex-wrap wrapper-btn">
-                        {{-- <button class="btn btn-green-reverse" data-bs-toggle="modal" data-bs-target="#importExcelModal"><i
+                        <button class="btn btn-green-reverse" data-bs-toggle="modal" data-bs-target="#importExcelModal"><i
                                 class="fa-solid fa-cloud-arrow-up me-2"></i>Import
-                            Excel</button> --}}
+                            Excel</button>
                         <button class="btn btn-blue-reverse ms-3 btn-tambah" data-bs-toggle="modal"
                             data-bs-target="#tambahDataModal"><i class="fa-solid fa-file-circle-plus me-2"></i>Tambah
                             Data</button>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Kemendagri\CMS;
 
+use App\Exports\KegiatanJabatanExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\KegiatanJabatanRequest;
 use App\Imports\UnsursImport;
@@ -173,7 +174,7 @@ class KegiatanJabatanController extends Controller
 
     public function downloadTemplate()
     {
-        return response()->download(public_path('assets/import-pokok.xlsx'), 'template.xlsx');
+        return Excel::download(new KegiatanJabatanExport(), 'kegiatan-jabatan.xlsx');
     }
 
     public function destroy($id)
