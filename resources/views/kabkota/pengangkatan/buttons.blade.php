@@ -1,8 +1,10 @@
 <div class="d-flex align-items-cen">
-    <button class="btn btn-dark-reverse me-2 tolak">
+    <button {{ $row->is_naik != 0 ? 'disabled' : '' }} data-penetapan="{{ $row->id }}"
+        class="btn btn-dark-reverse me-2 tolak">
         <i class="fas fa-xmark"></i>
     </button>
-    <button class="btn btn-green-reverse me-2" data-bs-toggle="modal" data-bs-target="#pengangkatan{{ $row->id }}">
+    <button {{ $row->is_naik != 0 ? 'disabled' : '' }} class="btn btn-green-reverse me-2" data-bs-toggle="modal"
+        data-bs-target="#pengangkatan{{ $row->id }}">
         <i class="fas fa-check"></i>
     </button>
     <div class="modal fade" id="pengangkatan{{ $row->id }}" tabindex="-1" role="dialog"
@@ -21,8 +23,11 @@
                     </div>
                     <div class="form-group">
                         <p class="mt-3">
-                            Bayu / Damkar pemula / IIA mendapatkan Rekomendasi Kenaikan Pangkat/Jenjang Jabatan Menjadi
-                            Damkar Penyelia / IIIA</p>
+                            {{ $row->nama }} / {{ $row->jabatan }} / {{ $row->pangkat }} mendapatkan Rekomendasi
+                            Kenaikan
+                            Pangkat/Jenjang
+                            Jabatan Menjadi
+                            {{ $jenjangNaik }} / {{ $pangkatNaik }}</p>
                     </div>
                     <div class="note">
                         <p style="color: #898989; font-size: 14px;" class="text-center">*Pastikan sudah dicek kembali
