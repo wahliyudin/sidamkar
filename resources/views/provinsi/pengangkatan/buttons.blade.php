@@ -1,9 +1,9 @@
 <div class="d-flex align-items-cen">
-    <button {{ $row->is_naik == 0 ? 'disabled' : '' }} data-penetapan="{{ $row->id }}"
+    <button {{ $row->is_naik != 0 ? 'disabled' : '' }} data-penetapan="{{ $row->id }}"
         class="btn btn-dark-reverse me-2 tolak">
         <i class="fas fa-xmark"></i>
     </button>
-    <button {{ $row->is_naik == 0 ? 'disabled' : '' }} class="btn btn-green-reverse me-2" data-bs-toggle="modal"
+    <button {{ $row->is_naik != 0 ? 'disabled' : '' }} class="btn btn-green-reverse me-2" data-bs-toggle="modal"
         data-bs-target="#pengangkatan{{ $row->id }}">
         <i class="fas fa-check"></i>
     </button>
