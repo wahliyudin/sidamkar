@@ -34,13 +34,16 @@ class PengangkatanController extends Controller
                 CONCAT(MONTHNAME(periodes.awal), " ", YEAR(periodes.awal), " - ", MONTHNAME(periodes.akhir), " ", YEAR(periodes.akhir))
                     AS periode,
                 roles.display_name AS jabatan,
+                roles.name AS r_name,
                 penetapan_kenaikan_pangkat_jenjangs.is_naik,
-                penetapan_kenaikan_pangkat_jenjangs.id AS penetapan
+                penetapan_kenaikan_pangkat_jenjangs.id AS penetapan,
+                pangkat_golongan_tmts.nama AS pangkat
             FROM user_aparaturs
             JOIN penetapan_kenaikan_pangkat_jenjangs ON penetapan_kenaikan_pangkat_jenjangs.fungsional_id = user_aparaturs.user_id
             JOIN periodes ON periodes.id = penetapan_kenaikan_pangkat_jenjangs.periode_id
             JOIN role_user ON role_user.user_id = user_aparaturs.user_id
             JOIN roles ON roles.id = role_user.role_id
+            JOIN pangkat_golongan_tmts ON pangkat_golongan_tmts.id = user_aparaturs.pangkat_golongan_tmt_id
             WHERE user_aparaturs.tingkat_aparatur = "provinsi"
                 AND user_aparaturs.provinsi_id = ' . $auth->userProvKabKota->provinsi_id);
             return DataTables::of($data)
