@@ -216,9 +216,9 @@ class KegiatanPenunjangService
         ];
     }
 
-    public function sumScoreByUser($user_id)
+    public function sumScoreByUser($user_id, Periode $periode)
     {
-        return $this->laporanKegiatanPenunjangProfesiRepository->sumScoreByUser($user_id);
+        return $this->laporanKegiatanPenunjangProfesiRepository->sumScoreByUser($user_id, $periode);
     }
 
     public function ketentuanNilai($role_id, $pangkat_id)
@@ -226,23 +226,23 @@ class KegiatanPenunjangService
         return $this->ketentuanNilaiRepository->getByRolePangkat($role_id, $pangkat_id);
     }
 
-    public function laporanKegiatanPenunjangProfesiByUser(?ButirKegiatan $butirKegiatan, ?SubButirKegiatan $subButirKegiatan, User $user)
+    public function laporanKegiatanPenunjangProfesiByUser(?ButirKegiatan $butirKegiatan, ?SubButirKegiatan $subButirKegiatan, User $user, Periode $periode)
     {
         return [
-            $this->kegiatanPenunjangProfesiRepository->laporanKegiatanPenunjangProfesiStatusValidasi($butirKegiatan, $subButirKegiatan, $user),
-            $this->kegiatanPenunjangProfesiRepository->laporanKegiatanPenunjangProfesiStatusRevisi($butirKegiatan, $subButirKegiatan, $user),
-            $this->kegiatanPenunjangProfesiRepository->laporanKegiatanPenunjangProfesiStatusSelesai($butirKegiatan, $subButirKegiatan, $user),
-            $this->kegiatanPenunjangProfesiRepository->laporanKegiatanPenunjangProfesiStatusTolak($butirKegiatan, $subButirKegiatan, $user),
+            $this->kegiatanPenunjangProfesiRepository->laporanKegiatanPenunjangProfesiStatusValidasi($butirKegiatan, $subButirKegiatan, $user, $periode),
+            $this->kegiatanPenunjangProfesiRepository->laporanKegiatanPenunjangProfesiStatusRevisi($butirKegiatan, $subButirKegiatan, $user, $periode),
+            $this->kegiatanPenunjangProfesiRepository->laporanKegiatanPenunjangProfesiStatusSelesai($butirKegiatan, $subButirKegiatan, $user, $periode),
+            $this->kegiatanPenunjangProfesiRepository->laporanKegiatanPenunjangProfesiStatusTolak($butirKegiatan, $subButirKegiatan, $user, $periode),
         ];
     }
 
-    public function laporanKegiatanPenunjangProfesiCount(?ButirKegiatan $butirKegiatan, ?SubButirKegiatan $subButirKegiatan, User $user): int
+    public function laporanKegiatanPenunjangProfesiCount(?ButirKegiatan $butirKegiatan, ?SubButirKegiatan $subButirKegiatan, User $user, Periode $periode): int
     {
-        return $this->kegiatanPenunjangProfesiRepository->laporanKegiatanPenunjangProfesiCount($butirKegiatan, $subButirKegiatan, $user);
+        return $this->kegiatanPenunjangProfesiRepository->laporanKegiatanPenunjangProfesiCount($butirKegiatan, $subButirKegiatan, $user, $periode);
     }
 
-    public function laporanLast(?ButirKegiatan $butirKegiatan, ?SubButirKegiatan $subButirKegiatan, User $user)
+    public function laporanLast(?ButirKegiatan $butirKegiatan, ?SubButirKegiatan $subButirKegiatan, User $user, Periode $periode)
     {
-        return $this->kegiatanPenunjangProfesiRepository->laporanLast($butirKegiatan, $subButirKegiatan, $user);
+        return $this->kegiatanPenunjangProfesiRepository->laporanLast($butirKegiatan, $subButirKegiatan, $user, $periode);
     }
 }

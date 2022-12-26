@@ -381,9 +381,9 @@ class KegiatanJabatanService
         ];
     }
 
-    public function sumScoreByUser($user_id)
+    public function sumScoreByUser($user_id, $periode)
     {
-        return $this->laporanKegiatanPenunjangProfesiRepository->sumScoreByUser($user_id);
+        return $this->laporanKegiatanPenunjangProfesiRepository->sumScoreByUser($user_id, $periode);
     }
 
     public function ketentuanNilai($role_id, $pangkat_id)

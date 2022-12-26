@@ -66,15 +66,12 @@ class KegiatanPenunjangController extends Controller
     public function index(): View|Factory
     {
         $periode = $this->periodeRepository->isActive();
-        $user = $this->authUser()->load(['userAparatur.provinsi.kabkotas', 'ketentuanSkpFungsional', 'dokKepegawaians', 'dokKompetensis', 'rencanas', 'rekapitulasiKegiatan.historyRekapitulasiKegiatans' => function ($query) {
-            $query->orderBy('id', 'desc');
-        }]);
+        $user = $this->authUser()->load(['userAparatur.provinsi.kabkotas', 'ketentuanSkpFungsional' => function ($query) use ($periode) {
+            $query->where('periode_id', $periode->id);
+        }, 'dokKepegawaians', 'dokKompetensis', 'rencanas']);
         $judul = 'Laporan Kegiatan Penunjang';
-        $skp = $user?->ketentuanSkpFungsional;
-        $ketentuan_ak = $this->kegiatanPenunjangService->ketentuanNilai(DestructRoleFacade::getRoleFungsionalFirst($user->roles)?->id, $user?->userAparatur?->pangkat_golongan_tmt_id);
-        $ak_diterima = $this->kegiatanPenunjangService->sumScoreByUser($user->id);
-        $historyRekapitulasiKegiatans = $user?->rekapitulasiKegiatan?->historyRekapitulasiKegiatans ?? [];
-        return view('aparatur.laporan-kegiatan.penunjang.index', compact('periode', 'user', 'judul', 'historyRekapitulasiKegiatans', 'skp', 'ketentuan_ak', 'ak_diterima'));
+        $ak_diterima = $this->kegiatanPenunjangService->sumScoreByUser($user->id, $periode);
+        return view('aparatur.laporan-kegiatan.penunjang.index', compact('periode', 'user', 'judul',  'ak_diterima'));
     }
 
     public function showButir(ButirKegiatan $butirKegiatan)
@@ -89,9 +86,9 @@ class KegiatanPenunjangController extends Controller
             $laporanKegiatanPenunjangProfesiStatusRevisis,
             $laporanKegiatanPenunjangProfesiStatusSelesais,
             $laporanKegiatanPenunjangProfesiStatusTolaks,
-        ] = $this->kegiatanPenunjangService->laporanKegiatanPenunjangProfesiByUser($butirKegiatan, null, $user);
-        $laporanKegiatanPenunjangProfesiLast = $this->kegiatanPenunjangService->laporanLast($butirKegiatan, null, $user);
-        $laporanKegiatanPenunjangProfesiCount = $this->kegiatanPenunjangService->laporanKegiatanPenunjangProfesiCount($butirKegiatan, null, $user);
+        ] = $this->kegiatanPenunjangService->laporanKegiatanPenunjangProfesiByUser($butirKegiatan, null, $user, $periode);
+        $laporanKegiatanPenunjangProfesiLast = $this->kegiatanPenunjangService->laporanLast($butirKegiatan, null, $user, $periode);
+        $laporanKegiatanPenunjangProfesiCount = $this->kegiatanPenunjangService->laporanKegiatanPenunjangProfesiCount($butirKegiatan, null, $user, $periode);
         $rencanas = $this->kegiatanPenunjangService->rencanas($user);
         $historyRekapitulasiKegiatans = $user?->rekapitulasiKegiatan?->historyRekapitulasiKegiatans ?? [];
         return view('aparatur.laporan-kegiatan.penunjang.butir-kegiatan.show', compact(
@@ -122,9 +119,9 @@ class KegiatanPenunjangController extends Controller
             $laporanKegiatanPenunjangProfesiStatusRevisis,
             $laporanKegiatanPenunjangProfesiStatusSelesais,
             $laporanKegiatanPenunjangProfesiStatusTolaks,
-        ] = $this->kegiatanPenunjangService->laporanKegiatanPenunjangProfesiByUser(null, $subButirKegiatan, $user);
-        $laporanKegiatanPenunjangProfesiLast = $this->kegiatanPenunjangService->laporanLast(null, $subButirKegiatan, $user);
-        $laporanKegiatanPenunjangProfesiCount = $this->kegiatanPenunjangService->laporanKegiatanPenunjangProfesiCount(null, null, $user);
+        ] = $this->kegiatanPenunjangService->laporanKegiatanPenunjangProfesiByUser(null, $subButirKegiatan, $user, $periode);
+        $laporanKegiatanPenunjangProfesiLast = $this->kegiatanPenunjangService->laporanLast(null, $subButirKegiatan, $user, $periode);
+        $laporanKegiatanPenunjangProfesiCount = $this->kegiatanPenunjangService->laporanKegiatanPenunjangProfesiCount(null, null, $user, $periode);
         $rencanas = $this->kegiatanPenunjangService->rencanas($user);
         $historyRekapitulasiKegiatans = $user?->rekapitulasiKegiatan?->historyRekapitulasiKegiatans ?? [];
         return view('aparatur.laporan-kegiatan.penunjang.sub-butir-kegiatan.show', compact(
