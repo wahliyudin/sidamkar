@@ -7,13 +7,15 @@ use App\Http\Controllers\Controller;
 use App\Models\PenetapanKenaikanPangkatJenjang;
 use App\Models\User;
 use App\Traits\AuthTrait;
+use App\Traits\RoleTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
 class PengangkatanController extends Controller
 {
-    use AuthTrait;
+    use AuthTrait, RoleTrait;
+
     public function index()
     {
         return view('kabkota.pengangkatan.index');
@@ -33,13 +35,16 @@ class PengangkatanController extends Controller
                 CONCAT(MONTHNAME(periodes.awal), " ", YEAR(periodes.awal), " - ", MONTHNAME(periodes.akhir), " ", YEAR(periodes.akhir))
                     AS periode,
                 roles.display_name AS jabatan,
+                roles.name AS r_name,
                 penetapan_kenaikan_pangkat_jenjangs.is_naik,
-                penetapan_kenaikan_pangkat_jenjangs.id AS penetapan
+                penetapan_kenaikan_pangkat_jenjangs.id AS penetapan,
+                pangkat_golongan_tmts.nama AS pangkat
             FROM user_aparaturs
             JOIN penetapan_kenaikan_pangkat_jenjangs ON penetapan_kenaikan_pangkat_jenjangs.fungsional_id = user_aparaturs.user_id
             JOIN periodes ON periodes.id = penetapan_kenaikan_pangkat_jenjangs.periode_id
             JOIN role_user ON role_user.user_id = user_aparaturs.user_id
             JOIN roles ON roles.id = role_user.role_id
+            JOIN pangkat_golongan_tmts ON pangkat_golongan_tmts.id = user_aparaturs.pangkat_golongan_tmt_id
             WHERE user_aparaturs.tingkat_aparatur = "kab_kota"
                 AND user_aparaturs.kab_kota_id = ' . $auth->userProvKabKota->kab_kota_id);
             return DataTables::of($data)
@@ -48,7 +53,9 @@ class PengangkatanController extends Controller
                     return $this->statusPengangkatan($row->is_naik);
                 })
                 ->addColumn('action', function ($row) {
-                    return view('kabkota.pengangkatan.buttons', compact('row'))->render();
+                    $pangkatNaik = $this->getPangkatSelanjutnya($row->pangkat);
+                    $jenjangNaik = $this->getJenjangSelanjutnya($row->r_name);
+                    return view('kabkota.pengangkatan.buttons', compact('row', 'pangkatNaik', 'jenjangNaik'))->render();
                 })
                 ->rawColumns(['action', 'status'])
                 ->make(true);
