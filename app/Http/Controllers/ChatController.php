@@ -19,7 +19,9 @@ class ChatController extends Controller
     {
         $chat_list = DB::table('users')->join('role_user', 'users.id', '=', 'role_user.user_id')->where('role_user.role_id', '=', 10)->select('users.id', 'users.username')->first();
 
-        return view('chatbox', ["data" => $chat_list]);
+        $new_massage = DB::select(DB::raw('select COUNT(chats.id) count from chats inner join users on chats.from = users.id where chats.from != \''.Auth::user()->id.'\' and status = 0 group by users.id order by chats.created_at desc'));
+
+        return view('chatbox', ["data" => $chat_list, "new" => $new_massage]);
     }
 
     public function store(Request $request)
@@ -85,6 +87,30 @@ class ChatController extends Controller
 
             $conversation = DB::select(DB::Raw("SELECT chats.* FROM chats WHERE (chats.from = '".Auth::user()->id."' AND chats.to = '".$from."') OR (chats.from = '".$from."' AND chats.to = '".Auth::user()->id."')"));
 
+            DB::table('chats')
+            ->where('from', $from)
+            ->where('to', Auth::user()->id)
+            ->update(['status' => 1]);
+
+            $chat = [
+                "from" => $request->from,
+                "to" => Auth::user()->id
+            ];
+
+            $options = array(
+                'cluster' => 'ap1',
+                'useTLS' => true
+            );
+
+            $pusher = new Pusher(
+                '8065b88b38209d3beaa9',
+                '72aba97b9fc11a0ae4aa',
+                '1529126',
+                $options
+            );
+    
+            $pusher->trigger('channel-chat', 'chat-in-out', $chat);
+
             return response()->json([
                 'status' => 200,
                 'data' => $conversation,
@@ -98,9 +124,12 @@ class ChatController extends Controller
         if ($request->ajax()) {
             $chat_list = DB::table('chats')->join('users', 'chats.from', '=', 'users.id')->where('chats.from', '!=', Auth::user()->id)->select('users.id', 'users.username')->groupBy('users.id')->orderBy('chats.created_at', 'DESC')->get();
 
+            $new_massage = DB::select(DB::raw('select COUNT(chats.id) count from chats inner join users on chats.from = users.id where chats.from != \''.Auth::user()->id.'\' and status = 0 group by users.id order by chats.created_at desc'));
+
             return response()->json([
                 'status' => 200,
                 'data' => $chat_list,
+                'new' => $new_massage,
                 'message' => 'Berhasil mendapatkan chat list'
             ]);
         }
