@@ -25,8 +25,11 @@
                     </div>
                     <div class="form-group">
                         <p class="mt-3">
-                            Bayu / Damkar pemula / IIA mendapatkan Rekomendasi Kenaikan Pangkat/Jenjang Jabatan Menjadi
-                            Damkar Penyelia / IIIA</p>
+                            {{ $row->nama }} / {{ $row->jabatan }} / {{ $row->pangkat }} mendapatkan Rekomendasi
+                            Kenaikan
+                            Pangkat/Jenjang
+                            Jabatan Menjadi
+                            {{ $jenjangNaik }} / {{ $pangkatNaik }}</p>
                     </div>
                     <div class="note">
                         <p style="color: #898989; font-size: 14px;" class="text-center">*Pastikan sudah dicek kembali

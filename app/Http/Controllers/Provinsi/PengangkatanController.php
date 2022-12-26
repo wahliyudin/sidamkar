@@ -7,13 +7,14 @@ use App\Http\Controllers\Controller;
 use App\Models\PenetapanKenaikanPangkatJenjang;
 use App\Models\User;
 use App\Traits\AuthTrait;
+use App\Traits\RoleTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
 class PengangkatanController extends Controller
 {
-    use AuthTrait;
+    use AuthTrait, RoleTrait;
 
     public function index()
     {
@@ -48,7 +49,9 @@ class PengangkatanController extends Controller
                     return $this->statusPengangkatan($row->is_naik);
                 })
                 ->addColumn('action', function ($row) {
-                    return view('provinsi.pengangkatan.buttons', compact('row'))->render();
+                    $pangkatNaik = $this->getPangkatSelanjutnya($row->pangkat);
+                    $jenjangNaik = $this->getJenjangSelanjutnya($row->r_name);
+                    return view('provinsi.pengangkatan.buttons', compact('row', 'pangkatNaik', 'jenjangNaik'))->render();
                 })
                 ->rawColumns(['action', 'status'])
                 ->make(true);
