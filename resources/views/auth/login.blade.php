@@ -7,7 +7,7 @@
                 @csrf
                 <div class="text-center mb-3">
                     <img class="logo" src="{{ asset('assets/images/template/logo.png') }}" alt="">
-                    <h5 class="header-login mb-0">PENILAIAN AK DAMKAR</h5>
+                    <h5 class="header-login mb-0">PAKDAMKAR</h5>
                     <span class="bot-login d-block text-muted">Silahkan Masuk, Menggunakan Akun
                         Damkar</span>
                 </div>
