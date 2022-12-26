@@ -125,23 +125,40 @@ class ExternalController extends Controller
         return view('penilai-ak.data-pengajuan.external.show', compact('user', 'rekapitulasiKegiatan', 'penetapanAngkaKredit'));
     }
 
-
     public function storePenetapan(Request $request, $id)
     {
-        $user = User::query()->with(['userAparatur.pangkatGolonganTmt'])->findOrFail($id);
+        $user = User::query()->with(['userAparatur.pangkatGolonganTmt', 'roles'])->findOrFail($id);
         $rules = [
-            'ak_pengalaman' => 'nullable'
+            'ak_pengalaman' => 'nullable',
+            'ak_lama_jabatan' => 'required',
+            'keterangan_1' => 'nullable',
+            'keterangan_2' => 'nullable',
+            'keterangan_3' => 'nullable',
+            'keterangan_4' => 'nullable',
+            'keterangan_5' => 'nullable',
         ];
         if ($user->userAparatur->expired_mekanisme) {
             $rules['ak_kelebihan'] = 'required';
         }
         $request->validate($rules);
         $periode = $this->periodeRepository->isActive();
-        $this->externalService->storePenetapan($user, null, $periode, $request->ak_kelebihan, $request->ak_pengalaman);
+        $this->externalService->storePenetapan(
+            $user,
+            null,
+            $periode,
+            $request->ak_kelebihan,
+            $request->ak_pengalaman,
+            $request->keterangan_1,
+            $request->keterangan_2,
+            $request->keterangan_3,
+            $request->keterangan_4,
+            $request->keterangan_5
+        );
         return response()->json([
             'message' => 'Berhasil'
         ]);
     }
+
     public function ttd(Request $request, $id)
     {
         $request->validate([

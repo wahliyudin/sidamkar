@@ -20,6 +20,7 @@ return new class extends Migration
             $table->float('ak_kelebihan', places: 4, unsigned: true);
             $table->float('ak_pengalaman', places: 4, unsigned: true);
             $table->float('total_ak_kumulatif', places: 4, unsigned: true)->nullable();
+            $table->float('ak_lama_jabatan', places: 4, unsigned: true)->nullable();
             $table->timestamps();
 
             $table->foreign('periode_id')->on('periodes')->references('id')->cascadeOnDelete();

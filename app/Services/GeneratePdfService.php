@@ -261,7 +261,7 @@ class GeneratePdfService
         ]);
     }
 
-    public function storePenetapan(User $user, User $penetap = null, Periode $periode, $is_ttd_penetap = false, $no_surat_penetapan = null)
+    public function storePenetapan(User $user, User $penetap = null, Periode $periode, $is_ttd_penetap = false, $no_surat_penetapan = null, $keterangan_1 = null, $keterangan_2 = null, $keterangan_3 = null, $keterangan_4 = null, $keterangan_5 = null)
     {
         $data = $this->processPenetapan($user, $periode);
         $role = DestructRoleFacade::getRoleFungsionalFirst($user->roles);
@@ -298,13 +298,29 @@ class GeneratePdfService
         ]);
         $data['role'] = $role->display_name;
         [$link_penetapan, $name_penetapan] = $this->generatePenetapan($user, $penetap, $data, $is_ttd_penetap, $no_surat_penetapan);
+        $rekapResult = [
+            'link_penetapan' => $link_penetapan,
+            'name_penetapan' => $name_penetapan
+        ];
+        if (!is_null($keterangan_1)) {
+            $rekapResult['keterangan_1'] = $keterangan_1;
+        }
+        if (!is_null($keterangan_2)) {
+            $rekapResult['keterangan_2'] = $keterangan_2;
+        }
+        if (!is_null($keterangan_3)) {
+            $rekapResult['keterangan_3'] = $keterangan_3;
+        }
+        if (!is_null($keterangan_4)) {
+            $rekapResult['keterangan_4'] = $keterangan_4;
+        }
+        if (!is_null($keterangan_5)) {
+            $rekapResult['keterangan_5'] = $keterangan_5;
+        }
         RekapitulasiKegiatan::query()->where('periode_id', $periode->id)
             ->where('fungsional_id', $user->id)
             ->first()
-            ->update([
-                'link_penetapan' => $link_penetapan,
-                'name_penetapan' => $name_penetapan
-            ]);
+            ?->update($rekapResult);
     }
 
     public function processPenetapan(User $user, Periode $periode)
