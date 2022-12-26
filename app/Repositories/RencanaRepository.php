@@ -21,9 +21,9 @@ class RencanaRepository
         $this->rencana = $rencana;
     }
 
-    public function getAllByUser(User $user)
+    public function getAllByUser(User $user, Periode $periode)
     {
-        return $this->rencana->query()->where('user_id', $user->id)->get();
+        return $this->rencana->query()->where('periode_id', $periode->id)->where('user_id', $user->id)->get();
     }
 
     public function getDataRekapCapaian(User $user, Periode $periode)

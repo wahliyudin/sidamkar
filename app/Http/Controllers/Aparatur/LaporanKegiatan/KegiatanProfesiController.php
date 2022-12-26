@@ -81,7 +81,6 @@ class KegiatanProfesiController extends Controller
         ] = $this->kegiatanProfesiService->laporanKegiatanPenunjangProfesiByUser($butirKegiatan, null, $user, $periode);
         $laporanKegiatanPenunjangProfesiLast = $this->kegiatanProfesiService->laporanLast($butirKegiatan, null, $user, $periode);
         $laporanKegiatanPenunjangProfesiCount = $this->kegiatanProfesiService->laporanKegiatanPenunjangProfesiCount($butirKegiatan, null, $user, $periode);
-        $rencanas = $this->kegiatanProfesiService->rencanas($user);
         $historyRekapitulasiKegiatans = $user?->rekapitulasiKegiatan?->historyRekapitulasiKegiatans ?? [];
         return view('aparatur.laporan-kegiatan.profesi.butir-kegiatan.show', compact(
             'laporanKegiatanPenunjangProfesiStatusValidasis',
@@ -91,7 +90,6 @@ class KegiatanProfesiController extends Controller
             'laporanKegiatanPenunjangProfesiCount',
             'laporanKegiatanPenunjangProfesiLast',
             'user',
-            'rencanas',
             'butirKegiatan',
             'periode',
             'judul',
@@ -114,7 +112,6 @@ class KegiatanProfesiController extends Controller
         ] = $this->kegiatanProfesiService->laporanKegiatanPenunjangProfesiByUser(null, $subButirKegiatan, $user, $periode);
         $laporanKegiatanPenunjangProfesiLast = $this->kegiatanProfesiService->laporanLast(null, $subButirKegiatan, $user, $periode);
         $laporanKegiatanPenunjangProfesiCount = $this->kegiatanProfesiService->laporanKegiatanPenunjangProfesiCount(null, null, $user, $periode);
-        $rencanas = $this->kegiatanProfesiService->rencanas($user);
         $historyRekapitulasiKegiatans = $user?->rekapitulasiKegiatan?->historyRekapitulasiKegiatans ?? [];
         return view('aparatur.laporan-kegiatan.profesi.sub-butir-kegiatan.show', compact(
             'laporanKegiatanPenunjangProfesiStatusValidasis',
@@ -124,7 +121,6 @@ class KegiatanProfesiController extends Controller
             'laporanKegiatanPenunjangProfesiCount',
             'laporanKegiatanPenunjangProfesiLast',
             'user',
-            'rencanas',
             'subButirKegiatan',
             'periode',
             'judul',

@@ -111,9 +111,9 @@ class KegiatanJabatanService
     }
 
 
-    public function rencanas(User $user)
+    public function rencanas(User $user, Periode $periode)
     {
-        return $this->rencanaRepository->getAllByUser($user);
+        return $this->rencanaRepository->getAllByUser($user, $periode);
     }
 
     public function storeLaporan(Request $request, User $user, ButirKegiatan $butirKegiatan): LaporanKegiatanJabatan

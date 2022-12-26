@@ -80,7 +80,7 @@ class KegiatanJabatanController extends Controller
         ] = $this->kegiatanJabatanService->laporanKegiatanJabatanByUser($butirKegiatan, $user, $periode);
         $laporanKegiatanJabatanLast = $this->kegiatanJabatanService->laporanLast($butirKegiatan, $user, $periode);
         $laporanKegiatanJabatanCount = $this->kegiatanJabatanService->laporanKegiatanJabatanCount($butirKegiatan, $user, $periode);
-        $rencanas = $this->kegiatanJabatanService->rencanas($user);
+        $rencanas = $this->kegiatanJabatanService->rencanas($user, $periode);
         $historyRekapitulasiKegiatans = $user?->rekapitulasiKegiatan?->historyRekapitulasiKegiatans ?? [];
         return view('aparatur.laporan-kegiatan.jabatan.show', compact(
             'laporanKegiatanJabatanStatusValidasis',
