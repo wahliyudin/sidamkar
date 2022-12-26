@@ -261,9 +261,9 @@ class GeneratePdfService
         ]);
     }
 
-    public function storePenetapan(User $user, User $penetap = null, Periode $periode, $is_ttd_penetap = false, $no_surat_penetapan = null, $keterangan_1 = null, $keterangan_2 = null, $keterangan_3 = null, $keterangan_4 = null, $keterangan_5 = null)
+    public function storePenetapan(User $user, User $penetap = null, Periode $periode, $is_ttd_penetap = false, $no_surat_penetapan = null, $akLamaJabatan, $keterangan_1 = null, $keterangan_2 = null, $keterangan_3 = null, $keterangan_4 = null, $keterangan_5 = null)
     {
-        $data = $this->processPenetapan($user, $periode);
+        $data = $this->processPenetapan($user, $periode, $akLamaJabatan);
         $role = DestructRoleFacade::getRoleFungsionalFirst($user->roles);
         if (isset($data['angkaKenaikanJenjang']) && $data['angkaKenaikanJenjang'] > 0 && isset($data['angkaKenaikanPangkat']) && $data['angkaKenaikanPangkat'] > 0) {
             if (isset($data['kelebihanKekuranganPangkat']) && $data['kelebihanKekuranganPangkat'] < 0 && isset($data['kelebihanKekuranganJenjang']) && $data['kelebihanKekuranganJenjang'] < 0) {
@@ -323,7 +323,7 @@ class GeneratePdfService
             ?->update($rekapResult);
     }
 
-    public function processPenetapan(User $user, Periode $periode)
+    public function processPenetapan(User $user, Periode $periode, $akLamaJabatan)
     {
         $user = $user->load(['roles', 'userAparatur']);
         $penetapan = PenetapanAngkaKredit::query()
@@ -334,12 +334,18 @@ class GeneratePdfService
             ->where('user_id', $user->id)
             ->where('periode_id', $periode->id - 1)
             ->first();
+        if (isset($penetapanOld?->ak_lama_jabatan)) {
+            $akLamaJabatan = $penetapanOld->ak_lama_jabatan;
+        }
+        $penetapan->update([
+            'ak_lama_jabatan' => $akLamaJabatan
+        ]);
         $role = DestructRoleFacade::getRoleFungsionalFirst($user->roles);
         $rekapitulasiKegiatan = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode->id);
         $ketentuanNilai = KetentuanNilai::query()
             ->where('pangkat_golongan_tmt_id', $user->userAparatur->pangkat_golongan_tmt_id)
             ->where('role_id', $role->id)
             ->first();
-        return (new Penetapan($user, $rekapitulasiKegiatan, $ketentuanNilai, $penetapan, $penetapanOld))->process()->getResult();
+        return (new Penetapan($user, $rekapitulasiKegiatan, $ketentuanNilai, $penetapan, $akLamaJabatan))->process()->getResult();
     }
 }

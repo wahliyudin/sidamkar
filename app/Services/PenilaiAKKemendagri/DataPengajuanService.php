@@ -39,7 +39,7 @@ class DataPengajuanService
         ]);
     }
 
-    public function storePenetapan(User $user, User $penetap = null, Periode $periode, $ak_kelebihan = null, $ak_pengalaman, $keterangan_1 = null, $keterangan_2 = null, $keterangan_3 = null, $keterangan_4 = null, $keterangan_5 = null)
+    public function storePenetapan(User $user, User $penetap = null, Periode $periode, $ak_kelebihan = null, $ak_pengalaman, $ak_lama_jabatan = null, $keterangan_1 = null, $keterangan_2 = null, $keterangan_3 = null, $keterangan_4 = null, $keterangan_5 = null)
     {
         PenetapanAngkaKredit::query()->updateOrCreate([
             'periode_id' => $periode->id,
@@ -50,6 +50,6 @@ class DataPengajuanService
             'ak_kelebihan' => isset($ak_kelebihan) ? $ak_kelebihan : $user->userAparatur->angka_mekanisme ?? 0,
             'ak_pengalaman' => $ak_pengalaman
         ]);
-        $this->generatePdfService->storePenetapan($user, $penetap, $periode, false, null, $keterangan_1, $keterangan_2, $keterangan_3, $keterangan_4, $keterangan_5);
+        $this->generatePdfService->storePenetapan($user, $penetap, $periode, false, null, $ak_lama_jabatan, $keterangan_1, $keterangan_2, $keterangan_3, $keterangan_4, $keterangan_5);
     }
 }

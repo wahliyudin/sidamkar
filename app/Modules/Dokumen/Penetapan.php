@@ -18,12 +18,12 @@ class Penetapan
     protected RekapitulasiKegiatan $rekapitulasiKegiatan;
     protected KetentuanNilai $ketentuanNilai;
     protected PenetapanAngkaKredit $penetapanAngkaKredit;
-    protected ?PenetapanAngkaKredit $penetapanAngkaKreditOld;
+    protected $akLamaJabatan;
 
-    public function __construct(User $user, RekapitulasiKegiatan $rekapitulasiKegiatan, KetentuanNilai $ketentuanNilai, PenetapanAngkaKredit $penetapanAngkaKredit, ?PenetapanAngkaKredit $penetapanAngkaKreditOld = null)
+    public function __construct(User $user, RekapitulasiKegiatan $rekapitulasiKegiatan, KetentuanNilai $ketentuanNilai, PenetapanAngkaKredit $penetapanAngkaKredit, $akLamaJabatan)
     {
         $this->rekapitulasiKegiatan = $rekapitulasiKegiatan;
-        $this->penetapanAngkaKreditOld = $penetapanAngkaKreditOld;
+        $this->akLamaJabatan = $akLamaJabatan;
         $this->ketentuanNilai = $ketentuanNilai;
         $this->penetapanAngkaKredit = $penetapanAngkaKredit;
         $this->user = $user;

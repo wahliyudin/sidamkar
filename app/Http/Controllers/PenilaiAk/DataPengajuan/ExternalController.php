@@ -122,7 +122,8 @@ class ExternalController extends Controller
         }
         $user = $this->userRepository->getUserById($id)->load('userAparatur');
         $penetapanAngkaKredit = PenetapanAngkaKredit::query()->where('periode_id', $periode->id)->where('user_id', $user->id)->first();
-        return view('penilai-ak.data-pengajuan.external.show', compact('user', 'rekapitulasiKegiatan', 'penetapanAngkaKredit'));
+        $penetapanAngkaKreditOld = PenetapanAngkaKredit::query()->where('periode_id', $periode->id - 1)->where('user_id', $user->id)->first();
+        return view('penilai-ak.data-pengajuan.external.show', compact('user', 'rekapitulasiKegiatan', 'penetapanAngkaKredit', 'penetapanAngkaKreditOld'));
     }
 
     public function storePenetapan(Request $request, $id)
@@ -148,6 +149,7 @@ class ExternalController extends Controller
             $periode,
             $request->ak_kelebihan,
             $request->ak_pengalaman,
+            $request->ak_lama_jabatan,
             $request->keterangan_1,
             $request->keterangan_2,
             $request->keterangan_3,

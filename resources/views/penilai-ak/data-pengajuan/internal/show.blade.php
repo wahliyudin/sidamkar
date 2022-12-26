@@ -97,7 +97,10 @@
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <label>AK Lama Kegiatan Tugas Jabatan</label>
-                                                                            <input type="number" name="ak_lama_jabatan"
+                                                                            <input type="number"
+                                                                                value="{{ $penetapanAngkaKreditOld?->ak_lama_jabatan }}"
+                                                                                name="ak_lama_jabatan"
+                                                                                {{ isset($penetapanAngkaKreditOld?->ak_lama_jabatan) ? 'disabled' : '' }}
                                                                                 class="form-control">
                                                                         </div>
                                                                         <div class="form-group">
