@@ -31,10 +31,10 @@ class Penetapan
 
     public function process()
     {
+        $this->akJabatanOld();
         $this->logicTotal();
         $this->akDasarAtauKelebihan();
         $this->akPengalaman();
-        $this->akJabatanOld();
         $this->result['total'] = $this->result['total'] + (isset($this->result['akJabatanOld']) ? $this->result['akJabatanOld'] : 0) + $this->result['akPengalaman'] + $this->result['akDasarAtauKelebihan'];
         $this->total = $this->result['total'];
         $this->processKenaikanPangkat();

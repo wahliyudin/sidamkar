@@ -173,7 +173,8 @@
                 <td>{{ isset($data['akDasarAtauKelebihan']) ? $data['akDasarAtauKelebihan'] : 0 }}</td>
                 <td>0</td>
                 <td>{{ isset($data['akDasarAtauKelebihan']) ? $data['akDasarAtauKelebihan'] : 0 }}</td>
-                <td colspan="1" class="text-start"></td>
+                <td colspan="1" class="text-start">{{ isset($data['keterangan_1']) ? $data['keterangan_1'] : '' }}
+                </td>
             </tr>
             <tr>
                 <td>2</td>
@@ -181,7 +182,8 @@
                 <td>0</td>
                 <td>{{ isset($data['akPengalaman']) ? $data['akPengalaman'] : 0 }}</td>
                 <td>{{ isset($data['akPengalaman']) ? $data['akPengalaman'] : 0 }}</td>
-                <td colspan="1" class="text-start"></td>
+                <td colspan="1" class="text-start">{{ isset($data['keterangan_2']) ? $data['keterangan_2'] : '' }}
+                </td>
             </tr>
             <tr>
                 <td>3</td>
@@ -189,7 +191,8 @@
                 <td>{{ isset($data['akJabatanOld']) ? $data['akJabatanOld'] : 0 }}</td>
                 <td>{{ isset($data['jabatan']) ? $data['jabatan'] : 0 }}</td>
                 <td>{{ isset($data['jabatan']) ? $data['jabatan'] : 0 }}</td>
-                <td colspan="1" class="text-start"></td>
+                <td colspan="1" class="text-start">{{ isset($data['keterangan_3']) ? $data['keterangan_3'] : '' }}
+                </td>
             </tr>
             <tr>
                 <td>4</td>
@@ -197,7 +200,8 @@
                 <td>0</td>
                 <td>{{ isset($data['profesi']) ? $data['profesi'] : 0 }}</td>
                 <td>{{ isset($data['profesi']) ? $data['profesi'] : 0 }}</td>
-                <td colspan="1" class="text-start"></td>
+                <td colspan="1" class="text-start">{{ isset($data['keterangan_4']) ? $data['keterangan_4'] : '' }}
+                </td>
             </tr>
             <tr>
                 <td>5</td>
@@ -205,7 +209,8 @@
                 <td>0</td>
                 <td>{{ isset($data['penunjang']) ? $data['penunjang'] : 0 }}</td>
                 <td>{{ isset($data['penunjang']) ? $data['penunjang'] : 0 }}</td>
-                <td colspan="1" class="text-start"></td>
+                <td colspan="1" class="text-start">{{ isset($data['keterangan_5']) ? $data['keterangan_5'] : '' }}
+                </td>
             </tr>
         </tbody>
         <tbody>

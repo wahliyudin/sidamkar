@@ -127,10 +127,10 @@
                         </a>
                     </li>
 
-                    <li class="sidebar-item {{ request()->routeIs('kab-kota.chatbox') ? 'active' : '' }}">
-                        <a href="{{ route('kab-kota.chatbox') }}" class='sidebar-link'>
+                    <li class="sidebar-item {{ request()->routeIs('chat') ? 'active' : '' }}">
+                        <a href="{{ route('chat') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
-                                <i class="fa-solid fa-message"></i>
+                                <i class="fa fa-comments"></i>
                             </div>
                             <span>Chatbox</span>
                         </a>
@@ -301,10 +301,10 @@
                             <span>Pengangkatan</span>
                         </a>
                     </li>
-                    <li class="sidebar-item {{ request()->routeIs('provinsi.chatbox') ? 'active' : '' }}">
-                        <a href="{{ route('provinsi.chatbox') }}" class='sidebar-link'>
+                    <li class="sidebar-item {{ request()->routeIs('chat') ? 'active' : '' }}">
+                        <a href="{{ route('chat') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
-                                <i class="bi bi-grid-fill"></i>
+                                <i class="fa fa-comments"></i>
                             </div>
                             <span>Chatbox</span>
                         </a>
@@ -315,7 +315,7 @@
                     <li class="sidebar-item {{ request()->routeIs('kemendagri.overview.index') ? 'active' : '' }}">
                         <a href="{{ route('kemendagri.overview.index') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
-                                <i class="fa-solid fa-table-columns"></i>
+                                <i class="bi bi-grid-fill"></i>
                             </div>
                             <span>Dashboard</span>
                         </a>
@@ -377,10 +377,10 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="sidebar-item">
-                        <a href="" class='sidebar-link'>
+                    <li class="sidebar-item {{ request()->routeIs('chat') ? 'active' : '' }}">
+                        <a href="{{ route('chat') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
-                                <i class="fa-regular fa-comments"></i>
+                                <i class="fa fa-comments"></i>
                             </div>
                             <span>Chatbox</span>
                         </a>
@@ -399,7 +399,8 @@
                 @endrole
 
                 @role('penetap_ak_kemendagri')
-                    <li class="sidebar-item {{ request()->is('penetap-ak-kemendagri/data-pengajuan*') ? 'active' : '' }}">
+                    <li
+                        class="sidebar-item {{ request()->is('penetap-ak-kemendagri/data-pengajuan*') ? 'active' : '' }}">
                         <a href="{{ route('penetap-ak-kemendagri.data-pengajuan') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="fa-solid fa-square-poll-vertical"></i>

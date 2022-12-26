@@ -103,7 +103,7 @@ class KegiatanSelesaiController extends Controller
     {
         $periode = $this->periodeRepository->isActive();
         $user = User::query()->findOrFail($id);
-        $rekapitulasiKegiatan = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode);
+        $rekapitulasiKegiatan = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode->id);
         if (!isset($rekapitulasiKegiatan)) {
             abort(404);
         }
@@ -118,7 +118,7 @@ class KegiatanSelesaiController extends Controller
         if (!isset($atasan_langsung?->userPejabatStruktural?->file_ttd)) {
             throw ValidationException::withMessages(['Maaf, Anda Belum Melengkapi Profil']);
         }
-        $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode);
+        $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode->id);
         $this->generatePdfService->ttdRekapitulasi($rekap, $user, $periode, $atasan_langsung);
         return response()->json([
             'message' => 'Berhasil'
@@ -129,7 +129,7 @@ class KegiatanSelesaiController extends Controller
     {
         $periode = $this->periodeRepository->isActive();
         $user = $this->userRepository->getUserById($user_id);
-        $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode);
+        $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode->id);
         $this->rekapitulasiKegiatanRepository->sendToPenilai($rekap);
         return response()->json([
             'success' => 200,
