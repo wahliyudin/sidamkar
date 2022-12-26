@@ -296,27 +296,32 @@ class GeneratePdfService
             'user_id' => $user->id,
             'total_ak_kumulatif' => isset($data['total']) ? $data['total'] : 0
         ]);
-        $data['role'] = $role->display_name;
-        [$link_penetapan, $name_penetapan] = $this->generatePenetapan($user, $penetap, $data, $is_ttd_penetap, $no_surat_penetapan);
-        $rekapResult = [
-            'link_penetapan' => $link_penetapan,
-            'name_penetapan' => $name_penetapan
-        ];
+        $rekapResult = [];
         if (!is_null($keterangan_1)) {
             $rekapResult['keterangan_1'] = $keterangan_1;
+            $data['keterangan_1'] = $keterangan_1;
         }
         if (!is_null($keterangan_2)) {
             $rekapResult['keterangan_2'] = $keterangan_2;
+            $data['keterangan_2'] = $keterangan_2;
         }
         if (!is_null($keterangan_3)) {
             $rekapResult['keterangan_3'] = $keterangan_3;
+            $data['keterangan_3'] = $keterangan_3;
         }
         if (!is_null($keterangan_4)) {
             $rekapResult['keterangan_4'] = $keterangan_4;
+            $data['keterangan_4'] = $keterangan_4;
         }
         if (!is_null($keterangan_5)) {
             $rekapResult['keterangan_5'] = $keterangan_5;
+            $data['keterangan_5'] = $keterangan_5;
         }
+        $data['role'] = $role->display_name;
+        [$link_penetapan, $name_penetapan] = $this->generatePenetapan($user, $penetap, $data, $is_ttd_penetap, $no_surat_penetapan);
+        $rekapResult['link_penetapan'] = $link_penetapan;
+        $rekapResult['name_penetapan'] = $name_penetapan;
+
         RekapitulasiKegiatan::query()->where('periode_id', $periode->id)
             ->where('fungsional_id', $user->id)
             ->first()

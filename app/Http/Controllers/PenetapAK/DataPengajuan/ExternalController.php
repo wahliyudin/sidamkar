@@ -131,7 +131,7 @@ class ExternalController extends Controller
         if (!isset($penetapAk?->userPejabatStruktural?->file_ttd)) {
             throw ValidationException::withMessages(['Maaf, Anda Belum Melengkapi Profil']);
         }
-        $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode);
+        $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode->id);
         $this->externalService->ttdRekapitulasi($rekap, $user, $periode, $penetapAk, $request->no_penetapan, $request->nama_penetap);
         return response()->json([
             'message' => 'Berhasil'

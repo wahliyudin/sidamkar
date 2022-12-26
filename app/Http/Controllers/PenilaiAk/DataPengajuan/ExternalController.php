@@ -176,7 +176,7 @@ class ExternalController extends Controller
         if (!isset($penilai_ak?->userPejabatStruktural?->file_ttd)) {
             throw ValidationException::withMessages(['Maaf, Anda Belum Melengkapi Profil']);
         }
-        $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode);
+        $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode->id);
         $this->externalService->ttdRekapitulasi($rekap, $user, $periode, $penilai_ak, $request->no_pengembang, $request->no_penilaian_capaian);
         return response()->json([
             'message' => 'Berhasil'
@@ -187,7 +187,7 @@ class ExternalController extends Controller
     {
         $periode = $this->periodeRepository->isActive();
         $user = $this->userRepository->getUserById($user_id);
-        $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode);
+        $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode->id);
         $this->rekapitulasiKegiatanRepository->sendToPenetap($rekap);
         return response()->json([
             'success' => 200,

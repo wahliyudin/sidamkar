@@ -97,33 +97,47 @@
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <label>AK Lama Kegiatan Tugas Jabatan</label>
-                                                                            <input type="number" name="ak_lama_jabatan"
+                                                                            <input type="number"
+                                                                                {{ $rekapitulasiKegiatan->is_send == 3 ? 'disabled' : '' }}
+                                                                                value="{{ $penetapanAngkaKreditOld?->ak_lama_jabatan }}"
+                                                                                name="ak_lama_jabatan"
+                                                                                {{ isset($penetapanAngkaKreditOld?->ak_lama_jabatan) ? 'disabled' : '' }}
                                                                                 class="form-control">
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <label>Keterangan No 1</label>
-                                                                            <input type="text" name="keterngan_1"
-                                                                                class="form-control">
+                                                                            <input type="text"
+                                                                                {{ $rekapitulasiKegiatan->is_send == 3 ? 'disabled' : '' }}
+                                                                                value="{{ $rekapitulasiKegiatan->keterangan_1 }}"
+                                                                                name="keterangan_1" class="form-control">
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <label>Keterangan No 2</label>
-                                                                            <input type="text" name="keterngan_2"
-                                                                                class="form-control">
+                                                                            <input type="text"
+                                                                                {{ $rekapitulasiKegiatan->is_send == 3 ? 'disabled' : '' }}
+                                                                                value="{{ $rekapitulasiKegiatan->keterangan_2 }}"
+                                                                                name="keterangan_2" class="form-control">
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <label>Keterangan No 3</label>
-                                                                            <input type="text" name="keterngan_3"
-                                                                                class="form-control">
+                                                                            <input type="text"
+                                                                                {{ $rekapitulasiKegiatan->is_send == 3 ? 'disabled' : '' }}
+                                                                                value="{{ $rekapitulasiKegiatan->keterangan_3 }}"
+                                                                                name="keterangan_3" class="form-control">
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <label>Keterangan No 4</label>
-                                                                            <input type="text" name="keterngan_4"
-                                                                                class="form-control">
+                                                                            <input type="text"
+                                                                                {{ $rekapitulasiKegiatan->is_send == 3 ? 'disabled' : '' }}
+                                                                                value="{{ $rekapitulasiKegiatan->keterangan_4 }}"
+                                                                                name="keterangan_4" class="form-control">
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <label>Keterangan No 5</label>
-                                                                            <input type="text" name="keterngan_5"
-                                                                                class="form-control">
+                                                                            <input type="text"
+                                                                                {{ $rekapitulasiKegiatan->is_send == 3 ? 'disabled' : '' }}
+                                                                                value="{{ $rekapitulasiKegiatan->keterangan_5 }}"
+                                                                                name="keterangan_5" class="form-control">
                                                                         </div>
                                                                         <div
                                                                             class="d-flex align-items-center justify-content-end">
