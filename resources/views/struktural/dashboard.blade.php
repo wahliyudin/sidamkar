@@ -89,57 +89,64 @@
             </div>
         </div>
         <div class="row">
-            @role(['atasan_langsung'])
-                <div class="col-md-9 col order-md-0 order-2">
-                    <div class="card overflow-auto">
-                        <div class="card-header">
-                            <h4 class="card-title" style="color: #17181A; font-family: 'Roboto';">HISTORI PENGAJUAN REKAPITULASI
-                            </h4>
+            <div class="col-md-9">
+                <div class="row flex columns">
+                    @role(['atasan_langsung'])
+                        <div class="col-md-12 order-md-0 order-2">
+                            <div class="card overflow-auto">
+                                <div class="card-header">
+                                    <h4 class="card-title" style="color: #17181A; font-family: 'Roboto';">HISTORI PENGAJUAN
+                                        REKAPITULASI
+                                    </h4>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-striped" id="fungsionals">
+                                        <thead>
+                                            <tr>
+                                                <th>Nama</th>
+                                                <th>NIP</th>
+                                                <th>Jabatan</th>
+                                                <th>Golongan</th>
+                                                <th>Angka Kredit</th>
+                                                <th>Tanggal</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <table class="table table-striped" id="fungsionals">
-                                <thead>
-                                    <tr>
-                                        <th>Nama</th>
-                                        <th>NIP</th>
-                                        <th>Jabatan</th>
-                                        <th>Golongan</th>
-                                        <th>Angka Kredit</th>
-                                        <th>Tanggal</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
+                    @endrole
+                    @role(['penilai_ak_damkar', 'penilai_ak_analis'])
+                        <div class="col-md-12 order-md-0 order-2">
+                            <div class="card overflow-auto">
+                                <div class="card-header">
+                                    <h4 class="card-title" style="color: #17181A; font-family: 'Roboto';">HISTORI PENGAJUAN
+                                        PENILAIAN
+                                    </h4>
+                                </div>
+                                <div class="card-body">
+                                    <table id="internal" class="table dataTable no-footer dtr-inline">
+                                        <thead>
+                                            <tr>
+                                                <th>Nama</th>
+                                                <th>NIP</th>
+                                                <th>Jabatan</th>
+                                                <th>Status Mekanisme</th>
+                                                <th>Tanggal</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    @endrole
                 </div>
-            @endrole
-            @role(['penilai_ak_damkar', 'penilai_ak_analis'])
-                <div class="col-md-9 col order-md-0 order-2">
-                    <div class="card overflow-auto">
-                        <div class="card-header">
-                            <h4 class="card-title" style="color: #17181A; font-family: 'Roboto';">HISTORI PENGAJUAN PENILAIAN
-                            </h4>
-                        </div>
-                        <div class="card-body">
-                            <table id="internal" class="table dataTable no-footer dtr-inline">
-                                <thead>
-                                    <tr>
-                                        <th>Nama</th>
-                                        <th>NIP</th>
-                                        <th>Jabatan</th>
-                                        <th>Status Mekanisme</th>
-                                        <th>Tanggal</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            @endrole
+            </div>
+
             <div class="col-md-3">
                 <div class="card">
                     <div class="card-header">
