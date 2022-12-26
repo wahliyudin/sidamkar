@@ -53,10 +53,10 @@ class GeneratePdfService
         $this->penetapanKenaikanPangkatJenjangRepository = $penetapanKenaikanPangkatJenjangRepository;
     }
 
-    public function generatePernyataan(User $user, User $atasan_langsung, $is_ttd = false)
+    public function generatePernyataan(User $user, User $atasan_langsung, $is_ttd = false, Periode $periode)
     {
         $pdf_rekap = PDF::loadView('generate-pdf.old', [
-            'unsurs' => $this->unsurRepository->getRekapUnsurs($user),
+            'unsurs' => $this->unsurRepository->getRekapUnsurs($user, $periode),
             'user' => $user,
             'is_ttd' => $is_ttd,
             'atasan_langsung' => $atasan_langsung,
@@ -72,7 +72,7 @@ class GeneratePdfService
 
     public function generateRekapCapaian(User $user, User $atasan_langsung, Periode $periode, $is_ttd_aparatur = false, $is_ttd_atasan = false)
     {
-        [$rencanas, $total_capaian] = $this->rencanaRepository->getDataRekapCapaian($user);
+        [$rencanas, $total_capaian] = $this->rencanaRepository->getDataRekapCapaian($user, $periode);
         $role_atasan_langsung = DestructRoleFacade::getRoleAtasanLangsung($atasan_langsung?->roles);
         $pdf_rekap = PDF::loadView('generate-pdf.rekapitulasi-capaian', compact(
             'rencanas',
@@ -93,7 +93,7 @@ class GeneratePdfService
         ];
     }
 
-    public function generatePengembang(User $user, User $penilai = null, $no_surat = null)
+    public function generatePengembang(User $user, User $penilai = null, $no_surat = null, Periode $periode)
     {
         $role = DestructRoleFacade::getRoleFungsionalFirst($user->roles);
         $jenis = $this->groupRole($role);
@@ -135,6 +135,7 @@ class GeneratePdfService
             WHERE unsurs.jenis_aparatur = ' . '"' . $jenis . '"' . '
                 AND unsurs.jenis_kegiatan_id = 2
                 AND laporan_kegiatan_penunjang_profesis.status = 3
+                AND laporan_kegiatan_penunjang_profesis.periode_id = ' . $periode->id . '
                 AND laporan_kegiatan_penunjang_profesis.user_id = ' . '"' . $user->id . '"' . '
                 GROUP BY laporan_kegiatan_penunjang_profesis.butir_kegiatan_id, laporan_kegiatan_penunjang_profesis.sub_butir_kegiatan_id');
         $profesis = DB::select('SELECT
@@ -246,7 +247,7 @@ class GeneratePdfService
 
     public function ttdRekapitulasi(RekapitulasiKegiatan $rekapitulasiKegiatan, User $user, Periode $periode, User $atasan_langsung)
     {
-        [$link_pernyataan, $name_pernyataan] = $this->generatePernyataan($user, $atasan_langsung, true);
+        [$link_pernyataan, $name_pernyataan] = $this->generatePernyataan($user, $atasan_langsung, true, $periode);
         [$link_rekap_capaian, $name_rekap_capaian, $total_capaian] = $this->generateRekapCapaian($user, $atasan_langsung, $periode, true, true);
         $rekapitulasiKegiatan->update([
             'link_pernyataan' => $link_pernyataan,

@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Facades\Modules\DestructRoleFacade;
 use App\Models\LaporanKegiatanJabatan;
+use App\Models\Periode;
 use App\Models\Rencana;
 use App\Models\User;
 use App\Traits\ScoringTrait;
@@ -25,7 +26,7 @@ class RencanaRepository
         return $this->rencana->query()->where('user_id', $user->id)->get();
     }
 
-    public function getDataRekapCapaian(User $user)
+    public function getDataRekapCapaian(User $user, Periode $periode)
     {
         $total = 0;
         $role = DestructRoleFacade::getRoleFungsionalFirst($user->roles);
@@ -51,6 +52,7 @@ class RencanaRepository
             JOIN unsurs ON unsurs.id = sub_unsurs.unsur_id
             WHERE rencanas.user_id = ' . '"' . $user->id . '"' . '
                 AND laporan_kegiatan_jabatans.status = 3
+                AND laporan_kegiatan_jabatans.periode_id = ' . $periode->id . '
             GROUP BY laporan_kegiatan_jabatans.butir_kegiatan_id');
         $rencanas = [];
         foreach ($data as $item) {
