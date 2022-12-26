@@ -39,7 +39,7 @@ class InternalController extends Controller
     {
         $periode = $this->periodeRepository->isActive();
         $user = $this->userRepository->getUserById($id)->load('userAparatur');
-        $rekapitulasiKegiatan = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode);
+        $rekapitulasiKegiatan = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode->id);
         return view('penetap-ak.data-pengajuan.internal.show', compact('user', 'rekapitulasiKegiatan'));
     }
 
