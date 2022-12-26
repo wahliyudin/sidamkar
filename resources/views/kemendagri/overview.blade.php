@@ -2,7 +2,7 @@
 @section('content')
     <section class="section">
         <div class="row">
-            <div class="col-md-9 p-0">
+            <div class="col-md-12 p-0">
                 <div class="row">
                     <div class="col-md-4 px-2">
                         <div class="card">
@@ -182,7 +182,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-md-12 px-2">
                         <div class="card mb-3 overflow-auto">
                             <div class="card-header">
@@ -267,16 +267,16 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
 
-            <div class="col-md-3 informasi-wrapper">
+            {{-- <div class="col-md-3 informasi-wrapper">
                 <div class="card mb-3" style="min-height: 68vh;">
                     <div class="card-body">
                         <h1 class="card-title text-center" style="color: #17181A; font-family: 'Roboto';">INFORMATION</h1>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </section>
 @endsection

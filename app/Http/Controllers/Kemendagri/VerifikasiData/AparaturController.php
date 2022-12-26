@@ -12,7 +12,8 @@ class AparaturController extends Controller
 {
     public function index()
     {
-        return view('kemendagri.verifikasi-data.aparatur.index');
+        $judul = 'Manajemen Aparatur';
+        return view('kemendagri.verifikasi-data.aparatur.index', compact('judul'));
     }
 
     public function datatable(Request $request)
