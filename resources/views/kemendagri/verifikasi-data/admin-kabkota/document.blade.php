@@ -1,6 +1,7 @@
 <div class="modal fade" id="filePermohonan{{ $row->id }}" tabindex="-1" role="dialog"
     aria-labelledby="filePermohonanTitle" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-centered modal-dialog-scrollable"
+        role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="filePermohonanTitle">
