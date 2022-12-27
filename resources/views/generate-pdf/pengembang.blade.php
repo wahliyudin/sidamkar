@@ -88,7 +88,7 @@
             <tr>
                 <td style="width: 150px;">Pangkat/Gol. Ruang/TMT</td>
                 <td style="width: 10px;">:</td>
-                <td>{{ $user->userAparatur->pangkatGolonganTmt->nama . ' / ' . $user->userAparatur->golongan_tmt }}
+                <td>{{ $user->userAparatur->pangkatGolonganTmt->nama ?? $user->userAparatur->golongan_custom . ' / ' . $user->userAparatur->golongan_tmt }}
                 </td>
             </tr>
             <tr>

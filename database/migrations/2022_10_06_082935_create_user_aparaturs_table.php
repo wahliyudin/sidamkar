@@ -39,6 +39,7 @@ return new class extends Migration
             $table->float('angka_mekanisme', places: 4, unsigned: true)->nullable();
             $table->enum('status_mekanisme', [1, 2, 3, 4])->nullable(); // Menunggu, revisi, terverifikasi, tolak
             $table->boolean('expired_mekanisme')->default(false);
+            $table->string('golongan_custom')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->on('users')->references('id')->cascadeOnDelete();

@@ -145,7 +145,8 @@
                     Ruang/TMT </td>
                 <td class="bd" style="padding-left: 1rem; padding-right: .5rem;" width="2%">:</td>
                 <td class="bd letter">
-                    {{ $user->userAparatur->pangkatGolonganTmt->nama . '/' . $user->userAparatur->golongan_tmt }}</td>
+                    {{ $user->userAparatur->pangkatGolonganTmt->nama ?? $user->userAparatur->golongan_custom . '/' . $user->userAparatur->golongan_tmt }}
+                </td>
             </tr>
             <tr>
                 <td class="bd"><br></td>

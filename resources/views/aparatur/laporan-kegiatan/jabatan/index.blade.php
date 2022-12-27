@@ -28,7 +28,12 @@
                         <div class="col-md-4">
                             <h3>Kegiatan Jabatan</h3>
                         </div>
-                        <div class="col-md-6 text-end">
+                        <div class="col-md-8 text-end">
+                            <button data-bs-toggle="modal" data-bs-target="#golonganCustom"
+                                class="btn btn-red btn-sm ps-3 pe-3 py-2 ">
+                                <i class="fa-solid fa-file-lines"></i>
+                                Input Golongan
+                            </button>
                             <button data-bs-toggle="modal" data-bs-target="#skp"
                                 class="btn btn-warning btn-sm ps-3 pe-3 py-2 ">
                                 <i class="fa-solid fa-file-lines"></i>
@@ -97,23 +102,6 @@
                 <div class="modal-body">
                     @if ($skp)
                         <form id="form-skp" method="post" enctype="multipart/form-data">
-                            {{-- @switch($skp?->status)
-                                @case(0)
-                                    <p>Status SKP : <strong class="text-warning">Menunggu Verifikasi </strong>
-                                    @break
-
-                                    @case(1)
-                                    <p>Status SKP : <strong class="text-success">Terverifikasi </strong>
-                                    @break
-
-                                    @case(2)
-                                    <p>Status SKP : <strong class="text-red">Revisi</strong>
-                                    @break
-
-                                    @default
-                                    <p>Status SKP : <strong class="text">Tidak Diketahui</strong>
-                                @endswitch --}}
-                            </p>
                             <div class="form-group">
                                 <label>Jenis SKP</label>
                                 <select disabled class="form-select skp">
@@ -138,13 +126,6 @@
                                         placeholder="Masukan Nilai" value="{{ $skp->nilai_skp }}" />
                                 @endif
                             </div>
-                            {{-- <div class="form-group">
-                        <label>File SKP<span class="text-danger">*</span></label>
-                        <input type="file" data-max-file-size="2MB" required name="file_skp" required />
-                        @error('file_permohonan')
-                            <strong style="color: red;">{{ $message }}</strong>
-                        @enderror
-                    </div> --}}
                         </form>
                         <div class="text-center mt-4">
                             <button class="btn btn-danger px-5" data-bs-dismiss="modal">Batal</button>
@@ -162,13 +143,6 @@
                             <div class="form-group jenis-skp">
 
                             </div>
-                            {{-- <div class="form-group">
-                            <label>File SKP<span class="text-danger">*</span></label>
-                            <input type="file" data-max-file-size="2MB" required name="file_skp" required />
-                            @error('file_permohonan')
-                                <strong style="color: red;">{{ $message }}</strong>
-                            @enderror
-                        </div> --}}
                         </form>
                         <div class="text-center mt-4">
                             <button class="btn btn-danger px-5" data-bs-dismiss="modal">Batal</button>
@@ -179,8 +153,6 @@
                             </button>
                         </div>
                     @endif
-
-
                 </div>
             </div>
         </div>
@@ -200,6 +172,39 @@
                     </div>
                     <div class="text-center mt-4">
                         <button class="btn btn-danger px-5" data-bs-dismiss="modal">Tutup</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="golonganCustom" tabindex="-1" role="dialog" aria-labelledby="golonganCustomTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="text-red uppercase">Masukan Pangkat Golongan</h5>
+                </div>
+                <div class="modal-body">
+                    <form action="" class="form-golongan">
+                        <div class="form-group">
+                            <label>Pangkat Golongan</label>
+                            <select required name="golongan_custom" class="form-select">
+                                <option value="">- Pilih Pangkat Golongan -</option>
+                                @foreach ($pangkats as $pangkat)
+                                    <option @selected($user->userAparatur->golongan_custom == $pangkat->nama) value="{{ $pangkat->nama }}">
+                                        {{ $pangkat->nama }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </form>
+                    <div class="text-center mt-4">
+                        <button class="btn btn-danger px-5" data-bs-dismiss="modal">Tutup</button>
+                        <button type="button" class="btn btn-blue px-5 simpan-golongan">
+                            <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
+                                style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
+                            <span>Kirim</span>
+                        </button>
                     </div>
                 </div>
             </div>

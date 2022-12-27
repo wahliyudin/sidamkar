@@ -90,13 +90,13 @@ class ExternalController extends Controller
                         JOIN role_user ON role_user.user_id = users.id
                         JOIN roles ON roles.id = role_user.role_id
                         LEFT JOIN mekanisme_pengangkatans ON user_aparaturs.mekanisme_pengangkatan_id = mekanisme_pengangkatans.id
-                        JOIN kab_prov_penilai_and_penetaps AS internal ON internal.kab_kota_id = 1101
+                        JOIN kab_prov_penilai_and_penetaps AS internal ON ' . $internal . '
                         JOIN rekapitulasi_kegiatans ON (rekapitulasi_kegiatans.fungsional_id = users.id
                                 AND rekapitulasi_kegiatans.is_send IN (2, 3) AND rekapitulasi_kegiatans.periode_id = ' . $periode->id . ')
                         WHERE users.status_akun = 1
-                                AND user_aparaturs.tingkat_aparatur = "kab_kota"
-                                AND roles.id IN (1,2,3,5,6)
-                                AND user_aparaturs.kab_kota_id = 1101)
+                                AND user_aparaturs.tingkat_aparatur = "' . $auth->userPejabatStruktural->tingkat_aparatur . '"
+                                AND roles.id IN (1,2,3,4,5,6,7)
+                                AND ' . $aparatur . ')
                     ORDER BY roles.display_name ' . $role_order);
             return DataTables::of($data)
                 ->addIndexColumn()
