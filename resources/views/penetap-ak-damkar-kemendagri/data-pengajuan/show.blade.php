@@ -249,7 +249,7 @@
             $('.ttd span').hide();
             $.ajax({
                 type: "POST",
-                url: url('/penetap-ak-kemendagri/data-pengajuan/' + $(this).data('id') + '/ttd'),
+                url: url('/penetap-ak-damkar-kemendagri/data-pengajuan/' + $(this).data('id') + '/ttd'),
                 processData: false,
                 contentType: false,
                 data: postData,

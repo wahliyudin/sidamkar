@@ -11,7 +11,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <table id="pengajuan-penetap" class="table table-bordered table-striped">
+                <table id="penetap-damkar" class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th>Nama</th>
@@ -44,13 +44,13 @@
     <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
     <script>
-        $('#pengajuan-penetap').dataTable().fnDestroy();
-        table = $('#pengajuan-penetap').DataTable({
+        $('#penetap-damkar').dataTable().fnDestroy();
+        table = $('#penetap-damkar').DataTable({
             responsive: true,
             serverSide: true,
             processing: true,
             ajax: {
-                url: url('/penetap-ak-kemendagri/data-pengajuan/datatable'),
+                url: url('/penetap-ak-damkar-kemendagri/data-pengajuan/datatable'),
                 type: "POST",
                 data: {
                     "_token": "{{ csrf_token() }}"
