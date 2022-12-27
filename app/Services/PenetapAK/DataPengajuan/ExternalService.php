@@ -47,7 +47,7 @@ class ExternalService
     }
 
 
-    public function ttdRekapitulasi(RekapitulasiKegiatan $rekapitulasiKegiatan, User $user, Periode $periode, User $penetap, $no_surat_penetapan = null, $nama_penetap)
+    public function ttdRekapitulasi(RekapitulasiKegiatan $rekapitulasiKegiatan, User $user, Periode $periode, User $penetap, $no_surat_penetapan = null, $nama_penetap, $email)
     {
         $penetapan = PenetapanAngkaKredit::query()->where('user_id', $user->id)->where('periode_id', $periode->id)->first();
         $this->generatePdfService->storePenetapan($user, $penetap, $periode, true, $no_surat_penetapan, $penetapan->ak_lama_jabatan, $rekapitulasiKegiatan->keterangan_1, $rekapitulasiKegiatan->keterangan_2, $rekapitulasiKegiatan->keterangan_3, $rekapitulasiKegiatan->keterangan_4, $rekapitulasiKegiatan->keterangan_5);
@@ -55,15 +55,6 @@ class ExternalService
         $rekapitulasiKegiatan->historyRekapitulasiKegiatans()->create([
             'content' => 'Rekapitulasi ditanda tangani Tim Penetap'
         ]);
-        if ($penetap->userPejabatStruktural->tingkat_aparatur == 'provinsi') {
-            $email = User::query()->withWhereHas('userProvKabKota', function ($query) use ($penetap) {
-                $query->where('provinsi_id', $penetap->userPejabatStruktural->provinsi_id);
-            })->first()?->userProvKabKota->email_info_penetapan;
-        } else {
-            $email = User::query()->withWhereHas('userProvKabKota', function ($query) use ($penetap) {
-                $query->where('kab_kota_id', $penetap->userPejabatStruktural->kab_kota_id);
-            })->first()?->userProvKabKota->email_info_penetapan;
-        }
         $tgl_ttd = now();
         HistoryPenetapan::query()->create([
             'nama_penetap' => $nama_penetap,

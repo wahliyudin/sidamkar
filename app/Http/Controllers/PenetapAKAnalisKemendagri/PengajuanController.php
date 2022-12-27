@@ -5,6 +5,7 @@ namespace App\Http\Controllers\PenetapAKAnalisKemendagri;
 use App\Http\Controllers\Controller;
 use App\Models\PenetapanAngkaKredit;
 use App\Models\RekapitulasiKegiatan;
+use App\Models\User;
 use App\Repositories\PeriodeRepository;
 use App\Repositories\RekapitulasiKegiatanRepository;
 use App\Repositories\UserRepository;
@@ -94,11 +95,20 @@ class PengajuanController extends Controller
         $periode = $this->periodeRepository->isActive();
         $user = $this->userRepository->getUserById($id)->load(['userAparatur.pangkatGolonganTmt']);
         $penetapAk = $this->authUser()->load(['userPejabatStruktural']);
+        $email = DB::table('users')
+            ->join('role_user', 'users.id', '=', 'role_user.user_id')
+            ->join('user_kemendagris', 'users.id', '=', 'user_kemendagris.user_id')
+            ->where('role_user.role_id', '=', 10)
+            ->select('users.id', 'user_kemendagris.email_info_penetapan')
+            ->first()?->email_info_penetapan;
+        if ($email == null || !$email) {
+            throw ValidationException::withMessages(['Maaf, Email Info Penetapan Belum Ditentukan Oleh Admin Pusat']);
+        }
         if (!isset($penetapAk?->userPejabatStruktural?->file_ttd)) {
             throw ValidationException::withMessages(['Maaf, Anda Belum Melengkapi Profil']);
         }
         $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode->id);
-        $this->dataPengajuanService->ttdRekapitulasi($rekap, $user, $periode, $penetapAk, $request->no_penetapan, $request->nama_penetap);
+        $this->dataPengajuanService->ttdRekapitulasi($rekap, $user, $periode, $penetapAk, $request->no_penetapan, $request->nama_penetap, $email);
         return response()->json([
             'message' => 'Berhasil'
         ]);
