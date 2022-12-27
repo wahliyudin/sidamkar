@@ -50,7 +50,7 @@ class ExternalService
         ], [
             'periode_id' => $periode->id,
             'user_id' => $user->id,
-            'ak_kelebihan' => isset($ak_kelebihan) ? $ak_kelebihan : $user->userAparatur->angka_mekanisme ?? 0,
+            'ak_kelebihan' => isset($ak_kelebihan) ? $ak_kelebihan : ($user->userAparatur->status_mekanisme == 2 ? $user->userAparatur->angka_mekanisme : 0),
             'ak_pengalaman' => $ak_pengalaman
         ]);
         $this->generatePdfService->storePenetapan($user, $penetap, $periode, false, null, $ak_lama_jabatan, $keterangan_1, $keterangan_2, $keterangan_3, $keterangan_4, $keterangan_5);

@@ -28,7 +28,7 @@
                         <div class="laporan-item pb-4">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <p class="m-0" style="font-weight: 600;">
-                                    {{ $laporanKegiatanJabatanStatusValidasi->created_at->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanJabatanStatusValidasi->created_at->translatedFormat('d M Y') }}
+                                    {{ $laporanKegiatanJabatanStatusValidasi->current_date->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanJabatanStatusValidasi->current_date->translatedFormat('d M Y') }}
                                 </p>
                                 <button class="btn btn-yellow btn-sm text-sm px-3">Validasi</button>
                             </div>
@@ -100,7 +100,7 @@
                         <div class="laporan-item pb-4">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <p class="m-0" style="font-weight: 600;">
-                                    {{ $laporanKegiatanJabatanStatusRevisi->created_at->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanJabatanStatusRevisi->created_at->translatedFormat('d M Y') }}
+                                    {{ $laporanKegiatanJabatanStatusRevisi->current_date->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanJabatanStatusRevisi->current_date->translatedFormat('d M Y') }}
                                 </p>
                                 <button class="btn btn-red-dark btn-sm text-sm px-3">Revisi</button>
                             </div>
@@ -173,7 +173,7 @@
                         <div class="laporan-item pb-4">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <p class="m-0" style="font-weight: 600;">
-                                    {{ $laporanKegiatanJabatanStatusSelesai->created_at->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanJabatanStatusSelesai->created_at->translatedFormat('d M Y') }}
+                                    {{ $laporanKegiatanJabatanStatusSelesai->current_date->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanJabatanStatusSelesai->current_date->translatedFormat('d M Y') }}
                                 </p>
                                 <button class="btn btn-green btn-sm text-sm px-3">Selesai</button>
                             </div>
@@ -246,7 +246,7 @@
                             <div class="laporan-item pb-4">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
                                     <p class="m-0" style="font-weight: 600;">
-                                        {{ $laporanKegiatanJabatanStatusTolak->created_at->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanJabatanStatusTolak->created_at->translatedFormat('d M Y') }}
+                                        {{ $laporanKegiatanJabatanStatusTolak->current_date->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanJabatanStatusTolak->current_date->translatedFormat('d M Y') }}
                                     </p>
                                     <button class="btn btn-black btn-sm text-sm px-3">DITOLAK</button>
                                 </div>
@@ -333,7 +333,7 @@
                             <div class="form-group col-md-6">
                                 <label>Tanggal</label>
                                 <input class="form-control" type="datetime-local"
-                                    value="{{ now()->format('Y-m-d H:i') }}"
+                                    value="{{ now() < $periode->akhir && now() > $periode->awal ? now()->format('Y-m-d H:i') : Carbon\Carbon::make($periode->awal)->format('Y-m-d H:i') }}"
                                     max="{{ Carbon\Carbon::make($periode->akhir)->format('Y-m-d H:i') }}"
                                     min="{{ Carbon\Carbon::make($periode->awal)->format('Y-m-d H:i') }}"
                                     name="current_date">

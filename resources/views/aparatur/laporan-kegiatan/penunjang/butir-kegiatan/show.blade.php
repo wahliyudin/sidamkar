@@ -10,7 +10,8 @@
         </div>
         <div class="d-flex px-4 mb-4 container-control justify-content-between align-items-center">
             <div class="form-group mb-0">
-                <input class="form-control" type="date" value="{{ now()->format('Y-m-d') }}"
+                <input class="form-control" type="date"
+                    value="{{ now() < $periode->akhir && now() > $periode->awal ? now()->format('Y-m-d H:i') : Carbon\Carbon::make($periode->awal)->format('Y-m-d H:i') }}"
                     max="{{ Carbon\Carbon::make($periode->akhir)->format('Y-m-d') }}"
                     min="{{ Carbon\Carbon::make($periode->awal)->format('Y-m-d') }}" name="tanggal">
             </div>
@@ -28,7 +29,7 @@
                         <div class="laporan-item pb-4">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <p class="m-0" style="font-weight: 600;">
-                                    {{ $laporanKegiatanPenunjangProfesiStatusValidasi->created_at->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanPenunjangProfesiStatusValidasi->created_at->translatedFormat('d M Y') }}
+                                    {{ $laporanKegiatanPenunjangProfesiStatusValidasi->current_date->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanPenunjangProfesiStatusValidasi->current_date->translatedFormat('d M Y') }}
                                 </p>
                                 <button class="btn btn-yellow btn-sm text-sm px-3">Validasi</button>
                             </div>
@@ -94,7 +95,7 @@
                         <div class="laporan-item pb-4">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <p class="m-0" style="font-weight: 600;">
-                                    {{ $laporanKegiatanPenunjangProfesiStatusRevisi->created_at->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanPenunjangProfesiStatusRevisi->created_at->translatedFormat('d M Y') }}
+                                    {{ $laporanKegiatanPenunjangProfesiStatusRevisi->current_date->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanPenunjangProfesiStatusRevisi->current_date->translatedFormat('d M Y') }}
                                 </p>
                                 <button class="btn btn-red-dark btn-sm text-sm px-3">Revisi</button>
                             </div>
@@ -162,7 +163,7 @@
                         <div class="laporan-item pb-4">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <p class="m-0" style="font-weight: 600;">
-                                    {{ $laporanKegiatanPenunjangProfesiStatusSelesai->created_at->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanPenunjangProfesiStatusSelesai->created_at->translatedFormat('d M Y') }}
+                                    {{ $laporanKegiatanPenunjangProfesiStatusSelesai->current_date->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanPenunjangProfesiStatusSelesai->current_date->translatedFormat('d M Y') }}
                                 </p>
                                 <button class="btn btn-green btn-sm text-sm px-3">Selesai</button>
                             </div>
@@ -229,7 +230,7 @@
                             <div class="laporan-item pb-4">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
                                     <p class="m-0" style="font-weight: 600;">
-                                        {{ $laporanKegiatanPenunjangProfesiStatusTolak->created_at->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanPenunjangProfesiStatusTolak->created_at->translatedFormat('d M Y') }}
+                                        {{ $laporanKegiatanPenunjangProfesiStatusTolak->current_date->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanPenunjangProfesiStatusTolak->current_date->translatedFormat('d M Y') }}
                                     </p>
                                     <button class="btn btn-black btn-sm text-sm px-3">DITOLAK</button>
                                 </div>

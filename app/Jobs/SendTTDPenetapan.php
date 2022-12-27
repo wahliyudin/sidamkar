@@ -46,6 +46,6 @@ class SendTTDPenetapan implements ShouldQueue
      */
     public function handle()
     {
-        Notification::route('mail', $this->email)->notify(new PenetapTTD($this->nama_penetapan, $this->user?->userAparatur?->nama, $this->jabatan, $this->periode_concat, $this->tgl_ttd));
+        Notification::route('mail', $this->email)->notify(new PenetapTTD($this->nama_penetapan, $this->nama, $this->jabatan, $this->periode_concat, $this->tgl_ttd));
     }
 }
