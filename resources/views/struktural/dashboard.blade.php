@@ -2,6 +2,19 @@
 
 @section('content')
     <section class="section">
+        @if (!isset(Auth::user()->userPejabatStruktural?->tempat_lahir) ||
+            !isset(Auth::user()->userPejabatStruktural?->tanggal_lahir) ||
+            !isset(Auth::user()->userPejabatStruktural?->jenis_kelamin) ||
+            !isset(Auth::user()->userPejabatStruktural?->nip) ||
+            !isset(Auth::user()->userPejabatStruktural?->pendidikan_terakhir) ||
+            !isset(Auth::user()->userPejabatStruktural?->file_ttd) ||
+            !isset(Auth::user()->userPejabatStruktural?->jabatan_tmt) ||
+            !isset(Auth::user()->userPejabatStruktural?->golongan_tmt) ||
+            !isset(Auth::user()->userPejabatStruktural?->nomenklatur_perangkat_daerah_id))
+            <div class="alert alert-danger" style="color: white;"><i class="fa-solid fa-circle-exclamation"></i> Harap
+                Lengkapi Data Profile
+            </div>
+        @endif
         @if (!isset(Auth::user()->userPejabatStruktural?->nip))
             <div class="alert alert-warning " style="color: white;"><i class="fa-solid fa-circle-exclamation"></i> Harap
                 Lengkapi Data

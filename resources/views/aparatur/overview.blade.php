@@ -2,7 +2,14 @@
 
 @section('content')
     <section class="section">
-        @if (!isset(Auth::user()->userAparatur?->nip))
+        @if (!isset(Auth::user()->userAparatur?->tempat_lahir) ||
+            !isset(Auth::user()->userAparatur?->tanggal_lahir) ||
+            !isset(Auth::user()->userAparatur?->jenis_kelamin) ||
+            !isset(Auth::user()->userAparatur?->pendidikan_terakhir) ||
+            !isset(Auth::user()->userAparatur?->file_ttd) ||
+            !isset(Auth::user()->userAparatur?->jabatan_tmt) ||
+            !isset(Auth::user()->userAparatur?->golongan_tmt) ||
+            !isset(Auth::user()->userAparatur?->nomenklatur_perangkat_daerah_id))
             <div class="alert alert-danger" style="color: white;"><i class="fa-solid fa-circle-exclamation"></i> Harap
                 Lengkapi Data Profile
             </div>
