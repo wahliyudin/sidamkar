@@ -6,6 +6,7 @@ use App\DataTables\KabKota\MenteDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePenilaiAndPenetapRequest;
 use App\Models\CrossPenilaiAndPenetap;
+use App\Models\KabKota;
 use App\Models\KabProvPenilaiAndPenetap;
 use App\Models\Mente;
 use App\Models\Provinsi;
@@ -40,8 +41,9 @@ class MenteController extends Controller
         if (!isset($penilaiAndPenetap)) {
             $penilaiAndPenetap = $this->menteService->getCurrentPenilaiAndPenetapByKabKota($user->userProvKabKota->kab_kota_id);
         }
+        $email = KabKota::query()->where('id', $user?->userProvKabKota?->kab_kota_id)->first()?->email_info_penetapan;
         $provinsis = Provinsi::query()->get(['id', 'nama']);
-        return $dataTable->render('kabkota.mente.index', compact('fungsionals', 'user', 'penilaiAndPenetap', 'atasanLangsungs', 'provinsis', 'periode', 'judul'));
+        return $dataTable->render('kabkota.mente.index', compact('fungsionals', 'user', 'penilaiAndPenetap', 'atasanLangsungs', 'provinsis', 'periode', 'judul', 'email'));
     }
 
     public function tingkatKabKota(Request $request, $kab_kota_id)
@@ -198,7 +200,7 @@ class MenteController extends Controller
         ], [
             'email_penetapan.required' => 'Email wajib diisi'
         ]);
-        $this->authUser()->userProvKabKota()->update([
+        KabKota::query()->where('id', $this->authUser()->load(['userProvKabKota'])?->userProvKabKota?->kab_kota_id)->first()?->update([
             'email_info_penetapan' => $request->email_penetapan
         ]);
         return response()->json([
