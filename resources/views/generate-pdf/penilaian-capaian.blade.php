@@ -177,7 +177,8 @@
                 <td class="bd" colspan="2" style="position: relative;">
                     @if (isset($penilai))
                         <img src="{{ linkToBasePath($penilai?->userPejabatStruktural?->file_ttd) }}"
-                            style="width: 100px; position: absolute; right: 35%; top: 10px;" alt="">
+                            style="width: 100px; max-height: 100px; position: absolute; right: 35%; top: 10px; object-fit: contain;"
+                            alt="">
                     @endif
                 </td>
             </tr>

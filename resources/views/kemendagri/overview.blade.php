@@ -26,6 +26,32 @@
                         </div>
                     </div>
                     <div class="col-md-4 px-2">
+                        <div class="card">
+                            <div class="card-body py-3 px-3" style="height: 80px;">
+                                <div class="d-flex align-items-center h-100">
+                                    <div class="circle circle-green">
+                                        <i class="fa-solid fa-envelope"></i>
+                                    </div>
+                                    <div class="d-flex flex-column ms-2" style="flex-grow: 1;">
+                                        <p
+                                            style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
+                                            Email Info Penetapan
+                                        </p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <h2 style="font-family: 'Roboto';color: #06152B; font-size: 16px"
+                                                class="target">
+                                                {{ $kemendagri->userKemendagri->email_info_penetapan ?? '-' }}
+                                            </h2>
+                                            <button class="btn-email" data-bs-toggle="modal" data-bs-target="#modalEmail">
+                                                <i class="fa-solid fa-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 px-2">
                         <div class="card mb-3">
                             <div class="card-body py-2 px-3 "style="height: 80px;">
                                 <div class="d-flex align-items-center h-100">
@@ -182,103 +208,42 @@
                         </div>
                     </div>
                 </div>
-                {{-- <div class="row">
-                    <div class="col-md-12 px-2">
-                        <div class="card mb-3 overflow-auto">
-                            <div class="card-header">
-                                <h4 class="card-title" style="color: #17181A; font-family: 'Roboto';">Tabel Data Pejabat
-                                    Fungsional</h4>
-                            </div>
-                            <div class="card-body">
-                                <table class="table table-striped" id="table1">
-                                    <thead>
-                                        <tr>
-                                            <th>Nama</th>
-                                            <th>Jenis Kelamin</th>
-                                            <th>Pangkat</th>
-                                            <th>Provisi</th>
-                                            <th>Kab/Kota</th>
-                                            <th>Score Credit</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <a href="" style="color: #06152B;">Runggu Manalu</a>
-                                            </td>
-                                            <td>
-                                                <p>Laki-laki</p>
-                                            </td>
-                                            <td>
-                                                <p>Juru Muda (I/a)</p>
-                                            </td>
-                                            <td>
-                                                <p>Sumatera Utara</p>
-                                            </td>
-                                            <td>
-                                                <p>HUmbang Hasundutan</p>
-                                            </td>
-                                            <td>
-                                                <p>43.7</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <a href="" style="color: #06152B;">Ari Ferdiansyah</a>
-                                            </td>
-                                            <td>
-                                                <p>Laki-Laki</p>
-                                            </td>
-                                            <td>
-                                                <p>Juru Muda Tingkat I (I/b)</p>
-                                            </td>
-                                            <td>
-                                                <p>Jawa Barat</p>
-                                            </td>
-                                            <td>
-                                                <p>Kota Bogor</p>
-                                            </td>
-                                            <td>
-                                                <p>67,6</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <a href="" style="color: #06152B;">Wahliyudin</a>
-                                            </td>
-                                            <td>
-                                                <p>Laki-laki</p>
-                                            </td>
-                                            <td>
-                                                <p>Juru (I/c)</p>
-                                            </td>
-                                            <td>
-                                                <p>Jawa Barat</p>
-                                            </td>
-                                            <td>
-                                                <p>Kota Karawang</p>
-                                            </td>
-                                            <td>
-                                                <p>90.6</p>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
             </div>
-
-            {{-- <div class="col-md-3 informasi-wrapper">
-                <div class="card mb-3" style="min-height: 68vh;">
-                    <div class="card-body">
-                        <h1 class="card-title text-center" style="color: #17181A; font-family: 'Roboto';">INFORMATION</h1>
-                    </div>
-                </div>
-            </div> --}}
         </div>
     </section>
+    <div class="modal fade" id="modalEmail" tabindex="-1" role="dialog" aria-labelledby="modalEmailTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalEmailTitle">
+                        Email Info Penetapan
+                    </h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <i data-feather="x"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-email">
+                        <div class="form-group">
+                            <label for="email_penetapan">Email</label>
+                            <input type="email" name="email_penetapan" id="email_penetapan" class="form-control">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                        <span>Batal</span>
+                    </button>
+                    <button type="button" class="btn btn-green ml-1 simpan-email">
+                        <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
+                            style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
+                        <span>Simpan</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 @section('css')
     <style>
@@ -291,5 +256,94 @@
                 padding: 1rem 2rem !important;
             }
         }
+
+        .btn-email {
+            padding: .06rem .32rem;
+            border-radius: 50%;
+            font-size: 14px;
+        }
+
+        .btn-email {
+            border: 2px solid #1ad598;
+            color: #1ad598;
+        }
     </style>
+    <link rel="stylesheet" href="{{ asset('assets/css/shared/sweetalert2.min.css') }}">
+@endsection
+@section('js')
+    <script src="{{ asset('assets/js/extensions/sweetalert2.all.min.js') }}"></script>
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $('.simpan-email').click(function(e) {
+            e.preventDefault();
+            var postData = new FormData($(".form-email")[0]);
+            swal({
+                title: "Simpan?",
+                type: "warning",
+                text: "Pastikan Data Yang Dimasukkan Sudah Benar!",
+                showCancelButton: !0,
+                confirmButtonText: "Ya, simpan!",
+                cancelButtonText: "Batal",
+                reverseButtons: !0,
+                showLoaderOnConfirm: true,
+                preConfirm: () => {
+                    return new Promise(function(resolve) {
+                        $.ajax({
+                                type: 'POST',
+                                url: url(
+                                    '/kemendagri/email-penetapan'
+                                ),
+                                processData: false,
+                                contentType: false,
+                                data: postData
+                            })
+                            .done(function(myAjaxJsonResponse) {
+                                swal("Berhasil!", myAjaxJsonResponse.message,
+                                        "success")
+                                    .then(function() {
+                                        location.reload();
+                                    });
+                            })
+                            .fail(function(erordata) {
+                                if (erordata.status == 422) {
+                                    swal('Warning!', erordata.responseJSON
+                                        .message,
+                                        'warning');
+                                } else {
+                                    swal('Error!', erordata.responseJSON
+                                        .message, 'error');
+                                }
+                            })
+                    })
+                },
+            })
+        });
+        var ajaxError = function(jqXHR, xhr, textStatus, errorThrow, exception) {
+            if (jqXHR.status === 0) {
+                swal("Error!", 'Not connect.\n Verify Network.', "error");
+            } else if (jqXHR.status == 400) {
+                swal("Peringatan!", jqXHR['responseJSON'].message, "warning");
+            } else if (jqXHR.status == 404) {
+                swal('Error!', 'Requested page not found. [404]', "error");
+            } else if (jqXHR.status == 500) {
+                swal('Error!', 'Internal Server Error [500].' + jqXHR['responseJSON'].message, "error");
+            } else if (exception === 'parsererror') {
+                swal('Error!', 'Requested JSON parse failed.', "error");
+            } else if (exception === 'timeout') {
+                swal('Error!', 'Time out error.', "error");
+            } else if (exception === 'abort') {
+                swal('Error!', 'Ajax request aborted.', "error");
+            } else if (jqXHR.status == 422) {
+                swal('Warning!', JSON.parse(jqXHR.responseText).message, "warning");
+                $('input[name="penilai_ak"]').val('');
+                $('input[name="penetap_ak"]').val('');
+            } else {
+                swal('Error!', jqXHR.responseText, "error");
+            }
+        };
+    </script>
 @endsection

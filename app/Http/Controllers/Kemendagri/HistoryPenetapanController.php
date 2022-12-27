@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\KabKota;
+namespace App\Http\Controllers\Kemendagri;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
-class HistoriPenetapanController extends Controller
+class HistoryPenetapanController extends Controller
 {
     public function index()
     {
-        return view('kabkota.histori-penetapan.index');
+        return view('kemendagri.histori-penetapan.index');
     }
 
     public function datatable(Request $request)
@@ -32,8 +32,7 @@ class HistoriPenetapanController extends Controller
                 JOIN user_aparaturs ON user_aparaturs.user_id = history_penetapans.fungsional_id
                 JOIN role_user ON role_user.user_id = history_penetapans.fungsional_id
                 JOIN roles ON roles.id = role_user.role_id
-                WHERE roles.id IN (1, 2, 3, 5, 6)
-                AND user_aparaturs.tingkat_aparatur = "kab_kota"
+                WHERE roles.id IN (4,7)
                 ORDER BY history_penetapans.tgl_ttd DESC');
             return DataTables::of($data)
                 ->addIndexColumn()

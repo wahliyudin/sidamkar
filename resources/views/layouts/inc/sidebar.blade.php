@@ -377,6 +377,14 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="sidebar-item {{ request()->routeIs('kemendagri.histori-penetapan') ? 'active' : '' }}">
+                        <a href="{{ route('kemendagri.histori-penetapan') }}" class='sidebar-link'>
+                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                                <i class="fa-solid fa-table"></i>
+                            </div>
+                            <span>Histori Penetapan</span>
+                        </a>
+                    </li>
                     <li class="sidebar-item {{ request()->routeIs('chat') ? 'active' : '' }}">
                         <a href="{{ route('chat') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">

@@ -46,6 +46,7 @@ class ExternalService
                 AND user_aparaturs.kab_kota_id = ' . $user->userPejabatStruktural->kab_kota_id);
     }
 
+
     public function ttdRekapitulasi(RekapitulasiKegiatan $rekapitulasiKegiatan, User $user, Periode $periode, User $penetap, $no_surat_penetapan = null, $nama_penetap)
     {
         $penetapan = PenetapanAngkaKredit::query()->where('user_id', $user->id)->where('periode_id', $periode->id)->first();
@@ -55,20 +56,22 @@ class ExternalService
             'content' => 'Rekapitulasi ditanda tangani Tim Penetap'
         ]);
         if ($penetap->userPejabatStruktural->tingkat_aparatur == 'provinsi') {
-            $admin = User::query()->withWhereHas('userProvKabKota', function ($query) use ($penetap) {
+            $email = User::query()->withWhereHas('userProvKabKota', function ($query) use ($penetap) {
                 $query->where('provinsi_id', $penetap->userPejabatStruktural->provinsi_id);
-            })->first();
+            })->first()?->userProvKabKota->email_info_penetapan;
         } else {
-            $admin = User::query()->withWhereHas('userProvKabKota', function ($query) use ($penetap) {
+            $email = User::query()->withWhereHas('userProvKabKota', function ($query) use ($penetap) {
                 $query->where('kab_kota_id', $penetap->userPejabatStruktural->kab_kota_id);
-            })->first();
+            })->first()?->userProvKabKota->email_info_penetapan;
         }
+        $tgl_ttd = now();
         HistoryPenetapan::query()->create([
             'nama_penetap' => $nama_penetap,
             'periode_id' => $periode->id,
             'fungsional_id' => $user->id,
-            'tgl_ttd' => now()
+            'tgl_ttd' => $tgl_ttd
         ]);
-        SendTTDPenetapan::dispatch($admin);
+        $jabatan = DestructRoleFacade::getRoleFungsionalFirst($user->roles);
+        SendTTDPenetapan::dispatch($user?->userAparatur?->nama, concatPriodeY($periode), $jabatan, $nama_penetap, $tgl_ttd, $email);
     }
 }

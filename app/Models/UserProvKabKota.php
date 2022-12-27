@@ -19,6 +19,7 @@ class UserProvKabKota extends Model
         'catatan',
         'kab_kota_id',
         'provinsi_id',
+        'email_info_penetapan',
         'no_hp'
     ];
 
