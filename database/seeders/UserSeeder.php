@@ -31,26 +31,48 @@ class UserSeeder extends Seeder
             'status_akun' => 1
         ])->attachRole('kemendagri');
 
-        $penilaiAK = User::query()->create([
-            'username' => 'Penilai Kemendagri',
-            'email' => 'penilaikemendagri@gmail.com',
+        $penilaiDamkarKemendagri = User::query()->create([
+            'username' => 'Penilai Damkar Kemendagri',
+            'email' => 'penilaidamkarkemendagri@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 1
-        ])->attachRole('penilai_ak_kemendagri');
-        $penilaiAK->userPejabatStruktural()->create([
-            'nama' => 'Penilai Kemendagri'
+        ])->attachRole('penilai_ak_damkar_kemendagri');
+        $penilaiDamkarKemendagri->userPejabatStruktural()->create([
+            'nama' => 'Penilai Damkar Kemendagri'
         ]);
 
-        $penetapAK = User::query()->create([
-            'username' => 'Penetap Kemendagri',
-            'email' => 'penetapkemendagri@gmail.com',
+        $penetapDamkarKemendagri = User::query()->create([
+            'username' => 'Penetap Damkar Kemendagri',
+            'email' => 'penetapdamkarkemendagri@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 1
-        ])->attachRole('penetap_ak_kemendagri');
-        $penetapAK->userPejabatStruktural()->create([
-            'nama' => 'Penetap Kemendagri'
+        ])->attachRole('penetap_ak_damkar_kemendagri');
+        $penetapDamkarKemendagri->userPejabatStruktural()->create([
+            'nama' => 'Penetap Damkar Kemendagri'
+        ]);
+
+        $penilaiAnalisKemendagri = User::query()->create([
+            'username' => 'Penilai Analis Kemendagri',
+            'email' => 'penilaianaliskemendagri@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('penilai_ak_analis_kemendagri');
+        $penilaiAnalisKemendagri->userPejabatStruktural()->create([
+            'nama' => 'Penilai Analis Kemendagri'
+        ]);
+
+        $penetapAnalisKemendagri = User::query()->create([
+            'username' => 'Penetap Analis Kemendagri',
+            'email' => 'penetapanaliskemendagri@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('penetap_ak_analis_kemendagri');
+        $penetapAnalisKemendagri->userPejabatStruktural()->create([
+            'nama' => 'Penetap Analis Kemendagri'
         ]);
 
         $damkarPemula = User::query()->create([

@@ -11,7 +11,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <table id="penilai-kemndagri" class="table table-bordered table-striped">
+                <table id="penilai-analis-kemndagri" class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th>Nama</th>
@@ -45,13 +45,13 @@
     <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
     <script>
-        $('#penilai-kemndagri').dataTable().fnDestroy();
-        table = $('#penilai-kemndagri').DataTable({
+        $('#penilai-analis-kemndagri').dataTable().fnDestroy();
+        table = $('#penilai-analis-kemndagri').DataTable({
             responsive: true,
             serverSide: true,
             processing: true,
             ajax: {
-                url: url('/penilai-ak-kemendagri/data-pengajuan/datatable'),
+                url: url('/penilai-ak-analis-kemendagri/data-pengajuan/datatable'),
                 type: "POST",
                 data: {
                     "_token": "{{ csrf_token() }}"
@@ -135,7 +135,8 @@
                         return new Promise(function(resolve) {
                             $.ajax({
                                     type: 'POST',
-                                    url: url("/penilai-ak-kemendagri/data-pengajuan/" +
+                                    url: url(
+                                        "/penilai-ak-analis-kemendagri/data-pengajuan/" +
                                         user_id +
                                         "/tolak"),
                                     data: {
@@ -187,7 +188,8 @@
                         return new Promise(function(resolve) {
                             $.ajax({
                                     type: 'POST',
-                                    url: url("/penilai-ak-kemendagri/data-pengajuan/" +
+                                    url: url(
+                                        "/penilai-ak-analis-kemendagri/data-pengajuan/" +
                                         user_id +
                                         "/revisi"),
                                     data: {
@@ -233,7 +235,8 @@
                         return new Promise(function(resolve) {
                             $.ajax({
                                     type: 'POST',
-                                    url: url("/penilai-ak-kemendagri/data-pengajuan/" +
+                                    url: url(
+                                        "/penilai-ak-analis-kemendagri/data-pengajuan/" +
                                         user_id +
                                         "/verifikasi"),
                                     dataType: 'JSON'

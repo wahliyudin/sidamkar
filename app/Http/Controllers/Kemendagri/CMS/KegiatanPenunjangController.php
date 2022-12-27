@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Kemendagri\CMS;
 
+use App\Exports\KegiatanPenunjangExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\KegiatanPenunjangRequest;
+use App\Imports\KegiatanPenunjangImport;
+use App\Imports\KegiatanPenunjangProfesiImport;
 use App\Imports\UnsurPenunjangImport;
 use App\Models\ButirKegiatan;
 use App\Models\JenisKegiatan;
@@ -216,14 +219,12 @@ class KegiatanPenunjangController extends Controller
     public function import(Request $request)
     {
         $request->validate([
-            'periode_id' => 'required',
             'file_import' => 'required'
         ], [
-            'periode_id.required' => 'Periode harus diisi',
             'file_import.required' => 'File harus diisi'
         ]);
         try {
-            Excel::import(new UnsurPenunjangImport($request->periode_id), $request->file('file_import'));
+            Excel::import(new KegiatanPenunjangImport(), $request->file('file_import'));
             return response()->json([
                 'status' => 200,
                 'message' => 'Berhasil diimport'
@@ -235,7 +236,7 @@ class KegiatanPenunjangController extends Controller
 
     public function downloadTemplate()
     {
-        return response()->download(public_path('assets/import-penunjang.xlsx'), 'template.xlsx');
+        return Excel::download(new KegiatanPenunjangExport(), 'kegiatan-penunjang.xlsx');
     }
 
     public function destroy($id)

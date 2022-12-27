@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\PenilaiAKKemendagri;
+namespace App\Http\Controllers\PenilaiAKDamkarKemendagri;
 
 use App\Http\Controllers\Controller;
 use App\Models\PenetapanAngkaKredit;
@@ -37,7 +37,7 @@ class PengajuanController extends Controller
 
     public function index()
     {
-        return view('penilai-ak-kemendagri.data-pengajuan.index');
+        return view('penilai-ak-damkar-kemendagri.data-pengajuan.index');
     }
 
     public function datatable(Request $request)
@@ -65,7 +65,7 @@ class PengajuanController extends Controller
                 LEFT JOIN mekanisme_pengangkatans ON user_aparaturs.mekanisme_pengangkatan_id = mekanisme_pengangkatans.id
                 JOIN rekapitulasi_kegiatans ON (rekapitulasi_kegiatans.fungsional_id = users.id AND rekapitulasi_kegiatans.is_send IN (2, 3) AND rekapitulasi_kegiatans.periode_id = ' . $periode->id . ')
                 WHERE users.status_akun = 1
-                    AND roles.id IN (4,7)
+                    AND roles.id IN (4)
                     ORDER BY roles.display_name ' . $role_order);
             return DataTables::of($data)
                 ->addIndexColumn()
@@ -73,7 +73,7 @@ class PengajuanController extends Controller
                     return $this->statusMekanisme($row->status_mekanisme);
                 })
                 ->addColumn('action', function ($row) {
-                    return view('penilai-ak-kemendagri.data-pengajuan.buttons', compact('row'))->render();
+                    return view('penilai-ak-damkar-kemendagri.data-pengajuan.buttons', compact('row'))->render();
                 })
                 ->rawColumns(['action', 'status'])
                 ->make(true);
@@ -92,7 +92,7 @@ class PengajuanController extends Controller
         $user = $this->userRepository->getUserById($id)->load('userAparatur');
         $penetapanAngkaKredit = PenetapanAngkaKredit::query()->where('periode_id', $periode->id)->where('user_id', $user->id)->first();
         $penetapanAngkaKreditOld = PenetapanAngkaKredit::query()->where('periode_id', $periode->id - 1)->where('user_id', $user->id)->first();
-        return view('penilai-ak-kemendagri.data-pengajuan.show', compact('user', 'rekapitulasiKegiatan', 'penetapanAngkaKredit', 'penetapanAngkaKreditOld'));
+        return view('penilai-ak-damkar-kemendagri.data-pengajuan.show', compact('user', 'rekapitulasiKegiatan', 'penetapanAngkaKredit', 'penetapanAngkaKreditOld'));
     }
 
     public function storePenetapan(Request $request, $id)

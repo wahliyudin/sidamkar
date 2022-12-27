@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\KegiatanJabatanExport;
+use App\Exports\KegiatanPenunjangExport;
+use App\Exports\UnsurExport;
 use App\Facades\Repositories\RekapitulasiKegiatanFacade;
 use App\Jobs\SendTTDPenetapan;
 use App\Models\CrossPenilaiAndPenetap;
@@ -29,6 +32,7 @@ use Illuminate\Http\File;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CobaController extends Controller
 {
@@ -39,9 +43,7 @@ class CobaController extends Controller
 
     public function index()
     {
-        $user = User::query()->where('username', 'Kab Kota')->first();
-        SendTTDPenetapan::dispatch($user);
-        dd('success');
+        return Excel::download(new KegiatanPenunjangExport(), 'penunjangs.xlsx');
     }
 
     public function store(Request $request)
