@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Kemendagri\CMS;
 use App\Exports\KegiatanProfesiExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\KegiatanProfesiRequest;
+use App\Imports\KegiatanPenunjangProfesiImport;
 use App\Imports\UnsurPenunjangImport;
 use App\Imports\UnsursImport;
 use App\Models\ButirKegiatan;
@@ -218,14 +219,12 @@ class KegiatanProfesiController extends Controller
     public function import(Request $request)
     {
         $request->validate([
-            'periode_id' => 'required',
             'file_import' => 'required'
         ], [
-            'periode_id.required' => 'Periode harus diisi',
             'file_import.required' => 'File harus diisi'
         ]);
         try {
-            Excel::import(new UnsurPenunjangImport($request->periode_id), $request->file('file_import'));
+            Excel::import(new KegiatanPenunjangProfesiImport(), $request->file('file_import'));
             return response()->json([
                 'status' => 200,
                 'message' => 'Berhasil diimport'
