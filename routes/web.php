@@ -44,15 +44,16 @@ use App\Http\Controllers\Kemendagri\VerifikasiData\AparaturController as Kemenda
 use App\Http\Controllers\Kemendagri\CMS\InformasiController;
 use App\Http\Controllers\Kemendagri\CMS\KegiatanPenunjangController;
 use App\Http\Controllers\Kemendagri\CMS\PeriodeController;
-use App\Http\Controllers\PenetapAK\DataPengajuan\ExternalController as DataPengajuanExternalController;
+use App\Http\Controllers\PenetapAK\DataPengajuan\ExternalController as PenetapAKDataPengajuanExternalController;
 use App\Http\Controllers\PenetapAK\DataPengajuan\InternalController as DataPengajuanInternalController;
-use App\Http\Controllers\PenetapAKKemendagri\PengajuanController as PenetapAKKemendagriPengajuanController;
-use App\Http\Controllers\PenilaiAK\DataPengajuan\ExternalController;
+use App\Http\Controllers\PenetapAKAnalisKemendagri\PengajuanController as PenetapAKAnalisKemendagriPengajuanController;
+use App\Http\Controllers\PenetapAKDamkarKemendagri\PengajuanController as PenetapAKDamkarKemendagriPengajuanController;
+use App\Http\Controllers\PenilaiAK\DataPengajuan\ExternalController as PenilaiAKDataPengajuanExternalController;
 use App\Http\Controllers\PenilaiAk\DataPengajuan\InternalController;
 use App\Http\Controllers\PenilaiAk\KegiatanSelesaiController as PenilaiAkKegiatanSelesaiController;
+use App\Http\Controllers\PenilaiAKAnalisKemendagri\PengajuanController as PenilaiAKAnalisKemendagriPengajuanController;
 use App\Http\Controllers\PenilaiAKDamkarKemendagri\PengajuanController as PenilaiAKDamkarKemendagriPengajuanController;
 use App\Http\Controllers\PenilaiAKKemendagri\KegiatanSelesaiController;
-use App\Http\Controllers\PenilaiAKKemendagri\PengajuanController;
 use App\Http\Controllers\Provinsi\OverviewController as ProvinsiOverviewController;
 use App\Http\Controllers\Provinsi\HistoriPenetapanController as  ProvinsiHistoriPenetapanController;
 use App\Http\Controllers\Provinsi\PengangkatanController as ProvinsiPengangkatanController;
@@ -63,7 +64,9 @@ use App\Http\Controllers\Provinsi\ManajemenUser\StrukturalController as Provinsi
 use App\Http\Controllers\Provinsi\ManajemenUser\UserKabKotaController;
 use App\Http\Controllers\Provinsi\MenteController as ProvinsiMenteController;
 use App\Http\Controllers\StrukturalDashboardController as ControllersStrukturalDashboardController;
+use App\Notifications\NewMessage;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -77,7 +80,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('coba', [CobaController::class, 'index']);
+Route::get('coba', function () {
+});
+
 Route::post('coba/store', [CobaController::class, 'store']);
 Route::redirect('/', 'login');
 Auth::routes(['verify' => true]);
@@ -231,7 +236,7 @@ Route::middleware(['auth'])->group(function () {
                 Route::post('penilai-ak/data-pengajuan/internal/{user_id}/tolak', 'reject')->name('penilai-ak.data-pengajuan.internal.tolak');
                 Route::post('penilai-ak/data-pengajuan/internal/{user_id}/simpan-penetapan', 'storePenetapan')->name('penilai-ak.data-pengajuan.internal.simpan-penetapan');
             });
-            Route::controller(ExternalController::class)->group(function () {
+            Route::controller(PenilaiAKDataPengajuanExternalController::class)->group(function () {
                 Route::get('penilai-ak/data-pengajuan/external', 'index')->name('penilai-ak.data-pengajuan.external');
                 Route::get('penilai-ak/data-pengajuan/external/{id}/show', 'show')->name('penilai-ak.data-pengajuan.external.show');
                 Route::post('penilai-ak/data-pengajuan/external/datatable', 'datatable')->name('penilai-ak.data-pengajuan.external.datatable');
@@ -251,7 +256,7 @@ Route::middleware(['auth'])->group(function () {
                 Route::post('penetap-ak/data-pengajuan/internal/datatable', 'datatable')->name('penetap-ak.data-pengajuan.internal.datatable');
                 Route::post('penetap-ak/data-pengajuan/internal/{id}/ttd', 'ttd')->name('penetap-ak.data-pengajuan.internal.ttd');
             });
-            Route::controller(DataPengajuanExternalController::class)->group(function () {
+            Route::controller(PenetapAKDataPengajuanExternalController::class)->group(function () {
                 Route::get('penetap-ak/data-pengajuan/external', 'index')->name('penetap-ak.data-pengajuan.external');
                 Route::get('penetap-ak/data-pengajuan/external/{id}/show', 'show')->name('penetap-ak.data-pengajuan.external.show');
                 Route::post('penetap-ak/data-pengajuan/external/datatable', 'datatable')->name('penetap-ak.data-pengajuan.external.datatable');
@@ -439,7 +444,7 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::middleware(['role:penilai_ak_analis_kemendagri'])->group(function () {
-        Route::controller(PengajuanController::class)->group(function () {
+        Route::controller(PenilaiAKAnalisKemendagriPengajuanController::class)->group(function () {
             Route::get('penilai-ak-analis-kemendagri/data-pengajuan', 'index')->name('penilai-ak-analis-kemendagri.data-pengajuan');
             Route::get('penilai-ak-analis-kemendagri/data-pengajuan/{id}/show', 'show')->name('penilai-ak-analis-kemendagri.data-pengajuan.show');
             Route::post('penilai-ak-analis-kemendagri/data-pengajuan/datatable', 'datatable')->name('penilai-ak-analis-kemendagri.data-pengajuan.datatable');
@@ -453,7 +458,7 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::middleware(['role:penetap_ak_damkar_kemendagri'])->group(function () {
-        Route::controller(PenetapAKKemendagriPengajuanController::class)->group(function () {
+        Route::controller(PenetapAKDamkarKemendagriPengajuanController::class)->group(function () {
             Route::get('penetap-ak-damkar-kemendagri/data-pengajuan', 'index')->name('penetap-ak-damkar-kemendagri.data-pengajuan');
             Route::get('penetap-ak-damkar-kemendagri/data-pengajuan/{id}/show', 'show')->name('penetap-ak-damkar-kemendagri.data-pengajuan.show');
             Route::post('penetap-ak-damkar-kemendagri/data-pengajuan/datatable', 'datatable')->name('penetap-ak-damkar-kemendagri.data-pengajuan.datatable');
@@ -462,7 +467,7 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::middleware(['role:penetap_ak_analis_kemendagri'])->group(function () {
-        Route::controller(PenetapAKKemendagriPengajuanController::class)->group(function () {
+        Route::controller(PenetapAKAnalisKemendagriPengajuanController::class)->group(function () {
             Route::get('penetap-ak-analis-kemendagri/data-pengajuan', 'index')->name('penetap-ak-analis-kemendagri.data-pengajuan');
             Route::get('penetap-ak-analis-kemendagri/data-pengajuan/{id}/show', 'show')->name('penetap-ak-analis-kemendagri.data-pengajuan.show');
             Route::post('penetap-ak-analis-kemendagri/data-pengajuan/datatable', 'datatable')->name('penetap-ak-analis-kemendagri.data-pengajuan.datatable');

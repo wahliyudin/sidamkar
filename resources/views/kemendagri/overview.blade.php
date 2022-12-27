@@ -26,6 +26,32 @@
                         </div>
                     </div>
                     <div class="col-md-4 px-2">
+                        <div class="card">
+                            <div class="card-body py-3 px-3" style="height: 80px;">
+                                <div class="d-flex align-items-center h-100">
+                                    <div class="circle circle-green">
+                                        <i class="fa-solid fa-envelope"></i>
+                                    </div>
+                                    <div class="d-flex flex-column ms-2" style="flex-grow: 1;">
+                                        <p
+                                            style="margin: 0 !important; color: #809FB8; font-family: 'Roboto'; font-size: 14px;">
+                                            Email Info Penetapan
+                                        </p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <h2 style="font-family: 'Roboto';color: #06152B; font-size: 16px"
+                                                class="target">
+                                                {{-- {{ $user->email ?? '-' }} --}}
+                                            </h2>
+                                            <button class="btn-email" data-bs-toggle="modal" data-bs-target="#modalEmail">
+                                                <i class="fa-solid fa-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 px-2">
                         <div class="card mb-3">
                             <div class="card-body py-2 px-3 "style="height: 80px;">
                                 <div class="d-flex align-items-center h-100">
@@ -182,101 +208,7 @@
                         </div>
                     </div>
                 </div>
-                {{-- <div class="row">
-                    <div class="col-md-12 px-2">
-                        <div class="card mb-3 overflow-auto">
-                            <div class="card-header">
-                                <h4 class="card-title" style="color: #17181A; font-family: 'Roboto';">Tabel Data Pejabat
-                                    Fungsional</h4>
-                            </div>
-                            <div class="card-body">
-                                <table class="table table-striped" id="table1">
-                                    <thead>
-                                        <tr>
-                                            <th>Nama</th>
-                                            <th>Jenis Kelamin</th>
-                                            <th>Pangkat</th>
-                                            <th>Provisi</th>
-                                            <th>Kab/Kota</th>
-                                            <th>Score Credit</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <a href="" style="color: #06152B;">Runggu Manalu</a>
-                                            </td>
-                                            <td>
-                                                <p>Laki-laki</p>
-                                            </td>
-                                            <td>
-                                                <p>Juru Muda (I/a)</p>
-                                            </td>
-                                            <td>
-                                                <p>Sumatera Utara</p>
-                                            </td>
-                                            <td>
-                                                <p>HUmbang Hasundutan</p>
-                                            </td>
-                                            <td>
-                                                <p>43.7</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <a href="" style="color: #06152B;">Ari Ferdiansyah</a>
-                                            </td>
-                                            <td>
-                                                <p>Laki-Laki</p>
-                                            </td>
-                                            <td>
-                                                <p>Juru Muda Tingkat I (I/b)</p>
-                                            </td>
-                                            <td>
-                                                <p>Jawa Barat</p>
-                                            </td>
-                                            <td>
-                                                <p>Kota Bogor</p>
-                                            </td>
-                                            <td>
-                                                <p>67,6</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <a href="" style="color: #06152B;">Wahliyudin</a>
-                                            </td>
-                                            <td>
-                                                <p>Laki-laki</p>
-                                            </td>
-                                            <td>
-                                                <p>Juru (I/c)</p>
-                                            </td>
-                                            <td>
-                                                <p>Jawa Barat</p>
-                                            </td>
-                                            <td>
-                                                <p>Kota Karawang</p>
-                                            </td>
-                                            <td>
-                                                <p>90.6</p>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
             </div>
-
-            {{-- <div class="col-md-3 informasi-wrapper">
-                <div class="card mb-3" style="min-height: 68vh;">
-                    <div class="card-body">
-                        <h1 class="card-title text-center" style="color: #17181A; font-family: 'Roboto';">INFORMATION</h1>
-                    </div>
-                </div>
-            </div> --}}
         </div>
     </section>
 @endsection
