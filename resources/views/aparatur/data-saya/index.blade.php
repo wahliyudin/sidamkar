@@ -139,11 +139,6 @@
                                             <span class="text-danger text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
-                                    <div class="form-group">
-                                        <label for="basicInput">Jabatan</label>
-                                        <input type="text" name="jabatan" disabled class="form-control"
-                                            placeholder="" value="{{ Auth::user()->roles()->first()->display_name }}">
-                                    </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -154,6 +149,25 @@
                                             <span class="text-danger text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">Jabatan</label>
+                                        <input type="text" name="jabatan" disabled class="form-control"
+                                            placeholder="" value="{{ Auth::user()->roles()->first()->display_name }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">Jabatan TMT</label>
+                                        <input type="date" name="jabatan_tmt" class="form-control"
+                                            value="{{ old('jabatan_tmt', $user->userAparatur?->jabatan_tmt) }}">
+                                        @error('jabatan_tmt')
+                                            <span class="text-danger text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="basicInput">Pangkat / Golongan </label>
                                         <select class="pangkat_golongan form-select" name="pangkat_golongan_tmt_id"
@@ -172,14 +186,6 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="basicInput">Jabatan TMT</label>
-                                        <input type="date" name="jabatan_tmt" class="form-control"
-                                            value="{{ old('jabatan_tmt', $user->userAparatur?->jabatan_tmt) }}">
-                                        @error('jabatan_tmt')
-                                            <span class="text-danger text-sm">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
                                         <label for="basicInput">GOLONGAN TMT</label>
                                         <input type="date" name="golongan_tmt" class="form-control"
                                             value="{{ old('golongan_tmt', $user->userAparatur?->golongan_tmt) }}">
@@ -187,21 +193,8 @@
                                             <span class="text-danger text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
-                                    <div class="form-group">
-                                        <label>Mekanisme Pengangkatan</label>
-                                        <select class="form-select"
-                                            {{ in_array($user?->userAparatur?->status_mekanisme, [1, 3, 4]) ? 'disabled' : '' }}
-                                            name="mekanisme_pengangkatan_id">
-                                            <option selected disabled>- Pilih Mekanisme -</option>
-                                            @foreach ($mekanismePengangkatans as $mekanismePengangkatan)
-                                                <option @selected($user?->userAparatur?->mekanismePengangkatan?->id == $mekanismePengangkatan->id)
-                                                    value="{{ $mekanismePengangkatan->id }}">
-                                                    {{ $mekanismePengangkatan->nama }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="basicInput">Unit Kerja </label>
                                         <select class="nomenklatur_perangkat_daerah form-select"
@@ -217,6 +210,24 @@
                                             <span class="text-danger text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Mekanisme Pengangkatan</label>
+                                        <select class="form-select"
+                                            {{ in_array($user?->userAparatur?->status_mekanisme, [1, 3, 4]) ? 'disabled' : '' }}
+                                            name="mekanisme_pengangkatan_id">
+                                            <option selected disabled>- Pilih Mekanisme -</option>
+                                            @foreach ($mekanismePengangkatans as $mekanismePengangkatan)
+                                                <option @selected($user?->userAparatur?->mekanismePengangkatan?->id == $mekanismePengangkatan->id)
+                                                    value="{{ $mekanismePengangkatan->id }}">
+                                                    {{ $mekanismePengangkatan->nama }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Angka Kredit Awal</label>
                                         <input type="number"

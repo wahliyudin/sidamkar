@@ -23180,3 +23180,12 @@ label {
         font-size: 8px !important;
     }
 }
+
+@media screen and (max-width: 362px) {
+    .preview-ttd {
+        min-width: 170px !important;
+        max-width: 170px !important;
+        min-height: 95px !important;
+        max-height: 95px !important;
+    }
+}

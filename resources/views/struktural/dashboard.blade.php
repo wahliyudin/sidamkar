@@ -89,7 +89,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-9 col order-lg-0 order-2">
                 <div class="row flex columns">
                     @role(['atasan_langsung'])
                         <div class="col-md-12 order-md-0 order-2">
@@ -146,7 +146,6 @@
                     @endrole
                 </div>
             </div>
-
             <div class="col-md-3">
                 <div class="card">
                     <div class="card-header">
