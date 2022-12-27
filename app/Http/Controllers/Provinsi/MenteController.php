@@ -194,7 +194,7 @@ class MenteController extends Controller
     public function emailPenetapan(Request $request)
     {
         $request->validate([
-            'email_penetapan' => 'required'
+            'email_penetapan' => 'required|email'
         ], [
             'email_penetapan.required' => 'Email wajib diisi'
         ]);

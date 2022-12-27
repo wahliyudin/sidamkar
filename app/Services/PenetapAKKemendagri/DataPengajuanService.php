@@ -33,15 +33,6 @@ class DataPengajuanService
         $rekapitulasiKegiatan->historyRekapitulasiKegiatans()->create([
             'content' => 'Rekapitulasi ditanda tangani Tim Penetap'
         ]);
-        if ($penetap->userPejabatStruktural->tingkat_aparatur == 'provinsi') {
-            $email = User::query()->withWhereHas('userProvKabKota', function ($query) use ($penetap) {
-                $query->where('provinsi_id', $penetap->userPejabatStruktural->provinsi_id);
-            })->first()?->userProvKabKota->email_info_penetapan;
-        } else {
-            $email = User::query()->withWhereHas('userProvKabKota', function ($query) use ($penetap) {
-                $query->where('kab_kota_id', $penetap->userPejabatStruktural->kab_kota_id);
-            })->first()?->userProvKabKota->email_info_penetapan;
-        }
         $tgl_ttd = now();
         HistoryPenetapan::query()->create([
             'nama_penetap' => $nama_penetap,
@@ -49,7 +40,13 @@ class DataPengajuanService
             'fungsional_id' => $user->id,
             'tgl_ttd' => $tgl_ttd
         ]);
+        $kemendagri = DB::table('users')
+            ->join('role_user', 'users.id', '=', 'role_user.user_id')
+            ->join('user_kemendagris', 'users.id', '=', 'user_kemendagris.user_id')
+            ->where('role_user.role_id', '=', 10)
+            ->select('users.id', 'user_kemendagris.email_info_penetapan')
+            ->first();
         $jabatan = DestructRoleFacade::getRoleFungsionalFirst($user->roles);
-        SendTTDPenetapan::dispatch($user?->userAparatur?->nama, concatPriodeY($periode), $jabatan, $nama_penetap, $tgl_ttd, $email);
+        SendTTDPenetapan::dispatch($user?->userAparatur?->nama, concatPriodeY($periode), $jabatan, $nama_penetap, $tgl_ttd, $kemendagri->email_info_penetapan);
     }
 }

@@ -351,6 +351,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['role:kemendagri'])->group(function () {
         Route::get('kemendagri/overview', [KemendagriOverviewController::class, 'index'])->name('kemendagri.overview.index');
+        Route::post('kemendagri/email-penetapan', [KemendagriOverviewController::class, 'emailPenetapan'])->name('kemendagri.email-penetapan');
         Route::controller(AdminKabKotaController::class)->group(function () {
             Route::get('kemendagri/verifikasi-data/admin-kabkota', 'index')->name('kemendagri.verifikasi-data.admin-kabkota.index');
             Route::get('kemendagri/verifikasi-data/admin-kabkota/{id}/document', 'showDoc')->name('kemendagri.verifikasi-data.admin-kabkota.showdoc');

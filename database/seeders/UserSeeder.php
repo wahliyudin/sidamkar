@@ -23,13 +23,16 @@ class UserSeeder extends Seeder
         foreach (Storage::allDirectories() as $directory) {
             Storage::deleteDirectory($directory);
         }
-        User::query()->create([
+        $kemendagri = User::query()->create([
             'username' => 'Kemendagri',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('admin123'),
             'email_verified_at' => now(),
             'status_akun' => 1
         ])->attachRole('kemendagri');
+        $kemendagri->userKemendagri()->create([
+            'email_info_penetapan' => 'kemendagri@gmail.com'
+        ]);
 
         $penilaiDamkarKemendagri = User::query()->create([
             'username' => 'Penilai Damkar Kemendagri',

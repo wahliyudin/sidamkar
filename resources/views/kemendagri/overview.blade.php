@@ -40,7 +40,7 @@
                                         <div class="d-flex justify-content-between align-items-center">
                                             <h2 style="font-family: 'Roboto';color: #06152B; font-size: 16px"
                                                 class="target">
-                                                {{-- {{ $user->email ?? '-' }} --}}
+                                                {{ $kemendagri->userKemendagri->email_info_penetapan ?? '-' }}
                                             </h2>
                                             <button class="btn-email" data-bs-toggle="modal" data-bs-target="#modalEmail">
                                                 <i class="fa-solid fa-plus"></i>
@@ -211,6 +211,39 @@
             </div>
         </div>
     </section>
+    <div class="modal fade" id="modalEmail" tabindex="-1" role="dialog" aria-labelledby="modalEmailTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalEmailTitle">
+                        Email Info Penetapan
+                    </h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <i data-feather="x"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-email">
+                        <div class="form-group">
+                            <label for="email_penetapan">Email</label>
+                            <input type="email" name="email_penetapan" id="email_penetapan" class="form-control">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                        <span>Batal</span>
+                    </button>
+                    <button type="button" class="btn btn-green ml-1 simpan-email">
+                        <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
+                            style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
+                        <span>Simpan</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 @section('css')
     <style>
@@ -223,5 +256,94 @@
                 padding: 1rem 2rem !important;
             }
         }
+
+        .btn-email {
+            padding: .06rem .32rem;
+            border-radius: 50%;
+            font-size: 14px;
+        }
+
+        .btn-email {
+            border: 2px solid #1ad598;
+            color: #1ad598;
+        }
     </style>
+    <link rel="stylesheet" href="{{ asset('assets/css/shared/sweetalert2.min.css') }}">
+@endsection
+@section('js')
+    <script src="{{ asset('assets/js/extensions/sweetalert2.all.min.js') }}"></script>
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $('.simpan-email').click(function(e) {
+            e.preventDefault();
+            var postData = new FormData($(".form-email")[0]);
+            swal({
+                title: "Simpan?",
+                type: "warning",
+                text: "Pastikan Data Yang Dimasukkan Sudah Benar!",
+                showCancelButton: !0,
+                confirmButtonText: "Ya, simpan!",
+                cancelButtonText: "Batal",
+                reverseButtons: !0,
+                showLoaderOnConfirm: true,
+                preConfirm: () => {
+                    return new Promise(function(resolve) {
+                        $.ajax({
+                                type: 'POST',
+                                url: url(
+                                    '/kemendagri/email-penetapan'
+                                ),
+                                processData: false,
+                                contentType: false,
+                                data: postData
+                            })
+                            .done(function(myAjaxJsonResponse) {
+                                swal("Berhasil!", myAjaxJsonResponse.message,
+                                        "success")
+                                    .then(function() {
+                                        location.reload();
+                                    });
+                            })
+                            .fail(function(erordata) {
+                                if (erordata.status == 422) {
+                                    swal('Warning!', erordata.responseJSON
+                                        .message,
+                                        'warning');
+                                } else {
+                                    swal('Error!', erordata.responseJSON
+                                        .message, 'error');
+                                }
+                            })
+                    })
+                },
+            })
+        });
+        var ajaxError = function(jqXHR, xhr, textStatus, errorThrow, exception) {
+            if (jqXHR.status === 0) {
+                swal("Error!", 'Not connect.\n Verify Network.', "error");
+            } else if (jqXHR.status == 400) {
+                swal("Peringatan!", jqXHR['responseJSON'].message, "warning");
+            } else if (jqXHR.status == 404) {
+                swal('Error!', 'Requested page not found. [404]', "error");
+            } else if (jqXHR.status == 500) {
+                swal('Error!', 'Internal Server Error [500].' + jqXHR['responseJSON'].message, "error");
+            } else if (exception === 'parsererror') {
+                swal('Error!', 'Requested JSON parse failed.', "error");
+            } else if (exception === 'timeout') {
+                swal('Error!', 'Time out error.', "error");
+            } else if (exception === 'abort') {
+                swal('Error!', 'Ajax request aborted.', "error");
+            } else if (jqXHR.status == 422) {
+                swal('Warning!', JSON.parse(jqXHR.responseText).message, "warning");
+                $('input[name="penilai_ak"]').val('');
+                $('input[name="penetap_ak"]').val('');
+            } else {
+                swal('Error!', jqXHR.responseText, "error");
+            }
+        };
+    </script>
 @endsection
