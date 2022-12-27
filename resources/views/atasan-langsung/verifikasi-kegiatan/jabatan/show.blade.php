@@ -11,11 +11,6 @@
                     <h5>{{ $butirKegiatan->nama }}</h5>
                 </div>
             </div>
-            <div class="form-group mb-0">
-                <input class="form-control" type="date" value="{{ now()->format('Y-m-d') }}"
-                    max="{{ Carbon\Carbon::make($periode->akhir)->format('Y-m-d') }}"
-                    min="{{ Carbon\Carbon::make($periode->awal)->format('Y-m-d') }}" name="tanggal">
-            </div>
         </div>
         <div class="row d-flex flex-row flex-nowrap overflow-auto">
             <div class="card col-sm-6 mx-3">
@@ -30,7 +25,7 @@
                         <div class="laporan-item pb-4">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <p class="m-0" style="font-weight: 600;">
-                                    {{ $laporanKegiatanJabatanStatusValidasi->created_at->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanJabatanStatusValidasi->created_at->translatedFormat('d M Y') }}
+                                    {{ \Carbon\Carbon::make($laporanKegiatanJabatanStatusValidasi->current_date)->translatedFormat('H:i') . ' WIB, ' . \Carbon\Carbon::make($laporanKegiatanJabatanStatusValidasi->current_date)->translatedFormat('d M Y') }}
                                 </p>
                                 <button class="btn btn-yellow btn-sm text-sm px-3">Validasi</button>
                             </div>
@@ -100,7 +95,7 @@
                         <div class="laporan-item pb-4">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <p class="m-0" style="font-weight: 600;">
-                                    {{ $laporanKegiatanJabatanStatusRevisi->created_at->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanJabatanStatusRevisi->created_at->translatedFormat('d M Y') }}
+                                    {{ \Carbon\Carbon::make($laporanKegiatanJabatanStatusRevisi->current_date)->translatedFormat('H:i') . ' WIB, ' . \Carbon\Carbon::make($laporanKegiatanJabatanStatusRevisi->current_date)->translatedFormat('d M Y') }}
                                 </p>
                                 <button class="btn btn-red-dark btn-sm text-sm px-3">Revisi</button>
                             </div>
@@ -171,7 +166,7 @@
                         <div class="laporan-item pb-4">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <p class="m-0" style="font-weight: 600;">
-                                    {{ $laporanKegiatanJabatanStatusSelesai->created_at->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanJabatanStatusSelesai->created_at->translatedFormat('d M Y') }}
+                                    {{ \Carbon\Carbon::make($laporanKegiatanJabatanStatusSelesai->current_date)->translatedFormat('H:i') . ' WIB, ' . \Carbon\Carbon::make($laporanKegiatanJabatanStatusSelesai->current_date)->translatedFormat('d M Y') }}
                                 </p>
                                 <button class="btn btn-green btn-sm text-sm px-3">Selesai</button>
                             </div>
@@ -241,7 +236,7 @@
                         <div class="laporan-item pb-4">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <p class="m-0" style="font-weight: 600;">
-                                    {{ $laporanKegiatanJabatanStatusTolak->created_at->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanJabatanStatusTolak->created_at->translatedFormat('d M Y') }}
+                                    {{ \Carbon\Carbon::make($laporanKegiatanJabatanStatusTolak->current_date)->translatedFormat('H:i') . ' WIB, ' . \Carbon\Carbon::make($laporanKegiatanJabatanStatusTolak->current_date)->translatedFormat('d M Y') }}
                                 </p>
                                 <button class="btn btn-black btn-sm text-sm px-3">DITOLAK</button>
                             </div>

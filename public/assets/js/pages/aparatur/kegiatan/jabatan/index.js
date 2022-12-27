@@ -381,5 +381,6 @@ $(document).ready(function () {
         } else {
             swal('Error!', jqXHR.responseText, "error");
         }
+        $(".bg-spin").hide();
     };
 });

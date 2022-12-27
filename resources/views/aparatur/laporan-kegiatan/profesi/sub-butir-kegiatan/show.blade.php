@@ -8,14 +8,6 @@
                 <button class="btn btn-red" data-bs-toggle="modal" data-bs-target="#laporkan">Laporkan</button>
             </div>
         </div>
-        <div class="d-flex px-4 mb-4 container-control justify-content-between align-items-center">
-            <div class="form-group mb-0">
-                <input class="form-control" type="date"
-                    value="{{ now() < $periode->akhir && now() > $periode->awal ? now()->format('Y-m-d H:i') : Carbon\Carbon::make($periode->awal)->format('Y-m-d H:i') }}"
-                    max="{{ Carbon\Carbon::make($periode->akhir)->format('Y-m-d') }}"
-                    min="{{ Carbon\Carbon::make($periode->awal)->format('Y-m-d') }}" name="tanggal">
-            </div>
-        </div>
         <div class=" row d-flex flex-row flex-nowrap overflow-auto container-kegiatan">
             <div class="card col-sm-6 mx-3">
                 <div class="card-header py-2 d-flex justify-content-between align-items-center"
@@ -309,7 +301,7 @@
                             <div class="form-group col-md-6">
                                 <label>Tanggal</label>
                                 <input class="form-control" type="datetime-local"
-                                    value="{{ now()->format('Y-m-d H:i') }}"
+                                    value="{{ now() < $periode->akhir && now() > $periode->awal ? now()->format('Y-m-d H:i') : Carbon\Carbon::make($periode->awal)->format('Y-m-d H:i') }}"
                                     max="{{ Carbon\Carbon::make($periode->akhir)->format('Y-m-d H:i') }}"
                                     min="{{ Carbon\Carbon::make($periode->awal)->format('Y-m-d H:i') }}"
                                     name="current_date">
@@ -340,7 +332,7 @@
     </div>
 @endsection
 
-@section('css')
+@push('atasan_css')
     <link rel="stylesheet" href="{{ asset('assets/css/pages/aparatur/laporan-kegiatan/jabatan/show.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/pages/aparatur/timeline.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/extensions/filepond/filepond.css') }}">
@@ -385,7 +377,7 @@
             color: black;
         }
     </style>
-@endsection
+@endpush
 @section('js')
     <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/extensions/filepond/filepond.js') }}"></script>
