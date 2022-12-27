@@ -128,7 +128,7 @@
                 <td width="20px" class="nomor">4</td>
                 <td class="keterangan">PANGKAT/GOL. RUANG/TMT</td>
                 <td class="inputan text-start" colspan="5">
-                    {{ $user->userAparatur->pangkatGolonganTmt->nama . ' / ' . $user->userAparatur->tmt }}
+                    {{ $user->userAparatur->pangkatGolonganTmt->nama . ' / ' . $user->userAparatur->golongan_tmt }}
                 </td>
             </tr>
             <tr>
@@ -149,7 +149,7 @@
                 <td width="20px" class="nomor">7</td>
                 <td class="keterangan">JABATAN/TMT</td>
                 <td class="inputan text-start" colspan="5">
-                    {{ $role?->display_name . ' / ' . $user->userAparatur->tmt }}</td>
+                    {{ $role?->display_name . ' / ' . $user->userAparatur->jabatan_tmt }}</td>
             </tr>
             <tr>
                 <td width="20px" class="nomor">8</td>

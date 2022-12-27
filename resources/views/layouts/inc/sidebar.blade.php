@@ -377,6 +377,14 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="sidebar-item {{ request()->routeIs('kemendagri.histori-penetapan') ? 'active' : '' }}">
+                        <a href="{{ route('kemendagri.histori-penetapan') }}" class='sidebar-link'>
+                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                                <i class="fa-solid fa-table"></i>
+                            </div>
+                            <span>Histori Penetapan</span>
+                        </a>
+                    </li>
                     <li class="sidebar-item {{ request()->routeIs('chat') ? 'active' : '' }}">
                         <a href="{{ route('chat') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
@@ -387,9 +395,10 @@
                     </li>
                 @endrole
 
-                @role('penilai_ak_kemendagri')
-                    <li class="sidebar-item {{ request()->is('penilai-ak-kemendagri/data-pengajuan*') ? 'active' : '' }}">
-                        <a href="{{ route('penilai-ak-kemendagri.data-pengajuan') }}" class='sidebar-link'>
+                @role('penilai_ak_damkar_kemendagri')
+                    <li
+                        class="sidebar-item {{ request()->is('penilai-ak-damkar-kemendagri/data-pengajuan*') ? 'active' : '' }}">
+                        <a href="{{ route('penilai-ak-damkar-kemendagri.data-pengajuan') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="fa-solid fa-square-poll-vertical"></i>
                             </div>
@@ -398,10 +407,34 @@
                     </li>
                 @endrole
 
-                @role('penetap_ak_kemendagri')
+                @role('penilai_ak_analis_kemendagri')
                     <li
-                        class="sidebar-item {{ request()->is('penetap-ak-kemendagri/data-pengajuan*') ? 'active' : '' }}">
-                        <a href="{{ route('penetap-ak-kemendagri.data-pengajuan') }}" class='sidebar-link'>
+                        class="sidebar-item {{ request()->is('penilai-ak-analis-kemendagri/data-pengajuan*') ? 'active' : '' }}">
+                        <a href="{{ route('penilai-ak-analis-kemendagri.data-pengajuan') }}" class='sidebar-link'>
+                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                                <i class="fa-solid fa-square-poll-vertical"></i>
+                            </div>
+                            <span>Data Pengajuan</span>
+                        </a>
+                    </li>
+                @endrole
+
+                @role('penetap_ak_damkar_kemendagri')
+                    <li
+                        class="sidebar-item {{ request()->is('penetap-ak-damkar-kemendagri/data-pengajuan*') ? 'active' : '' }}">
+                        <a href="{{ route('penetap-ak-damkar-kemendagri.data-pengajuan') }}" class='sidebar-link'>
+                            <div style="width: 16px; height: 16px; display: flex; align-items: center;">
+                                <i class="fa-solid fa-square-poll-vertical"></i>
+                            </div>
+                            <span>Data Pengajuan</span>
+                        </a>
+                    </li>
+                @endrole
+
+                @role('penetap_ak_analis_kemendagri')
+                    <li
+                        class="sidebar-item {{ request()->is('penetap-ak-analis-kemendagri/data-pengajuan*') ? 'active' : '' }}">
+                        <a href="{{ route('penetap-ak-analis-kemendagri.data-pengajuan') }}" class='sidebar-link'>
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="fa-solid fa-square-poll-vertical"></i>
                             </div>

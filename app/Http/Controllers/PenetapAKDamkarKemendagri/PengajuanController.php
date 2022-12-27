@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\PenetapAKKemendagri;
+namespace App\Http\Controllers\PenetapAKDamkarKemendagri;
 
 use App\Http\Controllers\Controller;
 use App\Models\PenetapanAngkaKredit;
@@ -35,7 +35,7 @@ class PengajuanController extends Controller
 
     public function index()
     {
-        return view('penetap-ak-kemendagri.data-pengajuan.index');
+        return view('penetap-ak-damkar-kemendagri.data-pengajuan.index');
     }
 
     public function datatable(Request $request)
@@ -60,11 +60,11 @@ class PengajuanController extends Controller
                 LEFT JOIN mekanisme_pengangkatans ON user_aparaturs.mekanisme_pengangkatan_id = mekanisme_pengangkatans.id
                 JOIN rekapitulasi_kegiatans ON (rekapitulasi_kegiatans.fungsional_id = users.id AND rekapitulasi_kegiatans.is_send IN (2, 3) AND rekapitulasi_kegiatans.periode_id = ' . $periode->id . ')
                 WHERE users.status_akun = 1
-                    AND roles.id IN (4,7)');
+                    AND roles.id IN (4)');
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    return '<a href="' . route('penetap-ak-kemendagri.data-pengajuan.show', $row->id) . '" class="btn btn-blue btn-sm">Detail</a>';
+                    return '<a href="' . route('penetap-ak-damkar-kemendagri.data-pengajuan.show', $row->id) . '" class="btn btn-blue btn-sm">Detail</a>';
                 })
                 ->rawColumns(['action'])
                 ->make(true);
@@ -79,7 +79,7 @@ class PengajuanController extends Controller
             ->where('periode_id', $periode->id)->first();
         $user = $this->userRepository->getUserById($id)->load('userAparatur');
         $penetapanAngkaKredit = PenetapanAngkaKredit::query()->where('periode_id', $periode->id)->where('user_id', $user->id)->first();
-        return view('penetap-ak-kemendagri.data-pengajuan.show', compact('user', 'rekapitulasiKegiatan', 'penetapanAngkaKredit'));
+        return view('penetap-ak-damkar-kemendagri.data-pengajuan.show', compact('user', 'rekapitulasiKegiatan', 'penetapanAngkaKredit'));
     }
 
     public function ttd(Request $request, $id)

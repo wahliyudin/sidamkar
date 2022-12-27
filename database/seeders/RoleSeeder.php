@@ -99,13 +99,23 @@ class RoleSeeder extends Seeder
                 'description' => ''
             ],
             [
-                'name' => 'penetap_ak_kemendagri',
-                'display_name' => 'Penetap Kemendagri',
+                'name' => 'penetap_ak_damkar_kemendagri',
+                'display_name' => 'Penetap Damkar Kemendagri',
                 'description' => ''
             ],
             [
-                'name' => 'penilai_ak_kemendagri',
-                'display_name' => 'Penilai Kemendagri',
+                'name' => 'penilai_ak_damkar_kemendagri',
+                'display_name' => 'Penilai Damkar Kemendagri',
+                'description' => ''
+            ],
+            [
+                'name' => 'penetap_ak_analis_kemendagri',
+                'display_name' => 'Penetap Analis Kemendagri',
+                'description' => ''
+            ],
+            [
+                'name' => 'penilai_ak_analis_kemendagri',
+                'display_name' => 'Penilai Analis Kemendagri',
                 'description' => ''
             ]
         ];

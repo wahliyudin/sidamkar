@@ -328,7 +328,8 @@
                     return new Promise(function(resolve) {
                         $.ajax({
                                 type: 'POST',
-                                url: url('/penilai-ak-kemendagri/data-pengajuan/' + id +
+                                url: url('/penilai-ak-damkar-kemendagri/data-pengajuan/' +
+                                    id +
                                     '/simpan-penetapan'),
                                 processData: false,
                                 contentType: false,
@@ -363,7 +364,7 @@
             $('.ttd span').hide();
             $.ajax({
                 type: "POST",
-                url: url('/penilai-ak-kemendagri/data-pengajuan/' + $(this).data('id') + '/ttd'),
+                url: url('/penilai-ak-damkar-kemendagri/data-pengajuan/' + $(this).data('id') + '/ttd'),
                 processData: false,
                 contentType: false,
                 data: postData,
@@ -396,7 +397,7 @@
                 preConfirm: async () => {
                     return await $.ajax({
                         type: "POST",
-                        url: url('/penilai-ak-kemendagri/data-pengajuan/' + $(this).data(
+                        url: url('/penilai-ak-damkar-kemendagri/data-pengajuan/' + $(this).data(
                                 'id') +
                             '/send-to-penetap'),
                         dataType: "JSON",
