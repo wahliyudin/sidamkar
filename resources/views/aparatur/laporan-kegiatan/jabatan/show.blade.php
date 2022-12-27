@@ -8,13 +8,13 @@
                 <button class="btn btn-red" data-bs-toggle="modal" data-bs-target="#laporkan">Laporkan</button>
             </div>
         </div>
-        <div class="d-flex px-4 mb-4 container-control justify-content-between align-items-center">
+        {{-- <div class="d-flex px-4 mb-4 container-control justify-content-between align-items-center">
             <div class="form-group mb-0">
                 <input class="form-control" type="date" value="{{ now()->format('Y-m-d') }}"
                     max="{{ Carbon\Carbon::make($periode->akhir)->format('Y-m-d') }}"
                     min="{{ Carbon\Carbon::make($periode->awal)->format('Y-m-d') }}" name="tanggal">
             </div>
-        </div>
+        </div> --}}
         <div class=" row d-flex flex-row flex-nowrap overflow-auto container-kegiatan">
             <div class="card col-sm-6 mx-3">
                 <div class="card-header py-2 d-flex justify-content-between align-items-center"
@@ -28,7 +28,7 @@
                         <div class="laporan-item pb-4">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <p class="m-0" style="font-weight: 600;">
-                                    {{ $laporanKegiatanJabatanStatusValidasi->current_date->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanJabatanStatusValidasi->current_date->translatedFormat('d M Y') }}
+                                    {{ \Carbon\Carbon::make($laporanKegiatanJabatanStatusValidasi->current_date)->translatedFormat('H:i') . ' WIB, ' . \Carbon\Carbon::make($laporanKegiatanJabatanStatusValidasi->current_date)->translatedFormat('d M Y') }}
                                 </p>
                                 <button class="btn btn-yellow btn-sm text-sm px-3">Validasi</button>
                             </div>
@@ -100,7 +100,7 @@
                         <div class="laporan-item pb-4">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <p class="m-0" style="font-weight: 600;">
-                                    {{ $laporanKegiatanJabatanStatusRevisi->current_date->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanJabatanStatusRevisi->current_date->translatedFormat('d M Y') }}
+                                    {{ \Carbon\Carbon::make($laporanKegiatanJabatanStatusRevisi->current_date)->translatedFormat('H:i') . ' WIB, ' . \Carbon\Carbon::make($laporanKegiatanJabatanStatusRevisi->current_date)->translatedFormat('d M Y') }}
                                 </p>
                                 <button class="btn btn-red-dark btn-sm text-sm px-3">Revisi</button>
                             </div>
@@ -173,7 +173,7 @@
                         <div class="laporan-item pb-4">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <p class="m-0" style="font-weight: 600;">
-                                    {{ $laporanKegiatanJabatanStatusSelesai->current_date->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanJabatanStatusSelesai->current_date->translatedFormat('d M Y') }}
+                                    {{ \Carbon\Carbon::make($laporanKegiatanJabatanStatusSelesai->current_date)->translatedFormat('H:i') . ' WIB, ' . \Carbon\Carbon::make($laporanKegiatanJabatanStatusSelesai->current_date)->translatedFormat('d M Y') }}
                                 </p>
                                 <button class="btn btn-green btn-sm text-sm px-3">Selesai</button>
                             </div>
@@ -246,7 +246,7 @@
                             <div class="laporan-item pb-4">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
                                     <p class="m-0" style="font-weight: 600;">
-                                        {{ $laporanKegiatanJabatanStatusTolak->current_date->translatedFormat('H:i') . ' WIB, ' . $laporanKegiatanJabatanStatusTolak->current_date->translatedFormat('d M Y') }}
+                                        {{ \Carbon\Carbon::make($laporanKegiatanJabatanStatusTolak->current_date)->translatedFormat('H:i') . ' WIB, ' . \Carbon\Carbon::make($laporanKegiatanJabatanStatusTolak->current_date)->translatedFormat('d M Y') }}
                                     </p>
                                     <button class="btn btn-black btn-sm text-sm px-3">DITOLAK</button>
                                 </div>
@@ -379,7 +379,7 @@
     </div>
 @endsection
 
-@section('css')
+@push('atasan_css')
     <link rel="stylesheet" href="{{ asset('assets/css/pages/aparatur/laporan-kegiatan/jabatan/show.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/pages/aparatur/timeline.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/extensions/filepond/filepond.css') }}">
@@ -424,7 +424,7 @@
             color: black;
         }
     </style>
-@endsection
+@endpush
 @section('js')
     <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/extensions/filepond/filepond.js') }}"></script>

@@ -16,13 +16,7 @@
                         </div>
                     </div>
                     <hr>
-                    <div class="row align-items-center justify-content-between">
-                        <div class="form-group col-md-2">
-                            <label>Tanggal</label>
-                            <input type="date" name="tanggal" value="{{ now()->format('Y-m-d') }}"
-                                max="{{ Carbon\Carbon::make($periode->akhir)->format('Y-m-d') }}"
-                                min="{{ Carbon\Carbon::make($periode->awal)->format('Y-m-d') }}" class="form-control">
-                        </div>
+                    <div class="row align-items-center justify-content-end">
                         <div class="form-group col-md-6">
                             <label>Search</label>
                             <input type="text" name="search" placeholder="Search..." class="form-control">
