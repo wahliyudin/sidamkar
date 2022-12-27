@@ -235,7 +235,7 @@ class KegiatanJabatanService
     {
         $periode = $this->periodeRepository->isActive();
         [$user, $atasan_langsung] = $this->validateDocument($userAuth);
-        if (!isset($user->mente->atasanLangsung->userPejabatStruktural->tmt) || !isset($user->mente->atasanLangsung->userPejabatStruktural->nomenklaturPerangkatDaerah)) {
+        if (!isset($user->mente->atasanLangsung->userPejabatStruktural->jabatan_tmt) || !isset($user->mente->atasanLangsung->userPejabatStruktural->nomenklaturPerangkatDaerah)) {
             throw ValidationException::withMessages(['Maaf, Atasan Langsung Anda Belum Melengkapi Profil']);
         }
         [$link_pernyataan, $name_pernyataan] = $this->generatePdfService->generatePernyataan($user, $atasan_langsung, false, $periode);
