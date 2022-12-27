@@ -1,5 +1,5 @@
 <div class="d-flex align-items-cen">
-    <button {{ $row->is_naik != 0 ? 'disabled' : '' }} data-penetapan="{{ $row->id }}"
+    <button {{ $row->is_naik != 0 ? 'disabled' : '' }} data-penetapan="{{ $row->penetap }}"
         class="btn btn-dark-reverse me-2 tolak">
         <i class="fas fa-xmark"></i>
     </button>
