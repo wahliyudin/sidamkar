@@ -30,7 +30,10 @@ class HistoriPenetapanController extends Controller
                 FROM history_penetapans
                 JOIN periodes ON periodes.id = history_penetapans.periode_id
                 JOIN user_aparaturs ON user_aparaturs.user_id = history_penetapans.fungsional_id
-                WHERE user_aparaturs.tingkat_aparatur = "provinsi"
+                JOIN role_user ON role_user.user_id = history_penetapans.fungsional_id
+                JOIN roles ON roles.id = role_user.role_id
+                WHERE roles.id IN (1, 2, 3, 5, 6)
+                AND user_aparaturs.tingkat_aparatur = "provinsi"
                 ORDER BY history_penetapans.tgl_ttd DESC');
             return DataTables::of($data)
                 ->addIndexColumn()

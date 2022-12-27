@@ -44,6 +44,7 @@ use App\Http\Controllers\Kemendagri\VerifikasiData\AparaturController as Kemenda
 use App\Http\Controllers\Kemendagri\CMS\InformasiController;
 use App\Http\Controllers\Kemendagri\CMS\KegiatanPenunjangController;
 use App\Http\Controllers\Kemendagri\CMS\PeriodeController;
+use App\Http\Controllers\Kemendagri\HistoryPenetapanController;
 use App\Http\Controllers\PenetapAK\DataPengajuan\ExternalController as PenetapAKDataPengajuanExternalController;
 use App\Http\Controllers\PenetapAK\DataPengajuan\InternalController as DataPengajuanInternalController;
 use App\Http\Controllers\PenetapAKAnalisKemendagri\PengajuanController as PenetapAKAnalisKemendagriPengajuanController;
@@ -428,6 +429,9 @@ Route::middleware(['auth'])->group(function () {
             Route::post('kemendagri/cms/periode/store', 'store')->name('kemendagri.cms.periode.store');
             Route::post('kemendagri/cms/periode/{id}/switch', 'switch')->name('kemendagri.cms.periode.switch');
         });
+
+        Route::get('kemendagri/histori-penetapan', [HistoryPenetapanController::class, 'index'])->name('kemendagri.histori-penetapan');
+        Route::post('kemendagri/histori-penetapan/datatable', [HistoryPenetapanController::class, 'datatable'])->name('kemendagri.histori-penetapan.datatable');
     });
 
     Route::middleware(['role:penilai_ak_damkar_kemendagri'])->group(function () {
