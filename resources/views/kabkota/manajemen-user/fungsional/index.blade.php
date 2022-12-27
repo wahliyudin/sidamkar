@@ -75,9 +75,16 @@
         $(document).ready(function() {
             $('#User-table').on('click', 'tbody > tr > td:not(:nth-child(6))',
                 function() {
-                    window.location.replace(url(
-                        `/kab-kota/manajemen-user/fungsional/${$($(this.parentElement).find('.username')).data('detail')}/show`
-                    ));
+                    const data = $($(this.parentElement).find('.username')).data('detail')
+
+                    if (data != undefined) {
+                        window.location.replace(url(
+                            `/kab-kota/manajemen-user/fungsional/${data}/show`
+                        ));
+                    } else {
+                        alert('Data Tidak Ada')
+                    }
+
                 });
         });
     </script>

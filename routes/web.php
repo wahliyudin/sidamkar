@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\KabKotaProvinsiController;
 use App\Http\Controllers\Aparatur\ChangePasswordController;
 use App\Http\Controllers\Aparatur\DaftarKegiatanController;
 use App\Http\Controllers\Aparatur\DaftarPenunjangController;
@@ -92,10 +93,17 @@ Route::get('ubah-password', [ChangePasswordController::class, 'index'])->name('u
 Route::post('ubah-password', [ChangePasswordController::class, 'update'])->name('ubah-password.update');
 Route::middleware(['auth'])->group(function () {
     Route::get('/informasi/{id}', [OverviewController::class, 'find'])->name('informasi.find');
+    Route::post('/kabkota-provinsi-store', [KabKotaProvinsiController::class, 'store'])->name('kabkota-provinsi-store');
+    Route::get('kab-kota/manajemen-user/fungsional/{id}/edit', [KabKotaFungsionalController::class, 'edit'])->name('kab-kota.manajemen-user.fungsional.edit');
+
     Route::middleware(['role:damkar_pemula|damkar_terampil|damkar_mahir|damkar_penyelia|analis_kebakaran_ahli_pertama|analis_kebakaran_ahli_muda|analis_kebakaran_ahli_madya'])->group(function () {
         Route::get('/overview', [OverviewController::class, 'index'])->name('overview');
         Route::get('/data-kegiatan', [DataKegiatanController::class, 'index'])->name('data-saya.data-kegiatan');
-
+        // Route::get('data-saya/show-dockepeg/{id}', 'showDocKepeg')->name('data-saya.show-doc-kepeg');
+        // Route::post('data-saya/store-dockepeg', 'storeDocKepeg')->name('data-saya.store-doc-kepeg');
+        // Route::post('data-saya/store-dockom', 'storeDocKom')->name('data-saya.store-doc-kom');
+        // Route::delete('data-saya/destroy-dockepeg/{id}', 'destroyDocKepeg')->name('data-saya.destroy-doc-kepeg');
+        // Route::delete('data-saya/destroy-dockom/{id}', 'destroyDocKom')->name('data-saya.destroy-doc-kom');
 
         Route::controller(DataSayaController::class)->group(function () {
             Route::get('/data-saya', 'index')->name('data-saya');
@@ -282,6 +290,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('kab-kota/manajemen-user/fungsional/{id}/reject', [KabKotaFungsionalController::class, 'reject'])->name('kab-kota.manajemen-user.fungsional.reject');
         Route::post('kab-kota/manajemen-user/fungsional/{id}/verification', [KabKotaFungsionalController::class, 'verification'])->name('kab-kota.manajemen-user.fungsional.verification');
         Route::delete('kab-kota/manajemen-user/fungsional/{id}/destroy', [KabKotaFungsionalController::class, 'destroy'])->name('kab-kota.manajemen-user.fungsional.destroy');
+
 
         Route::get('kab-kota/manajemen-user/umum', [KabKotaFungsionalUmumController::class, 'index'])->name('kab-kota.manajemen-user.fungsional-umum');
         Route::post('kab-kota/manajemen-user/umum/{id}/reject', [KabKotaFungsionalUmumController::class, 'reject'])->name('kab-kota.manajemen-user.fungsional-umum.reject');

@@ -296,30 +296,40 @@ $(document).ready(function () {
         } else if (nilai_skp == "") {
             swal("Error!", "Ada Data Yang Belum Di Input", "error");
         } else if (nilai_skp != null & jenis_skp != null) {
-            $.ajax({
-                type: "POST",
-                url: url("/laporan-kegiatan/jabatan/send-skp"),
-                data: data,
-                success: function (response) {
-                    if (response.status == 200) {
-                        Toastify({
-                            text: response.message,
-                            duration: 5000,
-                            close: true,
-                            gravity: "top",
-                            position: "right",
-                            backgroundColor: "#18b882",
-                        }).showToast();
-                        location.reload();
-                    } else {
-                        swal("Error!", response.message, "error");
-                        $(".swal2-confirm").click(function () {
-                            $(".simpan-informasi span").show();
-                            $(".simpan-informasi .spin").hide();
-                        });
-                    }
+            swal({
+                title: "Apakah Data Yang Anda Masukkan Sudah Benar?",
+                type: "warning",
+                showCancelButton: !0,
+                confirmButtonText: "Ya, Sudah Benar!",
+                cancelButtonText: "Batal",
+                reverseButtons: !0,
+                showLoaderOnConfirm: true,
+                preConfirm: () => {
+                    return new Promise(function (resolve) {
+                        $.ajax({
+                                type: 'POST',
+                                url: url("/laporan-kegiatan/jabatan/send-skp"),
+                                processData: false,
+                                contentType: false,
+                                data: data
+                            })
+                            .done(function (myAjaxJsonResponse) {
+                                swal("Berhasil!", myAjaxJsonResponse.message, "success")
+                                    .then(function () {
+                                        location.reload();
+                                    });
+                            })
+                            .fail(function (erordata) {
+                                if (erordata.status == 422) {
+                                    swal('Warning!', erordata.responseJSON.message,
+                                        'warning');
+                                } else {
+                                    swal('Error!', erordata.responseJSON.message, 'error');
+                                }
+                            })
+                    })
                 },
-            });
+            })
         }
     });
     $('.simpan-golongan').click(function (e) {
