@@ -71,13 +71,13 @@ if (!function_exists('getAllRoleProvKabKota')) {
 if (!function_exists('concatPriodeY')) {
     function concatPriodeY(Periode $periode)
     {
-        return Carbon::make($periode->awal)->format('Y') . " - " . Carbon::make($periode->awal)->format('Y');
+        return Carbon::make($periode->awal)->format('Y') . " - " . Carbon::make($periode->akhir)->format('Y');
     }
 }
 if (!function_exists('concatPriodeFY')) {
     function concatPriodeFY(Periode $periode)
     {
-        return Carbon::make($periode->awal)->translatedFormat('F Y') . " - " . Carbon::make($periode->awal)->format('F Y');
+        return Carbon::make($periode->awal)->translatedFormat('F Y') . " - " . Carbon::make($periode->akhir)->translatedFormat('F Y');
     }
 }
 if (!function_exists('linkToBasePath')) {
