@@ -104,7 +104,7 @@
                 <td width="70px">Pangkat/Gol Ruang</td>
                 <td width="5px">:</td>
                 <td width="200px">
-                    {{ $user?->userAparatur?->pangkatGolonganTmt?->nama ?? $user->userAparatur->golongan_custom }}</td>
+                    {{ $user->userAparatur->golongan_custom ?? $user?->userAparatur?->pangkatGolonganTmt?->nama }}</td>
                 <td width="70px">Pangkat/Gol Ruang</td>
                 <td width="5px">:</td>
                 <td width="200px">{{ $atasan_langsung?->userPejabatStruktural?->pangkatGolonganTmt?->nama }}</td>

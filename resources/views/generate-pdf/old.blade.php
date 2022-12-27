@@ -115,7 +115,7 @@
             </tr>
             <tr>
                 <td class="bd"><br></td>
-                <td class="bd" style="padding-left: 1.5rem;">Unit Kerja</td>
+                <td class="bd" style="padding-left: 2rem;">Unit Kerja</td>
                 <td class="bd" style="padding-left: 1rem; padding-right: .5rem;">:</td>
                 <td class="bd">
                     {{ $user->mente->atasanLangsung->userPejabatStruktural?->nomenklaturPerangkatDaerah?->nama }}</td>
@@ -145,7 +145,7 @@
                     Ruang/TMT </td>
                 <td class="bd" style="padding-left: 1rem; padding-right: .5rem;" width="2%">:</td>
                 <td class="bd letter">
-                    {{ $user->userAparatur->pangkatGolonganTmt->nama ?? $user->userAparatur->golongan_custom . '/' . $user->userAparatur->golongan_tmt }}
+                    {{ ($user->userAparatur->golongan_custom ?? $user->userAparatur->pangkatGolonganTmt->nama) . ' / ' . $user->userAparatur->golongan_tmt }}
                 </td>
             </tr>
             <tr>
