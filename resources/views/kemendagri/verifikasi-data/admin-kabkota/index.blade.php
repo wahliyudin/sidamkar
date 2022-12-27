@@ -153,7 +153,7 @@
                         title: 'Berhasil',
                         html: 'Akun Dinyatakan <b style="font-weight: bold; color:red;">DITOLAK</b>'
                     }).then(() => {
-                        $('#adminkabkota-table').DataTable().ajax
+                        $('#admin-kab-kota').DataTable().ajax
                             .reload()
                     });
                 } else {
@@ -191,7 +191,7 @@
                         title: 'Berhasil',
                         html: 'Akun Berhasil <b style="font-weight: bold; color:green;">DIVERIFIKASI</b>'
                     }).then(() => {
-                        $('#adminkabkota-table').DataTable().ajax
+                        $('#admin-kab-kota').DataTable().ajax
                             .reload()
                     });
                 } else {
@@ -227,7 +227,7 @@
             }).then(function(e) {
                 if (e.value.success == true) {
                     swal("Selesai!", e.value.message, "success").then(() => {
-                        $('#adminkabkota-table').DataTable().ajax
+                        $('#admin-kab-kota').DataTable().ajax
                             .reload()
                     });
                 } else {
