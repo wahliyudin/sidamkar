@@ -28,7 +28,7 @@ return new class extends Migration
             $table->enum('jenjang', ['junior', 'senior'])->nullable();
             $table->enum('jenis_kelamin', ['P', 'L'])->nullable();
             $table->enum('tingkat_aparatur', ['provinsi', 'kab_kota'])->nullable();
-            $table->enum('pendidikan_terakhir', ['1', '2', '3', '4'])->nullable(); // Enum
+            $table->enum('pendidikan_terakhir', ['1', '2', '3', '4', '5'])->nullable(); // Enum
             $table->string('foto_pegawai')->nullable();
             $table->string('file_ttd')->nullable();
             $table->string('no_hp')->nullable();

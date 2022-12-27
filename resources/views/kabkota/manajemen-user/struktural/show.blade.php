@@ -104,10 +104,11 @@
                                         <label for="basicInput">Pendidikan Terakhir</label>
                                         <select disabled class="pen_terakhir form-select" name="pendidikan_terakhir">
                                             <option disabled selected>- Pilih Pendidikan Terakhir -</option>
-                                            <option @selected(old('pendidikan_terakhir', $user->userPejabatStruktural?->pendidikan_terakhir) == '1') value="1">SMA/SMK/Sederajat</option>
-                                            <option @selected(old('pendidikan_terakhir', $user->userPejabatStruktural?->pendidikan_terakhir) == '2') value="2">D3</option>
-                                            <option @selected(old('pendidikan_terakhir', $user->userPejabatStruktural?->pendidikan_terakhir) == '3') value="3">S1/D4</option>
-                                            <option @selected(old('pendidikan_terakhir', $user->userPejabatStruktural?->pendidikan_terakhir) == '4') value="4">S2</option>
+                                            <option @selected(old('pendidikan_terakhir', $user?->userPejabatStruktural?->pendidikan_terakhir) == '1') value="1">SMA/SMK/Sederajat</option>
+                                            <option @selected(old('pendidikan_terakhir', $user?->userPejabatStruktural?->pendidikan_terakhir) == '2') value="2">D3</option>
+                                            <option @selected(old('pendidikan_terakhir', $user?->userPejabatStruktural?->pendidikan_terakhir) == '3') value="3">S1/D4</option>
+                                            <option @selected(old('pendidikan_terakhir', $user?->userPejabatStruktural?->pendidikan_terakhir) == '4') value="4">S2</option>
+                                            <option @selected(old('pendidikan_terakhir', $user?->userPejabatStruktural?->pendidikan_terakhir) == '5') value="5">S3</option>
                                         </select>
                                         @error('pendidikan_terakhir')
                                             <span class="text-danger text-sm">{{ $message }}</span>
