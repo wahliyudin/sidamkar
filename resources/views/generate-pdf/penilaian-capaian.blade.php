@@ -99,13 +99,13 @@
             <tr>
                 <td style="width: 150px;">Pangkat/Gol. Ruang/TMT</td>
                 <td style="width: 10px;">:</td>
-                <td>{{ $data['user']?->userAparatur?->pangkatGolonganTmt?->nama ?? $data['user']?->userAparatur?->golongan_custom . ' / ' . $data['user']?->userAparatur?->golongan_tmt }}
+                <td>{{ ($data['user']?->userAparatur->golongan_custom ?? $data['user']?->userAparatur->pangkatGolonganTmt->nama) . ' / ' . $data['user']?->userAparatur->golongan_tmt }}
                 </td>
             </tr>
             <tr>
                 <td style="width: 150px;">Jabatan/TMT</td>
                 <td style="width: 10px;">:</td>
-                <td>{{ $data['role']?->display_name }}</td>
+                <td>{{ $data['role']?->display_name . ' / ' . $data['user']?->userAparatur->jabatan_tmt }}</td>
             </tr>
             <tr>
                 <td style="width: 150px;">Unit Kerja</td>

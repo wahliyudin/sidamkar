@@ -15,12 +15,6 @@
                 Lengkapi Data Profile
             </div>
         @endif
-        @if (!isset(Auth::user()->userPejabatStruktural?->nip))
-            <div class="alert alert-warning " style="color: white;"><i class="fa-solid fa-circle-exclamation"></i> Harap
-                Lengkapi Data
-                Profile
-            </div>
-        @endif
         <div class="row">
             <div class="col-md-6 px-2">
                 <div class="card">
