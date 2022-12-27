@@ -12,6 +12,9 @@ use App\Models\KabKota;
 use App\Models\PangkatGolonganTmt;
 use App\Models\MekanismePengangkatan;
 use App\Traits\RoleTrait;
+use Carbon\Carbon;
+use App\Models\NomenKlaturPerangkatDaerah;
+use Illuminate\Validation\ValidationException;
 
 class FungsionalController extends Controller
 {
@@ -64,5 +67,18 @@ class FungsionalController extends Controller
         $judul = 'Data Fungsional';
 
         return view('kabkota.manajemen-user.fungsional.show', compact('user', 'provinsis', 'kab_kota', 'pangkats', 'judul', 'mekanismePengangkatans'));
+    }
+
+
+    public function edit($id)
+    {
+        $user = User::query()->with(['roles', 'userAparatur.provinsi.kabkotas', 'dokKepegawaians', 'dokKompetensis'])->find($id);
+        $provinsis = Provinsi::query()->get();
+        $kab_kota = KabKota::query()->get();
+        $pangkats = PangkatGolonganTmt::query()->whereIn('nama', $this->getPangkatByRole($user->roles()->first()->name))->get();
+        $mekanismePengangkatans = MekanismePengangkatan::query()->get();
+        $nomenklatur = NomenKlaturPerangkatDaerah::query()->get();
+        $judul = 'Data Fungsional';
+        return view('kabkota.manajemen-user.fungsional.edit', compact('user', 'provinsis', 'kab_kota', 'pangkats', 'judul', 'mekanismePengangkatans', 'nomenklatur'));
     }
 }

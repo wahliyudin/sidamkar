@@ -2,17 +2,6 @@
 @section('content')
     <section class="section">
         <div class="card mt-4 overflow-auto">
-            <div class="d-flex px-4 container-control justify-content-between align-items-center">
-                <div class="d-flex mt-4">
-                    <div class="icon-back mb-2"><a
-                            href=" {{ $user->userAparatur->tingkat_aparatur == 'provinsi' ? route('provinsi.manajemen-user.fungsional') : route('kab-kota.manajemen-user.fungsional') }}">
-                            <i class="fa-solid fa-arrow-left-long" style="cursor: pointer"></i></a>
-                    </div>
-                    <div class="ms-2">
-                        <h5>Data {{ old('nama', $user->userAparatur?->nama) }}</h5>
-                    </div>
-                </div>
-            </div>
             <div class="card-body" style="padding-top: 3rem;">
                 <form action="" method="post" class="form-data">
                     <div class="row">
@@ -36,8 +25,9 @@
                             <div class="row col-md-12" style="border: 2px solid #E5E5E5;border-radius: 6px;padding: 4px;">
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <input type="hidden" name="user_id" value="{{ $user->userAparatur->user_id }}">
                                         <label for="basicInput">Nama Lengkap</label>
-                                        <input disabled type="text" class="form-control" name="nama"
+                                        <input type="text" class="form-control" name="nama"
                                             value="{{ old('nama', $user->userAparatur?->nama) }}">
                                         @error('nama')
                                             <span class="text-danger text-sm">{{ $message }}</span>
@@ -47,8 +37,7 @@
                                         <label>Tempat Tanggal Lahir</label>
                                         <div class="row">
                                             <div class="col-md-6" style="padding-right: .3rem !important;">
-                                                <input disabled type="text" class="form-control w-100"
-                                                    name="tempat_lahir"
+                                                <input type="text" class="form-control w-100" name="tempat_lahir"
                                                     value="{{ old('tempat_lahir', $user->userAparatur?->tempat_lahir) }}"
                                                     placeholder="" style="width: 50%">
                                                 @error('tempat_lahir')
@@ -56,8 +45,7 @@
                                                 @enderror
                                             </div>
                                             <div class="col-md-6" style="padding-left: .3rem !important;">
-                                                <input disabled type="date" class="form-control w-100"
-                                                    name="tanggal_lahir"
+                                                <input type="date" class="form-control w-100" name="tanggal_lahir"
                                                     value="{{ old('tanggal_lahir', $user->userAparatur?->tanggal_lahir) }}"
                                                     placeholder="" style="width: 50%">
                                                 @error('tanggal_lahir')
@@ -68,11 +56,11 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="basicInput">Provinsi</label>
-                                        <select class="form-select provinsi2" disabled data-id=".provinsi2"
+                                        <select disabled class="form-select provinsi2" data-id=".provinsi2"
                                             name="provinsi_id">
-                                            <option disabled selected>- Pilih Provinsi -</option>
+                                            <option selected>- Pilih Provinsi -</option>
                                             @foreach ($provinsis as $prov)
-                                                <option value="{{ $prov->id }}" @selected(old('provinsi_id', $user->userAparatur?->provinsi_id) == $prov->id)>
+                                                <option disabled value="{{ $prov->id }}" @selected(old('provinsi_id', $user->userAparatur?->provinsi_id) == $prov->id)>
                                                     {{ $prov->nama }}</option>
                                             @endforeach
                                         </select>
@@ -82,11 +70,11 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="basicInput">Kabupaten / Kota</label>
-                                        <select class="kab_kota_id form-select" disabled name="kab_kota_id"
+                                        <select disabled class="kab_kota_id form-select" name="kab_kota_id"
                                             id="kab_kota_id">
-                                            <option disabled selected>- Pilih Kabupaten / Kota -</option>
+                                            <option selected>- Pilih Kabupaten / Kota -</option>
                                             @foreach ($kab_kota as $kabkota)
-                                                <option value="{{ $kabkota->id }}" @selected(old('kab_kota_id', $user->userAparatur?->kab_kota_id) == $kabkota->id)>
+                                                <option disabled value="{{ $kabkota->id }}" @selected(old('kab_kota_id', $user->userAparatur?->kab_kota_id) == $kabkota->id)>
                                                     {{ $kabkota->nama }}</option>
                                             @endforeach
                                         </select>
@@ -98,7 +86,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="basicInput">Pendidikan Terakhir</label>
-                                        <select disabled class="pen_terakhir form-select" name="pendidikan_terakhir">
+                                        <select class="pen_terakhir form-select" name="pendidikan_terakhir">
                                             <option disabled selected>- Pilih Pendidikan Terakhir -</option>
                                             <option @selected(old('pendidikan_terakhir', $user->userAparatur?->pendidikan_terakhir) == '1') value="1">SMA/SMK/Sederajat</option>
                                             <option @selected(old('pendidikan_terakhir', $user->userAparatur?->pendidikan_terakhir) == '2') value="2">D3</option>
@@ -112,7 +100,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="basicInput">Jenis Kelamin</label>
-                                        <select disabled class="jenis_kelamin form-select" name="jenis_kelamin">
+                                        <select class="jenis_kelamin form-select" name="jenis_kelamin">
                                             <option disabled selected>- Pilih Jenis Kelamin -</option>
                                             <option @selected(old('jenis_kelamin', $user->userAparatur?->jenis_kelamin) == 'L') value="L">Laki - Laki</option>
                                             <option @selected(old('jenis_kelamin', $user->userAparatur?->jenis_kelamin) == 'P') value="P">Perempuan</option>
@@ -147,7 +135,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="basicInput">NIP</label>
-                                        <input disabled type="number" class="form-control" name="nip"
+                                        <input type="number" class="form-control" name="nip"
                                             value="{{ old('nip', $user->userAparatur?->nip) }}">
                                         @error('nip')
                                             <span class="text-danger text-sm">{{ $message }}</span>
@@ -157,7 +145,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="basicInput">Nomor Karpeg</label>
-                                        <input disabled type="number" name="nomor_karpeg" class="form-control"
+                                        <input type="number" name="nomor_karpeg" class="form-control"
                                             value="{{ old('nomor_karpeg', $user->userAparatur?->nomor_karpeg) }}">
                                         @error('nomor_karpeg')
                                             <span class="text-danger text-sm">{{ $message }}</span>
@@ -167,14 +155,14 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="basicInput">Jabatan</label>
-                                        <input disabled type="text" name="jabatan" disabled class="form-control"
+                                        <input type="text" name="jabatan" disabled class="form-control"
                                             placeholder="" value="{{ $user->roles[0]->display_name }}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="basicInput">Jabatan TMT</label>
-                                        <input type="date" disabled name="jabatan_tmt" class="form-control"
+                                        <input type="date" name="jabatan_tmt" class="form-control"
                                             value="{{ old('jabatan_tmt', $user->userAparatur?->jabatan_tmt) }}">
                                         @error('jabatan_tmt')
                                             <span class="text-danger text-sm">{{ $message }}</span>
@@ -183,10 +171,10 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="basicInput">Pangkat / Golongan / TMT</label>
-                                        <select disabled class="pangkat_golongan form-select"
-                                            name="pangkat_golongan_tmt_id" name="pangkat">
-                                            <option disabled selected>- Pilih Pangkat / Golongan / TMT -</option>
+                                        <label for="basicInput">Pangkat / Golongan </label>
+                                        <select class="pangkat_golongan form-select" name="pangkat_golongan_tmt_id"
+                                            name="pangkat">
+                                            <option disabled selected>- Pilih Pangkat / Golongan -</option>
                                             @foreach ($pangkats as $pangkat)
                                                 <option @selected(old('pangkat_golongan_tmt_id', $user->userAparatur?->pangkat_golongan_tmt_id) == $pangkat->id) value="{{ $pangkat->id }}">
                                                     {{ $pangkat->nama }}
@@ -201,23 +189,34 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="basicInput">GOLONGAN TMT</label>
-                                        <input type="date" disabled name="golongan_tmt" class="form-control"
+                                        <input type="date" name="golongan_tmt" class="form-control"
                                             value="{{ old('golongan_tmt', $user->userAparatur?->golongan_tmt) }}">
                                         @error('golongan_tmt')
                                             <span class="text-danger text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
                                 </div>
-
-
-
-
-
-
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="basicInput">Unit Kerja </label>
+                                        <select class="nomenklatur_perangkat_daerah form-select"
+                                            name="nomenklatur_perangkat_daerah_id" name="nomenklatur">
+                                            <option disabled selected>- Pilih Unit Kerja -</option>
+                                            @foreach ($nomenklatur as $unit_kerja)
+                                                <option @selected(old('nomenklatur_perangkat_daerah_id', $user->userAparatur?->nomenklatur_perangkat_daerah_id) == $unit_kerja->id) value="{{ $unit_kerja->id }}">
+                                                    {{ $unit_kerja->nama }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('nomenklatur_perangkat_daerah_id')
+                                            <span class="text-danger text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Mekanisme Pengangkatan</label>
-                                        <select disabled class="form-select"
+                                        <select class="form-select"
                                             {{ in_array($user?->userAparatur?->status_mekanisme, [1, 3, 4]) ? 'disabled' : '' }}
                                             name="mekanisme_pengangkatan_id">
                                             <option selected disabled>- Pilih Mekanisme -</option>
@@ -229,10 +228,11 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-6 mekanisme-angka">
+
+                                <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Angka Kredit Mekanisme</label>
-                                        <input disabled type="number"
+                                        <label>Angka Kredit Awal</label>
+                                        <input type="number"
                                             {{ in_array($user?->userAparatur?->status_mekanisme, [1, 3, 4]) ? 'disabled' : '' }}
                                             name="angka_mekanisme" class="form-control"
                                             value="{{ $user?->userAparatur->angka_mekanisme }}">
@@ -266,13 +266,55 @@
                                         </div>
                                     </div>
                                 </div>
+                                {{-- <div class="col-md-6 mekanisme-angka">
+                                    <div class="form-group">
+                                        <label>Angka Kredit Awal</label>
+                                        <input type="number"
+                                            {{ in_array($user?->userAparatur?->status_mekanisme, [1, 3, 4]) ? 'disabled' : '' }}
+                                            name="angka_mekanisme" class="form-control"
+                                            value="{{ $user?->userAparatur->angka_mekanisme }}">
+                                        <div class="my-1 mekanisme-status"
+                                            style="display: flex; justify-content: end; align-items: center;">
+                                            @switch($user?->userAparatur?->status_mekanisme)
+                                                @case(1)
+                                                    <span style="width: 200px; font-style: italic; cursor: default;"
+                                                        class="btn btn-yellow-reverse px-2 py-1 text-sm">Menunggu</span>
+                                                @break
+
+                                                @case(2)
+                                                    <span style="width: 200px; font-style: italic; cursor: default;"
+                                                        class="btn btn-red-reverse px-2 py-1 text-sm">Revisi</span>
+                                                @break
+
+                                                @case(3)
+                                                    <span style="width: 200px; font-style: italic; cursor: default;"
+                                                        class="btn btn-green-reverse px-2 py-1 text-sm">Terverifikasi</span>
+                                                @break
+
+                                                @case(4)
+                                                    <span style="width: 200px; font-style: italic; cursor: default;"
+                                                        class="btn btn-black-reverse px-2 py-1 text-sm">Ditolak</span>
+                                                @break
+
+                                                @default
+                                                    <button style="width: 200px; font-style: italic; cursor: default;"
+                                                        class="btn btn-gray-reverse px-2 py-1 text-sm">Belum</button>
+                                            @endswitch
+                                        </div>
+                                    </div>
+                                </div> --}}
                             </div>
                         </div>
+                    </div>
+                    <div class="justify-content-end mt-2 text-end btn-bwh">
+                        <button type="reset" class="btn btn-gray text-sm px-5" id="reset">Reset</button>
+                        <button type="submit" class="btn btn-blue text-sm ms-3 px-5 btn-simpan"
+                            id="simpan">Simpan</button>
                     </div>
                 </form>
             </div>
         </div>
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
@@ -296,7 +338,10 @@
                                 </li>
                             @endforeach
                         </ul>
-
+                        <div class="d-flex justify-content-end">
+                            <button class="btn btn-red text-sm" data-bs-toggle="modal"
+                                data-bs-target="#tambahDocModal">Tambah Dokumen</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -323,12 +368,91 @@
                                 </li>
                             @endforeach
                         </ul>
-
+                        <div class="d-flex justify-content-end">
+                            <button class="btn btn-red text-sm" data-bs-toggle="modal"
+                                data-bs-target="#tambahKomModal">Tambah Kompetensi</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </section>
+    {{-- <div class="modal fade" id="tambahDocModal" tabindex="-1" role="dialog" aria-labelledby="tambahDocModalTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tambahDocModalTitle">
+                        Input File
+                    </h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <i data-feather="x"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="form-kepeg" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label>Nama File</label>
+                            <input class="form-control" type="text" name="nama">
+                        </div>
+                        <div class="form-group">
+                            <label>File Dokumen</label>
+                            <input type="file" name="doc_kepegawaian_tmp" required />
+                            <input type="file" name="doc_kepegawaian" style="display: none;" required />
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                        <span>Batal</span>
+                    </button>
+                    <button class="btn btn-green ml-1 btn-simpan-doc-kep">
+                        <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
+                            style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
+                        <span>Simpan</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="tambahKomModal" tabindex="-1" role="dialog" aria-labelledby="tambahKomModalTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tambahKomModalTitle">
+                        Tambah Kompetensi
+                    </h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <i data-feather="x"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="form-kom" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label>Nama Kompetensi</label>
+                            <input class="form-control" type="text" name="nama">
+                        </div>
+                        <div class="form-group">
+                            <label>File Kompetensi</label>
+                            <input type="file" name="doc_kompetensi_tmp" required />
+                            <input type="file" name="doc_kompetensi" style="display: none;" required />
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                        <span>Batal</span>
+                    </button>
+                    <button class="btn btn-green ml-1 btn-simpan-doc-kom">
+                        <img class="spin" src="{{ asset('assets/images/template/spinner.gif') }}"
+                            style="height: 25px; object-fit: cover;display: none;" alt="" srcset="">
+                        <span>Simpan</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div> --}}
 @endsection
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/css/pages/my-data.css') }}">
@@ -389,7 +513,7 @@
                     return new Promise(function(resolve) {
                         $.ajax({
                                 type: 'POST',
-                                url: url("/datasaya-store"),
+                                url: url("/kabkota-provinsi-store"),
                                 processData: false,
                                 contentType: false,
                                 data: postData
@@ -401,6 +525,7 @@
                                     });
                             })
                             .fail(function(erordata) {
+                                console.log(erordata);
                                 if (erordata.status == 422) {
                                     swal('Warning!', erordata.responseJSON.message,
                                         'warning');
@@ -409,13 +534,6 @@
                                 }
                             })
                     })
-                    // return await $.ajax({
-                    //     type: 'POST',
-                    //     url: url("/datasaya-store"),
-                    //     processData: false,
-                    //     contentType: false,
-                    //     data: postData
-                    // });
                 },
             })
         });
