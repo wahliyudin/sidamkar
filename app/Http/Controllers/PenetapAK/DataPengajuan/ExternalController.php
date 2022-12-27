@@ -128,11 +128,23 @@ class ExternalController extends Controller
         $periode = $this->periodeRepository->isActive();
         $user = $this->userRepository->getUserById($id)->load(['userAparatur.pangkatGolonganTmt']);
         $penetapAk = $this->authUser()->load(['userPejabatStruktural']);
+        if ($penetapAk->userPejabatStruktural->tingkat_aparatur == 'provinsi') {
+            $email = User::query()->withWhereHas('userProvKabKota', function ($query) use ($penetapAk) {
+                $query->where('provinsi_id', $penetapAk->userPejabatStruktural->provinsi_id);
+            })->first()?->userProvKabKota?->email_info_penetapan;
+        } else {
+            $email = User::query()->withWhereHas('userProvKabKota', function ($query) use ($penetapAk) {
+                $query->where('kab_kota_id', $penetapAk->userPejabatStruktural->kab_kota_id);
+            })->first()?->userProvKabKota?->email_info_penetapan;
+        }
+        if ($email == null || !$email) {
+            throw ValidationException::withMessages(['Maaf, Email Info Penetapan Belum Ditentukan Oleh Admin Kab Kota / Provinsi']);
+        }
         if (!isset($penetapAk?->userPejabatStruktural?->file_ttd)) {
             throw ValidationException::withMessages(['Maaf, Anda Belum Melengkapi Profil']);
         }
         $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode->id);
-        $this->externalService->ttdRekapitulasi($rekap, $user, $periode, $penetapAk, $request->no_penetapan, $request->nama_penetap);
+        $this->externalService->ttdRekapitulasi($rekap, $user, $periode, $penetapAk, $request->no_penetapan, $request->nama_penetap, $email);
         return response()->json([
             'message' => 'Berhasil'
         ]);

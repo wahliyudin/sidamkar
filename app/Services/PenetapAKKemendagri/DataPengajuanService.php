@@ -25,7 +25,7 @@ class DataPengajuanService
         $this->generatePdfService = $generatePdfService;
     }
 
-    public function ttdRekapitulasi(RekapitulasiKegiatan $rekapitulasiKegiatan, User $user, Periode $periode, User $penetap, $no_surat_penetapan = null, $nama_penetap)
+    public function ttdRekapitulasi(RekapitulasiKegiatan $rekapitulasiKegiatan, User $user, Periode $periode, User $penetap, $no_surat_penetapan = null, $nama_penetap, $email)
     {
         $penetapan = PenetapanAngkaKredit::query()->where('user_id', $user->id)->where('periode_id', $periode->id)->first();
         $this->generatePdfService->storePenetapan($user, $penetap, $periode, true, $no_surat_penetapan, $penetapan->ak_lama_jabatan, $rekapitulasiKegiatan->keterangan_1, $rekapitulasiKegiatan->keterangan_2, $rekapitulasiKegiatan->keterangan_3, $rekapitulasiKegiatan->keterangan_4, $rekapitulasiKegiatan->keterangan_5);
@@ -40,13 +40,7 @@ class DataPengajuanService
             'fungsional_id' => $user->id,
             'tgl_ttd' => $tgl_ttd
         ]);
-        $kemendagri = DB::table('users')
-            ->join('role_user', 'users.id', '=', 'role_user.user_id')
-            ->join('user_kemendagris', 'users.id', '=', 'user_kemendagris.user_id')
-            ->where('role_user.role_id', '=', 10)
-            ->select('users.id', 'user_kemendagris.email_info_penetapan')
-            ->first();
         $jabatan = DestructRoleFacade::getRoleFungsionalFirst($user->roles);
-        SendTTDPenetapan::dispatch($user?->userAparatur?->nama, concatPriodeY($periode), $jabatan, $nama_penetap, $tgl_ttd, $kemendagri->email_info_penetapan);
+        SendTTDPenetapan::dispatch($user?->userAparatur?->nama, concatPriodeY($periode), $jabatan, $nama_penetap, $tgl_ttd, $email);
     }
 }
