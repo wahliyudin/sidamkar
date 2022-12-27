@@ -7,11 +7,10 @@ use App\Models\JenisKegiatan;
 use App\Models\SubButirKegiatan;
 use App\Models\SubUnsur;
 use App\Models\Unsur;
-use Illuminate\Validation\ValidationException;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class KegiatanPenunjangProfesiImport implements ToModel, WithHeadingRow
+class KegiatanProfesiImport implements ToModel, WithHeadingRow
 {
     public function model(array $row)
     {

@@ -6,6 +6,7 @@ use App\Exports\KegiatanProfesiExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\KegiatanProfesiRequest;
 use App\Imports\KegiatanPenunjangProfesiImport;
+use App\Imports\KegiatanProfesiImport;
 use App\Imports\UnsurPenunjangImport;
 use App\Imports\UnsursImport;
 use App\Models\ButirKegiatan;
@@ -224,7 +225,7 @@ class KegiatanProfesiController extends Controller
             'file_import.required' => 'File harus diisi'
         ]);
         try {
-            Excel::import(new KegiatanPenunjangProfesiImport(), $request->file('file_import'));
+            Excel::import(new KegiatanProfesiImport(), $request->file('file_import'));
             return response()->json([
                 'status' => 200,
                 'message' => 'Berhasil diimport'

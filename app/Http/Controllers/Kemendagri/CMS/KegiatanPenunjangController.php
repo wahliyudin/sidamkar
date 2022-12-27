@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Kemendagri\CMS;
 use App\Exports\KegiatanPenunjangExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\KegiatanPenunjangRequest;
+use App\Imports\KegiatanPenunjangImport;
 use App\Imports\KegiatanPenunjangProfesiImport;
 use App\Imports\UnsurPenunjangImport;
 use App\Models\ButirKegiatan;
@@ -223,7 +224,7 @@ class KegiatanPenunjangController extends Controller
             'file_import.required' => 'File harus diisi'
         ]);
         try {
-            Excel::import(new KegiatanPenunjangProfesiImport(), $request->file('file_import'));
+            Excel::import(new KegiatanPenunjangImport(), $request->file('file_import'));
             return response()->json([
                 'status' => 200,
                 'message' => 'Berhasil diimport'
