@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('periode_id');
             $table->foreignUuid('user_id');
             $table->float('ak_kelebihan', places: 4, unsigned: true);
-            $table->float('ak_pengalaman', places: 4, unsigned: true);
+            $table->float('ak_pengalaman', places: 4, unsigned: true)->nullable();
             $table->float('total_ak_kumulatif', places: 4, unsigned: true)->nullable();
             $table->float('ak_lama_jabatan', places: 4, unsigned: true)->nullable();
             $table->timestamps();
