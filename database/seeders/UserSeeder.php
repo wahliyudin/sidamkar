@@ -44,7 +44,7 @@ class UserSeeder extends Seeder
 
         $penetapDamkarKemendagri = User::query()->create([
             'username' => 'Penetap Damkar Kemendagri',
-            'email' => 'penetapkemendagri@gmail.com',
+            'email' => 'penetapdamkarkemendagri@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 1
@@ -55,7 +55,7 @@ class UserSeeder extends Seeder
 
         $penilaiAnalisKemendagri = User::query()->create([
             'username' => 'Penilai Analis Kemendagri',
-            'email' => 'penilaidamkarkemendagri@gmail.com',
+            'email' => 'penilaianaliskemendagri@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 1
@@ -66,7 +66,7 @@ class UserSeeder extends Seeder
 
         $penetapAnalisKemendagri = User::query()->create([
             'username' => 'Penetap Analis Kemendagri',
-            'email' => 'penetapkemendagri@gmail.com',
+            'email' => 'penetapanaliskemendagri@gmail.com',
             'password' => Hash::make('123456789'),
             'email_verified_at' => now(),
             'status_akun' => 1
