@@ -17,6 +17,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use App\Models\KetentuanSkpFungsional;
+use App\Models\PangkatGolonganTmt;
 use App\Repositories\RekapitulasiKegiatanRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -57,7 +58,8 @@ class KegiatanJabatanController extends Controller
         $ak_diterima = $this->kegiatanJabatanService->sumScoreByUser($user->id, $periode);
         $ak_jabatan = DB::table('laporan_kegiatan_jabatans')->where('periode_id', $periode->id)->where('user_id', Auth::user()->id)->where('status', 3)->sum('score');
         $historyRekapitulasiKegiatans = $user?->rekapitulasiKegiatan?->historyRekapitulasiKegiatans ?? [];
-        return view('aparatur.laporan-kegiatan.jabatan.index', compact('periode', 'user', 'judul', 'historyRekapitulasiKegiatans', 'skp', 'ketentuan_ak', 'ak_diterima', 'ak_jabatan'));
+        $pangkats = PangkatGolonganTmt::query()->get();
+        return view('aparatur.laporan-kegiatan.jabatan.index', compact('pangkats', 'periode', 'user', 'judul', 'historyRekapitulasiKegiatans', 'skp', 'ketentuan_ak', 'ak_diterima', 'ak_jabatan'));
     }
 
     /**
@@ -262,5 +264,15 @@ class KegiatanJabatanController extends Controller
                 'message' => $e->getMessage()
             ]);
         }
+    }
+
+    public function golonganCustom(Request $request)
+    {
+        $request->validate(['golongan_custom' => 'required'], ['golongan_custom.required' => 'Golongan Wajib Diisi']);
+        $this->authUser()->userAparatur()->update(['golongan_custom' => $request->golongan_custom]);
+        return response()->json([
+            'success' => 200,
+            'message' => 'Berhasil disimpan'
+        ]);
     }
 }

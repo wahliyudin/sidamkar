@@ -295,7 +295,7 @@ $(document).ready(function () {
             swal("Error!", "Ada Data Yang Belum Di Input", "error");
         } else if (nilai_skp == "") {
             swal("Error!", "Ada Data Yang Belum Di Input", "error");
-        } else if(nilai_skp != null & jenis_skp != null ) {
+        } else if (nilai_skp != null & jenis_skp != null) {
             $.ajax({
                 type: "POST",
                 url: url("/laporan-kegiatan/jabatan/send-skp"),
@@ -322,4 +322,64 @@ $(document).ready(function () {
             });
         }
     });
+    $('.simpan-golongan').click(function (e) {
+        e.preventDefault();
+        var postData = new FormData($(".form-golongan")[0]);
+        swal({
+            title: "Apakah Data Yang Anda Masukkan Sudah Benar?",
+            type: "warning",
+            showCancelButton: !0,
+            confirmButtonText: "Ya, Sudah Benar!",
+            cancelButtonText: "Batal",
+            reverseButtons: !0,
+            showLoaderOnConfirm: true,
+            preConfirm: () => {
+                return new Promise(function (resolve) {
+                    $.ajax({
+                            type: 'POST',
+                            url: url('/laporan-kegiatan/jabatan/golongan-custom'),
+                            processData: false,
+                            contentType: false,
+                            data: postData
+                        })
+                        .done(function (myAjaxJsonResponse) {
+                            swal("Berhasil!", myAjaxJsonResponse.message, "success")
+                                .then(function () {
+                                    location.reload();
+                                });
+                        })
+                        .fail(function (erordata) {
+                            if (erordata.status == 422) {
+                                swal('Warning!', erordata.responseJSON.message,
+                                    'warning');
+                            } else {
+                                swal('Error!', erordata.responseJSON.message, 'error');
+                            }
+                        })
+                })
+            },
+        })
+    });
+
+    var ajaxError = function (jqXHR, xhr, textStatus, errorThrow, exception) {
+        if (jqXHR.status === 0) {
+            swal("Error!", 'Not connect.\n Verify Network.', "error");
+        } else if (jqXHR.status == 400) {
+            swal("Peringatan!", jqXHR['responseJSON'].message, "warning");
+        } else if (jqXHR.status == 404) {
+            swal('Error!', 'Requested page not found. [404]', "error");
+        } else if (jqXHR.status == 500) {
+            swal('Error!', 'Internal Server Error [500].' + jqXHR['responseJSON'].message, "error");
+        } else if (exception === 'parsererror') {
+            swal('Error!', 'Requested JSON parse failed.', "error");
+        } else if (exception === 'timeout') {
+            swal('Error!', 'Time out error.', "error");
+        } else if (exception === 'abort') {
+            swal('Error!', 'Ajax request aborted.', "error");
+        } else if (jqXHR.status == 422) {
+            swal('Warning!', JSON.parse(jqXHR.responseText).message, "warning");
+        } else {
+            swal('Error!', jqXHR.responseText, "error");
+        }
+    };
 });

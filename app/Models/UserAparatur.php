@@ -35,7 +35,8 @@ class UserAparatur extends Model
         'mekanisme_pengangkatan_id',
         'angka_mekanisme',
         'status_mekanisme',
-        'expired_mekanisme'
+        'expired_mekanisme',
+        'golongan_custom'
     ];
 
     /**
