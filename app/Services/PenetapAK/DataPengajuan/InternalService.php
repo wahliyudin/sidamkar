@@ -75,6 +75,6 @@ class InternalService
             'tgl_ttd' => $tgl_ttd
         ]);
         $jabatan = DestructRoleFacade::getRoleFungsionalFirst($user->roles);
-        SendTTDPenetapan::dispatch($user?->userAparatur?->nama, concatPriodeY($periode), $jabatan, $nama_penetap, $tgl_ttd, $email);
+        SendTTDPenetapan::dispatch($user?->userAparatur?->nama, concatPriodeFY($periode), $jabatan->display_name, $nama_penetap, $tgl_ttd, $email);
     }
 }

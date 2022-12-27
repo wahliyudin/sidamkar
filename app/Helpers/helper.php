@@ -74,6 +74,12 @@ if (!function_exists('concatPriodeY')) {
         return Carbon::make($periode->awal)->format('Y') . " - " . Carbon::make($periode->awal)->format('Y');
     }
 }
+if (!function_exists('concatPriodeFY')) {
+    function concatPriodeFY(Periode $periode)
+    {
+        return Carbon::make($periode->awal)->translatedFormat('F Y') . " - " . Carbon::make($periode->awal)->format('F Y');
+    }
+}
 if (!function_exists('linkToBasePath')) {
     function linkToBasePath($link)
     {
