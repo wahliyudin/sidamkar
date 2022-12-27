@@ -142,14 +142,6 @@
                                 </a>
                             </li>
                         @endrole
-                        @role(getAllRoleFungsional())
-                            <li>
-                                <a class="dropdown-item" href="{{ route('ubah-password') }}">
-                                    <i class="fa-solid fa-lock me-2"></i>
-                                    Ubah Password
-                                </a>
-                            </li>
-                        @endrole
                         @role(['atasan_langsung', 'penilai_ak_damkar', 'penetap_ak_damkar', 'penilai_ak_analis',
                             'penetap_ak_analis', 'penilai_ak_kemendagri', 'penetap_ak_kemendagri'])
                             <li>
@@ -159,19 +151,16 @@
                                 </a>
                             </li>
                         @endrole
-                        @role(['atasan_langsung', 'penilai_ak_damkar', 'penetap_ak_damkar', 'penilai_ak_analis',
-                            'penetap_ak_analis', 'penilai_ak_kemendagri', 'penetap_ak_kemendagri'])
-                            <li>
-                                <a class="dropdown-item" href="{{ route('ubah-password') }}">
-                                    <i class="fa-solid fa-lock me-2"></i>
-                                    Ubah Password
-                                </a>
-                            </li>
-                        @endrole
+                        <li>
+                            <a class="dropdown-item" href="{{ route('ubah-password') }}">
+                                <i class="fa-solid fa-lock me-2"></i>
+                                Ubah Password
+                            </a>
+                        </li>
                         <li>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();"><i
+                                    document.getElementById('logout-form').submit();"><i
                                     class="icon-mid bi bi-box-arrow-left me-2"></i>
                                 Logout</a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
