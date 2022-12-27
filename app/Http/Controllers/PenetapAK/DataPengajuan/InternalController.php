@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\PenetapAK\DataPengajuan;
 
 use App\Http\Controllers\Controller;
+use App\Models\KabKota;
 use App\Models\PenetapanAngkaKredit;
+use App\Models\Provinsi;
 use App\Models\User;
 use App\Repositories\PeriodeRepository;
 use App\Repositories\RekapitulasiKegiatanRepository;
@@ -76,13 +78,9 @@ class InternalController extends Controller
         $user = $this->userRepository->getUserById($id)->load(['userAparatur.pangkatGolonganTmt']);
         $penetapAk = $this->authUser()->load(['userPejabatStruktural']);
         if ($penetapAk->userPejabatStruktural->tingkat_aparatur == 'provinsi') {
-            $email = User::query()->withWhereHas('userProvKabKota', function ($query) use ($penetapAk) {
-                $query->where('provinsi_id', $penetapAk->userPejabatStruktural->provinsi_id);
-            })->first()?->userProvKabKota?->email_info_penetapan;
+            $email = Provinsi::query()->where('id', $penetapAk->userPejabatStruktural->provinsi_id)->first()?->email_info_penetapan;
         } else {
-            $email = User::query()->withWhereHas('userProvKabKota', function ($query) use ($penetapAk) {
-                $query->where('kab_kota_id', $penetapAk->userPejabatStruktural->kab_kota_id);
-            })->first()?->userProvKabKota?->email_info_penetapan;
+            $email = KabKota::query()->where('id', $penetapAk->userPejabatStruktural->kab_kota_id)->first()?->email_info_penetapan;
         }
         if ($email == null || !$email) {
             throw ValidationException::withMessages(['Maaf, Email Info Penetapan Belum Ditentukan Oleh Admin Kab Kota / Provinsi']);

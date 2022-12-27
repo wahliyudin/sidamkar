@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('provinsis', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('nama');
+            $table->string('email_info_penetapan')->nullable();
             $table->timestamps();
         });
     }

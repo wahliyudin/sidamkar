@@ -17,6 +17,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->foreignUuid('provinsi_id');
             $table->string('nama');
+            $table->string('email_info_penetapan')->nullable();
             $table->timestamps();
 
             $table->foreign('provinsi_id')->on('provinsis')->references('id')->cascadeOnDelete();

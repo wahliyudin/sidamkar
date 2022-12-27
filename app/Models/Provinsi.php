@@ -12,7 +12,8 @@ class Provinsi extends Model
     use HasFactory, HasUuids;
 
     protected $fillable = [
-        'nama'
+        'nama',
+        'email_info_penetapan'
     ];
 
     /**

@@ -13,7 +13,8 @@ class KabKota extends Model
 
     protected $fillable = [
         'provinsi_id',
-        'nama'
+        'nama',
+        'email_info_penetapan'
     ];
 
     /**
