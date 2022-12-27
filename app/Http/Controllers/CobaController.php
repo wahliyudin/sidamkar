@@ -19,6 +19,7 @@ use App\Models\Role;
 use App\Models\SubUnsur;
 use App\Models\Unsur;
 use App\Models\User;
+use App\Notifications\PenetapTTD;
 use App\Repositories\PeriodeRepository;
 use App\Services\Aparatur\LaporanKegiatan\KegiatanProfesiService;
 use App\Traits\AuthTrait;
@@ -31,6 +32,7 @@ use Barryvdh\Snappy\Facades\SnappyPdf as PDF;
 use Illuminate\Http\File;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -43,7 +45,9 @@ class CobaController extends Controller
 
     public function index()
     {
-        return Excel::download(new KegiatanPenunjangExport(), 'penunjangs.xlsx');
+        // $nama, $periode_concat, $jabatan, $nama_penetapan, $tgl_ttd, $email
+        // Notification::route('mail', 'wahliyudinzein@gmail.com')->notify(new PenetapTTD('wahli', 'sdsadgasdb', 'dsjadsda', 'asdhjfdjf', 'sadhsd'));
+        SendTTDPenetapan::dispatch('wahli', 'sdsadgasdb', 'dsjadsda', 'asdhjfdjf', 'sadhsd', 'wahliyudinzein@gmail.com');
     }
 
     public function store(Request $request)
