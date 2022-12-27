@@ -225,7 +225,7 @@ class KegiatanJabatanController extends Controller
 
     public function sendSKP(Request $request)
     {
-        $periode = Periode::query()->where('is_active', true)->first();
+        $periode = $this->periodeRepository->isActive();
         try {
             $data = [
                 'jenis_skp' => $request->jenis_skp,
@@ -246,6 +246,7 @@ class KegiatanJabatanController extends Controller
                     'ketentuan_skp_id' => null,
                     'user_id' => auth()->user()->id,
                     'nilai_skp' => $request->nilai_skp,
+                    'periode_id' => $periode->id,
                     'status' => 0,
                     'file' => null
                 ]);
