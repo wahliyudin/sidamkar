@@ -56,8 +56,8 @@ class KabKotaProvinsiController extends Controller
             'tempat_lahir' => $request->tempat_lahir,
             'tanggal_lahir' => $request->tanggal_lahir,
             'jenis_kelamin' => $request->jenis_kelamin,
-            'kab_kota_id' => $request->kab_kota_id,
-            'provinsi_id' => $request->provinsi_id,
+            // 'kab_kota_id' => $request->kab_kota_id,
+            // 'provinsi_id' => $request->provinsi_id,
 
         ];
         if (isset($request->mekanisme_pengangkatan_id)) {
@@ -84,6 +84,66 @@ class KabKotaProvinsiController extends Controller
             }
         } else {
             $user->userAparatur()->create($data);
+        }
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Berhasil Disimpan'
+
+        ]);
+    }
+    public function store_struktural(Request $request)
+    {
+        // $rules = [
+        //     'nama' => 'required',
+        //     'nip' => 'required',
+        //     'pangkat_golongan_tmt_id' => 'required',
+        //     'nomor_karpeg' => 'required',
+        //     'pendidikan_terakhir' => 'required',
+        //     'tempat_lahir' => 'required',
+        //     'tanggal_lahir' => 'required',
+        //     'jenis_kelamin' => 'required',
+        //     'jabatan_tmt' => 'required',
+        //     'golongan_tmt' => 'required',
+        //     'nomenklatur_perangkat_daerah_id' => 'required',
+        //     // 'provinsi_id' => 'required'
+        // ];
+        // if ($this->authUser()->tingkat_aparatur == 'kab_kota') {
+        //     $rules['kab_kota_id'] = 'required';
+        // }
+        // $request->validate($rules);
+        $data = [
+            'nama' => $request->nama,
+            'nip' => $request->nip,
+            'pangkat_golongan_tmt_id' => $request->pangkat_golongan_tmt_id,
+            'jabatan_tmt' => $request->jabatan_tmt,
+            'golongan_tmt' => $request->golongan_tmt,
+            'nomenklatur_perangkat_daerah_id' => $request->nomenklatur_perangkat_daerah_id,
+            'nomor_karpeg' => $request->nomor_karpeg,
+            'pendidikan_terakhir' => $request->pendidikan_terakhir,
+            'tempat_lahir' => $request->tempat_lahir,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            // 'kab_kota_id' => $request?->kab_kota_id ?? null,
+            // 'provinsi_id' => $request->provinsi_id,
+        ];
+        if ($request->hasFile('avatar')) {
+            $data['foto_pegawai'] = $this->storeImage($request->file('avatar'), 'aparatur');
+        }
+        if ($request->hasFile('ttd')) {
+            $data['file_ttd'] = $this->storeImage($request->file('ttd'), 'aparatur');
+        }
+        $user = User::query()->with('userPejabatStruktural')->find($request->user_id);
+        if (isset($user->userPejabatStruktural)) {
+            $user->userPejabatStruktural()->update($data);
+            if (isset($data['foto_pegawai'])) {
+                deleteImage($user->userPejabatStruktural->foto_pegawai);
+            }
+            if (isset($data['file_ttd'])) {
+                deleteImage($user->userPejabatStruktural->file_ttd);
+            }
+        } else {
+            $user->userPejabatStruktural()->create($data);
         }
 
         return response()->json([

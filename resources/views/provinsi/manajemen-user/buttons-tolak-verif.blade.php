@@ -4,7 +4,7 @@
             <i class="fas fa-trash"></i>
         </button>
     @elseif ($user->status_akun == 1)
-        <a href="{{ route('kab-kota.manajemen-user.fungsional.edit', $user->id) }}">
+        <a href="{{ route('manajemen-user.fungsional.edit', $user->id) }}">
             <button class="btn btn-blue-reverse me-2 ">
                 <i class="fas fa-edit "></i>
             </button>
