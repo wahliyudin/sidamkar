@@ -51,8 +51,8 @@ use App\Http\Controllers\PenetapAK\DataPengajuan\InternalController as DataPenga
 use App\Http\Controllers\PenetapAKAnalisKemendagri\PengajuanController as PenetapAKAnalisKemendagriPengajuanController;
 use App\Http\Controllers\PenetapAKDamkarKemendagri\PengajuanController as PenetapAKDamkarKemendagriPengajuanController;
 use App\Http\Controllers\PenilaiAK\DataPengajuan\ExternalController as PenilaiAKDataPengajuanExternalController;
-use App\Http\Controllers\PenilaiAk\DataPengajuan\InternalController;
-use App\Http\Controllers\PenilaiAk\KegiatanSelesaiController as PenilaiAkKegiatanSelesaiController;
+use App\Http\Controllers\PenilaiAK\DataPengajuan\InternalController;
+use App\Http\Controllers\PenilaiAK\KegiatanSelesaiController as PenilaiAkKegiatanSelesaiController;
 use App\Http\Controllers\PenilaiAKAnalisKemendagri\PengajuanController as PenilaiAKAnalisKemendagriPengajuanController;
 use App\Http\Controllers\PenilaiAKDamkarKemendagri\PengajuanController as PenilaiAKDamkarKemendagriPengajuanController;
 use App\Http\Controllers\PenilaiAKKemendagri\KegiatanSelesaiController;
