@@ -3,9 +3,14 @@
 namespace App\Http\Controllers\Kemendagri\VerifikasiData;
 
 use App\DataTables\Kemendagri\VerifikasiData\AparaturDataTable;
+use App\Exports\Kemendagri\VerifikasiData\AparaturExport;
 use App\Http\Controllers\Controller;
+use App\Models\PangkatGolonganTmt;
+use App\Models\Provinsi;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\Facades\DataTables;
 
 class AparaturController extends Controller
@@ -13,7 +18,10 @@ class AparaturController extends Controller
     public function index()
     {
         $judul = 'Manajemen Aparatur';
-        return view('kemendagri.verifikasi-data.aparatur.index', compact('judul'));
+        $provinsis = Provinsi::query()->get(['id', 'nama']);
+        $jabatans = Role::query()->whereIn('id', [1, 2, 3, 4, 5, 6, 7])->get(['id', 'display_name']);
+        $pangkats = PangkatGolonganTmt::query()->get(['id', 'nama']);
+        return view('kemendagri.verifikasi-data.aparatur.index', compact('judul', 'provinsis', 'jabatans', 'pangkats'));
     }
 
     public function datatable(Request $request)
@@ -38,5 +46,11 @@ class AparaturController extends Controller
                 ->addIndexColumn()
                 ->make(true);
         }
+    }
+
+    public function export(Request $request)
+    {
+        // $request->validate([]);
+        return Excel::download(new AparaturExport($request->tingkat, $request->jabatan_id, $request->pangkat_golongan, $request->provinsi_id, $request->kab_kota_id), 'aparaturs.xlsx');
     }
 }
