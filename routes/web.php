@@ -387,6 +387,7 @@ Route::middleware(['auth'])->group(function () {
         Route::controller(KemendagriAparaturController::class)->group(function () {
             Route::get('kemendagri/verifikasi-data/aparatur', 'index')->name('kemendagri.verifikasi-data.aparatur.aparatur');
             Route::post('kemendagri/verifikasi-data/aparatur/datatable', 'datatable')->name('kemendagri.verifikasi-data.aparatur.datatable');
+            Route::post('kemendagri/verifikasi-data/aparatur/export', 'export')->name('kemendagri.verifikasi-data.aparatur.export');
         });
 
         Route::controller(KemendagriPejabatStrukturalController::class)->group(function () {
