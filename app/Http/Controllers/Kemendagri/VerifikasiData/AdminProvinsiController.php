@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Kemendagri\VerifikasiData;
 
 use App\DataTables\Kemendagri\VerifikasiData\AdminProvinsiDataTable;
 use App\Http\Controllers\Controller;
+use App\Models\Provinsi;
 use App\Models\User;
 use App\Notifications\UserReject;
 use App\Notifications\UserVerified;
@@ -16,7 +17,8 @@ class AdminProvinsiController extends Controller
     public function index()
     {
         $judul = 'Manajemen User Provinsi';
-        return view('kemendagri.verifikasi-data.admin-provinsi.index', compact('judul'));
+        $provinsis = Provinsi::query()->get(['id', 'nama']);
+        return view('kemendagri.verifikasi-data.admin-provinsi.index', compact('judul', 'provinsis'));
     }
 
     public function datatable(Request $request)

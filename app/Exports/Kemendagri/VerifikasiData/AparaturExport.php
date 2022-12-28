@@ -17,7 +17,7 @@ class AparaturExport implements FromArray, WithHeadings, WithTitle
     protected $provinsi;
     protected $kab_kota;
 
-    public function __construct($tingkat, $jabatan = null, $pangkat_golongan = null, $provinsi, $kab_kota = null)
+    public function __construct($tingkat, $jabatan = null, $pangkat_golongan = null, $provinsi = null, $kab_kota = null)
     {
         $this->tingkat = $tingkat;
         $this->jabatan = $jabatan;
@@ -29,9 +29,13 @@ class AparaturExport implements FromArray, WithHeadings, WithTitle
     public function array(): array
     {
         if ($this->tingkat == 'provinsi') {
-            $q = "AND user_aparaturs.tingkat_aparatur = 'provinsi' AND provinsis.id = $this->provinsi";
+            if ($this->provinsi != null) {
+                $q = "AND user_aparaturs.tingkat_aparatur = 'provinsi' AND provinsis.id = $this->provinsi";
+            }
         } else {
-            $q = "AND user_aparaturs.tingkat_aparatur = 'kab_kota' AND kab_kotas.id = $this->kab_kota";
+            if ($this->kab_kota != null) {
+                $q = "AND user_aparaturs.tingkat_aparatur = 'kab_kota' AND kab_kotas.id = $this->kab_kota";
+            }
         }
         if ($this->jabatan != null) {
             $q .= " AND roles.id = $this->jabatan";
