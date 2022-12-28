@@ -73,7 +73,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-2 d-flex align-items-center">
-                                    <button class="btn btn-green ps-3"><i class="fa-solid fa-file-excel me-2"></i>
+                                    <button type="submit" class="btn btn-green ps-3"><i
+                                            class="fa-solid fa-file-excel me-2"></i>
                                         Export</button>
                                 </div>
                             </div>

@@ -9,16 +9,16 @@
                         <h5 style="color: #06152B; font-size: 'Roboto';">Data Admin Provinsi</h5>
                     </div>
                 </div>
-                <form method="POST" action="{{ route('kemendagri.verifikasi-data.aparatur.export') }}"
+                <form method="POST" action="{{ route('kemendagri.verifikasi-data.admin-provinsi.export') }}"
                     class="d-flex flex-column form-export"
                     style="border: 1px solid #809FB8; padding: 10px; border-radius: 10px;">
                     @csrf
-                    <div class="row gap-4">
+                    <div class="row gap-4 justify-content-center">
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Provinsi</label>
-                                <select name="provinsi_id" required class="form-select text-sm">
-                                    <option value=""> All </option>
+                                <select name="provinsi_id" class="form-select text-sm">
+                                    <option value="all"> All </option>
                                     @foreach ($provinsis as $provinsi)
                                         <option value="{{ $provinsi->id }}">
                                             {{ $provinsi->nama }}
@@ -27,20 +27,32 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        {{-- <div class="col-md-4">
                             <div class="form-group">
                                 <label>Kabupaten / Kota</label>
-                                <select required disabled name="kab_kota_id" class="form-select text-sm">
+                                <select name="kab_kota_id" class="form-select text-sm">
                                     <option value="">- Pilih Provinsi Terlebih
                                         Dahulu -</option>
+                                    <option value="all"> All </option>
+                                </select>
+                            </div>
+                        </div> --}}
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Status</label>
+                                <select name="status" class="form-select text-sm">
                                     <option value=""> All </option>
+                                    <option value="0">
+                                        Menunggu</option>
+                                    <option value="1">
+                                        Verified</option>
+                                    <option value="2">
+                                        Ditolak</option>
                                 </select>
                             </div>
                         </div>
-                    </div>
-                    <div class="row gap-4">
                         <div class="col-md-2 d-flex align-items-center">
-                            <button class="btn btn-green ps-3"><i class="fa-solid fa-file-excel me-2"></i>
+                            <button type="submit" class="btn btn-green ps-3"><i class="fa-solid fa-file-excel me-2"></i>
                                 Export</button>
                         </div>
                     </div>
@@ -94,16 +106,22 @@
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/select2/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/pages/aparatur/data-saya.css') }}">
 @endsection
 
 @section('js')
     <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/select2/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
     <script type="text/javascript">
+        $('select[name="provinsi_id"]').select2();
+        $('select[name="kab_kota_id"]').select2();
+        $('select[name="status"]').select2();
         $('#admin-provinsi').dataTable().fnDestroy();
         table = $('#admin-provinsi').DataTable({
             responsive: true,
@@ -273,8 +291,13 @@
         $('select[name="provinsi_id"]').each(function(index, element) {
             $(element).change(function(e) {
                 e.preventDefault();
-                loadKabKota(this.value, $(element.parentElement.parentElement.parentElement)
-                    .find('select[name="kab_kota_id"]'))
+                if ($(this).val() != 'all') {
+                    loadKabKota(this.value, $(element.parentElement.parentElement.parentElement)
+                        .find('select[name="kab_kota_id"]'))
+                } else {
+                    $($(element.parentElement.parentElement.parentElement)
+                        .find('select[name="kab_kota_id"]')).prop('selectedIndex', 1);
+                }
             });
         });
 
@@ -285,7 +308,8 @@
                     .then(res => res.json())
                     .then(res => {
                         $(kabupaten).html(
-                            '<option selected disabled>- Pilih Kabupaten / Kota -</option>');
+                            '<option selected disabled>- Pilih Kabupaten / Kota -</option><option value="all"> All </option>'
+                        );
                         res.forEach(model => {
                             var selected = kabupaten_id == model.id ? 'selected=""' : '';
                             $(kabupaten).append('<option value="' + model.id + '" ' +
