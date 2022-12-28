@@ -4,9 +4,11 @@
             <i class="fas fa-trash"></i>
         </button>
     @elseif ($user->status_akun == 1)
-        {{-- <button class="btn btn-blue-reverse me-2">
-        <i class="fas fa-edit"></i>
-    </button> --}}
+        <a href="{{ route('manajemen-user.fungsional.edit', $user->id) }}">
+            <button class="btn btn-blue-reverse me-2 ">
+                <i class="fas fa-edit "></i>
+            </button>
+        </a>
         <button class="btn btn-red-reverse me-2" onclick="hapus('{{ $user->id }}')">
             <i class="fas fa-trash"></i>
         </button>
