@@ -36,12 +36,11 @@ class AparaturController extends Controller
                 pangkat_golongan_tmts.nama AS pangkat
             FROM users
             JOIN user_aparaturs ON user_aparaturs.user_id = users.id
-            JOIN provinsis ON user_aparaturs.provinsi_id = provinsis.id
-            JOIN kab_kotas ON kab_kotas.id = user_aparaturs.kab_kota_id
+            LEFT JOIN provinsis ON user_aparaturs.provinsi_id = provinsis.id
+            LEFT JOIN kab_kotas ON kab_kotas.id = user_aparaturs.kab_kota_id
             JOIN role_user ON role_user.user_id = users.id
             JOIN roles ON roles.id = role_user.role_id
-            JOIN pangkat_golongan_tmts ON user_aparaturs.pangkat_golongan_tmt_id
-            LIMIT 10');
+            LEFT JOIN pangkat_golongan_tmts ON user_aparaturs.pangkat_golongan_tmt_id');
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->make(true);
