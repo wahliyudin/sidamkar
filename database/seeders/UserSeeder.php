@@ -600,26 +600,7 @@ class UserSeeder extends Seeder
             'kab_kota_id' => 3202,
         ]);
 
-        $atasanLangsungProvDKI = User::query()->create([
-            'username' => 'Atasan Langsung DKI Jakarta',
-            'email' => 'atasanprovdki.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 0
-        ]);
-        $atasanLangsungProvDKI->userPejabatStruktural()->create([
-            'nama' => 'Atasan Langsung DKI Jakarta',
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'tingkat_aparatur' => 'provinsi',
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 31,
-        ]);
-
+     
         // $atasanLangsungProvDKI1 = User::query()->create([
         //     'username' => 'Atasan Langsung DKI Jakarta1',
         //     'email' => 'asasatgfdjhgasanprovdki.com',
@@ -640,45 +621,6 @@ class UserSeeder extends Seeder
         //     'provinsi_id' => 31,
         // ]);
 
-        $penilaiAKDamkarDKI = User::query()->create([
-            'username' => 'Penilai AK Damkar DKI Jakarta',
-            'email' => 'asasatasahghjthasasanprovdki.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 0
-        ]);
-        $penilaiAKDamkarDKI->userPejabatStruktural()->create([
-            'nama' => 'Penilai AK Damkar DKI Jakarta',
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'tingkat_aparatur' => 'provinsi',
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 31,
-        ]);
-
-        $penilaiAKAnalisDKI = User::query()->create([
-            'username' => 'Penilai AK Analis DKI Jakarta',
-            'email' => 'asahjthasasasaasasaasanprovdki.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 0
-        ]);
-        $penilaiAKAnalisDKI->userPejabatStruktural()->create([
-            'nama' => 'Penilai AK Analis DKI Jakarta',
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'tingkat_aparatur' => 'provinsi',
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 31,
-        ]);
 
         // $penilaiAKDamkarDKI1 = User::query()->create([
         //     'username' => 'Penilai AK Damkar DKI Jakarta1',
@@ -720,430 +662,10 @@ class UserSeeder extends Seeder
         //     'provinsi_id' => 31,
         // ]);
 
-        $penetapAKDamkarDKI = User::query()->create([
-            'username' => 'Penetap AK Damkar DKI Jakarta',
-            'email' => 'asasataasadfasasadgasasaasasanprovdki.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 0
-        ]);
-        $penetapAKDamkarDKI->userPejabatStruktural()->create([
-            'nama' => 'Penetap AK Damkar DKI Jakarta',
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'tingkat_aparatur' => 'provinsi',
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 31,
-        ]);
 
-        $penetapAKAnalisDKI = User::query()->create([
-            'username' => 'Penetap AK Analis DKI Jakarta1',
-            'email' => 'asafdgasasasasasasad3saasasanprovdki.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 1
-        ])->attachRole('penetap_ak_damkar');
-        $penetapAKAnalisDKI->userPejabatStruktural()->create([
-            'nama' => 'Penetap AK Analis DKI Jakarta1',
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'tingkat_aparatur' => 'provinsi',
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 31,
-        ]);
+        //Dki Jakart
 
-        //Dki Jakarta
 
-        $adminProvinsiDkiJakarta = User::query()->create([
-            'username' => 'Admin Provinsi DKI Jakarta',
-            'email' => 'adminprovdkijakarta1@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 1
-        ])->attachRole('provinsi');
-        $adminProvinsiDkiJakarta->userProvKabKota()->create([
-            'nomenklatur_perangkat_daerah_id' => 1,
-            'provinsi_id' => 31,
-        ]);
-
-        $KabKotJakartaPusat = User::query()->create([
-            'username' => 'Admin Kota Jakarta Pusat',
-            'email' => 'adminkotaJakartaPusat@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 1
-        ])->attachRole('kab_kota');
-        $KabKotJakartaPusat->userProvKabKota()->create([
-            'nomenklatur_perangkat_daerah_id' => 1,
-            'provinsi_id' => 31,
-            'kab_kota_id' => 3171,
-        ]);
-
-        $atasanLangsungKotaJakpus = User::query()->create([
-            'username' => 'Atasan Langsung Jakarta Pusat',
-            'email' => 'atasanasasaKotaJakpus@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 0
-        ]);
-        $atasanLangsungKotaJakpus->userPejabatStruktural()->create([
-            'nama' => 'Atasan Langsung Jakarta Pusat',
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'tingkat_aparatur' => 'kab_kota',
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 31,
-            'kab_kota_id' => 3171,
-        ]);
-
-        $penilai_ak_damkarKotaJakpus = User::query()->create([
-            'username' => 'Penilai AK Damkar Jakarta Pusat',
-            'email' => 'atasanKsdasasasasdsotaJakpus@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 0
-        ]);
-        $penilai_ak_damkarKotaJakpus->userPejabatStruktural()->create([
-            'nama' => 'Penilai AK Damkar Jakarta Pusat',
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'tingkat_aparatur' => 'kab_kota',
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 31,
-            'kab_kota_id' => 3171,
-        ]);
-        $penilai_ak_analisKotaJakpus = User::query()->create([
-            'username' => 'Penilai AK Analis Jakarta Pusat',
-            'email' => 'atasanKsdsdasADSDsqwqasasotaJakpus@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 0
-        ]);
-        $penilai_ak_analisKotaJakpus->userPejabatStruktural()->create([
-            'nama' => 'Penilai AK Analis Jakarta Pusat',
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'tingkat_aparatur' => 'kab_kota',
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 31,
-            'kab_kota_id' => 3171,
-        ]);
-        $penetap_ak_damkarKotaJakpus = User::query()->create([
-            'username' => 'Penetap AK Damkar Jakarta Pusat',
-            'email' => 'atasaasasanKsdsASASASAdsqwqasasotaJakpus@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 0
-        ]);
-
-        $penetap_ak_damkarKotaJakpus->userPejabatStruktural()->create([
-            'nama' => 'Penetap AK Damkar Jakarta Pusat',
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'tingkat_aparatur' => 'kab_kota',
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 31,
-            'kab_kota_id' => 3171,
-        ]);
-
-        $penetap_ak_analisKotaJakpus = User::query()->create([
-            'username' => 'Penetap AK Analis Jakarta Pusat',
-            'email' => 'atasaasasanKsdsdasasadadasqwqasasotaJakpus@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 0
-        ]);
-        $penetap_ak_analisKotaJakpus->userPejabatStruktural()->create([
-            'nama' => 'Penetap AK Analis Jakarta Pusat',
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'tingkat_aparatur' => 'kab_kota',
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 31,
-            'kab_kota_id' => 3171,
-        ]);
-
-        $atasanLangsungKotaJakpus1 = User::query()->create([
-            'username' => 'Atasan Langsung Jakarta Pusat1',
-            'email' => 'atasanasasaKotaJsasasakpus@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 1
-        ])->attachRole('atasan_langsung');
-        $atasanLangsungKotaJakpus1->userPejabatStruktural()->create([
-            'nama' => 'Atasan Langsung Jakarta Pusat1',
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'tingkat_aparatur' => 'kab_kota',
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 31,
-            'kab_kota_id' => 3171,
-        ]);
-
-        $penilai_ak_damkarKotaJakpus1 = User::query()->create([
-            'username' => 'Penilai AK Damkar Jakarta Pusat1',
-            'email' => 'atasanwewqefrtradadadwqeKotaJakpus@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 1
-        ])->attachRole('penilai_ak_damkar');
-        $penilai_ak_damkarKotaJakpus1->userPejabatStruktural()->create([
-            'nama' => 'Penilai AK Damkar Jakarta Pusat1',
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'tingkat_aparatur' => 'kab_kota',
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 31,
-            'kab_kota_id' => 3171,
-        ]);
-
-        $penilai_ak_analisKotaJakpus1 = User::query()->create([
-            'username' => 'Penilai AK Analis Jakarta Pusat1',
-            'email' => 'atasanKsqwasasqasadsfswdsdsasasotaJakpus@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 1
-        ])->attachRole('penilai_ak_analis');
-        $penilai_ak_analisKotaJakpus1->userPejabatStruktural()->create([
-            'nama' => 'Penilai AK Analis Jakarta Pusat1',
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'tingkat_aparatur' => 'kab_kota',
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 31,
-            'kab_kota_id' => 3171,
-        ]);
-
-        $penetap_ak_damkarKotaJakpus1 = User::query()->create([
-            'username' => 'Penetap AK Damkar Jakarta Pusat1',
-            'email' => 'atasaasadfdgfsaadadanKsdsdsqwqasasotaJakpus@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 1
-        ])->attachRole('penetap_ak_damkar');
-        $penetap_ak_damkarKotaJakpus1->userPejabatStruktural()->create([
-            'nama' => 'Penetap AK Damkar Jakarta Pusat1',
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'tingkat_aparatur' => 'kab_kota',
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 31,
-            'kab_kota_id' => 3171,
-        ]);
-
-        $penetap_ak_analisKotaJakpus1 = User::query()->create([
-            'username' => 'Penetap AK Analis Jakarta Pusat1',
-            'email' => 'atasaaasasassasaqsfganKsdsdsqwqasasotaJakpus@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 1
-        ])->attachRole('penetap_ak_analis');
-        $penetap_ak_analisKotaJakpus1->userPejabatStruktural()->create([
-            'nama' => 'Penetap AK Analis Jakarta Pusat1',
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'tingkat_aparatur' => 'kab_kota',
-            'jenis_kelamin' => 'L',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 31,
-            'kab_kota_id' => 3171,
-        ]);
-
-        $damkarpemulaJakpus = User::query()->create([
-            'username' => 'Damkar Pemula Jakpus',
-            'email' => 'pemulaJakpus@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 0
-        ]);
-        $damkarpemulaJakpus->userAparatur()->create([
-            'nama' => 'Damkar Pemula Jakpus',
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'jenis_kelamin' => 'L',
-            'tingkat_aparatur' => 'kab_kota',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 31,
-            'kab_kota_id' => 3171,
-        ]);
-
-        $damkarterampilJakpus = User::query()->create([
-            'username' => 'Damkar Terampil Jakpus',
-            'email' => 'TerampilJakpus@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 0
-        ]);
-        $damkarterampilJakpus->userAparatur()->create([
-            'nama' => 'Damkar Terampil Jakpus',
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'jenis_kelamin' => 'L',
-            'tingkat_aparatur' => 'kab_kota',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 31,
-            'kab_kota_id' => 3171,
-        ]);
-
-        $damkarmahirJakpus = User::query()->create([
-            'username' => 'Damkar Mahir Jakpus',
-            'email' => 'MahirJakpus@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 0
-        ]);
-        $damkarmahirJakpus->userAparatur()->create([
-            'nama' => 'Damkar Mahir Jakpus',
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'jenis_kelamin' => 'L',
-            'tingkat_aparatur' => 'kab_kota',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 31,
-            'kab_kota_id' => 3171,
-        ]);
-
-        $damkarpenyeliaJakpus = User::query()->create([
-            'username' => 'Damkar Penyelia Jakpus',
-            'email' => 'PenyeliaJakpus@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 0
-        ]);
-        $damkarpenyeliaJakpus->userAparatur()->create([
-            'nama' => 'Damkar Penyelia Jakpus',
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'jenis_kelamin' => 'L',
-            'tingkat_aparatur' => 'kab_kota',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 31,
-            'kab_kota_id' => 3171,
-        ]);
-
-        $analis_kebakaran_ahli_pertamaJakpus = User::query()->create([
-            'username' => 'Analis Kebakaran Ahli Pertama Jakpus',
-            'email' => 'analis_kebakaran_ahli_pertama@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 0
-        ]);
-        $analis_kebakaran_ahli_pertamaJakpus->userAparatur()->create([
-            'nama' => 'Analis Kebakaran Ahli Pertama Jakpus',
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'jenis_kelamin' => 'L',
-            'tingkat_aparatur' => 'kab_kota',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 31,
-            'kab_kota_id' => 3171,
-        ]);
-
-        $analis_kebakaran_ahli_mudaJakpus = User::query()->create([
-            'username' => 'Analis Kebakaran Ahli Muda Jakpus',
-            'email' => 'analis_kebakaran_ahli_muda@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 0
-        ]);
-        $analis_kebakaran_ahli_mudaJakpus->userAparatur()->create([
-            'nama' => 'Analis Kebakaran Ahli Muda Jakpus',
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'jenis_kelamin' => 'L',
-            'tingkat_aparatur' => 'kab_kota',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 31,
-            'kab_kota_id' => 3171,
-        ]);
-
-        $analis_kebakaran_ahli_madyaJakpus = User::query()->create([
-            'username' => 'Analis Kebakaran Ahli Madya Jakpus',
-            'email' => 'analis_kebakaran_ahli_madya@gmail.com',
-            'password' => Hash::make('123456789'),
-            'email_verified_at' => now(),
-            'status_akun' => 0
-        ]);
-        $analis_kebakaran_ahli_madyaJakpus->userAparatur()->create([
-            'nama' => 'Analis Kebakaran Ahli Madya Jakpus',
-            'nip' => '2020020088',
-            'nomor_karpeg' => '2020020088',
-            'pangkat_golongan_tmt_id' => 5,
-            'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => Carbon::now(),
-            'jenis_kelamin' => 'L',
-            'tingkat_aparatur' => 'kab_kota',
-            'pendidikan_terakhir' => 2,
-            'provinsi_id' => 31,
-            'kab_kota_id' => 3171,
-        ]);
-
-        //End Dki Jakarta
 
         //Nangro Aceh Darusallam
         $adminNangroAcehDarusallam = User::query()->create([
@@ -1779,45 +1301,78 @@ class UserSeeder extends Seeder
         //end ini adalah seeder user yang dari request client
 
 
-        // seeder request client
-        $adminprovbali = User::query()->create([
-            'username' => 'Admin Provinsi Bali',
-            'email' => 'adminprovBali@gmail.com',
-            'password' => Hash::make('123456789'),
+        //admin prov & kab di bali
+        $adminprovbali1 = User::query()->create([
+            'username' => 'adminBALI1',
+            'email' => 'adminBali1@gmail.com',
+            'password' => Hash::make('admin126'),
             'email_verified_at' => now(),
             'status_akun' => 1
         ])->attachRole('provinsi');
-        $adminprovbali->userProvKabKota()->create([
+        $adminprovbali1->userProvKabKota()->create([
             'nomenklatur_perangkat_daerah_id' => 1,
+            // 'no_hp' => '081345456781',
+            'provinsi_id' => 51,
+        ]);
+
+        $adminprovbali2 = User::query()->create([
+            'username' => 'adminBALI2',
+            'email' => 'adminBali2@gmail.com',
+            'password' => Hash::make('admin127'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('provinsi');
+        $adminprovbali2->userProvKabKota()->create([
+            'nomenklatur_perangkat_daerah_id' => 1,
+            // 'no_hp' => '081345756781',
+            'provinsi_id' => 51,
+        ]);
+
+        $adminprovbali3 = User::query()->create([
+            'username' => 'adminBALI3',
+            'email' => 'adminBali3@gmail.com',
+            'password' => Hash::make('admin128'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('provinsi');
+        $adminprovbali3->userProvKabKota()->create([
+            'nomenklatur_perangkat_daerah_id' => 1,
+            // 'no_hp' => '081345576881',
             'provinsi_id' => 51,
         ]);
 
         $adminkotadenpasar = User::query()->create([
-            'username' => 'Admin Denpasar',
+            'username' => 'admindenpasar',
             'email' => 'admindenpasar@gmail.com',
-            'password' => Hash::make('123456789'),
+            'password' => Hash::make('admin131'),
             'email_verified_at' => now(),
             'status_akun' => 1
         ])->attachRole('kab_kota');
         $adminkotadenpasar->userProvKabKota()->create([
             'nomenklatur_perangkat_daerah_id' => 1,
+            // 'no_hp' => '081300576881',
             'provinsi_id' => 51,
             'kab_kota_id' => 5171,
         ]);
 
         $adminkotabadung = User::query()->create([
-            'username' => 'Admin Badung',
-            'email' => 'adminbadung@gmail.com',
-            'password' => Hash::make('123456789'),
+            'username' => 'adminkabbadung',
+            'email' => 'adminkabbadung@gmail.com',
+            'password' => Hash::make('admin132'),
             'email_verified_at' => now(),
             'status_akun' => 1
         ])->attachRole('kab_kota');
         $adminkotabadung->userProvKabKota()->create([
             'nomenklatur_perangkat_daerah_id' => 1,
+            // 'no_hp' => '081300577861',
             'provinsi_id' => 51,
             'kab_kota_id' => 5103,
         ]);
+        //end admin prov & kab di bali  
 
+
+
+        // seeder request client untuk provinsi Bali
         $petugasdamkarpemula1 = User::query()->create([
             'username' => 'Damkar.Pemula1',
             'email' => 'Damkar.Pemula1.bali@gmail.com',
@@ -2224,8 +1779,6 @@ class UserSeeder extends Seeder
             'kab_kota_id' => 5103,
         ]);
 
-     
-//struktural
         $atasanlangsungbali = User::query()->create([
             'username' => 'Atasan.Langsung',
             'email' => 'Atasan.Langsung1.bali@gmail.com',
@@ -2270,7 +1823,6 @@ class UserSeeder extends Seeder
             'tingkat_aparatur' => 'provinsi',
             'provinsi_id' => 51,
         ]);
-
 
         $penilaianalisbali = User::query()->create([
             'username' => 'Penilai.AK.Analis',
@@ -2347,7 +1899,6 @@ class UserSeeder extends Seeder
             'provinsi_id' => 51,
         ]);
 
-
         $penilaianalisbali2 = User::query()->create([
             'username' => 'Penilai.AK.Analis2',
             'email' => 'Penilai.AK.Analis2.bali@gmail.com',
@@ -2423,7 +1974,6 @@ class UserSeeder extends Seeder
             'provinsi_id' => 51,
         ]);
 
-
         $penilaianalisbali3 = User::query()->create([
             'username' => 'Penilai.AK.Analis3',
             'email' => 'Penilai.AK.Analis3.bali@gmail.com',
@@ -2453,8 +2003,6 @@ class UserSeeder extends Seeder
             'tingkat_aparatur' => 'provinsi',
             'provinsi_id' => 51,
         ]);
-
-
 
         $atasanlangsungdenpasar = User::query()->create([
             'username' => 'Atasan.Langsung.Denpasar',
@@ -2503,7 +2051,6 @@ class UserSeeder extends Seeder
             'provinsi_id' => 51,
             'kab_kota_id' => 5171,
         ]);
-
 
         $penilaianalisdenpasar = User::query()->create([
             'username' => 'Penilai.AK.Analis.Denpasar',
@@ -2618,7 +2165,6 @@ class UserSeeder extends Seeder
             'kab_kota_id' => 5103,
         ]);
 
-
         $penilaianalisbadung = User::query()->create([
             'username' => 'Penilai.AK.Analis.Kab Badung',
             'email' => 'Penilai.AK.Analis.bali.Kab.Badung@gmail.com',
@@ -2682,7 +2228,6 @@ class UserSeeder extends Seeder
             'provinsi_id' => 51,
             'kab_kota_id' => 5103,
         ]);
-
 
         $fungsionalumumprov1 = User::query()->create([
             'username' => 'Tenaga.Ahli1',
@@ -2824,8 +2369,1079 @@ class UserSeeder extends Seeder
             'provinsi_id' => 51,
             'kab_kota_id' => 5103,
         ]);
+
+
+
+        //admin prov & kab di bali
+        $adminprovdki1 = User::query()->create([
+            'username' => 'adminDKI1',
+            'email' => 'adminDKI1@gmail.com',
+            'password' => Hash::make('admin123'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('provinsi');
+        $adminprovdki1->userProvKabKota()->create([
+            'nomenklatur_perangkat_daerah_id' => 1,
+            'no_hp' => '081647596781',
+            'provinsi_id' => 31,
+        ]);
+
+        $adminprovdki2 = User::query()->create([
+            'username' => 'adminDKI2',
+            'email' => 'adminDKI2@gmail.com',
+            'password' => Hash::make('admin124'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('provinsi');
+        $adminprovdki2->userProvKabKota()->create([
+            'nomenklatur_perangkat_daerah_id' => 1,
+            'no_hp' => '081340006781',
+            'provinsi_id' => 31,
+        ]);
+
+        $adminprovdki3 = User::query()->create([
+            'username' => 'adminDKI3',
+            'email' => 'adminDKI3@gmail.com',
+            'password' => Hash::make('admin125'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('provinsi');
+        $adminprovdki3->userProvKabKota()->create([
+            'nomenklatur_perangkat_daerah_id' => 1,
+            'no_hp' => '081345576881',
+            'provinsi_id' => 31,
+        ]);
+
+        $adminkotajp = User::query()->create([
+            'username' => 'adminjp',
+            'email' => 'adminjp@gmail.com',
+            'password' => Hash::make('admin129'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('kab_kota');
+        $adminkotajp->userProvKabKota()->create([
+            'nomenklatur_perangkat_daerah_id' => 1,
+            'no_hp' => '081890576881',
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3171,
+        ]);
+
+        $adminkotajt = User::query()->create([
+            'username' => 'adminjt',
+            'email' => 'adminjt@gmail.com',
+            'password' => Hash::make('admin130'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('kab_kota');
+        $adminkotajt->userProvKabKota()->create([
+            'nomenklatur_perangkat_daerah_id' => 1,
+            'no_hp' => '0813005998611',
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3175,
+        ]);
+        //end admin prov & kab di bali  
+
+
+        // seeder request client untuk provinsi Dki Jakarta
+        $petugasdamkarpemula1dki = User::query()->create([
+            'username' => 'Damkar.Pemula1.JKT',
+            'email' => 'Damkar.Pemula1.dki@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('damkar_pemula');
+        $petugasdamkarpemula1dki->userAparatur()->create([
+            'nama' => '1 Petugas Damkar Pemula',
+            'tingkat_aparatur' => 'provinsi',
+            'no_hp' => '081223450181',
+            'provinsi_id' => 31,
+        ]);
+
+        $damkarterampil1dki = User::query()->create([
+            'username' => 'Damkar.Terampil1.JKT',
+            'email' => 'Damkar.Terampil1.dki@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('damkar_terampil');
+        $damkarterampil1dki->userAparatur()->create([
+            'nama' => '1 Petugas Damkar Terampil',
+            'tingkat_aparatur' => 'provinsi',
+            'no_hp' => '081223450282',
+            'provinsi_id' => 31,
+        ]);
+
+        $damkarmahir1dki = User::query()->create([
+            'username' => 'Damkar.Mahir1.JKT',
+            'email' => 'Damkar.Mahir1.dki@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('damkar_mahir');
+        $damkarmahir1dki->userAparatur()->create([
+            'nama' => '1 Petugas Damkar Mahir',
+            'tingkat_aparatur' => 'provinsi',
+            'no_hp' => '081223450383',
+            'provinsi_id' => 31,
+        ]);
+
+        $damkarpenyelia1dki = User::query()->create([
+            'username' => 'Damkar.Penyelia1.JKT',
+            'email' => 'Damkar.Penyelia1.dki@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('damkar_penyelia');
+        $damkarpenyelia1dki->userAparatur()->create([
+            'nama' => '1 Petugas Damkar Penyelia',
+            'tingkat_aparatur' => 'provinsi',
+            'no_hp' => '081223450484',
+            'provinsi_id' => 31,
+        ]);
+
+        $analisahlipertama1dki = User::query()->create([
+            'username' => 'Analis.Kebakaran.Ahli.Pertama1.JKT',
+            'email' => 'Analis.Kebakaran.Ahli.Pertama1.dki@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('analis_kebakaran_ahli_pertama');
+        $analisahlipertama1dki->userAparatur()->create([
+            'nama' => '1 Petugas Analis Kebakaran Ahli Pertama',
+            'tingkat_aparatur' => 'provinsi',
+            'no_hp' => '081223450585',
+            'provinsi_id' => 31,
+        ]);
+
+        $analiskebakaranahlimuda1dki = User::query()->create([
+            'username' => 'Analis.Kebakaran.Ahli.Muda1.JKT',
+            'email' => 'Analis.Kebakaran.Ahli.Muda1.dki@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('analis_kebakaran_ahli_muda');
+        $analiskebakaranahlimuda1dki->userAparatur()->create([
+            'nama' => '1 Petugas Analis Kebakaran Ahli Muda',
+            'tingkat_aparatur' => 'provinsi',
+            'no_hp' => '081223450686',
+            'provinsi_id' => 31,
+        ]);
+
+        $analiskebakaranahlimadya1dki = User::query()->create([
+            'username' => 'Analis.Kebakaran.Ahli.Madya1.JKT',
+            'email' => 'Analis.Kebakaran.Ahli.Madya1.dki@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('analis_kebakaran_ahli_madya');
+        $analiskebakaranahlimadya1dki->userAparatur()->create([
+            'nama' => '1 Petugas Analis Kebakaran Ahli Madya',
+            'tingkat_aparatur' => 'provinsi',
+            'no_hp' => '081223450787',
+            'provinsi_id' => 31,
+        ]);
+
+        $petugasdamkarpemula2dki = User::query()->create([
+            'username' => 'Damkar.Pemula2.JKT',
+            'email' => 'Damkar.Pemula2.dki@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('damkar_pemula');
+        $petugasdamkarpemula2dki->userAparatur()->create([
+            'nama' => '2 Petugas Damkar Pemula',
+            'tingkat_aparatur' => 'provinsi',
+            'no_hp' => '081223450888',
+            'provinsi_id' => 31,
+        ]);
+
+        $damkarterampil2dki = User::query()->create([
+            'username' => 'Damkar.Terampil2.JKT',
+            'email' => 'Damkar.Terampil2.dki@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('damkar_terampil');
+        $damkarterampil2dki->userAparatur()->create([
+            'nama' => '2 Petugas Damkar Terampil',
+            'tingkat_aparatur' => 'provinsi',
+            'no_hp' => '081223450989',
+            'provinsi_id' => 31,
+        ]);
+
+        $damkarmahir2dki = User::query()->create([
+            'username' => 'Damkar.Mahir2.JKT',
+            'email' => 'Damkar.Mahir2.dki@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('damkar_mahir');
+        $damkarmahir2dki->userAparatur()->create([
+            'nama' => '2 Petugas Damkar Mahir',
+            'tingkat_aparatur' => 'provinsi',
+            'no_hp' => '081223451010',
+            'provinsi_id' => 31,
+        ]);
+
+        $damkarpenyelia2dki = User::query()->create([
+            'username' => 'Damkar.Penyelia2.JKT',
+            'email' => 'Damkar.Penyelia2.dki@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('damkar_penyelia');
+        $damkarpenyelia2dki->userAparatur()->create([
+            'nama' => '2 Petugas Damkar Penyelia',
+            'tingkat_aparatur' => 'provinsi',
+            'no_hp' => '081223451111',
+            'provinsi_id' => 31,
+        ]);
+
+        $analisahlipertama2dki = User::query()->create([
+            'username' => 'Analis.Kebakaran.Ahli.Pertama2.JKT',
+            'email' => 'Analis.Kebakaran.Ahli.Pertama2.dki@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('analis_kebakaran_ahli_pertama');
+        $analisahlipertama2dki->userAparatur()->create([
+            'nama' => '2 Petugas Analis Kebakaran Ahli Pertama',
+            'tingkat_aparatur' => 'provinsi',
+            'no_hp' => '081223451212',
+            'provinsi_id' => 31,
+        ]);
+
+        $analiskebakaranahlimuda2dki = User::query()->create([
+            'username' => 'Analis.Kebakaran.Ahli.Muda2.JKT',
+            'email' => 'Analis.Kebakaran.Ahli.Muda2.dki@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('analis_kebakaran_ahli_muda');
+        $analiskebakaranahlimuda2dki->userAparatur()->create([
+            'nama' => '2 Petugas Analis Kebakaran Ahli Muda',
+            'tingkat_aparatur' => 'provinsi',
+            'no_hp' => '081223451313',
+            'provinsi_id' => 31,
+        ]);
+
+        $analiskebakaranahlimadya2dki = User::query()->create([
+            'username' => 'Analis.Kebakaran.Ahli.Madya2.JKT',
+            'email' => 'Analis.Kebakaran.Ahli.Madya2.dki@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('analis_kebakaran_ahli_madya');
+        $analiskebakaranahlimadya2dki->userAparatur()->create([
+            'nama' => '2 Petugas Analis Kebakaran Ahli Madya',
+            'tingkat_aparatur' => 'provinsi',
+            'no_hp' => '081223451414',
+            'provinsi_id' => 31,
+        ]);
+
+        $damkarpemulajakpus = User::query()->create([
+            'username' => 'Damkar.Pemula.JP',
+            'email' => 'Damkar.Pemula1.dki.jp@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('damkar_pemula');
+        $damkarpemulajakpus->userAparatur()->create([
+            'nama' => 'JP Petugas Pemula Damkar',
+            'tingkat_aparatur' => 'kab_kota',
+            'no_hp' => '081223451515',
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3171,
+        ]);
+
+        $damkarterampiljakpus = User::query()->create([
+            'username' => 'Damkar.Terampil.JP',
+            'email' => 'Damkar.Terampil1.dki.jp@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('damkar_terampil');
+        $damkarterampiljakpus->userAparatur()->create([
+            'nama' => 'JP Petugas Damkar Terampil',
+            'tingkat_aparatur' => 'kab_kota',
+            'no_hp' => '081223451616',
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3171,
+        ]);
+
+        $damkarmahirjakpus = User::query()->create([
+            'username' => 'Damkar.Mahir.JP',
+            'email' => 'Damkar.Mahir1.dki.jp@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('damkar_mahir');
+        $damkarmahirjakpus->userAparatur()->create([
+            'nama' => 'JP Petugas Damkar Mahir',
+            'tingkat_aparatur' => 'kab_kota',
+            'no_hp' => '081223451717',
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3171,
+        ]);
+
+        $damkarpenyeliajakpus = User::query()->create([
+            'username' => 'Damkar.Penyelia.JP',
+            'email' => 'Damkar.Penyelia1.dki.jp@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('damkar_penyelia');
+        $damkarpenyeliajakpus->userAparatur()->create([
+            'nama' => 'JP Petugas Damkar Penyelia',
+            'tingkat_aparatur' => 'kab_kota',
+            'no_hp' => '081223451818',
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3171,
+        ]);
+
+        $analisahlipertamajakpus = User::query()->create([
+            'username' => 'Analis.Kebakaran.Ahli.Pertama.JP',
+            'email' => 'Analis.Kebakaran.Ahli.Pertama1.dki.jp@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('analis_kebakaran_ahli_pertama');
+        $analisahlipertamajakpus->userAparatur()->create([
+            'nama' => 'JP Petugas Analis Kebakaran Ahli Pertama',
+            'tingkat_aparatur' => 'kab_kota',
+            'no_hp' => '081223451919',
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3171,
+        ]);
+
+        $analiskebakaranahlimuda1jakpus = User::query()->create([
+            'username' => 'Analis.Kebakaran.Ahli.Muda.JP',
+            'email' => 'Analis.Kebakaran.Ahli.Muda1.dki.jp@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('analis_kebakaran_ahli_muda');
+        $analiskebakaranahlimuda1jakpus->userAparatur()->create([
+            'nama' => 'JP Petugas Analis Kebakaran Ahli Muda',
+            'tingkat_aparatur' => 'kab_kota',
+            'no_hp' => '081223452020',
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3171,
+        ]);
+
+        $analiskebakaranahlimadyajakpus = User::query()->create([
+            'username' => 'Analis.Kebakaran.Ahli.Madya.JP',
+            'email' => 'Analis.Kebakaran.Ahli.Madya1.dki.jp@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('analis_kebakaran_ahli_madya');
+        $analiskebakaranahlimadyajakpus->userAparatur()->create([
+            'nama' => 'JP Petugas Analis Kebakaran Ahli Madya',
+            'tingkat_aparatur' => 'kab_kota',
+            'no_hp' => '081223452121',
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3171,
+        ]);
+
+        $damkarpemulajaktim = User::query()->create([
+            'username' => 'Damkar.Pemula.JT',
+            'email' => 'Damkar.Pemula1.dki.jt@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('damkar_pemula');
+        $damkarpemulajaktim->userAparatur()->create([
+            'nama' => 'JT Petugas Damkar Pemula',
+            'tingkat_aparatur' => 'kab_kota',
+            'no_hp' => '081223452222',
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3175,
+        ]);
+
+        $damkarterampiljaktim = User::query()->create([
+            'username' => 'Damkar.Terampil.JT',
+            'email' => 'Damkar.Terampil1.dki.jt@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('damkar_terampil');
+        $damkarterampiljaktim->userAparatur()->create([
+            'nama' => 'JT Petugas Damkar Terampil',
+            'tingkat_aparatur' => 'kab_kota',
+            'no_hp' => '081223452323',
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3175,
+        ]);
+
+        $damkarmahirjaktim = User::query()->create([
+            'username' => 'Damkar.Mahir.JT',
+            'email' => 'Damkar.Mahir1.dki.jt@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('damkar_mahir');
+        $damkarmahirjaktim->userAparatur()->create([
+            'nama' => 'JT Petugas Damkar Mahir',
+            'tingkat_aparatur' => 'kab_kota',
+            'no_hp' => '081223452424',
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3175,
+        ]);
+
+        $damkarpenyeliajaktim = User::query()->create([
+            'username' => 'Damkar.Penyelia.JT',
+            'email' => 'Damkar.Penyelia1.dki.jt@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('damkar_penyelia');
+        $damkarpenyeliajaktim->userAparatur()->create([
+            'nama' => 'JT Petugas Damkar Penyelia',
+            'tingkat_aparatur' => 'kab_kota',
+            'no_hp' => '081223452525',
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3175,
+        ]);
+
+        $analisahlipertamajaktim = User::query()->create([
+            'username' => 'Analis.Kebakaran.Ahli.Pertama.JT',
+            'email' => 'Analis.Kebakaran.Ahli.Pertama1.dki.jt@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('analis_kebakaran_ahli_pertama');
+        $analisahlipertamajaktim->userAparatur()->create([
+            'nama' => 'JT Petugas Analis Kebakaran Ahli Pertama',
+            'tingkat_aparatur' => 'kab_kota',
+            'no_hp' => '081223452626',
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3175,
+        ]);
+
+        $analiskebakaranahlimuda1jaktim = User::query()->create([
+            'username' => 'Analis.Kebakaran.Ahli.Muda.JT',
+            'email' => 'Analis.Kebakaran.Ahli.Muda1.dki.jt@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('analis_kebakaran_ahli_muda');
+        $analiskebakaranahlimuda1jaktim->userAparatur()->create([
+            'nama' => 'JT Petugas Analis Kebakaran Ahli Muda',
+            'tingkat_aparatur' => 'kab_kota',
+            'no_hp' => '081223452727',
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3175,
+        ]);
+
+        $analiskebakaranahlimadyajaktim = User::query()->create([
+            'username' => 'Analis.Kebakaran.Ahli.Madya.JT',
+            'email' => 'Analis.Kebakaran.Ahli.Madya1.dki.jt@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('analis_kebakaran_ahli_madya');
+        $analiskebakaranahlimadyajaktim->userAparatur()->create([
+            'nama' => 'JT Petugas Analis Kebakaran Ahli Madya',
+            'tingkat_aparatur' => 'kab_kota',
+            'no_hp' => '081223452828',
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3175,
+        ]);
+/////////////////////////
+        $atasanlangsungdki = User::query()->create([
+            'username' => 'Atasan.Langsung.JKT',
+            'email' => 'Atasan.Langsung1.dki@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ]);
+        $atasanlangsungdki->userPejabatStruktural()->create([
+            'nama' => '1  Atasan Langsung',
+            'eselon' => 1,
+            'no_hp' => '081223452929',
+            'tingkat_aparatur' => 'provinsi',
+            'provinsi_id' => 31,
+        ]);
+
+        $penilaiakdki = User::query()->create([
+            'username' => 'Penilai.AK.Damkar.JKT',
+            'email' => 'Penilai.AK.Damkar1.dki@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ]);
+        $penilaiakdki->userPejabatStruktural()->create([
+            'nama' => '1  Penilai AK Damkar',
+            'eselon' => 1,
+            'no_hp' => '081223453030',
+            'tingkat_aparatur' => 'provinsi',
+            'provinsi_id' => 31,
+        ]);
+
+        $penetapdki = User::query()->create([
+            'username' => 'Penetap.AK.Damkar.JKT',
+            'email' => 'Penetap.AK.Damkar1.dki@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ]);
+        $penetapdki->userPejabatStruktural()->create([
+            'nama' => '1  Penetap AK Damkar',
+            'eselon' => 1,
+            'no_hp' => '081223453131',
+            'tingkat_aparatur' => 'provinsi',
+            'provinsi_id' => 31,
+        ]);
+
+        $penilaianalisdki = User::query()->create([
+            'username' => 'Penilai.AK.Analis.DKI',
+            'email' => 'Penilai.AK.Analis1.dki@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ]);
+        $penilaianalisdki->userPejabatStruktural()->create([
+            'nama' => '1  Penilai AK Analis',
+            'eselon' => 2,
+            'no_hp' => '081223453232',
+            'tingkat_aparatur' => 'provinsi',
+            'provinsi_id' => 31,
+        ]);
+
+        $penetapanalisdki = User::query()->create([
+            'username' => 'Penetap.AK.Analis.DKI',
+            'email' => 'Penetap.AK.Analis1.dki@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ]);
+        $penetapanalisdki->userPejabatStruktural()->create([
+            'nama' => '1  Penetap AK Analis',
+            'eselon' => 2,
+            'no_hp' => '081223456733',
+            'tingkat_aparatur' => 'provinsi',
+            'provinsi_id' => 31,
+        ]);
+
+        $atasanlangsungdki2 = User::query()->create([
+            'username' => 'Atasan.Langsung2DKI',
+            'email' => 'Atasan.Langsung2.dki@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ]);
+        $atasanlangsungdki2->userPejabatStruktural()->create([
+            'nama' => '2  Atasan Langsung',
+            'eselon' => 2,
+            'no_hp' => '081223453434',
+            'tingkat_aparatur' => 'provinsi',
+            'provinsi_id' => 31,
+        ]);
+
+        $penilaiakdki2 = User::query()->create([
+            'username' => 'Penilai.AK.Damkar2.DKI',
+            'email' => 'Penilai.AK.Damkar2.dki@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ]);
+        $penilaiakdki2->userPejabatStruktural()->create([
+            'nama' => '2  Penilai AK Damkar',
+            'eselon' => 3,
+            'no_hp' => '081223453535',
+            'tingkat_aparatur' => 'provinsi',
+            'provinsi_id' => 31,
+        ]);
+
+        $penetapdki2 = User::query()->create([
+            'username' => 'Penetap.AK.Damkar2.DKI',
+            'email' => 'Penetap.AK.Damkar2.dki@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ]);
+        $penetapdki2->userPejabatStruktural()->create([
+            'nama' => '2  Penetap AK Damkar',
+            'eselon' => 3,
+            'no_hp' => '081223453636',
+            'tingkat_aparatur' => 'provinsi',
+            'provinsi_id' => 31,
+        ]);
+
+        $penilaianalisdki2 = User::query()->create([
+            'username' => 'Penilai.AK.Analis2.DKI',
+            'email' => 'Penilai.AK.Analis2.dki@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ]);
+        $penilaianalisdki2->userPejabatStruktural()->create([
+            'nama' => '2  Penilai AK Analis',
+            'eselon' => 3,
+            'no_hp' => '081223453737',
+            'tingkat_aparatur' => 'provinsi',
+            'provinsi_id' => 31,
+        ]);
+
+        $penetapanalisdki2 = User::query()->create([
+            'username' => 'Penetap.AK.Analis2.DKI',
+            'email' => 'Penetap.AK.Analis2.dki@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ]);
+        $penetapanalisdki2->userPejabatStruktural()->create([
+            'nama' => '2  Penetap AK Analis',
+            'eselon' => 4,
+            'no_hp' => '081223453838',
+            'tingkat_aparatur' => 'provinsi',
+            'provinsi_id' => 31,
+        ]);
+
+        $atasanlangsungdki3 = User::query()->create([
+            'username' => 'Atasan.Langsung3.DKI',
+            'email' => 'Atasan.Langsung3.dki@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ]);
+        $atasanlangsungdki3->userPejabatStruktural()->create([
+            'nama' => '3  Atasan Langsung',
+            'eselon' => 4,
+            'no_hp' => '081223453939',
+            'tingkat_aparatur' => 'provinsi',
+            'provinsi_id' => 31,
+        ]);
+
+        $penilaiakdki3 = User::query()->create([
+            'username' => 'Penilai.AK.Damkar3.DKI',
+            'email' => 'Penilai.AK.Damkar3.dki@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ]);
+        $penilaiakdki3->userPejabatStruktural()->create([
+            'nama' => '3  Penilai AK Damkar',
+            'eselon' => 4,
+            'no_hp' => '081223454040',
+            'tingkat_aparatur' => 'provinsi',
+            'provinsi_id' => 31,
+        ]);
+
+        $penetapdki3 = User::query()->create([
+            'username' => 'Penetap.AK.Damkar3.DKI',
+            'email' => 'Penetap.AK.Damkar3.dki@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ]);
+        $penetapdki3->userPejabatStruktural()->create([
+            'nama' => '3  Penetap AK Damkar',
+            'eselon' => 1,
+            'no_hp' => '081223454141',
+            'tingkat_aparatur' => 'provinsi',
+            'provinsi_id' => 31,
+        ]);
+
+        $penilaianalisdki3 = User::query()->create([
+            'username' => 'Penilai.AK.Analis3.DKI',
+            'email' => 'Penilai.AK.Analis3.dki@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ]);
+        $penilaianalisdki3->userPejabatStruktural()->create([
+            'nama' => '3  Penilai AK Analis',
+            'eselon' => 2,
+            'no_hp' => '081223454242',
+            'tingkat_aparatur' => 'provinsi',
+            'provinsi_id' => 31,
+        ]);
+
+        $penetapanalisdki3 = User::query()->create([
+            'username' => 'Penetap.AK.Analis3.DKI',
+            'email' => 'Penetap.AK.Analis3.dki@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ]);
+        $penetapanalisdki3->userPejabatStruktural()->create([
+            'nama' => '3  Penetap AK Analis',
+            'eselon' => 3,
+            'no_hp' => '081223454343',
+            'tingkat_aparatur' => 'provinsi',
+            'provinsi_id' => 31,
+        ]);
+
+        $atasanlangsungjakpus = User::query()->create([
+            'username' => 'Atasan.Langsung.JP',
+            'email' => 'Atasan.Langsung.dki.jp@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ]);
+        $atasanlangsungjakpus->userPejabatStruktural()->create([
+            'nama' => 'JP Atasan Langsung',
+            'eselon' => 1,
+            'no_hp' => '081223454444',
+            'tingkat_aparatur' => 'kab_kota',
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3171,
+        ]);
+
+        $penilaiakjakpus = User::query()->create([
+            'username' => 'Penilai.AK.Damkar.JP',
+            'email' => 'Penilai.AK.Damkar.dki.jp@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ]);
+        $penilaiakjakpus->userPejabatStruktural()->create([
+            'nama' => 'JP Penilai AK Damkar',
+            'eselon' => 1,
+            'no_hp' => '081223454545',
+            'tingkat_aparatur' => 'kab_kota',
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3171,
+        ]);
+
+        $penetapjakpus = User::query()->create([
+            'username' => 'Penetap.AK.Damkar.JP',
+            'email' => 'Penetap.AK.Damkar.dki.jp@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ]);
+        $penetapjakpus->userPejabatStruktural()->create([
+            'nama' => 'JP Penetap AK Damkar',
+            'eselon' => 1,
+            'no_hp' => '081223454646',
+            'tingkat_aparatur' => 'kab_kota',
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3171,
+        ]);
+
+        $penilaianalisjakpus = User::query()->create([
+            'username' => 'Penilai.AK.Analis.JP',
+            'email' => 'Penilai.AK.Analis.dki.jp@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ]);
+        $penilaianalisjakpus->userPejabatStruktural()->create([
+            'nama' => 'JP Penilai AK Analis',
+            'eselon' => 2,
+            'no_hp' => '081223454747',
+            'tingkat_aparatur' => 'kab_kota',
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3171,
+        ]);
+
+        $penetapanalisjakpus = User::query()->create([
+            'username' => 'Penetap.AK.Analis.JP',
+            'email' => 'Penetap.AK.Analis.dki.jp@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ]);
+        $penetapanalisjakpus->userPejabatStruktural()->create([
+            'nama' => 'JP Penetap AK Analis',
+            'eselon' => 2,
+            'no_hp' => '081223454848',
+            'tingkat_aparatur' => 'kab_kota',
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3171
+        ]);
+
+        $penilaiakjakpus2 = User::query()->create([
+            'username' => 'Penilai.AK.Damkar2.JP',
+            'email' => 'Penilai.AK.Damkar2.dki.jp@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ]);
+        $penilaiakjakpus2->userPejabatStruktural()->create([
+            'nama' => 'JP Penilai AK Damkar 2',
+            'eselon' => 2,
+            'no_hp' => '081223454949',
+            'tingkat_aparatur' => 'kab_kota',
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3171,
+        ]);
+
+        $penetapjakpus2 = User::query()->create([
+            'username' => 'Penetap.AK.Damkar2.JP',
+            'email' => 'Penetap.AK.Damkar2.dki.jp@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ]);
+        $penetapjakpus2->userPejabatStruktural()->create([
+            'nama' => 'JP Penetap AK Damkar 2',
+            'eselon' => 3,
+            'no_hp' => '081223455050',
+            'tingkat_aparatur' => 'kab_kota',
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3171,
+        ]);
+
+
+        $atasanlangsungjaktim = User::query()->create([
+            'username' => 'Atasan.Langsung.JT',
+            'email' => 'Atasan.Langsung.dki.jt@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ]);
+        $atasanlangsungjaktim->userPejabatStruktural()->create([
+            'nama' => 'JT Atasan Langsung',
+            'eselon' => 1,
+            'no_hp' => '081223455131',
+            'tingkat_aparatur' => 'kab_kota',
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3175,
+        ]);
+
+        $penilaiakjaktim = User::query()->create([
+            'username' => 'Penilai.AK.Damkar.JT',
+            'email' => 'Penilai.AK.Damkar.dki.jt@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ]);
+        $penilaiakjaktim->userPejabatStruktural()->create([
+            'nama' => 'JT Penilai AK Damkar',
+            'eselon' => 1,
+            'no_hp' => '081223455252',
+            'tingkat_aparatur' => 'kab_kota',
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3175,
+        ]);
+
+        $penetapjaktim = User::query()->create([
+            'username' => 'Penetap.AK.Damkar.JT',
+            'email' => 'Penetap.AK.Damkar.dki.jt@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ]);
+        $penetapjaktim->userPejabatStruktural()->create([
+            'nama' => 'JT Penetap AK Damkar',
+            'eselon' => 1,
+            'no_hp' => '081223455353',
+            'tingkat_aparatur' => 'kab_kota',
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3175,
+        ]);
+
+        $penilaianalisjaktim = User::query()->create([
+            'username' => 'Penilai.AK.Analis.JT',
+            'email' => 'Penilai.AK.Analis.dki.jt@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ]);
+        $penilaianalisjaktim->userPejabatStruktural()->create([
+            'nama' => 'JT Penilai AK Analis',
+            'eselon' => 2,
+            'no_hp' => '081223455454',
+            'tingkat_aparatur' => 'kab_kota',
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3175,
+        ]);
+
+        $penetapanalisjaktim = User::query()->create([
+            'username' => 'Penetap.AK.Analis.JT',
+            'email' => 'Penetap.AK.Analis.dki.jt@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ]);
+        $penetapanalisjaktim->userPejabatStruktural()->create([
+            'nama' => 'JT Penetap AK Analis',
+            'eselon' => 2,
+            'no_hp' => '081223455555',
+            'tingkat_aparatur' => 'kab_kota',
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3175
+        ]);
+
+        $penilaiakjaktim2 = User::query()->create([
+            'username' => 'Penilai.AK.Damkar2.JT',
+            'email' => 'Penilai.AK.Damkar2.dki.jt@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ]);
+        $penilaiakjaktim2->userPejabatStruktural()->create([
+            'nama' => 'JT Penilai AK Damkar 2',
+            'eselon' => 3,
+            'no_hp' => '081223455656',
+            'tingkat_aparatur' => 'kab_kota',
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3175,
+        ]);
+
+        $penetapjaktim2 = User::query()->create([
+            'username' => 'Penetap.AK.Damkar2.JT',
+            'email' => 'Penetap.AK.Damkar2.dki.jt@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ]);
+        $penetapjaktim2->userPejabatStruktural()->create([
+            'nama' => 'JT Penetap AK Damkar 2',
+            'eselon' => 3,
+            'no_hp' => '081223455757',
+            'tingkat_aparatur' => 'kab_kota',
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3175,
+        ]);
+
+        $fungsionalumumprov1dki = User::query()->create([
+            'username' => 'Tenaga. Ahli1.JKT',
+            'email' => 'Tenaga. Ahli1.dki.@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ]);
+        $fungsionalumumprov1dki->userFungsionalUmum()->create([
+            'nama' => 'Tenaga Ahli 1',
+            'no_hp' => '081223455858',
+            'jabatan' => 'Tenaga Ahli',
+            'tingkat_aparatur' => 'provinsi',
+            'provinsi_id' => 31,
+        ]);
+
+        $fungsionalumumprov2dki = User::query()->create([
+            'username' => 'Tenaga.Ahli2.JKT',
+            'email' => 'Tenaga.Ahli2.dki.@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ]);
+        $fungsionalumumprov2dki->userFungsionalUmum()->create([
+            'nama' => 'Tenaga Ahli 2',
+            'no_hp' => '081223455959',
+            'jabatan' => 'Tenaga Ahli',
+            'tingkat_aparatur' => 'provinsi',
+            'provinsi_id' => 31,
+        ]);
+
+        $fungsionalumumprov3dki = User::query()->create([
+            'username' => 'Tenaga.Ahli3.JKT',
+            'email' => 'Tenaga.Ahli3.dki.@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ]);
+        $fungsionalumumprov3dki->userFungsionalUmum()->create([
+            'nama' => 'Tenaga Ahli 3',
+            'no_hp' => '081223456060',
+            'jabatan' => 'Tenaga Ahli',
+            'tingkat_aparatur' => 'provinsi',
+            'provinsi_id' => 31,
+        ]);
+
+        $fungsionalumumkab1jkt = User::query()->create([
+            'username' => 'JP.Tenaga.Ahli1',
+            'email' => 'Tenaga.Ahli1.dki.jp@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ]);
+        $fungsionalumumkab1jkt->userFungsionalUmum()->create([
+            'nama' => 'JP Tenaga Ahli 1',
+            'no_hp' => '081223456161',
+            'jabatan' => 'Tenaga Ahli',
+            'tingkat_aparatur' => 'kab_kota',
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3171,
+        ]);
+
+        $fungsionalumumkab2jkt = User::query()->create([
+            'username' => 'JP.Tenaga.Ahli2',
+            'email' => 'Tenaga.Ahli2.dki.jp@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ]);
+        $fungsionalumumkab2jkt->userFungsionalUmum()->create([
+            'nama' => 'JP Tenaga Ahli 2',
+            'no_hp' => '081223456262',
+            'jabatan' => 'Tenaga Ahli',
+            'tingkat_aparatur' => 'kab_kota',
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3171,
+        ]);
+
+        $fungsionalumumkab3jkt = User::query()->create([
+            'username' => 'JP.Tenaga.Ahli3',
+            'email' => 'Tenaga.Ahli3.dki.jp@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ]);
+        $fungsionalumumkab3jkt->userFungsionalUmum()->create([
+            'nama' => 'JP Tenaga Ahli 3',
+            'no_hp' => '081223456363',
+            'jabatan' => 'Tenaga Ahli',
+            'tingkat_aparatur' => 'kab_kota',
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3171,
+        ]);
+
+        $fungsionalumumkab4jkt = User::query()->create([
+            'username' => 'JT.Tenaga.Ahli1',
+            'email' => 'Tenaga.Ahli1.dki.jt@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ]);
+        $fungsionalumumkab4jkt->userFungsionalUmum()->create([
+            'nama' => 'JT Tenaga Ahli 1',
+            'no_hp' => '081223456464',
+            'jabatan' => 'Tenaga Ahli',
+            'tingkat_aparatur' => 'kab_kota',
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3175,
+        ]);
         
-        // end seeder request client
+        $fungsionalumumkab5jkt = User::query()->create([
+            'username' => 'JT.Tenaga.Ahli2',
+            'email' => 'Tenaga.Ahli2.dki.jt@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ]);
+        $fungsionalumumkab5jkt->userFungsionalUmum()->create([
+            'nama' => 'JT Tenaga Ahli 2',
+            'no_hp' => '081223456565',
+            'jabatan' => 'Tenaga Ahli',
+            'tingkat_aparatur' => 'kab_kota',
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3175,
+        ]);
+
+        $fungsionalumumkab6jkt = User::query()->create([
+            'username' => 'JT.Tenaga.Ahli3',
+            'email' => 'Tenaga.Ahli3.dki.jt@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ]);
+        $fungsionalumumkab6jkt->userFungsionalUmum()->create([
+            'nama' => 'JT Tenaga Ahli 3',
+            'no_hp' => '081223456666',
+            'jabatan' => 'Tenaga Ahli',
+            'tingkat_aparatur' => 'kab_kota',
+            'provinsi_id' => 31,
+            'kab_kota_id' => 3175,
+        ]);
+        
+    //end seeder request client untuk provinsi Dki Jakarta
+
 
     }
 }
