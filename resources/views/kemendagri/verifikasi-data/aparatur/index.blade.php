@@ -29,8 +29,7 @@
                                     <div class="form-group">
                                         <label>Provinsi</label>
                                         <select name="provinsi_id" required class="form-select text-sm">
-                                            <option selected disabled>- Pilih Provinsi -
-                                            </option>
+                                            <option value=""> All </option>
                                             @foreach ($provinsis as $provinsi)
                                                 <option value="{{ $provinsi->id }}">
                                                     {{ $provinsi->nama }}
@@ -45,6 +44,7 @@
                                         <select required disabled name="kab_kota_id" class="form-select text-sm">
                                             <option value="">- Pilih Provinsi Terlebih
                                                 Dahulu -</option>
+                                            <option value=""> All </option>
                                         </select>
                                     </div>
                                 </div>
@@ -226,44 +226,5 @@
                     })
             })
         }
-        // $('.simpan-data').click(function(e) {
-        //     e.preventDefault();
-        //     var postData = new FormData($(".form-nilai-ak")[0]);
-        //     id = $(this).data('data');
-        //     swal({
-        //         title: "Apakah Data Yang Anda Masukkan Sudah Benar?",
-        //         type: "warning",
-        //         showCancelButton: !0,
-        //         confirmButtonText: "Ya, Sudah Benar!",
-        //         cancelButtonText: "Batal",
-        //         reverseButtons: !0,
-        //         showLoaderOnConfirm: true,
-        //         preConfirm: () => {
-        //             return new Promise(function(resolve) {
-        //                 $.ajax({
-        //                         type: 'POST',
-        //                         url: url('/kemendagri/verifikasi-data/aparatur/export'),
-        //                         processData: false,
-        //                         contentType: false,
-        //                         data: postData
-        //                     })
-        //                     .done(function(myAjaxJsonResponse) {
-        //                         swal("Berhasil!", myAjaxJsonResponse.message, "success")
-        //                             .then(function() {
-        //                                 location.reload();
-        //                             });
-        //                     })
-        //                     .fail(function(erordata) {
-        //                         if (erordata.status == 422) {
-        //                             swal('Warning!', erordata.responseJSON.message,
-        //                                 'warning');
-        //                         } else {
-        //                             swal('Error!', erordata.responseJSON.message, 'error');
-        //                         }
-        //                     })
-        //             })
-        //         },
-        //     })
-        // });
     </script>
 @endsection
