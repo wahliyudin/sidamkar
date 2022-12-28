@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Kemendagri\VerifikasiData;
 
 use App\DataTables\Kemendagri\VerifikasiData\AdminKabKotaDataTable;
+use App\Exports\Kemendagri\VerifikasiData\AdminKabKotaExport;
 use App\Http\Controllers\Controller;
+use App\Models\Provinsi;
 use App\Services\Kemendagri\AdminKabKotaService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\Facades\DataTables;
 
 class AdminKabKotaController extends Controller
@@ -21,7 +24,8 @@ class AdminKabKotaController extends Controller
     public function index()
     {
         $judul = 'Manajemen User Kab/Kota';
-        return view('kemendagri.verifikasi-data.admin-kabkota.index', compact('judul'));
+        $provinsis = Provinsi::query()->get(['id', 'nama']);
+        return view('kemendagri.verifikasi-data.admin-kabkota.index', compact('judul', 'provinsis'));
     }
 
     public function datatable(Request $request)
@@ -101,5 +105,11 @@ class AdminKabKotaController extends Controller
             'success' => true,
             'message' => "Berhasil dihapus",
         ]);
+    }
+
+    public function export(Request $request)
+    {
+        // $request->validate([]);
+        return Excel::download(new AdminKabKotaExport($request->provinsi_id, $request->kab_kota_id,  $request->status), 'admin-kabkota.xlsx');
     }
 }

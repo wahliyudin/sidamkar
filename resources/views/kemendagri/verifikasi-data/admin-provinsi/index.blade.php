@@ -287,37 +287,5 @@
                 return false;
             })
         }
-
-        $('select[name="provinsi_id"]').each(function(index, element) {
-            $(element).change(function(e) {
-                e.preventDefault();
-                if ($(this).val() != 'all') {
-                    loadKabKota(this.value, $(element.parentElement.parentElement.parentElement)
-                        .find('select[name="kab_kota_id"]'))
-                } else {
-                    $($(element.parentElement.parentElement.parentElement)
-                        .find('select[name="kab_kota_id"]')).prop('selectedIndex', 1);
-                }
-            });
-        });
-
-        function loadKabKota(val, kabupaten, kabupaten_id = null) {
-            return new Promise(resolve => {
-                $(kabupaten).html('<option value="">Memuat...</option>');
-                fetch('/api/kab-kota/' + val)
-                    .then(res => res.json())
-                    .then(res => {
-                        $(kabupaten).html(
-                            '<option selected disabled>- Pilih Kabupaten / Kota -</option><option value="all"> All </option>'
-                        );
-                        res.forEach(model => {
-                            var selected = kabupaten_id == model.id ? 'selected=""' : '';
-                            $(kabupaten).append('<option value="' + model.id + '" ' +
-                                selected + '>' + model.nama + '</option>');
-                        })
-                        resolve()
-                    })
-            })
-        }
     </script>
 @endsection
