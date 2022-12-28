@@ -153,7 +153,8 @@
                     @endrole
                 </div>
             </div>
-            <div class="col-md-3">
+            <div
+                class="{{ !isset(Auth::user()->roles[0]->name) == 'penetap_ak_damkar' || !isset(Auth::user()->roles[0]->name) == 'penetap_ak_analis' ? 'col-md-12' : 'col-md-3 ' }}">
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title text-center" style="color: #17181A; font-family: 'Roboto';">
