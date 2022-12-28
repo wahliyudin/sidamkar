@@ -94,7 +94,10 @@ Route::post('ubah-password', [ChangePasswordController::class, 'update'])->name(
 Route::middleware(['auth'])->group(function () {
     Route::get('/informasi/{id}', [OverviewController::class, 'find'])->name('informasi.find');
     Route::post('/kabkota-provinsi-store', [KabKotaProvinsiController::class, 'store'])->name('kabkota-provinsi-store');
-    Route::get('kab-kota/manajemen-user/fungsional/{id}/edit', [KabKotaFungsionalController::class, 'edit'])->name('kab-kota.manajemen-user.fungsional.edit');
+    Route::post('/kabkota-provinsi-store-struktural', [KabKotaProvinsiController::class, 'store_struktural'])->name('kabkota-provinsi-store-struktural');
+
+    Route::get('manajemen-user/fungsional/{id}/edit', [KabKotaFungsionalController::class, 'edit_fungsional'])->name('manajemen-user.fungsional.edit');
+    Route::get('manajemen-user/struktural/{id}/edit', [KabKotaFungsionalController::class, 'edit_struktural'])->name('manajemen-user.struktural.edit');
 
     Route::middleware(['role:damkar_pemula|damkar_terampil|damkar_mahir|damkar_penyelia|analis_kebakaran_ahli_pertama|analis_kebakaran_ahli_muda|analis_kebakaran_ahli_madya'])->group(function () {
         Route::get('/overview', [OverviewController::class, 'index'])->name('overview');

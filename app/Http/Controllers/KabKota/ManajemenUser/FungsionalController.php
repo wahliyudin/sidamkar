@@ -70,7 +70,7 @@ class FungsionalController extends Controller
     }
 
 
-    public function edit($id)
+    public function edit_fungsional($id)
     {
         $user = User::query()->with(['roles', 'userAparatur.provinsi.kabkotas', 'dokKepegawaians', 'dokKompetensis'])->find($id);
         $provinsis = Provinsi::query()->get();
@@ -80,5 +80,16 @@ class FungsionalController extends Controller
         $nomenklatur = NomenKlaturPerangkatDaerah::query()->get();
         $judul = 'Data Fungsional';
         return view('kabkota.manajemen-user.fungsional.edit', compact('user', 'provinsis', 'kab_kota', 'pangkats', 'judul', 'mekanismePengangkatans', 'nomenklatur'));
+    }
+
+    public function edit_struktural($id)
+    {
+        $judul = 'Data Saya';
+        $user = User::query()->with(['userPejabatStruktural.provinsi.kabkotas', 'dokKepegawaians', 'dokKompetensis'])->find($id);
+        $provinsis = Provinsi::query()->get();
+        $kab_kota = KabKota::query()->get();
+        $pangkats = PangkatGolonganTmt::query()->get();
+        $nomenklatur = NomenKlaturPerangkatDaerah::query()->get();
+        return view('kabkota.manajemen-user.struktural.edit', compact('user', 'provinsis', 'kab_kota', 'pangkats', 'judul', 'nomenklatur'));
     }
 }
