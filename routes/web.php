@@ -442,6 +442,7 @@ Route::middleware(['auth'])->group(function () {
         Route::controller(PeriodeController::class)->group(function () {
             Route::get('kemendagri/cms/periode', 'index')->name('kemendagri.cms.periode.index');
             Route::post('kemendagri/cms/periode/store', 'store')->name('kemendagri.cms.periode.store');
+            Route::post('kemendagri/cms/periode/datatable', 'datatable')->name('kemendagri.cms.periode.datatable');
             Route::post('kemendagri/cms/periode/{id}/switch', 'switch')->name('kemendagri.cms.periode.switch');
         });
 

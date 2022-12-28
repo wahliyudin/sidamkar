@@ -26,7 +26,7 @@
                         </div>
                     </div>
                     <div class="col-md-4 px-2">
-                        <div class="card">
+                        <div class="card mb-3">
                             <div class="card-body py-3 px-3" style="height: 80px;">
                                 <div class="d-flex align-items-center h-100">
                                     <div class="circle circle-green">
@@ -129,7 +129,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="row">
                     <div class="col-md-4 px-2">
@@ -189,6 +188,8 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-md-4 px-2">
                         <div class="card mb-3">
                             <div class="card-body py-2 px-3" style="height: 80px;">

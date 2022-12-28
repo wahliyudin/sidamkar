@@ -8,16 +8,37 @@ use App\Models\Periode;
 use App\Rules\PeriodeRule;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
+use Yajra\DataTables\Facades\DataTables;
 
 class PeriodeController extends Controller
 {
-    public function index(PeriodeDataTable $dataTable)
+    public function index()
     {
         $judul = 'CMS Periode';
         $periode = Periode::query()->where('is_active', true)->first();
         $periodeLast = Periode::query()->get()->last();
-        return $dataTable->render('kemendagri.cms.periode.index', compact('periode', 'periodeLast', 'judul'));
+        return view('kemendagri.cms.periode.index', compact('periode', 'periodeLast', 'judul'));
+    }
+
+    public function datatable(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = DB::select('SELECT
+                periodes.id,
+                periodes.awal,
+                periodes.akhir,
+                periodes.is_active
+            FROM periodes');
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+                    return view('kemendagri.cms.periode.buttons', compact('row'))->render();
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
     }
 
     public function store(Request $request)
