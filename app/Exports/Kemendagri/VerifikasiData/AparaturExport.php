@@ -61,7 +61,7 @@ class AparaturExport implements FromArray, WithHeadings, WithTitle
             user_aparaturs.alamat,
             provinsis.nama AS provinsi,
             kab_kotas.nama AS kab_kota,
-            user_aparaturs.created_at AS tgl_register
+            users.created_at AS tgl_register
         FROM users
         JOIN user_aparaturs ON user_aparaturs.user_id = users.id
         LEFT JOIN pangkat_golongan_tmts ON pangkat_golongan_tmts.id = user_aparaturs.pangkat_golongan_tmt_id

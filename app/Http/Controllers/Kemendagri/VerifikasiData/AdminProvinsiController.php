@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Kemendagri\VerifikasiData;
 
 use App\DataTables\Kemendagri\VerifikasiData\AdminProvinsiDataTable;
+use App\Exports\Kemendagri\VerifikasiData\AdminProvinsiExport;
 use App\Http\Controllers\Controller;
 use App\Models\Provinsi;
 use App\Models\User;
@@ -10,6 +11,7 @@ use App\Notifications\UserReject;
 use App\Notifications\UserVerified;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\Facades\DataTables;
 
 class AdminProvinsiController extends Controller
@@ -120,5 +122,12 @@ class AdminProvinsiController extends Controller
             'success' => true,
             'message' => "Berhasil dihapus",
         ]);
+    }
+
+
+    public function export(Request $request)
+    {
+        // $request->validate([]);
+        return Excel::download(new AdminProvinsiExport($request->provinsi_id,  $request->status), 'admin-provinsis.xlsx');
     }
 }
