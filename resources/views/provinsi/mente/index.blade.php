@@ -64,7 +64,7 @@
                                     Periode
                                 </p>
                                 <h2 style="font-family: 'Roboto'; font-size: 16px; color: #06152B;" class="target">
-                                    {{ Carbon\Carbon::make($periode->awal)->translatedFormat('F Y') . ' - ' . Carbon\Carbon::make($periode->akhir)->translatedFormat('F Y') }}
+                                    {{ isset($periode) ? Carbon\Carbon::make($periode->awal)->translatedFormat('F Y') . ' - ' . Carbon\Carbon::make($periode->akhir)->translatedFormat('F Y') : '-' }}
                                 </h2>
                             </div>
                         </div>
