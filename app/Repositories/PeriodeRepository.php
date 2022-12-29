@@ -15,11 +15,6 @@ class PeriodeRepository
 
     public function isActive(): Periode
     {
-        $cek_periode = $this->periode->query()->where('is_active', true)->first();
-        if ($cek_periode) {
-            return $cek_periode;
-        } else {
-            return '-';
-        }
+        return $this->periode->query()->where('is_active', true)->first();
     }
 }
