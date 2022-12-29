@@ -19,7 +19,7 @@ class PeriodeRepository
         if ($cek_periode) {
             return $cek_periode;
         } else {
-            return null;
+            return '-';
         }
     }
 }
