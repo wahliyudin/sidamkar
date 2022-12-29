@@ -13,7 +13,7 @@ class PeriodeRepository
         $this->periode = new Periode();
     }
 
-    public function isActive(): Periode
+    public function isActive()
     {
         return $this->periode->query()->where('is_active', true)->first();
     }
