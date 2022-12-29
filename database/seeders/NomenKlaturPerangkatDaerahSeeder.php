@@ -20,6 +20,7 @@ class NomenKlaturPerangkatDaerahSeeder extends Seeder
             ['nama' => 'Satuan Polisi Pamong Praja'],
             ['nama' => 'Badan Penanggulangan Bencana Daerah'],
             ['nama' => 'Dinas Pekerjaan Umum dan Perumahan Rakyat'],
+            ['nama' => 'Pejabat Fungsional Umum/Honorer'],
             ['nama' => 'Lainnya']
         ];
         NomenKlaturPerangkatDaerah::query()->upsert($nomeklaturs, 'id');

@@ -19,7 +19,13 @@ class PeriodeController extends Controller
         $judul = 'CMS Periode';
         $periode = Periode::query()->where('is_active', true)->first();
         $periodeLast = Periode::query()->get()->last();
-        return view('kemendagri.cms.periode.index', compact('periode', 'periodeLast', 'judul'));
+        if ($periodeLast != null) {
+            $min = Carbon::make($periodeLast->akhir)->addDay()->format('Y-m-d');
+        } else {
+            $min = now();
+        }
+
+        return view('kemendagri.cms.periode.index', compact('periode', 'periodeLast', 'judul', 'min'));
     }
 
     public function datatable(Request $request)
