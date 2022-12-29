@@ -59,7 +59,7 @@ use App\Http\Controllers\PenilaiAKKemendagri\KegiatanSelesaiController;
 use App\Http\Controllers\Provinsi\OverviewController as ProvinsiOverviewController;
 use App\Http\Controllers\Provinsi\HistoriPenetapanController as  ProvinsiHistoriPenetapanController;
 use App\Http\Controllers\Provinsi\PengangkatanController as ProvinsiPengangkatanController;
-use App\Http\Controllers\provinsi\ChatboxController as ProvinsiChatboxController;
+use App\Http\Controllers\Provinsi\ChatboxController as ProvinsiChatboxController;
 use App\Http\Controllers\Provinsi\ManajemenUser\FungsionalController as ProvinsiFungsionalController;
 use App\Http\Controllers\Provinsi\ManajemenUser\FungsionalUmumController as ProvinsiFungsionalUmumController;
 use App\Http\Controllers\Provinsi\ManajemenUser\StrukturalController as ProvinsiStrukturalController;
