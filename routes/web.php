@@ -373,6 +373,7 @@ Route::middleware(['auth'])->group(function () {
             Route::post('kemendagri/verifikasi-data/admin-kabkota/{id}/reject', 'reject')->name('kemendagri.verifikasi-data.admin-kabkota.reject');
             Route::post('kemendagri/verifikasi-data/admin-kabkota/{id}/hapus', 'hapus')->name('kemendagri.verifikasi-data.admin-kabkota.hapus');
             Route::post('kemendagri/verifikasi-data/admin-kabkota/datatable', 'datatable')->name('kemendagri.verifikasi-data.admin-kabkota.datatable');
+            Route::post('kemendagri/verifikasi-data/admin-kabkota/export', 'export')->name('kemendagri.verifikasi-data.admin-kabkota.export');
         });
 
         Route::controller(AdminProvinsiController::class)->group(function () {
