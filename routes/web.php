@@ -59,7 +59,7 @@ use App\Http\Controllers\PenilaiAKKemendagri\KegiatanSelesaiController;
 use App\Http\Controllers\Provinsi\OverviewController as ProvinsiOverviewController;
 use App\Http\Controllers\Provinsi\HistoriPenetapanController as  ProvinsiHistoriPenetapanController;
 use App\Http\Controllers\Provinsi\PengangkatanController as ProvinsiPengangkatanController;
-use App\Http\Controllers\provinsi\ChatboxController as ProvinsiChatboxController;
+use App\Http\Controllers\Provinsi\ChatboxController as ProvinsiChatboxController;
 use App\Http\Controllers\Provinsi\ManajemenUser\FungsionalController as ProvinsiFungsionalController;
 use App\Http\Controllers\Provinsi\ManajemenUser\FungsionalUmumController as ProvinsiFungsionalUmumController;
 use App\Http\Controllers\Provinsi\ManajemenUser\StrukturalController as ProvinsiStrukturalController;
@@ -443,6 +443,7 @@ Route::middleware(['auth'])->group(function () {
         Route::controller(PeriodeController::class)->group(function () {
             Route::get('kemendagri/cms/periode', 'index')->name('kemendagri.cms.periode.index');
             Route::post('kemendagri/cms/periode/store', 'store')->name('kemendagri.cms.periode.store');
+            Route::post('kemendagri/cms/periode/datatable', 'datatable')->name('kemendagri.cms.periode.datatable');
             Route::post('kemendagri/cms/periode/{id}/switch', 'switch')->name('kemendagri.cms.periode.switch');
         });
 

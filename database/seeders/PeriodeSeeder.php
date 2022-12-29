@@ -15,18 +15,18 @@ class PeriodeSeeder extends Seeder
      */
     public function run()
     {
-        $periodes = [
-            [
-                'awal' => '2022-01-01',
-                'akhir' => '2022-12-31',
-                'is_active' => true
-            ],
-            [
-                'awal' => '2023-01-01',
-                'akhir' => '2023-12-31',
-                'is_active' => false
-            ],
-        ];
-        Periode::query()->upsert($periodes, 'id');
+        // $periodes = [
+        //     [
+        //         'awal' => '2022-01-01',
+        //         'akhir' => '2022-12-31',
+        //         'is_active' => true
+        //     ],
+        //     [
+        //         'awal' => '2023-01-01',
+        //         'akhir' => '2023-12-31',
+        //         'is_active' => false
+        //     ],
+        // ];
+        // Periode::query()->upsert($periodes, 'id');
     }
 }

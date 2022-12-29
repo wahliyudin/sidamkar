@@ -30,6 +30,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+	if(config('app.env') === 'production') {
+            \URL::forceScheme('https');
+        }
+
         Queue::failing(function (JobFailed $event) {
             // $event->connectionName
             // $event->job

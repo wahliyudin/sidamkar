@@ -37,8 +37,18 @@
                     </div>
                 </div>
             </div>
-            <div class="card-body">
-                {{ $dataTable->table() }}
+            <div class="card-body overflow-auto">
+                <table id="periode" class="table dataTable no-footer dtr-inline">
+                    <thead>
+                        <tr>
+                            <th>Awal</th>
+                            <th>Akhir</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
             </div>
         </div>
     </section>
@@ -53,13 +63,11 @@
                     <form method="post" class="form-periode">
                         <div class="form-group">
                             <label>Awal</label>
-                            <input class="form-control"
-                                min="{{ \Carbon\Carbon::make($periodeLast->akhir)->addDay()->format('Y-m-d') }}"
-                                type="date" name="awal">
+                            <input class="form-control" min="{{ $min }}" type="date" name="awal">
                         </div>
                         <div class="form-group">
                             <label>Akhir</label>
-                            <input class="form-control" type="date" name="akhir">
+                            <input class="form-control" type="date" min="{{ $min }}" name="akhir">
                         </div>
                     </form>
                 </div>
@@ -192,7 +200,7 @@
 
 @section('js')
     <script src="{{ asset('assets/js/auth/jquery.min.js') }}"></script>
-    {{ $dataTable->scripts() }}
+    {{-- {{ $dataTable->scripts() }} --}}
     <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
@@ -204,6 +212,37 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
+            });
+            $('#periode').dataTable().fnDestroy();
+            table = $('#periode').DataTable({
+                responsive: true,
+                serverSide: true,
+                processing: true,
+                ajax: {
+                    url: url('/kemendagri/cms/periode/datatable'),
+                    type: "POST",
+                    data: {
+                        "_token": "{{ csrf_token() }}"
+                    }
+                },
+                columns: [{
+                        data: 'awal',
+                        name: 'awal'
+                    },
+                    {
+                        data: 'akhir',
+                        name: 'akhir'
+                    },
+                    {
+                        data: 'action',
+                        name: 'action'
+                    }
+                ],
+                pageLength: 10,
+                lengthMenu: [
+                    [10, 20, 50, -1],
+                    [10, 20, 50, 'All']
+                ]
             });
             $('.simpan-periode').click(function(e) {
                 e.preventDefault();

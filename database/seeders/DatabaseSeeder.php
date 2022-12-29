@@ -30,9 +30,6 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleSeeder::class);
         $this->call(PangkatGolonganTmtSeeder::class);
         $this->call(PeriodeSeeder::class);
-        User::factory(10)->create();
-        UserAparatur::factory(10)->create();
-        UserPejabatStruktural::factory(10)->create();
         $this->call(UserSeeder::class);
         $this->call(JenisKegiaranSeeder::class);
         $this->call(NomenKlaturPerangkatDaerahSeeder::class);
