@@ -22,8 +22,9 @@ class OverviewController extends Controller
         $total_damkar = RoleUser::query()->where('role_id', '<', 5)->count();
         $total_analisis = RoleUser::query()->whereRaw('role_id > 4 and role_id < 8')->count();
 
-        $total_provinsi = DB::table('user_prov_kab_kotas')->where('kab_kota_id', null)->count();
-        $total_kab_kota = DB::table('user_prov_kab_kotas')->whereNotNull('kab_kota_id')->count();
+        $total_provinsi = DB::table('user_prov_kab_kotas')->join('users', 'users.id', '=', 'user_prov_kab_kotas.user_id')->where('user_prov_kab_kotas.kab_kota_id', null)->where('users.status_akun', 1)->count();
+
+        $total_kab_kota = DB::table('user_prov_kab_kotas')->join('users', 'users.id', '=', 'user_prov_kab_kotas.user_id')->whereNotNull('kab_kota_id')->where('users.status_akun', 1)->count();
 
         $total_pengajuan_kab_kota = DB::table('users')->join('user_prov_kab_kotas', 'user_prov_kab_kotas.user_id', '=', 'users.id')->where([['users.status_akun', '=', 0], ['user_prov_kab_kotas.kab_kota_id', '!=', null]])->count();
         $total_pengajuan_provinsi = DB::table('users')->join('user_prov_kab_kotas', 'user_prov_kab_kotas.user_id', '=', 'users.id')->where([['users.status_akun', '=', 0], ['user_prov_kab_kotas.kab_kota_id', '=', null]])->count();
