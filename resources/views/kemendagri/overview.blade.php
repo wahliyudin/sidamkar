@@ -30,7 +30,7 @@
                             <div class="card-body py-3 px-3" style="height: 80px;">
                                 <div class="d-flex align-items-center h-100">
                                     <div class="circle circle-green">
-                                        <i class="fa-solid fa-envelope"></i>
+                                        <i class="fa-solid fa-envelope fafa"></i>
                                     </div>
                                     <div class="d-flex flex-column ms-2" style="flex-grow: 1;">
                                         <p
@@ -38,7 +38,7 @@
                                             Email Info Penetapan
                                         </p>
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <h2 style="font-family: 'Roboto';color: #06152B; font-size: 16px"
+                                            <h2 style="font-family: 'Roboto';color: #06152B; font-size: 14px"
                                                 class="target">
                                                 {{ $kemendagri->userKemendagri->email_info_penetapan ?? '-' }}
                                             </h2>
