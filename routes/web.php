@@ -346,8 +346,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('provinsi/manajemen-user/umum', [ProvinsiFungsionalUmumController::class, 'index'])->name('provinsi.manajemen-user.fungsional-umum');
         Route::post('provinsi/manajemen-user/umum/{id}/reject', [ProvinsiFungsionalUmumController::class, 'reject'])->name('provinsi.manajemen-user.fungsional-umum.reject');
         Route::post('provinsi/manajemen-user/umum/{id}/verification', [ProvinsiFungsionalUmumController::class, 'verification'])->name('provinsi.manajemen-user.fungsional-umum.verification');
-        Route::delete('provinsi/manajemen-user/umum/{id}/destroy', [ProvinsiFungsionalUmumController::class, 'destroy'])->name('kab-kota.manajemen-user.fungsional-umum.destroy');
-        Route::post('provinsi/manajemen-user/umum/export', [ProvinsiFungsionalUmumController::class, 'export'])->name('kab-kota.manajemen-user.fungsional-umum.export');
+        Route::delete('provinsi/manajemen-user/umum/{id}/destroy', [ProvinsiFungsionalUmumController::class, 'destroy'])->name('provinsi.manajemen-user.fungsional-umum.destroy');
+        Route::post('provinsi/manajemen-user/umum/export', [ProvinsiFungsionalUmumController::class, 'export'])->name('provinsi.manajemen-user.fungsional-umum.export');
 
         Route::get('provinsi/manajemen-user/user-kab-kota', [UserKabKotaController::class, 'index'])->name('provinsi.manajemen-user.user-kab-kota');
 
