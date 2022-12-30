@@ -63,31 +63,36 @@ class StrukturalDashboardController extends Controller
                 $tingkat_aparatur = 'AND user_aparaturs.tingkat_aparatur = "provinsi"';
                 $kab_prov = 'AND user_aparaturs.provinsi_id = ' . $user->userPejabatStruktural->provinsi_id;
             }
+            if (isset($periode)) {
+                # code...
+                $data = DB::select('SELECT
+                        users.id,
+                        user_aparaturs.nama,
+                        user_aparaturs.nip,
+                        roles.display_name AS jabatan,
+                        pangkat_golongan_tmts.nama AS pangkat,
+                        rekapitulasi_kegiatans.created_at AS tanggal,
+                        ROUND(SUM(laporan_kegiatan_jabatans.score), 3) AS total
+                    FROM users
+                    JOIN user_aparaturs ON user_aparaturs.user_id = users.id
+                    JOIN role_user ON role_user.user_id = users.id
+                    JOIN roles ON roles.id = role_user.role_id
+                    JOIN pangkat_golongan_tmts ON pangkat_golongan_tmts.id = user_aparaturs.pangkat_golongan_tmt_id
+                    JOIN rekapitulasi_kegiatans ON rekapitulasi_kegiatans.fungsional_id = users.id
+                    JOIN laporan_kegiatan_jabatans ON laporan_kegiatan_jabatans.user_id = users.id
+                    WHERE rekapitulasi_kegiatans.is_send IN (1, 2, 3)
+                        AND users.status_akun = 1
+                        AND laporan_kegiatan_jabatans.status = 3
+                        ' . $tingkat_aparatur . '
+                        ' . $kab_prov . '
+                        AND roles.id IN (1,2,3,4,5,6,7)
+                        AND laporan_kegiatan_jabatans.current_date BETWEEN ' . '"' . $periode->awal . '"' . ' AND ' . '"' . $periode->akhir . '"' . '
+                        GROUP BY users.id
+                        ORDER BY rekapitulasi_kegiatans.created_at DESC LIMIT 5');
+            } else {
+                $data = [];
+            }
 
-            $data = DB::select('SELECT
-                    users.id,
-                    user_aparaturs.nama,
-                    user_aparaturs.nip,
-                    roles.display_name AS jabatan,
-                    pangkat_golongan_tmts.nama AS pangkat,
-                    rekapitulasi_kegiatans.created_at AS tanggal,
-                    ROUND(SUM(laporan_kegiatan_jabatans.score), 3) AS total
-                FROM users
-                JOIN user_aparaturs ON user_aparaturs.user_id = users.id
-                JOIN role_user ON role_user.user_id = users.id
-                JOIN roles ON roles.id = role_user.role_id
-                JOIN pangkat_golongan_tmts ON pangkat_golongan_tmts.id = user_aparaturs.pangkat_golongan_tmt_id
-                JOIN rekapitulasi_kegiatans ON rekapitulasi_kegiatans.fungsional_id = users.id
-                JOIN laporan_kegiatan_jabatans ON laporan_kegiatan_jabatans.user_id = users.id
-                WHERE rekapitulasi_kegiatans.is_send IN (1, 2, 3)
-                    AND users.status_akun = 1
-                    AND laporan_kegiatan_jabatans.status = 3
-                    ' . $tingkat_aparatur . '
-                    ' . $kab_prov . '
-                    AND roles.id IN (1,2,3,4,5,6,7)
-                    AND laporan_kegiatan_jabatans.current_date BETWEEN ' . '"' . $periode->awal . '"' . ' AND ' . '"' . $periode->akhir . '"' . '
-                    GROUP BY users.id
-                    ORDER BY rekapitulasi_kegiatans.created_at DESC LIMIT 5');
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
