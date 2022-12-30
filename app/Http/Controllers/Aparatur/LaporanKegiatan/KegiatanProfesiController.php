@@ -64,7 +64,7 @@ class KegiatanProfesiController extends Controller
         $periode = $this->periodeRepository->isActive();
         $user = $this->authUser()->load(['userAparatur.provinsi.kabkotas', 'dokKepegawaians', 'dokKompetensis', 'rencanas']);
         $judul = 'Laporan Kegiatan Profesi';
-        $ak_diterima = $this->kegiatanProfesiService->sumScoreByUser($user->id, $periode);
+        $ak_diterima = isset($periode) ? $this->kegiatanProfesiService->sumScoreByUser($user->id, $periode) : 0;
         return view('aparatur.laporan-kegiatan.profesi.index', compact('periode', 'user', 'judul', 'ak_diterima'));
     }
 

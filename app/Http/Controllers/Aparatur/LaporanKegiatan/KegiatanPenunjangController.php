@@ -67,10 +67,10 @@ class KegiatanPenunjangController extends Controller
     {
         $periode = $this->periodeRepository->isActive();
         $user = $this->authUser()->load(['userAparatur.provinsi.kabkotas', 'ketentuanSkpFungsional' => function ($query) use ($periode) {
-            $query->where('periode_id', $periode->id);
+            $query->where('periode_id', $periode?->id);
         }, 'dokKepegawaians', 'dokKompetensis', 'rencanas']);
         $judul = 'Laporan Kegiatan Penunjang';
-        $ak_diterima = $this->kegiatanPenunjangService->sumScoreByUser($user->id, $periode);
+        $ak_diterima = isset($periode) ? $this->kegiatanPenunjangService->sumScoreByUser($user->id, $periode) : 0;
         return view('aparatur.laporan-kegiatan.penunjang.index', compact('periode', 'user', 'judul',  'ak_diterima'));
     }
 
