@@ -46,17 +46,17 @@ class KegiatanJabatanController extends Controller
     {
         $periode = $this->periodeRepository->isActive();
         $user = $this->authUser()->load(['userAparatur.provinsi.kabkotas', 'ketentuanSkpFungsional' => function ($query) use ($periode) {
-            $query->where('periode_id', $periode->id);
+            $query->where('periode_id', $periode?->id);
         }, 'dokKepegawaians', 'dokKompetensis', 'rencanas', 'rekapitulasiKegiatan' => function ($query) use ($periode) {
-            $query->where('periode_id', $periode->id);
+            $query->where('periode_id', $periode?->id);
         }, 'rekapitulasiKegiatan.historyRekapitulasiKegiatans' => function ($query) {
             $query->orderBy('id', 'desc');
         }]);
         $judul = 'Laporan Kegiatan Jabatan';
         $skp = $user?->ketentuanSkpFungsional;
         $ketentuan_ak = $this->kegiatanJabatanService->ketentuanNilai(DestructRoleFacade::getRoleFungsionalFirst($user->roles)?->id, $user?->userAparatur?->pangkat_golongan_tmt_id);
-        $ak_diterima = $this->kegiatanJabatanService->sumScoreByUser($user->id, $periode);
-        $ak_jabatan = DB::table('laporan_kegiatan_jabatans')->where('periode_id', $periode->id)->where('user_id', Auth::user()->id)->where('status', 3)->sum('score');
+        $ak_diterima = isset($periode) ? $this->kegiatanJabatanService->sumScoreByUser($user->id, $periode) : 0;
+        $ak_jabatan = DB::table('laporan_kegiatan_jabatans')->where('periode_id', $periode?->id)->where('user_id', Auth::user()->id)->where('status', 3)->sum('score');
         $historyRekapitulasiKegiatans = $user?->rekapitulasiKegiatan?->historyRekapitulasiKegiatans ?? [];
         $pangkats = PangkatGolonganTmt::query()->get();
         return view('aparatur.laporan-kegiatan.jabatan.index', compact('pangkats', 'periode', 'user', 'judul', 'historyRekapitulasiKegiatans', 'skp', 'ketentuan_ak', 'ak_diterima', 'ak_jabatan'));
@@ -211,7 +211,7 @@ class KegiatanJabatanController extends Controller
     public function sendRekap()
     {
         $periode = $this->periodeRepository->isActive();
-        $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode(auth()->user(), $periode->id);
+        $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode(auth()->user(), $periode?->id);
         if (!$rekap) {
             throw ValidationException::withMessages(['Data Rekapitulasi Belum Dibuat']);
         }
@@ -240,7 +240,7 @@ class KegiatanJabatanController extends Controller
                     'user_id' => auth()->user()->id,
                     'nilai_skp' => null,
                     'status' => 0,
-                    'periode_id' => $periode->id,
+                    'periode_id' => $periode?->id,
                     'file' => null
                 ]);
             } else {
@@ -248,7 +248,7 @@ class KegiatanJabatanController extends Controller
                     'ketentuan_skp_id' => null,
                     'user_id' => auth()->user()->id,
                     'nilai_skp' => $request->nilai_skp,
-                    'periode_id' => $periode->id,
+                    'periode_id' => $periode?->id,
                     'status' => 0,
                     'file' => null
                 ]);

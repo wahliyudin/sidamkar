@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
     $.ajaxSetup({
         headers: {
@@ -25,21 +24,26 @@ $(document).ready(function () {
     }
 
     function rencanas(rencanas) {
-        return $.map(rencanas, function (rencana, indexOrKey) {
-            return `
-                <div class="rencana-item">
-                    <p>${rencana.nama}</p>
-                    <div class="rencana-buttons">
-                        <button data-rencana="${rencana.id}" class="rencana-button me-2 edit-rencana">
-                            <i class="fa-regular fa-pen-to-square cursor-pointer text-green" data-id=""></i>
-                        </button>
-                        <button data-rencana="${rencana.id}" class="rencana-button hapus-rencana">
-                            <i class="fa-solid fa-trash-can cursor-pointer text-red" data-id=""></i>
-                        </button>
+        console.log(rencanas.length > 0);
+        if (rencanas.length > 0) {
+            return $.map(rencanas, function (rencana, indexOrKey) {
+                return `
+                    <div class="rencana-item">
+                        <p>${rencana.nama}</p>
+                        <div class="rencana-buttons">
+                            <button data-rencana="${rencana.id}" class="rencana-button me-2 edit-rencana">
+                                <i class="fa-regular fa-pen-to-square cursor-pointer text-green" data-id=""></i>
+                            </button>
+                            <button data-rencana="${rencana.id}" class="rencana-button hapus-rencana">
+                                <i class="fa-solid fa-trash-can cursor-pointer text-red" data-id=""></i>
+                            </button>
+                        </div>
                     </div>
-                </div>
-            `;
-        }).join('')
+                `;
+            }).join('')
+        } else {
+            return `<div class="d-flex py-4 justify-content-center">Belum Ada Data Untuk Ditampilkan</div>`;
+        }
     }
 
     $('.simpan-rencana').click(function (e) {
@@ -57,7 +61,11 @@ $(document).ready(function () {
             success: function (response) {
                 $('.simpan-rencana span').show();
                 $('.simpan-rencana .spin').hide();
-                swal({ type: 'success', title: 'Berhasil', html: 'Rencana Berhasil <b style="font-weight: bold; color:#18b882;">DISIMPAN</b>' }).then(() => {
+                swal({
+                    type: 'success',
+                    title: 'Berhasil',
+                    html: 'Rencana Berhasil <b style="font-weight: bold; color:#18b882;">DISIMPAN</b>'
+                }).then(() => {
                     location.reload();
                 });
             },
@@ -80,7 +88,11 @@ $(document).ready(function () {
             success: function (response) {
                 $('.update-rencana span').show();
                 $('.update-rencana .spin').hide();
-                swal({ type: 'success', title: 'Berhasil', html: 'Rencana Berhasil <b style="font-weight: bold; color:#18b882;">DIUBAH</b>' }).then(() => {
+                swal({
+                    type: 'success',
+                    title: 'Berhasil',
+                    html: 'Rencana Berhasil <b style="font-weight: bold; color:#18b882;">DIUBAH</b>'
+                }).then(() => {
                     location.reload();
                 });
             },
