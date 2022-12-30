@@ -8,6 +8,12 @@
                     <div class="col-md-8 col-12">
                         <h5 style="color: #06152B; font-size: 'Roboto';">Data Pejabat Fungsional Umum</h5>
                     </div>
+                    <form method="POST" class="col-md-4 col-12 d-flex align-items-center justify-content-end"
+                        action="{{ route('kab-kota.manajemen-user.fungsional-umum.export') }}">
+                        @csrf
+                        <button type="submit" class="btn btn-green ps-3"><i class="fa-solid fa-file-excel me-2"></i>
+                            Export</button>
+                    </form>
                 </div>
             </div>
             <div class="card-body">

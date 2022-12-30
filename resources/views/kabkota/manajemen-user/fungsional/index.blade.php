@@ -9,6 +9,42 @@
                         <h5 style="color: #06152B; font-size: 'Roboto';">Data Pejabat Fungsional</h5>
                     </div>
                 </div>
+                <form method="POST" action="{{ route('kab-kota.manajemen-user.fungsional.export') }}"
+                    class="d-flex flex-column form-export"
+                    style="border: 1px solid #809FB8; padding: 10px; border-radius: 10px;">
+                    @csrf
+                    <div class="row gap-4">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Status</label>
+                                <select name="status" class="form-select text-sm">
+                                    <option value=""> All </option>
+                                    <option value="0">
+                                        Menunggu</option>
+                                    <option value="1">
+                                        Verified</option>
+                                    <option value="2">
+                                        Ditolak</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Jabatan</label>
+                                <select name="jabatan_id" class="form-select text-sm">
+                                    <option value="">All</option>
+                                    @foreach ($jabatans as $jabatan)
+                                        <option value="{{ $jabatan->id }}">{{ $jabatan->display_name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2 d-flex align-items-center">
+                            <button type="submit" class="btn btn-green ps-3"><i class="fa-solid fa-file-excel me-2"></i>
+                                Export</button>
+                        </div>
+                    </div>
+                </form>
             </div>
             <div class="card-body">
                 {{ $dataTable->table() }}
