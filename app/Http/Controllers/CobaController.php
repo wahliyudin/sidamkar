@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\KabKota\UserPejabatStrukturalExport;
 use App\Exports\KegiatanJabatanExport;
 use App\Exports\KegiatanPenunjangExport;
 use App\Exports\UnsurExport;
@@ -45,9 +46,7 @@ class CobaController extends Controller
 
     public function index()
     {
-        // $nama, $periode_concat, $jabatan, $nama_penetapan, $tgl_ttd, $email
-        // Notification::route('mail', 'wahliyudinzein@gmail.com')->notify(new PenetapTTD('wahli', 'sdsadgasdb', 'dsjadsda', 'asdhjfdjf', 'sadhsd'));
-        SendTTDPenetapan::dispatch('wahli', 'sdsadgasdb', 'dsjadsda', 'asdhjfdjf', 'sadhsd', 'wahliyudinzein@gmail.com');
+        return Excel::download(new UserPejabatStrukturalExport(1101), 'pejabat-struktural.xlsx');
     }
 
     public function store(Request $request)

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\KabKota\ManajemenUser;
 
 use App\DataTables\KabKota\ManajemenUser\FungsionalDataTable;
+use App\Exports\KabKota\UserFungsionalExport;
 use App\Http\Controllers\Controller;
 use App\Services\FungsionalService;
 use Illuminate\Http\Request;
@@ -14,11 +15,14 @@ use App\Models\MekanismePengangkatan;
 use App\Traits\RoleTrait;
 use Carbon\Carbon;
 use App\Models\NomenKlaturPerangkatDaerah;
+use App\Models\Role;
+use App\Traits\AuthTrait;
 use Illuminate\Validation\ValidationException;
+use Maatwebsite\Excel\Facades\Excel;
 
 class FungsionalController extends Controller
 {
-    use RoleTrait;
+    use RoleTrait, AuthTrait;
     private FungsionalService $fungsionalService;
 
     public function __construct(FungsionalService $fungsionalService)
@@ -28,7 +32,8 @@ class FungsionalController extends Controller
 
     public function index(FungsionalDataTable $dataTable)
     {
-        return $dataTable->render('kabkota.manajemen-user.fungsional.index');
+        $jabatans = Role::query()->whereIn('id', [1, 2, 3, 4, 5, 6, 7])->get(['id', 'display_name']);
+        return $dataTable->render('kabkota.manajemen-user.fungsional.index', compact('jabatans'));
     }
 
     public function reject(Request $request, $id)
@@ -91,5 +96,11 @@ class FungsionalController extends Controller
         $pangkats = PangkatGolonganTmt::query()->get();
         $nomenklatur = NomenKlaturPerangkatDaerah::query()->get();
         return view('kabkota.manajemen-user.struktural.edit', compact('user', 'provinsis', 'kab_kota', 'pangkats', 'judul', 'nomenklatur'));
+    }
+
+    public function export(Request $request)
+    {
+        $kab_kota_id = $this->authUser()->load(['userProvKabKota'])?->userProvKabKota?->kab_kota_id;
+        return Excel::download(new UserFungsionalExport($kab_kota_id, $request->jabatan_id, $request->status), 'fungsionals.xlsx');
     }
 }
