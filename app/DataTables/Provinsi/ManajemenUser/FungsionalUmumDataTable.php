@@ -93,7 +93,7 @@ class FungsionalUmumDataTable extends DataTable
         return $this->builder()
             ->setTableId('User-table')
             ->columns($this->getColumns())
-            ->minifiedAjax()
+            ->minifiedAjax(env('APP_URL') . '/provinsi/manajemen-user/umum')
             ->dom('lfrtip')
             ->orderBy(2, 'desc')
             ->buttons(
