@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Provinsi\ManajemenUser;
 
 use App\DataTables\Provinsi\ManajemenUser\StrukturalDataTable;
+use App\Exports\Provinsi\UserPejabatStrukturalExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\VerifStrukturalRequest;
 use App\Services\Provinsi\StrukturalService;
@@ -11,6 +12,7 @@ use App\Models\User;
 use App\Models\Provinsi;
 use App\Models\KabKota;
 use App\Models\PangkatGolonganTmt;
+use Maatwebsite\Excel\Facades\Excel;
 
 class StrukturalController extends Controller
 {
@@ -62,5 +64,11 @@ class StrukturalController extends Controller
         $kab_kota = KabKota::query()->get();
         $pangkats = PangkatGolonganTmt::query()->get();
         return view('kabkota.manajemen-user.struktural.show', compact('user', 'provinsis', 'kab_kota', 'pangkats', 'judul'));
+    }
+
+    public function export(Request $request)
+    {
+        $provinsi_id = $this->authUser()->load(['userProvKabKota'])?->userProvKabKota?->provinsi_id;
+        return Excel::download(new UserPejabatStrukturalExport($provinsi_id, $request->status), 'pejabat-struktural.xlsx');
     }
 }
