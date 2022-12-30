@@ -96,7 +96,7 @@ class FungsionalDataTable extends DataTable
         return $this->builder()
             ->setTableId('User-table')
             ->columns($this->getColumns())
-            ->minifiedAjax()
+            ->minifiedAjax(env('APP_URL') . '/kab-kota/manajemen-user/fungsional')
             ->dom('lfrtip')
             ->orderBy(2, 'desc')
             ->buttons(

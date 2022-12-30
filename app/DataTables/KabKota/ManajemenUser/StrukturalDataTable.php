@@ -101,7 +101,7 @@ class StrukturalDataTable extends DataTable
         return $this->builder()
             ->setTableId('User-table')
             ->columns($this->getColumns())
-            ->minifiedAjax()
+            ->minifiedAjax(env('APP_URL') . '/kab-kota/manajemen-user/struktural')
             ->dom('lfrtip')
             ->orderBy(2, 'desc')
             ->buttons(
