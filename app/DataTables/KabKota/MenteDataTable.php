@@ -119,7 +119,7 @@ class MenteDataTable extends DataTable
             ->responsive('true')
             ->orderCellsTop()
             ->columns($this->getColumns())
-            ->ajax(env('APP_URL') . route('kab-kota/data-mente'))
+            ->ajax(env('APP_URL') . '/kab-kota/data-mente')
             ->dom('lfrtip')
             ->orderBy(1)
             ->buttons(
