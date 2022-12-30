@@ -3,12 +3,16 @@
 namespace App\Http\Controllers\KabKota\ManajemenUser;
 
 use App\DataTables\KabKota\ManajemenUser\FungsionalUmumDataTable;
+use App\Exports\KabKota\UserFungsionalUmumExport;
 use App\Http\Controllers\Controller;
 use App\Services\FungsionalUmumService;
+use App\Traits\AuthTrait;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class FungsionalUmumController extends Controller
 {
+    use AuthTrait;
     private FungsionalUmumService $fungsionalUmumService;
 
     public function __construct(FungsionalUmumService $fungsionalUmumService)
@@ -46,5 +50,11 @@ class FungsionalUmumController extends Controller
             'success' => 200,
             'message' => "Berhasil dihapus",
         ]);
+    }
+
+    public function export()
+    {
+        $kab_kota_id = $this->authUser()->load(['userProvKabKota'])?->userProvKabKota?->kab_kota_id;
+        return Excel::download(new UserFungsionalUmumExport($kab_kota_id), 'fungsional-umum.xlsx');
     }
 }
