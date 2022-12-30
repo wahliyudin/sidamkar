@@ -118,7 +118,7 @@ class MenteDataTable extends DataTable
             ->responsive('true')
             ->orderCellsTop()
             ->columns($this->getColumns())
-            ->minifiedAjax()
+            ->minifiedAjax(env('APP_URL') . '/provinsi/data-mente')
             ->dom('lfrtip')
             ->orderBy(1)
             ->buttons(
