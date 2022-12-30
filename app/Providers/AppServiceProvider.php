@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -30,8 +31,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-	if(config('app.env') === 'production') {
-            \URL::forceScheme('https');
+        if (config('app.env') === 'production') {
+            URL::forceScheme('https');
         }
 
         Queue::failing(function (JobFailed $event) {
