@@ -100,9 +100,16 @@
         $(document).ready(function() {
             $('#User-table').on('click', 'tbody > tr > td:not(:nth-child(6))',
                 function() {
-                    window.location.replace(url(
-                        `/provinsi/manajemen-user/struktural/${$($(this.parentElement).find('.username')).data('detail')}/show`
-                    ));
+                    const data = $($(this.parentElement).find('.username')).data('detail')
+
+                    if (data != undefined) {
+                        window.location.replace(url(
+                            `/provinsi/manajemen-user/struktural/${$($(this.parentElement).find('.username')).data('detail')}/show`
+                        ));
+                    } else {
+                        alert('Data Tidak Ada')
+                    }
+
                 });
         });
     </script>

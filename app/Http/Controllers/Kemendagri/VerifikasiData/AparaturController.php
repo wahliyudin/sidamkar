@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Kemendagri\VerifikasiData;
 
 use App\DataTables\Kemendagri\VerifikasiData\AparaturDataTable;
 use App\Exports\Kemendagri\VerifikasiData\AparaturExport;
+use App\Exports\Kemendagri\VerifikasiData\UmumExport;
+use App\Exports\Kemendagri\VerifikasiData\StrukturalExport;
 use App\Http\Controllers\Controller;
 use App\Models\PangkatGolonganTmt;
 use App\Models\Provinsi;
@@ -51,5 +53,14 @@ class AparaturController extends Controller
     {
         // $request->validate([]);
         return Excel::download(new AparaturExport($request->tingkat, $request->jabatan_id, $request->pangkat_golongan, $request->provinsi_id, $request->kab_kota_id), 'aparaturs.xlsx');
+    }
+
+    public function export_umum()
+    {
+        return Excel::download(new UmumExport(), 'fungsional-umum.xlsx');
+    }
+    public function export_struktural()
+    {
+        return Excel::download(new StrukturalExport(), 'struktural.xlsx');
     }
 }
