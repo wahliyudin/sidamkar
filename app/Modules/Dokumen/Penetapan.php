@@ -47,7 +47,7 @@ class Penetapan
     {
         $results = [];
         $akJabatan = $this->akJabatan($this->rekapitulasiKegiatan) + (isset($this->result['akJabatanOld']) ? $this->result['akJabatanOld'] : 0);
-        $total = $akJabatan;
+        $total = (isset($this->result['akJabatanOld']) ? $this->result['akJabatanOld'] : 0);
         if ($total < $this->ketentuanNilai->ak_max) {
             // masih kurang dari 150% ak_min
             $akProfesi = $this->akProfesi($this->rekapitulasiKegiatan);
