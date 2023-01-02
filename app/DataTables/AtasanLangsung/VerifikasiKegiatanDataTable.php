@@ -75,7 +75,7 @@ class VerifikasiKegiatanDataTable extends DataTable
             ->responsive(true)
             ->orderCellsTop()
             ->columns($this->getColumns())
-            ->minifiedAjax()
+            ->minifiedAjax(env('APP_URL') . '/atasan-langsung/verifikasi-kegiatan')
             ->dom('Bfrtip')
             ->orderBy(1)
             ->buttons(
