@@ -33,11 +33,13 @@ class AparaturExport implements FromArray, WithHeadings, WithTitle
             if ($this->provinsi != null) {
                 $q = "AND user_aparaturs.tingkat_aparatur = 'provinsi' AND provinsis.id = $this->provinsi";
             } else {
-                $q = "AND user_aparaturs.tingkat_aparatur = 'provinsi' ";
+                $q = "AND user_aparaturs.tingkat_aparatur = 'provinsi'";
             }
         } else {
             if ($this->kab_kota != null) {
                 $q = "AND user_aparaturs.tingkat_aparatur = 'kab_kota' AND kab_kotas.id = $this->kab_kota";
+            } else {
+                $q = "AND user_aparaturs.tingkat_aparatur = 'kab_kota'";
             }
         }
         if ($this->jabatan != null) {
