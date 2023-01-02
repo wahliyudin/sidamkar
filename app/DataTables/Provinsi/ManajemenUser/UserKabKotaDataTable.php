@@ -88,7 +88,7 @@ class UserKabKotaDataTable extends DataTable
         return $this->builder()
             ->setTableId('User-table')
             ->columns($this->getColumns())
-            ->minifiedAjax()
+            ->minifiedAjax(env('APP_URL') . '/provinsi/manajemen-user/user-kab-kota')
             ->dom('Bfrtip')
             ->orderBy(1)
             ->buttons(
