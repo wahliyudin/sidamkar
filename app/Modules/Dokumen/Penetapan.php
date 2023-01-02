@@ -35,7 +35,7 @@ class Penetapan
         $this->logicTotal();
         $this->akDasarAtauKelebihan();
         $this->akPengalaman();
-        $this->result['total'] = ($this->result['total'] - $this->result['akJabatanNew']) + (isset($this->result['akJabatanOld']) ? $this->result['akJabatanOld'] : 0) + $this->result['akPengalaman'] + $this->result['akDasarAtauKelebihan'];
+        $this->result['total'] = $this->result['total'] + $this->result['akPengalaman'] + $this->result['akDasarAtauKelebihan'];
         $this->total = $this->result['total'];
         $this->processKenaikanPangkat();
         $this->processKenaikanJenjang();
