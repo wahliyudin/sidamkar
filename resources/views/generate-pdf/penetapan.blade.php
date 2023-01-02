@@ -189,7 +189,7 @@
                 <td>3</td>
                 <td class="keterangan" colspan="2">AK Kegiatan Tugas Jabatan</td>
                 <td>{{ isset($data['akJabatanOld']) ? $data['akJabatanOld'] : 0 }}</td>
-                <td>{{ isset($data['jabatan']) ? $data['jabatan'] : 0 }}</td>
+                <td>{{ isset($data['akJabatanNew']) ? $data['akJabatanNew'] : 0 }}</td>
                 <td>{{ isset($data['jabatan']) ? $data['jabatan'] : 0 }}</td>
                 <td colspan="1" class="text-start">{{ isset($data['keterangan_3']) ? $data['keterangan_3'] : '' }}
                 </td>
