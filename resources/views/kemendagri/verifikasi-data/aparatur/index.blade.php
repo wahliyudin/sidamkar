@@ -28,7 +28,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Provinsi</label>
-                                        <select name="provinsi_id" required class="form-select text-sm">
+                                        <select name="provinsi_id" class="form-select text-sm">
                                             <option value=""> All </option>
                                             @foreach ($provinsis as $provinsi)
                                                 <option value="{{ $provinsi->id }}">
