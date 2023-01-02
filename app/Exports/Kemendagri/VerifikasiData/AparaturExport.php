@@ -28,6 +28,7 @@ class AparaturExport implements FromArray, WithHeadings, WithTitle
 
     public function array(): array
     {
+        $q = null;
         if ($this->tingkat == 'provinsi') {
             if ($this->provinsi != null) {
                 $q = "AND user_aparaturs.tingkat_aparatur = 'provinsi' AND provinsis.id = $this->provinsi";
@@ -65,12 +66,11 @@ class AparaturExport implements FromArray, WithHeadings, WithTitle
         FROM users
         JOIN user_aparaturs ON user_aparaturs.user_id = users.id
         LEFT JOIN pangkat_golongan_tmts ON pangkat_golongan_tmts.id = user_aparaturs.pangkat_golongan_tmt_id
-        LEFT JOIN nomen_klatur_perangkat_daerahs
-                ON nomen_klatur_perangkat_daerahs.id = user_aparaturs.nomenklatur_perangkat_daerah_id
+        LEFT JOIN nomen_klatur_perangkat_daerahs ON nomen_klatur_perangkat_daerahs.id = user_aparaturs.nomenklatur_perangkat_daerah_id
         LEFT JOIN provinsis ON provinsis.id = user_aparaturs.provinsi_id
         LEFT JOIN kab_kotas ON kab_kotas.id = user_aparaturs.kab_kota_id
-        JOIN role_user ON role_user.user_id = users.id
-        JOIN roles ON roles.id = role_user.role_id
+        LEFT JOIN role_user ON role_user.user_id = users.id
+        LEFT JOIN roles ON roles.id = role_user.role_id
         WHERE users.status_akun = 1
         $q");
     }
