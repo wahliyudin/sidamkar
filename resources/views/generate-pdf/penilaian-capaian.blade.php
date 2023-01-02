@@ -110,7 +110,7 @@
             <tr>
                 <td style="width: 150px;">Unit Kerja</td>
                 <td style="width: 10px;">:</td>
-                <td>Lorem, ipsum. Lorem, ipsum.</td>
+                <td>{{ $data['user']?->userAparatur?->nomenklaturPerangkatDaerah?->nama }}</td>
             </tr>
         </tbody>
     </table>
