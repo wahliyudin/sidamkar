@@ -152,7 +152,7 @@
                                                                     <option value="struktural">Pejabat Struktural
                                                                     </option>
                                                                     <option value="fungsional_umum">Pejabat Fungsional
-                                                                        Umum
+                                                                        Umum/Honorer
                                                                     </option>
                                                                 </select>
                                                                 @error('jenis_aparatur')
