@@ -112,7 +112,9 @@ class Penetapan
     public function akJabatan(RekapitulasiKegiatan $rekapitulasiKegiatan)
     {
         // ambil ak jabatan dari rekap
-        return $rekapitulasiKegiatan->total_capaian;
+        $ak = $rekapitulasiKegiatan?->total_capaian ?? 0;
+        $this->result['akJabatanNew'] = $ak;
+        return $ak;
     }
 
     public function akProfesi(RekapitulasiKegiatan $rekapitulasiKegiatan)
