@@ -361,7 +361,7 @@ $(function () {
         $('.simpan-kegiatan').addClass('simpan');
         $('.simpan-kegiatan').removeClass('update');
     });
-    $('.btn-edit-kegiatan').click(function (e) {
+    $('#accordion-parent').on('click', '.btn-edit-kegiatan', function (e) {
         e.preventDefault();
         $('.simpan-kegiatan').removeClass('simpan');
         $('.simpan-kegiatan').addClass('update');
@@ -430,7 +430,7 @@ $(function () {
         });
     });
 
-    $('.btn-hapus-kegiatan').click(function (e) {
+    $('#accordion-parent').on('click', '.btn-hapus-kegiatan', function (e) {
         e.preventDefault();
         swal({
             title: "Yakin ingin menghapus?",
