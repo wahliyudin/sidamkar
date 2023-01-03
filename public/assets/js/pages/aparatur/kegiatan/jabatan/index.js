@@ -283,6 +283,7 @@ $(document).ready(function () {
             jenis_skp: jenis_skp,
             nilai_skp: nilai_skp,
         };
+        console.log(data);
         $.ajaxSetup({
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -309,8 +310,6 @@ $(document).ready(function () {
                         $.ajax({
                                 type: 'POST',
                                 url: url("/laporan-kegiatan/jabatan/send-skp"),
-                                processData: false,
-                                contentType: false,
                                 data: data
                             })
                             .done(function (myAjaxJsonResponse) {
