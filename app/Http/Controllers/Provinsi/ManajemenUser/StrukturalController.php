@@ -12,10 +12,12 @@ use App\Models\User;
 use App\Models\Provinsi;
 use App\Models\KabKota;
 use App\Models\PangkatGolonganTmt;
+use App\Traits\AuthTrait;
 use Maatwebsite\Excel\Facades\Excel;
 
 class StrukturalController extends Controller
 {
+    use AuthTrait;
     private StrukturalService $strukturalService;
 
     public function __construct(StrukturalService $strukturalService)
