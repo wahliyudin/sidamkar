@@ -116,7 +116,7 @@ class KegiatanProfesiService
             $role = $subButirKegiatan->load('role')?->role;
         }
         $periode = $this->periodeRepository->isActive();
-        $laporanKegiatanPenunjangProfesi = $this->kegiatanPenunjangProfesiRepository->store($request, $role, $user, $butirKegiatan, $subButirKegiatan, $request->current_date, $periode->id);
+        $laporanKegiatanPenunjangProfesi = $this->kegiatanPenunjangProfesiRepository->store($request, $role, $user, $butirKegiatan, $subButirKegiatan, $request->current_date, $periode?->id);
         $historyKegiatanJabatan = $this->kegiatanPenunjangProfesiRepository->storeHistoryPenunjangProfesi($laporanKegiatanPenunjangProfesi, HistoryPenunjangProfesi::STATUS_LAPORKAN, HistoryPenunjangProfesi::ICON_KEYBOARD, $request->detail_kegiatan, 'Berhasil dilaporkan', $request->current_date);
         if (isset($request->doc_kegiatan_tmp[0]) && $request->doc_kegiatan_tmp[0] !== null) {
             foreach ($request->doc_kegiatan_tmp as $doc_kegiatan_tmp) {
@@ -222,7 +222,7 @@ class KegiatanProfesiService
         return $this->ketentuanNilaiRepository->getByRolePangkat($role_id, $pangkat_id);
     }
 
-    public function laporanKegiatanPenunjangProfesiByUser(?ButirKegiatan $butirKegiatan, ?SubButirKegiatan $subButirKegiatan, User $user, Periode $periode)
+    public function laporanKegiatanPenunjangProfesiByUser(?ButirKegiatan $butirKegiatan, ?SubButirKegiatan $subButirKegiatan, User $user, $periode)
     {
         return [
             $this->kegiatanPenunjangProfesiRepository->laporanKegiatanPenunjangProfesiStatusValidasi($butirKegiatan, $subButirKegiatan, $user, $periode),
@@ -232,12 +232,12 @@ class KegiatanProfesiService
         ];
     }
 
-    public function laporanKegiatanPenunjangProfesiCount(?ButirKegiatan $butirKegiatan, ?SubButirKegiatan $subButirKegiatan, User $user, Periode $periode): int
+    public function laporanKegiatanPenunjangProfesiCount(?ButirKegiatan $butirKegiatan, ?SubButirKegiatan $subButirKegiatan, User $user, $periode): int
     {
         return $this->kegiatanPenunjangProfesiRepository->laporanKegiatanPenunjangProfesiCount($butirKegiatan, $subButirKegiatan, $user, $periode);
     }
 
-    public function laporanLast(?ButirKegiatan $butirKegiatan, ?SubButirKegiatan $subButirKegiatan, User $user, Periode $periode)
+    public function laporanLast(?ButirKegiatan $butirKegiatan, ?SubButirKegiatan $subButirKegiatan, User $user, $periode)
     {
         return $this->kegiatanPenunjangProfesiRepository->laporanLast($butirKegiatan, $subButirKegiatan, $user, $periode);
     }

@@ -8,8 +8,9 @@
                     <div class="row justify-content-between">
                         <div class="col-md-6">
                             <h3>Kegiatan Jabatan</h3>
-                            <button class="btn btn-green text-sm ps-3" data-bs-toggle="modal"
-                                data-bs-target="#tambahRencana"><i class="fa-solid fa-clipboard-list me-1"></i> Tambah
+                            <button {{ !isset($periode) ? 'disabled' : '' }} class="btn btn-green text-sm ps-3"
+                                data-bs-toggle="modal" data-bs-target="#tambahRencana"><i
+                                    class="fa-solid fa-clipboard-list me-1"></i> Tambah
                                 Rencana</button>
                         </div>
                         <div class="form-group col-md-4">

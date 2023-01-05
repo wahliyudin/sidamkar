@@ -27,7 +27,7 @@ class KegiatanJabatanController extends Controller
         $periode = $this->periodeRepository->isActive();
         $rencanas = Rencana::query()->where('periode_id', $periode?->id)->get();
         $judul = 'Rencana Kinerja';
-        return view('aparatur.kegiatan.index', compact('rencanas', 'judul'));
+        return view('aparatur.kegiatan.index', compact('rencanas', 'judul', 'periode'));
     }
 
     public function search(Request $request)
@@ -58,7 +58,7 @@ class KegiatanJabatanController extends Controller
         $periode = $this->periodeRepository->isActive();
         User::query()->findOrFail(auth()->user()->id)->rencanas()->create([
             'nama' => $request->rencana,
-            'periode_id' => $periode->id
+            'periode_id' => $periode?->id
         ]);
         return response()->json([
             'status' => 200,

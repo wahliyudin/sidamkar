@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Facade;
 class RekapitulasiKegiatanFacade extends Facade
 {
     /**
-     * @method static \App\Repositories\RekapitulasiKegiatanRepository getRekapByFungsionalAndPeriode(User $user, Periode $periode)
+     * @method static \App\Repositories\RekapitulasiKegiatanRepository getRekapByFungsionalAndPeriode(User $user, $periode)
      * @method static \App\Repositories\RekapitulasiKegiatanRepository store($user_id, $periode_id, $url_rekap, $name_rekap, $url_capaian, $name_capaian)
      * @method static \App\Repositories\RekapitulasiKegiatanRepository update(RekapitulasiKegiatan $rekapitulasiKegiatan, $user_id, $periode_id, $url_rekap, $name_rekap, $url_capaian, $name_capaian)
      *

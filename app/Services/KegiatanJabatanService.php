@@ -16,7 +16,7 @@ class KegiatanJabatanService
         $this->kegiatanJabatanRepository = $kegiatanJabatanRepository;
     }
 
-    public function laporanKegiatanJabatanByUser(ButirKegiatan $butirKegiatan, User $user, Periode $periode)
+    public function laporanKegiatanJabatanByUser(ButirKegiatan $butirKegiatan, User $user, $periode)
     {
         return [
             $this->kegiatanJabatanRepository->laporanKegiatanJabatanStatusValidasi($butirKegiatan, $user, $periode),
@@ -26,12 +26,12 @@ class KegiatanJabatanService
         ];
     }
 
-    public function laporanKegiatanJabatanCount(ButirKegiatan $butirKegiatan, User $user, Periode $periode): int
+    public function laporanKegiatanJabatanCount(ButirKegiatan $butirKegiatan, User $user, $periode): int
     {
         return $this->kegiatanJabatanRepository->laporanKegiatanJabatanCount($butirKegiatan, $user, $periode);
     }
 
-    public function laporanLast(ButirKegiatan $butirKegiatan, User $user, Periode $periode)
+    public function laporanLast(ButirKegiatan $butirKegiatan, User $user, $periode)
     {
         return $this->kegiatanJabatanRepository->laporanLast($butirKegiatan, $user, $periode);
     }

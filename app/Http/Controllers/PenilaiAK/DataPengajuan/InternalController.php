@@ -69,7 +69,7 @@ class InternalController extends Controller
                 JOIN roles ON roles.id = role_user.role_id
                 LEFT JOIN mekanisme_pengangkatans ON user_aparaturs.mekanisme_pengangkatan_id = mekanisme_pengangkatans.id
                 JOIN kab_prov_penilai_and_penetaps AS internal ON internal.kab_kota_id = ' . $user->userPejabatStruktural->kab_kota_id . '
-                JOIN rekapitulasi_kegiatans ON (rekapitulasi_kegiatans.fungsional_id = users.id AND rekapitulasi_kegiatans.is_send IN (2, 3) AND rekapitulasi_kegiatans.periode_id = ' . $periode->id . ')
+                JOIN rekapitulasi_kegiatans ON (rekapitulasi_kegiatans.fungsional_id = users.id AND rekapitulasi_kegiatans.is_send IN (2, 3) AND rekapitulasi_kegiatans.periode_id = ' . $periode?->id . ')
                 WHERE users.status_akun = 1
                     AND roles.id IN (1,2,3,5,6)
                     AND user_aparaturs.kab_kota_id = ' . $user->userPejabatStruktural->kab_kota_id . '
@@ -93,13 +93,13 @@ class InternalController extends Controller
         $periode = $this->periodeRepository->isActive();
         $rekapitulasiKegiatan = RekapitulasiKegiatan::query()
             ->where('fungsional_id', $id)
-            ->where('periode_id', $periode->id)->first();
+            ->where('periode_id', $periode?->id)->first();
         if (!isset($rekapitulasiKegiatan)) {
             abort(404);
         }
         $user = $this->userRepository->getUserById($id)->load('userAparatur', 'penetapanAngkaKredit');
-        $penetapanAngkaKredit = PenetapanAngkaKredit::query()->where('periode_id', $periode->id)->where('user_id', $user->id)->first();
-        $penetapanAngkaKreditOld = PenetapanAngkaKredit::query()->where('periode_id', $periode->id - 1)->where('user_id', $user->id)->first();
+        $penetapanAngkaKredit = PenetapanAngkaKredit::query()->where('periode_id', $periode?->id)->where('user_id', $user->id)->first();
+        $penetapanAngkaKreditOld = PenetapanAngkaKredit::query()->where('periode_id', $periode?->id - 1)->where('user_id', $user->id)->first();
         return view('penilai-ak.data-pengajuan.internal.show', compact('user', 'rekapitulasiKegiatan', 'penetapanAngkaKredit', 'penetapanAngkaKreditOld'));
     }
 
@@ -153,7 +153,7 @@ class InternalController extends Controller
         if (!isset($penilai_ak?->userPejabatStruktural?->file_ttd)) {
             throw ValidationException::withMessages(['Maaf, Anda Belum Melengkapi Profil']);
         }
-        $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode->id);
+        $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode?->id);
         $this->internalService->ttdRekapitulasi($rekap, $user, $periode, $penilai_ak, $request->no_pengembang, $request->no_penilaian_capaian);
         return response()->json([
             'message' => 'Berhasil'
@@ -164,7 +164,7 @@ class InternalController extends Controller
     {
         $periode = $this->periodeRepository->isActive();
         $user = $this->userRepository->getUserById($user_id);
-        $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode->id);
+        $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode?->id);
         $this->rekapitulasiKegiatanRepository->sendToPenetap($rekap);
         return response()->json([
             'success' => 200,

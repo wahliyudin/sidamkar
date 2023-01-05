@@ -19,11 +19,11 @@ class LaporanKegiatanPenunjangProfesiRepository
         return $this->laporanKegiatanPenunjangProfesi->query()->findOrFail($id);
     }
 
-    public function sumScoreByUser($user_id, Periode $periode)
+    public function sumScoreByUser($user_id, $periode)
     {
         return $this->laporanKegiatanPenunjangProfesi->query()
             ->where('user_id', $user_id)
-            ->where('periode_id', $periode->id)
+            ->where('periode_id', $periode?->id)
             ->where('status', 3)
             ->sum('score');
     }

@@ -70,7 +70,7 @@ class ExternalController extends Controller
                 JOIN roles ON roles.id = role_user.role_id
                 LEFT JOIN mekanisme_pengangkatans ON user_aparaturs.mekanisme_pengangkatan_id = mekanisme_pengangkatans.id
                 JOIN kab_prov_penilai_and_penetaps AS internal ON ' . $internal . '
-                JOIN rekapitulasi_kegiatans ON (rekapitulasi_kegiatans.fungsional_id = users.id AND rekapitulasi_kegiatans.is_send IN (2, 3) AND rekapitulasi_kegiatans.periode_id = ' . $periode->id . ')
+                JOIN rekapitulasi_kegiatans ON (rekapitulasi_kegiatans.fungsional_id = users.id AND rekapitulasi_kegiatans.is_send IN (2, 3) AND rekapitulasi_kegiatans.periode_id = ' . $periode?->id . ')
                 WHERE users.status_akun = 1
                     AND user_aparaturs.kab_kota_id IN (SELECT ex_kab_kota.kab_kota_id
                         FROM kab_prov_penilai_and_penetaps AS ex_kab_kota
@@ -91,7 +91,7 @@ class ExternalController extends Controller
                             LEFT JOIN mekanisme_pengangkatans ON user_aparaturs.mekanisme_pengangkatan_id = mekanisme_pengangkatans.id
                             JOIN kab_prov_penilai_and_penetaps AS internal ON ' . $internal . '
                             JOIN rekapitulasi_kegiatans ON (rekapitulasi_kegiatans.fungsional_id = users.id
-                                AND rekapitulasi_kegiatans.is_send IN (2, 3) AND rekapitulasi_kegiatans.periode_id = ' . $periode->id . ')
+                                AND rekapitulasi_kegiatans.is_send IN (2, 3) AND rekapitulasi_kegiatans.periode_id = ' . $periode?->id . ')
                             WHERE users.status_akun = 1
                                     AND user_aparaturs.tingkat_aparatur = "' . $auth->userPejabatStruktural->tingkat_aparatur . '"
                                     AND roles.id IN (1,2,3,5,6)
@@ -112,9 +112,9 @@ class ExternalController extends Controller
         $periode = $this->periodeRepository->isActive();
         $rekapitulasiKegiatan = RekapitulasiKegiatan::query()
             ->where('fungsional_id', $id)
-            ->where('periode_id', $periode->id)->first();
+            ->where('periode_id', $periode?->id)->first();
         $user = $this->userRepository->getUserById($id)->load('userAparatur');
-        $penetapanAngkaKredit = PenetapanAngkaKredit::query()->where('periode_id', $periode->id)->where('user_id', $user->id)->first();
+        $penetapanAngkaKredit = PenetapanAngkaKredit::query()->where('periode_id', $periode?->id)->where('user_id', $user->id)->first();
         return view('penetap-ak.data-pengajuan.external.show', compact('user', 'rekapitulasiKegiatan', 'penetapanAngkaKredit'));
     }
 
@@ -141,7 +141,7 @@ class ExternalController extends Controller
         if (!isset($penetapAk?->userPejabatStruktural?->file_ttd)) {
             throw ValidationException::withMessages(['Maaf, Anda Belum Melengkapi Profil']);
         }
-        $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode->id);
+        $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode?->id);
         $this->externalService->ttdRekapitulasi($rekap, $user, $periode, $penetapAk, $request->no_penetapan, $request->nama_penetap, $email);
         return response()->json([
             'message' => 'Berhasil'

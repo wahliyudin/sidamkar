@@ -16,7 +16,7 @@ class UnsurRepository
         $this->unsur = $unsur;
     }
 
-    public function getRekapUnsurs(User $user, Periode $periode)
+    public function getRekapUnsurs(User $user, $periode)
     {
         return DB::select("SELECT laporan_kegiatan_jabatans.id as laporan_jabatan_id,
             unsurs.id as unsur_id,
@@ -35,7 +35,7 @@ class UnsurRepository
             JOIN laporan_kegiatan_jabatans ON butir_kegiatans.id = laporan_kegiatan_jabatans.butir_kegiatan_id
             WHERE laporan_kegiatan_jabatans.status = 3
             AND laporan_kegiatan_jabatans.user_id = '$user->id'
-            AND laporan_kegiatan_jabatans.periode_id = $periode->id
+            AND laporan_kegiatan_jabatans.periode_id = $periode?->id
             GROUP BY butir_kegiatans.id,
             DATE(laporan_kegiatan_jabatans.current_date)
             ORDER BY DATE(laporan_kegiatan_jabatans.current_date) DESC, butir_kegiatans.id ASC");

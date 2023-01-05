@@ -25,7 +25,7 @@ class InternalService
         $this->rekapitulasiKegiatanRepository = $rekapitulasiKegiatanRepository;
     }
 
-    public function ttdRekapitulasi(RekapitulasiKegiatan $rekapitulasiKegiatan, User $user, Periode $periode, User $penilai, $no_surat_pengembang = null, $no_surat_capaian = null)
+    public function ttdRekapitulasi(RekapitulasiKegiatan $rekapitulasiKegiatan, User $user, $periode, User $penilai, $no_surat_pengembang = null, $no_surat_capaian = null)
     {
         // $ttd = $atasan_langsung?->userPejabatStruktural?->file_ttd;
         [$link_pengembang, $name_pengembang, $jml_ak_penunjang, $jml_ak_profesi] = $this->generatePdfService->generatePengembang($user, $penilai, $no_surat_pengembang, $periode);
@@ -42,13 +42,13 @@ class InternalService
         ]);
     }
 
-    public function storePenetapan(User $user, User $penetap = null, Periode $periode, $ak_kelebihan = null, $ak_pengalaman, $ak_lama_jabatan = null, $keterangan_1 = null, $keterangan_2 = null, $keterangan_3 = null, $keterangan_4 = null, $keterangan_5 = null)
+    public function storePenetapan(User $user, User $penetap = null, $periode, $ak_kelebihan = null, $ak_pengalaman, $ak_lama_jabatan = null, $keterangan_1 = null, $keterangan_2 = null, $keterangan_3 = null, $keterangan_4 = null, $keterangan_5 = null)
     {
         PenetapanAngkaKredit::query()->updateOrCreate([
-            'periode_id' => $periode->id,
+            'periode_id' => $periode?->id,
             'user_id' => $user->id
         ], [
-            'periode_id' => $periode->id,
+            'periode_id' => $periode?->id,
             'user_id' => $user->id,
             'ak_kelebihan' => isset($ak_kelebihan) ? $ak_kelebihan : ($user->userAparatur->status_mekanisme == 2 ? $user->userAparatur->angka_mekanisme : 0),
             'ak_pengalaman' => $ak_pengalaman
