@@ -12,7 +12,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-end flex-wrap wrapper-btn">
-                        <button class="btn btn-blue-reverse ms-3 btn-tambah" data-bs-toggle="tambahInformasi"
+                        <button class="btn btn-blue-reverse ms-3 btn-tambah" data-bs-toggle="modal"
                             data-bs-target="#tambahInformasi"><i class="fa-solid fa-file-circle-plus me-2"></i>Tambah
                             Data</button>
                     </div>
