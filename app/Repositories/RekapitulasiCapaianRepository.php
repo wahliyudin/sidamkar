@@ -15,11 +15,11 @@ class RekapitulasiCapaianRepository
         $this->rekapitulasiCapaian = $rekapitulasiCapaian;
     }
 
-    public function getByFungsionalAndPeriode(User $user, Periode $periode)
+    public function getByFungsionalAndPeriode(User $user, $periode)
     {
         return $this->rekapitulasiCapaian->query()
             ->where('fungsional_id', $user->id)
-            ->where('periode_id', $periode->id)
+            ->where('periode_id', $periode?->id)
             ->first();
     }
 

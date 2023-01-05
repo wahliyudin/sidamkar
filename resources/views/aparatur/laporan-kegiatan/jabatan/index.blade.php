@@ -34,7 +34,7 @@
                                 <i class="fa-solid fa-file-lines"></i>
                                 Input Golongan
                             </button>
-                            <button data-bs-toggle="modal" data-bs-target="#skp"
+                            <button {{ !isset($periode) ? 'disabled' : '' }} data-bs-toggle="modal" data-bs-target="#skp"
                                 class="btn btn-warning btn-sm ps-3 pe-3 py-2 ">
                                 <i class="fa-solid fa-file-lines"></i>
                                 Input SKP
@@ -45,8 +45,8 @@
                                     History Laporan
                                 </button>
                             @else
-                                <button data-bs-toggle="modal" data-bs-target="#rekap"
-                                    class="btn btn-green btn-sm ps-3 pe-3 py-2 rekap btn-rekap">
+                                <button {{ !isset($periode) ? 'disabled' : '' }} data-bs-toggle="modal"
+                                    data-bs-target="#rekap" class="btn btn-green btn-sm ps-3 pe-3 py-2 rekap btn-rekap">
                                     <i class="fa-solid fa-paper-plane me-1"></i>
                                     Ajukan Laporan
                                 </button>

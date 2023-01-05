@@ -6,7 +6,7 @@ use App\Models\Periode;
 
 class PeriodeRepository
 {
-    private Periode $periode;
+    private $periode;
 
     public function __construct()
     {

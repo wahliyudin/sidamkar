@@ -18,7 +18,7 @@ class PeriodeController extends Controller
     {
         $judul = 'CMS Periode';
         $periode = Periode::query()->where('is_active', true)->first();
-        $periodeLast = Periode::query()->get()->last();
+        $periodeLast = Periode::query()->latest()->first();
         if ($periodeLast != null) {
             $min = Carbon::make($periodeLast->akhir)->addDay()->format('Y-m-d');
         } else {

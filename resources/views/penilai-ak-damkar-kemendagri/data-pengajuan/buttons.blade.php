@@ -3,7 +3,7 @@
         data-bs-toggle="modal" data-bs-target="#mekanisme{{ $row->user_id }}">
         Mekanisme</buttun>
     <a href="{{ route('penilai-ak-damkar-kemendagri.data-pengajuan.show', $row->user_id) }}"
-        {{ $row->status_mekanisme != 3 ? 'disabled' : '' }} class="btn btn-blue btn-sm">Detail</a>
+        {{ $row->status_mekanisme != 3 || !isset($periode) ? 'disabled' : '' }} class="btn btn-blue btn-sm">Detail</a>
     <div class="modal fade" id="mekanisme{{ $row->user_id }}" data-bs-backdrop="static" tabindex="-1" role="dialog"
         aria-labelledby="mekanismeTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-centered" role="document">

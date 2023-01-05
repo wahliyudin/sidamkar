@@ -15,11 +15,11 @@ class SuratPernyataanKegiatanRepository
         $this->suratPernyataanKegiatan = $suratPernyataanKegiatan;
     }
 
-    public function getByFungsionalAndPeriode(User $user, Periode $periode)
+    public function getByFungsionalAndPeriode(User $user, $periode)
     {
         return $this->suratPernyataanKegiatan->query()
             ->where('fungsional_id', $user->id)
-            ->where('periode_id', $periode->id)
+            ->where('periode_id', $periode?->id)
             ->first();
     }
 

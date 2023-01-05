@@ -15,11 +15,11 @@ class PengembanganPenunjangProfesiRepository
         $this->pengembanganPenunjangProfesi = $pengembanganPenunjangProfesi;
     }
 
-    public function getByFungsionalAndPeriode(User $user, Periode $periode)
+    public function getByFungsionalAndPeriode(User $user, $periode)
     {
         return $this->pengembanganPenunjangProfesi->query()
             ->where('fungsional_id', $user->id)
-            ->where('periode_id', $periode->id)
+            ->where('periode_id', $periode?->id)
             ->first();
     }
 

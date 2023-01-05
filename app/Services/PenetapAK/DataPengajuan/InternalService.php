@@ -52,16 +52,16 @@ class InternalService
             JOIN roles ON roles.id = role_user.role_id
             LEFT JOIN mekanisme_pengangkatans ON user_aparaturs.mekanisme_pengangkatan_id = mekanisme_pengangkatans.id
             JOIN kab_prov_penilai_and_penetaps AS internal ON ' . $internal . '
-            JOIN rekapitulasi_kegiatans ON (rekapitulasi_kegiatans.fungsional_id = users.id AND rekapitulasi_kegiatans.is_send IN (2, 3) AND rekapitulasi_kegiatans.periode_id = ' . $periode->id . ')
+            JOIN rekapitulasi_kegiatans ON (rekapitulasi_kegiatans.fungsional_id = users.id AND rekapitulasi_kegiatans.is_send IN (2, 3) AND rekapitulasi_kegiatans.periode_id = ' . $periode?->id . ')
             WHERE users.status_akun = 1
                 AND user_aparaturs.tingkat_aparatur = "' . $user->userPejabatStruktural->tingkat_aparatur . '"
                 AND roles.id IN (1,2,3,5,6)
                 AND ' . $aparatur);
     }
 
-    public function ttdRekapitulasi(RekapitulasiKegiatan $rekapitulasiKegiatan, User $user, Periode $periode, User $penetap, $no_surat_penetapan = null, $nama_penetap, $email)
+    public function ttdRekapitulasi(RekapitulasiKegiatan $rekapitulasiKegiatan, User $user, $periode, User $penetap, $no_surat_penetapan = null, $nama_penetap, $email)
     {
-        $penetapan = PenetapanAngkaKredit::query()->where('user_id', $user->id)->where('periode_id', $periode->id)->first();
+        $penetapan = PenetapanAngkaKredit::query()->where('user_id', $user->id)->where('periode_id', $periode?->id)->first();
         $this->generatePdfService->storePenetapan($user, $penetap, $periode, true, $no_surat_penetapan, $penetapan->ak_lama_jabatan, $rekapitulasiKegiatan->keterangan_1, $rekapitulasiKegiatan->keterangan_2, $rekapitulasiKegiatan->keterangan_3, $rekapitulasiKegiatan->keterangan_4, $rekapitulasiKegiatan->keterangan_5);
         $this->rekapitulasiKegiatanRepository->ttdPenetap($rekapitulasiKegiatan);
         $rekapitulasiKegiatan->historyRekapitulasiKegiatans()->create([
@@ -70,7 +70,7 @@ class InternalService
         $tgl_ttd = now();
         HistoryPenetapan::query()->create([
             'nama_penetap' => $nama_penetap,
-            'periode_id' => $periode->id,
+            'periode_id' => $periode?->id,
             'fungsional_id' => $user->id,
             'tgl_ttd' => $tgl_ttd
         ]);

@@ -103,7 +103,7 @@ class KegiatanPenunjangProfesiRepository
         ]);
     }
 
-    private function laporanKegiatanPenunjangProfesiByUser(?ButirKegiatan $butirKegiatan, ?SubButirKegiatan $subButirKegiatan, User $user, Periode $periode)
+    private function laporanKegiatanPenunjangProfesiByUser(?ButirKegiatan $butirKegiatan, ?SubButirKegiatan $subButirKegiatan, User $user, $periode)
     {
         return $this->laporanKegiatanPenunjangProfesi->query()
             ->with([
@@ -114,7 +114,7 @@ class KegiatanPenunjangProfesiRepository
                 'historyPenunjangProfesis.historyDokumenPenunjangProfesis'
             ])
             ->where('user_id', $user->id)
-            ->where('periode_id', $periode->id)
+            ->where('periode_id', $periode?->id)
             ->when($butirKegiatan, function ($query, $butirKegiatan) {
                 $query->where('butir_kegiatan_id', $butirKegiatan->id);
             })
@@ -125,32 +125,32 @@ class KegiatanPenunjangProfesiRepository
             ->get();
     }
 
-    public function laporanKegiatanPenunjangProfesiCount(?ButirKegiatan $butirKegiatan, ?SubButirKegiatan $subButirKegiatan, User $user, Periode $periode): int
+    public function laporanKegiatanPenunjangProfesiCount(?ButirKegiatan $butirKegiatan, ?SubButirKegiatan $subButirKegiatan, User $user, $periode): int
     {
         return $this->laporanKegiatanPenunjangProfesiByUser($butirKegiatan, $subButirKegiatan, $user, $periode)->count();
     }
 
-    public function laporanKegiatanPenunjangProfesiStatusValidasi(?ButirKegiatan $butirKegiatan, ?SubButirKegiatan $subButirKegiatan, User $user, Periode $periode)
+    public function laporanKegiatanPenunjangProfesiStatusValidasi(?ButirKegiatan $butirKegiatan, ?SubButirKegiatan $subButirKegiatan, User $user, $periode)
     {
         return $this->laporanKegiatanPenunjangProfesiByUser($butirKegiatan, $subButirKegiatan, $user, $periode)->where('status', LaporanKegiatanPenunjangProfesi::VALIDASI);
     }
 
-    public function laporanKegiatanPenunjangProfesiStatusRevisi(?ButirKegiatan $butirKegiatan, ?SubButirKegiatan $subButirKegiatan, User $user, Periode $periode)
+    public function laporanKegiatanPenunjangProfesiStatusRevisi(?ButirKegiatan $butirKegiatan, ?SubButirKegiatan $subButirKegiatan, User $user, $periode)
     {
         return $this->laporanKegiatanPenunjangProfesiByUser($butirKegiatan, $subButirKegiatan, $user, $periode)->where('status', LaporanKegiatanPenunjangProfesi::REVISI);
     }
 
-    public function laporanKegiatanPenunjangProfesiStatusSelesai(?ButirKegiatan $butirKegiatan, ?SubButirKegiatan $subButirKegiatan, User $user, Periode $periode)
+    public function laporanKegiatanPenunjangProfesiStatusSelesai(?ButirKegiatan $butirKegiatan, ?SubButirKegiatan $subButirKegiatan, User $user, $periode)
     {
         return $this->laporanKegiatanPenunjangProfesiByUser($butirKegiatan, $subButirKegiatan, $user, $periode)->where('status', LaporanKegiatanPenunjangProfesi::SELESAI);
     }
 
-    public function laporanKegiatanPenunjangProfesiStatusTolak(?ButirKegiatan $butirKegiatan, ?SubButirKegiatan $subButirKegiatan, User $user, Periode $periode)
+    public function laporanKegiatanPenunjangProfesiStatusTolak(?ButirKegiatan $butirKegiatan, ?SubButirKegiatan $subButirKegiatan, User $user, $periode)
     {
         return $this->laporanKegiatanPenunjangProfesiByUser($butirKegiatan, $subButirKegiatan, $user, $periode)->where('status', LaporanKegiatanPenunjangProfesi::TOLAK);
     }
 
-    public function laporanLast(?ButirKegiatan $butirKegiatan, ?SubButirKegiatan $subButirKegiatan, User $user, Periode $periode)
+    public function laporanLast(?ButirKegiatan $butirKegiatan, ?SubButirKegiatan $subButirKegiatan, User $user, $periode)
     {
         return $this->laporanKegiatanPenunjangProfesiByUser($butirKegiatan, $subButirKegiatan, $user, $periode)->first();
     }

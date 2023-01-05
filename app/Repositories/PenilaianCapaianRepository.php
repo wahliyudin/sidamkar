@@ -21,11 +21,11 @@ class PenilaianCapaianRepository
         $this->ketentuanNilaiRepository = $ketentuanNilaiRepository;
     }
 
-    public function getByFungsionalAndPeriode(User $user, Periode $periode)
+    public function getByFungsionalAndPeriode(User $user, $periode)
     {
         return $this->penilaianCapaian->query()
             ->where('fungsional_id', $user->id)
-            ->where('periode_id', $periode->id)
+            ->where('periode_id', $periode?->id)
             ->first();
     }
 
@@ -55,7 +55,7 @@ class PenilaianCapaianRepository
         }
     }
 
-    public function generatePenilaianCapaian(Periode $periode, User $user, $target_ak_skp)
+    public function generatePenilaianCapaian($periode, User $user, $target_ak_skp)
     {
         $user = $user->load(['roles', 'userAparatur.pangkatGolonganTmt', 'ketentuanSkpFungsional.ketentuanSkp']);
         $capaian = $this->ketentuanSKPFungsional($user->ketentuanSkpFungsional);

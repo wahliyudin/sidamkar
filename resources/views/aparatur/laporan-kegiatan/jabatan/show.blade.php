@@ -5,14 +5,15 @@
         <div class="row">
             <div class="d-flex flex-wrap px-4 mb-4 container-control justify-content-between align-items-center">
                 <h5>{{ $butirKegiatan->nama }}</h5>
-                <button class="btn btn-red" data-bs-toggle="modal" data-bs-target="#laporkan">Laporkan</button>
+                <button class="btn btn-red" {{ !isset($periode) ? 'disabled' : '' }} data-bs-toggle="modal"
+                    data-bs-target="#laporkan">Laporkan</button>
             </div>
         </div>
         {{-- <div class="d-flex px-4 mb-4 container-control justify-content-between align-items-center">
             <div class="form-group mb-0">
                 <input class="form-control" type="date" value="{{ now()->format('Y-m-d') }}"
-                    max="{{ Carbon\Carbon::make($periode->akhir)->format('Y-m-d') }}"
-                    min="{{ Carbon\Carbon::make($periode->awal)->format('Y-m-d') }}" name="tanggal">
+                    max="{{ Carbon\Carbon::make($periode?->akhir)->format('Y-m-d') }}"
+                    min="{{ Carbon\Carbon::make($periode?->awal)->format('Y-m-d') }}" name="tanggal">
             </div>
         </div> --}}
         <div class=" row d-flex flex-row flex-nowrap overflow-auto container-kegiatan">
@@ -333,9 +334,9 @@
                             <div class="form-group col-md-6">
                                 <label>Tanggal</label>
                                 <input class="form-control" type="datetime-local"
-                                    value="{{ now() < $periode->akhir && now() > $periode->awal ? now()->format('Y-m-d H:i') : Carbon\Carbon::make($periode->awal)->format('Y-m-d H:i') }}"
-                                    max="{{ Carbon\Carbon::make($periode->akhir)->format('Y-m-d H:i') }}"
-                                    min="{{ Carbon\Carbon::make($periode->awal)->format('Y-m-d H:i') }}"
+                                    value="{{ now() < $periode?->akhir && now() > $periode?->awal ? now()->format('Y-m-d H:i') : Carbon\Carbon::make($periode?->awal)?->format('Y-m-d H:i') }}"
+                                    max="{{ Carbon\Carbon::make($periode?->akhir)?->format('Y-m-d H:i') }}"
+                                    min="{{ Carbon\Carbon::make($periode?->awal)?->format('Y-m-d H:i') }}"
                                     name="current_date">
                             </div>
                             @if ($laporanKegiatanJabatanCount != 0)
