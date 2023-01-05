@@ -73,7 +73,7 @@ class PengajuanController extends Controller
                     return $this->statusMekanisme($row->status_mekanisme);
                 })
                 ->addColumn('action', function ($row) {
-                    return view('penilai-ak-damkar-kemendagri.data-pengajuan.buttons', compact('row'))->render();
+                    return view('penilai-ak-damkar-kemendagri.data-pengajuan.buttons', compact('row', 'periode'))->render();
                 })
                 ->rawColumns(['action', 'status'])
                 ->make(true);
