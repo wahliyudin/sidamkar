@@ -74,7 +74,7 @@ $(function () {
         $('.simpan-informasi').addClass('simpan');
         $('#tambahInformasi .modal-footer #simpan').html('Simpan');
     });
-    $('.btn-edit-informasi').click(function (e) {
+    $('#accordion-parent').on('click', '.btn-edit-informasi', function (e) {
         e.preventDefault();
         $('.simpan-informasi').removeClass('simpan');
         $('.simpan-informasi').addClass('update');
@@ -174,7 +174,8 @@ $(function () {
         });
     })
 
-    $('.btn-hapus-informasi').click(function (e) {
+    $('#accordion-parent').on('click', '.btn-hapus-informasi',function (e) {
+        e.preventDefault();
         var id = $(this).attr('data-id');
         console.log(id)
         $.ajax({
