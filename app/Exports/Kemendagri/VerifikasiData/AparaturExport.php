@@ -66,6 +66,7 @@ class AparaturExport implements FromArray, WithHeadings, WithTitle
             user_aparaturs.alamat,
             provinsis.nama AS provinsi,
             kab_kotas.nama AS kab_kota,
+            CASE WHEN users.status_akun = 0 THEN 'MENUNGGU' WHEN users.status_akun = 1 THEN 'TERVERIFIKASI' ELSE 'DITOLAK' END AS status_akun,
             users.created_at AS tgl_register
         FROM users
         JOIN user_aparaturs ON user_aparaturs.user_id = users.id
@@ -75,7 +76,6 @@ class AparaturExport implements FromArray, WithHeadings, WithTitle
         LEFT JOIN kab_kotas ON kab_kotas.id = user_aparaturs.kab_kota_id
         LEFT JOIN role_user ON role_user.user_id = users.id
         LEFT JOIN roles ON roles.id = role_user.role_id
-        WHERE users.status_akun = 1
         $q");
     }
 
@@ -97,6 +97,7 @@ class AparaturExport implements FromArray, WithHeadings, WithTitle
             'Alamat',
             'Provinsi',
             'Kabupaten / Kota',
+            'Status Akun',
             'Tanggal Registrasi'
         ];
     }
