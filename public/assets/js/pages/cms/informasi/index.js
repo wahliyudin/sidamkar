@@ -1,7 +1,7 @@
 ClassicEditor
     .create( document.querySelector( '#editor' ), {
         
-        toolbar: ['heading', 'bold', 'italic', 'bulletedList', 'numberedList', 'blockQuote' , 'link', '|' , 'undo', 'redo', ]
+        toolbar: ['heading', 'bold', 'italic', 'bulletedList', 'numberedList', 'blockQuote', '|' , 'undo', 'redo', ]
     }).then( newEditor => {
         editor = newEditor;
     })
