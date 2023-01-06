@@ -204,18 +204,18 @@ class UserSeeder extends Seeder
         //     'kab_kota_id' => 1116,
         // ]);
 
-        // $kabKota = User::query()->create([
-        //     'username' => 'Kab Kota',
-        //     'email' => 'admin4@gmail.com',
-        //     'password' => Hash::make('123456789'),
-        //     'email_verified_at' => now(),
-        //     'status_akun' => 1
-        // ])->attachRole('kab_kota');
-        // $kabKota->userProvKabKota()->create([
-        //     'nomenklatur_perangkat_daerah_id' => 1,
-        //     'provinsi_id' => 11,
-        //     'kab_kota_id' => 1101,
-        // ]);
+        $kabKota = User::query()->create([
+            'username' => 'Kab Kota',
+            'email' => 'admin4@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('kab_kota');
+        $kabKota->userProvKabKota()->create([
+            'nomenklatur_perangkat_daerah_id' => 1,
+            'provinsi_id' => 11,
+            'kab_kota_id' => 1101,
+        ]);
 
         // for ($i = 0; $i < 5; $i++) {
         //     $kabKota1 = User::query()->create([
@@ -232,17 +232,17 @@ class UserSeeder extends Seeder
         //     ]);
         // }
 
-        // $provinsi = User::query()->create([
-        //     'username' => 'Provinsi',
-        //     'email' => 'prosdsdsvinsi@gmail.com',
-        //     'password' => Hash::make('123456789'),
-        //     'email_verified_at' => now(),
-        //     'status_akun' => 1
-        // ])->attachRole('provinsi');
-        // $provinsi->userProvKabKota()->create([
-        //     'nomenklatur_perangkat_daerah_id' => 1,
-        //     'provinsi_id' => 11,
-        // ]);
+        $provinsi = User::query()->create([
+            'username' => 'Provinsi',
+            'email' => 'prosdsdsvinsi@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('provinsi');
+        $provinsi->userProvKabKota()->create([
+            'nomenklatur_perangkat_daerah_id' => 1,
+            'provinsi_id' => 11,
+        ]);
 
         // for ($i = 0; $i < 5; $i++) {
         //     $provinsi1 = User::query()->create([

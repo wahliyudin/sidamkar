@@ -82,7 +82,7 @@
                     </div>
 
                     <div class="card-body overflow-auto">
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="col-md-3 m-2">
                                 <form method="POST"
                                     action="{{ route('kemendagri.verifikasi-data.aparatur.export.struktural') }}">
@@ -101,7 +101,7 @@
                                         Export Fungsional UMUM</button>
                                 </form>
                             </div>
-                        </div>
+                        </div> --}}
                         <table id="aparatur" class="table dataTable no-footer dtr-inline">
                             <thead>
                                 <tr>

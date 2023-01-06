@@ -46,6 +46,7 @@ use App\Http\Controllers\Kemendagri\CMS\InformasiController;
 use App\Http\Controllers\Kemendagri\CMS\KegiatanPenunjangController;
 use App\Http\Controllers\Kemendagri\CMS\PeriodeController;
 use App\Http\Controllers\Kemendagri\HistoryPenetapanController;
+use App\Http\Controllers\Kemendagri\VerifikasiData\FungsionalUmumController;
 use App\Http\Controllers\PenetapAK\DataPengajuan\ExternalController as PenetapAKDataPengajuanExternalController;
 use App\Http\Controllers\PenetapAK\DataPengajuan\InternalController as DataPengajuanInternalController;
 use App\Http\Controllers\PenetapAKAnalisKemendagri\PengajuanController as PenetapAKAnalisKemendagriPengajuanController;
@@ -399,6 +400,12 @@ Route::middleware(['auth'])->group(function () {
             Route::post('kemendagri/verifikasi-data/aparatur/export', 'export')->name('kemendagri.verifikasi-data.aparatur.export');
             Route::post('kemendagri/verifikasi-data/aparatur/export/umum', 'export_umum')->name('kemendagri.verifikasi-data.aparatur.export.umum');
             Route::post('kemendagri/verifikasi-data/aparatur/export/struktural', 'export_struktural')->name('kemendagri.verifikasi-data.aparatur.export.struktural');
+        });
+
+        Route::controller(FungsionalUmumController::class)->group(function () {
+            Route::get('kemendagri/verifikasi-data/fungsional-umum', 'index')->name('kemendagri.verifikasi-data.fungsional-umum');
+            Route::post('kemendagri/verifikasi-data/fungsional-umum/datatable', 'datatable')->name('kemendagri.verifikasi-data.fungsional-umum.datatable');
+            Route::post('kemendagri/verifikasi-data/fungsional-umum/export', 'export')->name('kemendagri.verifikasi-data.fungsional-umum.export');
         });
 
         Route::controller(KemendagriPejabatStrukturalController::class)->group(function () {

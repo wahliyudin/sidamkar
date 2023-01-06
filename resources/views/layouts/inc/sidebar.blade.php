@@ -329,10 +329,14 @@
                             <span>Manajemen User</span>
                         </a>
                         <ul
-                            class="submenu {{ request()->is('kemendagri/verifikasi-data/admin-kabkota*') || request()->is('kemendagri/verifikasi-data/admin-provinsi*') || request()->is('kemendagri/verifikasi-data/aparatur*') ? 'active' : '' }}">
+                            class="submenu {{ request()->is('kemendagri/verifikasi-data/admin-kabkota*') || request()->is('kemendagri/verifikasi-data/fungsional-umum*') || request()->is('kemendagri/verifikasi-data/admin-provinsi*') || request()->is('kemendagri/verifikasi-data/aparatur*') ? 'active' : '' }}">
                             <li
                                 class="submenu-item {{ request()->is('kemendagri/verifikasi-data/aparatur*') ? 'active' : '' }}">
                                 <a href="{{ route('kemendagri.verifikasi-data.aparatur.aparatur') }}">Aparatur</a>
+                            </li>
+                            <li
+                                class="submenu-item {{ request()->is('kemendagri/verifikasi-data/fungsional-umum*') ? 'active' : '' }}">
+                                <a href="{{ route('kemendagri.verifikasi-data.fungsional-umum') }}">Fungsional Umum</a>
                             </li>
                             <li
                                 class="submenu-item {{ request()->is('kemendagri/verifikasi-data/admin-kabkota*') ? 'active' : '' }}">
