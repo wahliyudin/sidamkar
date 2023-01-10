@@ -406,7 +406,7 @@
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="fa-solid fa-square-poll-vertical"></i>
                             </div>
-                            <span>Data Pengajuan</span>
+                            <span>Data Pengajuan Penilai Damkar</span>
                         </a>
                     </li>
                 @endrole
@@ -418,7 +418,7 @@
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="fa-solid fa-square-poll-vertical"></i>
                             </div>
-                            <span>Data Pengajuan</span>
+                            <span>Data Pengajuan Penilai Analis</span>
                         </a>
                     </li>
                 @endrole
@@ -430,7 +430,7 @@
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="fa-solid fa-square-poll-vertical"></i>
                             </div>
-                            <span>Data Pengajuan</span>
+                            <span>Data Pengajuan Penetap Damkar</span>
                         </a>
                     </li>
                 @endrole
@@ -442,7 +442,7 @@
                             <div style="width: 16px; height: 16px; display: flex; align-items: center;">
                                 <i class="fa-solid fa-square-poll-vertical"></i>
                             </div>
-                            <span>Data Pengajuan</span>
+                            <span>Data Pengajuan Penetap Analis</span>
                         </a>
                     </li>
                 @endrole
