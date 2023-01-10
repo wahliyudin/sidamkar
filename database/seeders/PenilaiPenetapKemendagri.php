@@ -28,26 +28,26 @@ class PenilaiPenetapKemendagri extends Seeder
         ]);
 
         $penetapDamkarKemendagri = User::query()->create([
-            'username' => 'penetap.damkar.kemendagri',
+            'username' => 'penetap.damkar.penilai.analis.kemendagri',
             'email' => 'dit.mpbk@gmail.com',
             'password' => Hash::make('sdmdamkar2022'),
             'email_verified_at' => now(),
             'status_akun' => 1
-        ])->attachRole('penetap_ak_damkar_kemendagri');
+        ])->attachRole('penetap_ak_damkar_kemendagri')->attachRole('penilai_ak_analis_kemendagri');
         $penetapDamkarKemendagri->userPejabatStruktural()->create([
             'nama' => 'Drs. Edy Suharmanto, M.Si'
         ]);
 
-        $penilaiAnalisKemendagri = User::query()->create([
-            'username' => 'penilai.analis.kemendagri',
-            'email' => 'dit.mpbk@gmail.com',
-            'password' => Hash::make('sdmdamkar2022'),
-            'email_verified_at' => now(),
-            'status_akun' => 1
-        ])->attachRole('penilai_ak_analis_kemendagri');
-        $penilaiAnalisKemendagri->userPejabatStruktural()->create([
-            'nama' => 'Drs. Edy Suharmanto, M.Si'
-        ]);
+        // $penilaiAnalisKemendagri = User::query()->create([
+        //     'username' => 'penilai.analis.kemendagri',
+        //     'email' => 'dit.mpbk@gmail.com',
+        //     'password' => Hash::make('sdmdamkar2022'),
+        //     'email_verified_at' => now(),
+        //     'status_akun' => 1
+        // ])->attachRole('penilai_ak_analis_kemendagri');
+        // $penilaiAnalisKemendagri->userPejabatStruktural()->create([
+        //     'nama' => 'Drs. Edy Suharmanto, M.Si'
+        // ]);
 
         $penetapAnalisKemendagri = User::query()->create([
             'username' => 'penetap.analis.kemendagri',
