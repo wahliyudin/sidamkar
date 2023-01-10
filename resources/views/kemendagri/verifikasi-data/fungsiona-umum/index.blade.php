@@ -23,8 +23,8 @@
                             <th>Nama</th>
                             <th>Jabatan</th>
                             <th>No HP</th>
-                            <th>Kab Kota</th>
                             <th>Provinsi</th>
+                            <th>Kab Kota</th>
                         </tr>
                     </thead>
                     <tbody>
