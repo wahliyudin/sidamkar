@@ -18,46 +18,46 @@ class PenilaiPenetapKemendagri extends Seeder
     {
         $penilaiDamkarKemendagri = User::query()->create([
             'username' => 'penilai.damkar.kemendagri',
-            'email' => 'penilaidamkarkemendagri@gmail.com',
+            'email' => 'sdmdamkar.penilaidamkar@gmail.com',
             'password' => Hash::make('sdmdamkar2022'),
             'email_verified_at' => now(),
             'status_akun' => 1
         ])->attachRole('penilai_ak_damkar_kemendagri');
         $penilaiDamkarKemendagri->userPejabatStruktural()->create([
-            'nama' => 'Penilai Damkar Kemendagri'
+            'nama' => 'Danang Insita Putra, S.T., M.Si (Han)., Ph.D'
         ]);
 
         $penetapDamkarKemendagri = User::query()->create([
             'username' => 'penetap.damkar.kemendagri',
-            'email' => 'penetapdamkarkemendagri@gmail.com',
+            'email' => 'dit.mpbk@gmail.com',
             'password' => Hash::make('sdmdamkar2022'),
             'email_verified_at' => now(),
             'status_akun' => 1
         ])->attachRole('penetap_ak_damkar_kemendagri');
         $penetapDamkarKemendagri->userPejabatStruktural()->create([
-            'nama' => 'Penetap Damkar Kemendagri'
+            'nama' => 'Drs. Edy Suharmanto, M.Si'
         ]);
 
         $penilaiAnalisKemendagri = User::query()->create([
             'username' => 'penilai.analis.kemendagri',
-            'email' => 'penilaianaliskemendagri@gmail.com',
+            'email' => 'dit.mpbk@gmail.com',
             'password' => Hash::make('sdmdamkar2022'),
             'email_verified_at' => now(),
             'status_akun' => 1
         ])->attachRole('penilai_ak_analis_kemendagri');
         $penilaiAnalisKemendagri->userPejabatStruktural()->create([
-            'nama' => 'Penilai Analis Kemendagri'
+            'nama' => 'Drs. Edy Suharmanto, M.Si'
         ]);
 
         $penetapAnalisKemendagri = User::query()->create([
             'username' => 'penetap.analis.kemendagri',
-            'email' => 'penetapanaliskemendagri@gmail.com',
+            'email' => 'ditjenadwil01@gmail.com',
             'password' => Hash::make('sdmdamkar2022'),
             'email_verified_at' => now(),
             'status_akun' => 1
         ])->attachRole('penetap_ak_analis_kemendagri');
         $penetapAnalisKemendagri->userPejabatStruktural()->create([
-            'nama' => 'Penetap Analis Kemendagri'
+            'nama' => 'Dr. Drs. Safrizal ZA, M.Si'
         ]);
     }
 }

@@ -63,8 +63,8 @@ class DataSayaController extends Controller
             'nomenklatur_perangkat_daerah_id.required' => "Unit Kerja Wajib Diisi."
         ]);
         if (isset($request->angka_mekanisme)) {
-            if ($request->angka_mekanisme > 56.25 || $request->angka_mekanisme < 0) {
-                throw ValidationException::withMessages(['Angka Mekanisme tidak boleh lebih dari 56.25 atau kurang dari 0']);
+            if ($request->angka_mekanisme > 150 || $request->angka_mekanisme < 0) {
+                throw ValidationException::withMessages(['Angka Mekanisme tidak boleh lebih dari 150 atau kurang dari 0']);
             }
         }
         $data = [
