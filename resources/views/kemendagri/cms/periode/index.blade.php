@@ -63,11 +63,13 @@
                     <form method="post" class="form-periode">
                         <div class="form-group">
                             <label>Awal</label>
-                            <input class="form-control" min="{{ $min }}" type="date" name="awal">
+                            <input class="form-control" min="{{ $min }}" value="{{ $min }}" type="date"
+                                name="awal">
                         </div>
                         <div class="form-group">
                             <label>Akhir</label>
-                            <input class="form-control" type="date" min="{{ $min }}" name="akhir">
+                            <input class="form-control" type="date" min="{{ $min }}" value="{{ $min }}"
+                                name="akhir">
                         </div>
                     </form>
                 </div>
