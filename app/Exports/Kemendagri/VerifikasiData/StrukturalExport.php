@@ -40,6 +40,7 @@ class StrukturalExport implements FromArray, WithHeadings, WithTitle
                 user_pejabat_strukturals.tingkat_aparatur,
                 kab_kotas.nama AS kab_kota,
                 provinsis.nama AS provinsi,
+                CASE WHEN users.status_akun = 0 THEN 'MENUNGGU' WHEN users.status_akun = 1 THEN 'TERVERIFIKASI' ELSE 'DITOLAK' END AS status_akun,
                 users.created_at AS tgl_register
             FROM users
             JOIN user_pejabat_strukturals ON user_pejabat_strukturals.user_id = users.id
@@ -66,6 +67,7 @@ class StrukturalExport implements FromArray, WithHeadings, WithTitle
             'Tingkat Aparatur',
             'Kabupaten/Kota',
             'Provinsi',
+            'Status Akun',
             'Tanggal Registrasi'
         ];
     }
