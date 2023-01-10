@@ -68,8 +68,7 @@
                         </div>
                         <div class="form-group">
                             <label>Akhir</label>
-                            <input class="form-control" type="date" min="{{ $min }}" value="{{ $min }}"
-                                name="akhir">
+                            <input class="form-control" type="date" min="{{ $min }}" name="akhir">
                         </div>
                     </form>
                 </div>
