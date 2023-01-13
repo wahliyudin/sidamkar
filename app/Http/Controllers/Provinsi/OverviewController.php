@@ -21,7 +21,7 @@ class OverviewController extends Controller
 
         $total_damkar = DB::table('users')->rightJoin('user_aparaturs', 'user_aparaturs.user_id', '=', 'users.id')->join('role_user', 'role_user.user_id', '=', 'users.id')->where('role_user.role_id', '<', 5)->where('tingkat_aparatur', '=', 'provinsi')->where('provinsi_id', $provinsi_id)->count();
 
-        $total_analis = DB::table('users')->rightJoin('user_aparaturs', 'user_aparaturs.user_id', '=', 'users.id')->join('role_user', 'role_user.user_id', '=', 'users.id')->whereRaw('role_user.user_id > 4 and role_user.user_id < 8')->where('tingkat_aparatur', '=', 'provinsi')->where('provinsi_id', $provinsi_id)->count();
+        $total_analis = DB::table('users')->rightJoin('user_aparaturs', 'user_aparaturs.user_id', '=', 'users.id')->join('role_user', 'role_user.user_id', '=', 'users.id')->whereRaw('role_user.role_id > 4 and role_user.role_id < 8')->where('user_aparaturs.tingkat_aparatur', '=', 'provinsi')->where([['user_aparaturs.provinsi_id', $provinsi_id]])->groupBy('users.id')->get()->count();
 
         $total = [
             'fungsional' => $total_fungsional,

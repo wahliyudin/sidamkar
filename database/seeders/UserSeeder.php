@@ -556,46 +556,46 @@ class UserSeeder extends Seeder
         // ]);
 
 
-        // $atasanLangsungProvDKI1 = User::query()->create([
-        //     'username' => 'Atasan Langsung DKI Jakarta1',
-        //     'email' => 'asasatgfdjhgasanprovdki.com',
-        //     'password' => Hash::make('123456789'),
-        //     'email_verified_at' => now(),
-        //     'status_akun' => 1
-        // ])->attachRole('atasan_langsung');
-        // $atasanLangsungProvDKI1->userPejabatStruktural()->create([
-        //     'nama' => 'Atasan Langsung DKI Jakarta1',
-        //     'nip' => '2020020088',
-        //     'nomor_karpeg' => '2020020088',
-        //     'pangkat_golongan_tmt_id' => 5,
-        //     'tempat_lahir' => 'Jakarta',
-        //     'tanggal_lahir' => Carbon::now(),
-        //     'tingkat_aparatur' => 'provinsi',
-        //     'jenis_kelamin' => 'L',
-        //     'pendidikan_terakhir' => 2,
-        //     'provinsi_id' => 31,
-        // ]);
+        $atasanLangsungProvDKI1 = User::query()->create([
+            'username' => 'Atasan Langsung DKI Jakarta1',
+            'email' => 'asasatgfdjhgasanprovdki.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ])->attachRole('atasan_langsung');
+        $atasanLangsungProvDKI1->userPejabatStruktural()->create([
+            'nama' => 'Atasan Langsung DKI Jakarta1',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'provinsi',
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 11,
+        ]);
 
 
-        // $penilaiAKDamkarDKI1 = User::query()->create([
-        //     'username' => 'Penilai AK Damkar DKI Jakarta1',
-        //     'email' => 'asasataasadfdgsaasasanprovdki.com',
-        //     'password' => Hash::make('123456789'),
-        //     'email_verified_at' => now(),
-        //     'status_akun' => 1
-        // ])->attachRole('penilai_ak_damkar');
-        // $penilaiAKDamkarDKI1->userPejabatStruktural()->create([
-        //     'nama' => 'Penilai AK Damkar DKI Jakarta1',
-        //     'nip' => '2020020088',
-        //     'nomor_karpeg' => '2020020088',
-        //     'pangkat_golongan_tmt_id' => 5,
-        //     'tempat_lahir' => 'Jakarta',
-        //     'tanggal_lahir' => Carbon::now(),
-        //     'tingkat_aparatur' => 'provinsi',
-        //     'jenis_kelamin' => 'L',
-        //     'pendidikan_terakhir' => 2,
-        //     'provinsi_id' => 31,
-        // ]);
+        $penilaiAKDamkarDKI1 = User::query()->create([
+            'username' => 'Penilai AK Damkar DKI Jakarta1',
+            'email' => 'asasataasadfdgsaasasanprovdki.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ])->attachRole('penilai_ak_damkar');
+        $penilaiAKDamkarDKI1->userPejabatStruktural()->create([
+            'nama' => 'Penilai AK Damkar DKI Jakarta1',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'provinsi',
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 11,
+        ]);
 
         // $penilaiAKAnalisDKI1 = User::query()->create([
         //     'username' => 'Penilai AK Analis DKI Jakarta1',
@@ -2397,20 +2397,20 @@ class UserSeeder extends Seeder
         // //end admin prov & kab di bali
 
 
-        // // seeder request client untuk provinsi Dki Jakarta
-        // $petugasdamkarpemula1dki = User::query()->create([
-        //     'username' => 'Damkar.Pemula1.JKT',
-        //     'email' => 'Damkar.Pemula1.dki@gmail.com',
-        //     'password' => Hash::make('123456789'),
-        //     'email_verified_at' => now(),
-        //     'status_akun' => 1
-        // ])->attachRole('damkar_pemula');
-        // $petugasdamkarpemula1dki->userAparatur()->create([
-        //     'nama' => '1 Petugas Damkar Pemula',
-        //     'tingkat_aparatur' => 'provinsi',
-        //     'no_hp' => '081223450181',
-        //     'provinsi_id' => 31,
-        // ]);
+        // seeder request client untuk provinsi Dki Jakarta
+        $petugasdamkarpemula1dki = User::query()->create([
+            'username' => 'Damkar.Pemula1.JKT',
+            'email' => 'Damkar.Pemula1.dki@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('damkar_pemula');
+        $petugasdamkarpemula1dki->userAparatur()->create([
+            'nama' => '1 Petugas Damkar Pemula',
+            'tingkat_aparatur' => 'provinsi',
+            'no_hp' => '081223450181',
+            'provinsi_id' => 11,
+        ]);
 
         // $damkarterampil1dki = User::query()->create([
         //     'username' => 'Damkar.Terampil1.JKT',
@@ -2454,33 +2454,33 @@ class UserSeeder extends Seeder
         //     'provinsi_id' => 31,
         // ]);
 
-        // $analisahlipertama1dki = User::query()->create([
-        //     'username' => 'Analis.Kebakaran.Ahli.Pertama1.JKT',
-        //     'email' => 'Analis.Kebakaran.Ahli.Pertama1.dki@gmail.com',
-        //     'password' => Hash::make('123456789'),
-        //     'email_verified_at' => now(),
-        //     'status_akun' => 1
-        // ])->attachRole('analis_kebakaran_ahli_pertama');
-        // $analisahlipertama1dki->userAparatur()->create([
-        //     'nama' => '1 Petugas Analis Kebakaran Ahli Pertama',
-        //     'tingkat_aparatur' => 'provinsi',
-        //     'no_hp' => '081223450585',
-        //     'provinsi_id' => 31,
-        // ]);
+        $analisahlipertama1dki = User::query()->create([
+            'username' => 'Analis.Kebakaran.Ahli.Pertama1.JKT',
+            'email' => 'Analis.Kebakaran.Ahli.Pertama1.dki@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('analis_kebakaran_ahli_pertama');
+        $analisahlipertama1dki->userAparatur()->create([
+            'nama' => '1 Petugas Analis Kebakaran Ahli Pertama',
+            'tingkat_aparatur' => 'provinsi',
+            'no_hp' => '081223450585',
+            'provinsi_id' => 11,
+        ]);
 
-        // $analiskebakaranahlimuda1dki = User::query()->create([
-        //     'username' => 'Analis.Kebakaran.Ahli.Muda1.JKT',
-        //     'email' => 'Analis.Kebakaran.Ahli.Muda1.dki@gmail.com',
-        //     'password' => Hash::make('123456789'),
-        //     'email_verified_at' => now(),
-        //     'status_akun' => 1
-        // ])->attachRole('analis_kebakaran_ahli_muda');
-        // $analiskebakaranahlimuda1dki->userAparatur()->create([
-        //     'nama' => '1 Petugas Analis Kebakaran Ahli Muda',
-        //     'tingkat_aparatur' => 'provinsi',
-        //     'no_hp' => '081223450686',
-        //     'provinsi_id' => 31,
-        // ]);
+        $analiskebakaranahlimuda1dki = User::query()->create([
+            'username' => 'Analis.Kebakaran.Ahli.Muda1.JKT',
+            'email' => 'Analis.Kebakaran.Ahli.Muda1.dki@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 1
+        ])->attachRole('analis_kebakaran_ahli_muda');
+        $analiskebakaranahlimuda1dki->userAparatur()->create([
+            'nama' => '1 Petugas Analis Kebakaran Ahli Muda',
+            'tingkat_aparatur' => 'provinsi',
+            'no_hp' => '081223450686',
+            'provinsi_id' => 11,
+        ]);
 
         // $analiskebakaranahlimadya1dki = User::query()->create([
         //     'username' => 'Analis.Kebakaran.Ahli.Madya1.JKT',
