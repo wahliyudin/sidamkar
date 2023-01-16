@@ -136,6 +136,10 @@
                                 <label>Nomor Surat Penetapan</label>
                                 <input type="text" name="no_penetapan" class="form-control">
                             </div>
+                            <div class="form-group">
+                                <label>Nama Yang Menetapkan</label>
+                                <input type="text" name="nama_penetap" class="form-control">
+                            </div>
                         </form>
                         <div class="d-flex wrapper-btn justify-content-end align-items-center mt-0 pb-2">
                             <button type="button" class="btn btn-danger btn-sm px-4"

@@ -58,7 +58,7 @@ class PengajuanController extends Controller
                 JOIN role_user ON role_user.user_id = users.id
                 JOIN roles ON roles.id = role_user.role_id
                 LEFT JOIN mekanisme_pengangkatans ON user_aparaturs.mekanisme_pengangkatan_id = mekanisme_pengangkatans.id
-                JOIN rekapitulasi_kegiatans ON (rekapitulasi_kegiatans.fungsional_id = users.id AND rekapitulasi_kegiatans.is_send IN (2, 3) AND rekapitulasi_kegiatans.periode_id = ' . $periode?->id . ')
+                JOIN rekapitulasi_kegiatans ON (rekapitulasi_kegiatans.fungsional_id = users.id AND rekapitulasi_kegiatans.is_send IN (3) AND rekapitulasi_kegiatans.periode_id = ' . $periode?->id . ')
                 WHERE users.status_akun = 1
                     AND roles.id IN (4)');
             return DataTables::of($data)
@@ -97,8 +97,17 @@ class PengajuanController extends Controller
         if (!isset($penetapAk?->userPejabatStruktural?->file_ttd)) {
             throw ValidationException::withMessages(['Maaf, Anda Belum Melengkapi Profil']);
         }
+        $email = DB::table('users')
+            ->join('role_user', 'users.id', '=', 'role_user.user_id')
+            ->join('user_kemendagris', 'users.id', '=', 'user_kemendagris.user_id')
+            ->where('role_user.role_id', '=', 10)
+            ->select('users.id', 'user_kemendagris.email_info_penetapan')
+            ->first()?->email_info_penetapan;
+        if ($email == null || !$email) {
+            throw ValidationException::withMessages(['Maaf, Email Info Penetapan Belum Ditentukan Oleh Admin Pusat']);
+        }
         $rekap = $this->rekapitulasiKegiatanRepository->getRekapByFungsionalAndPeriode($user, $periode?->id);
-        $this->dataPengajuanService->ttdRekapitulasi($rekap, $user, $periode, $penetapAk, $request->no_penetapan, $request->nama_penetap);
+        $this->dataPengajuanService->ttdRekapitulasi($rekap, $user, $periode, $penetapAk, $request->no_penetapan, $request->nama_penetap, $email);
         return response()->json([
             'message' => 'Berhasil'
         ]);

@@ -40,5 +40,6 @@ class DatabaseSeeder extends Seeder
         $this->call(KetentuanNilaiSeeder::class);
         $this->call(KetentuanSkpSeeder::class);
         $this->call(MekanismePengangkatanSeeder::class);
+        $this->call(PenilaiPenetapKemendagri::class);
     }
 }
