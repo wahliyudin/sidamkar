@@ -47,6 +47,7 @@ class PengajuanController extends Controller
             if (isset($request->order) && $request->order[0]['column'] == 2) {
                 $role_order =  $request->order[0]['dir'];
             }
+            dd($this->periodeRepository->isActive());
             $periode = $this->periodeRepository->isActive();
             $data = DB::select('SELECT
                     users.id AS user_id,

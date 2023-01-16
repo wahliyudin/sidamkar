@@ -302,26 +302,26 @@ class UserSeeder extends Seeder
         //     ]);
         // }
 
-        // $penilaiAK = User::query()->create([
-        //     'username' => 'Penilai AK',
-        //     'email' => 'admin6@gmail.com',
-        //     'password' => Hash::make('123456789'),
-        //     'email_verified_at' => now(),
-        //     'status_akun' => 0
-        // ]);
-        // $penilaiAK->userPejabatStruktural()->create([
-        //     'nama' => 'Penilai AK',
-        //     'nip' => '2020020088',
-        //     'nomor_karpeg' => '2020020088',
-        //     'pangkat_golongan_tmt_id' => 5,
-        //     'tempat_lahir' => 'Jakarta',
-        //     'tanggal_lahir' => Carbon::now(),
-        //     'tingkat_aparatur' => 'kab_kota',
-        //     'jenis_kelamin' => 'L',
-        //     'pendidikan_terakhir' => 2,
-        //     'provinsi_id' => 11,
-        //     'kab_kota_id' => 1101,
-        // ]);
+        $penilaiAK = User::query()->create([
+            'username' => 'Penilai AK',
+            'email' => 'admin6@gmail.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now(),
+            'status_akun' => 0
+        ]);
+        $penilaiAK->userPejabatStruktural()->create([
+            'nama' => 'Penilai AK',
+            'nip' => '2020020088',
+            'nomor_karpeg' => '2020020088',
+            'pangkat_golongan_tmt_id' => 5,
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => Carbon::now(),
+            'tingkat_aparatur' => 'kab_kota',
+            'jenis_kelamin' => 'L',
+            'pendidikan_terakhir' => 2,
+            'provinsi_id' => 11,
+            'kab_kota_id' => 1101,
+        ]);
         // for ($i = 0; $i < 6; $i++) {
         //     $penilaiAK1Name = fake()->name();
         //     $penilaiAK1 = User::query()->create([
