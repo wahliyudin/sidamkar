@@ -71,6 +71,7 @@
                         'input[name="secret"]').val() + '/load-unsurs'),
                     data: {
                         search: search
+                        user_id: $('input[name="user"]').val()
                     },
                     dataType: "json",
                     success: function(response) {

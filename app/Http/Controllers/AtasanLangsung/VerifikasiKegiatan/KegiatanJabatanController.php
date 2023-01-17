@@ -60,7 +60,7 @@ class KegiatanJabatanController extends Controller
     {
         if ($request->ajax()) {
             $search = str($request->search)->lower()->trim();
-	    $user_id = $request->user_id;
+	        $user_id = $request->user_id;
 
             $unsurs = $this->verifikasiKegiatanService->loadUnsurs($search, $user_id, $id);
             return response()->json([
