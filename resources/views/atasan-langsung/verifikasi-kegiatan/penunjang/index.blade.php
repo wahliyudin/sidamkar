@@ -70,8 +70,9 @@
                     url: url('/atasan-langsung/verifikasi-kegiatan/penunjang/' + $(
                         'input[name="secret"]').val() + '/load-unsurs'),
                     data: {
-                        search: search
+                        search: search,
                         user_id: $('input[name="user"]').val()
+                        
                     },
                     dataType: "json",
                     success: function(response) {
