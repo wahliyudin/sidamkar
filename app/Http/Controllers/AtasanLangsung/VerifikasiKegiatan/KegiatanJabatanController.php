@@ -36,7 +36,8 @@ class KegiatanJabatanController extends Controller
         $judul = 'Verifikasi Kegiatan';
         $user = $this->verifikasiKegiatanService->getUserById($user);
         $butirKegiatan = $this->verifikasiKegiatanService->getButirKegiatanById($butir);
-        $periode = $this->verifikasiKegiatanService->periodeActive();
+
+	$periode = $this->verifikasiKegiatanService->periodeActive();
         [
             $laporanKegiatanJabatanStatusValidasis,
             $laporanKegiatanJabatanStatusRevisis,
@@ -59,7 +60,9 @@ class KegiatanJabatanController extends Controller
     {
         if ($request->ajax()) {
             $search = str($request->search)->lower()->trim();
-            $unsurs = $this->verifikasiKegiatanService->loadUnsurs($search, $id);
+	    $user_id = $request->user_id;
+
+            $unsurs = $this->verifikasiKegiatanService->loadUnsurs($search, $user_id, $id);
             return response()->json([
                 'unsurs' => $unsurs
             ]);

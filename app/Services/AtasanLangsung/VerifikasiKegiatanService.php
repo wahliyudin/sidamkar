@@ -55,13 +55,14 @@ class VerifikasiKegiatanService
         return $this->butirKegiatanRepository->getById($id);
     }
 
-    public function loadUnsurs(string $search, $role_id)
+    public function loadUnsurs(string $search, $user_id, $role_id)
     {
         $unsurs = Unsur::query()
             ->where('jenis_kegiatan_id', 1)
-            ->withWhereHas('subUnsurs', function ($query)  use ($role_id, $search) {
-                $query->withWhereHas('butirKegiatans', function ($query) use ($role_id, $search) {
-                    $query->withWhereHas('laporanKegiatanJabatans', function ($query) {
+            ->withWhereHas('subUnsurs', function ($query)  use ($user_id, $role_id, $search) {
+                $query->withWhereHas('butirKegiatans', function ($query) use ($user_id, $role_id, $search) {
+                    $query->withWhereHas('laporanKegiatanJabatans', function ($query) use ($user_id) {
+			$query->where('user_id', $user_id);
                         $query->whereIn('status', [LaporanKegiatanJabatan::VALIDASI, LaporanKegiatanJabatan::REVISI]);
                     })->withWhereHas('role', function ($query) use ($search, $role_id) {
                         $query->whereIn('id', [$role_id + 1, $role_id - 1, $role_id])->where(
