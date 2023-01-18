@@ -73,6 +73,7 @@ class PengajuanController extends Controller
                     return $this->statusMekanisme($row->status_mekanisme);
                 })
                 ->addColumn('action', function ($row) {
+		    $periode = $this->periodeRepository->isActive();
                     return view('penilai-ak-analis-kemendagri.data-pengajuan.buttons', compact('row', 'periode'))->render();
                 })
                 ->rawColumns(['action', 'status'])

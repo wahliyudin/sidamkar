@@ -244,7 +244,7 @@
                         <ul class="doc-wrapper">
                             @foreach ($user->dokKepegawaians as $docKepeg)
                                 <li class="doc-item">
-                                    <a href="{{ route('data-atasan-langsung.show-doc-kepeg', $docKepeg->id) }}"
+                                    <a href="{{ route('data-struktural.show-doc-kepeg', $docKepeg->id) }}"
                                         class="d-flex align-items-center">
                                         <img src="{{ asset('assets/images/template/icon-dokumen-png-0 1.png') }}"
                                             alt="">
@@ -664,7 +664,7 @@
                     preConfirm: async () => {
                         return await $.ajax({
                             type: 'DELETE',
-                            url: "{{ url('data-struktural.destroy-doc-kepeg') }}/" +
+                            url: "{{ url('data-struktural/destroy-dockepeg') }}/" +
                                 $(this)
                                 .data('id'),
                             dataType: 'JSON'
@@ -695,7 +695,7 @@
                     preConfirm: async () => {
                         return await $.ajax({
                             type: 'DELETE',
-                            url: "{{ url('data-struktural.destroy-doc-kom') }}/" +
+                            url: "{{ url('data-struktural/destroy-dockom') }}/" +
                                 $(this)
                                 .data('id'),
                             dataType: 'JSON'

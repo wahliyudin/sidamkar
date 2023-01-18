@@ -179,7 +179,7 @@
                         <ul class="doc-wrapper">
                             @foreach ($user->dokKepegawaians as $docKepeg)
                                 <li class="doc-item">
-                                    <a href="{{ route('data-struktural.show-doc-kepeg', $docKepeg->id) }}"
+                                    <a href="{{ route('data-atasan-langsung.show-doc-kepeg', $docKepeg->id) }}"
                                         class="d-flex align-items-center">
                                         <img src="{{ asset('assets/images/template/icon-dokumen-png-0 1.png') }}"
                                             alt="">
@@ -473,7 +473,7 @@
                             Toastify({
                                 text: message,
                                 duration: 5000,
-                                close: true,
+                                close: true
                                 gravity: "top",
                                 position: "right",
                                 backgroundColor: "rgba(234, 58, 61, 0.9)",

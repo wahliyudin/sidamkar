@@ -104,7 +104,8 @@ class ExternalController extends Controller
                     return $this->statusMekanisme($row->status_mekanisme);
                 })
                 ->addColumn('action', function ($row) {
-                    return view('penilai-ak.data-pengajuan.external.buttons', compact('row', 'periode'))->render();
+                    $periode = $this->periodeRepository->isActive();
+		    return view('penilai-ak.data-pengajuan.external.buttons', compact('row', 'periode'))->render();
                 })
                 ->rawColumns(['action', 'status'])
                 ->make(true);
