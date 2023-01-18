@@ -88,7 +88,8 @@ class KegiatanPenunjangController extends Controller
         if ($request->ajax()) {
             $search = str($request->search)->lower()->trim();
             $role = Role::query()->find($id);
-            $unsurs = $this->kegiatanPenunjangProfesiService->loadUnsurs($search, $role, JenisKegiatan::JENIS_KEGIATAN_PENUNJANG);
+            $user_id = $request->user_id;
+            $unsurs = $this->kegiatanPenunjangProfesiService->loadUnsurs($search, $user_id, $role, JenisKegiatan::JENIS_KEGIATAN_PENUNJANG);
             return response()->json([
                 'unsurs' => $unsurs
             ]);
