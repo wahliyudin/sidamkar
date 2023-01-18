@@ -210,7 +210,7 @@
                         <ul class="doc-wrapper">
                             @foreach ($user->dokKompetensis as $docKom)
                                 <li class="doc-item">
-                                    <a href="" class="d-flex align-items-center">
+                                    <a href="{{ route('data-saya.show-doc-kom', $docKepeg->id) }}" class="d-flex align-items-center">
                                         <span
                                             class="custom-badge-sm custom-badge-blue-light">{{ $loop->iteration >= 10 ? $loop->iteration : "0$loop->iteration" }}</span>
                                         <p>{{ $docKom->nama }}</p>

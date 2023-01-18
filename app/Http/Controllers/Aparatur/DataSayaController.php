@@ -127,6 +127,12 @@ class DataSayaController extends Controller
         return view('aparatur.data-saya.show-document', compact('file'));
     }
 
+    public function showDocKom($id)
+    {
+        $file = DokKompetensi::query()->findOrFail($id)->file;
+        return view('aparatur.data-saya.show-document', compact('file'));
+    }
+
     public function storeDocKepeg(Request $request)
     {
         try {
