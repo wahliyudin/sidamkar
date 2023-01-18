@@ -110,6 +110,12 @@ class DataStrukturalController extends Controller
         return view('struktural.data-saya.show-document', compact('file'));
     }
 
+    public function showDocKom($id)
+    {
+        $file = DokKompetensi::query()->findOrFail($id)->file;
+        return view('struktural.data-saya.show-document', compact('file'));
+    }
+
     public function storeDocKepeg(Request $request)
     {
         try {

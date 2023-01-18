@@ -244,7 +244,7 @@
                         <ul class="doc-wrapper">
                             @foreach ($user->dokKepegawaians as $docKepeg)
                                 <li class="doc-item">
-                                    <a href="{{ route('data-atasan-langsung.show-doc-kepeg', $docKepeg->id) }}"
+                                    <a href="{{ route('data-struktural.show-doc-kepeg', $docKepeg->id) }}"
                                         class="d-flex align-items-center">
                                         <img src="{{ asset('assets/images/template/icon-dokumen-png-0 1.png') }}"
                                             alt="">
@@ -275,7 +275,7 @@
                         <ul class="doc-wrapper">
                             @foreach ($user->dokKompetensis as $docKom)
                                 <li class="doc-item">
-                                    <a href="" class="d-flex align-items-center">
+                                    <a href="{{ route('data-struktural.show-doc-kom', $docKom->id) }}" class="d-flex align-items-center">
                                         <span
                                             class="custom-badge-sm custom-badge-blue-light">{{ $loop->iteration >= 10 ? $loop->iteration : "0$loop->iteration" }}</span>
                                         <p>{{ $docKom->nama }}</p>

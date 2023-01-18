@@ -113,6 +113,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/data-saya', 'index')->name('data-saya');
             Route::post('/datasaya-store', 'store')->name('datasaya-store');
             Route::get('data-saya/show-dockepeg/{id}', 'showDocKepeg')->name('data-saya.show-doc-kepeg');
+            Route::get('data-saya/show-dockom/{id}', 'showDocKom')->name('data-saya.show-doc-kom');
             Route::post('data-saya/store-dockepeg', 'storeDocKepeg')->name('data-saya.store-doc-kepeg');
             Route::post('data-saya/store-dockom', 'storeDocKom')->name('data-saya.store-doc-kom');
             Route::delete('data-saya/destroy-dockepeg/{id}', 'destroyDocKepeg')->name('data-saya.destroy-doc-kepeg');
@@ -189,6 +190,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/data-struktural', 'index')->name('data-struktural');
             Route::post('/data-struktural-store', 'store')->name('data-struktural-store');
             Route::get('data-struktural/show-dockepeg/{id}', 'showDocKepeg')->name('data-struktural.show-doc-kepeg');
+            Route::get('data-struktural/show-dockom/{id}', 'showDocKom')->name('data-struktural.show-doc-kom');
             Route::post('data-struktural/store-dockepeg', 'storeDocKepeg')->name('data-struktural.store-doc-kepeg');
             Route::post('data-struktural/store-dockom', 'storeDocKom')->name('data-struktural.store-doc-kom');
             Route::delete('data-struktural/destroy-dockepeg/{id}', 'destroyDocKepeg')->name('data-struktural.destroy-doc-kepeg');
