@@ -69,7 +69,7 @@ class KegiatanPenunjangProfesiService
         return $this->subButirKegiatanRepository->getById($id);
     }
 
-    public function loadUnsurs(string $search, Role $role, $user_id, $jenis_kegiatan_id)
+    public function loadUnsurs(string $search, $user_id, $role, $jenis_kegiatan_id)
     {
         $unsurs = Unsur::query()
             ->where('jenis_kegiatan_id', $jenis_kegiatan_id)
@@ -77,12 +77,13 @@ class KegiatanPenunjangProfesiService
             ->withWhereHas('subUnsurs', function ($query) use ($user_id,$role) {
                 $query->withWhereHas('butirKegiatans', function ($query) use ($user_id,$role) {
                     $query->whereHas('laporanKegiatanPenunjangProfesis', function ($query) use ($user_id) {
-                    $query->where('user_id', $user_id);
+			$query->where('user_id', $user_id);
                         $query->whereIn('status', [LaporanKegiatanPenunjangProfesi::VALIDASI, LaporanKegiatanPenunjangProfesi::REVISI]);
                     })->orDoesntHave('laporanKegiatanPenunjangProfesis')->with('role', function ($query) use ($role) {
                         $query->whereIn('id', $this->limiRole($role->id));
-                    })->withWhereHas('subButirKegiatans', function ($query) use ($role) {
-                        $query->whereHas('laporanKegiatanPenunjangProfesis', function ($query) {
+                    })->withWhereHas('subButirKegiatans', function ($query) use ($role, $user_id) {
+                        $query->whereHas('laporanKegiatanPenunjangProfesis', function ($query) use ($user_id) {
+			    $query->where('user_id', $user_id);
                             $query->whereIn('status', [LaporanKegiatanPenunjangProfesi::VALIDASI, LaporanKegiatanPenunjangProfesi::REVISI]);
                         })->with('role', function ($query) use ($role) {
                             $query->whereIn('id', $this->limiRole($role->id));

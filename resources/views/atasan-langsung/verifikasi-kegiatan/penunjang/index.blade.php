@@ -72,7 +72,6 @@
                     data: {
                         search: search,
                         user_id: $('input[name="user"]').val()
-                        
                     },
                     dataType: "json",
                     success: function(response) {
