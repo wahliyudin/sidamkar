@@ -3,6 +3,7 @@
 namespace App\DataTables\AtasanLangsung;
 
 use App\Models\Mente;
+use App\Repositories\PeriodeRepository;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -14,6 +15,12 @@ use Yajra\DataTables\Services\DataTable;
 
 class VerifikasiKegiatanDataTable extends DataTable
 {
+    private PeriodeRepository $periodeRepository;
+
+    public function __construct(PeriodeRepository $periodeRepository)
+    {
+        $this->periodeRepository = $periodeRepository;
+    }
     /**
      * Build DataTable class.
      *
@@ -59,7 +66,9 @@ class VerifikasiKegiatanDataTable extends DataTable
     public function query(Mente $model): QueryBuilder
     {
         return $model->newQuery()->withWhereHas('fungsional', function ($query) {
-            $query->with('userAparatur');
+            $query->with('userAparatur')->whereHas('laporanKegiatanJabatans', function ($query) {
+                $query->where('periode_id', $this->periodeRepository->isActive()?->id);
+            });
         })->where('atasan_langsung_id', auth()->user()->id);
     }
 
