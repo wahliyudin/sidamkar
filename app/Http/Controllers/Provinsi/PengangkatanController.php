@@ -30,6 +30,7 @@ class PengangkatanController extends Controller
             }
             $auth = $this->authUser()->load(['userProvKabKota']);
             $data = DB::select('SELECT
+                user_aparaturs.user_id AS id,
                 user_aparaturs.nama,
                 CONCAT(MONTHNAME(periodes.awal), " ", YEAR(periodes.awal), " - ", MONTHNAME(periodes.akhir), " ", YEAR(periodes.akhir))
                     AS periode,
