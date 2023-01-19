@@ -160,7 +160,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="basicInput">Jabatan TMT</label>
+                                        <label for="basicInput">TMT Jabatan</label>
                                         <input type="date" name="jabatan_tmt" class="form-control"
                                             value="{{ old('jabatan_tmt', $user->userAparatur?->jabatan_tmt) }}">
                                         @error('jabatan_tmt')
@@ -187,7 +187,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="basicInput">GOLONGAN TMT</label>
+                                        <label for="basicInput">TMT Golongan</label>
                                         <input type="date" name="golongan_tmt" class="form-control"
                                             value="{{ old('golongan_tmt', $user->userAparatur?->golongan_tmt) }}">
                                         @error('golongan_tmt')
