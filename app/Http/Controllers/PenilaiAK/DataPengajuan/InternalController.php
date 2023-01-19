@@ -52,6 +52,13 @@ class InternalController extends Controller
                 $role_order =  $request->order[0]['dir'];
             }
             $user = $this->authUser()->load(['userPejabatStruktural', 'roles']);
+            if ($user->userPejabatStruktural->tingkat_aparatur == 'kab_kota') {
+                $tingkat_aparatur = 'AND user_aparaturs.kab_kota_id = ' . $user->userPejabatStruktural->kab_kota_id;
+                $kab_prov = 'JOIN kab_prov_penilai_and_penetaps AS internal ON internal.kab_kota_id = ' . $user->userPejabatStruktural->kab_kota_id;
+            } else {
+                $tingkat_aparatur = 'AND user_aparaturs.provinsi_id = ' . $user->userPejabatStruktural->provinsi_id;
+                $kab_prov = 'JOIN kab_prov_penilai_and_penetaps AS internal ON internal.provinsi_id = ' . $user->userPejabatStruktural->provinsi_id;
+            }
             $periode = $this->periodeRepository->isActive();
             $data = DB::select('SELECT
                     users.id AS user_id,
@@ -68,11 +75,11 @@ class InternalController extends Controller
                 JOIN role_user ON role_user.user_id = users.id
                 JOIN roles ON roles.id = role_user.role_id
                 LEFT JOIN mekanisme_pengangkatans ON user_aparaturs.mekanisme_pengangkatan_id = mekanisme_pengangkatans.id
-                JOIN kab_prov_penilai_and_penetaps AS internal ON internal.kab_kota_id = ' . $user->userPejabatStruktural->kab_kota_id . '
-                JOIN rekapitulasi_kegiatans ON (rekapitulasi_kegiatans.fungsional_id = users.id AND rekapitulasi_kegiatans.is_send IN (2, 3) AND rekapitulasi_kegiatans.periode_id = ' . $periode?->id . ')
+                ' . $kab_prov . '
+                JOIN rekapitulasi_kegiatans ON (rekapitulasi_kegiatans.fungsional_id = users.id AND rekapitulasi_kegiatans.is_send IN (2, 3) AND rekapitulasi_kegiatans.periode_id = ' . ($periode?->id ?? 0) . ')
                 WHERE users.status_akun = 1
                     AND roles.id IN (1,2,3,5,6)
-                    AND user_aparaturs.kab_kota_id = ' . $user->userPejabatStruktural->kab_kota_id . '
+                    ' . $tingkat_aparatur . '
                     ORDER BY roles.display_name ' . $role_order);
             return DataTables::of($data)
                 ->addIndexColumn()
@@ -80,7 +87,7 @@ class InternalController extends Controller
                     return $this->statusMekanisme($row->status_mekanisme);
                 })
                 ->addColumn('action', function ($row) {
-		    $periode = $this->periodeRepository->isActive();
+                    $periode = $this->periodeRepository->isActive();
                     return view('penilai-ak.data-pengajuan.internal.buttons', compact('row', 'periode'))->render();
                 })
                 ->rawColumns(['action', 'status'])
