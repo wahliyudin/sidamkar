@@ -259,7 +259,7 @@
                                                 @break
 
                                                 @default
-                                                    <button style="width: 200px; font-style: italic; cursor: default;"
+                                                    <button type="button" style="width: 200px; font-style: italic; cursor: default;"
                                                         class="btn btn-gray-reverse px-2 py-1 text-sm">Belum</button>
                                             @endswitch
                                         </div>
