@@ -2,6 +2,7 @@
 
 namespace App\DataTables\AtasanLangsung;
 
+use App\Models\LaporanKegiatanJabatan;
 use App\Models\Mente;
 use App\Repositories\PeriodeRepository;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
@@ -67,7 +68,7 @@ class VerifikasiKegiatanDataTable extends DataTable
     {
         return $model->newQuery()->withWhereHas('fungsional', function ($query) {
             $query->with('userAparatur')->whereHas('laporanKegiatanJabatans', function ($query) {
-                $query->where('periode_id', $this->periodeRepository->isActive()?->id);
+                $query->whereNot('status', LaporanKegiatanJabatan::SELESAI)->where('periode_id', $this->periodeRepository->isActive()?->id);
             });
         })->where('atasan_langsung_id', auth()->user()->id);
     }
