@@ -84,7 +84,7 @@
                     <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
                         <div class="user-menu d-flex align-items-center">
                             <div class="user-name text-end me-3">
-                                <h6 class="mb-0 text-gray-600">{{ Str::limit(Auth::user()->username, 18, '...') }}</h6>
+                                <h6 class="mb-0 text-gray-600">{{ Str::limit(Auth::user()->username, 20, '...') }}</h6>
                             </div>
                             @role(getAllRoleFungsional())
                                 <div class="user-img d-flex align-items-center">
@@ -94,8 +94,8 @@
                                     </div>
                                 </div>
                             @endrole
-                            @role(['atasan_langsung', 'penilai_ak_damkar', 'penilai_ak_analis',
-                                'penilai_ak_damkar_kemendagri', 'penetap_ak_damkar_kemendagri',
+                            @role(['atasan_langsung', 'penilai_ak_damkar', 'penilai_ak_analis', 'penetap_ak_damkar',
+                                'penetap_ak_analis', 'penilai_ak_damkar_kemendagri', 'penetap_ak_damkar_kemendagri',
                                 'penilai_ak_analis_kemendagri', 'penetap_ak_analis_kemendagri'])
                                 <div class="user-img d-flex align-items-center">
                                     <div class="avatar avatar-md">
@@ -133,7 +133,7 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton"
                         style="min-width: 11rem;">
                         <li>
-                            <h6 class="dropdown-header">Hello, {{ Str::limit(Auth::user()->username, 18, '...') }}</h6>
+                            <h6 class="dropdown-header">Hello, {{ Str::limit(Auth::user()->username, 20, '...') }}</h6>
                         </li>
                         @role(getAllRoleFungsional())
                             <li>
