@@ -219,7 +219,7 @@
                 <td class="bd" colspan="7"><br></td>
             </tr>
             <tr>
-                <th class="bd center letter" colspan="3" width="350px">ATASAN LANSGUNG
+                <th class="bd center letter" colspan="3" width="350px">ATASAN LANGSUNG
                 <th class="bd center letter" colspan="4" width="350px">PEJABAT YANG DINILAI</th>
             </tr>
             <tr>
