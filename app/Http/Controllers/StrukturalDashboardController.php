@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Periode;
 use Illuminate\Support\Facades\DB;
 use App\Models\Mente;
+use App\Repositories\PeriodeRepository;
 use App\Traits\AuthTrait;
 use App\Services\MenteService;
 
@@ -19,9 +20,11 @@ class StrukturalDashboardController extends Controller
     use AuthTrait;
 
     private MenteService $menteService;
-    public function __construct(MenteService $menteService)
+    private PeriodeRepository $periodeRepository;
+    public function __construct(MenteService $menteService, PeriodeRepository $periodeRepository)
     {
         $this->menteService = $menteService;
+        $this->periodeRepository = $periodeRepository;
     }
     public function index()
     {
@@ -86,7 +89,7 @@ class StrukturalDashboardController extends Controller
                         ' . $tingkat_aparatur . '
                         ' . $kab_prov . '
                         AND roles.id IN (1,2,3,4,5,6,7)
-                        AND laporan_kegiatan_jabatans.current_date BETWEEN ' . '"' . $periode->awal . '"' . ' AND ' . '"' . $periode->akhir . '"' . '
+                        AND laporan_kegiatan_jabatans.current_date BETWEEN ' . '"' . $periode?->awal . '"' . ' AND ' . '"' . $periode?->akhir . '"' . '
                         GROUP BY users.id
                         ORDER BY rekapitulasi_kegiatans.created_at DESC LIMIT 5');
             } else {
@@ -106,33 +109,48 @@ class StrukturalDashboardController extends Controller
     public function datatable(Request $request)
     {
         if ($request->ajax()) {
-            $role_order = 'DESC';
+            $role_order = 'ASC';
             if (isset($request->order) && $request->order[0]['column'] == 2) {
                 $role_order =  $request->order[0]['dir'];
             }
-            $user = $this->authUser()->load(['userPejabatStruktural', 'roles']);
-            $data = DB::select('SELECT
-                    users.id AS user_id,
-                    user_aparaturs.nama,
-                    user_aparaturs.nip,
-                    pangkat_golongan_tmts.nama AS pangkat,
-                    roles.display_name,
-                    user_aparaturs.status_mekanisme,
-                    user_aparaturs.angka_mekanisme,
-                    rekapitulasi_kegiatans.updated_at AS tanggal,
-                    mekanisme_pengangkatans.nama AS mekanisme
-                FROM users
-                LEFT JOIN user_aparaturs ON user_aparaturs.user_id = users.id
-                LEFT JOIN pangkat_golongan_tmts ON pangkat_golongan_tmts.id = user_aparaturs.pangkat_golongan_tmt_id
-                JOIN role_user ON role_user.user_id = users.id
-                JOIN roles ON roles.id = role_user.role_id
-                LEFT JOIN mekanisme_pengangkatans ON user_aparaturs.mekanisme_pengangkatan_id = mekanisme_pengangkatans.id
-                JOIN kab_prov_penilai_and_penetaps AS internal ON internal.kab_kota_id = ' . $user->userPejabatStruktural->kab_kota_id . '
-                JOIN rekapitulasi_kegiatans ON (rekapitulasi_kegiatans.fungsional_id = users.id AND rekapitulasi_kegiatans.is_send IN (2, 3))
-                WHERE users.status_akun = 1
-                    AND roles.id IN (1,2,3,5,6)
-                    AND user_aparaturs.kab_kota_id = ' . $user->userPejabatStruktural->kab_kota_id . '
-                    ORDER BY rekapitulasi_kegiatans.updated_at DESC LIMIT 5');
+            $user = $this->authUser()->load(['userPejabatStruktural']);
+            $periode = $this->periodeRepository->isActive();
+            if ($user->userPejabatStruktural->tingkat_aparatur == 'kab_kota') {
+                $tingkat_aparatur = 'AND user_aparaturs.tingkat_aparatur = "kab_kota"';
+                $kab_prov = 'AND user_aparaturs.kab_kota_id = ' . $user->userPejabatStruktural->kab_kota_id;
+            } else {
+                $tingkat_aparatur = 'AND user_aparaturs.tingkat_aparatur = "provinsi"';
+                $kab_prov = 'AND user_aparaturs.provinsi_id = ' . $user->userPejabatStruktural->provinsi_id;
+            }
+
+            if (isset($periode)) {
+                # code...
+                $data = DB::select('SELECT
+                        users.id,
+                        user_aparaturs.nama,
+                        user_aparaturs.nip,
+                        roles.display_name AS jabatan,
+                        pangkat_golongan_tmts.nama AS pangkat,
+                        ROUND(SUM(laporan_kegiatan_jabatans.score), 3) AS total
+                    FROM users
+                    JOIN user_aparaturs ON user_aparaturs.user_id = users.id
+                    JOIN role_user ON role_user.user_id = users.id
+                    JOIN roles ON roles.id = role_user.role_id
+                    JOIN pangkat_golongan_tmts ON pangkat_golongan_tmts.id = user_aparaturs.pangkat_golongan_tmt_id
+                    JOIN rekapitulasi_kegiatans ON rekapitulasi_kegiatans.fungsional_id = users.id
+                    JOIN laporan_kegiatan_jabatans ON laporan_kegiatan_jabatans.user_id = users.id
+                    WHERE rekapitulasi_kegiatans.is_send IN (1, 2, 3)
+                        AND users.status_akun = 1
+                        AND laporan_kegiatan_jabatans.status = 3
+                        ' . $tingkat_aparatur . '
+                        ' . $kab_prov . '
+                        AND roles.id IN (1,2,3,4,5,6,7)
+                        AND laporan_kegiatan_jabatans.current_date BETWEEN ' . '"' . $periode->awal . '"' . ' AND ' . '"' . $periode->akhir . '"' . '
+                        GROUP BY users.id
+                        ORDER BY rekapitulasi_kegiatans.created_at DESC, roles.display_name ' . $role_order);
+            } else {
+                $data = [];
+            }
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('status', function ($row) {
