@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\User;
+use App\Models\KabProvPenilaiAndPenetap;
 use App\Traits\AuthTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -35,6 +36,24 @@ class UserRepository
 
     public function destroyStruktural(User $user)
     {
+        $KabProvPenilaiAndPenetap = KabProvPenilaiAndPenetap::where('penilai_ak_damkar_id',$user["id"])->orWhere("penilai_ak_analis_id", $user["id"])->orwhere("penetap_ak_damkar_id", $user["id"])->orWhere("penetap_ak_analis_id", $user["id"])->first();
+        if ($KabProvPenilaiAndPenetap->penilai_ak_damkar_id == $user["id"])
+        {
+            $KabProvPenilaiAndPenetap->update(['penilai_ak_damkar_id' => null]);
+        }
+        if ($KabProvPenilaiAndPenetap->penilai_ak_analis_id == $user["id"])
+        {
+            $KabProvPenilaiAndPenetap->update(['penilai_ak_analis_id' => null]);
+        }
+        if ($KabProvPenilaiAndPenetap->penetap_ak_damkar_id == $user["id"])
+        {
+            $KabProvPenilaiAndPenetap->update(['penetap_ak_damkar_id' => null]);
+        }
+        if ($KabProvPenilaiAndPenetap->penetap_ak_analis_id == $user["id"])
+        {
+            $KabProvPenilaiAndPenetap->update(['penetap_ak_analis_id' => null]);
+        }
+
         if (isset($user->userPejabatStruktural?->file_ttd)) deleteImage($user->userPejabatStruktural->file_ttd);
         if (isset($user->userPejabatStruktural?->foto_pegawai)) deleteImage($user->userPejabatStruktural->foto_pegawai);
         return $user->delete();

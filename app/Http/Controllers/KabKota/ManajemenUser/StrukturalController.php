@@ -15,6 +15,7 @@ use App\Models\KabKota;
 use App\Models\PangkatGolonganTmt;
 use App\Traits\AuthTrait;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Models\KabProvPenilaiAndPenetap;
 
 class StrukturalController extends Controller
 {
@@ -65,8 +66,9 @@ class StrukturalController extends Controller
         $provinsis = Provinsi::query()->get();
         $kab_kota = KabKota::query()->get();
         $pangkats = PangkatGolonganTmt::query()->get();
+        $kabProvPenilaiAndPenetap = KabProvPenilaiAndPenetap::query()->get();
 
-        return view('kabkota.manajemen-user.struktural.show', compact('user', 'provinsis', 'kab_kota', 'pangkats', 'judul'));
+        return view('kabkota.manajemen-user.struktural.show', compact('user', 'provinsis', 'kab_kota', 'pangkats', 'kabProvPenilaiAndPenetap', 'judul'));
     }
 
     public function export(Request $request)
