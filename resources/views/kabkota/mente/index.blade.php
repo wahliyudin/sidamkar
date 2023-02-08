@@ -216,6 +216,7 @@
                                                 <tr>
                                                     <th>Pilih</th>
                                                     <th>Nama</th>
+						    <th>Nip</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -226,6 +227,7 @@
                                                                 type="checkbox" value="{{ $fungsional->id }}">
                                                         </td>
                                                         <td>{{ $fungsional->userAparatur?->nama }}</td>
+							<td>{{ $fungsional->userAparatur?->nip }}</td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>

@@ -352,7 +352,7 @@
                                 <div class="chat_people">
                                     <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
                                     <div class="chat_ib">
-                                        <h5>${val.username} <span class="badge bg-danger">${response.new ? response.new[index].count : 0}</span></h5>
+                                        <h5>${val.username}</h5>
                                     </div>
                                 </div>
                                 <input type="hidden" class="user_to_id" value="${val.id}">

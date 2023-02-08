@@ -187,7 +187,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="basicInput">TMT Golongan</label>
+                                        <label for="basicInput">GOLONGANTMT</label>
                                         <input type="date" name="golongan_tmt" class="form-control"
                                             value="{{ old('golongan_tmt', $user->userAparatur?->golongan_tmt) }}">
                                         @error('golongan_tmt')
@@ -216,7 +216,7 @@
                                     <div class="form-group">
                                         <label>Mekanisme Pengangkatan</label>
                                         <select class="form-select"
-                                            {{ in_array($user?->userAparatur?->status_mekanisme, [1, 3, 4]) ? 'disabled' : '' }}
+                                            {{ in_array($user?->userAparatur?->status_mekanisme, [3]) ? 'disabled' : '' }}
                                             name="mekanisme_pengangkatan_id">
                                             <option selected disabled>- Pilih Mekanisme -</option>
                                             @foreach ($mekanismePengangkatans as $mekanismePengangkatan)
@@ -232,7 +232,7 @@
                                     <div class="form-group">
                                         <label>Angka Kredit Awal</label>
                                         <input type="number"
-                                            {{ in_array($user?->userAparatur?->status_mekanisme, [1, 3, 4]) ? 'disabled' : '' }}
+                                            {{ in_array($user?->userAparatur?->status_mekanisme, [3]) ? 'disabled' : '' }}
                                             name="angka_mekanisme" class="form-control"
                                             value="{{ $user?->userAparatur->angka_mekanisme }}">
                                         <div class="my-1 mekanisme-status"
@@ -259,7 +259,7 @@
                                                 @break
 
                                                 @default
-                                                    <button type="button" style="width: 200px; font-style: italic; cursor: default;"
+                                                    <button style="width: 200px; font-style: italic; cursor: default;"
                                                         class="btn btn-gray-reverse px-2 py-1 text-sm">Belum</button>
                                             @endswitch
                                         </div>

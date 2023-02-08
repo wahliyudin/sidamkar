@@ -56,6 +56,7 @@ class KegiatanJabatanController extends Controller
             'rencana.required' => 'Rencana kinerja harus diisi'
         ]);
         $periode = $this->periodeRepository->isActive();
+        
         User::query()->findOrFail(auth()->user()->id)->rencanas()->create([
             'nama' => $request->rencana,
             'periode_id' => $periode?->id
