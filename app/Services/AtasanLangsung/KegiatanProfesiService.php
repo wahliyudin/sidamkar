@@ -62,9 +62,8 @@ class KegiatanProfesiService
             ->where('jenis_kegiatan_id', JenisKegiatan::JENIS_KEGIATAN_PROFESI)
             ->withWhereHas('subUnsurs', function ($query)  use ($role_id, $search, $user_id) {
                 $query->withWhereHas('butirKegiatans', function ($query) use ($role_id, $search, $user_id) {
-                    $query->withWhereHas('laporanKegiatanJabatans', function ($query) use($user_id) {
-			$query->where('user_id', $user_id)
-                        $query->whereIn('status', [LaporanKegiatanJabatan::VALIDASI, LaporanKegiatanJabatan::REVISI]);
+                    $query->withWhereHas('laporanKegiatanJabatans', function ($query) use ($user_id) {
+                        $query->where('user_id', $user_id)->whereIn('status', [LaporanKegiatanJabatan::VALIDASI, LaporanKegiatanJabatan::REVISI]);
                     })->withWhereHas('role', function ($query) use ($search, $role_id) {
                         $query->whereIn('id', [$role_id + 1, $role_id - 1, $role_id])->where(
                             'name',
